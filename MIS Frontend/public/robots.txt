@@ -1,0 +1,7 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ideal-real-porpoise-ox0ksz.teleporthq.app/sitemap.xml
