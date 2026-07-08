@@ -2,7 +2,7 @@
   "name": "ideal-real-porpoise",
   "version": "1.0.0",
   "description": "A next project generated based on a UIDL document",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "predev": "powershell -NoProfile -Command \"$processIds = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if ($processIds) { $processIds | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue } }; try { Remove-Item -Recurse -Force '.next' -ErrorAction SilentlyContinue } catch { }\"",
     "dev": "next dev -p 3000",
