@@ -205,17 +205,6 @@ export const deleteTableRow = async ({ table, id }) => {
   const db = getDbPool()
   const columns = await getTableColumns(safeTable)
   const primaryKeyColumn = getPrimaryKeyColumn(columns)
-  const hasDeletedAt = columns.some((column) => column.columnName === 'deleted_at')
-
-  if (hasDeletedAt) {
-    const [result] = await db.execute(
-      `UPDATE ${escapeIdentifier(safeTable)} SET ${escapeIdentifier('deleted_at')} = NOW() WHERE ${escapeIdentifier(
-        primaryKeyColumn
-      )} = ? LIMIT 1`,
-      [id]
-    )
-    return result.affectedRows
-  }
 
   const [result] = await db.execute(
     `DELETE FROM ${escapeIdentifier(safeTable)} WHERE ${escapeIdentifier(primaryKeyColumn)} = ? LIMIT 1`,

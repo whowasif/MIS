@@ -6,12 +6,12 @@ import {
 } from '../../../../../lib/server/admin/tables'
 
 export default async function handler(req, res) {
-  const auth = await requireAdminApiAuth(req)
+  const table = String(req.query?.table || '').toLowerCase()
+  const auth = await requireAdminApiAuth(req, { resource: table })
   if (!auth.ok) {
     return res.status(auth.status).json({ success: false, error: auth.error })
   }
 
-  const table = String(req.query?.table || '').toLowerCase()
   const id = String(req.query?.id || '').trim()
 
   if (!MANAGED_TABLES.includes(table)) {
@@ -25,6 +25,14 @@ export default async function handler(req, res) {
   try {
     if (req.method === 'PUT') {
       const values = req.body?.values || {}
+
+      // Hash password for admin_users table
+      if (table === 'admin_users' && values.password) {
+        const bcrypt = await import('bcryptjs')
+        values.password_hash = await bcrypt.default.hash(values.password, 12)
+        delete values.password
+      }
+
       const affectedRows = await updateTableRow({ table, id, values })
 
       return res.status(200).json({

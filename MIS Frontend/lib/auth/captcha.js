@@ -1,61 +1,42 @@
-import { SignJWT, jwtVerify } from 'jose'
+/**
+ * Cloudflare Turnstile verification
+ * 
+ * Required env vars:
+ *   TURNSTILE_SECRET_KEY - Cloudflare Turnstile secret key (server-side)
+ *   NEXT_PUBLIC_TURNSTILE_SITE_KEY - Cloudflare Turnstile site key (client-side)
+ */
 
-const CAPTCHA_TTL_SECONDS = 5 * 60
+const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
 
-const getCaptchaSecret = () => {
-  const secret = process.env.ADMIN_CAPTCHA_SECRET || process.env.ADMIN_SESSION_SECRET
+export const verifyTurnstileToken = async (token) => {
+  if (!token) return false
 
-  if (!secret || secret.length < 32) {
-    throw new Error('ADMIN_CAPTCHA_SECRET (or ADMIN_SESSION_SECRET) must be set and at least 32 characters long.')
-  }
+  const secretKey = process.env.TURNSTILE_SECRET_KEY
 
-  return new TextEncoder().encode(secret)
-}
-
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
-
-export const createCaptchaChallenge = async () => {
-  const left = randomInt(2, 20)
-  const right = randomInt(2, 20)
-  const operators = ['+', '-', '*']
-  const operator = operators[randomInt(0, operators.length - 1)]
-
-  let answer = 0
-  if (operator === '+') answer = left + right
-  if (operator === '-') answer = left - right
-  if (operator === '*') answer = left * right
-
-  const prompt = `Solve: ${left} ${operator} ${right}`
-  const secret = getCaptchaSecret()
-
-  const token = await new SignJWT({
-    type: 'admin-captcha',
-    answer: String(answer),
-    prompt,
-  })
-    .setProtectedHeader({ alg: 'HS256' })
-    .setIssuedAt()
-    .setExpirationTime(`${CAPTCHA_TTL_SECONDS}s`)
-    .sign(secret)
-
-  return {
-    prompt,
-    token,
-    expiresIn: CAPTCHA_TTL_SECONDS,
-  }
-}
-
-export const verifyCaptchaAnswer = async ({ token, answer }) => {
-  if (!token || !answer) return false
-
-  try {
-    const secret = getCaptchaSecret()
-    const { payload } = await jwtVerify(token, secret)
-
-    if (payload?.type !== 'admin-captcha') return false
-
-    return String(payload.answer).trim() === String(answer).trim()
-  } catch (error) {
+  if (!secretKey) {
+    console.error('TURNSTILE_SECRET_KEY is not set in environment variables.')
     return false
   }
+
+  try {
+    const response = await fetch(TURNSTILE_VERIFY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: secretKey,
+        response: token,
+      }),
+    })
+
+    const data = await response.json()
+    return data.success === true
+  } catch (error) {
+    console.error('Turnstile verification failed:', error.message)
+    return false
+  }
+}
+
+// Legacy export for backward compatibility
+export const verifyCaptchaAnswer = async ({ token }) => {
+  return verifyTurnstileToken(token)
 }

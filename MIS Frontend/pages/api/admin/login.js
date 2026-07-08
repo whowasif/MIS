@@ -6,7 +6,7 @@ import {
   buildRoleCookie,
   buildSessionCookie,
   createAdminSessionToken,
-  REQUIRED_ADMIN_ROLE,
+  ADMIN_ROLES,
 } from '../../../lib/auth/session'
 
 const getClientIp = (req) => {
@@ -37,22 +37,20 @@ export default async function handler(req, res) {
   try {
     const identifier = String(req.body?.identifier || '').trim().toLowerCase()
     const password = String(req.body?.password || '')
-    const captchaAnswer = String(req.body?.captchaAnswer || '').trim()
-    const captchaToken = String(req.body?.captchaToken || '').trim()
+    const turnstileToken = String(req.body?.turnstileToken || req.body?.captchaToken || '').trim()
 
     if (!identifier || !password) {
       return res.status(400).json({ success: false, error: 'Email or username and password are required.' })
     }
 
     const isCaptchaValid = await verifyCaptchaAnswer({
-      token: captchaToken,
-      answer: captchaAnswer,
+      token: turnstileToken,
     })
 
     if (!isCaptchaValid) {
       return res.status(400).json({
         success: false,
-        error: 'Captcha validation failed. Please solve a fresh captcha challenge.',
+        error: 'Human verification failed. Please complete the Cloudflare challenge.',
       })
     }
 
@@ -136,7 +134,7 @@ export default async function handler(req, res) {
         email: adminUser.email,
         role: adminUser.role,
       },
-      isSuperAdmin: adminUser.role === REQUIRED_ADMIN_ROLE,
+      isSuperAdmin: adminUser.role === 'super_admin',
     })
   } catch (error) {
     return res.status(500).json({

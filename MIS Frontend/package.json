@@ -4,11 +4,12 @@
   "description": "A next project generated based on a UIDL document",
   "main": "index.js",
   "scripts": {
-    "predev": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\"",
+    "predev": "powershell -NoProfile -Command \"$processIds = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if ($processIds) { $processIds | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue } }; try { Remove-Item -Recurse -Force '.next' -ErrorAction SilentlyContinue } catch { }\"",
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "db:bootstrap-content-tables": "node scripts/bootstrap-content-tables.js"
   },
   "author": "TeleportHQ",
   "license": "MIT",
@@ -16,12 +17,15 @@
     "@teleporthq/react-components": "latest",
     "bcryptjs": "^3.0.3",
     "dangerous-html": "0.1.13",
+    "formidable": "^3.5.4",
     "jose": "^6.2.2",
     "mysql2": "^3.22.1",
     "next": "^12.1.10",
+    "next-auth": "^4.24.14",
     "next-intl": "2.10.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-quill": "^2.0.0"
   },
   "engines": {
     "node": ">=18.x"

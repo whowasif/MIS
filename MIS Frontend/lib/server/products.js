@@ -19,6 +19,13 @@ const BUSINESS_CATEGORY_NAMES = [
 const DIGITAL_SERVICE_CATEGORY_NAMES = ['MIS Digital Services']
 const MAINTENANCE_CATEGORY_NAMES = ['Service & Maintenance']
 
+const STRUCTURED_CONTENT_TABLES = new Set([
+  'categories',
+  'digi_services',
+  'bus_corp_sol',
+  'service_maintenance',
+])
+
 const toCategoryKey = (value) =>
   String(value || '')
     .trim()
@@ -26,9 +33,51 @@ const toCategoryKey = (value) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 
+const normalizeMediaUrl = (value) => {
+  if (!value) return null
+
+  const rawValue = String(value).trim().replace(/\\/g, '/')
+  if (!rawValue) return null
+
+  if (rawValue.startsWith('http://') || rawValue.startsWith('https://')) {
+    return rawValue
+  }
+
+  if (rawValue.startsWith('file:///')) {
+    const filePath = rawValue.replace(/^file:\/\//i, '')
+    const uploadsIndex = filePath.toLowerCase().lastIndexOf('/uploads/admin/')
+    if (uploadsIndex !== -1) {
+      return filePath.slice(uploadsIndex)
+    }
+  }
+
+  const uploadsIndex = rawValue.toLowerCase().lastIndexOf('/uploads/admin/')
+  if (uploadsIndex !== -1) {
+    return rawValue.slice(uploadsIndex)
+  }
+
+  const publicUploadsIndex = rawValue.toLowerCase().lastIndexOf('/public/uploads/admin/')
+  if (publicUploadsIndex !== -1) {
+    return rawValue.slice(publicUploadsIndex + '/public'.length)
+  }
+
+  if (rawValue.includes('uploads/admin/')) {
+    return `/${rawValue.slice(rawValue.toLowerCase().indexOf('uploads/admin/'))}`
+  }
+
+  if (rawValue.startsWith('/')) {
+    return rawValue
+  }
+
+  return rawValue
+}
+
 const getProductImage = (row) => {
-  if (row.thumbnail_1) return row.thumbnail_1
-  if (row.thumbnail_2) return row.thumbnail_2
+  const thumbnail1 = normalizeMediaUrl(row.thumbnail_1)
+  const thumbnail2 = normalizeMediaUrl(row.thumbnail_2)
+
+  if (thumbnail1) return thumbnail1
+  if (thumbnail2) return thumbnail2
 
   if (!row.photos) return null
 
@@ -36,7 +85,7 @@ const getProductImage = (row) => {
     const parsedPhotos =
       typeof row.photos === 'string' ? JSON.parse(row.photos) : row.photos
     if (Array.isArray(parsedPhotos) && parsedPhotos.length > 0) {
-      return parsedPhotos[0]
+      return normalizeMediaUrl(parsedPhotos[0])
     }
   } catch (error) {
     return null
@@ -48,8 +97,11 @@ const getProductImage = (row) => {
 const getProductImages = (row) => {
   const images = []
 
-  if (row.thumbnail_1) images.push(row.thumbnail_1)
-  if (row.thumbnail_2) images.push(row.thumbnail_2)
+  const thumbnail1 = normalizeMediaUrl(row.thumbnail_1)
+  const thumbnail2 = normalizeMediaUrl(row.thumbnail_2)
+
+  if (thumbnail1) images.push(thumbnail1)
+  if (thumbnail2) images.push(thumbnail2)
 
   if (row.photos) {
     try {
@@ -57,7 +109,8 @@ const getProductImages = (row) => {
         typeof row.photos === 'string' ? JSON.parse(row.photos) : row.photos
       if (Array.isArray(parsedPhotos)) {
         parsedPhotos.forEach((photo) => {
-          if (photo && !images.includes(photo)) images.push(photo)
+          const normalizedPhoto = normalizeMediaUrl(photo)
+          if (normalizedPhoto && !images.includes(normalizedPhoto)) images.push(normalizedPhoto)
         })
       }
     } catch (error) {
@@ -68,16 +121,46 @@ const getProductImages = (row) => {
   return images
 }
 
+const getProductVideoUrl = (row) => {
+  if (!row || typeof row !== 'object') return null
+
+  const preferredKeys = ['video_url', 'video_link', 'video', 'product_video', 'promo_video']
+
+  for (const key of preferredKeys) {
+    const normalized = normalizeMediaUrl(row[key])
+    if (normalized) return normalized
+  }
+
+  const dynamicVideoKey = Object.keys(row).find((key) => {
+    const lower = String(key || '').toLowerCase()
+    if (!lower.includes('video')) return false
+    return typeof row[key] === 'string' && row[key].trim().length > 0
+  })
+
+  if (!dynamicVideoKey) return null
+  return normalizeMediaUrl(row[dynamicVideoKey])
+}
+
 const mapProductRow = (row) => ({
   id: row.id,
+  slug: row.slug,
   name: row.name,
-  description: row.short_desc || 'No description available.',
+  description: row.short_desc || row.long_desc || 'No description available.',
+  shortDesc: row.short_desc || '',
+  longDesc: row.long_desc || '',
+  features: row.features || '',
+  specifications: row.specifications || null,
+  brand: row.brand || '',
+  model: row.model || '',
+  regularPrice: Number(row.regular_price || 0),
   price: Number(row.price || 0),
   type: row.type || 'Hardware',
   stockQty: Number(row.stock_qty || 0),
   image: getProductImage(row),
   images: getProductImages(row),
+  videoUrl: getProductVideoUrl(row),
   categoryName: row.category_name || row.type || 'General',
+  categorySlug: row.category_slug || toCategoryKey(row.category_name || row.type || 'General') || 'general',
   filterCategory: toCategoryKey(row.category_name || row.type || 'General') || 'general',
 })
 
@@ -89,9 +172,102 @@ const mapServiceRow = (row) => ({
   stockQty: Number(row.stock_qty || 0),
   image: getProductImage(row),
   images: getProductImages(row),
+  videoUrl: getProductVideoUrl(row),
   categoryName: row.category_name || 'General',
   filterCategory: toCategoryKey(row.category_name || 'General') || 'general',
 })
+
+const normalizeStructuredContentRow = (row) => ({
+  id: row.id,
+  name: row.name,
+  slug: row.slug,
+  description: row.description || '',
+  iconUrl: normalizeMediaUrl(row.icon_url),
+  status: row.status || '',
+  displayOrder: Number(row.display_order || 0),
+  deletedAt: row.deleted_at || null,
+})
+
+const getStructuredContentTable = (tableName) => {
+  const normalized = String(tableName || '').trim().toLowerCase()
+
+  if (!STRUCTURED_CONTENT_TABLES.has(normalized)) {
+    throw new Error(`Unsupported content table: ${tableName}`)
+  }
+
+  return normalized
+}
+
+export const listStructuredContent = async (tableName, limit = 100) => {
+  const db = getDbPool()
+  const safeTable = getStructuredContentTable(tableName)
+  const safeLimit = Number.isFinite(limit) ? Math.max(1, Math.min(300, Number(limit))) : 100
+
+  const [rows] = await db.query(
+    `SELECT
+      id,
+      name,
+      slug,
+      description,
+      icon_url,
+      status,
+      display_order,
+      deleted_at
+    FROM ${safeTable}
+    WHERE deleted_at IS NULL
+      AND status = 'active'
+    ORDER BY display_order ASC, id ASC
+    LIMIT ${safeLimit}`
+  )
+
+  return rows.map(normalizeStructuredContentRow)
+}
+
+export const getStructuredContentBySlug = async (tableName, slug) => {
+  const db = getDbPool()
+  const safeTable = getStructuredContentTable(tableName)
+  const safeSlug = String(slug || '').trim().toLowerCase()
+
+  if (!safeSlug) return null
+
+  const [rows] = await db.execute(
+    `SELECT
+      id,
+      name,
+      slug,
+      description,
+      icon_url,
+      status,
+      display_order,
+      deleted_at
+    FROM ${safeTable}
+    WHERE deleted_at IS NULL
+      AND LOWER(COALESCE(slug, '')) = ?
+    LIMIT 1`,
+    [safeSlug]
+  )
+
+  if (!rows.length) return null
+  return normalizeStructuredContentRow(rows[0])
+}
+
+export const listCatalogCategories = async (limit = 50) => {
+  const rows = await listStructuredContent('categories', limit)
+
+  return rows.map((row) => ({
+    key: row.slug || toCategoryKey(row.name),
+    label: row.name,
+    iconUrl: row.iconUrl,
+  }))
+}
+
+export const listDigitalServiceEntries = async (limit = 100) => listStructuredContent('digi_services', limit)
+
+export const listBusinessSolutionEntries = async (limit = 100) =>
+  listStructuredContent('bus_corp_sol', limit)
+
+export const listMaintenanceSupportEntries = async (limit = 100) =>
+  listStructuredContent('service_maintenance', limit)
 
 const buildInClause = (items) => items.map(() => '?').join(', ')
 
@@ -108,17 +284,9 @@ const listProductsByCategoryNames = async (categoryNames, limit = 100) => {
 
   const [rows] = await db.execute(
     `SELECT
-      p.id,
-      p.name,
-      p.short_desc,
-      p.long_desc,
-      p.price,
-      p.type,
-      p.stock_qty,
-      p.thumbnail_1,
-      p.thumbnail_2,
-      p.photos,
-      c.name AS category_name
+      p.*,
+      c.name AS category_name,
+      c.slug AS category_slug
     FROM products p
     LEFT JOIN categories c ON c.id = p.category_id
     WHERE p.deleted_at IS NULL
@@ -139,16 +307,9 @@ export const listCatalogProducts = async (limit = 100) => {
 
   const [rows] = await db.execute(
     `SELECT
-      p.id,
-      p.name,
-      p.short_desc,
-      p.price,
-      p.type,
-      p.stock_qty,
-      p.thumbnail_1,
-      p.thumbnail_2,
-      p.photos,
-      c.name AS category_name
+      p.*,
+      c.name AS category_name,
+      c.slug AS category_slug
     FROM products p
     LEFT JOIN categories c ON c.id = p.category_id
     WHERE p.deleted_at IS NULL
@@ -162,35 +323,53 @@ export const listCatalogProducts = async (limit = 100) => {
   return rows.map(mapProductRow)
 }
 
-export const getCatalogProductById = async (id) => {
+export const listCatalogProductsByCategorySlug = async (categorySlug, limit = 100) => {
   const db = getDbPool()
-  const safeId = Number(id)
+  const safeLimit = Number.isFinite(limit) ? Math.max(1, Math.min(200, Number(limit))) : 100
+  const safeSlug = String(categorySlug || '').trim().toLowerCase()
   const inClause = buildInClause(RETAIL_CATEGORY_NAMES)
 
-  if (!Number.isInteger(safeId) || safeId <= 0) {
+  if (!safeSlug) return []
+
+  const [rows] = await db.execute(
+    `SELECT
+      p.*,
+      c.name AS category_name,
+      c.slug AS category_slug
+    FROM products p
+    LEFT JOIN categories c ON c.id = p.category_id
+    WHERE p.deleted_at IS NULL
+      AND p.is_active = 1
+      AND LOWER(COALESCE(c.slug, '')) = ?
+      AND c.name IN (${inClause})
+    ORDER BY p.updated_at DESC
+    LIMIT ${safeLimit}`,
+    [safeSlug, ...RETAIL_CATEGORY_NAMES]
+  )
+
+  return rows.map(mapProductRow)
+}
+
+export const getCatalogProductBySlug = async (slug) => {
+  const db = getDbPool()
+  const safeSlug = String(slug || '').trim().toLowerCase()
+
+  if (!safeSlug) {
     return null
   }
 
   const [rows] = await db.execute(
     `SELECT
-      p.id,
-      p.name,
-      p.short_desc,
-      p.price,
-      p.type,
-      p.stock_qty,
-      p.thumbnail_1,
-      p.thumbnail_2,
-      p.photos,
-      c.name AS category_name
+      p.*,
+      c.name AS category_name,
+      c.slug AS category_slug
     FROM products p
     LEFT JOIN categories c ON c.id = p.category_id
-    WHERE p.id = ?
+    WHERE (LOWER(COALESCE(p.slug, '')) = ? OR p.id = ?)
       AND p.deleted_at IS NULL
       AND p.is_active = 1
-      AND c.name IN (${inClause})
     LIMIT 1`,
-    [safeId, ...RETAIL_CATEGORY_NAMES]
+    [safeSlug, safeSlug]
   )
 
   if (!rows.length) return null
@@ -206,3 +385,24 @@ export const listDigitalServiceProducts = async (limit = 100) =>
 
 export const listMaintenanceSupportProducts = async (limit = 100) =>
   listProductsByCategoryNames(MAINTENANCE_CATEGORY_NAMES, limit)
+
+export const listFeaturedProducts = async (limit = 10) => {
+  const db = getDbPool()
+  const safeLimit = Number.isFinite(limit) ? Math.max(1, Math.min(50, Number(limit))) : 10
+
+  const [rows] = await db.query(
+    `SELECT
+      p.*,
+      c.name AS category_name,
+      c.slug AS category_slug
+    FROM products p
+    LEFT JOIN categories c ON c.id = p.category_id
+    WHERE p.deleted_at IS NULL
+      AND p.is_active = 1
+      AND p.is_featured = 1
+    ORDER BY p.updated_at DESC
+    LIMIT ${safeLimit}`
+  )
+
+  return rows.map(mapProductRow)
+}

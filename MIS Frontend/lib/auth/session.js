@@ -2,8 +2,18 @@ import { SignJWT, jwtVerify } from 'jose'
 
 export const ADMIN_SESSION_COOKIE = 'mis_admin_session'
 export const ADMIN_ROLE_COOKIE = 'mis_admin_role'
-export const REQUIRED_ADMIN_ROLE = 'superadmin'
 export const ADMIN_SESSION_TTL_SECONDS = 30 * 60
+
+// Role hierarchy: super_admin > senior_admin > junior_admin
+export const ADMIN_ROLES = ['super_admin', 'senior_admin', 'junior_admin']
+
+// Pages/resources restricted from certain roles
+export const ROLE_RESTRICTIONS = {
+  // senior_admin cannot access:
+  senior_admin: ['admin_users'],
+  // junior_admin cannot access:
+  junior_admin: ['admin_users', 'customers', 'company_contacts', 'orders', 'quotes', 'promo_codes', 'quotes-manager', 'applications'],
+}
 
 const getSessionSecret = () => {
   const sessionSecret = process.env.ADMIN_SESSION_SECRET

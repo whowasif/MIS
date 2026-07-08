@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect, useRef } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
@@ -7,12 +7,17 @@ const accessMessageByReason = {
   role: 'Your current role does not have permission for this route.',
 }
 
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
+
 const AccessPortal = () => {
   const router = useRouter()
-  const [form, setForm] = useState({ identifier: '', password: '', captchaAnswer: '' })
+  const [form, setForm] = useState({ identifier: '', password: '' })
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [captcha, setCaptcha] = useState({ prompt: '', token: '' })
+  const [showPassword, setShowPassword] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const turnstileRef = useRef(null)
+  const widgetIdRef = useRef(null)
 
   const reason = typeof router.query.reason === 'string' ? router.query.reason : ''
   const nextRoute =
@@ -25,28 +30,53 @@ const AccessPortal = () => {
     return accessMessageByReason[reason] || 'Access verification required.'
   }, [reason])
 
-  const loadCaptcha = async () => {
-    try {
-      const response = await fetch('/api/admin/captcha')
-      const payload = await response.json()
+  // Load Turnstile script
+  useEffect(() => {
+    if (document.getElementById('cf-turnstile-script')) return
 
-      if (!response.ok || !payload?.success || !payload?.captcha) {
-        throw new Error('Failed to load captcha')
+    const script = document.createElement('script')
+    script.id = 'cf-turnstile-script'
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit'
+    script.async = true
+    script.defer = true
+    document.head.appendChild(script)
+
+    window.onTurnstileLoad = () => {
+      if (turnstileRef.current && window.turnstile && TURNSTILE_SITE_KEY) {
+        widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: 'dark',
+          callback: (token) => setTurnstileToken(token),
+          'expired-callback': () => setTurnstileToken(''),
+          'error-callback': () => setTurnstileToken(''),
+        })
       }
+    }
 
-      setCaptcha({
-        prompt: payload.captcha.prompt,
-        token: payload.captcha.token,
+    return () => {
+      delete window.onTurnstileLoad
+    }
+  }, [])
+
+  // Render widget if script already loaded
+  useEffect(() => {
+    if (window.turnstile && turnstileRef.current && !widgetIdRef.current && TURNSTILE_SITE_KEY) {
+      widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: 'dark',
+        callback: (token) => setTurnstileToken(token),
+        'expired-callback': () => setTurnstileToken(''),
+        'error-callback': () => setTurnstileToken(''),
       })
-    } catch (captchaError) {
-      setCaptcha({ prompt: '', token: '' })
-      setError('Unable to load captcha challenge. Refresh and try again.')
+    }
+  }, [])
+
+  const resetTurnstile = () => {
+    setTurnstileToken('')
+    if (window.turnstile && widgetIdRef.current !== null) {
+      window.turnstile.reset(widgetIdRef.current)
     }
   }
-
-  React.useEffect(() => {
-    loadCaptcha()
-  }, [])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -56,19 +86,22 @@ const AccessPortal = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     setError('')
+
+    if (!turnstileToken) {
+      setError('Please complete the human verification.')
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
       const response = await fetch('/api/admin/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           identifier: form.identifier,
           password: form.password,
-          captchaAnswer: form.captchaAnswer,
-          captchaToken: captcha.token,
+          turnstileToken,
         }),
       })
 
@@ -76,14 +109,14 @@ const AccessPortal = () => {
 
       if (!response.ok || !payload?.success) {
         setError(payload?.error || 'Unable to authenticate. Please verify your credentials.')
-        setForm((current) => ({ ...current, captchaAnswer: '' }))
-        await loadCaptcha()
+        resetTurnstile()
         return
       }
 
       window.location.assign(nextRoute)
     } catch (requestError) {
       setError('Unable to reach the authentication service. Try again.')
+      resetTurnstile()
     } finally {
       setIsSubmitting(false)
     }
@@ -98,8 +131,12 @@ const AccessPortal = () => {
 
       <main className="access-page">
         <section className="access-card">
+          <div className="access-logo-wrap">
+            <img src="/footer logo.png" alt="MIS Solution" className="access-logo" />
+          </div>
           <p className="kicker">Portal Secure 99x</p>
           <h1>Internal Access Gateway</h1>
+          <h3>Admin Panel</h3>
           <p className="status">{statusMessage}</p>
 
           <form className="access-form" onSubmit={handleSubmit} noValidate>
@@ -118,43 +155,33 @@ const AccessPortal = () => {
 
             <label>
               <span>Password</span>
-              <input
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                type="password"
-                placeholder="Enter password"
-                autoComplete="current-password"
-                required
-              />
+              <div className="password-wrap">
+                <input
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter password"
+                  autoComplete="current-password"
+                  required
+                />
+                <button type="button" className="eye-btn" onClick={() => setShowPassword(!showPassword)} tabIndex={-1}>
+                  {showPassword ? (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  ) : (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  )}
+                </button>
+              </div>
             </label>
 
-            <label>
-              <span>Captcha</span>
-              <div className="captcha-box">{captcha.prompt || 'Loading captcha...'}</div>
-              <input
-                name="captchaAnswer"
-                value={form.captchaAnswer}
-                onChange={handleChange}
-                type="text"
-                placeholder="Enter captcha result"
-                autoComplete="off"
-                required
-              />
-            </label>
-
-            <button
-              type="button"
-              className="captcha-refresh"
-              onClick={loadCaptcha}
-              disabled={isSubmitting}
-            >
-              Refresh Captcha
-            </button>
+            <div className="turnstile-wrap">
+              <div ref={turnstileRef}></div>
+            </div>
 
             {error && <p className="error">{error}</p>}
 
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" className="submit-btn" disabled={isSubmitting || !turnstileToken}>
               {isSubmitting ? 'Authorizing...' : 'Sign In'}
             </button>
           </form>
@@ -179,7 +206,18 @@ const AccessPortal = () => {
           border-radius: 14px;
           border: 1px solid #28313b;
           background: #171d24;
-          padding: 1.2rem;
+          padding: 2rem 1.5rem;
+        }
+
+        .access-logo-wrap {
+          margin-bottom: 4px;
+        }
+
+        .access-logo {
+          width: 64px;
+          height: 64px;
+          object-fit: contain;
+          border-radius: 12px;
         }
 
         .kicker {
@@ -205,6 +243,7 @@ const AccessPortal = () => {
         .access-form {
           display: grid;
           gap: 0.85rem;
+          margin-top: 0.5rem;
         }
 
         label {
@@ -238,29 +277,41 @@ const AccessPortal = () => {
           box-shadow: 0 0 0 3px rgba(255, 207, 106, 0.16);
         }
 
-        .captcha-box {
-          border: 1px dashed #4a596b;
-          border-radius: 10px;
-          padding: 0.7rem 0.85rem;
-          background: #111821;
-          color: #ffdf84;
-          font-weight: 700;
-          letter-spacing: 0.02em;
+        .password-wrap {
+          position: relative;
+          display: flex;
+          align-items: center;
         }
 
-        .captcha-refresh {
-          border: 1px solid #435363;
-          border-radius: 10px;
+        .password-wrap input {
+          padding-right: 44px;
+        }
+
+        .eye-btn {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          border: none;
+          background: none;
+          padding: 4px;
           cursor: pointer;
-          padding: 0.58rem 0.85rem;
-          font-weight: 700;
-          color: #d9e4f2;
-          background: #27323f;
+          color: #8fa0b4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 6px;
         }
 
-        .captcha-refresh:disabled {
-          opacity: 0.7;
-          cursor: wait;
+        .eye-btn:hover {
+          color: #ffcf6a;
+          background: rgba(255, 207, 106, 0.1);
+        }
+
+        .turnstile-wrap {
+          display: flex;
+          justify-content: center;
+          padding: 8px 0;
         }
 
         .error {
@@ -270,19 +321,26 @@ const AccessPortal = () => {
           font-weight: 700;
         }
 
-        button {
-          border: 1px solid #4b5663;
+        .submit-btn {
+          width: 100%;
+          border: none;
           border-radius: 10px;
           cursor: pointer;
-          padding: 0.72rem 1rem;
+          padding: 0.75rem 1rem;
           font-weight: 700;
+          font-size: 0.95rem;
           color: #101318;
           background: linear-gradient(180deg, #e2bb21 0%, #c5a21a 100%);
+          transition: opacity 0.15s;
         }
 
-        button:disabled {
-          opacity: 0.7;
-          cursor: wait;
+        .submit-btn:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        .submit-btn:not(:disabled):hover {
+          opacity: 0.9;
         }
       `}</style>
     </>

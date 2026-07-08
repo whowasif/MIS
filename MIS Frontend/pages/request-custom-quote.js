@@ -1,10 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 
-const RequestCustomQuote = () => {
+const RequestCustomQuote = ({ serviceOptions = [] }) => {
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
+    setSubmitting(true)
+
+    const formData = new FormData(e.currentTarget)
+
+    try {
+      const response = await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientName: formData.get('fullName'),
+          companyName: formData.get('companyName'),
+          email: formData.get('businessEmail'),
+          projectType: formData.get('projectType'),
+          requirements: formData.get('projectRequirements'),
+        }),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Something went wrong.')
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setSubmitting(false)
+    }
+  }
   return (
     <>
       <div className="quote-page">
@@ -30,86 +67,107 @@ const RequestCustomQuote = () => {
 
           <section className="quote-layout">
             <div className="quote-form-panel">
-              <h2>Project Inquiry Form</h2>
-              <form className="quote-form" onSubmit={(e) => e.preventDefault()}>
-                <div className="field-group">
-                  <label htmlFor="fullName">Full Name</label>
-                  <input
-                    id="fullName"
-                    name="fullName"
-                    type="text"
-                    placeholder="Enter your full name"
-                    required
-                  />
+              {submitted ? (
+                <div className="success-state">
+                  <h2>Quote Request Submitted!</h2>
+                  <p>Thank you. Our engineering team will review your requirements and respond within 24 hours.</p>
+                  <button type="button" className="submit-btn" onClick={() => setSubmitted(false)}>
+                    Submit Another Request
+                  </button>
                 </div>
+              ) : (
+                <>
+                  <h2>Project Inquiry Form</h2>
+                  {error && <p className="form-error">{error}</p>}
+                  <form className="quote-form" onSubmit={handleSubmit}>
+                    <div className="field-group">
+                      <label htmlFor="fullName">Full Name</label>
+                      <input
+                        id="fullName"
+                        name="fullName"
+                        type="text"
+                        placeholder="Enter your full name"
+                        required
+                      />
+                    </div>
 
-                <div className="field-group">
-                  <label htmlFor="companyName">Company Name</label>
-                  <input
-                    id="companyName"
-                    name="companyName"
-                    type="text"
-                    placeholder="Enter your company name"
-                    required
-                  />
-                </div>
+                    <div className="field-group">
+                      <label htmlFor="companyName">Company Name</label>
+                      <input
+                        id="companyName"
+                        name="companyName"
+                        type="text"
+                        placeholder="Enter your company name"
+                        required
+                      />
+                    </div>
 
-                <div className="field-group two-col">
-                  <div>
-                    <label htmlFor="businessEmail">Business Email</label>
-                    <input
-                      id="businessEmail"
-                      name="businessEmail"
-                      type="email"
-                      placeholder="name@company.com"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phoneNumber">Phone Number</label>
-                    <input
-                      id="phoneNumber"
-                      name="phoneNumber"
-                      type="tel"
-                      placeholder="+880 1XXXXXXXXX"
-                      required
-                    />
-                  </div>
-                </div>
+                    <div className="field-group two-col">
+                      <div>
+                        <label htmlFor="businessEmail">Business Email</label>
+                        <input
+                          id="businessEmail"
+                          name="businessEmail"
+                          type="email"
+                          placeholder="name@company.com"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="phoneNumber">Phone Number</label>
+                        <input
+                          id="phoneNumber"
+                          name="phoneNumber"
+                          type="tel"
+                          placeholder="+880 1XXXXXXXXX"
+                          required
+                        />
+                      </div>
+                    </div>
 
-                <div className="field-group">
-                  <label htmlFor="projectType">Project Type</label>
-                  <select id="projectType" name="projectType" required defaultValue="">
-                    <option value="" disabled>
-                      Select project type
-                    </option>
-                    <option value="enterprise-networking">
-                      Enterprise Networking
-                    </option>
-                    <option value="cctv-security">CCTV &amp; Security</option>
-                    <option value="data-center">Data Center</option>
-                    <option value="bulk-hardware">Bulk Hardware</option>
-                    <option value="maintenance-contract">
-                      Maintenance Contract
-                    </option>
-                  </select>
-                </div>
+                    <div className="field-group">
+                      <label htmlFor="projectType">Project Type</label>
+                      <select id="projectType" name="projectType" required defaultValue="">
+                        <option value="" disabled>
+                          Select project type
+                        </option>
+                        {serviceOptions.length > 0 ? (
+                          serviceOptions.map((group) => (
+                            <optgroup key={group.label} label={group.label}>
+                              {group.items.map((item) => (
+                                <option key={item.id} value={item.name}>{item.name}</option>
+                              ))}
+                            </optgroup>
+                          ))
+                        ) : (
+                          <>
+                            <option value="Enterprise Networking">Enterprise Networking</option>
+                            <option value="CCTV & Security">CCTV &amp; Security</option>
+                            <option value="Data Center">Data Center</option>
+                            <option value="Bulk Hardware">Bulk Hardware</option>
+                            <option value="Maintenance Contract">Maintenance Contract</option>
+                          </>
+                        )}
+                      </select>
+                    </div>
 
-                <div className="field-group">
-                  <label htmlFor="projectRequirements">Project Requirements</label>
-                  <textarea
-                    id="projectRequirements"
-                    name="projectRequirements"
-                    placeholder="Please describe your scope, expected timeline, sites, quantities, and technical requirements."
-                    rows="8"
-                    required
-                  ></textarea>
-                </div>
+                    <div className="field-group">
+                      <label htmlFor="projectRequirements">Project Requirements</label>
+                      <textarea
+                        id="projectRequirements"
+                        name="projectRequirements"
+                        placeholder="Please describe your scope, expected timeline, sites, quantities, and technical requirements."
+                        rows="8"
+                        required
+                      ></textarea>
+                    </div>
 
-                <button type="submit" className="submit-btn">
-                  Submit Quote Request
-                </button>
-              </form>
+                    <button type="submit" className="submit-btn" disabled={submitting}>
+                      {submitting ? 'Submitting...' : 'Submit Quote Request'}
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
 
             <aside className="quote-contact-panel" aria-label="Direct Contact">
@@ -291,6 +349,39 @@ const RequestCustomQuote = () => {
           box-shadow: 0 10px 24px rgba(247, 229, 0, 0.25);
         }
 
+        .submit-btn:disabled {
+          opacity: 0.6;
+          cursor: wait;
+          transform: none;
+          box-shadow: none;
+        }
+
+        .form-error {
+          margin: 0.5rem 0;
+          padding: 0.7rem 0.9rem;
+          border-radius: 8px;
+          background: rgba(220, 50, 50, 0.15);
+          color: #ff6b6b;
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+
+        .success-state {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: flex-start;
+        }
+
+        .success-state h2 {
+          color: #f7e500;
+        }
+
+        .success-state p {
+          color: #dce1e8;
+          line-height: 1.7;
+        }
+
         .quote-contact-panel p {
           margin: 0.9rem 0 1.25rem;
           color: #dce1e8;
@@ -337,6 +428,27 @@ const RequestCustomQuote = () => {
       `}</style>
     </>
   )
+}
+
+export const getServerSideProps = async () => {
+  try {
+    const { getDbPool } = await import('../lib/server/db')
+    const db = getDbPool()
+
+    const [digi] = await db.query("SELECT id, name FROM digi_services WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC, name ASC")
+    const [biz] = await db.query("SELECT id, name FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC, name ASC")
+    const [maint] = await db.query("SELECT id, name FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC, name ASC")
+
+    const serviceOptions = [
+      { label: 'Digital Services', items: JSON.parse(JSON.stringify(digi)) },
+      { label: 'Business & Corporate Solutions', items: JSON.parse(JSON.stringify(biz)) },
+      { label: 'Service & Maintenance', items: JSON.parse(JSON.stringify(maint)) },
+    ]
+
+    return { props: { serviceOptions } }
+  } catch (e) {
+    return { props: { serviceOptions: [] } }
+  }
 }
 
 export default RequestCustomQuote

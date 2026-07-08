@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 const ADMIN_SESSION_COOKIE = 'mis_admin_session'
 const ADMIN_ROLE_COOKIE = 'mis_admin_role'
-const REQUIRED_ADMIN_ROLE = 'superadmin'
+const VALID_ADMIN_ROLES = ['super_admin', 'senior_admin', 'junior_admin']
 
 const ACCESS_ROUTE = '/portal-secure-99x/access'
 
@@ -45,7 +45,7 @@ export async function middleware(request) {
 
   const resolvedRole = roleCookie
 
-  if (resolvedRole !== REQUIRED_ADMIN_ROLE) {
+  if (!VALID_ADMIN_ROLES.includes(resolvedRole)) {
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = ACCESS_ROUTE
     redirectUrl.searchParams.set('reason', 'role')

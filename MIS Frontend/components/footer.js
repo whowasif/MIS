@@ -21,6 +21,9 @@ const sanitizePhoneForTel = (phoneValue) =>
 
 const Footer = (props) => {
   const [companyContact, setCompanyContact] = useState(defaultCompanyContact)
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterStatus, setNewsletterStatus] = useState('') // '', 'loading', 'success', 'error'
+  const [newsletterMsg, setNewsletterMsg] = useState('')
 
   useEffect(() => {
     let isMounted = true
@@ -334,47 +337,75 @@ const Footer = (props) => {
                     Stay Updated
                   </h3>
                   <form
-                    action="#"
-                    method="POST"
-                    data-form-id="f719f442-16b9-47eb-935b-229682fce662"
+                    onSubmit={async (e) => {
+                      e.preventDefault()
+                      if (!newsletterEmail.trim()) return
+                      setNewsletterStatus('loading')
+                      try {
+                        const res = await fetch('/api/newsletter-subscribe', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ email: newsletterEmail.trim() }),
+                        })
+                        const data = await res.json()
+                        if (res.ok) {
+                          setNewsletterStatus('success')
+                          setNewsletterMsg(data.message || 'Subscribed!')
+                          setNewsletterEmail('')
+                        } else {
+                          setNewsletterStatus('error')
+                          setNewsletterMsg(data.error || 'Failed to subscribe.')
+                        }
+                      } catch (err) {
+                        setNewsletterStatus('error')
+                        setNewsletterMsg('Network error. Please try again.')
+                      }
+                      setTimeout(() => { setNewsletterStatus(''); setNewsletterMsg('') }, 4000)
+                    }}
                     className="footer-newsletter-form"
                   >
                     <div className="footer-input-wrapper">
                       <input
                         type="email"
-                        placeholder="Enter your email"
-                        required="true"
+                        placeholder={newsletterStatus === 'success' ? 'Thanks for subscribing!' : 'Enter your email'}
+                        required={true}
                         aria-label="Newsletter email"
-                        id="thq_textinput_zNrU"
-                        name="textinput"
-                        data-form-field-id="thq_textinput_zNrU"
+                        value={newsletterEmail}
+                        onChange={(e) => setNewsletterEmail(e.target.value)}
+                        disabled={newsletterStatus === 'loading' || newsletterStatus === 'success'}
                         className="footer-newsletter-input"
                       />
                       <button
                         type="submit"
                         aria-label="Subscribe"
-                        id="thq_button_VI20"
-                        name="button"
-                        data-form-field-id="thq_button_VI20"
+                        disabled={newsletterStatus === 'loading' || newsletterStatus === 'success'}
                         className="footer-newsletter-btn"
+                        style={newsletterStatus === 'success' ? { backgroundColor: '#2ecc71', color: '#fff' } : {}}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            fill="none"
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M5 12h14m-7-7l7 7l-7 7"
-                          ></path>
-                        </svg>
+                        {newsletterStatus === 'success' ? '✓' : newsletterStatus === 'loading' ? '...' : (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              fill="none"
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M5 12h14m-7-7l7 7l-7 7"
+                            ></path>
+                          </svg>
+                        )}
                       </button>
                     </div>
+                    {newsletterMsg && (
+                      <p style={{ fontSize: '12px', marginTop: '6px', color: newsletterStatus === 'error' ? '#ef4444' : '#2ecc71' }}>
+                        {newsletterMsg}
+                      </p>
+                    )}
                   </form>
                 </div>
               </div>
@@ -421,30 +452,7 @@ const Footer = (props) => {
             <Script
               html={`<script defer data-name="footer-logic">
 (function(){
-  const newsletterForm = document.querySelector(".footer-newsletter-form")
-  if (newsletterForm) {
-    newsletterForm.addEventListener("submit", function (e) {
-      const input = this.querySelector(".footer-newsletter-input")
-      if (input && input.value) {
-        const btn = this.querySelector(".footer-newsletter-btn")
-        const originalContent = btn.innerHTML
-
-        btn.innerHTML = "✓"
-        btn.style.backgroundColor = "#2ecc71"
-        btn.style.color = "#ffffff"
-        input.value = ""
-        input.disabled = true
-
-        setTimeout(() => {
-          btn.innerHTML = originalContent
-          btn.style.backgroundColor = ""
-          btn.style.color = ""
-          input.disabled = false
-          input.placeholder = "Thanks for subscribing!"
-        }, 3000)
-      }
-    })
-  }
+  // Newsletter form is now handled by React state
 })()
 </script>`}
             ></Script>

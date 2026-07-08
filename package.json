@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "dev": "npm --prefix \"MIS Frontend\" run dev",
+    "build": "npm --prefix \"MIS Frontend\" run build",
+    "start": "npm --prefix \"MIS Frontend\" run start",
+    "clean": "npm --prefix \"MIS Frontend\" exec -- node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\""
+  },
   "dependencies": {
     "mysql2": "^3.22.1"
   }
