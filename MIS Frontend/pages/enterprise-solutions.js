@@ -138,10 +138,13 @@ const EnterpriseSolutions = ({ services = [] }) => {
 
         @media (max-width: 767px) {
           .enterprise-hero-inner { padding-top: 94px; padding-bottom: 56px; }
-          .list-card { grid-template-columns: 1fr; }
-          .list-card.img-first { direction: ltr; }
-          .list-card-img { height: 160px; }
-          .list-card-text { padding: 20px; }
+          .list-card { grid-template-columns: 3fr 2fr; min-height: 160px; }
+          .list-card.img-first { direction: rtl; }
+          .list-card.img-first > * { direction: ltr; }
+          .list-card-img { height: 100%; min-height: 160px; }
+          .list-card-text { padding: 16px; }
+          .list-card-text h3 { font-size: 15px; }
+          .list-card-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
           .grid-view { grid-template-columns: 1fr; }
         }
       `}</style>
