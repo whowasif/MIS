@@ -15,6 +15,7 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
   const [selectedSpecs, setSelectedSpecs] = useState({})
   const [availability, setAvailability] = useState('all')
   const [sortBy, setSortBy] = useState('default')
+  const [filterOpen, setFilterOpen] = useState(false)
 
   // Reset filters when category changes (client-side navigation)
   React.useEffect(() => {
@@ -173,6 +174,10 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
             {/* Product Grid */}
             <section className="cat-products">
               <div className="cat-toolbar">
+                <button className="filter-toggle-btn" onClick={() => setFilterOpen(true)}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
+                  Filter
+                </button>
                 <h2 className="toolbar-title">{category.name}</h2>
                 <div className="toolbar-controls">
                   <span className="product-count">Show: <strong>{filteredProducts.length}</strong></span>
@@ -249,6 +254,55 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
       </main>
 
       <Footer />
+
+      {/* Mobile Filter Drawer */}
+      {filterOpen && (
+        <div className="filter-overlay" onClick={() => setFilterOpen(false)}>
+          <aside className="filter-drawer" onClick={(e) => e.stopPropagation()}>
+            <div className="filter-drawer-head">
+              <span>Filters</span>
+              <button className="filter-drawer-close" onClick={() => setFilterOpen(false)}>✕</button>
+            </div>
+            <div className="filter-drawer-body">
+              <div className="filter-block">
+                <h3>Price Range</h3>
+                <input type="range" min="0" max={maxPrice || 500000} step="1000" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])} className="price-slider" />
+                <div className="price-inputs">
+                  <input type="number" value={priceRange[0]} onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])} />
+                  <input type="number" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])} />
+                </div>
+              </div>
+              <div className="filter-block">
+                <h3>Availability</h3>
+                <label className="filter-option"><input type="radio" name="avail-m" checked={availability === 'all'} onChange={() => setAvailability('all')} /> All</label>
+                <label className="filter-option"><input type="radio" name="avail-m" checked={availability === 'in-stock'} onChange={() => setAvailability('in-stock')} /> In Stock</label>
+                <label className="filter-option"><input type="radio" name="avail-m" checked={availability === 'upcoming'} onChange={() => setAvailability('upcoming')} /> Upcoming</label>
+              </div>
+              {brands.length > 0 && (
+                <div className="filter-block">
+                  <h3>Brand</h3>
+                  <div className="filter-options-list">
+                    <label className="filter-option"><input type="radio" name="brand-m" checked={!selectedBrand} onChange={() => setSelectedBrand('')} /> All</label>
+                    {brands.map((b) => (<label key={b} className="filter-option"><input type="radio" name="brand-m" checked={selectedBrand === b} onChange={() => setSelectedBrand(b)} />{b}</label>))}
+                  </div>
+                </div>
+              )}
+              {Object.entries(specOptions).map(([specName, { label, values }]) => (
+                <div key={specName} className="filter-block">
+                  <h3>{label}</h3>
+                  <div className="filter-options-list">
+                    <label className="filter-option"><input type="radio" name={`${specName}-m`} checked={!selectedSpecs[specName]} onChange={() => setSelectedSpecs((p) => ({ ...p, [specName]: '' }))} /> All</label>
+                    {values.map((val) => (<label key={val} className="filter-option"><input type="radio" name={`${specName}-m`} checked={selectedSpecs[specName] === val} onChange={() => setSelectedSpecs((p) => ({ ...p, [specName]: val }))} />{val}</label>))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="filter-drawer-footer">
+              <button className="filter-apply-btn" onClick={() => setFilterOpen(false)}>Show {filteredProducts.length} Products</button>
+            </div>
+          </aside>
+        </div>
+      )}
 
       <style jsx>{`
         .cat-page { min-height: 100vh; background: #f0f3f8; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
@@ -343,7 +397,34 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
           .cat-sidebar { position: static; display: none; }
           .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
           .product-card-img { height: 140px; }
+          .filter-toggle-btn { display: flex; }
+          .toolbar-title { display: none; }
         }
+
+        /* Filter Toggle Button */
+        .filter-toggle-btn { display: none; align-items: center; gap: 6px; border: 1px solid #d4dae3; border-radius: 6px; padding: 8px 14px; background: #fff; font-size: 13px; font-weight: 600; color: #374151; cursor: pointer; transition: border-color 0.12s; }
+        .filter-toggle-btn:hover { border-color: #3b82f6; color: #3b82f6; }
+
+        /* Filter Drawer Overlay */
+        .filter-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2000; animation: fadeIn 0.15s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .filter-drawer { position: fixed; top: 0; right: 0; width: min(360px, 85vw); height: 100vh; background: #fff; display: flex; flex-direction: column; box-shadow: -8px 0 24px rgba(0,0,0,0.15); animation: slideIn 0.2s ease-out; }
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        .filter-drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid #e5e7eb; }
+        .filter-drawer-head span { font-size: 18px; font-weight: 700; color: #111827; }
+        .filter-drawer-close { border: none; background: transparent; font-size: 22px; cursor: pointer; color: #6b7280; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 6px; }
+        .filter-drawer-close:hover { background: #f3f4f6; }
+        .filter-drawer-body { flex: 1; overflow-y: auto; padding: 0; }
+        .filter-drawer-body .filter-block { padding: 16px 20px; border-bottom: 1px solid #f1f5f9; }
+        .filter-drawer-body .filter-block h3 { margin: 0 0 12px; font-size: 14px; color: #1e293b; font-weight: 700; }
+        .filter-drawer-body .filter-option { padding: 5px 0; font-size: 13px; }
+        .filter-drawer-body .price-slider { width: 100%; accent-color: #ef4444; }
+        .filter-drawer-body .price-inputs { display: flex; gap: 10px; margin-top: 8px; }
+        .filter-drawer-body .price-inputs input { flex: 1; border: 1px solid #d4dae3; border-radius: 6px; padding: 8px 10px; font-size: 13px; text-align: center; }
+        .filter-drawer-body .filter-options-list { max-height: 200px; overflow-y: auto; }
+        .filter-drawer-footer { padding: 16px 20px; border-top: 1px solid #e5e7eb; }
+        .filter-apply-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; background: #1e293b; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
+        .filter-apply-btn:hover { background: #334155; }
       `}</style>
     </>
   )
