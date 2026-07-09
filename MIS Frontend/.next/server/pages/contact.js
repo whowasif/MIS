@@ -60,6 +60,7 @@ const buildGoogleMapEmbedUrl = (contact)=>{
 const sanitizePhoneForTel = (phoneValue)=>String(phoneValue || "").replace(/\s+/g, "").replace(/(?!^\+)\D/g, "");
 const Contact = (props)=>{
     const companyContact = props.companyContact || fallbackCompanyContact;
+    const serviceOptions = props.serviceOptions || [];
     const supportEmail = companyContact.supportEmail || companyContact.primaryEmail;
     const hotlineTel = sanitizePhoneForTel(companyContact.hotlinePhone);
     const mapEmbedUrl = buildGoogleMapEmbedUrl(companyContact);
@@ -446,36 +447,52 @@ const Contact = (props)=>{
                                                         className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-input",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
-                                                                value: "true",
-                                                                disabled: "true",
-                                                                selected: "true",
+                                                                value: "",
+                                                                disabled: true,
+                                                                selected: true,
                                                                 className: "jsx-eb3a3d97fa39dc02",
                                                                 children: "Select a service"
                                                             }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
-                                                                value: "ecommerce",
-                                                                className: "jsx-eb3a3d97fa39dc02",
-                                                                children: "E-commerce Hardware"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
-                                                                value: "corporate",
-                                                                className: "jsx-eb3a3d97fa39dc02",
-                                                                children: "Corporate IT Solutions"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
-                                                                value: "security",
-                                                                className: "jsx-eb3a3d97fa39dc02",
-                                                                children: "Security Systems (CCTV/Fire)"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
-                                                                value: "digital",
-                                                                className: "jsx-eb3a3d97fa39dc02",
-                                                                children: "Digital Services (Web/App)"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
-                                                                value: "maintenance",
-                                                                className: "jsx-eb3a3d97fa39dc02",
-                                                                children: "Maintenance Contracts"
+                                                            serviceOptions.length > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                                                                children: [
+                                                                    ...new Set(serviceOptions.map((s)=>s.group))
+                                                                ].map((group)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("optgroup", {
+                                                                        label: group,
+                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        children: serviceOptions.filter((s)=>s.group === group).map((s)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                                value: s.name,
+                                                                                className: "jsx-eb3a3d97fa39dc02",
+                                                                                children: s.name
+                                                                            }, s.name))
+                                                                    }, group))
+                                                            }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                                                                children: [
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                        value: "E-commerce Hardware",
+                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        children: "E-commerce Hardware"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                        value: "Corporate IT Solutions",
+                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        children: "Corporate IT Solutions"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                        value: "Security Systems",
+                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        children: "Security Systems (CCTV/Fire)"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                        value: "Digital Services",
+                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        children: "Digital Services (Web/App)"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                        value: "Maintenance Contracts",
+                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        children: "Maintenance Contracts"
+                                                                    })
+                                                                ]
                                                             })
                                                         ]
                                                     })
@@ -590,16 +607,37 @@ const Contact = (props)=>{
 const getServerSideProps = async ()=>{
     try {
         const { getPrimaryCompanyContact  } = await __webpack_require__.e(/* import() */ 6058).then(__webpack_require__.bind(__webpack_require__, 6058));
+        const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));
         const companyContact = await getPrimaryCompanyContact();
+        const db = getDbPool();
+        const [digi] = await db.query("SELECT name FROM digi_services WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC");
+        const [biz] = await db.query("SELECT name FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC");
+        const [maint] = await db.query("SELECT name FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC");
+        const serviceOptions = [
+            ...digi.map((s)=>({
+                    group: "Digital Services",
+                    name: s.name
+                })),
+            ...biz.map((s)=>({
+                    group: "Business & Corporate",
+                    name: s.name
+                })),
+            ...maint.map((s)=>({
+                    group: "Maintenance & Support",
+                    name: s.name
+                })), 
+        ];
         return {
             props: {
-                companyContact
+                companyContact,
+                serviceOptions: JSON.parse(JSON.stringify(serviceOptions))
             }
         };
     } catch (error) {
         return {
             props: {
-                companyContact: fallbackCompanyContact
+                companyContact: fallbackCompanyContact,
+                serviceOptions: []
             }
         };
     }

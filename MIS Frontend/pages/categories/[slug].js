@@ -24,6 +24,7 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
     setSelectedSpecs({})
     setAvailability('all')
     setSortBy('default')
+    setFilterOpen(false)
   }, [category?.id, maxPrice])
 
   const filteredProducts = useMemo(() => {
@@ -44,12 +45,12 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
       filtered = filtered.filter((p) => p.stock_qty === 0)
     }
 
-    // Spec filters
-    Object.entries(selectedSpecs).forEach(([specName, specValue]) => {
-      if (!specValue) return
+    // Spec filters (multi-select: selectedSpecs[specName] is an array)
+    Object.entries(selectedSpecs).forEach(([specName, specValues]) => {
+      if (!specValues || !Array.isArray(specValues) || specValues.length === 0) return
       filtered = filtered.filter((p) => {
         const pSpec = p.specs?.find((s) => s.spec_name === specName)
-        return pSpec?.spec_value === specValue
+        return pSpec?.spec_value && specValues.includes(pSpec.spec_value)
       })
     })
 
@@ -157,12 +158,15 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
                 <div key={specName} className="filter-block">
                   <h3>{label}</h3>
                   <div className="filter-options-list">
-                    <label className="filter-option">
-                      <input type="radio" name={specName} checked={!selectedSpecs[specName]} onChange={() => setSelectedSpecs((p) => ({ ...p, [specName]: '' }))} /> All
-                    </label>
                     {values.map((val) => (
                       <label key={val} className="filter-option">
-                        <input type="radio" name={specName} checked={selectedSpecs[specName] === val} onChange={() => setSelectedSpecs((p) => ({ ...p, [specName]: val }))} />
+                        <input type="checkbox" checked={(selectedSpecs[specName] || []).includes(val)} onChange={(e) => {
+                          setSelectedSpecs((p) => {
+                            const current = p[specName] || []
+                            const updated = e.target.checked ? [...current, val] : current.filter((v) => v !== val)
+                            return { ...p, [specName]: updated }
+                          })
+                        }} />
                         {val}
                       </label>
                     ))}
@@ -291,8 +295,7 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
                 <div key={specName} className="filter-block">
                   <h3>{label}</h3>
                   <div className="filter-options-list">
-                    <label className="filter-option"><input type="radio" name={`${specName}-m`} checked={!selectedSpecs[specName]} onChange={() => setSelectedSpecs((p) => ({ ...p, [specName]: '' }))} /> All</label>
-                    {values.map((val) => (<label key={val} className="filter-option"><input type="radio" name={`${specName}-m`} checked={selectedSpecs[specName] === val} onChange={() => setSelectedSpecs((p) => ({ ...p, [specName]: val }))} />{val}</label>))}
+                    {values.map((val) => (<label key={val} className="filter-option"><input type="checkbox" checked={(selectedSpecs[specName] || []).includes(val)} onChange={(e) => { setSelectedSpecs((p) => { const current = p[specName] || []; const updated = e.target.checked ? [...current, val] : current.filter((v) => v !== val); return { ...p, [specName]: updated } }) }} />{val}</label>))}
                   </div>
                 </div>
               ))}

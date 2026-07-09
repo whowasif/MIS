@@ -46,6 +46,7 @@ const sanitizePhoneForTel = (phoneValue) =>
 
 const Contact = (props) => {
   const companyContact = props.companyContact || fallbackCompanyContact
+  const serviceOptions = props.serviceOptions || []
   const supportEmail = companyContact.supportEmail || companyContact.primaryEmail
   const hotlineTel = sanitizePhoneForTel(companyContact.hotlinePhone)
   const mapEmbedUrl = buildGoogleMapEmbedUrl(companyContact)
@@ -277,16 +278,28 @@ const Contact = (props) => {
                     data-form-field-id="service-type"
                     className="contact-form-input"
                   >
-                    <option value="true" disabled="true" selected="true">
+                    <option value="" disabled selected>
                       Select a service
                     </option>
-                    <option value="ecommerce">E-commerce Hardware</option>
-                    <option value="corporate">Corporate IT Solutions</option>
-                    <option value="security">
-                      Security Systems (CCTV/Fire)
-                    </option>
-                    <option value="digital">Digital Services (Web/App)</option>
-                    <option value="maintenance">Maintenance Contracts</option>
+                    {serviceOptions.length > 0 ? (
+                      <>
+                        {[...new Set(serviceOptions.map((s) => s.group))].map((group) => (
+                          <optgroup key={group} label={group}>
+                            {serviceOptions.filter((s) => s.group === group).map((s) => (
+                              <option key={s.name} value={s.name}>{s.name}</option>
+                            ))}
+                          </optgroup>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        <option value="E-commerce Hardware">E-commerce Hardware</option>
+                        <option value="Corporate IT Solutions">Corporate IT Solutions</option>
+                        <option value="Security Systems">Security Systems (CCTV/Fire)</option>
+                        <option value="Digital Services">Digital Services (Web/App)</option>
+                        <option value="Maintenance Contracts">Maintenance Contracts</option>
+                      </>
+                    )}
                   </select>
                 </div>
                 <div className="contact-form-group">
@@ -640,17 +653,31 @@ const Contact = (props) => {
 export const getServerSideProps = async () => {
   try {
     const { getPrimaryCompanyContact } = await import('../lib/server/company-contacts')
+    const { getDbPool } = await import('../lib/server/db')
     const companyContact = await getPrimaryCompanyContact()
+
+    const db = getDbPool()
+    const [digi] = await db.query("SELECT name FROM digi_services WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC")
+    const [biz] = await db.query("SELECT name FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC")
+    const [maint] = await db.query("SELECT name FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC")
+
+    const serviceOptions = [
+      ...digi.map((s) => ({ group: 'Digital Services', name: s.name })),
+      ...biz.map((s) => ({ group: 'Business & Corporate', name: s.name })),
+      ...maint.map((s) => ({ group: 'Maintenance & Support', name: s.name })),
+    ]
 
     return {
       props: {
         companyContact,
+        serviceOptions: JSON.parse(JSON.stringify(serviceOptions)),
       },
     }
   } catch (error) {
     return {
       props: {
         companyContact: fallbackCompanyContact,
+        serviceOptions: [],
       },
     }
   }
