@@ -1190,20 +1190,14 @@ const Navigation = ()=>{
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
                         href: "/",
-                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                             onClick: closeMenu,
                             className: "jsx-f2f23f9cc5da201f" + " " + "menu-nav-logo",
-                            children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                    src: "/mis_logo_cut-w.png",
-                                    alt: "MIS Solution logo",
-                                    className: "jsx-f2f23f9cc5da201f" + " " + "menu-nav-logo-image"
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "jsx-f2f23f9cc5da201f" + " " + "menu-nav-logo-text",
-                                    children: "MIS Solution"
-                                })
-                            ]
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                src: "/mis_logo_cut-w.png",
+                                alt: "MIS Solution logo",
+                                className: "jsx-f2f23f9cc5da201f" + " " + "menu-nav-logo-image"
+                            })
                         })
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {

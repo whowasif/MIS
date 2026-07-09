@@ -397,12 +397,11 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
           .cat-sidebar { position: static; display: none; }
           .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
           .product-card-img { height: 140px; }
-          .filter-toggle-btn { display: flex; }
           .toolbar-title { display: none; }
         }
 
         /* Filter Toggle Button */
-        .filter-toggle-btn { display: none; align-items: center; gap: 6px; border: 1px solid #d4dae3; border-radius: 6px; padding: 8px 14px; background: #fff; font-size: 13px; font-weight: 600; color: #374151; cursor: pointer; transition: border-color 0.12s; }
+        .filter-toggle-btn { display: flex; align-items: center; gap: 6px; border: 1px solid #d4dae3; border-radius: 6px; padding: 8px 14px; background: #fff; font-size: 13px; font-weight: 600; color: #374151; cursor: pointer; transition: border-color 0.12s; }
         .filter-toggle-btn:hover { border-color: #3b82f6; color: #3b82f6; }
 
         /* Filter Drawer Overlay */

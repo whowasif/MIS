@@ -307,7 +307,6 @@ const Navigation = () => {
               alt="MIS Solution logo"
               className="menu-nav-logo-image"
             />
-            <span className="menu-nav-logo-text">MIS Solution</span>
           </a>
         </Link>
 
