@@ -7,14 +7,23 @@ const { parse } = require('url')
 const next = require('next')
 
 const dev = false
-const app = next({ dev })
+const hostname = '127.0.0.1'
+const port = parseInt(process.env.PORT, 10) || 3000
+
+const app = next({ dev, hostname, port })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   createServer((req, res) => {
+    // Ensure host header is set for Next.js middleware
+    if (!req.headers.host) {
+      req.headers.host = process.env.NEXTAUTH_URL
+        ? process.env.NEXTAUTH_URL.replace(/^https?:\/\//, '')
+        : `${hostname}:${port}`
+    }
     const parsedUrl = parse(req.url, true)
     handle(req, res, parsedUrl)
-  }).listen(process.env.PORT || 3000, '0.0.0.0', () => {
-    console.log('> Next.js server ready')
+  }).listen(port, '0.0.0.0', () => {
+    console.log('> Next.js server ready on port', port)
   })
 })
