@@ -606,7 +606,10 @@ const Home = (props)=>{
                                 className: "jsx-838b1a87f6f26fd3" + " " + "case-rail-container",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: "jsx-838b1a87f6f26fd3" + " " + "case-rail",
-                                    children: clientProjects.length > 0 ? clientProjects.map((project)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                    children: clientProjects.length > 0 ? [
+                                        ...clientProjects,
+                                        ...clientProjects
+                                    ].map((project, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: `/projects/${encodeURIComponent(project.slug || project.id)}`,
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                                                 style: {
@@ -648,7 +651,7 @@ const Home = (props)=>{
                                                     })
                                                 ]
                                             })
-                                        }, project.id)) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                                        }, `${project.id}-${idx}`)) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                                         children: [
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                 className: "jsx-838b1a87f6f26fd3" + " " + "case-card",

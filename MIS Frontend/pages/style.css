@@ -1627,15 +1627,13 @@
  
 .case-rail-container {
   padding: var(--spacing-md) 0 var(--spacing-lg);
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  cursor: grab;
 }
 
 .case-rail-container:active {
-  cursor: grabbing;
+  cursor: default;
 }
 
 .case-rail-container::-webkit-scrollbar {
@@ -1647,7 +1645,14 @@
   display: flex;
   width: max-content;
   padding: 0 var(--spacing-xl);
+  animation: scroll-cases 35s linear infinite;
 }
+
+.case-rail:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-cases { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 .case-card {
   position: relative;

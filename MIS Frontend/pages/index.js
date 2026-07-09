@@ -227,8 +227,8 @@ const Home = (props) => {
           <div className="case-rail-container" ref={caseRailRef} aria-label="Client projects and case studies">
             <div className="case-rail">
               {clientProjects.length > 0 ? (
-                clientProjects.map((project) => (
-                  <Link key={project.id} href={`/projects/${encodeURIComponent(project.slug || project.id)}`}>
+                [...clientProjects, ...clientProjects].map((project, idx) => (
+                  <Link key={`${project.id}-${idx}`} href={`/projects/${encodeURIComponent(project.slug || project.id)}`}>
                     <a className="case-card" style={{ textDecoration: 'none', color: 'inherit' }}>
                       <div className="case-image"><img src={project.icon_url || fallbackProductImage} alt={project.name} /></div>
                       <div className="case-content">

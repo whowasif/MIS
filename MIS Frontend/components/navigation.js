@@ -893,6 +893,10 @@ const Navigation = () => {
           z-index: 1100;
           background: #1e293b;
           border-bottom: 1px solid #334155;
+          overflow-x: auto;
+          overflow-y: hidden;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
         }
         .cat-nav-bar::-webkit-scrollbar { display: none; }
 
@@ -903,6 +907,9 @@ const Navigation = () => {
           margin: 0 auto;
           padding: 0 16px;
           gap: 0;
+          white-space: nowrap;
+          width: max-content;
+          min-width: 100%;
         }
 
         .cat-nav-item {
@@ -976,6 +983,10 @@ const Navigation = () => {
 
           .menu-nav-spacer {
             height: 64px;
+          }
+
+          .cat-nav-bar {
+            top: 64px;
           }
 
           .menu-nav-search-inline.is-open {
