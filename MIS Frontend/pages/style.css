@@ -1616,6 +1616,7 @@
 .case-studies-section {
   padding: var(--spacing-4xl) 0;
   background-color: var(--color-surface);
+  overflow: hidden;
 }
  
 .case-header {
@@ -1643,6 +1644,7 @@
 .case-rail {
   gap: var(--spacing-2xl);
   display: flex;
+  flex-wrap: nowrap;
   width: max-content;
   padding: 0 var(--spacing-xl);
   animation: scroll-cases 35s linear infinite;
@@ -3949,4 +3951,7 @@ body.cart-open {
   .ad-title { font-size: 18px; }
   .product-card { flex: 0 0 220px; }
   .service-marquee-card { width: 250px; }
+  .case-rail-container { overflow: hidden; }
+  .case-rail { gap: 16px; padding: 0 16px; }
+  .case-card { flex: 0 0 280px; }
 }
