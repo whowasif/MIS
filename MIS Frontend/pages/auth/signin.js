@@ -97,6 +97,10 @@ const SignInPage = () => {
             </button>
           </form>
 
+          <p className="auth-forgot-text">
+            <Link href="/auth/forgot-password"><a className="auth-link">Forgot Password?</a></Link>
+          </p>
+
           <p className="auth-footer-text">
             Don't have an account? <Link href="/auth/signup"><a className="auth-link">Create one</a></Link>
           </p>

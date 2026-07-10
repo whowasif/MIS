@@ -23,6 +23,7 @@
     "next": "^12.1.10",
     "next-auth": "^4.24.14",
     "next-intl": "2.10.0",
+    "nodemailer": "^7.0.13",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-quill": "^2.0.0"

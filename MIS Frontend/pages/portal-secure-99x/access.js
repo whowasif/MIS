@@ -184,6 +184,8 @@ const AccessPortal = () => {
             <button type="submit" className="submit-btn" disabled={isSubmitting || !turnstileToken}>
               {isSubmitting ? 'Authorizing...' : 'Sign In'}
             </button>
+
+            <p className="forgot-link"><a href="/portal-secure-99x/forgot-password">Forgot Password?</a></p>
           </form>
         </section>
       </main>
@@ -341,6 +343,19 @@ const AccessPortal = () => {
 
         .submit-btn:not(:disabled):hover {
           opacity: 0.9;
+        }
+
+        .forgot-link {
+          text-align: center;
+          margin-top: 16px;
+        }
+        .forgot-link a {
+          color: #94a3b8;
+          font-size: 13px;
+          text-decoration: none;
+        }
+        .forgot-link a:hover {
+          color: #f7e500;
         }
       `}</style>
     </>
