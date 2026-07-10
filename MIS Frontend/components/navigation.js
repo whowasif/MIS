@@ -892,10 +892,7 @@ const Navigation = () => {
           z-index: 1100;
           background: #1e293b;
           border-bottom: 1px solid #334155;
-          overflow-x: auto;
-          overflow-y: hidden;
-          scrollbar-width: none;
-          -webkit-overflow-scrolling: touch;
+          overflow: visible;
         }
         .cat-nav-bar::-webkit-scrollbar { display: none; }
 
@@ -908,13 +905,17 @@ const Navigation = () => {
           padding: 0 16px;
           gap: 0;
           white-space: nowrap;
+          overflow-x: auto;
+          overflow-y: visible;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
         }
+
+        .cat-nav-inner::-webkit-scrollbar { display: none; }
 
         @media (max-width: 1100px) {
           .cat-nav-inner {
             justify-content: flex-start;
-            width: max-content;
-            min-width: 100%;
           }
         }
 
