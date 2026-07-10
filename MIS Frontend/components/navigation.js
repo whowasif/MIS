@@ -902,13 +902,20 @@ const Navigation = () => {
         .cat-nav-inner {
           display: flex;
           align-items: center;
+          justify-content: center;
           max-width: 1320px;
           margin: 0 auto;
           padding: 0 16px;
           gap: 0;
           white-space: nowrap;
-          width: max-content;
-          min-width: 100%;
+        }
+
+        @media (max-width: 1100px) {
+          .cat-nav-inner {
+            justify-content: flex-start;
+            width: max-content;
+            min-width: 100%;
+          }
         }
 
         .cat-nav-item {
