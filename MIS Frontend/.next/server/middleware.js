@@ -68,7 +68,8 @@ const getCookieValue = (request, name)=>{
 };
 async function middleware(request) {
     const { pathname , search  } = request.nextUrl;
-    if (pathname === ACCESS_ROUTE) {
+    // Allow access to these pages without auth
+    if (pathname === ACCESS_ROUTE || pathname === "/portal-secure-99x/forgot-password" || pathname === "/portal-secure-99x/reset-password") {
         return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.next();
     }
     const sessionToken = getCookieValue(request, ADMIN_SESSION_COOKIE);

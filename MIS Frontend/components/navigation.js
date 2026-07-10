@@ -21,20 +21,32 @@ const defaultSocialLinks = {
   youtubeUrl: '#',
 }
 
-// Category nav item with hover dropdown (uses inline styles to avoid styled-jsx scoping issues)
+// Category nav item with hover dropdown
 const CatNavItem = ({ cat, subs }) => {
   const [open, setOpen] = useState(false)
+  const [pos, setPos] = useState({ left: 0, top: 0 })
+  const ref = React.useRef(null)
+
+  const handleEnter = () => {
+    setOpen(true)
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect()
+      setPos({ left: rect.left, top: rect.bottom })
+    }
+  }
+
   return (
     <div
+      ref={ref}
       style={{ position: 'relative' }}
-      onMouseEnter={() => setOpen(true)}
+      onMouseEnter={handleEnter}
       onMouseLeave={() => setOpen(false)}
     >
       <Link href={`/categories/${cat.slug}`}>
         <a style={{ display: 'block', padding: '10px 14px', fontSize: '13px', fontWeight: 500, color: '#e2e8f0', textDecoration: 'none', whiteSpace: 'nowrap' }}>{cat.name}</a>
       </Link>
       {subs.length > 0 && open && (
-        <div style={{ position: 'absolute', top: '100%', left: 0, minWidth: '200px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '6px', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 9999, padding: '6px 0' }}>
+        <div style={{ position: 'fixed', left: pos.left, top: pos.top, minWidth: '200px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '6px', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 9999, padding: '6px 0' }}>
           {subs.map((sub) => (
             <Link key={sub.id} href={`/categories/${sub.slug}`}>
               <a style={{ display: 'block', padding: '8px 16px', fontSize: '13px', color: '#374151', textDecoration: 'none' }}
@@ -892,7 +904,10 @@ const Navigation = () => {
           z-index: 1100;
           background: #1e293b;
           border-bottom: 1px solid #334155;
-          overflow: visible;
+          overflow-x: auto;
+          overflow-y: visible;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
         }
         .cat-nav-bar::-webkit-scrollbar { display: none; }
 
@@ -905,10 +920,6 @@ const Navigation = () => {
           padding: 0 16px;
           gap: 0;
           white-space: nowrap;
-          overflow-x: auto;
-          overflow-y: visible;
-          scrollbar-width: none;
-          -webkit-overflow-scrolling: touch;
         }
 
         .cat-nav-inner::-webkit-scrollbar { display: none; }
