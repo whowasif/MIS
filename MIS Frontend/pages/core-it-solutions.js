@@ -184,7 +184,7 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         {/* INDUSTRIES - Colored Icon Cards on Dark */}
         <section className="cit-industries">
           <div className="cit-container">
-            <FadeIn><div className="cit-section-head cit-section-head-light"><h2>Industries We Serve</h2><p>Deep domain expertise across diverse sectors enables tailored technology solutions.</p></div></FadeIn>
+            <FadeIn><div className="cit-section-head"><h2>Industries We Serve</h2><p>Deep domain expertise across diverse sectors enables tailored technology solutions.</p></div></FadeIn>
             <FadeIn delay={0.2}>
               <div className="cit-industry-grid">
                 {[
@@ -233,6 +233,16 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
                 { name: 'WordPress', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg' },
                 { name: 'Flutter', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
                 { name: 'Java', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+                { name: 'TypeScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+                { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+                { name: 'Linux', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+                { name: 'Git', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+                { name: 'Firebase', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+                { name: 'Nginx', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg' },
+                { name: 'Redis', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg' },
+                { name: 'Figma', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
+                { name: 'Tailwind', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
+                { name: 'Bootstrap', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg' },
                 { name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
                 { name: 'Next.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
                 { name: 'Node.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
@@ -247,9 +257,19 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
                 { name: 'WordPress', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg' },
                 { name: 'Flutter', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
                 { name: 'Java', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+                { name: 'TypeScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+                { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+                { name: 'Linux', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+                { name: 'Git', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+                { name: 'Firebase', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+                { name: 'Nginx', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg' },
+                { name: 'Redis', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg' },
+                { name: 'Figma', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
+                { name: 'Tailwind', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
+                { name: 'Bootstrap', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg' },
               ].map((tech, i) => (
                 <div key={i} className="cit-tech-item">
-                  <img src={tech.logo} alt={tech.name} width="40" height="40" />
+                  <img src={tech.logo} alt={tech.name} width="32" height="32" />
                   <span>{tech.name}</span>
                 </div>
               ))}
@@ -379,25 +399,24 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         .cit-process-card h3 { margin: 0 0 10px; font-size: 17px; font-weight: 700; color: var(--dark); }
         .cit-process-card p { margin: 0; font-size: 13px; color: #4b5563; line-height: 1.65; }
 
-        /* INDUSTRIES - Colored Icon Cards on Dark */
-        .cit-industries { padding: 80px 0; background: var(--dark); }
+        /* INDUSTRIES - Transparent Background */
+        .cit-industries { padding: 80px 0; background: transparent; }
         .cit-industry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 16px; }
-        .cit-industry-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 14px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); transition: all 0.3s; cursor: default; text-align: center; }
-        .cit-industry-card:hover { background: rgba(255,255,255,0.06); border-color: var(--ind-color); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
-        .cit-industry-icon { width: 48px; height: 48px; border-radius: 14px; background: color-mix(in srgb, var(--ind-color) 15%, transparent); border: 1px solid color-mix(in srgb, var(--ind-color) 30%, transparent); display: flex; align-items: center; justify-content: center; color: var(--ind-color); transition: all 0.3s; }
-        .cit-industry-card:hover .cit-industry-icon { background: var(--ind-color); color: var(--dark); border-color: var(--ind-color); }
-        .cit-industry-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); line-height: 1.3; }
-        .cit-industry-card:hover .cit-industry-name { color: #fff; }
+        .cit-industry-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 14px; border-radius: 16px; background: #fff; border: 1px solid #e5e7eb; transition: all 0.3s; cursor: default; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .cit-industry-card:hover { border-color: var(--ind-color); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+        .cit-industry-icon { width: 48px; height: 48px; border-radius: 14px; background: color-mix(in srgb, var(--ind-color) 12%, white); border: 1px solid color-mix(in srgb, var(--ind-color) 25%, transparent); display: flex; align-items: center; justify-content: center; color: var(--ind-color); transition: all 0.3s; }
+        .cit-industry-card:hover .cit-industry-icon { background: var(--ind-color); color: #fff; border-color: var(--ind-color); }
+        .cit-industry-name { font-size: 13px; font-weight: 600; color: #374151; line-height: 1.3; }
 
-        /* TECH - Logo Marquee Transparent */
+        /* TECH - Logo Marquee Transparent Infinite */
         .cit-tech { padding: 64px 0; background: transparent; overflow: hidden; }
         .cit-tech .cit-section-head { margin-bottom: 32px; }
-        .cit-marquee-wrap { overflow: hidden; mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); }
-        .cit-marquee-track { display: flex; gap: 48px; animation: marquee 40s linear infinite; width: max-content; align-items: center; }
-        .cit-tech-item { display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; opacity: 0.7; transition: opacity 0.2s, transform 0.2s; }
-        .cit-tech-item:hover { opacity: 1; transform: scale(1.1); }
-        .cit-tech-item img { width: 40px; height: 40px; object-fit: contain; }
-        .cit-tech-item span { font-size: 12px; font-weight: 600; color: #6b7280; }
+        .cit-marquee-wrap { overflow: hidden; mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); }
+        .cit-marquee-track { display: flex; gap: 40px; animation: marquee 50s linear infinite; width: max-content; align-items: center; }
+        .cit-tech-item { display: flex; align-items: center; gap: 10px; flex-shrink: 0; opacity: 0.75; transition: opacity 0.2s, transform 0.2s; }
+        .cit-tech-item:hover { opacity: 1; transform: scale(1.08); }
+        .cit-tech-item img { width: 32px; height: 32px; object-fit: contain; }
+        .cit-tech-item span { font-size: 15px; font-weight: 600; color: #374151; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* WHY US */
