@@ -116,19 +116,19 @@ const Home = (props) => {
         )}
 
         {advertisements.length > 0 && (
-          <section className="ad-carousel-section">
-            <div className="ad-carousel">
-              <div className="ad-slides">
+          <section style={{ padding: '0 0 32px' }}>
+            <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: '420px' }}>
                 {advertisements.map((ad, idx) => (
                   <Link key={ad.id} href={ad.product_slug ? `/products/${ad.product_slug}` : (ad.link_url || '#')}>
-                    <a className={`ad-slide ${idx === adIndex ? 'active' : ''}`}>
-                      <img src={ad.image_url} alt={ad.title} />
-                      <div className="ad-overlay" />
-                      <div className="ad-content">
-                        <span className="ad-tag">Special Offer</span>
-                        <div className="ad-title">{ad.title}</div>
-                        {ad.ad_details && <p className="ad-details">{ad.ad_details}</p>}
-                        <span className="ad-cta">Shop Now →</span>
+                    <a style={{ position: 'absolute', inset: 0, opacity: idx === adIndex ? 1 : 0, transition: 'opacity 0.5s', zIndex: idx === adIndex ? 1 : 0, display: 'block', textDecoration: 'none' }}>
+                      <img src={ad.image_url} alt={ad.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)', zIndex: 1 }} />
+                      <div style={{ position: 'absolute', bottom: '28px', left: '28px', right: '28px', zIndex: 2, textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>
+                        <span style={{ background: '#f7e500', color: '#0a101b', padding: '4px 12px', borderRadius: '999px', fontSize: '12px', fontWeight: 700, display: 'inline-block' }}>Special Offer</span>
+                        <div style={{ margin: '8px 0 4px', fontSize: '22px', fontWeight: 800, color: '#ffffff', lineHeight: 1.3, display: 'block' }}>{ad.title}</div>
+                        {ad.ad_details && <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.4, maxWidth: '500px' }}>{ad.ad_details}</p>}
+                        <span style={{ fontSize: '14px', fontWeight: 700, color: '#f7e500', display: 'inline-block', marginTop: '6px' }}>Shop Now →</span>
                       </div>
                     </a>
                   </Link>
@@ -136,9 +136,9 @@ const Home = (props) => {
               </div>
               {advertisements.length > 1 && (
                 <>
-                  <button className="ad-nav ad-prev" onClick={() => setAdIndex((p) => (p - 1 + advertisements.length) % advertisements.length)} aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-                  <button className="ad-nav ad-next" onClick={() => setAdIndex((p) => (p + 1) % advertisements.length)} aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-                  <div className="ad-dots">{advertisements.map((_, idx) => (<button key={idx} className={`ad-dot ${idx === adIndex ? 'active' : ''}`} onClick={() => setAdIndex(idx)} aria-label={`Slide ${idx + 1}`} />))}</div>
+                  <button style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: '12px', zIndex: 5, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }} onClick={() => setAdIndex((p) => (p - 1 + advertisements.length) % advertisements.length)} aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+                  <button style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: '12px', zIndex: 5, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }} onClick={() => setAdIndex((p) => (p + 1) % advertisements.length)} aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+                  <div style={{ position: 'absolute', bottom: '12px', right: '16px', zIndex: 5, display: 'flex', gap: '6px' }}>{advertisements.map((_, idx) => (<button key={idx} style={{ width: idx === adIndex ? '20px' : '8px', height: '8px', borderRadius: '4px', border: 'none', cursor: 'pointer', background: idx === adIndex ? '#ffffff' : 'rgba(255,255,255,0.5)', transition: 'all 0.3s' }} onClick={() => setAdIndex(idx)} aria-label={`Slide ${idx + 1}`} />))}</div>
                 </>
               )}
             </div>

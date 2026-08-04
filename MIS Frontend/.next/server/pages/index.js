@@ -273,42 +273,114 @@ const Home = (props)=>{
                         })
                     }),
                     advertisements.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-838b1a87f6f26fd3" + " " + "ad-carousel-section",
+                        style: {
+                            padding: "0 0 32px"
+                        },
+                        className: "jsx-838b1a87f6f26fd3",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-838b1a87f6f26fd3" + " " + "ad-carousel",
+                            style: {
+                                position: "relative",
+                                width: "100%",
+                                overflow: "hidden"
+                            },
+                            className: "jsx-838b1a87f6f26fd3",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-838b1a87f6f26fd3" + " " + "ad-slides",
+                                    style: {
+                                        position: "relative",
+                                        height: "420px"
+                                    },
+                                    className: "jsx-838b1a87f6f26fd3",
                                     children: advertisements.map((ad, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: ad.product_slug ? `/products/${ad.product_slug}` : ad.link_url || "#",
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                className: "jsx-838b1a87f6f26fd3" + " " + `ad-slide ${idx === adIndex ? "active" : ""}`,
+                                                style: {
+                                                    position: "absolute",
+                                                    inset: 0,
+                                                    opacity: idx === adIndex ? 1 : 0,
+                                                    transition: "opacity 0.5s",
+                                                    zIndex: idx === adIndex ? 1 : 0,
+                                                    display: "block",
+                                                    textDecoration: "none"
+                                                },
+                                                className: "jsx-838b1a87f6f26fd3",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                         src: ad.image_url,
                                                         alt: ad.title,
+                                                        style: {
+                                                            width: "100%",
+                                                            height: "100%",
+                                                            objectFit: "cover",
+                                                            display: "block"
+                                                        },
                                                         className: "jsx-838b1a87f6f26fd3"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-838b1a87f6f26fd3" + " " + "ad-overlay"
+                                                        style: {
+                                                            position: "absolute",
+                                                            inset: 0,
+                                                            background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)",
+                                                            zIndex: 1
+                                                        },
+                                                        className: "jsx-838b1a87f6f26fd3"
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-838b1a87f6f26fd3" + " " + "ad-content",
+                                                        style: {
+                                                            position: "absolute",
+                                                            bottom: "28px",
+                                                            left: "28px",
+                                                            right: "28px",
+                                                            zIndex: 2,
+                                                            textShadow: "0 2px 8px rgba(0,0,0,0.7)"
+                                                        },
+                                                        className: "jsx-838b1a87f6f26fd3",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-838b1a87f6f26fd3" + " " + "ad-tag",
+                                                                style: {
+                                                                    background: "#f7e500",
+                                                                    color: "#0a101b",
+                                                                    padding: "4px 12px",
+                                                                    borderRadius: "999px",
+                                                                    fontSize: "12px",
+                                                                    fontWeight: 700,
+                                                                    display: "inline-block"
+                                                                },
+                                                                className: "jsx-838b1a87f6f26fd3",
                                                                 children: "Special Offer"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-838b1a87f6f26fd3" + " " + "ad-title",
+                                                                style: {
+                                                                    margin: "8px 0 4px",
+                                                                    fontSize: "22px",
+                                                                    fontWeight: 800,
+                                                                    color: "#ffffff",
+                                                                    lineHeight: 1.3,
+                                                                    display: "block"
+                                                                },
+                                                                className: "jsx-838b1a87f6f26fd3",
                                                                 children: ad.title
                                                             }),
                                                             ad.ad_details && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-838b1a87f6f26fd3" + " " + "ad-details",
+                                                                style: {
+                                                                    margin: "4px 0 0",
+                                                                    fontSize: "14px",
+                                                                    color: "rgba(255,255,255,0.9)",
+                                                                    lineHeight: 1.4,
+                                                                    maxWidth: "500px"
+                                                                },
+                                                                className: "jsx-838b1a87f6f26fd3",
                                                                 children: ad.ad_details
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-838b1a87f6f26fd3" + " " + "ad-cta",
+                                                                style: {
+                                                                    fontSize: "14px",
+                                                                    fontWeight: 700,
+                                                                    color: "#f7e500",
+                                                                    display: "inline-block",
+                                                                    marginTop: "6px"
+                                                                },
+                                                                className: "jsx-838b1a87f6f26fd3",
                                                                 children: "Shop Now →"
                                                             })
                                                         ]
@@ -320,9 +392,26 @@ const Home = (props)=>{
                                 advertisements.length > 1 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                            style: {
+                                                position: "absolute",
+                                                top: "50%",
+                                                transform: "translateY(-50%)",
+                                                left: "12px",
+                                                zIndex: 5,
+                                                background: "rgba(255,255,255,0.9)",
+                                                border: "none",
+                                                borderRadius: "50%",
+                                                width: "36px",
+                                                height: "36px",
+                                                cursor: "pointer",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
+                                            },
                                             onClick: ()=>setAdIndex((p)=>(p - 1 + advertisements.length) % advertisements.length),
                                             "aria-label": "Previous",
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "ad-nav ad-prev",
+                                            className: "jsx-838b1a87f6f26fd3",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                 width: "20",
                                                 height: "20",
@@ -340,9 +429,26 @@ const Home = (props)=>{
                                             })
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                            style: {
+                                                position: "absolute",
+                                                top: "50%",
+                                                transform: "translateY(-50%)",
+                                                right: "12px",
+                                                zIndex: 5,
+                                                background: "rgba(255,255,255,0.9)",
+                                                border: "none",
+                                                borderRadius: "50%",
+                                                width: "36px",
+                                                height: "36px",
+                                                cursor: "pointer",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
+                                            },
                                             onClick: ()=>setAdIndex((p)=>(p + 1) % advertisements.length),
                                             "aria-label": "Next",
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "ad-nav ad-next",
+                                            className: "jsx-838b1a87f6f26fd3",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                 width: "20",
                                                 height: "20",
@@ -360,11 +466,28 @@ const Home = (props)=>{
                                             })
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "ad-dots",
+                                            style: {
+                                                position: "absolute",
+                                                bottom: "12px",
+                                                right: "16px",
+                                                zIndex: 5,
+                                                display: "flex",
+                                                gap: "6px"
+                                            },
+                                            className: "jsx-838b1a87f6f26fd3",
                                             children: advertisements.map((_, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                    style: {
+                                                        width: idx === adIndex ? "20px" : "8px",
+                                                        height: "8px",
+                                                        borderRadius: "4px",
+                                                        border: "none",
+                                                        cursor: "pointer",
+                                                        background: idx === adIndex ? "#ffffff" : "rgba(255,255,255,0.5)",
+                                                        transition: "all 0.3s"
+                                                    },
                                                     onClick: ()=>setAdIndex(idx),
                                                     "aria-label": `Slide ${idx + 1}`,
-                                                    className: "jsx-838b1a87f6f26fd3" + " " + `ad-dot ${idx === adIndex ? "active" : ""}`
+                                                    className: "jsx-838b1a87f6f26fd3"
                                                 }, idx))
                                         })
                                     ]
