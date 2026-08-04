@@ -3893,12 +3893,12 @@ body.cart-open {
 .ad-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s; }
 .ad-slide.active { opacity: 1; z-index: 1; }
 .ad-slide img { width: 100%; height: 100%; object-fit: cover; }
-.ad-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, transparent 70%); z-index: 1; }
-.ad-content { position: absolute; bottom: 32px; left: 32px; color: #fff; z-index: 2; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
-.ad-details { margin: 6px 0 0; font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.5; max-width: 500px; }
-.ad-tag { background: var(--color-primary); color: var(--color-on-primary); padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; }
-.ad-title { margin: 12px 0 8px; font-size: 24px; font-weight: 800; }
-.ad-cta { font-size: 14px; font-weight: 700; }
+.ad-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 70%, transparent 100%); z-index: 1; }
+.ad-content { position: absolute; bottom: 28px; left: 28px; right: 28px; color: #fff; z-index: 2; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+.ad-details { margin: 4px 0 0; font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.4; max-width: 500px; }
+.ad-tag { background: var(--color-primary); color: var(--color-on-primary); padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; display: inline-block; }
+.ad-title { margin: 8px 0 4px; font-size: 22px; font-weight: 800; color: #ffffff; display: block; }
+.ad-cta { font-size: 14px; font-weight: 700; color: #f7e500; }
 .ad-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 .ad-prev { left: 12px; }
 .ad-next { right: 12px; }
@@ -3949,7 +3949,7 @@ body.cart-open {
   .home-cat-item { width: 70px; }
   .home-cat-icon-wrap { width: 52px; height: 52px; }
   .ad-slides { height: 260px; }
-  .ad-title { font-size: 18px; }
+  .ad-title { font-size: 16px; }
   .product-card { flex: 0 0 220px; }
   .service-marquee-card { width: 250px; }
   .case-rail-container { overflow: hidden; }
