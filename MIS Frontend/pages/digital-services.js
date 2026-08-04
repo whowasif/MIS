@@ -1,96 +1,176 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 
 const fallbackServices = [
-  { id: 'digital-1', name: 'Website Design & Development', description: 'Modern business websites with responsive UI, SEO-friendly structure, and conversion-focused design.' },
-  { id: 'digital-2', name: 'Web Domain & Hosting', description: 'Domain setup, DNS, secure hosting, SSL, and performance optimization for reliable uptime.' },
-  { id: 'digital-3', name: 'Domain Registration', description: 'Secure your brand with local and international domain registration and renewal support.' },
-  { id: 'digital-4', name: 'Digital Marketing', description: 'SEO, social campaigns, and paid ads to increase leads, visibility, and online revenue.' },
-  { id: 'digital-5', name: 'Mobile App Development', description: 'Custom mobile app solutions for Android and iOS integrated with your existing systems.' },
+  { id: 'digital-1', name: 'Website Design & Development', slug: 'website-design-development', description: 'Modern business websites with responsive UI, SEO-friendly structure, and conversion-focused design.' },
+  { id: 'digital-2', name: 'Web Domain & Hosting', slug: 'web-domain-hosting', description: 'Domain setup, DNS, secure hosting, SSL, and performance optimization for reliable uptime.' },
+  { id: 'digital-3', name: 'Domain Registration', slug: 'domain-registration', description: 'Secure your brand with local and international domain registration and renewal support.' },
+  { id: 'digital-4', name: 'Digital Marketing', slug: 'digital-marketing', description: 'SEO, social campaigns, and paid ads to increase leads, visibility, and online revenue.' },
+  { id: 'digital-5', name: 'Mobile App Development', slug: 'mobile-app-development', description: 'Custom mobile app solutions for Android and iOS integrated with your existing systems.' },
 ]
 
+const MetricCounter = ({ end, suffix, label }) => {
+  const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true)
+          const duration = 1600
+          const startTime = performance.now()
+          const animate = (currentTime) => {
+            const elapsed = currentTime - startTime
+            const progress = Math.min(elapsed / duration, 1)
+            const eased = 1 - Math.pow(1 - progress, 3)
+            setCount(Math.floor(eased * end))
+            if (progress < 1) requestAnimationFrame(animate)
+          }
+          requestAnimationFrame(animate)
+        }
+      },
+      { threshold: 0.3 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [hasAnimated, end])
+
+  return (
+    <div className="ds-metric" ref={ref}>
+      <span className="ds-metric-value">{count}{suffix}</span>
+      <span className="ds-metric-label">{label}</span>
+    </div>
+  )
+}
+
 const DigitalServices = ({ services = [] }) => {
-  const router = useRouter()
-  const [searchTerm, setSearchTerm] = useState(router.query.search || '')
-  const [viewMode, setViewMode] = useState('list') // 'list' or 'grid'
   const digitalServices = Array.isArray(services) && services.length > 0 ? services : fallbackServices
-  const filteredServices = searchTerm.trim()
-    ? digitalServices.filter((s) => s.name.toLowerCase().includes(searchTerm.toLowerCase()) || (s.description || '').toLowerCase().includes(searchTerm.toLowerCase()))
-    : digitalServices
 
   return (
     <>
-      <div className="digital-services-page">
+      <div className="ds-page">
         <Head>
           <title>Digital Services - MIS Solution</title>
           <meta property="og:title" content="Digital Services - MIS Solution" />
+          <meta name="description" content="Website design, web hosting, domain registration, digital marketing, and mobile app development services by MIS Solution." />
         </Head>
 
         <Navigation />
 
-        <section className="digital-hero">
-          <div className="digital-hero-overlay"></div>
-          <div className="digital-hero-inner">
-            <h1 className="hero-title">MIS Digital Services</h1>
-            <p className="hero-subtitle">Website design, web hosting, domain registration, digital marketing, and app development.</p>
-            <a href="#digital-services-list" className="btn btn-primary btn-lg"><span>Explore Services</span></a>
+        {/* Hero */}
+        <section className="ds-hero">
+          <div className="ds-hero-bg">
+            <img src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" aria-hidden="true" />
+            <div className="ds-hero-overlay"></div>
+          </div>
+          <div className="ds-hero-content">
+            <nav className="ds-breadcrumb" aria-label="Breadcrumb">
+              <Link href="/"><a>Home</a></Link>
+              <span>/</span>
+              <Link href="/core-it-solutions"><a>Core IT Solutions</a></Link>
+              <span>/</span>
+              <span className="ds-breadcrumb-current">Digital Services</span>
+            </nav>
+            <h1>Digital Services</h1>
+            <p>Building your digital presence from the ground up — websites, apps, hosting, marketing, and everything in between.</p>
           </div>
         </section>
 
-        <section id="digital-services-list" className="services-listing">
-          <div className="services-container">
-            <div className="toolbar">
-              <input type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search digital services..." className="page-search-input" />
-              <div className="view-toggle">
-                <button className={`toggle-btn ${viewMode === 'list' ? 'active' : ''}`} onClick={() => setViewMode('list')} aria-label="List view">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-                </button>
-                <button className={`toggle-btn ${viewMode === 'grid' ? 'active' : ''}`} onClick={() => setViewMode('grid')} aria-label="Grid view">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                </button>
+        {/* Metrics */}
+        <section className="ds-metrics-section">
+          <div className="ds-metrics-container">
+            <MetricCounter end={200} suffix="+" label="Websites Delivered" />
+            <MetricCounter end={99} suffix="%" label="Uptime Guarantee" />
+            <MetricCounter end={50} suffix="+" label="Active Clients" />
+            <MetricCounter end={24} suffix="/7" label="Support Available" />
+          </div>
+        </section>
+
+        {/* Services Grid */}
+        <section className="ds-services-section">
+          <div className="ds-services-container">
+            <div className="ds-services-header">
+              <h2>What We Offer</h2>
+              <p>Full-spectrum digital services designed to establish, grow, and maintain your online presence.</p>
+            </div>
+            <div className="ds-services-grid">
+              {digitalServices.map((service, idx) => (
+                <Link key={service.id} href={`/services/${encodeURIComponent(service.slug || service.id)}?type=digi_services`}>
+                  <a className={`ds-service-card ${idx === 0 ? 'ds-service-featured' : ''}`}>
+                    <div className="ds-service-img">
+                      {service.iconUrl ? <img src={service.iconUrl} alt={service.name} /> : <div className="ds-service-placeholder"><span>{service.name.charAt(0)}</span></div>}
+                    </div>
+                    <div className="ds-service-body">
+                      <h3>{service.name}</h3>
+                      <p>{service.description}</p>
+                      <span className="ds-service-link">Learn More →</span>
+                    </div>
+                  </a>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process */}
+        <section className="ds-process-section">
+          <div className="ds-process-container">
+            <div className="ds-process-header">
+              <h2>Our Digital Process</h2>
+              <p>A proven methodology that transforms ideas into high-performing digital products.</p>
+            </div>
+            <div className="ds-process-timeline">
+              <div className="ds-process-item">
+                <div className="ds-process-dot"></div>
+                <div className="ds-process-content">
+                  <span className="ds-process-step">Step 01</span>
+                  <h3>Discovery & Strategy</h3>
+                  <p>Understanding your business, target audience, and goals to craft the perfect digital strategy.</p>
+                </div>
+              </div>
+              <div className="ds-process-item">
+                <div className="ds-process-dot"></div>
+                <div className="ds-process-content">
+                  <span className="ds-process-step">Step 02</span>
+                  <h3>Design & Prototype</h3>
+                  <p>Creating wireframes, mockups, and interactive prototypes for review before development begins.</p>
+                </div>
+              </div>
+              <div className="ds-process-item">
+                <div className="ds-process-dot"></div>
+                <div className="ds-process-content">
+                  <span className="ds-process-step">Step 03</span>
+                  <h3>Development & Testing</h3>
+                  <p>Building with modern technologies, rigorous testing across devices, and performance optimization.</p>
+                </div>
+              </div>
+              <div className="ds-process-item">
+                <div className="ds-process-dot"></div>
+                <div className="ds-process-content">
+                  <span className="ds-process-step">Step 04</span>
+                  <h3>Launch & Growth</h3>
+                  <p>Deploying to production, SEO setup, analytics integration, and ongoing maintenance support.</p>
+                </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {viewMode === 'list' ? (
-              <div className="list-view">
-                {filteredServices.map((service, idx) => (
-                  <Link key={service.id} href={`/services/${encodeURIComponent(service.slug || service.id)}?type=digi_services`}>
-                    <a className={`list-card ${idx % 2 === 0 ? 'text-first' : 'img-first'}`}>
-                      <div className="list-card-text">
-                        <h3>{service.name}</h3>
-                        <p>{service.description}</p>
-                        <span className="card-link">Learn More →</span>
-                      </div>
-                      <div className="list-card-img">
-                        {service.iconUrl ? <img src={service.iconUrl} alt={service.name} /> : <div className="card-placeholder">{service.name.charAt(0)}</div>}
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <div className="grid-view">
-                {filteredServices.map((service) => (
-                  <Link key={service.id} href={`/services/${encodeURIComponent(service.slug || service.id)}?type=digi_services`}>
-                    <a className="grid-card">
-                      <div className="grid-card-img">
-                        {service.iconUrl ? <img src={service.iconUrl} alt={service.name} /> : <div className="card-placeholder">{service.name.charAt(0)}</div>}
-                      </div>
-                      <div className="grid-card-text">
-                        <h3>{service.name}</h3>
-                        <p>{service.description}</p>
-                        <span className="card-link">Learn More →</span>
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-            )}
+        {/* CTA */}
+        <section className="ds-cta-section">
+          <div className="ds-cta-container">
+            <h2>Have a Digital Project in Mind?</h2>
+            <p>Let&apos;s turn your vision into a powerful digital experience.</p>
+            <div className="ds-cta-buttons">
+              <Link href="/request-custom-quote"><a className="ds-cta-btn ds-cta-primary">Get a Free Quote</a></Link>
+              <Link href="/contact"><a className="ds-cta-btn ds-cta-secondary">Talk to Our Team</a></Link>
+            </div>
           </div>
         </section>
 
@@ -98,57 +178,85 @@ const DigitalServices = ({ services = [] }) => {
       </div>
 
       <style jsx>{`
-        .digital-services-page { width: 100%; min-height: 100vh; background: #ffffff; }
-        .digital-hero { width: 100%; min-height: 420px; position: relative; display: flex; align-items: center; justify-content: center; background-image: url('https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1500'); background-size: cover; background-position: center; }
-        .digital-hero-overlay { position: absolute; inset: 0; background: rgba(10, 16, 27, 0.62); }
-        .digital-hero-inner { position: relative; z-index: 1; width: 100%; max-width: 920px; padding: 110px 20px 70px; text-align: center; color: #ffffff; }
+        .ds-page { width: 100%; min-height: 100vh; }
 
-        .services-listing { padding: 48px 20px 72px; background: #f8fafc; }
-        .services-container { width: 100%; max-width: 1180px; margin: 0 auto; }
+        /* Hero */
+        .ds-hero { position: relative; min-height: 420px; display: flex; align-items: flex-end; }
+        .ds-hero-bg { position: absolute; inset: 0; }
+        .ds-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .ds-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,16,27,0.95) 0%, rgba(10,16,27,0.6) 50%, rgba(10,16,27,0.3) 100%); }
+        .ds-hero-content { position: relative; z-index: 1; max-width: 800px; padding: 60px 32px 48px; }
+        .ds-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 16px; }
+        .ds-breadcrumb :global(a) { color: rgba(255,255,255,0.7); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+        .ds-breadcrumb :global(a:hover) { color: #f7e500; }
+        .ds-breadcrumb span { color: rgba(255,255,255,0.4); }
+        .ds-breadcrumb-current { color: #f7e500; font-weight: 600; }
+        .ds-hero-content h1 { margin: 0; font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: #ffffff; line-height: 1.1; }
+        .ds-hero-content p { margin: 14px 0 0; font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 600px; }
 
-        .toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
-        .toolbar .page-search-input { flex: 1; min-width: 200px; padding: 12px 18px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 14px; background: #fff; }
-        .toolbar .page-search-input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
-        .view-toggle { display: flex; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
-        .toggle-btn { border: none; background: #fff; padding: 10px 14px; cursor: pointer; display: flex; align-items: center; color: #6b7280; transition: all 0.15s; }
-        .toggle-btn.active { background: #4f46e5; color: #fff; }
-        .toggle-btn:not(.active):hover { background: #f3f4f6; }
+        /* Metrics */
+        .ds-metrics-section { padding: 0 24px; margin-top: -1px; background: #0a101b; }
+        .ds-metrics-container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 36px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+        .ds-metric { text-align: center; }
+        .ds-metric-value { display: block; font-size: 28px; font-weight: 800; color: #f7e500; font-family: 'JetBrains Mono', monospace; }
+        .ds-metric-label { display: block; font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-        /* LIST VIEW - Alternating cards */
-        .list-view { display: flex; flex-direction: column; gap: 16px; }
-        .list-card { display: grid; grid-template-columns: 1fr 1fr; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; background: #fff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s; min-height: 200px; }
-        .list-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
-        .list-card.img-first { direction: rtl; }
-        .list-card.img-first > * { direction: ltr; }
-        .list-card-text { padding: 28px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
-        .list-card-text h3 { margin: 0; font-size: 18px; color: #111827; font-weight: 700; }
-        .list-card-text p { margin: 0; font-size: 14px; color: #4b5563; line-height: 1.7; }
-        .card-link { font-size: 13px; font-weight: 700; color: #4f46e5; }
-        .list-card-img { background: #f1f5f9; overflow: hidden; }
-        .list-card-img img { width: 100%; height: 100%; object-fit: cover; }
+        /* Services Grid */
+        .ds-services-section { padding: 72px 24px; background: #f8fafc; }
+        .ds-services-container { max-width: 1140px; margin: 0 auto; }
+        .ds-services-header { text-align: center; margin-bottom: 40px; }
+        .ds-services-header h2 { margin: 0; font-size: clamp(26px, 3.5vw, 34px); font-weight: 800; color: #111827; }
+        .ds-services-header p { margin: 10px 0 0; font-size: 16px; color: #6b7280; }
+        .ds-services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .ds-service-card { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid #e5e7eb; background: #ffffff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s; }
+        .ds-service-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.08); transform: translateY(-3px); }
+        .ds-service-featured { grid-column: span 2; flex-direction: row; }
+        .ds-service-img { height: 180px; background: linear-gradient(135deg, #0a101b, #1e293b); overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .ds-service-featured .ds-service-img { width: 280px; height: auto; min-height: 200px; }
+        .ds-service-img img { width: 100%; height: 100%; object-fit: cover; }
+        .ds-service-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .ds-service-placeholder span { font-size: 48px; font-weight: 800; color: #f7e500; opacity: 0.6; }
+        .ds-service-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+        .ds-service-body h3 { margin: 0; font-size: 18px; font-weight: 700; color: #111827; }
+        .ds-service-body p { margin: 0; font-size: 14px; color: #6b7280; line-height: 1.7; }
+        .ds-service-link { font-size: 13px; font-weight: 700; color: #0a101b; margin-top: auto; padding-top: 8px; }
+        .ds-service-card:hover .ds-service-link { color: #f7e500; }
 
-        /* GRID VIEW */
-        .grid-view { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-        .grid-card { border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0; background: #fff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s; display: flex; flex-direction: column; }
-        .grid-card:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.08); transform: translateY(-3px); }
-        .grid-card-img { height: 180px; background: #f1f5f9; overflow: hidden; }
-        .grid-card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .grid-card-text { padding: 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-        .grid-card-text h3 { margin: 0; font-size: 16px; color: #111827; font-weight: 700; }
-        .grid-card-text p { margin: 0; font-size: 13px; color: #4b5563; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        /* Process */
+        .ds-process-section { padding: 72px 24px; background: #ffffff; }
+        .ds-process-container { max-width: 800px; margin: 0 auto; }
+        .ds-process-header { text-align: center; margin-bottom: 40px; }
+        .ds-process-header h2 { margin: 0; font-size: clamp(26px, 3.5vw, 34px); font-weight: 800; color: #111827; }
+        .ds-process-header p { margin: 10px 0 0; font-size: 16px; color: #6b7280; }
+        .ds-process-timeline { position: relative; padding-left: 32px; }
+        .ds-process-timeline::before { content: ''; position: absolute; left: 8px; top: 12px; bottom: 12px; width: 2px; background: linear-gradient(to bottom, #f7e500, #e5e7eb); border-radius: 2px; }
+        .ds-process-item { position: relative; padding: 0 0 32px; }
+        .ds-process-item:last-child { padding-bottom: 0; }
+        .ds-process-dot { position: absolute; left: -28px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: #f7e500; border: 3px solid #ffffff; box-shadow: 0 0 0 2px #f7e500; }
+        .ds-process-content {}
+        .ds-process-step { display: inline-block; font-size: 11px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+        .ds-process-content h3 { margin: 0 0 6px; font-size: 18px; font-weight: 700; color: #111827; }
+        .ds-process-content p { margin: 0; font-size: 14px; color: #6b7280; line-height: 1.7; }
 
-        .card-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 56px; font-weight: 800; color: #cbd5e1; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); }
+        /* CTA */
+        .ds-cta-section { padding: 72px 24px; background: #0a101b; text-align: center; }
+        .ds-cta-container { max-width: 600px; margin: 0 auto; }
+        .ds-cta-container h2 { margin: 0; font-size: clamp(24px, 3.5vw, 32px); font-weight: 800; color: #ffffff; }
+        .ds-cta-container p { margin: 12px 0 0; font-size: 16px; color: rgba(255,255,255,0.6); }
+        .ds-cta-buttons { display: flex; gap: 14px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+        .ds-cta-btn { padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+        .ds-cta-primary { background: #f7e500; color: #0a101b; }
+        .ds-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(247,229,0,0.3); }
+        .ds-cta-secondary { background: transparent; color: #ffffff; border: 2px solid rgba(255,255,255,0.3); }
+        .ds-cta-secondary:hover { border-color: #f7e500; color: #f7e500; transform: translateY(-2px); }
 
-        @media (max-width: 767px) {
-          .digital-hero-inner { padding-top: 94px; padding-bottom: 56px; }
-          .list-card { grid-template-columns: 3fr 2fr; min-height: 160px; }
-          .list-card.img-first { direction: rtl; }
-          .list-card.img-first > * { direction: ltr; }
-          .list-card-img { height: 100%; min-height: 160px; }
-          .list-card-text { padding: 16px; }
-          .list-card-text h3 { font-size: 15px; }
-          .list-card-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
-          .grid-view { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+          .ds-hero { min-height: 360px; }
+          .ds-hero-content { padding: 100px 20px 36px; }
+          .ds-metrics-container { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+          .ds-services-grid { grid-template-columns: 1fr; }
+          .ds-service-featured { grid-column: span 1; flex-direction: column; }
+          .ds-service-featured .ds-service-img { width: 100%; height: 180px; }
         }
       `}</style>
     </>

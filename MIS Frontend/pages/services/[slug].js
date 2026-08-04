@@ -43,6 +43,8 @@ const ContentDetailPage = ({ content, contentType }) => {
                 <div className="breadcrumb">
                   <Link href="/"><a>Home</a></Link>
                   <span>/</span>
+                  <Link href="/core-it-solutions"><a>Core IT Solutions</a></Link>
+                  <span>/</span>
                   {contentType === 'digi_services' && <Link href="/digital-services"><a>Digital Services</a></Link>}
                   {contentType === 'bus_corp_sol' && <Link href="/enterprise-solutions"><a>Enterprise Solutions</a></Link>}
                   {contentType === 'service_maintenance' && <Link href="/maintenance-support"><a>Maintenance & Support</a></Link>}
@@ -59,6 +61,8 @@ const ContentDetailPage = ({ content, contentType }) => {
             <header className="content-header-nocover">
               <div className="breadcrumb">
                 <Link href="/"><a>Home</a></Link>
+                <span>/</span>
+                <Link href="/core-it-solutions"><a>Core IT Solutions</a></Link>
                 <span>/</span>
                 {contentType === 'digi_services' && <Link href="/digital-services"><a>Digital Services</a></Link>}
                 {contentType === 'bus_corp_sol' && <Link href="/enterprise-solutions"><a>Enterprise Solutions</a></Link>}

@@ -175,6 +175,17 @@ const ContentDetailPage = ({ content , contentType  })=>{
                                                     className: "jsx-f66540924b342c54",
                                                     children: "/"
                                                 }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                                    href: "/core-it-solutions",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                        className: "jsx-f66540924b342c54",
+                                                        children: "Core IT Solutions"
+                                                    })
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-f66540924b342c54",
+                                                    children: "/"
+                                                }),
                                                 contentType === "digi_services" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/digital-services",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
@@ -234,6 +245,17 @@ const ContentDetailPage = ({ content , contentType  })=>{
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                 className: "jsx-f66540924b342c54",
                                                 children: "Home"
+                                            })
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "jsx-f66540924b342c54",
+                                            children: "/"
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                            href: "/core-it-solutions",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                className: "jsx-f66540924b342c54",
+                                                children: "Core IT Solutions"
                                             })
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {

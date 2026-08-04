@@ -7,9 +7,15 @@ const menuItems = [
   { href: '/', label: 'Home' },
   { href: '/company-information-policies', label: 'About Us' },
   { href: '/categories/desktop', label: 'Products' },
-  { href: '/digital-services', label: 'Digital Services' },
-  { href: '/enterprise-solutions', label: 'Business & Corporate Solutions' },
-  { href: '/maintenance-support', label: 'Maintenance Support' },
+  {
+    href: '/core-it-solutions',
+    label: 'Core IT Solutions',
+    children: [
+      { href: '/digital-services', label: 'Digital Services' },
+      { href: '/enterprise-solutions', label: 'Business & Corporate Solutions' },
+      { href: '/maintenance-support', label: 'Maintenance & Support' },
+    ],
+  },
   { href: '/career', label: 'Career' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -444,6 +450,8 @@ const Navigation = () => {
             <ul className="menu-nav-list">
               {menuItems.map((item) => {
                 const isProducts = item.label === 'Products'
+                const hasChildren = item.children && item.children.length > 0
+
                 if (isProducts && categories.length > 0) {
                   return (
                     <li key={item.href}>
@@ -476,6 +484,25 @@ const Navigation = () => {
                     </li>
                   )
                 }
+
+                if (hasChildren) {
+                  return (
+                    <li key={item.href}>
+                      <details className="menu-nav-products-dropdown">
+                        <summary className="menu-nav-link menu-nav-link-btn" onClick={(e) => { e.preventDefault(); handleMenuNavigation(item.href) }}>
+                          <span>{item.label}</span>
+                          <span className="menu-nav-chevron">›</span>
+                        </summary>
+                        <div className="menu-nav-sub-list">
+                          {item.children.map((child) => (
+                            <button key={child.href} type="button" className="menu-nav-sub-link" onClick={() => handleMenuNavigation(child.href)}>{child.label}</button>
+                          ))}
+                        </div>
+                      </details>
+                    </li>
+                  )
+                }
+
                 return (
                   <li key={item.href}>
                     <button

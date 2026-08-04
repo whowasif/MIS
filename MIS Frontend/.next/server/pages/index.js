@@ -215,7 +215,7 @@ const Home = (props)=>{
                                             className: "jsx-838b1a87f6f26fd3" + " " + "hero-cta-group",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    href: "#core-services",
+                                                    href: "/core-it-solutions",
                                                     className: "jsx-838b1a87f6f26fd3",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-838b1a87f6f26fd3" + " " + "btn btn-primary btn-lg",

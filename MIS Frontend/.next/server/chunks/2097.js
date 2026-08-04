@@ -41,16 +41,22 @@ const menuItems = [
         label: "Products"
     },
     {
-        href: "/digital-services",
-        label: "Digital Services"
-    },
-    {
-        href: "/enterprise-solutions",
-        label: "Business & Corporate Solutions"
-    },
-    {
-        href: "/maintenance-support",
-        label: "Maintenance Support"
+        href: "/core-it-solutions",
+        label: "Core IT Solutions",
+        children: [
+            {
+                href: "/digital-services",
+                label: "Digital Services"
+            },
+            {
+                href: "/enterprise-solutions",
+                label: "Business & Corporate Solutions"
+            },
+            {
+                href: "/maintenance-support",
+                label: "Maintenance & Support"
+            }, 
+        ]
     },
     {
         href: "/career",
@@ -639,6 +645,7 @@ const Navigation = ()=>{
                                 className: "jsx-f6c067e60104f900" + " " + "menu-nav-list",
                                 children: menuItems.map((item)=>{
                                     const isProducts = item.label === "Products";
+                                    const hasChildren = item.children && item.children.length > 0;
                                     if (isProducts && categories.length > 0) {
                                         return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
                                             className: "jsx-f6c067e60104f900",
@@ -696,6 +703,42 @@ const Navigation = ()=>{
                                                                 ]
                                                             }, cat.id);
                                                         })
+                                                    })
+                                                ]
+                                            })
+                                        }, item.href);
+                                    }
+                                    if (hasChildren) {
+                                        return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                            className: "jsx-f6c067e60104f900",
+                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("details", {
+                                                className: "jsx-f6c067e60104f900" + " " + "menu-nav-products-dropdown",
+                                                children: [
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("summary", {
+                                                        onClick: (e)=>{
+                                                            e.preventDefault();
+                                                            handleMenuNavigation(item.href);
+                                                        },
+                                                        className: "jsx-f6c067e60104f900" + " " + "menu-nav-link menu-nav-link-btn",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                className: "jsx-f6c067e60104f900",
+                                                                children: item.label
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                className: "jsx-f6c067e60104f900" + " " + "menu-nav-chevron",
+                                                                children: "›"
+                                                            })
+                                                        ]
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-f6c067e60104f900" + " " + "menu-nav-sub-list",
+                                                        children: item.children.map((child)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                                type: "button",
+                                                                onClick: ()=>handleMenuNavigation(child.href),
+                                                                className: "jsx-f6c067e60104f900" + " " + "menu-nav-sub-link",
+                                                                children: child.label
+                                                            }, child.href))
                                                     })
                                                 ]
                                             })

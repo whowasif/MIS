@@ -91,7 +91,7 @@ const Home = (props) => {
               <h1 className="home-hero-title hero-title">Empowering Your Business Through Innovative Technology</h1>
               <p className="home-hero-subtitle hero-subtitle">Your premier destination for comprehensive e-commerce, corporate IT services, and enterprise solutions tailored for technological excellence.</p>
               <div className="hero-cta-group">
-                <a href="#core-services"><div className="btn btn-primary btn-lg"><span>Explore Services</span></div></a>
+                <a href="/core-it-solutions"><div className="btn btn-primary btn-lg"><span>Explore Services</span></div></a>
                 <a href="/categories/desktop"><div className="btn btn-lg btn-outline hero-shop-btn"><span>Shop Hardware</span></div></a>
               </div>
             </div>

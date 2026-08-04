@@ -1,95 +1,172 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 
 const fallbackItems = [
-  { id: 'b2b-1', name: 'Data Center Solution', description: 'End-to-end enterprise data center design and deployment.' },
-  { id: 'b2b-2', name: 'Structured Cabling', description: 'Reliable structured cabling for modern enterprise infrastructure.' },
-  { id: 'b2b-3', name: 'CCTV Camera / IP Camera', description: 'Scalable surveillance architecture for corporate security.' },
-  { id: 'b2b-4', name: 'Corporate ID Card Printing', description: 'Bulk professional printing support for enterprise operations.' },
+  { id: 'b2b-1', name: 'Data Center Solution', slug: 'data-center-solution', description: 'End-to-end enterprise data center design and deployment.' },
+  { id: 'b2b-2', name: 'Structured Cabling', slug: 'structured-cabling', description: 'Reliable structured cabling for modern enterprise infrastructure.' },
+  { id: 'b2b-3', name: 'CCTV Camera / IP Camera', slug: 'cctv-ip-camera', description: 'Scalable surveillance architecture for corporate security.' },
+  { id: 'b2b-4', name: 'Corporate ID Card Printing', slug: 'corporate-id-printing', description: 'Bulk professional printing support for enterprise operations.' },
 ]
 
+const MetricCounter = ({ end, suffix, label }) => {
+  const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true)
+          const duration = 1600
+          const startTime = performance.now()
+          const animate = (currentTime) => {
+            const elapsed = currentTime - startTime
+            const progress = Math.min(elapsed / duration, 1)
+            const eased = 1 - Math.pow(1 - progress, 3)
+            setCount(Math.floor(eased * end))
+            if (progress < 1) requestAnimationFrame(animate)
+          }
+          requestAnimationFrame(animate)
+        }
+      },
+      { threshold: 0.3 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [hasAnimated, end])
+
+  return (
+    <div className="es-metric" ref={ref}>
+      <span className="es-metric-value">{count}{suffix}</span>
+      <span className="es-metric-label">{label}</span>
+    </div>
+  )
+}
+
 const EnterpriseSolutions = ({ services = [] }) => {
-  const router = useRouter()
-  const [searchTerm, setSearchTerm] = useState(router.query.search || '')
-  const [viewMode, setViewMode] = useState('list')
   const sourceItems = Array.isArray(services) && services.length > 0 ? services : fallbackItems
-  const filteredItems = searchTerm.trim()
-    ? sourceItems.filter((s) => s.name.toLowerCase().includes(searchTerm.toLowerCase()) || (s.description || '').toLowerCase().includes(searchTerm.toLowerCase()))
-    : sourceItems
 
   return (
     <>
-      <div className="enterprise-solutions-page">
+      <div className="es-page">
         <Head>
           <title>Business & Corporate Solutions - MIS Solution</title>
           <meta property="og:title" content="Business & Corporate Solutions - MIS Solution" />
+          <meta name="description" content="Enterprise-grade IT infrastructure, networking, security systems, and project-based B2B solutions by MIS Solution." />
         </Head>
 
         <Navigation />
 
-        <section className="enterprise-hero">
-          <div className="enterprise-hero-overlay"></div>
-          <div className="enterprise-hero-inner">
-            <h1 className="hero-title">Business & Corporate Solutions</h1>
-            <p className="hero-subtitle">Project-based B2B solutions designed for infrastructure, networking, security, and enterprise delivery.</p>
-            <a href="#b2b-catalog" className="btn btn-primary btn-lg"><span>Explore B2B Solutions</span></a>
+        {/* Hero */}
+        <section className="es-hero">
+          <div className="es-hero-bg">
+            <img src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" aria-hidden="true" />
+            <div className="es-hero-overlay"></div>
+          </div>
+          <div className="es-hero-content">
+            <nav className="es-breadcrumb" aria-label="Breadcrumb">
+              <Link href="/"><a>Home</a></Link>
+              <span>/</span>
+              <Link href="/core-it-solutions"><a>Core IT Solutions</a></Link>
+              <span>/</span>
+              <span className="es-breadcrumb-current">Business & Corporate Solutions</span>
+            </nav>
+            <h1>Business & Corporate<br />Solutions</h1>
+            <p>Project-based B2B solutions engineered for enterprise infrastructure, networking, physical security, and large-scale deployments.</p>
           </div>
         </section>
 
-        <section id="b2b-catalog" className="services-listing">
-          <div className="services-container">
-            <div className="toolbar">
-              <input type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search enterprise solutions..." className="page-search-input" />
-              <div className="view-toggle">
-                <button className={`toggle-btn ${viewMode === 'list' ? 'active' : ''}`} onClick={() => setViewMode('list')} aria-label="List view">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-                </button>
-                <button className={`toggle-btn ${viewMode === 'grid' ? 'active' : ''}`} onClick={() => setViewMode('grid')} aria-label="Grid view">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                </button>
+        {/* Metrics */}
+        <section className="es-metrics-section">
+          <div className="es-metrics-container">
+            <MetricCounter end={80} suffix="+" label="B2B Projects" />
+            <MetricCounter end={100} suffix="%" label="Warranty Coverage" />
+            <MetricCounter end={30} suffix="+" label="Corporate Clients" />
+            <MetricCounter end={5} suffix="yr" label="Avg. Partnership" />
+          </div>
+        </section>
+
+        {/* Services Grid */}
+        <section className="es-services-section">
+          <div className="es-services-container">
+            <div className="es-services-header">
+              <h2>Enterprise Solutions Portfolio</h2>
+              <p>Comprehensive infrastructure and technology solutions for organizations of all sizes.</p>
+            </div>
+            <div className="es-services-grid">
+              {sourceItems.map((item, idx) => (
+                <Link key={item.id} href={`/services/${encodeURIComponent(item.slug || item.id)}?type=bus_corp_sol`}>
+                  <a className="es-service-card">
+                    <div className="es-service-number">{String(idx + 1).padStart(2, '0')}</div>
+                    <div className="es-service-img">
+                      {item.iconUrl ? <img src={item.iconUrl} alt={item.name} /> : <div className="es-service-placeholder"><span>{item.name.charAt(0)}</span></div>}
+                    </div>
+                    <div className="es-service-body">
+                      <h3>{item.name}</h3>
+                      <p>{item.description}</p>
+                      <span className="es-service-link">View Details →</span>
+                    </div>
+                  </a>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process */}
+        <section className="es-process-section">
+          <div className="es-process-container">
+            <div className="es-process-header">
+              <h2>Enterprise Delivery Framework</h2>
+              <p>A structured methodology ensuring every project is delivered on time, on spec, and within budget.</p>
+            </div>
+            <div className="es-process-grid">
+              <div className="es-step">
+                <div className="es-step-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                </div>
+                <h3>Site Assessment</h3>
+                <p>On-site survey, requirements gathering, and feasibility analysis for your infrastructure needs.</p>
+              </div>
+              <div className="es-step">
+                <div className="es-step-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                </div>
+                <h3>Solution Design</h3>
+                <p>Technical architecture, BOQ preparation, and project plan with clear milestones.</p>
+              </div>
+              <div className="es-step">
+                <div className="es-step-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3>Deployment</h3>
+                <p>Professional installation, configuration, testing, and commissioning by certified engineers.</p>
+              </div>
+              <div className="es-step">
+                <div className="es-step-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Warranty & Support</h3>
+                <p>Comprehensive warranty coverage, SLA-based support, and proactive maintenance plans.</p>
               </div>
             </div>
+          </div>
+        </section>
 
-            {viewMode === 'list' ? (
-              <div className="list-view">
-                {filteredItems.map((item, idx) => (
-                  <Link key={item.id} href={`/services/${encodeURIComponent(item.slug || item.id)}?type=bus_corp_sol`}>
-                    <a className={`list-card ${idx % 2 === 0 ? 'text-first' : 'img-first'}`}>
-                      <div className="list-card-text">
-                        <h3>{item.name}</h3>
-                        <p>{item.description}</p>
-                        <span className="card-link">View Details →</span>
-                      </div>
-                      <div className="list-card-img">
-                        {item.iconUrl ? <img src={item.iconUrl} alt={item.name} /> : <div className="card-placeholder">{item.name.charAt(0)}</div>}
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <div className="grid-view">
-                {filteredItems.map((item) => (
-                  <Link key={item.id} href={`/services/${encodeURIComponent(item.slug || item.id)}?type=bus_corp_sol`}>
-                    <a className="grid-card">
-                      <div className="grid-card-img">
-                        {item.iconUrl ? <img src={item.iconUrl} alt={item.name} /> : <div className="card-placeholder">{item.name.charAt(0)}</div>}
-                      </div>
-                      <div className="grid-card-text">
-                        <h3>{item.name}</h3>
-                        <p>{item.description}</p>
-                        <span className="card-link">View Details →</span>
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-            )}
+        {/* CTA */}
+        <section className="es-cta-section">
+          <div className="es-cta-container">
+            <h2>Need a Corporate IT Partner?</h2>
+            <p>From data centers to security systems — let&apos;s build your enterprise infrastructure together.</p>
+            <div className="es-cta-buttons">
+              <Link href="/request-custom-quote"><a className="es-cta-btn es-cta-primary">Request a Proposal</a></Link>
+              <Link href="/contact"><a className="es-cta-btn es-cta-secondary">Schedule a Consultation</a></Link>
+            </div>
           </div>
         </section>
 
@@ -97,55 +174,80 @@ const EnterpriseSolutions = ({ services = [] }) => {
       </div>
 
       <style jsx>{`
-        .enterprise-solutions-page { width: 100%; min-height: 100vh; background: #ffffff; }
-        .enterprise-hero { width: 100%; min-height: 430px; position: relative; display: flex; align-items: center; justify-content: center; background-image: url('https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1500'); background-size: cover; background-position: center; }
-        .enterprise-hero-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.66); }
-        .enterprise-hero-inner { position: relative; z-index: 1; max-width: 980px; width: 100%; text-align: center; color: #ffffff; padding: 110px 20px 70px; }
+        .es-page { width: 100%; min-height: 100vh; }
 
-        .services-listing { padding: 48px 20px 72px; background: #f8fafc; }
-        .services-container { width: 100%; max-width: 1180px; margin: 0 auto; }
+        /* Hero */
+        .es-hero { position: relative; min-height: 420px; display: flex; align-items: flex-end; }
+        .es-hero-bg { position: absolute; inset: 0; }
+        .es-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .es-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,16,27,0.95) 0%, rgba(10,16,27,0.6) 50%, rgba(10,16,27,0.3) 100%); }
+        .es-hero-content { position: relative; z-index: 1; max-width: 800px; padding: 60px 32px 48px; }
+        .es-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 16px; flex-wrap: wrap; }
+        .es-breadcrumb :global(a) { color: rgba(255,255,255,0.7); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+        .es-breadcrumb :global(a:hover) { color: #f7e500; }
+        .es-breadcrumb span { color: rgba(255,255,255,0.4); }
+        .es-breadcrumb-current { color: #f7e500; font-weight: 600; }
+        .es-hero-content h1 { margin: 0; font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: #ffffff; line-height: 1.1; }
+        .es-hero-content p { margin: 14px 0 0; font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 600px; }
 
-        .toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
-        .toolbar .page-search-input { flex: 1; min-width: 200px; padding: 12px 18px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 14px; background: #fff; }
-        .toolbar .page-search-input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
-        .view-toggle { display: flex; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
-        .toggle-btn { border: none; background: #fff; padding: 10px 14px; cursor: pointer; display: flex; align-items: center; color: #6b7280; transition: all 0.15s; }
-        .toggle-btn.active { background: #4f46e5; color: #fff; }
-        .toggle-btn:not(.active):hover { background: #f3f4f6; }
+        /* Metrics */
+        .es-metrics-section { padding: 0 24px; margin-top: -1px; background: #0a101b; }
+        .es-metrics-container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 36px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+        .es-metric { text-align: center; }
+        .es-metric-value { display: block; font-size: 28px; font-weight: 800; color: #f7e500; font-family: 'JetBrains Mono', monospace; }
+        .es-metric-label { display: block; font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-        .list-view { display: flex; flex-direction: column; gap: 16px; }
-        .list-card { display: grid; grid-template-columns: 1fr 1fr; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; background: #fff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s; min-height: 200px; }
-        .list-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
-        .list-card.img-first { direction: rtl; }
-        .list-card.img-first > * { direction: ltr; }
-        .list-card-text { padding: 28px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
-        .list-card-text h3 { margin: 0; font-size: 18px; color: #111827; font-weight: 700; }
-        .list-card-text p { margin: 0; font-size: 14px; color: #4b5563; line-height: 1.7; }
-        .card-link { font-size: 13px; font-weight: 700; color: #4f46e5; }
-        .list-card-img { background: #f1f5f9; overflow: hidden; }
-        .list-card-img img { width: 100%; height: 100%; object-fit: cover; }
+        /* Services Grid */
+        .es-services-section { padding: 72px 24px; background: #f8fafc; }
+        .es-services-container { max-width: 1140px; margin: 0 auto; }
+        .es-services-header { text-align: center; margin-bottom: 40px; }
+        .es-services-header h2 { margin: 0; font-size: clamp(26px, 3.5vw, 34px); font-weight: 800; color: #111827; }
+        .es-services-header p { margin: 10px 0 0; font-size: 16px; color: #6b7280; }
+        .es-services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .es-service-card { position: relative; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid #e5e7eb; background: #ffffff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s; }
+        .es-service-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.08); transform: translateY(-3px); }
+        .es-service-number { position: absolute; top: 16px; right: 16px; font-size: 42px; font-weight: 900; color: rgba(10,16,27,0.04); line-height: 1; z-index: 1; font-family: 'JetBrains Mono', monospace; }
+        .es-service-img { height: 160px; background: linear-gradient(135deg, #0a101b, #1e293b); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .es-service-img img { width: 100%; height: 100%; object-fit: cover; }
+        .es-service-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .es-service-placeholder span { font-size: 48px; font-weight: 800; color: #f7e500; opacity: 0.5; }
+        .es-service-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+        .es-service-body h3 { margin: 0; font-size: 18px; font-weight: 700; color: #111827; }
+        .es-service-body p { margin: 0; font-size: 14px; color: #6b7280; line-height: 1.7; }
+        .es-service-link { font-size: 13px; font-weight: 700; color: #0a101b; margin-top: auto; padding-top: 8px; }
+        .es-service-card:hover .es-service-link { color: #b8860b; }
 
-        .grid-view { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-        .grid-card { border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0; background: #fff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s; display: flex; flex-direction: column; }
-        .grid-card:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.08); transform: translateY(-3px); }
-        .grid-card-img { height: 180px; background: #f1f5f9; overflow: hidden; }
-        .grid-card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .grid-card-text { padding: 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-        .grid-card-text h3 { margin: 0; font-size: 16px; color: #111827; font-weight: 700; }
-        .grid-card-text p { margin: 0; font-size: 13px; color: #4b5563; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        /* Process */
+        .es-process-section { padding: 72px 24px; background: #ffffff; }
+        .es-process-container { max-width: 1000px; margin: 0 auto; }
+        .es-process-header { text-align: center; margin-bottom: 40px; }
+        .es-process-header h2 { margin: 0; font-size: clamp(26px, 3.5vw, 34px); font-weight: 800; color: #111827; }
+        .es-process-header p { margin: 10px 0 0; font-size: 16px; color: #6b7280; }
+        .es-process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+        .es-step { padding: 28px; border-radius: 16px; background: #fafbfc; border: 1px solid #e5e7eb; transition: border-color 0.2s, box-shadow 0.2s; }
+        .es-step:hover { border-color: #f7e500; box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
+        .es-step-icon { width: 44px; height: 44px; border-radius: 10px; background: #0a101b; display: flex; align-items: center; justify-content: center; color: #f7e500; margin-bottom: 14px; }
+        .es-step h3 { margin: 0 0 8px; font-size: 16px; font-weight: 700; color: #111827; }
+        .es-step p { margin: 0; font-size: 14px; color: #6b7280; line-height: 1.7; }
 
-        .card-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 56px; font-weight: 800; color: #cbd5e1; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); }
+        /* CTA */
+        .es-cta-section { padding: 72px 24px; background: #0a101b; text-align: center; }
+        .es-cta-container { max-width: 600px; margin: 0 auto; }
+        .es-cta-container h2 { margin: 0; font-size: clamp(24px, 3.5vw, 32px); font-weight: 800; color: #ffffff; }
+        .es-cta-container p { margin: 12px 0 0; font-size: 16px; color: rgba(255,255,255,0.6); }
+        .es-cta-buttons { display: flex; gap: 14px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+        .es-cta-btn { padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+        .es-cta-primary { background: #f7e500; color: #0a101b; }
+        .es-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(247,229,0,0.3); }
+        .es-cta-secondary { background: transparent; color: #ffffff; border: 2px solid rgba(255,255,255,0.3); }
+        .es-cta-secondary:hover { border-color: #f7e500; color: #f7e500; transform: translateY(-2px); }
 
-        @media (max-width: 767px) {
-          .enterprise-hero-inner { padding-top: 94px; padding-bottom: 56px; }
-          .list-card { grid-template-columns: 3fr 2fr; min-height: 160px; }
-          .list-card.img-first { direction: rtl; }
-          .list-card.img-first > * { direction: ltr; }
-          .list-card-img { height: 100%; min-height: 160px; }
-          .list-card-text { padding: 16px; }
-          .list-card-text h3 { font-size: 15px; }
-          .list-card-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
-          .grid-view { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+          .es-hero { min-height: 360px; }
+          .es-hero-content { padding: 100px 20px 36px; }
+          .es-metrics-container { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+          .es-services-grid { grid-template-columns: 1fr; }
+          .es-process-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </>
