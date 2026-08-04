@@ -126,7 +126,7 @@ const Home = (props) => {
                       <div className="ad-overlay" />
                       <div className="ad-content">
                         <span className="ad-tag">Special Offer</span>
-                        <h2 className="ad-title">{ad.title}</h2>
+                        <div className="ad-title">{ad.title}</div>
                         {ad.ad_details && <p className="ad-details">{ad.ad_details}</p>}
                         <span className="ad-cta">Shop Now →</span>
                       </div>

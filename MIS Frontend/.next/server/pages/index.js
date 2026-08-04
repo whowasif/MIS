@@ -299,7 +299,7 @@ const Home = (props)=>{
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "ad-tag",
                                                                 children: "Special Offer"
                                                             }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "ad-title",
                                                                 children: ad.title
                                                             }),
