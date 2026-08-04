@@ -72,13 +72,13 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
                 <div className="ceo-layout">
                   <div className="ceo-photo-wrap">
                     <div className="ceo-photo-placeholder">
-                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     </div>
                   </div>
                   <div className="ceo-quote-card">
                     <span className="ceo-big-quote">&ldquo;</span>
                     <blockquote className="ceo-quote">
-                      At MIS Solution, we believe technology should simplify, not complicate. Our commitment is to stand beside every client as a long-term partner — understanding their unique challenges and delivering solutions that are not just functional, but transformational. We don&apos;t just sell products; we build relationships, empower businesses, and drive meaningful progress through innovation and integrity.
+                      At MIS Solution, we believe technology should simplify, not complicate. Our commitment is to stand beside every client as a long-term partner — understanding their unique challenges and delivering services that are not just functional, but transformational. Whether it&apos;s building a company&apos;s digital presence from scratch, deploying enterprise-grade infrastructure, or ensuring systems run flawlessly year-round through our maintenance contracts — we approach every engagement with the same dedication. We don&apos;t just deliver solutions; we build lasting relationships, empower businesses to scale, and drive meaningful progress through innovation, expertise, and integrity.
                     </blockquote>
                     <div className="ceo-info">
                       <strong className="ceo-name">Mohammad Ibrahim Sikder</strong>
@@ -174,12 +174,12 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         .mission-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2.2rem; }
         .panel-card { border: 1px solid #d9d9d9; border-top: 4px solid var(--color-primary); border-radius: 12px; padding: 1.2rem; background: #ffffff; }
         .ceo-section { margin: 3rem 0; }
-        .ceo-layout { position: relative; padding-top: 60px; }
+        .ceo-layout { position: relative; padding-top: 80px; }
         .ceo-photo-wrap { position: absolute; top: 0; left: 32px; z-index: 2; }
-        .ceo-photo-placeholder { width: 130px; height: 130px; border-radius: 16px; background: rgba(30,40,55,0.95); border: 2px solid rgba(247,229,0,0.4); display: flex; align-items: center; justify-content: center; color: rgba(247,229,0,0.6); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
-        .ceo-quote-card { margin-left: 80px; padding: 48px 40px 36px; border-radius: 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid rgba(255,255,255,0.06); position: relative; }
-        .ceo-big-quote { position: absolute; top: 20px; left: 36px; font-size: 80px; font-weight: 900; color: #f7e500; line-height: 1; font-family: Georgia, serif; opacity: 0.9; }
-        .ceo-quote { margin: 0; padding: 0; border: none; background: none; font-size: 15px; font-style: italic; color: rgba(255,255,255,0.8); line-height: 1.85; padding-top: 12px; }
+        .ceo-photo-placeholder { width: 160px; height: 160px; border-radius: 18px; background: rgba(30,40,55,0.95); border: 2px solid rgba(247,229,0,0.4); display: flex; align-items: center; justify-content: center; color: rgba(247,229,0,0.6); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+        .ceo-quote-card { margin-left: 100px; padding: 56px 40px 36px 48px; border-radius: 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid rgba(255,255,255,0.06); position: relative; }
+        .ceo-big-quote { position: absolute; top: 24px; right: 40px; font-size: 100px; font-weight: 900; color: #f7e500; line-height: 1; font-family: Georgia, serif; opacity: 0.85; }
+        .ceo-quote { margin: 0; padding: 0; border: none; background: none; font-size: 15px; font-style: italic; color: rgba(255,255,255,0.8); line-height: 1.85; }
         .ceo-info { margin-top: 20px; display: flex; flex-direction: column; gap: 3px; }
         .ceo-name { font-size: 16px; font-weight: 700; color: #f7e500; font-style: normal; }
         .ceo-role { font-size: 13px; color: rgba(255,255,255,0.45); font-style: normal; }
@@ -211,7 +211,7 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         .policy-card ul, .policy-card ol { margin: 0; padding-left: 1.1rem; color: #444444; line-height: 1.7; display: grid; gap: 0.5rem; }
         .policy-note { margin-top: 1.6rem; border-top: 2px solid #1f2329; padding-top: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
         @media (max-width: 991px) { .mission-grid, .policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media (max-width: 767px) { .shell { padding-top: 2.4rem; padding-bottom: 2.4rem; } .mission-grid, .policy-grid { grid-template-columns: 1fr; } .policy-note { flex-direction: column; align-items: flex-start; } .project-card-alt { grid-template-columns: 3fr 2fr; height: auto; min-height: 180px; } .project-card-alt.img-first { direction: rtl; } .project-card-alt.img-first > * { direction: ltr; } .pca-img { height: 100%; min-height: 180px; } .pca-text { padding: 14px; } .pca-text h3 { font-size: 14px; } .pca-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; } .ceo-layout { padding-top: 40px; } .ceo-photo-wrap { left: 16px; } .ceo-photo-placeholder { width: 90px; height: 90px; } .ceo-quote-card { margin-left: 0; margin-top: 60px; padding: 36px 20px 28px; } .ceo-big-quote { font-size: 56px; top: 12px; left: 20px; } }
+        @media (max-width: 767px) { .shell { padding-top: 2.4rem; padding-bottom: 2.4rem; } .mission-grid, .policy-grid { grid-template-columns: 1fr; } .policy-note { flex-direction: column; align-items: flex-start; } .project-card-alt { grid-template-columns: 3fr 2fr; height: auto; min-height: 180px; } .project-card-alt.img-first { direction: rtl; } .project-card-alt.img-first > * { direction: ltr; } .pca-img { height: 100%; min-height: 180px; } .pca-text { padding: 14px; } .pca-text h3 { font-size: 14px; } .pca-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; } .ceo-layout { padding-top: 50px; } .ceo-photo-wrap { left: 16px; } .ceo-photo-placeholder { width: 110px; height: 110px; } .ceo-quote-card { margin-left: 0; margin-top: 70px; padding: 40px 20px 28px; } .ceo-big-quote { font-size: 64px; top: 16px; right: 20px; } }
       `}</style>
     </>
   )
