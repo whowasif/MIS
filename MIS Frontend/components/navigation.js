@@ -487,18 +487,20 @@ const Navigation = () => {
 
                 if (hasChildren) {
                   return (
-                    <li key={item.href}>
-                      <details className="menu-nav-products-dropdown">
-                        <summary className="menu-nav-link menu-nav-link-btn" onClick={(e) => { e.preventDefault(); handleMenuNavigation(item.href) }}>
-                          <span>{item.label}</span>
-                          <span className="menu-nav-chevron">›</span>
-                        </summary>
-                        <div className="menu-nav-sub-list">
-                          {item.children.map((child) => (
-                            <button key={child.href} type="button" className="menu-nav-sub-link" onClick={() => handleMenuNavigation(child.href)}>{child.label}</button>
-                          ))}
-                        </div>
-                      </details>
+                    <li key={item.href} className="menu-nav-hover-parent">
+                      <button
+                        type="button"
+                        className="menu-nav-link menu-nav-link-btn"
+                        onClick={() => handleMenuNavigation(item.href)}
+                      >
+                        <span>{item.label}</span>
+                        <span className="menu-nav-chevron">›</span>
+                      </button>
+                      <div className="menu-nav-hover-children">
+                        {item.children.map((child) => (
+                          <button key={child.href} type="button" className="menu-nav-sub-link" onClick={() => handleMenuNavigation(child.href)}>{child.label}</button>
+                        ))}
+                      </div>
                     </li>
                   )
                 }
@@ -906,6 +908,21 @@ const Navigation = () => {
           transition: color 0.12s, background 0.12s;
         }
         .menu-nav-sub-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+        /* Hover dropdown for Core IT Solutions */
+        .menu-nav-hover-parent { position: relative; }
+        .menu-nav-hover-children {
+          display: none;
+          padding: 4px 0 8px 12px;
+          border-left: 2px solid rgba(247,229,0,0.3);
+          margin-left: 8px;
+          margin-top: 2px;
+          flex-direction: column;
+        }
+        .menu-nav-hover-parent:hover .menu-nav-hover-children,
+        .menu-nav-hover-parent:focus-within .menu-nav-hover-children {
+          display: flex;
+        }
 
         .menu-nav-cta {
           width: 100%;
