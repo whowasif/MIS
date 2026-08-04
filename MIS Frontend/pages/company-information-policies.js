@@ -71,8 +71,8 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
               <section className="ceo-section">
                 <div className="ceo-layout">
                   <div className="ceo-photo-wrap">
-                    <div className="ceo-photo-placeholder">
-                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <div className="ceo-photo-box">
+                      <img src="/ceo-profile.jpeg" alt="Mohammad Ibrahim Sikder - CEO, MIS Solution" />
                     </div>
                   </div>
                   <div className="ceo-quote-card">
@@ -176,7 +176,8 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         .ceo-section { margin: 3rem 0; }
         .ceo-layout { position: relative; padding-top: 80px; }
         .ceo-photo-wrap { position: absolute; top: 0; left: 32px; z-index: 2; }
-        .ceo-photo-placeholder { width: 160px; height: 160px; border-radius: 18px; background: rgba(30,40,55,0.95); border: 2px solid rgba(247,229,0,0.4); display: flex; align-items: center; justify-content: center; color: rgba(247,229,0,0.6); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+        .ceo-photo-box { width: 160px; height: 160px; border-radius: 18px; overflow: hidden; border: 3px solid rgba(247,229,0,0.5); box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+        .ceo-photo-box img { width: 100%; height: 100%; object-fit: cover; }
         .ceo-quote-card { margin-left: 100px; padding: 56px 40px 36px 48px; border-radius: 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid rgba(255,255,255,0.06); position: relative; }
         .ceo-big-quote { position: absolute; top: 24px; right: 40px; font-size: 100px; font-weight: 900; color: #f7e500; line-height: 1; font-family: Georgia, serif; opacity: 0.85; }
         .ceo-quote { margin: 0; padding: 0; border: none; background: none; font-size: 15px; font-style: italic; color: rgba(255,255,255,0.8); line-height: 1.85; }
@@ -211,7 +212,7 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         .policy-card ul, .policy-card ol { margin: 0; padding-left: 1.1rem; color: #444444; line-height: 1.7; display: grid; gap: 0.5rem; }
         .policy-note { margin-top: 1.6rem; border-top: 2px solid #1f2329; padding-top: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
         @media (max-width: 991px) { .mission-grid, .policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media (max-width: 767px) { .shell { padding-top: 2.4rem; padding-bottom: 2.4rem; } .mission-grid, .policy-grid { grid-template-columns: 1fr; } .policy-note { flex-direction: column; align-items: flex-start; } .project-card-alt { grid-template-columns: 3fr 2fr; height: auto; min-height: 180px; } .project-card-alt.img-first { direction: rtl; } .project-card-alt.img-first > * { direction: ltr; } .pca-img { height: 100%; min-height: 180px; } .pca-text { padding: 14px; } .pca-text h3 { font-size: 14px; } .pca-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; } .ceo-layout { padding-top: 50px; } .ceo-photo-wrap { left: 16px; } .ceo-photo-placeholder { width: 110px; height: 110px; } .ceo-quote-card { margin-left: 0; margin-top: 70px; padding: 40px 20px 28px; } .ceo-big-quote { font-size: 64px; top: 16px; right: 20px; } }
+        @media (max-width: 767px) { .shell { padding-top: 2.4rem; padding-bottom: 2.4rem; } .mission-grid, .policy-grid { grid-template-columns: 1fr; } .policy-note { flex-direction: column; align-items: flex-start; } .project-card-alt { grid-template-columns: 3fr 2fr; height: auto; min-height: 180px; } .project-card-alt.img-first { direction: rtl; } .project-card-alt.img-first > * { direction: ltr; } .pca-img { height: 100%; min-height: 180px; } .pca-text { padding: 14px; } .pca-text h3 { font-size: 14px; } .pca-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; } .ceo-layout { padding-top: 50px; } .ceo-photo-wrap { left: 16px; } .ceo-photo-box { width: 110px; height: 110px; margin: 0 auto; } .ceo-quote-card { margin-left: 0; margin-top: 70px; padding: 40px 20px 28px; } .ceo-big-quote { font-size: 64px; top: 16px; right: 20px; } }
       `}</style>
     </>
   )

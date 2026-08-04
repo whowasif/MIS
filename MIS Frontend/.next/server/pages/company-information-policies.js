@@ -68,76 +68,76 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-ce72438c42141035" + " " + "company-info-page",
+                className: "jsx-67ad771812ad087" + " " + "company-info-page",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                                className: "jsx-ce72438c42141035",
+                                className: "jsx-67ad771812ad087",
                                 children: "Company Information & Policies | MIS Solution"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 name: "description",
                                 content: "Learn about MIS Solution, our client projects, and our structured warranty, EMI, and return policies.",
-                                className: "jsx-ce72438c42141035"
+                                className: "jsx-67ad771812ad087"
                             })
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
-                        className: "jsx-ce72438c42141035" + " " + "company-main",
+                        className: "jsx-67ad771812ad087" + " " + "company-main",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                                className: "jsx-ce72438c42141035" + " " + "about-projects-half",
+                                className: "jsx-67ad771812ad087" + " " + "about-projects-half",
                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ce72438c42141035" + " " + "shell",
+                                    className: "jsx-67ad771812ad087" + " " + "shell",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                                            className: "jsx-ce72438c42141035" + " " + "page-header",
+                                            className: "jsx-67ad771812ad087" + " " + "page-header",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ce72438c42141035" + " " + "eyebrow",
+                                                    className: "jsx-67ad771812ad087" + " " + "eyebrow",
                                                     children: "Company Information"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                                    className: "jsx-ce72438c42141035",
+                                                    className: "jsx-67ad771812ad087",
                                                     children: "About Us & Projects"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ce72438c42141035",
+                                                    className: "jsx-67ad771812ad087",
                                                     children: "We, MIS Solution, are devoted to provide broad range of technology products and services for a multitude of challenging market. We prefer to work side-by-side with our customers to exploit new opportunities. Our dedicated team always promised our valued customer with end-to-end products and solution keeping in mind their specific requirements and needs."
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ce72438c42141035",
+                                                    className: "jsx-67ad771812ad087",
                                                     children: "Our main focus is to construct a superior customer value proposition to become successful business organization. Customers are the key concern to us. We are always devoted to provide the best services and products to our customers."
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ce72438c42141035" + " " + "mission-grid",
+                                            className: "jsx-67ad771812ad087" + " " + "mission-grid",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-ce72438c42141035" + " " + "panel-card",
+                                                    className: "jsx-67ad771812ad087" + " " + "panel-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Our Mission"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "To design, deploy, and support reliable IT systems that improve business continuity, security posture, and daily operational efficiency for organizations of every scale."
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-ce72438c42141035" + " " + "panel-card",
+                                                    className: "jsx-67ad771812ad087" + " " + "panel-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Our Vision"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "To be the most trusted systems partner for enterprises that demand secure, scalable, and future-ready infrastructure across networking, hardware, and managed services."
                                                         })
                                                     ]
@@ -145,59 +145,41 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                                            className: "jsx-ce72438c42141035" + " " + "ceo-section",
+                                            className: "jsx-67ad771812ad087" + " " + "ceo-section",
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-ce72438c42141035" + " " + "ceo-layout",
+                                                className: "jsx-67ad771812ad087" + " " + "ceo-layout",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-ce72438c42141035" + " " + "ceo-photo-wrap",
+                                                        className: "jsx-67ad771812ad087" + " " + "ceo-photo-wrap",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-ce72438c42141035" + " " + "ceo-photo-placeholder",
-                                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-                                                                width: "56",
-                                                                height: "56",
-                                                                viewBox: "0 0 24 24",
-                                                                fill: "none",
-                                                                stroke: "currentColor",
-                                                                strokeWidth: "1.5",
-                                                                strokeLinecap: "round",
-                                                                strokeLinejoin: "round",
-                                                                className: "jsx-ce72438c42141035",
-                                                                children: [
-                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                        d: "M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2",
-                                                                        className: "jsx-ce72438c42141035"
-                                                                    }),
-                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                                                        cx: "12",
-                                                                        cy: "7",
-                                                                        r: "4",
-                                                                        className: "jsx-ce72438c42141035"
-                                                                    })
-                                                                ]
+                                                            className: "jsx-67ad771812ad087" + " " + "ceo-photo-box",
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                                src: "/ceo-profile.jpeg",
+                                                                alt: "Mohammad Ibrahim Sikder - CEO, MIS Solution",
+                                                                className: "jsx-67ad771812ad087"
                                                             })
                                                         })
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-ce72438c42141035" + " " + "ceo-quote-card",
+                                                        className: "jsx-67ad771812ad087" + " " + "ceo-quote-card",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-ce72438c42141035" + " " + "ceo-big-quote",
+                                                                className: "jsx-67ad771812ad087" + " " + "ceo-big-quote",
                                                                 children: "“"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("blockquote", {
-                                                                className: "jsx-ce72438c42141035" + " " + "ceo-quote",
+                                                                className: "jsx-67ad771812ad087" + " " + "ceo-quote",
                                                                 children: "At MIS Solution, we believe technology should simplify, not complicate. Our commitment is to stand beside every client as a long-term partner — understanding their unique challenges and delivering services that are not just functional, but transformational. Whether it's building a company's digital presence from scratch, deploying enterprise-grade infrastructure, or ensuring systems run flawlessly year-round through our maintenance contracts — we approach every engagement with the same dedication. We don't just deliver solutions; we build lasting relationships, empower businesses to scale, and drive meaningful progress through innovation, expertise, and integrity."
                                                             }),
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                className: "jsx-ce72438c42141035" + " " + "ceo-info",
+                                                                className: "jsx-67ad771812ad087" + " " + "ceo-info",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                        className: "jsx-ce72438c42141035" + " " + "ceo-name",
+                                                                        className: "jsx-67ad771812ad087" + " " + "ceo-name",
                                                                         children: "Mohammad Ibrahim Sikder"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-ce72438c42141035" + " " + "ceo-role",
+                                                                        className: "jsx-67ad771812ad087" + " " + "ceo-role",
                                                                         children: "Founder & Managing Director"
                                                                     })
                                                                 ]
@@ -208,85 +190,85 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                             })
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                                            className: "jsx-ce72438c42141035" + " " + "projects-block",
+                                            className: "jsx-67ad771812ad087" + " " + "projects-block",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ce72438c42141035" + " " + "section-head",
+                                                    className: "jsx-67ad771812ad087" + " " + "section-head",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Client Projects & Case Studies"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Real-world implementations for leading institutions and enterprises across Bangladesh."
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-ce72438c42141035" + " " + "project-list",
+                                                    className: "jsx-67ad771812ad087" + " " + "project-list",
                                                     children: clientProjects.length > 0 ? clientProjects.map((project, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                             href: `/projects/${encodeURIComponent(project.slug || project.id)}`,
                                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                                className: "jsx-ce72438c42141035" + " " + `project-card-alt ${idx % 2 === 0 ? "text-first" : "img-first"}`,
+                                                                className: "jsx-67ad771812ad087" + " " + `project-card-alt ${idx % 2 === 0 ? "text-first" : "img-first"}`,
                                                                 children: [
                                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                        className: "jsx-ce72438c42141035" + " " + "pca-text",
+                                                                        className: "jsx-67ad771812ad087" + " " + "pca-text",
                                                                         children: [
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                                className: "jsx-ce72438c42141035",
+                                                                                className: "jsx-67ad771812ad087",
                                                                                 children: project.name
                                                                             }),
                                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                                                className: "jsx-ce72438c42141035",
+                                                                                className: "jsx-67ad771812ad087",
                                                                                 children: [
                                                                                     project.description?.substring(0, 140),
                                                                                     project.description?.length > 140 ? "..." : ""
                                                                                 ]
                                                                             }),
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                                className: "jsx-ce72438c42141035" + " " + "pca-client",
+                                                                                className: "jsx-67ad771812ad087" + " " + "pca-client",
                                                                                 children: project.client_name
                                                                             }),
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                                className: "jsx-ce72438c42141035" + " " + "pca-link",
+                                                                                className: "jsx-67ad771812ad087" + " " + "pca-link",
                                                                                 children: "View Full Story →"
                                                                             })
                                                                         ]
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-ce72438c42141035" + " " + "pca-img",
+                                                                        className: "jsx-67ad771812ad087" + " " + "pca-img",
                                                                         children: project.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                                             src: project.icon_url,
                                                                             alt: project.name,
-                                                                            className: "jsx-ce72438c42141035"
+                                                                            className: "jsx-67ad771812ad087"
                                                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                            className: "jsx-ce72438c42141035" + " " + "pca-placeholder",
+                                                                            className: "jsx-67ad771812ad087" + " " + "pca-placeholder",
                                                                             children: project.name.charAt(0)
                                                                         })
                                                                     })
                                                                 ]
                                                             })
                                                         }, project.id)) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-ce72438c42141035" + " " + "project-card-alt text-first",
+                                                        className: "jsx-67ad771812ad087" + " " + "project-card-alt text-first",
                                                         children: [
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                className: "jsx-ce72438c42141035" + " " + "pca-text",
+                                                                className: "jsx-67ad771812ad087" + " " + "pca-text",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                        className: "jsx-ce72438c42141035",
+                                                                        className: "jsx-67ad771812ad087",
                                                                         children: "Enterprise Project"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                        className: "jsx-ce72438c42141035",
+                                                                        className: "jsx-67ad771812ad087",
                                                                         children: "Details coming soon."
                                                                     })
                                                                 ]
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-ce72438c42141035" + " " + "pca-img",
+                                                                className: "jsx-67ad771812ad087" + " " + "pca-img",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ce72438c42141035" + " " + "pca-placeholder",
+                                                                    className: "jsx-67ad771812ad087" + " " + "pca-placeholder",
                                                                     children: "E"
                                                                 })
                                                             })
@@ -296,34 +278,34 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                                            className: "jsx-ce72438c42141035" + " " + "logo-block",
+                                            className: "jsx-67ad771812ad087" + " " + "logo-block",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ce72438c42141035" + " " + "section-head",
+                                                    className: "jsx-67ad771812ad087" + " " + "section-head",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Trusted by Clients"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Proudly serving organizations across industries — from banking and healthcare to manufacturing and education."
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-ce72438c42141035" + " " + "logo-marquee",
+                                                    className: "jsx-67ad771812ad087" + " " + "logo-marquee",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-ce72438c42141035" + " " + "logo-track",
+                                                        className: "jsx-67ad771812ad087" + " " + "logo-track",
                                                         children: [
                                                             ...clientLogos,
                                                             ...clientLogos
                                                         ].map((src, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-ce72438c42141035" + " " + "logo-item",
+                                                                className: "jsx-67ad771812ad087" + " " + "logo-item",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                                     src: src,
                                                                     alt: `Client ${idx % clientLogos.length + 1}`,
-                                                                    className: "jsx-ce72438c42141035"
+                                                                    className: "jsx-67ad771812ad087"
                                                                 })
                                                             }, idx))
                                                     })
@@ -334,50 +316,50 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                 })
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                                className: "jsx-ce72438c42141035" + " " + "policies-half",
+                                className: "jsx-67ad771812ad087" + " " + "policies-half",
                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ce72438c42141035" + " " + "shell",
+                                    className: "jsx-67ad771812ad087" + " " + "shell",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                                            className: "jsx-ce72438c42141035" + " " + "section-head",
+                                            className: "jsx-67ad771812ad087" + " " + "section-head",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-ce72438c42141035",
+                                                    className: "jsx-67ad771812ad087",
                                                     children: "Warranty & EMI Policy"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ce72438c42141035",
+                                                    className: "jsx-67ad771812ad087",
                                                     children: "A structured overview of warranty coverage, claims process, installment options, and return terms."
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ce72438c42141035" + " " + "policy-grid",
+                                            className: "jsx-67ad771812ad087" + " " + "policy-grid",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-ce72438c42141035" + " " + "policy-card",
+                                                    className: "jsx-67ad771812ad087" + " " + "policy-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Product Warranty Conditions"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Standard warranty applies from the invoice date unless a product-specific period is stated."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Coverage includes manufacturing defects under normal, intended use."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Exclusions: physical damage, liquid damage, unauthorized modifications."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Original purchase documents are required for validation."
                                                                 })
                                                             ]
@@ -385,29 +367,29 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-ce72438c42141035" + " " + "policy-card",
+                                                    className: "jsx-67ad771812ad087" + " " + "policy-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Warranty Claim Process"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ol", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Register the issue with invoice number and serial ID."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Remote triage is completed by the MIS support team."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Device inspection and diagnostics are scheduled."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Repair, replacement, or OEM escalation is initiated."
                                                                 })
                                                             ]
@@ -415,29 +397,29 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-ce72438c42141035" + " " + "policy-card",
+                                                    className: "jsx-67ad771812ad087" + " " + "policy-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "EMI Payment Options"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Flexible tenures: 3, 6, 9, 12, and 24 months."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Eligible cards and approved finance partners supported."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Zero-interest campaigns may apply to selected products."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Early closure terms follow finance-provider policies."
                                                                 })
                                                             ]
@@ -445,29 +427,29 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-ce72438c42141035" + " " + "policy-card",
+                                                    className: "jsx-67ad771812ad087" + " " + "policy-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: "Return Policy"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-                                                            className: "jsx-ce72438c42141035",
+                                                            className: "jsx-67ad771812ad087",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Return requests must be raised within the approved return window."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Products must be returned with original accessories and packaging."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Open-box software and custom-built solutions are non-returnable."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-ce72438c42141035",
+                                                                    className: "jsx-67ad771812ad087",
                                                                     children: "Refund or replacement confirmed after technical verification."
                                                                 })
                                                             ]
@@ -477,15 +459,15 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ce72438c42141035" + " " + "policy-note",
+                                            className: "jsx-67ad771812ad087" + " " + "policy-note",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ce72438c42141035",
+                                                    className: "jsx-67ad771812ad087",
                                                     children: "Need policy clarification for a specific product or project?"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                     href: "/contact",
-                                                    className: "jsx-ce72438c42141035" + " " + "btn btn-primary btn-lg",
+                                                    className: "jsx-67ad771812ad087" + " " + "btn btn-primary btn-lg",
                                                     children: "Contact Policy Desk"
                                                 })
                                             ]
@@ -499,8 +481,8 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "ce72438c42141035",
-                children: ".company-info-page.jsx-ce72438c42141035{background:#fff;color:#2f2f2f;min-height:100vh}.company-main.jsx-ce72438c42141035{background:#fff}.shell.jsx-ce72438c42141035{width:100%;max-width:76rem;margin:0 auto;padding:3.5rem 1.5rem}.page-header.jsx-ce72438c42141035{max-width:54rem;margin-bottom:2rem}.eyebrow.jsx-ce72438c42141035{color:var(--color-primary);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}h1.jsx-ce72438c42141035,h2.jsx-ce72438c42141035,h3.jsx-ce72438c42141035{color:#232323;margin:0;line-height:1.2}h1.jsx-ce72438c42141035{font-size:clamp(2rem,3.8vw,3.2rem);margin-bottom:1rem}h2.jsx-ce72438c42141035{font-size:clamp(1.5rem,2.2vw,2.1rem);margin-bottom:.7rem}h3.jsx-ce72438c42141035{font-size:1.2rem;margin-bottom:.6rem}p.jsx-ce72438c42141035{color:#454545;margin:0;line-height:1.7}.mission-grid.jsx-ce72438c42141035{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-bottom:2.2rem}.panel-card.jsx-ce72438c42141035{border:1px solid#d9d9d9;border-top:4px solid var(--color-primary);-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:1.2rem;background:#fff}.ceo-section.jsx-ce72438c42141035{margin:3rem 0}.ceo-layout.jsx-ce72438c42141035{position:relative;padding-top:80px}.ceo-photo-wrap.jsx-ce72438c42141035{position:absolute;top:0;left:32px;z-index:2}.ceo-photo-placeholder.jsx-ce72438c42141035{width:160px;height:160px;-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;background:rgba(30,40,55,.95);border:2px solid rgba(247,229,0,.4);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:rgba(247,229,0,.6);-webkit-box-shadow:0 8px 32px rgba(0,0,0,.2);-moz-box-shadow:0 8px 32px rgba(0,0,0,.2);box-shadow:0 8px 32px rgba(0,0,0,.2)}.ceo-quote-card.jsx-ce72438c42141035{margin-left:100px;padding:56px 40px 36px 48px;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px;background:-webkit-linear-gradient(315deg,#1e293b 0%,#0f172a 100%);background:-moz-linear-gradient(315deg,#1e293b 0%,#0f172a 100%);background:-o-linear-gradient(315deg,#1e293b 0%,#0f172a 100%);background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);border:1px solid rgba(255,255,255,.06);position:relative}.ceo-big-quote.jsx-ce72438c42141035{position:absolute;top:24px;right:40px;font-size:100px;font-weight:900;color:#f7e500;line-height:1;font-family:Georgia,serif;opacity:.85}.ceo-quote.jsx-ce72438c42141035{margin:0;padding:0;border:none;background:none;font-size:15px;font-style:italic;color:rgba(255,255,255,.8);line-height:1.85}.ceo-info.jsx-ce72438c42141035{margin-top:20px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:3px}.ceo-name.jsx-ce72438c42141035{font-size:16px;font-weight:700;color:#f7e500;font-style:normal}.ceo-role.jsx-ce72438c42141035{font-size:13px;color:rgba(255,255,255,.45);font-style:normal}.section-head.jsx-ce72438c42141035{margin-bottom:1rem}.projects-block.jsx-ce72438c42141035,.logo-block.jsx-ce72438c42141035{margin-top:2.2rem}.project-list.jsx-ce72438c42141035{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:16px}.project-card-alt.jsx-ce72438c42141035{display:grid;grid-template-columns:1fr 1fr;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;border:1px solid#e2e8f0;background:#fff;text-decoration:none;color:inherit;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s;height:220px}.project-card-alt.jsx-ce72438c42141035:hover{-webkit-box-shadow:0 12px 32px rgba(0,0,0,.08);-moz-box-shadow:0 12px 32px rgba(0,0,0,.08);box-shadow:0 12px 32px rgba(0,0,0,.08);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.project-card-alt.img-first.jsx-ce72438c42141035{direction:rtl}.project-card-alt.img-first.jsx-ce72438c42141035>*.jsx-ce72438c42141035{direction:ltr}.pca-text.jsx-ce72438c42141035{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:8px}.pca-text.jsx-ce72438c42141035 h3.jsx-ce72438c42141035{margin:0;font-size:17px;color:#111827;font-weight:700}.pca-text.jsx-ce72438c42141035 p.jsx-ce72438c42141035{margin:0;font-size:13px;color:#4b5563;line-height:1.7}.pca-client.jsx-ce72438c42141035{font-size:12px;font-weight:600;color:#6366f1}.pca-link.jsx-ce72438c42141035{font-size:13px;font-weight:700;color:#4f46e5}.pca-img.jsx-ce72438c42141035{background:#f1f5f9;overflow:hidden;height:100%}.pca-img.jsx-ce72438c42141035 img.jsx-ce72438c42141035{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;display:block}.pca-placeholder.jsx-ce72438c42141035{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:48px;font-weight:800;color:#cbd5e1;background:-webkit-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:-moz-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:-o-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%)}.logo-marquee.jsx-ce72438c42141035{overflow:hidden;padding:1rem 0}.logo-track.jsx-ce72438c42141035{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:2rem;width:-webkit-max-content;width:-moz-max-content;width:max-content;-webkit-animation:scroll-logos 40s linear infinite;-moz-animation:scroll-logos 40s linear infinite;-o-animation:scroll-logos 40s linear infinite;animation:scroll-logos 40s linear infinite}.logo-track.jsx-ce72438c42141035:hover{-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-o-animation-play-state:paused;animation-play-state:paused}@-webkit-keyframes scroll-logos{0%{-webkit-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);transform:translateX(-50%)}}@-moz-keyframes scroll-logos{0%{-moz-transform:translateX(0);transform:translateX(0)}100%{-moz-transform:translateX(-50%);transform:translateX(-50%)}}@-o-keyframes scroll-logos{0%{-o-transform:translateX(0);transform:translateX(0)}100%{-o-transform:translateX(-50%);transform:translateX(-50%)}}@keyframes scroll-logos{0%{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)}}.logo-item.jsx-ce72438c42141035{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;width:160px;height:100px;border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:16px;background:#fff;-webkit-transition:box-shadow.2s,-webkit-transform.2s;-moz-transition:box-shadow.2s,-moz-transform.2s;-o-transition:box-shadow.2s,-o-transform.2s;transition:box-shadow.2s,-webkit-transform.2s;transition:box-shadow.2s,-moz-transform.2s;transition:box-shadow.2s,-o-transform.2s;transition:box-shadow.2s,transform.2s}.logo-item.jsx-ce72438c42141035:hover{-webkit-box-shadow:0 4px 16px rgba(0,0,0,.08);-moz-box-shadow:0 4px 16px rgba(0,0,0,.08);box-shadow:0 4px 16px rgba(0,0,0,.08);-webkit-transform:scale(1.05);-moz-transform:scale(1.05);-ms-transform:scale(1.05);-o-transform:scale(1.05);transform:scale(1.05)}.logo-item.jsx-ce72438c42141035 img.jsx-ce72438c42141035{max-width:100%;max-height:100%;-o-object-fit:contain;object-fit:contain}.policies-half.jsx-ce72438c42141035{background:#fff}.policy-grid.jsx-ce72438c42141035{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.policy-card.jsx-ce72438c42141035{border:1px solid#d6d6d6;border-left:5px solid#1f2329;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:1.1rem;background:#fff}.policy-card.jsx-ce72438c42141035 ul.jsx-ce72438c42141035,.policy-card.jsx-ce72438c42141035 ol.jsx-ce72438c42141035{margin:0;padding-left:1.1rem;color:#444;line-height:1.7;display:grid;gap:.5rem}.policy-note.jsx-ce72438c42141035{margin-top:1.6rem;border-top:2px solid#1f2329;padding-top:1.2rem;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:1rem}@media(max-width:991px){.mission-grid.jsx-ce72438c42141035,.policy-grid.jsx-ce72438c42141035{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:767px){.shell.jsx-ce72438c42141035{padding-top:2.4rem;padding-bottom:2.4rem}.mission-grid.jsx-ce72438c42141035,.policy-grid.jsx-ce72438c42141035{grid-template-columns:1fr}.policy-note.jsx-ce72438c42141035{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.project-card-alt.jsx-ce72438c42141035{grid-template-columns:3fr 2fr;height:auto;min-height:180px}.project-card-alt.img-first.jsx-ce72438c42141035{direction:rtl}.project-card-alt.img-first.jsx-ce72438c42141035>*.jsx-ce72438c42141035{direction:ltr}.pca-img.jsx-ce72438c42141035{height:100%;min-height:180px}.pca-text.jsx-ce72438c42141035{padding:14px}.pca-text.jsx-ce72438c42141035 h3.jsx-ce72438c42141035{font-size:14px}.pca-text.jsx-ce72438c42141035 p.jsx-ce72438c42141035{font-size:12px;-webkit-line-clamp:3;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}.ceo-layout.jsx-ce72438c42141035{padding-top:50px}.ceo-photo-wrap.jsx-ce72438c42141035{left:16px}.ceo-photo-placeholder.jsx-ce72438c42141035{width:110px;height:110px}.ceo-quote-card.jsx-ce72438c42141035{margin-left:0;margin-top:70px;padding:40px 20px 28px}.ceo-big-quote.jsx-ce72438c42141035{font-size:64px;top:16px;right:20px}}"
+                id: "67ad771812ad087",
+                children: ".company-info-page.jsx-67ad771812ad087{background:#fff;color:#2f2f2f;min-height:100vh}.company-main.jsx-67ad771812ad087{background:#fff}.shell.jsx-67ad771812ad087{width:100%;max-width:76rem;margin:0 auto;padding:3.5rem 1.5rem}.page-header.jsx-67ad771812ad087{max-width:54rem;margin-bottom:2rem}.eyebrow.jsx-67ad771812ad087{color:var(--color-primary);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}h1.jsx-67ad771812ad087,h2.jsx-67ad771812ad087,h3.jsx-67ad771812ad087{color:#232323;margin:0;line-height:1.2}h1.jsx-67ad771812ad087{font-size:clamp(2rem,3.8vw,3.2rem);margin-bottom:1rem}h2.jsx-67ad771812ad087{font-size:clamp(1.5rem,2.2vw,2.1rem);margin-bottom:.7rem}h3.jsx-67ad771812ad087{font-size:1.2rem;margin-bottom:.6rem}p.jsx-67ad771812ad087{color:#454545;margin:0;line-height:1.7}.mission-grid.jsx-67ad771812ad087{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-bottom:2.2rem}.panel-card.jsx-67ad771812ad087{border:1px solid#d9d9d9;border-top:4px solid var(--color-primary);-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:1.2rem;background:#fff}.ceo-section.jsx-67ad771812ad087{margin:3rem 0}.ceo-layout.jsx-67ad771812ad087{position:relative;padding-top:80px}.ceo-photo-wrap.jsx-67ad771812ad087{position:absolute;top:0;left:32px;z-index:2}.ceo-photo-box.jsx-67ad771812ad087{width:160px;height:160px;-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;overflow:hidden;border:3px solid rgba(247,229,0,.5);-webkit-box-shadow:0 8px 32px rgba(0,0,0,.25);-moz-box-shadow:0 8px 32px rgba(0,0,0,.25);box-shadow:0 8px 32px rgba(0,0,0,.25)}.ceo-photo-box.jsx-67ad771812ad087 img.jsx-67ad771812ad087{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.ceo-quote-card.jsx-67ad771812ad087{margin-left:100px;padding:56px 40px 36px 48px;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px;background:-webkit-linear-gradient(315deg,#1e293b 0%,#0f172a 100%);background:-moz-linear-gradient(315deg,#1e293b 0%,#0f172a 100%);background:-o-linear-gradient(315deg,#1e293b 0%,#0f172a 100%);background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);border:1px solid rgba(255,255,255,.06);position:relative}.ceo-big-quote.jsx-67ad771812ad087{position:absolute;top:24px;right:40px;font-size:100px;font-weight:900;color:#f7e500;line-height:1;font-family:Georgia,serif;opacity:.85}.ceo-quote.jsx-67ad771812ad087{margin:0;padding:0;border:none;background:none;font-size:15px;font-style:italic;color:rgba(255,255,255,.8);line-height:1.85}.ceo-info.jsx-67ad771812ad087{margin-top:20px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:3px}.ceo-name.jsx-67ad771812ad087{font-size:16px;font-weight:700;color:#f7e500;font-style:normal}.ceo-role.jsx-67ad771812ad087{font-size:13px;color:rgba(255,255,255,.45);font-style:normal}.section-head.jsx-67ad771812ad087{margin-bottom:1rem}.projects-block.jsx-67ad771812ad087,.logo-block.jsx-67ad771812ad087{margin-top:2.2rem}.project-list.jsx-67ad771812ad087{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:16px}.project-card-alt.jsx-67ad771812ad087{display:grid;grid-template-columns:1fr 1fr;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;border:1px solid#e2e8f0;background:#fff;text-decoration:none;color:inherit;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s;height:220px}.project-card-alt.jsx-67ad771812ad087:hover{-webkit-box-shadow:0 12px 32px rgba(0,0,0,.08);-moz-box-shadow:0 12px 32px rgba(0,0,0,.08);box-shadow:0 12px 32px rgba(0,0,0,.08);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.project-card-alt.img-first.jsx-67ad771812ad087{direction:rtl}.project-card-alt.img-first.jsx-67ad771812ad087>*.jsx-67ad771812ad087{direction:ltr}.pca-text.jsx-67ad771812ad087{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:8px}.pca-text.jsx-67ad771812ad087 h3.jsx-67ad771812ad087{margin:0;font-size:17px;color:#111827;font-weight:700}.pca-text.jsx-67ad771812ad087 p.jsx-67ad771812ad087{margin:0;font-size:13px;color:#4b5563;line-height:1.7}.pca-client.jsx-67ad771812ad087{font-size:12px;font-weight:600;color:#6366f1}.pca-link.jsx-67ad771812ad087{font-size:13px;font-weight:700;color:#4f46e5}.pca-img.jsx-67ad771812ad087{background:#f1f5f9;overflow:hidden;height:100%}.pca-img.jsx-67ad771812ad087 img.jsx-67ad771812ad087{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;display:block}.pca-placeholder.jsx-67ad771812ad087{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:48px;font-weight:800;color:#cbd5e1;background:-webkit-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:-moz-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:-o-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%)}.logo-marquee.jsx-67ad771812ad087{overflow:hidden;padding:1rem 0}.logo-track.jsx-67ad771812ad087{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:2rem;width:-webkit-max-content;width:-moz-max-content;width:max-content;-webkit-animation:scroll-logos 40s linear infinite;-moz-animation:scroll-logos 40s linear infinite;-o-animation:scroll-logos 40s linear infinite;animation:scroll-logos 40s linear infinite}.logo-track.jsx-67ad771812ad087:hover{-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-o-animation-play-state:paused;animation-play-state:paused}@-webkit-keyframes scroll-logos{0%{-webkit-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);transform:translateX(-50%)}}@-moz-keyframes scroll-logos{0%{-moz-transform:translateX(0);transform:translateX(0)}100%{-moz-transform:translateX(-50%);transform:translateX(-50%)}}@-o-keyframes scroll-logos{0%{-o-transform:translateX(0);transform:translateX(0)}100%{-o-transform:translateX(-50%);transform:translateX(-50%)}}@keyframes scroll-logos{0%{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)}}.logo-item.jsx-67ad771812ad087{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;width:160px;height:100px;border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:16px;background:#fff;-webkit-transition:box-shadow.2s,-webkit-transform.2s;-moz-transition:box-shadow.2s,-moz-transform.2s;-o-transition:box-shadow.2s,-o-transform.2s;transition:box-shadow.2s,-webkit-transform.2s;transition:box-shadow.2s,-moz-transform.2s;transition:box-shadow.2s,-o-transform.2s;transition:box-shadow.2s,transform.2s}.logo-item.jsx-67ad771812ad087:hover{-webkit-box-shadow:0 4px 16px rgba(0,0,0,.08);-moz-box-shadow:0 4px 16px rgba(0,0,0,.08);box-shadow:0 4px 16px rgba(0,0,0,.08);-webkit-transform:scale(1.05);-moz-transform:scale(1.05);-ms-transform:scale(1.05);-o-transform:scale(1.05);transform:scale(1.05)}.logo-item.jsx-67ad771812ad087 img.jsx-67ad771812ad087{max-width:100%;max-height:100%;-o-object-fit:contain;object-fit:contain}.policies-half.jsx-67ad771812ad087{background:#fff}.policy-grid.jsx-67ad771812ad087{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.policy-card.jsx-67ad771812ad087{border:1px solid#d6d6d6;border-left:5px solid#1f2329;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:1.1rem;background:#fff}.policy-card.jsx-67ad771812ad087 ul.jsx-67ad771812ad087,.policy-card.jsx-67ad771812ad087 ol.jsx-67ad771812ad087{margin:0;padding-left:1.1rem;color:#444;line-height:1.7;display:grid;gap:.5rem}.policy-note.jsx-67ad771812ad087{margin-top:1.6rem;border-top:2px solid#1f2329;padding-top:1.2rem;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:1rem}@media(max-width:991px){.mission-grid.jsx-67ad771812ad087,.policy-grid.jsx-67ad771812ad087{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:767px){.shell.jsx-67ad771812ad087{padding-top:2.4rem;padding-bottom:2.4rem}.mission-grid.jsx-67ad771812ad087,.policy-grid.jsx-67ad771812ad087{grid-template-columns:1fr}.policy-note.jsx-67ad771812ad087{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.project-card-alt.jsx-67ad771812ad087{grid-template-columns:3fr 2fr;height:auto;min-height:180px}.project-card-alt.img-first.jsx-67ad771812ad087{direction:rtl}.project-card-alt.img-first.jsx-67ad771812ad087>*.jsx-67ad771812ad087{direction:ltr}.pca-img.jsx-67ad771812ad087{height:100%;min-height:180px}.pca-text.jsx-67ad771812ad087{padding:14px}.pca-text.jsx-67ad771812ad087 h3.jsx-67ad771812ad087{font-size:14px}.pca-text.jsx-67ad771812ad087 p.jsx-67ad771812ad087{font-size:12px;-webkit-line-clamp:3;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}.ceo-layout.jsx-67ad771812ad087{padding-top:50px}.ceo-photo-wrap.jsx-67ad771812ad087{left:16px}.ceo-photo-box.jsx-67ad771812ad087{width:110px;height:110px;margin:0 auto}.ceo-quote-card.jsx-67ad771812ad087{margin-left:0;margin-top:70px;padding:40px 20px 28px}.ceo-big-quote.jsx-67ad771812ad087{font-size:64px;top:16px;right:20px}}"
             })
         ]
     });
