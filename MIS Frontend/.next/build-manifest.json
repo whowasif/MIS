@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/0AVAHgum_jwzb3cE2uXR3/_buildManifest.js",
-    "static/0AVAHgum_jwzb3cE2uXR3/_ssgManifest.js"
+    "static/NvdPTF6bnQk1XRUOeUQdC/_buildManifest.js",
+    "static/NvdPTF6bnQk1XRUOeUQdC/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -124,7 +124,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/2097-a11d9e5b34b4ec39.js",
       "static/chunks/6151-83cd2a490462f8ad.js",
-      "static/chunks/pages/core-it-solutions-dc71203b67b0f792.js"
+      "static/chunks/pages/core-it-solutions-65ffc312412e3625.js"
     ],
     "/digital-services": [
       "static/chunks/webpack-07a440eabc029c2c.js",
