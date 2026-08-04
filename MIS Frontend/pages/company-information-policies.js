@@ -67,6 +67,27 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
                 </article>
               </div>
 
+              {/* CEO Speech Section */}
+              <section className="ceo-section">
+                <div className="ceo-card">
+                  <div className="ceo-photo">
+                    <div className="ceo-photo-placeholder">
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                  </div>
+                  <div className="ceo-content">
+                    <svg className="ceo-quote-icon" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.1"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z"/></svg>
+                    <blockquote className="ceo-quote">
+                      &ldquo;At MIS Solution, we believe technology should simplify, not complicate. Our commitment is to stand beside every client as a long-term partner — understanding their unique challenges and delivering solutions that are not just functional, but transformational. We don&apos;t just sell products; we build relationships, empower businesses, and drive meaningful progress through innovation and integrity.&rdquo;
+                    </blockquote>
+                    <div className="ceo-info">
+                      <strong className="ceo-name">CEO, MIS Solution</strong>
+                      <span className="ceo-role">Founder & Managing Director</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
               <section className="projects-block">
                 <div className="section-head">
                   <h2>Client Projects &amp; Case Studies</h2>
@@ -152,6 +173,16 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         p { color: #454545; margin: 0; line-height: 1.7; }
         .mission-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2.2rem; }
         .panel-card { border: 1px solid #d9d9d9; border-top: 4px solid var(--color-primary); border-radius: 12px; padding: 1.2rem; background: #ffffff; }
+        .ceo-section { margin: 2.5rem 0; }
+        .ceo-card { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; padding: 2.5rem; border-radius: 20px; background: linear-gradient(135deg, #0a101b 0%, #1e293b 100%); border: 1px solid rgba(247,229,0,0.15); }
+        .ceo-photo { flex-shrink: 0; }
+        .ceo-photo-placeholder { width: 140px; height: 140px; border-radius: 18px; background: rgba(247,229,0,0.1); border: 2px solid rgba(247,229,0,0.3); display: flex; align-items: center; justify-content: center; color: rgba(247,229,0,0.5); }
+        .ceo-content { position: relative; }
+        .ceo-quote-icon { position: absolute; top: -8px; left: -4px; color: #f7e500; }
+        .ceo-quote { margin: 0; padding: 0; border: none; font-size: 16px; font-style: italic; color: rgba(255,255,255,0.85); line-height: 1.8; background: none; }
+        .ceo-info { margin-top: 16px; display: flex; flex-direction: column; gap: 2px; }
+        .ceo-name { font-size: 16px; font-weight: 700; color: #f7e500; }
+        .ceo-role { font-size: 13px; color: rgba(255,255,255,0.5); }
         .section-head { margin-bottom: 1rem; }
         .projects-block, .logo-block { margin-top: 2.2rem; }
         .project-list { display: flex; flex-direction: column; gap: 16px; }
@@ -180,7 +211,7 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         .policy-card ul, .policy-card ol { margin: 0; padding-left: 1.1rem; color: #444444; line-height: 1.7; display: grid; gap: 0.5rem; }
         .policy-note { margin-top: 1.6rem; border-top: 2px solid #1f2329; padding-top: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
         @media (max-width: 991px) { .mission-grid, .policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media (max-width: 767px) { .shell { padding-top: 2.4rem; padding-bottom: 2.4rem; } .mission-grid, .policy-grid { grid-template-columns: 1fr; } .policy-note { flex-direction: column; align-items: flex-start; } .project-card-alt { grid-template-columns: 3fr 2fr; height: auto; min-height: 180px; } .project-card-alt.img-first { direction: rtl; } .project-card-alt.img-first > * { direction: ltr; } .pca-img { height: 100%; min-height: 180px; } .pca-text { padding: 14px; } .pca-text h3 { font-size: 14px; } .pca-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; } }
+        @media (max-width: 767px) { .shell { padding-top: 2.4rem; padding-bottom: 2.4rem; } .mission-grid, .policy-grid { grid-template-columns: 1fr; } .policy-note { flex-direction: column; align-items: flex-start; } .project-card-alt { grid-template-columns: 3fr 2fr; height: auto; min-height: 180px; } .project-card-alt.img-first { direction: rtl; } .project-card-alt.img-first > * { direction: ltr; } .pca-img { height: 100%; min-height: 180px; } .pca-text { padding: 14px; } .pca-text h3 { font-size: 14px; } .pca-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; } .ceo-card { grid-template-columns: 1fr; text-align: center; padding: 1.5rem; } .ceo-photo-placeholder { width: 100px; height: 100px; margin: 0 auto; } .ceo-quote-icon { display: none; } }
       `}</style>
     </>
   )

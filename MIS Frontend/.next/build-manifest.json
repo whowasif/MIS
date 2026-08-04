@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/XBBh8Fc0XITOe9y_ruz-b/_buildManifest.js",
-    "static/XBBh8Fc0XITOe9y_ruz-b/_ssgManifest.js"
+    "static/PbKYQuaK1o5xQ887hHeB3/_buildManifest.js",
+    "static/PbKYQuaK1o5xQ887hHeB3/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -97,7 +97,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/2097-a11d9e5b34b4ec39.js",
       "static/chunks/6151-2bc8eb340f998176.js",
-      "static/chunks/pages/company-information-policies-0e88ff49f524e710.js"
+      "static/chunks/pages/company-information-policies-ed2bc0f4df636faa.js"
     ],
     "/confirm-order": [
       "static/chunks/webpack-07a440eabc029c2c.js",
@@ -124,7 +124,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/2097-a11d9e5b34b4ec39.js",
       "static/chunks/6151-2bc8eb340f998176.js",
-      "static/chunks/pages/core-it-solutions-e44fac4ea5c3b01f.js"
+      "static/chunks/pages/core-it-solutions-3fbb5b887a41cae6.js"
     ],
     "/digital-services": [
       "static/chunks/webpack-07a440eabc029c2c.js",

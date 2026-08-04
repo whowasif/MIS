@@ -161,7 +161,7 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         {/* HOW WE WORK - Colored Cards */}
         <section className="cit-process">
           <div className="cit-container">
-            <FadeIn><div className="cit-section-head cit-section-head-light"><h2>Our Methodology</h2><p>A proven framework that guarantees timely delivery of high-quality solutions.</p></div></FadeIn>
+            <FadeIn><div className="cit-section-head"><h2>Our Methodology</h2><p>A proven framework that guarantees timely delivery of high-quality solutions.</p></div></FadeIn>
             <div className="cit-process-cards">
               {[
                 { num: '01', title: 'Assessment & Planning', desc: 'Architecture review, risk analysis, and requirements gathering to define the perfect roadmap.', color: '#ffe4ec' },
@@ -362,7 +362,9 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         .cit-counter-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; display: block; }
 
         /* PILLARS - Full Width Panels */
-        .cit-pillars { padding: 80px 0 0; background: #f8fafc; }
+        .cit-pillars { padding: 80px 0 0; background: url('/our-service-pillar-bg.jpg') center/cover no-repeat fixed; position: relative; }
+        .cit-pillars::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.92); }
+        .cit-pillars > * { position: relative; z-index: 1; }
         .cit-pillars-title { text-align: center; padding: 0 24px 48px; }
         .cit-pillars-title h2 { margin: 0; font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #111827; }
         .cit-pillars-title p { margin: 12px 0 0; font-size: 16px; color: #6b7280; }
@@ -391,7 +393,7 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         .cit-panel:hover .cit-panel-arrow { background: var(--accent); color: var(--dark); transform: translateX(6px); box-shadow: 0 0 24px rgba(247,229,0,0.4); }
 
         /* PROCESS */
-        .cit-process { padding: 90px 0; background: var(--dark); }
+        .cit-process { padding: 90px 0; background: transparent; }
         .cit-process-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
         .cit-process-card { padding: 28px 22px; border-radius: 18px; background: var(--card-bg); min-height: 220px; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform 0.25s; }
         .cit-process-card:hover { transform: translateY(-4px); }
