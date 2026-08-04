@@ -212,43 +212,43 @@ const Footer = (props) => {
                 className="footer-nav-column"
               >
                 <h2 id="footer-services-title" className="footer-column-title">
-                  Corporate Solutions
+                  Core IT Solutions
                 </h2>
                 <ul className="footer-link-list">
                   <li>
-                    <a href="#">
-                      <div className="footer-link section-content">
-                        <span>Enterprise Networking</span>
-                      </div>
-                    </a>
+                    <Link href="/core-it-solutions">
+                      <a><div className="footer-link section-content">
+                        <span>All IT Solutions</span>
+                      </div></a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">
-                      <div className="footer-link section-content">
-                        <span>Data Center Setup</span>
-                      </div>
-                    </a>
+                    <Link href="/digital-services">
+                      <a><div className="footer-link section-content">
+                        <span>Digital Services</span>
+                      </div></a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">
-                      <div className="footer-link section-content">
-                        <span>CCTV &amp; Security</span>
-                      </div>
-                    </a>
+                    <Link href="/enterprise-solutions">
+                      <a><div className="footer-link section-content">
+                        <span>Business &amp; Corporate</span>
+                      </div></a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">
-                      <div className="footer-link section-content">
-                        <span>Digital Marketing</span>
-                      </div>
-                    </a>
+                    <Link href="/maintenance-support">
+                      <a><div className="footer-link section-content">
+                        <span>Maintenance &amp; Support</span>
+                      </div></a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">
-                      <div className="footer-link section-content">
-                        <span>Web Development</span>
-                      </div>
-                    </a>
+                    <Link href="/request-custom-quote">
+                      <a><div className="footer-link section-content">
+                        <span>Request a Quote</span>
+                      </div></a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
