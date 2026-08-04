@@ -96,47 +96,66 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
           </div>
         </section>
 
-        {/* SERVICE PILLARS */}
+        {/* SERVICE PILLARS - Full Width Immersive Panels */}
         <section className="cit-pillars">
-          <div className="cit-container">
-            <FadeIn><div className="cit-section-head"><h2>Our Service Pillars</h2><p>Three specialized divisions covering every dimension of your IT needs.</p></div></FadeIn>
-            <div className="cit-pillars-grid">
-              <FadeIn delay={0.1}>
-                <Link href="/digital-services"><a className="cit-pillar cit-pillar-lg">
-                  <div className="cit-pillar-img"><img src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Digital Services" /><div className="cit-pillar-img-overlay" /></div>
-                  <div className="cit-pillar-body">
-                    <div className="cit-pillar-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-                    <h3>Digital Services</h3>
-                    <p>Web development, hosting, digital marketing, and mobile apps to build your complete digital presence.</p>
-                    <ul>{(digitalServices.length > 0 ? digitalServices.slice(0, 4) : [{id:1,name:'Website Design & Development'},{id:2,name:'Web Domain & Hosting'},{id:3,name:'Digital Marketing & SEO'},{id:4,name:'Mobile App Development'}]).map(s => <li key={s.id}>{s.name}</li>)}</ul>
-                    <span className="cit-pillar-arrow">Explore Digital Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          <FadeIn><div className="cit-pillars-title"><h2>Our Service Pillars</h2><p>Three specialized divisions — each a full-spectrum capability center.</p></div></FadeIn>
+
+          {/* Panel 1 - Digital Services */}
+          <FadeIn>
+            <Link href="/digital-services"><a className="cit-panel">
+              <div className="cit-panel-bg"><img src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" /><div className="cit-panel-overlay cit-panel-overlay-1" /></div>
+              <div className="cit-panel-inner">
+                <div className="cit-panel-num">01</div>
+                <div className="cit-panel-text">
+                  <div className="cit-panel-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+                  <h3>Digital Services</h3>
+                  <p>Website design & development, domain & hosting, digital marketing, SEO, and custom mobile app development to build your complete digital presence.</p>
+                  <div className="cit-panel-tags">
+                    {(digitalServices.length > 0 ? digitalServices.slice(0, 5) : [{id:1,name:'Web Development'},{id:2,name:'Hosting & Domain'},{id:3,name:'Digital Marketing'},{id:4,name:'Mobile Apps'},{id:5,name:'E-commerce'}]).map(s => <span key={s.id} className="cit-panel-tag">{s.name}</span>)}
                   </div>
-                </a></Link>
-              </FadeIn>
-              <FadeIn delay={0.2}>
-                <Link href="/enterprise-solutions"><a className="cit-pillar">
-                  <div className="cit-pillar-img"><img src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Enterprise" /><div className="cit-pillar-img-overlay" /></div>
-                  <div className="cit-pillar-body">
-                    <div className="cit-pillar-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
-                    <h3>Business & Corporate Solutions</h3>
-                    <p>Data centers, structured cabling, CCTV, networking, and enterprise B2B deployments.</p>
-                    <span className="cit-pillar-arrow">Explore Solutions <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+                <div className="cit-panel-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </a></Link>
+          </FadeIn>
+
+          {/* Panel 2 - Business & Corporate */}
+          <FadeIn>
+            <Link href="/enterprise-solutions"><a className="cit-panel">
+              <div className="cit-panel-bg"><img src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" /><div className="cit-panel-overlay cit-panel-overlay-2" /></div>
+              <div className="cit-panel-inner">
+                <div className="cit-panel-num">02</div>
+                <div className="cit-panel-text">
+                  <div className="cit-panel-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+                  <h3>Business & Corporate Solutions</h3>
+                  <p>Enterprise-grade data centers, structured cabling, CCTV surveillance, networking infrastructure, and large-scale B2B project deployments.</p>
+                  <div className="cit-panel-tags">
+                    <span className="cit-panel-tag">Data Centers</span><span className="cit-panel-tag">Structured Cabling</span><span className="cit-panel-tag">CCTV & Security</span><span className="cit-panel-tag">Networking</span>
                   </div>
-                </a></Link>
-              </FadeIn>
-              <FadeIn delay={0.3}>
-                <Link href="/maintenance-support"><a className="cit-pillar">
-                  <div className="cit-pillar-img"><img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Support" /><div className="cit-pillar-img-overlay" /></div>
-                  <div className="cit-pillar-body">
-                    <div className="cit-pillar-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-                    <h3>Maintenance & Support</h3>
-                    <p>Annual IT contracts, rapid on-call repairs, and project-based installation services.</p>
-                    <span className="cit-pillar-arrow">Explore Support <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+                <div className="cit-panel-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </a></Link>
+          </FadeIn>
+
+          {/* Panel 3 - Maintenance & Support */}
+          <FadeIn>
+            <Link href="/maintenance-support"><a className="cit-panel">
+              <div className="cit-panel-bg"><img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" /><div className="cit-panel-overlay cit-panel-overlay-3" /></div>
+              <div className="cit-panel-inner">
+                <div className="cit-panel-num">03</div>
+                <div className="cit-panel-text">
+                  <div className="cit-panel-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+                  <h3>Maintenance & Support</h3>
+                  <p>Annual IT maintenance contracts, rapid on-call repairs & troubleshooting, and project-based hardware installation and delivery services.</p>
+                  <div className="cit-panel-tags">
+                    <span className="cit-panel-tag">AMC Contracts</span><span className="cit-panel-tag">On-call Repairs</span><span className="cit-panel-tag">Installation</span><span className="cit-panel-tag">Troubleshooting</span>
                   </div>
-                </a></Link>
-              </FadeIn>
-            </div>
-          </div>
+                </div>
+                <div className="cit-panel-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              </div>
+            </a></Link>
+          </FadeIn>
         </section>
 
         {/* HOW WE WORK - Colored Cards */}
@@ -272,26 +291,34 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         .cit-counter-num { display: block; font-size: 32px; font-weight: 800; color: var(--accent); }
         .cit-counter-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; display: block; }
 
-        /* PILLARS */
-        .cit-pillars { padding: 90px 0; background: #f8fafc; }
-        .cit-pillars-grid { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; }
-        .cit-pillar-lg { grid-row: 1 / 3; }
-        .cit-pillar { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e5e7eb; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .cit-pillar:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); border-color: var(--accent); }
-        .cit-pillar-img { position: relative; height: 180px; overflow: hidden; }
-        .cit-pillar-lg .cit-pillar-img { height: 240px; }
-        .cit-pillar-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .cit-pillar:hover .cit-pillar-img img { transform: scale(1.08); }
-        .cit-pillar-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(10,16,27,0.3) 100%); }
-        .cit-pillar-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-        .cit-pillar-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--dark); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 12px; }
-        .cit-pillar-body h3 { margin: 0 0 8px; font-size: 19px; font-weight: 700; color: #111827; }
-        .cit-pillar-body p { margin: 0; font-size: 14px; color: #6b7280; line-height: 1.65; }
-        .cit-pillar-body ul { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-direction: column; gap: 5px; }
-        .cit-pillar-body ul li { font-size: 13px; color: #4b5563; padding-left: 14px; position: relative; }
-        .cit-pillar-body ul li::before { content: ''; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-        .cit-pillar-arrow { margin-top: auto; padding-top: 14px; font-size: 14px; font-weight: 700; color: var(--dark); display: inline-flex; align-items: center; gap: 6px; }
-        .cit-pillar:hover .cit-pillar-arrow { color: #b8860b; }
+        /* PILLARS - Full Width Panels */
+        .cit-pillars { padding: 80px 0 0; background: #f8fafc; }
+        .cit-pillars-title { text-align: center; padding: 0 24px 48px; }
+        .cit-pillars-title h2 { margin: 0; font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #111827; }
+        .cit-pillars-title p { margin: 12px 0 0; font-size: 16px; color: #6b7280; }
+
+        .cit-panel { display: block; position: relative; width: 100%; min-height: 320px; overflow: hidden; text-decoration: none; color: #fff; transition: all 0.4s; }
+        .cit-panel:hover { transform: none; }
+        .cit-panel-bg { position: absolute; inset: 0; }
+        .cit-panel-bg img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s; }
+        .cit-panel:hover .cit-panel-bg img { transform: scale(1.04); filter: brightness(0.6); }
+        .cit-panel-overlay { position: absolute; inset: 0; }
+        .cit-panel-overlay-1 { background: linear-gradient(135deg, rgba(10,16,27,0.88) 0%, rgba(10,16,27,0.4) 60%, rgba(247,229,0,0.05) 100%); }
+        .cit-panel-overlay-2 { background: linear-gradient(135deg, rgba(10,16,27,0.85) 0%, rgba(20,28,43,0.5) 60%, rgba(0,100,200,0.05) 100%); }
+        .cit-panel-overlay-3 { background: linear-gradient(135deg, rgba(10,16,27,0.88) 0%, rgba(10,16,27,0.45) 60%, rgba(0,200,100,0.05) 100%); }
+
+        .cit-panel-inner { position: relative; z-index: 2; display: flex; align-items: center; gap: 32px; max-width: 1200px; margin: 0 auto; padding: 56px 40px; min-height: 320px; }
+        .cit-panel-num { font-size: 100px; font-weight: 900; color: rgba(247,229,0,0.08); line-height: 1; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; transition: color 0.3s; }
+        .cit-panel:hover .cit-panel-num { color: rgba(247,229,0,0.15); }
+        .cit-panel-text { flex: 1; }
+        .cit-panel-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(247,229,0,0.12); border: 1px solid rgba(247,229,0,0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 14px; }
+        .cit-panel-text h3 { margin: 0 0 10px; font-size: clamp(22px, 3vw, 30px); font-weight: 700; }
+        .cit-panel-text p { margin: 0 0 16px; font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 600px; }
+        .cit-panel-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .cit-panel-tag { padding: 6px 14px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); transition: all 0.2s; }
+        .cit-panel:hover .cit-panel-tag { background: rgba(247,229,0,0.12); border-color: rgba(247,229,0,0.3); color: var(--accent); }
+        .cit-panel-arrow { width: 56px; height: 56px; border-radius: 50%; background: rgba(247,229,0,0.1); border: 2px solid rgba(247,229,0,0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; transition: all 0.3s; }
+        .cit-panel:hover .cit-panel-arrow { background: var(--accent); color: var(--dark); transform: translateX(6px); box-shadow: 0 0 24px rgba(247,229,0,0.4); }
 
         /* PROCESS */
         .cit-process { padding: 90px 0; background: var(--dark); }
@@ -335,8 +362,9 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
-          .cit-pillars-grid { grid-template-columns: 1fr; }
-          .cit-pillar-lg { grid-row: auto; }
+          .cit-panel-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 24px; min-height: 280px; }
+          .cit-panel-num { font-size: 64px; position: absolute; top: 16px; right: 24px; }
+          .cit-panel-arrow { display: none; }
           .cit-process-cards { grid-template-columns: repeat(2, 1fr); }
           .cit-why-grid { grid-template-columns: repeat(2, 1fr); }
           .cit-hero-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -344,6 +372,9 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         @media (max-width: 600px) {
           .cit-hero-inner { padding: 110px 20px 40px; }
           .cit-hero-inner h1 { font-size: 30px; }
+          .cit-panel-inner { padding: 32px 20px; min-height: 240px; }
+          .cit-panel-num { font-size: 48px; }
+          .cit-panel-text h3 { font-size: 20px; }
           .cit-process-cards { grid-template-columns: 1fr; }
           .cit-why-grid { grid-template-columns: 1fr; }
           .cit-hero-stats { grid-template-columns: repeat(2, 1fr); }

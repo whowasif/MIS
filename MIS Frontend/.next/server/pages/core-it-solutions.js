@@ -110,69 +110,69 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-c06f06797599be33" + " " + "cit-page",
+                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-page",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                                className: "jsx-c06f06797599be33",
+                                className: "jsx-b1cff0e5dff16dd1",
                                 children: "Core IT Solutions - MIS Solution"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 property: "og:title",
                                 content: "Core IT Solutions - MIS Solution",
-                                className: "jsx-c06f06797599be33"
+                                className: "jsx-b1cff0e5dff16dd1"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 name: "description",
                                 content: "Comprehensive IT solutions — digital services, enterprise infrastructure, and maintenance support.",
-                                className: "jsx-c06f06797599be33"
+                                className: "jsx-b1cff0e5dff16dd1"
                             })
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-c06f06797599be33" + " " + "cit-hero",
+                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-c06f06797599be33" + " " + "cit-hero-bg",
+                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero-bg",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=1500",
                                         alt: "",
-                                        className: "jsx-c06f06797599be33"
+                                        className: "jsx-b1cff0e5dff16dd1"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-c06f06797599be33" + " " + "cit-hero-overlay"
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero-overlay"
                                     })
                                 ]
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-c06f06797599be33" + " " + "cit-hero-particles",
+                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero-particles",
                                 children: [
                                     ...Array(6)
                                 ].map((_, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-c06f06797599be33" + " " + `cit-particle cit-particle-${i}`
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + `cit-particle cit-particle-${i}`
                                     }, i))
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-c06f06797599be33" + " " + "cit-hero-inner",
+                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero-inner",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                         delay: 0.1,
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-c06f06797599be33" + " " + "cit-hero-badge",
+                                            className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero-badge",
                                             children: "End-to-End IT Services"
                                         })
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                         delay: 0.2,
                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
-                                            className: "jsx-c06f06797599be33",
+                                            className: "jsx-b1cff0e5dff16dd1",
                                             children: [
                                                 "Drive Growth with Our",
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("br", {
-                                                    className: "jsx-c06f06797599be33"
+                                                    className: "jsx-b1cff0e5dff16dd1"
                                                 }),
                                                 "Core IT Capabilities"
                                             ]
@@ -181,26 +181,26 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                         delay: 0.35,
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-c06f06797599be33" + " " + "cit-hero-desc",
+                                            className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero-desc",
                                             children: "From concept to deployment and beyond — we deliver complete technology solutions that transform businesses, accelerate growth, and build lasting digital infrastructure."
                                         })
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                         delay: 0.5,
                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-c06f06797599be33" + " " + "cit-hero-actions",
+                                            className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero-actions",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/request-custom-quote",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-c06f06797599be33" + " " + "cit-btn cit-btn-glow",
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-btn cit-btn-glow",
                                                         children: "Schedule a Consultation"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/contact",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-c06f06797599be33" + " " + "cit-btn cit-btn-ghost",
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-btn cit-btn-ghost",
                                                         children: "Talk to Our Experts"
                                                     })
                                                 })
@@ -210,7 +210,7 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-c06f06797599be33" + " " + "cit-hero-stats",
+                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-hero-stats",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(AnimatedCounter, {
                                         end: 150,
@@ -236,321 +236,374 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                             })
                         ]
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-c06f06797599be33" + " " + "cit-pillars",
-                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-c06f06797599be33" + " " + "cit-container",
-                            children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
-                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-c06f06797599be33" + " " + "cit-section-head",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                className: "jsx-c06f06797599be33",
-                                                children: "Our Service Pillars"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-c06f06797599be33",
-                                                children: "Three specialized divisions covering every dimension of your IT needs."
-                                            })
-                                        ]
-                                    })
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-c06f06797599be33" + " " + "cit-pillars-grid",
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-pillars",
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
+                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "jsx-b1cff0e5dff16dd1" + " " + "cit-pillars-title",
                                     children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
-                                            delay: 0.1,
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                                href: "/digital-services",
-                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar cit-pillar-lg",
-                                                    children: [
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-c06f06797599be33" + " " + "cit-pillar-img",
-                                                            children: [
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                                    src: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=600",
-                                                                    alt: "Digital Services",
-                                                                    className: "jsx-c06f06797599be33"
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-img-overlay"
-                                                                })
-                                                            ]
-                                                        }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-c06f06797599be33" + " " + "cit-pillar-body",
-                                                            children: [
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-icon",
-                                                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-                                                                        width: "24",
-                                                                        height: "24",
-                                                                        viewBox: "0 0 24 24",
-                                                                        fill: "none",
-                                                                        stroke: "currentColor",
-                                                                        strokeWidth: "1.5",
-                                                                        className: "jsx-c06f06797599be33",
-                                                                        children: [
-                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                                                                cx: "12",
-                                                                                cy: "12",
-                                                                                r: "10",
-                                                                                className: "jsx-c06f06797599be33"
-                                                                            }),
-                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
-                                                                                x1: "2",
-                                                                                y1: "12",
-                                                                                x2: "22",
-                                                                                y2: "12",
-                                                                                className: "jsx-c06f06797599be33"
-                                                                            }),
-                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                                d: "M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z",
-                                                                                className: "jsx-c06f06797599be33"
-                                                                            })
-                                                                        ]
-                                                                    })
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                    className: "jsx-c06f06797599be33",
-                                                                    children: "Digital Services"
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                    className: "jsx-c06f06797599be33",
-                                                                    children: "Web development, hosting, digital marketing, and mobile apps to build your complete digital presence."
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
-                                                                    className: "jsx-c06f06797599be33",
-                                                                    children: (digitalServices.length > 0 ? digitalServices.slice(0, 4) : [
-                                                                        {
-                                                                            id: 1,
-                                                                            name: "Website Design & Development"
-                                                                        },
-                                                                        {
-                                                                            id: 2,
-                                                                            name: "Web Domain & Hosting"
-                                                                        },
-                                                                        {
-                                                                            id: 3,
-                                                                            name: "Digital Marketing & SEO"
-                                                                        },
-                                                                        {
-                                                                            id: 4,
-                                                                            name: "Mobile App Development"
-                                                                        }
-                                                                    ]).map((s)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                            className: "jsx-c06f06797599be33",
-                                                                            children: s.name
-                                                                        }, s.id))
-                                                                }),
-                                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-arrow",
-                                                                    children: [
-                                                                        "Explore Digital Services ",
-                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                                            width: "16",
-                                                                            height: "16",
-                                                                            viewBox: "0 0 24 24",
-                                                                            fill: "none",
-                                                                            stroke: "currentColor",
-                                                                            strokeWidth: "2",
-                                                                            className: "jsx-c06f06797599be33",
-                                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                                d: "M5 12h14M12 5l7 7-7 7",
-                                                                                className: "jsx-c06f06797599be33"
-                                                                            })
-                                                                        })
-                                                                    ]
-                                                                })
-                                                            ]
-                                                        })
-                                                    ]
-                                                })
-                                            })
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                            className: "jsx-b1cff0e5dff16dd1",
+                                            children: "Our Service Pillars"
                                         }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
-                                            delay: 0.2,
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                                href: "/enterprise-solutions",
-                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar",
-                                                    children: [
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-c06f06797599be33" + " " + "cit-pillar-img",
-                                                            children: [
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                                    src: "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=600",
-                                                                    alt: "Enterprise",
-                                                                    className: "jsx-c06f06797599be33"
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-img-overlay"
-                                                                })
-                                                            ]
-                                                        }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-c06f06797599be33" + " " + "cit-pillar-body",
-                                                            children: [
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-icon",
-                                                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-                                                                        width: "24",
-                                                                        height: "24",
-                                                                        viewBox: "0 0 24 24",
-                                                                        fill: "none",
-                                                                        stroke: "currentColor",
-                                                                        strokeWidth: "1.5",
-                                                                        className: "jsx-c06f06797599be33",
-                                                                        children: [
-                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                                                                                x: "2",
-                                                                                y: "7",
-                                                                                width: "20",
-                                                                                height: "14",
-                                                                                rx: "2",
-                                                                                className: "jsx-c06f06797599be33"
-                                                                            }),
-                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                                d: "M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16",
-                                                                                className: "jsx-c06f06797599be33"
-                                                                            })
-                                                                        ]
-                                                                    })
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                    className: "jsx-c06f06797599be33",
-                                                                    children: "Business & Corporate Solutions"
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                    className: "jsx-c06f06797599be33",
-                                                                    children: "Data centers, structured cabling, CCTV, networking, and enterprise B2B deployments."
-                                                                }),
-                                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-arrow",
-                                                                    children: [
-                                                                        "Explore Solutions ",
-                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                                            width: "16",
-                                                                            height: "16",
-                                                                            viewBox: "0 0 24 24",
-                                                                            fill: "none",
-                                                                            stroke: "currentColor",
-                                                                            strokeWidth: "2",
-                                                                            className: "jsx-c06f06797599be33",
-                                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                                d: "M5 12h14M12 5l7 7-7 7",
-                                                                                className: "jsx-c06f06797599be33"
-                                                                            })
-                                                                        })
-                                                                    ]
-                                                                })
-                                                            ]
-                                                        })
-                                                    ]
-                                                })
-                                            })
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
-                                            delay: 0.3,
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                                href: "/maintenance-support",
-                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar",
-                                                    children: [
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-c06f06797599be33" + " " + "cit-pillar-img",
-                                                            children: [
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                                    src: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600",
-                                                                    alt: "Support",
-                                                                    className: "jsx-c06f06797599be33"
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-img-overlay"
-                                                                })
-                                                            ]
-                                                        }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-c06f06797599be33" + " " + "cit-pillar-body",
-                                                            children: [
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-icon",
-                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                                        width: "24",
-                                                                        height: "24",
-                                                                        viewBox: "0 0 24 24",
-                                                                        fill: "none",
-                                                                        stroke: "currentColor",
-                                                                        strokeWidth: "1.5",
-                                                                        className: "jsx-c06f06797599be33",
-                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                            d: "M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z",
-                                                                            className: "jsx-c06f06797599be33"
-                                                                        })
-                                                                    })
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                    className: "jsx-c06f06797599be33",
-                                                                    children: "Maintenance & Support"
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                    className: "jsx-c06f06797599be33",
-                                                                    children: "Annual IT contracts, rapid on-call repairs, and project-based installation services."
-                                                                }),
-                                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-c06f06797599be33" + " " + "cit-pillar-arrow",
-                                                                    children: [
-                                                                        "Explore Support ",
-                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                                            width: "16",
-                                                                            height: "16",
-                                                                            viewBox: "0 0 24 24",
-                                                                            fill: "none",
-                                                                            stroke: "currentColor",
-                                                                            strokeWidth: "2",
-                                                                            className: "jsx-c06f06797599be33",
-                                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                                d: "M5 12h14M12 5l7 7-7 7",
-                                                                                className: "jsx-c06f06797599be33"
-                                                                            })
-                                                                        })
-                                                                    ]
-                                                                })
-                                                            ]
-                                                        })
-                                                    ]
-                                                })
-                                            })
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                            className: "jsx-b1cff0e5dff16dd1",
+                                            children: "Three specialized divisions — each a full-spectrum capability center."
                                         })
                                     ]
                                 })
-                            ]
-                        })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                    href: "/digital-services",
+                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel",
+                                        children: [
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-bg",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                        src: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1500",
+                                                        alt: "",
+                                                        className: "jsx-b1cff0e5dff16dd1"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-overlay cit-panel-overlay-1"
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-inner",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-num",
+                                                        children: "01"
+                                                    }),
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-text",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-icon",
+                                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                                    width: "28",
+                                                                    height: "28",
+                                                                    viewBox: "0 0 24 24",
+                                                                    fill: "none",
+                                                                    stroke: "currentColor",
+                                                                    strokeWidth: "1.5",
+                                                                    className: "jsx-b1cff0e5dff16dd1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                                                            cx: "12",
+                                                                            cy: "12",
+                                                                            r: "10",
+                                                                            className: "jsx-b1cff0e5dff16dd1"
+                                                                        }),
+                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                                            x1: "2",
+                                                                            y1: "12",
+                                                                            x2: "22",
+                                                                            y2: "12",
+                                                                            className: "jsx-b1cff0e5dff16dd1"
+                                                                        }),
+                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                            d: "M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z",
+                                                                            className: "jsx-b1cff0e5dff16dd1"
+                                                                        })
+                                                                    ]
+                                                                })
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                                className: "jsx-b1cff0e5dff16dd1",
+                                                                children: "Digital Services"
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                                className: "jsx-b1cff0e5dff16dd1",
+                                                                children: "Website design & development, domain & hosting, digital marketing, SEO, and custom mobile app development to build your complete digital presence."
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tags",
+                                                                children: (digitalServices.length > 0 ? digitalServices.slice(0, 5) : [
+                                                                    {
+                                                                        id: 1,
+                                                                        name: "Web Development"
+                                                                    },
+                                                                    {
+                                                                        id: 2,
+                                                                        name: "Hosting & Domain"
+                                                                    },
+                                                                    {
+                                                                        id: 3,
+                                                                        name: "Digital Marketing"
+                                                                    },
+                                                                    {
+                                                                        id: 4,
+                                                                        name: "Mobile Apps"
+                                                                    },
+                                                                    {
+                                                                        id: 5,
+                                                                        name: "E-commerce"
+                                                                    }
+                                                                ]).map((s)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: s.name
+                                                                    }, s.id))
+                                                            })
+                                                        ]
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-arrow",
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                            width: "24",
+                                                            height: "24",
+                                                            viewBox: "0 0 24 24",
+                                                            fill: "none",
+                                                            stroke: "currentColor",
+                                                            strokeWidth: "2",
+                                                            className: "jsx-b1cff0e5dff16dd1",
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "M5 12h14M12 5l7 7-7 7",
+                                                                className: "jsx-b1cff0e5dff16dd1"
+                                                            })
+                                                        })
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                    href: "/enterprise-solutions",
+                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel",
+                                        children: [
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-bg",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                        src: "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1500",
+                                                        alt: "",
+                                                        className: "jsx-b1cff0e5dff16dd1"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-overlay cit-panel-overlay-2"
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-inner",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-num",
+                                                        children: "02"
+                                                    }),
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-text",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-icon",
+                                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                                    width: "28",
+                                                                    height: "28",
+                                                                    viewBox: "0 0 24 24",
+                                                                    fill: "none",
+                                                                    stroke: "currentColor",
+                                                                    strokeWidth: "1.5",
+                                                                    className: "jsx-b1cff0e5dff16dd1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                                                                            x: "2",
+                                                                            y: "7",
+                                                                            width: "20",
+                                                                            height: "14",
+                                                                            rx: "2",
+                                                                            className: "jsx-b1cff0e5dff16dd1"
+                                                                        }),
+                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                            d: "M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16",
+                                                                            className: "jsx-b1cff0e5dff16dd1"
+                                                                        })
+                                                                    ]
+                                                                })
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                                className: "jsx-b1cff0e5dff16dd1",
+                                                                children: "Business & Corporate Solutions"
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                                className: "jsx-b1cff0e5dff16dd1",
+                                                                children: "Enterprise-grade data centers, structured cabling, CCTV surveillance, networking infrastructure, and large-scale B2B project deployments."
+                                                            }),
+                                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tags",
+                                                                children: [
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: "Data Centers"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: "Structured Cabling"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: "CCTV & Security"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: "Networking"
+                                                                    })
+                                                                ]
+                                                            })
+                                                        ]
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-arrow",
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                            width: "24",
+                                                            height: "24",
+                                                            viewBox: "0 0 24 24",
+                                                            fill: "none",
+                                                            stroke: "currentColor",
+                                                            strokeWidth: "2",
+                                                            className: "jsx-b1cff0e5dff16dd1",
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "M5 12h14M12 5l7 7-7 7",
+                                                                className: "jsx-b1cff0e5dff16dd1"
+                                                            })
+                                                        })
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                    href: "/maintenance-support",
+                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel",
+                                        children: [
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-bg",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                        src: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1500",
+                                                        alt: "",
+                                                        className: "jsx-b1cff0e5dff16dd1"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-overlay cit-panel-overlay-3"
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-inner",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-num",
+                                                        children: "03"
+                                                    }),
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-text",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-icon",
+                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                                    width: "28",
+                                                                    height: "28",
+                                                                    viewBox: "0 0 24 24",
+                                                                    fill: "none",
+                                                                    stroke: "currentColor",
+                                                                    strokeWidth: "1.5",
+                                                                    className: "jsx-b1cff0e5dff16dd1",
+                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                        d: "M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z",
+                                                                        className: "jsx-b1cff0e5dff16dd1"
+                                                                    })
+                                                                })
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                                className: "jsx-b1cff0e5dff16dd1",
+                                                                children: "Maintenance & Support"
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                                className: "jsx-b1cff0e5dff16dd1",
+                                                                children: "Annual IT maintenance contracts, rapid on-call repairs & troubleshooting, and project-based hardware installation and delivery services."
+                                                            }),
+                                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tags",
+                                                                children: [
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: "AMC Contracts"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: "On-call Repairs"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: "Installation"
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-tag",
+                                                                        children: "Troubleshooting"
+                                                                    })
+                                                                ]
+                                                            })
+                                                        ]
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-panel-arrow",
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                            width: "24",
+                                                            height: "24",
+                                                            viewBox: "0 0 24 24",
+                                                            fill: "none",
+                                                            stroke: "currentColor",
+                                                            strokeWidth: "2",
+                                                            className: "jsx-b1cff0e5dff16dd1",
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "M5 12h14M12 5l7 7-7 7",
+                                                                className: "jsx-b1cff0e5dff16dd1"
+                                                            })
+                                                        })
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                })
+                            })
+                        ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-c06f06797599be33" + " " + "cit-process",
+                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-process",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-c06f06797599be33" + " " + "cit-container",
+                            className: "jsx-b1cff0e5dff16dd1" + " " + "cit-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-c06f06797599be33" + " " + "cit-section-head cit-section-head-light",
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-section-head cit-section-head-light",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: "Our Methodology"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: "A proven framework that guarantees timely delivery of high-quality solutions."
                                             })
                                         ]
                                     })
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-c06f06797599be33" + " " + "cit-process-cards",
+                                    className: "jsx-b1cff0e5dff16dd1" + " " + "cit-process-cards",
                                     children: [
                                         {
                                             num: "01",
@@ -582,18 +635,18 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                                 style: {
                                                     "--card-bg": step.color
                                                 },
-                                                className: "jsx-c06f06797599be33" + " " + "cit-process-card",
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-process-card",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-c06f06797599be33" + " " + "cit-process-num",
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-process-num",
                                                         children: step.num
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                        className: "jsx-c06f06797599be33",
+                                                        className: "jsx-b1cff0e5dff16dd1",
                                                         children: step.title
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                        className: "jsx-c06f06797599be33",
+                                                        className: "jsx-b1cff0e5dff16dd1",
                                                         children: step.desc
                                                     })
                                                 ]
@@ -604,20 +657,20 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-c06f06797599be33" + " " + "cit-industries",
+                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-industries",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-c06f06797599be33" + " " + "cit-container",
+                            className: "jsx-b1cff0e5dff16dd1" + " " + "cit-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-c06f06797599be33" + " " + "cit-section-head",
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-section-head",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: "Industries We Serve"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: "Deep domain expertise across diverse sectors enables tailored technology solutions."
                                             })
                                         ]
@@ -626,7 +679,7 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                     delay: 0.2,
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-c06f06797599be33" + " " + "cit-industry-tags",
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-industry-tags",
                                         children: [
                                             "Finance & Banking",
                                             "E-commerce",
@@ -643,7 +696,7 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                             "Software",
                                             "Energy & Utilities"
                                         ].map((tag)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-c06f06797599be33" + " " + "cit-tag",
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-tag",
                                                 children: tag
                                             }, tag))
                                     })
@@ -652,18 +705,18 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                         })
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-c06f06797599be33" + " " + "cit-tech",
+                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-tech",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                    className: "jsx-c06f06797599be33",
+                                    className: "jsx-b1cff0e5dff16dd1",
                                     children: "Technologies We Work With"
                                 })
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-c06f06797599be33" + " " + "cit-marquee-wrap",
+                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-marquee-wrap",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-c06f06797599be33" + " " + "cit-marquee-track",
+                                    className: "jsx-b1cff0e5dff16dd1" + " " + "cit-marquee-track",
                                     children: [
                                         "React",
                                         "Next.js",
@@ -702,7 +755,7 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                         "Ubiquiti",
                                         "Hikvision"
                                     ].map((t, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-c06f06797599be33" + " " + "cit-tech-name",
+                                            className: "jsx-b1cff0e5dff16dd1" + " " + "cit-tech-name",
                                             children: t
                                         }, i))
                                 })
@@ -710,27 +763,27 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-c06f06797599be33" + " " + "cit-why",
+                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-why",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-c06f06797599be33" + " " + "cit-container",
+                            className: "jsx-b1cff0e5dff16dd1" + " " + "cit-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-c06f06797599be33" + " " + "cit-section-head",
+                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-section-head",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: "Why Enterprises Choose Us"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: "Combining deep expertise with client-first philosophy to deliver measurable results."
                                             })
                                         ]
                                     })
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-c06f06797599be33" + " " + "cit-why-grid",
+                                    className: "jsx-b1cff0e5dff16dd1" + " " + "cit-why-grid",
                                     children: [
                                         {
                                             icon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
@@ -740,10 +793,10 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                                 fill: "none",
                                                 stroke: "currentColor",
                                                 strokeWidth: "1.5",
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                     d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
-                                                    className: "jsx-c06f06797599be33"
+                                                    className: "jsx-b1cff0e5dff16dd1"
                                                 })
                                             }),
                                             title: "Proven Expertise",
@@ -757,17 +810,17 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                                 fill: "none",
                                                 stroke: "currentColor",
                                                 strokeWidth: "1.5",
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                         cx: "12",
                                                         cy: "12",
                                                         r: "10",
-                                                        className: "jsx-c06f06797599be33"
+                                                        className: "jsx-b1cff0e5dff16dd1"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
                                                         points: "12 6 12 12 16 14",
-                                                        className: "jsx-c06f06797599be33"
+                                                        className: "jsx-b1cff0e5dff16dd1"
                                                     })
                                                 ]
                                             }),
@@ -782,21 +835,21 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                                 fill: "none",
                                                 stroke: "currentColor",
                                                 strokeWidth: "1.5",
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                         d: "M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2",
-                                                        className: "jsx-c06f06797599be33"
+                                                        className: "jsx-b1cff0e5dff16dd1"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                         cx: "9",
                                                         cy: "7",
                                                         r: "4",
-                                                        className: "jsx-c06f06797599be33"
+                                                        className: "jsx-b1cff0e5dff16dd1"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                         d: "M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75",
-                                                        className: "jsx-c06f06797599be33"
+                                                        className: "jsx-b1cff0e5dff16dd1"
                                                     })
                                                 ]
                                             }),
@@ -811,15 +864,15 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                                 fill: "none",
                                                 stroke: "currentColor",
                                                 strokeWidth: "1.5",
-                                                className: "jsx-c06f06797599be33",
+                                                className: "jsx-b1cff0e5dff16dd1",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
                                                         points: "23 6 13.5 15.5 8.5 10.5 1 18",
-                                                        className: "jsx-c06f06797599be33"
+                                                        className: "jsx-b1cff0e5dff16dd1"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
                                                         points: "17 6 23 6 23 12",
-                                                        className: "jsx-c06f06797599be33"
+                                                        className: "jsx-b1cff0e5dff16dd1"
                                                     })
                                                 ]
                                             }),
@@ -829,18 +882,18 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                     ].map((item, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(FadeIn, {
                                             delay: i * 0.1,
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-c06f06797599be33" + " " + "cit-why-card",
+                                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-why-card",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-c06f06797599be33" + " " + "cit-why-icon",
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-why-icon",
                                                         children: item.icon
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                        className: "jsx-c06f06797599be33",
+                                                        className: "jsx-b1cff0e5dff16dd1",
                                                         children: item.title
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                        className: "jsx-c06f06797599be33",
+                                                        className: "jsx-b1cff0e5dff16dd1",
                                                         children: item.desc
                                                     })
                                                 ]
@@ -851,37 +904,37 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                         })
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-c06f06797599be33" + " " + "cit-cta",
+                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-cta",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-c06f06797599be33" + " " + "cit-cta-glow"
+                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-cta-glow"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-c06f06797599be33" + " " + "cit-container",
+                                className: "jsx-b1cff0e5dff16dd1" + " " + "cit-container",
                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(FadeIn, {
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-c06f06797599be33",
+                                            className: "jsx-b1cff0e5dff16dd1",
                                             children: "Ready to Transform Your IT?"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-c06f06797599be33",
+                                            className: "jsx-b1cff0e5dff16dd1",
                                             children: "Let's discuss how our solutions can accelerate your business goals."
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-c06f06797599be33" + " " + "cit-cta-btns",
+                                            className: "jsx-b1cff0e5dff16dd1" + " " + "cit-cta-btns",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/request-custom-quote",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-c06f06797599be33" + " " + "cit-btn cit-btn-glow",
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-btn cit-btn-glow",
                                                         children: "Request a Quote"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/contact",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-c06f06797599be33" + " " + "cit-btn cit-btn-ghost-dark",
+                                                        className: "jsx-b1cff0e5dff16dd1" + " " + "cit-btn cit-btn-ghost-dark",
                                                         children: "Contact Us"
                                                     })
                                                 })
@@ -896,8 +949,8 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "c06f06797599be33",
-                children: '.cit-page.jsx-c06f06797599be33{--accent:#f7e500;--dark:#0a101b;--dark2:#141c2b;width:100%}.cit-container.jsx-c06f06797599be33{max-width:1180px;margin:0 auto;padding:0 24px}.cit-section-head.jsx-c06f06797599be33{text-align:center;margin-bottom:48px}.cit-section-head.jsx-c06f06797599be33 h2.jsx-c06f06797599be33{margin:0;font-size:clamp(28px,4vw,40px);font-weight:800;color:#111827}.cit-section-head.jsx-c06f06797599be33 p.jsx-c06f06797599be33{margin:12px auto 0;font-size:16px;color:#6b7280;max-width:540px}.cit-section-head-light.jsx-c06f06797599be33 h2.jsx-c06f06797599be33{color:#fff}.cit-section-head-light.jsx-c06f06797599be33 p.jsx-c06f06797599be33{color:rgba(255,255,255,.6)}.cit-hero.jsx-c06f06797599be33{position:relative;min-height:640px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow:hidden}.cit-hero-bg.jsx-c06f06797599be33{position:absolute;inset:0}.cit-hero-bg.jsx-c06f06797599be33 img.jsx-c06f06797599be33{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;-webkit-filter:brightness(.4);filter:brightness(.4)}.cit-hero-overlay.jsx-c06f06797599be33{position:absolute;inset:0;background:-webkit-linear-gradient(290deg,rgba(10,16,27,.93)0%,rgba(10,16,27,.6)60%,rgba(247,229,0,.05)100%);background:-moz-linear-gradient(290deg,rgba(10,16,27,.93)0%,rgba(10,16,27,.6)60%,rgba(247,229,0,.05)100%);background:-o-linear-gradient(290deg,rgba(10,16,27,.93)0%,rgba(10,16,27,.6)60%,rgba(247,229,0,.05)100%);background:linear-gradient(160deg,rgba(10,16,27,.93)0%,rgba(10,16,27,.6)60%,rgba(247,229,0,.05)100%)}.cit-hero-particles.jsx-c06f06797599be33{position:absolute;inset:0;pointer-events:none;overflow:hidden}.cit-particle.jsx-c06f06797599be33{position:absolute;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:var(--accent);opacity:.12;-webkit-animation:particleFloat 8s ease-in-out infinite;-moz-animation:particleFloat 8s ease-in-out infinite;-o-animation:particleFloat 8s ease-in-out infinite;animation:particleFloat 8s ease-in-out infinite}.cit-particle-0.jsx-c06f06797599be33{width:200px;height:200px;top:-40px;right:10%;-webkit-animation-delay:0s;-moz-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s}.cit-particle-1.jsx-c06f06797599be33{width:120px;height:120px;bottom:20%;right:25%;-webkit-animation-delay:2s;-moz-animation-delay:2s;-o-animation-delay:2s;animation-delay:2s}.cit-particle-2.jsx-c06f06797599be33{width:80px;height:80px;top:30%;left:5%;-webkit-animation-delay:4s;-moz-animation-delay:4s;-o-animation-delay:4s;animation-delay:4s}.cit-particle-3.jsx-c06f06797599be33{width:150px;height:150px;bottom:-30px;left:20%;-webkit-animation-delay:1s;-moz-animation-delay:1s;-o-animation-delay:1s;animation-delay:1s;opacity:.08}.cit-particle-4.jsx-c06f06797599be33{width:60px;height:60px;top:15%;right:40%;-webkit-animation-delay:3s;-moz-animation-delay:3s;-o-animation-delay:3s;animation-delay:3s}.cit-particle-5.jsx-c06f06797599be33{width:100px;height:100px;bottom:10%;right:5%;-webkit-animation-delay:5s;-moz-animation-delay:5s;-o-animation-delay:5s;animation-delay:5s;opacity:.06}@-webkit-keyframes particleFloat{0%,100%{-webkit-transform:translateY(0)scale(1);transform:translateY(0)scale(1)}50%{-webkit-transform:translateY(-20px)scale(1.05);transform:translateY(-20px)scale(1.05)}}@-moz-keyframes particleFloat{0%,100%{-moz-transform:translateY(0)scale(1);transform:translateY(0)scale(1)}50%{-moz-transform:translateY(-20px)scale(1.05);transform:translateY(-20px)scale(1.05)}}@-o-keyframes particleFloat{0%,100%{-o-transform:translateY(0)scale(1);transform:translateY(0)scale(1)}50%{-o-transform:translateY(-20px)scale(1.05);transform:translateY(-20px)scale(1.05)}}@keyframes particleFloat{0%,100%{-webkit-transform:translateY(0)scale(1);-moz-transform:translateY(0)scale(1);-o-transform:translateY(0)scale(1);transform:translateY(0)scale(1)}50%{-webkit-transform:translateY(-20px)scale(1.05);-moz-transform:translateY(-20px)scale(1.05);-o-transform:translateY(-20px)scale(1.05);transform:translateY(-20px)scale(1.05)}}.cit-hero-inner.jsx-c06f06797599be33{position:relative;z-index:2;max-width:680px;padding:140px 32px 60px}.cit-hero-badge.jsx-c06f06797599be33{display:inline-block;padding:7px 18px;-webkit-border-radius:24px;-moz-border-radius:24px;border-radius:24px;background:rgba(247,229,0,.1);border:1px solid rgba(247,229,0,.35);color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.03em;margin-bottom:18px}.cit-hero-inner.jsx-c06f06797599be33 h1.jsx-c06f06797599be33{margin:0;font-size:clamp(36px,5.5vw,56px);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-.02em}.cit-hero-desc.jsx-c06f06797599be33{margin:20px 0 0;font-size:17px;color:rgba(255,255,255,.65);line-height:1.75}.cit-hero-actions.jsx-c06f06797599be33{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;margin-top:32px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.cit-btn.jsx-c06f06797599be33{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:15px 30px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;-webkit-transition:all.2s;-moz-transition:all.2s;-o-transition:all.2s;transition:all.2s}.cit-btn-glow.jsx-c06f06797599be33{background:var(--accent);color:var(--dark);-webkit-box-shadow:0 4px 20px rgba(247,229,0,.25);-moz-box-shadow:0 4px 20px rgba(247,229,0,.25);box-shadow:0 4px 20px rgba(247,229,0,.25)}.cit-btn-glow.jsx-c06f06797599be33:hover{-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 8px 32px rgba(247,229,0,.4);-moz-box-shadow:0 8px 32px rgba(247,229,0,.4);box-shadow:0 8px 32px rgba(247,229,0,.4)}.cit-btn-ghost.jsx-c06f06797599be33{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.25)}.cit-btn-ghost.jsx-c06f06797599be33:hover{border-color:var(--accent);color:var(--accent);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.cit-btn-ghost-dark.jsx-c06f06797599be33{background:transparent;color:var(--dark);border:2px solid var(--dark)}.cit-btn-ghost-dark.jsx-c06f06797599be33:hover{background:var(--dark);color:var(--accent);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.cit-hero-stats.jsx-c06f06797599be33{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(10,16,27,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid rgba(247,229,0,.12);padding:28px 32px}.cit-counter.jsx-c06f06797599be33{text-align:center}.cit-counter-num.jsx-c06f06797599be33{display:block;font-size:32px;font-weight:800;color:var(--accent)}.cit-counter-label.jsx-c06f06797599be33{font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:2px;display:block}.cit-pillars.jsx-c06f06797599be33{padding:90px 0;background:#f8fafc}.cit-pillars-grid.jsx-c06f06797599be33{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:20px}.cit-pillar-lg.jsx-c06f06797599be33{grid-row:1/3}.cit-pillar.jsx-c06f06797599be33{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;background:#fff;border:1px solid#e5e7eb;-webkit-transition:all.3s;-moz-transition:all.3s;-o-transition:all.3s;transition:all.3s;-webkit-box-shadow:0 2px 8px rgba(0,0,0,.04);-moz-box-shadow:0 2px 8px rgba(0,0,0,.04);box-shadow:0 2px 8px rgba(0,0,0,.04)}.cit-pillar.jsx-c06f06797599be33:hover{-webkit-transform:translateY(-6px);-moz-transform:translateY(-6px);-ms-transform:translateY(-6px);-o-transform:translateY(-6px);transform:translateY(-6px);-webkit-box-shadow:0 20px 60px rgba(0,0,0,.1);-moz-box-shadow:0 20px 60px rgba(0,0,0,.1);box-shadow:0 20px 60px rgba(0,0,0,.1);border-color:var(--accent)}.cit-pillar-img.jsx-c06f06797599be33{position:relative;height:180px;overflow:hidden}.cit-pillar-lg.jsx-c06f06797599be33 .cit-pillar-img.jsx-c06f06797599be33{height:240px}.cit-pillar-img.jsx-c06f06797599be33 img.jsx-c06f06797599be33{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;-webkit-transition:-webkit-transform.5s;-moz-transition:-moz-transform.5s;-o-transition:-o-transform.5s;transition:-webkit-transform.5s;transition:-moz-transform.5s;transition:-o-transform.5s;transition:transform.5s}.cit-pillar.jsx-c06f06797599be33:hover .cit-pillar-img.jsx-c06f06797599be33 img.jsx-c06f06797599be33{-webkit-transform:scale(1.08);-moz-transform:scale(1.08);-ms-transform:scale(1.08);-o-transform:scale(1.08);transform:scale(1.08)}.cit-pillar-img-overlay.jsx-c06f06797599be33{position:absolute;inset:0;background:-webkit-linear-gradient(top,transparent 40%,rgba(10,16,27,.3)100%);background:-moz-linear-gradient(top,transparent 40%,rgba(10,16,27,.3)100%);background:-o-linear-gradient(top,transparent 40%,rgba(10,16,27,.3)100%);background:linear-gradient(to bottom,transparent 40%,rgba(10,16,27,.3)100%)}.cit-pillar-body.jsx-c06f06797599be33{padding:24px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.cit-pillar-icon.jsx-c06f06797599be33{width:44px;height:44px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:var(--dark);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:var(--accent);margin-bottom:12px}.cit-pillar-body.jsx-c06f06797599be33 h3.jsx-c06f06797599be33{margin:0 0 8px;font-size:19px;font-weight:700;color:#111827}.cit-pillar-body.jsx-c06f06797599be33 p.jsx-c06f06797599be33{margin:0;font-size:14px;color:#6b7280;line-height:1.65}.cit-pillar-body.jsx-c06f06797599be33 ul.jsx-c06f06797599be33{list-style:none;padding:0;margin:12px 0 0;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px}.cit-pillar-body.jsx-c06f06797599be33 ul.jsx-c06f06797599be33 li.jsx-c06f06797599be33{font-size:13px;color:#4b5563;padding-left:14px;position:relative}.cit-pillar-body.jsx-c06f06797599be33 ul.jsx-c06f06797599be33 li.jsx-c06f06797599be33::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:var(--accent)}.cit-pillar-arrow.jsx-c06f06797599be33{margin-top:auto;padding-top:14px;font-size:14px;font-weight:700;color:var(--dark);display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px}.cit-pillar.jsx-c06f06797599be33:hover .cit-pillar-arrow.jsx-c06f06797599be33{color:#b8860b}.cit-process.jsx-c06f06797599be33{padding:90px 0;background:var(--dark)}.cit-process-cards.jsx-c06f06797599be33{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.cit-process-card.jsx-c06f06797599be33{padding:28px 22px;-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;background:var(--card-bg);min-height:220px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;position:relative;overflow:hidden;-webkit-transition:-webkit-transform.25s;-moz-transition:-moz-transform.25s;-o-transition:-o-transform.25s;transition:-webkit-transform.25s;transition:-moz-transform.25s;transition:-o-transform.25s;transition:transform.25s}.cit-process-card.jsx-c06f06797599be33:hover{-webkit-transform:translateY(-4px);-moz-transform:translateY(-4px);-ms-transform:translateY(-4px);-o-transform:translateY(-4px);transform:translateY(-4px)}.cit-process-num.jsx-c06f06797599be33{font-size:64px;font-weight:900;color:rgba(10,16,27,.06);position:absolute;top:10px;right:16px;line-height:1}.cit-process-card.jsx-c06f06797599be33 h3.jsx-c06f06797599be33{margin:0 0 10px;font-size:17px;font-weight:700;color:var(--dark)}.cit-process-card.jsx-c06f06797599be33 p.jsx-c06f06797599be33{margin:0;font-size:13px;color:#4b5563;line-height:1.65}.cit-industries.jsx-c06f06797599be33{padding:80px 0;background:#f8fafc}.cit-industry-tags.jsx-c06f06797599be33{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:12px}.cit-tag.jsx-c06f06797599be33{padding:11px 22px;-webkit-border-radius:28px;-moz-border-radius:28px;border-radius:28px;font-size:14px;font-weight:600;color:var(--dark);background:#fff;border:1px solid#e5e7eb;-webkit-transition:all.2s;-moz-transition:all.2s;-o-transition:all.2s;transition:all.2s;cursor:default}.cit-tag.jsx-c06f06797599be33:hover{background:var(--accent);border-color:var(--accent);color:var(--dark);-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 8px 20px rgba(247,229,0,.2);-moz-box-shadow:0 8px 20px rgba(247,229,0,.2);box-shadow:0 8px 20px rgba(247,229,0,.2)}.cit-tech.jsx-c06f06797599be33{padding:64px 0;background:#fff;text-align:center;overflow:hidden}.cit-tech.jsx-c06f06797599be33 h2.jsx-c06f06797599be33{margin:0 0 32px;font-size:clamp(22px,3vw,30px);font-weight:800;color:#111827}.cit-marquee-wrap.jsx-c06f06797599be33{overflow:hidden;mask-image:-webkit-linear-gradient(left,transparent,black 10%,black 90%,transparent);mask-image:-moz-linear-gradient(left,transparent,black 10%,black 90%,transparent);mask-image:-o-linear-gradient(left,transparent,black 10%,black 90%,transparent);mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent);-webkit-mask-image:-webkit-linear-gradient(left,transparent,black 10%,black 90%,transparent);-webkit-mask-image:-moz-linear-gradient(left,transparent,black 10%,black 90%,transparent);-webkit-mask-image:-o-linear-gradient(left,transparent,black 10%,black 90%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent)}.cit-marquee-track.jsx-c06f06797599be33{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:56px;-webkit-animation:marquee 35s linear infinite;-moz-animation:marquee 35s linear infinite;-o-animation:marquee 35s linear infinite;animation:marquee 35s linear infinite;width:-webkit-max-content;width:-moz-max-content;width:max-content}.cit-tech-name.jsx-c06f06797599be33{font-size:clamp(22px,3vw,36px);font-weight:700;color:#e2e8f0;white-space:nowrap;-webkit-transition:color.2s;-moz-transition:color.2s;-o-transition:color.2s;transition:color.2s}.cit-tech-name.jsx-c06f06797599be33:hover{color:var(--dark)}@-webkit-keyframes marquee{0%{-webkit-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);transform:translateX(-50%)}}@-moz-keyframes marquee{0%{-moz-transform:translateX(0);transform:translateX(0)}100%{-moz-transform:translateX(-50%);transform:translateX(-50%)}}@-o-keyframes marquee{0%{-o-transform:translateX(0);transform:translateX(0)}100%{-o-transform:translateX(-50%);transform:translateX(-50%)}}@keyframes marquee{0%{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)}}.cit-why.jsx-c06f06797599be33{padding:90px 0;background:#f8fafc}.cit-why-grid.jsx-c06f06797599be33{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.cit-why-card.jsx-c06f06797599be33{padding:28px;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;border:1px solid#e5e7eb;-webkit-transition:all.25s;-moz-transition:all.25s;-o-transition:all.25s;transition:all.25s}.cit-why-card.jsx-c06f06797599be33:hover{border-color:var(--accent);-webkit-transform:translateY(-4px);-moz-transform:translateY(-4px);-ms-transform:translateY(-4px);-o-transform:translateY(-4px);transform:translateY(-4px);-webkit-box-shadow:0 16px 40px rgba(0,0,0,.06);-moz-box-shadow:0 16px 40px rgba(0,0,0,.06);box-shadow:0 16px 40px rgba(0,0,0,.06)}.cit-why-icon.jsx-c06f06797599be33{width:48px;height:48px;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:var(--dark);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:var(--accent);margin-bottom:16px}.cit-why-card.jsx-c06f06797599be33 h3.jsx-c06f06797599be33{margin:0 0 8px;font-size:17px;font-weight:700;color:#111827}.cit-why-card.jsx-c06f06797599be33 p.jsx-c06f06797599be33{margin:0;font-size:14px;color:#6b7280;line-height:1.65}.cit-cta.jsx-c06f06797599be33{position:relative;padding:90px 24px;background:var(--accent);text-align:center;overflow:hidden}.cit-cta-glow.jsx-c06f06797599be33{position:absolute;width:400px;height:400px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(255,255,255,.2);top:-100px;right:-80px;-webkit-filter:blur(60px);filter:blur(60px)}.cit-cta.jsx-c06f06797599be33 h2.jsx-c06f06797599be33{margin:0;font-size:clamp(26px,4vw,38px);font-weight:800;color:var(--dark);position:relative}.cit-cta.jsx-c06f06797599be33 p.jsx-c06f06797599be33{margin:12px 0 0;font-size:16px;color:rgba(10,16,27,.65);position:relative}.cit-cta-btns.jsx-c06f06797599be33{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-top:28px;position:relative}@media(max-width:900px){.cit-pillars-grid.jsx-c06f06797599be33{grid-template-columns:1fr}.cit-pillar-lg.jsx-c06f06797599be33{grid-row:auto}.cit-process-cards.jsx-c06f06797599be33{grid-template-columns:repeat(2,1fr)}.cit-why-grid.jsx-c06f06797599be33{grid-template-columns:repeat(2,1fr)}.cit-hero-stats.jsx-c06f06797599be33{grid-template-columns:repeat(2,1fr);gap:16px}}@media(max-width:600px){.cit-hero-inner.jsx-c06f06797599be33{padding:110px 20px 40px}.cit-hero-inner.jsx-c06f06797599be33 h1.jsx-c06f06797599be33{font-size:30px}.cit-process-cards.jsx-c06f06797599be33{grid-template-columns:1fr}.cit-why-grid.jsx-c06f06797599be33{grid-template-columns:1fr}.cit-hero-stats.jsx-c06f06797599be33{grid-template-columns:repeat(2,1fr)}.cit-counter-num.jsx-c06f06797599be33{font-size:26px}.cit-industry-tags.jsx-c06f06797599be33{gap:8px}.cit-tag.jsx-c06f06797599be33{padding:9px 16px;font-size:12px}}'
+                id: "b1cff0e5dff16dd1",
+                children: '.cit-page.jsx-b1cff0e5dff16dd1{--accent:#f7e500;--dark:#0a101b;--dark2:#141c2b;width:100%}.cit-container.jsx-b1cff0e5dff16dd1{max-width:1180px;margin:0 auto;padding:0 24px}.cit-section-head.jsx-b1cff0e5dff16dd1{text-align:center;margin-bottom:48px}.cit-section-head.jsx-b1cff0e5dff16dd1 h2.jsx-b1cff0e5dff16dd1{margin:0;font-size:clamp(28px,4vw,40px);font-weight:800;color:#111827}.cit-section-head.jsx-b1cff0e5dff16dd1 p.jsx-b1cff0e5dff16dd1{margin:12px auto 0;font-size:16px;color:#6b7280;max-width:540px}.cit-section-head-light.jsx-b1cff0e5dff16dd1 h2.jsx-b1cff0e5dff16dd1{color:#fff}.cit-section-head-light.jsx-b1cff0e5dff16dd1 p.jsx-b1cff0e5dff16dd1{color:rgba(255,255,255,.6)}.cit-hero.jsx-b1cff0e5dff16dd1{position:relative;min-height:640px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow:hidden}.cit-hero-bg.jsx-b1cff0e5dff16dd1{position:absolute;inset:0}.cit-hero-bg.jsx-b1cff0e5dff16dd1 img.jsx-b1cff0e5dff16dd1{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;-webkit-filter:brightness(.4);filter:brightness(.4)}.cit-hero-overlay.jsx-b1cff0e5dff16dd1{position:absolute;inset:0;background:-webkit-linear-gradient(290deg,rgba(10,16,27,.93)0%,rgba(10,16,27,.6)60%,rgba(247,229,0,.05)100%);background:-moz-linear-gradient(290deg,rgba(10,16,27,.93)0%,rgba(10,16,27,.6)60%,rgba(247,229,0,.05)100%);background:-o-linear-gradient(290deg,rgba(10,16,27,.93)0%,rgba(10,16,27,.6)60%,rgba(247,229,0,.05)100%);background:linear-gradient(160deg,rgba(10,16,27,.93)0%,rgba(10,16,27,.6)60%,rgba(247,229,0,.05)100%)}.cit-hero-particles.jsx-b1cff0e5dff16dd1{position:absolute;inset:0;pointer-events:none;overflow:hidden}.cit-particle.jsx-b1cff0e5dff16dd1{position:absolute;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:var(--accent);opacity:.12;-webkit-animation:particleFloat 8s ease-in-out infinite;-moz-animation:particleFloat 8s ease-in-out infinite;-o-animation:particleFloat 8s ease-in-out infinite;animation:particleFloat 8s ease-in-out infinite}.cit-particle-0.jsx-b1cff0e5dff16dd1{width:200px;height:200px;top:-40px;right:10%;-webkit-animation-delay:0s;-moz-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s}.cit-particle-1.jsx-b1cff0e5dff16dd1{width:120px;height:120px;bottom:20%;right:25%;-webkit-animation-delay:2s;-moz-animation-delay:2s;-o-animation-delay:2s;animation-delay:2s}.cit-particle-2.jsx-b1cff0e5dff16dd1{width:80px;height:80px;top:30%;left:5%;-webkit-animation-delay:4s;-moz-animation-delay:4s;-o-animation-delay:4s;animation-delay:4s}.cit-particle-3.jsx-b1cff0e5dff16dd1{width:150px;height:150px;bottom:-30px;left:20%;-webkit-animation-delay:1s;-moz-animation-delay:1s;-o-animation-delay:1s;animation-delay:1s;opacity:.08}.cit-particle-4.jsx-b1cff0e5dff16dd1{width:60px;height:60px;top:15%;right:40%;-webkit-animation-delay:3s;-moz-animation-delay:3s;-o-animation-delay:3s;animation-delay:3s}.cit-particle-5.jsx-b1cff0e5dff16dd1{width:100px;height:100px;bottom:10%;right:5%;-webkit-animation-delay:5s;-moz-animation-delay:5s;-o-animation-delay:5s;animation-delay:5s;opacity:.06}@-webkit-keyframes particleFloat{0%,100%{-webkit-transform:translateY(0)scale(1);transform:translateY(0)scale(1)}50%{-webkit-transform:translateY(-20px)scale(1.05);transform:translateY(-20px)scale(1.05)}}@-moz-keyframes particleFloat{0%,100%{-moz-transform:translateY(0)scale(1);transform:translateY(0)scale(1)}50%{-moz-transform:translateY(-20px)scale(1.05);transform:translateY(-20px)scale(1.05)}}@-o-keyframes particleFloat{0%,100%{-o-transform:translateY(0)scale(1);transform:translateY(0)scale(1)}50%{-o-transform:translateY(-20px)scale(1.05);transform:translateY(-20px)scale(1.05)}}@keyframes particleFloat{0%,100%{-webkit-transform:translateY(0)scale(1);-moz-transform:translateY(0)scale(1);-o-transform:translateY(0)scale(1);transform:translateY(0)scale(1)}50%{-webkit-transform:translateY(-20px)scale(1.05);-moz-transform:translateY(-20px)scale(1.05);-o-transform:translateY(-20px)scale(1.05);transform:translateY(-20px)scale(1.05)}}.cit-hero-inner.jsx-b1cff0e5dff16dd1{position:relative;z-index:2;max-width:680px;padding:140px 32px 60px}.cit-hero-badge.jsx-b1cff0e5dff16dd1{display:inline-block;padding:7px 18px;-webkit-border-radius:24px;-moz-border-radius:24px;border-radius:24px;background:rgba(247,229,0,.1);border:1px solid rgba(247,229,0,.35);color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.03em;margin-bottom:18px}.cit-hero-inner.jsx-b1cff0e5dff16dd1 h1.jsx-b1cff0e5dff16dd1{margin:0;font-size:clamp(36px,5.5vw,56px);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-.02em}.cit-hero-desc.jsx-b1cff0e5dff16dd1{margin:20px 0 0;font-size:17px;color:rgba(255,255,255,.65);line-height:1.75}.cit-hero-actions.jsx-b1cff0e5dff16dd1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;margin-top:32px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.cit-btn.jsx-b1cff0e5dff16dd1{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:15px 30px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;-webkit-transition:all.2s;-moz-transition:all.2s;-o-transition:all.2s;transition:all.2s}.cit-btn-glow.jsx-b1cff0e5dff16dd1{background:var(--accent);color:var(--dark);-webkit-box-shadow:0 4px 20px rgba(247,229,0,.25);-moz-box-shadow:0 4px 20px rgba(247,229,0,.25);box-shadow:0 4px 20px rgba(247,229,0,.25)}.cit-btn-glow.jsx-b1cff0e5dff16dd1:hover{-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 8px 32px rgba(247,229,0,.4);-moz-box-shadow:0 8px 32px rgba(247,229,0,.4);box-shadow:0 8px 32px rgba(247,229,0,.4)}.cit-btn-ghost.jsx-b1cff0e5dff16dd1{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.25)}.cit-btn-ghost.jsx-b1cff0e5dff16dd1:hover{border-color:var(--accent);color:var(--accent);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.cit-btn-ghost-dark.jsx-b1cff0e5dff16dd1{background:transparent;color:var(--dark);border:2px solid var(--dark)}.cit-btn-ghost-dark.jsx-b1cff0e5dff16dd1:hover{background:var(--dark);color:var(--accent);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.cit-hero-stats.jsx-b1cff0e5dff16dd1{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(10,16,27,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid rgba(247,229,0,.12);padding:28px 32px}.cit-counter.jsx-b1cff0e5dff16dd1{text-align:center}.cit-counter-num.jsx-b1cff0e5dff16dd1{display:block;font-size:32px;font-weight:800;color:var(--accent)}.cit-counter-label.jsx-b1cff0e5dff16dd1{font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:2px;display:block}.cit-pillars.jsx-b1cff0e5dff16dd1{padding:80px 0 0;background:#f8fafc}.cit-pillars-title.jsx-b1cff0e5dff16dd1{text-align:center;padding:0 24px 48px}.cit-pillars-title.jsx-b1cff0e5dff16dd1 h2.jsx-b1cff0e5dff16dd1{margin:0;font-size:clamp(28px,4vw,40px);font-weight:800;color:#111827}.cit-pillars-title.jsx-b1cff0e5dff16dd1 p.jsx-b1cff0e5dff16dd1{margin:12px 0 0;font-size:16px;color:#6b7280}.cit-panel.jsx-b1cff0e5dff16dd1{display:block;position:relative;width:100%;min-height:320px;overflow:hidden;text-decoration:none;color:#fff;-webkit-transition:all.4s;-moz-transition:all.4s;-o-transition:all.4s;transition:all.4s}.cit-panel.jsx-b1cff0e5dff16dd1:hover{-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none}.cit-panel-bg.jsx-b1cff0e5dff16dd1{position:absolute;inset:0}.cit-panel-bg.jsx-b1cff0e5dff16dd1 img.jsx-b1cff0e5dff16dd1{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;-webkit-transition:-webkit-transform.6s ease,-webkit-filter.4s;-moz-transition:-moz-transform.6s ease,filter.4s;-o-transition:-o-transform.6s ease,filter.4s;transition:-webkit-transform.6s ease,-webkit-filter.4s;transition:-moz-transform.6s ease,filter.4s;transition:-o-transform.6s ease,filter.4s;transition:transform.6s ease,filter.4s}.cit-panel.jsx-b1cff0e5dff16dd1:hover .cit-panel-bg.jsx-b1cff0e5dff16dd1 img.jsx-b1cff0e5dff16dd1{-webkit-transform:scale(1.04);-moz-transform:scale(1.04);-ms-transform:scale(1.04);-o-transform:scale(1.04);transform:scale(1.04);-webkit-filter:brightness(.6);filter:brightness(.6)}.cit-panel-overlay.jsx-b1cff0e5dff16dd1{position:absolute;inset:0}.cit-panel-overlay-1.jsx-b1cff0e5dff16dd1{background:-webkit-linear-gradient(315deg,rgba(10,16,27,.88)0%,rgba(10,16,27,.4)60%,rgba(247,229,0,.05)100%);background:-moz-linear-gradient(315deg,rgba(10,16,27,.88)0%,rgba(10,16,27,.4)60%,rgba(247,229,0,.05)100%);background:-o-linear-gradient(315deg,rgba(10,16,27,.88)0%,rgba(10,16,27,.4)60%,rgba(247,229,0,.05)100%);background:linear-gradient(135deg,rgba(10,16,27,.88)0%,rgba(10,16,27,.4)60%,rgba(247,229,0,.05)100%)}.cit-panel-overlay-2.jsx-b1cff0e5dff16dd1{background:-webkit-linear-gradient(315deg,rgba(10,16,27,.85)0%,rgba(20,28,43,.5)60%,rgba(0,100,200,.05)100%);background:-moz-linear-gradient(315deg,rgba(10,16,27,.85)0%,rgba(20,28,43,.5)60%,rgba(0,100,200,.05)100%);background:-o-linear-gradient(315deg,rgba(10,16,27,.85)0%,rgba(20,28,43,.5)60%,rgba(0,100,200,.05)100%);background:linear-gradient(135deg,rgba(10,16,27,.85)0%,rgba(20,28,43,.5)60%,rgba(0,100,200,.05)100%)}.cit-panel-overlay-3.jsx-b1cff0e5dff16dd1{background:-webkit-linear-gradient(315deg,rgba(10,16,27,.88)0%,rgba(10,16,27,.45)60%,rgba(0,200,100,.05)100%);background:-moz-linear-gradient(315deg,rgba(10,16,27,.88)0%,rgba(10,16,27,.45)60%,rgba(0,200,100,.05)100%);background:-o-linear-gradient(315deg,rgba(10,16,27,.88)0%,rgba(10,16,27,.45)60%,rgba(0,200,100,.05)100%);background:linear-gradient(135deg,rgba(10,16,27,.88)0%,rgba(10,16,27,.45)60%,rgba(0,200,100,.05)100%)}.cit-panel-inner.jsx-b1cff0e5dff16dd1{position:relative;z-index:2;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:32px;max-width:1200px;margin:0 auto;padding:56px 40px;min-height:320px}.cit-panel-num.jsx-b1cff0e5dff16dd1{font-size:100px;font-weight:900;color:rgba(247,229,0,.08);line-height:1;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;font-family:"JetBrains Mono",monospace;-webkit-transition:color.3s;-moz-transition:color.3s;-o-transition:color.3s;transition:color.3s}.cit-panel.jsx-b1cff0e5dff16dd1:hover .cit-panel-num.jsx-b1cff0e5dff16dd1{color:rgba(247,229,0,.15)}.cit-panel-text.jsx-b1cff0e5dff16dd1{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.cit-panel-icon.jsx-b1cff0e5dff16dd1{width:52px;height:52px;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:rgba(247,229,0,.12);border:1px solid rgba(247,229,0,.3);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:var(--accent);margin-bottom:14px}.cit-panel-text.jsx-b1cff0e5dff16dd1 h3.jsx-b1cff0e5dff16dd1{margin:0 0 10px;font-size:clamp(22px,3vw,30px);font-weight:700}.cit-panel-text.jsx-b1cff0e5dff16dd1 p.jsx-b1cff0e5dff16dd1{margin:0 0 16px;font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;max-width:600px}.cit-panel-tags.jsx-b1cff0e5dff16dd1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.cit-panel-tag.jsx-b1cff0e5dff16dd1{padding:6px 14px;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);font-size:12px;font-weight:600;color:rgba(255,255,255,.85);-webkit-transition:all.2s;-moz-transition:all.2s;-o-transition:all.2s;transition:all.2s}.cit-panel.jsx-b1cff0e5dff16dd1:hover .cit-panel-tag.jsx-b1cff0e5dff16dd1{background:rgba(247,229,0,.12);border-color:rgba(247,229,0,.3);color:var(--accent)}.cit-panel-arrow.jsx-b1cff0e5dff16dd1{width:56px;height:56px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(247,229,0,.1);border:2px solid rgba(247,229,0,.3);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:var(--accent);-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-transition:all.3s;-moz-transition:all.3s;-o-transition:all.3s;transition:all.3s}.cit-panel.jsx-b1cff0e5dff16dd1:hover .cit-panel-arrow.jsx-b1cff0e5dff16dd1{background:var(--accent);color:var(--dark);-webkit-transform:translateX(6px);-moz-transform:translateX(6px);-ms-transform:translateX(6px);-o-transform:translateX(6px);transform:translateX(6px);-webkit-box-shadow:0 0 24px rgba(247,229,0,.4);-moz-box-shadow:0 0 24px rgba(247,229,0,.4);box-shadow:0 0 24px rgba(247,229,0,.4)}.cit-process.jsx-b1cff0e5dff16dd1{padding:90px 0;background:var(--dark)}.cit-process-cards.jsx-b1cff0e5dff16dd1{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.cit-process-card.jsx-b1cff0e5dff16dd1{padding:28px 22px;-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;background:var(--card-bg);min-height:220px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;position:relative;overflow:hidden;-webkit-transition:-webkit-transform.25s;-moz-transition:-moz-transform.25s;-o-transition:-o-transform.25s;transition:-webkit-transform.25s;transition:-moz-transform.25s;transition:-o-transform.25s;transition:transform.25s}.cit-process-card.jsx-b1cff0e5dff16dd1:hover{-webkit-transform:translateY(-4px);-moz-transform:translateY(-4px);-ms-transform:translateY(-4px);-o-transform:translateY(-4px);transform:translateY(-4px)}.cit-process-num.jsx-b1cff0e5dff16dd1{font-size:64px;font-weight:900;color:rgba(10,16,27,.06);position:absolute;top:10px;right:16px;line-height:1}.cit-process-card.jsx-b1cff0e5dff16dd1 h3.jsx-b1cff0e5dff16dd1{margin:0 0 10px;font-size:17px;font-weight:700;color:var(--dark)}.cit-process-card.jsx-b1cff0e5dff16dd1 p.jsx-b1cff0e5dff16dd1{margin:0;font-size:13px;color:#4b5563;line-height:1.65}.cit-industries.jsx-b1cff0e5dff16dd1{padding:80px 0;background:#f8fafc}.cit-industry-tags.jsx-b1cff0e5dff16dd1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:12px}.cit-tag.jsx-b1cff0e5dff16dd1{padding:11px 22px;-webkit-border-radius:28px;-moz-border-radius:28px;border-radius:28px;font-size:14px;font-weight:600;color:var(--dark);background:#fff;border:1px solid#e5e7eb;-webkit-transition:all.2s;-moz-transition:all.2s;-o-transition:all.2s;transition:all.2s;cursor:default}.cit-tag.jsx-b1cff0e5dff16dd1:hover{background:var(--accent);border-color:var(--accent);color:var(--dark);-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 8px 20px rgba(247,229,0,.2);-moz-box-shadow:0 8px 20px rgba(247,229,0,.2);box-shadow:0 8px 20px rgba(247,229,0,.2)}.cit-tech.jsx-b1cff0e5dff16dd1{padding:64px 0;background:#fff;text-align:center;overflow:hidden}.cit-tech.jsx-b1cff0e5dff16dd1 h2.jsx-b1cff0e5dff16dd1{margin:0 0 32px;font-size:clamp(22px,3vw,30px);font-weight:800;color:#111827}.cit-marquee-wrap.jsx-b1cff0e5dff16dd1{overflow:hidden;mask-image:-webkit-linear-gradient(left,transparent,black 10%,black 90%,transparent);mask-image:-moz-linear-gradient(left,transparent,black 10%,black 90%,transparent);mask-image:-o-linear-gradient(left,transparent,black 10%,black 90%,transparent);mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent);-webkit-mask-image:-webkit-linear-gradient(left,transparent,black 10%,black 90%,transparent);-webkit-mask-image:-moz-linear-gradient(left,transparent,black 10%,black 90%,transparent);-webkit-mask-image:-o-linear-gradient(left,transparent,black 10%,black 90%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent)}.cit-marquee-track.jsx-b1cff0e5dff16dd1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:56px;-webkit-animation:marquee 35s linear infinite;-moz-animation:marquee 35s linear infinite;-o-animation:marquee 35s linear infinite;animation:marquee 35s linear infinite;width:-webkit-max-content;width:-moz-max-content;width:max-content}.cit-tech-name.jsx-b1cff0e5dff16dd1{font-size:clamp(22px,3vw,36px);font-weight:700;color:#e2e8f0;white-space:nowrap;-webkit-transition:color.2s;-moz-transition:color.2s;-o-transition:color.2s;transition:color.2s}.cit-tech-name.jsx-b1cff0e5dff16dd1:hover{color:var(--dark)}@-webkit-keyframes marquee{0%{-webkit-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);transform:translateX(-50%)}}@-moz-keyframes marquee{0%{-moz-transform:translateX(0);transform:translateX(0)}100%{-moz-transform:translateX(-50%);transform:translateX(-50%)}}@-o-keyframes marquee{0%{-o-transform:translateX(0);transform:translateX(0)}100%{-o-transform:translateX(-50%);transform:translateX(-50%)}}@keyframes marquee{0%{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)}}.cit-why.jsx-b1cff0e5dff16dd1{padding:90px 0;background:#f8fafc}.cit-why-grid.jsx-b1cff0e5dff16dd1{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.cit-why-card.jsx-b1cff0e5dff16dd1{padding:28px;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;border:1px solid#e5e7eb;-webkit-transition:all.25s;-moz-transition:all.25s;-o-transition:all.25s;transition:all.25s}.cit-why-card.jsx-b1cff0e5dff16dd1:hover{border-color:var(--accent);-webkit-transform:translateY(-4px);-moz-transform:translateY(-4px);-ms-transform:translateY(-4px);-o-transform:translateY(-4px);transform:translateY(-4px);-webkit-box-shadow:0 16px 40px rgba(0,0,0,.06);-moz-box-shadow:0 16px 40px rgba(0,0,0,.06);box-shadow:0 16px 40px rgba(0,0,0,.06)}.cit-why-icon.jsx-b1cff0e5dff16dd1{width:48px;height:48px;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:var(--dark);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:var(--accent);margin-bottom:16px}.cit-why-card.jsx-b1cff0e5dff16dd1 h3.jsx-b1cff0e5dff16dd1{margin:0 0 8px;font-size:17px;font-weight:700;color:#111827}.cit-why-card.jsx-b1cff0e5dff16dd1 p.jsx-b1cff0e5dff16dd1{margin:0;font-size:14px;color:#6b7280;line-height:1.65}.cit-cta.jsx-b1cff0e5dff16dd1{position:relative;padding:90px 24px;background:var(--accent);text-align:center;overflow:hidden}.cit-cta-glow.jsx-b1cff0e5dff16dd1{position:absolute;width:400px;height:400px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(255,255,255,.2);top:-100px;right:-80px;-webkit-filter:blur(60px);filter:blur(60px)}.cit-cta.jsx-b1cff0e5dff16dd1 h2.jsx-b1cff0e5dff16dd1{margin:0;font-size:clamp(26px,4vw,38px);font-weight:800;color:var(--dark);position:relative}.cit-cta.jsx-b1cff0e5dff16dd1 p.jsx-b1cff0e5dff16dd1{margin:12px 0 0;font-size:16px;color:rgba(10,16,27,.65);position:relative}.cit-cta-btns.jsx-b1cff0e5dff16dd1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-top:28px;position:relative}@media(max-width:900px){.cit-panel-inner.jsx-b1cff0e5dff16dd1{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;gap:20px;padding:40px 24px;min-height:280px}.cit-panel-num.jsx-b1cff0e5dff16dd1{font-size:64px;position:absolute;top:16px;right:24px}.cit-panel-arrow.jsx-b1cff0e5dff16dd1{display:none}.cit-process-cards.jsx-b1cff0e5dff16dd1{grid-template-columns:repeat(2,1fr)}.cit-why-grid.jsx-b1cff0e5dff16dd1{grid-template-columns:repeat(2,1fr)}.cit-hero-stats.jsx-b1cff0e5dff16dd1{grid-template-columns:repeat(2,1fr);gap:16px}}@media(max-width:600px){.cit-hero-inner.jsx-b1cff0e5dff16dd1{padding:110px 20px 40px}.cit-hero-inner.jsx-b1cff0e5dff16dd1 h1.jsx-b1cff0e5dff16dd1{font-size:30px}.cit-panel-inner.jsx-b1cff0e5dff16dd1{padding:32px 20px;min-height:240px}.cit-panel-num.jsx-b1cff0e5dff16dd1{font-size:48px}.cit-panel-text.jsx-b1cff0e5dff16dd1 h3.jsx-b1cff0e5dff16dd1{font-size:20px}.cit-process-cards.jsx-b1cff0e5dff16dd1{grid-template-columns:1fr}.cit-why-grid.jsx-b1cff0e5dff16dd1{grid-template-columns:1fr}.cit-hero-stats.jsx-b1cff0e5dff16dd1{grid-template-columns:repeat(2,1fr)}.cit-counter-num.jsx-b1cff0e5dff16dd1{font-size:26px}.cit-industry-tags.jsx-b1cff0e5dff16dd1{gap:8px}.cit-tag.jsx-b1cff0e5dff16dd1{padding:9px 16px;font-size:12px}}'
             })
         ]
     });
