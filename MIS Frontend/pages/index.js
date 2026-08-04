@@ -127,6 +127,7 @@ const Home = (props) => {
                       <div className="ad-content">
                         <span className="ad-tag">Special Offer</span>
                         <h2 className="ad-title">{ad.title}</h2>
+                        {ad.ad_details && <p className="ad-details">{ad.ad_details}</p>}
                         <span className="ad-cta">Shop Now →</span>
                       </div>
                     </a>
@@ -309,7 +310,7 @@ export const getServerSideProps = async () => {
     const featuredProducts = await listFeaturedProducts(10)
     const db = getDbPool()
 
-    const [ads] = await db.query(`SELECT a.id, a.title, a.image_url, a.link_url, a.product_id, p.slug AS product_slug FROM advertisements a LEFT JOIN products p ON p.id = a.product_id WHERE a.is_active = 1 ORDER BY a.display_order ASC, a.created_at DESC LIMIT 10`)
+    const [ads] = await db.query(`SELECT a.id, a.title, a.ad_details, a.image_url, a.link_url, a.product_id, p.slug AS product_slug FROM advertisements a LEFT JOIN products p ON p.id = a.product_id WHERE a.is_active = 1 ORDER BY a.display_order ASC, a.created_at DESC LIMIT 10`)
     const [cats] = await db.query(`SELECT id, name, slug, icon_url FROM categories WHERE parent_id IS NULL AND deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC LIMIT 15`)
     const [featDigi] = await db.query(`SELECT name, slug, description, icon_url, 'digi_services' as type FROM digi_services WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`)
     const [featBiz] = await db.query(`SELECT name, slug, description, icon_url, 'bus_corp_sol' as type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`)
