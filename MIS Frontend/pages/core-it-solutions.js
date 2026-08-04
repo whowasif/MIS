@@ -363,11 +363,11 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
 
         /* PILLARS - Full Width Panels */
         .cit-pillars { padding: 80px 0 0; background: url('/our-service-pillar-bg.jpg') center/cover no-repeat fixed; position: relative; }
-        .cit-pillars::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.92); }
-        .cit-pillars > * { position: relative; z-index: 1; }
-        .cit-pillars-title { text-align: center; padding: 0 24px 48px; }
+        .cit-pillars::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.92); z-index: 0; }
+        .cit-pillars-title { position: relative; z-index: 1; }
+        .cit-pillars-title { text-align: center; padding: 0 24px 48px; position: relative; z-index: 1; }
         .cit-pillars-title h2 { margin: 0; font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #111827; }
-        .cit-pillars-title p { margin: 12px 0 0; font-size: 16px; color: #6b7280; }
+        .cit-pillars-title p { margin: 12px 0 0; font-size: 16px; color: #4b5563; }
 
         .cit-panel { display: block; position: relative; width: 100%; min-height: 320px; overflow: hidden; text-decoration: none; color: #fff; transition: all 0.4s; }
         .cit-panel:hover { transform: none; }
