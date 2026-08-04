@@ -181,29 +181,69 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
           </div>
         </section>
 
-        {/* INDUSTRIES */}
+        {/* INDUSTRIES - Rounded Square Cards with Icons */}
         <section className="cit-industries">
           <div className="cit-container">
             <FadeIn><div className="cit-section-head"><h2>Industries We Serve</h2><p>Deep domain expertise across diverse sectors enables tailored technology solutions.</p></div></FadeIn>
             <FadeIn delay={0.2}>
-              <div className="cit-industry-tags">
-                {['Finance & Banking','E-commerce','Telecom','Real Estate','Healthcare','Education','Logistics','Manufacturing','Retail','Government','Startups','NGO & Non-Profit','Software','Energy & Utilities'].map(tag => (
-                  <span key={tag} className="cit-tag">{tag}</span>
+              <div className="cit-industry-grid">
+                {[
+                  { name: 'Finance & Banking', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg> },
+                  { name: 'E-commerce', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> },
+                  { name: 'Telecom', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> },
+                  { name: 'Real Estate', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
+                  { name: 'Healthcare', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
+                  { name: 'Education', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> },
+                  { name: 'Logistics', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> },
+                  { name: 'Manufacturing', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> },
+                  { name: 'Retail', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> },
+                  { name: 'Government', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
+                  { name: 'Startups', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> },
+                  { name: 'NGO & Non-Profit', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> },
+                ].map(item => (
+                  <div key={item.name} className="cit-industry-card">
+                    <div className="cit-industry-icon">{item.icon}</div>
+                    <span className="cit-industry-name">{item.name}</span>
+                  </div>
                 ))}
               </div>
             </FadeIn>
           </div>
         </section>
 
-        {/* TECH MARQUEE */}
+        {/* TECH - Icons with Names */}
         <section className="cit-tech">
-          <FadeIn><h2>Technologies We Work With</h2></FadeIn>
-          <div className="cit-marquee-wrap">
-            <div className="cit-marquee-track">
-              {['React','Next.js','Node.js','Python','PHP','Laravel','MySQL','MongoDB','AWS','Azure','Docker','WordPress','Flutter','Java','MikroTik','Cisco','Ubiquiti','Hikvision','React','Next.js','Node.js','Python','PHP','Laravel','MySQL','MongoDB','AWS','Azure','Docker','WordPress','Flutter','Java','MikroTik','Cisco','Ubiquiti','Hikvision'].map((t, i) => (
-                <span key={i} className="cit-tech-name">{t}</span>
-              ))}
-            </div>
+          <div className="cit-container">
+            <FadeIn><div className="cit-section-head"><h2>Technologies We Work With</h2><p>Modern tools and platforms to deliver scalable, future-proof solutions.</p></div></FadeIn>
+            <FadeIn delay={0.15}>
+              <div className="cit-tech-grid">
+                {[
+                  { name: 'React', letter: 'R', color: '#61dafb' },
+                  { name: 'Next.js', letter: 'N', color: '#000000' },
+                  { name: 'Node.js', letter: 'N', color: '#68a063' },
+                  { name: 'Python', letter: 'Py', color: '#3776ab' },
+                  { name: 'PHP', letter: 'P', color: '#777bb4' },
+                  { name: 'Laravel', letter: 'L', color: '#ff2d20' },
+                  { name: 'MySQL', letter: 'My', color: '#4479a1' },
+                  { name: 'MongoDB', letter: 'M', color: '#47a248' },
+                  { name: 'AWS', letter: 'A', color: '#ff9900' },
+                  { name: 'Azure', letter: 'Az', color: '#0078d4' },
+                  { name: 'Docker', letter: 'D', color: '#2496ed' },
+                  { name: 'WordPress', letter: 'W', color: '#21759b' },
+                  { name: 'Flutter', letter: 'F', color: '#02569b' },
+                  { name: 'Java', letter: 'J', color: '#ed8b00' },
+                  { name: 'MikroTik', letter: 'Mt', color: '#293239' },
+                  { name: 'Cisco', letter: 'C', color: '#1ba0d7' },
+                  { name: 'Ubiquiti', letter: 'U', color: '#0559c9' },
+                  { name: 'Hikvision', letter: 'H', color: '#e4002b' },
+                ].map(tech => (
+                  <div key={tech.name} className="cit-tech-card">
+                    <div className="cit-tech-icon" style={{ '--tech-color': tech.color }}><span>{tech.letter}</span></div>
+                    <span className="cit-tech-label">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
           </div>
         </section>
 
@@ -232,14 +272,14 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
 
         {/* CTA */}
         <section className="cit-cta">
-          <div className="cit-cta-glow" />
-          <div className="cit-container">
+          <div className="cit-cta-bg"><img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" /><div className="cit-cta-overlay" /></div>
+          <div className="cit-container" style={{ position: 'relative', zIndex: 2 }}>
             <FadeIn>
-              <h2>Ready to Transform Your IT?</h2>
-              <p>Let&apos;s discuss how our solutions can accelerate your business goals.</p>
+              <h2>Ready to Transform Your IT Infrastructure?</h2>
+              <p>Partner with us to build technology solutions that drive real business outcomes.</p>
               <div className="cit-cta-btns">
                 <Link href="/request-custom-quote"><a className="cit-btn cit-btn-glow">Request a Quote</a></Link>
-                <Link href="/contact"><a className="cit-btn cit-btn-ghost-dark">Contact Us</a></Link>
+                <Link href="/contact"><a className="cit-btn cit-btn-ghost">Contact Us</a></Link>
               </div>
             </FadeIn>
           </div>
@@ -329,20 +369,28 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         .cit-process-card h3 { margin: 0 0 10px; font-size: 17px; font-weight: 700; color: var(--dark); }
         .cit-process-card p { margin: 0; font-size: 13px; color: #4b5563; line-height: 1.65; }
 
-        /* INDUSTRIES */
-        .cit-industries { padding: 80px 0; background: #f8fafc; }
-        .cit-industry-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-        .cit-tag { padding: 11px 22px; border-radius: 28px; font-size: 14px; font-weight: 600; color: var(--dark); background: #fff; border: 1px solid #e5e7eb; transition: all 0.2s; cursor: default; }
-        .cit-tag:hover { background: var(--accent); border-color: var(--accent); color: var(--dark); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(247,229,0,0.2); }
+        /* INDUSTRIES - Rounded Square Cards */
+        .cit-industries { padding: 80px 0; background: #0a101b; }
+        .cit-industries .cit-section-head h2 { color: #fff; }
+        .cit-industries .cit-section-head p { color: rgba(255,255,255,0.55); }
+        .cit-industry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+        .cit-industry-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 22px 14px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 0.25s; cursor: default; text-align: center; }
+        .cit-industry-card:hover { background: rgba(247,229,0,0.08); border-color: rgba(247,229,0,0.35); transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.3); }
+        .cit-industry-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(247,229,0,0.1); border: 1px solid rgba(247,229,0,0.2); display: flex; align-items: center; justify-content: center; color: var(--accent); transition: all 0.25s; }
+        .cit-industry-card:hover .cit-industry-icon { background: var(--accent); color: var(--dark); }
+        .cit-industry-name { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); line-height: 1.3; }
+        .cit-industry-card:hover .cit-industry-name { color: #fff; }
 
-        /* TECH MARQUEE */
-        .cit-tech { padding: 64px 0; background: #fff; text-align: center; overflow: hidden; }
-        .cit-tech h2 { margin: 0 0 32px; font-size: clamp(22px, 3vw, 30px); font-weight: 800; color: #111827; }
-        .cit-marquee-wrap { overflow: hidden; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-        .cit-marquee-track { display: flex; gap: 56px; animation: marquee 35s linear infinite; width: max-content; }
-        .cit-tech-name { font-size: clamp(22px, 3vw, 36px); font-weight: 700; color: #e2e8f0; white-space: nowrap; transition: color 0.2s; }
-        .cit-tech-name:hover { color: var(--dark); }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        /* TECH - Icon Grid */
+        .cit-tech { padding: 80px 0; background: #f8fafc; }
+        .cit-tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px; }
+        .cit-tech-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 12px; border-radius: 14px; background: #fff; border: 1px solid #e5e7eb; transition: all 0.25s; cursor: default; }
+        .cit-tech-card:hover { border-color: var(--tech-color, #e5e7eb); transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.06); }
+        .cit-tech-icon { width: 44px; height: 44px; border-radius: 12px; background: color-mix(in srgb, var(--tech-color) 12%, white); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+        .cit-tech-icon span { font-size: 16px; font-weight: 800; color: var(--tech-color); }
+        .cit-tech-card:hover .cit-tech-icon { background: var(--tech-color); }
+        .cit-tech-card:hover .cit-tech-icon span { color: #fff; }
+        .cit-tech-label { font-size: 12px; font-weight: 600; color: #4b5563; text-align: center; }
 
         /* WHY US */
         .cit-why { padding: 90px 0; background: #f8fafc; }
@@ -354,11 +402,13 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
         .cit-why-card p { margin: 0; font-size: 14px; color: #6b7280; line-height: 1.65; }
 
         /* CTA */
-        .cit-cta { position: relative; padding: 90px 24px; background: var(--accent); text-align: center; overflow: hidden; }
-        .cit-cta-glow { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: rgba(255,255,255,0.2); top: -100px; right: -80px; filter: blur(60px); }
-        .cit-cta h2 { margin: 0; font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: var(--dark); position: relative; }
-        .cit-cta p { margin: 12px 0 0; font-size: 16px; color: rgba(10,16,27,0.65); position: relative; }
-        .cit-cta-btns { display: flex; gap: 14px; justify-content: center; margin-top: 28px; position: relative; }
+        .cit-cta { position: relative; padding: 100px 24px; text-align: center; overflow: hidden; }
+        .cit-cta-bg { position: absolute; inset: 0; }
+        .cit-cta-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .cit-cta-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,16,27,0.92) 0%, rgba(10,16,27,0.85) 100%); }
+        .cit-cta h2 { margin: 0; font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: #fff; }
+        .cit-cta p { margin: 14px 0 0; font-size: 17px; color: rgba(255,255,255,0.6); max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cit-cta-btns { display: flex; gap: 14px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
