@@ -335,8 +335,8 @@ const Footer = (props) => {
                     <div className="footer-contact-icon-wrapper">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path d="m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect width="20" height="16" x="2" y="4" rx="2"></rect></g></svg>
                     </div>
-                    <a href="mailto:ceo@missolution.com.bd">
-                      <span className="section-content">ceo@missolution.com.bd</span>
+                    <a href="mailto:missolution2007@gmail.com">
+                      <span className="section-content">missolution2007@gmail.com</span>
                     </a>
                   </div>
                 </div>

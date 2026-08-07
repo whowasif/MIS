@@ -579,11 +579,11 @@ const Footer = (props)=>{
                                                                     })
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                                    href: "mailto:ceo@missolution.com.bd",
+                                                                    href: "mailto:missolution2007@gmail.com",
                                                                     className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                         className: "jsx-65823db792a277" + " " + "section-content",
-                                                                        children: "ceo@missolution.com.bd"
+                                                                        children: "missolution2007@gmail.com"
                                                                     })
                                                                 })
                                                             ]
