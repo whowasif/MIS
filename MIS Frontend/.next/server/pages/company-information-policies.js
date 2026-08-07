@@ -183,6 +183,17 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                 className: "jsx-2ad0f6e512036635",
                                                                 children: "Founder & Managing Director"
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                                href: "mailto:ceo@missolution.com.bd",
+                                                                style: {
+                                                                    fontSize: "12px",
+                                                                    color: "#6b7280",
+                                                                    marginTop: "2px",
+                                                                    textDecoration: "none"
+                                                                },
+                                                                className: "jsx-2ad0f6e512036635",
+                                                                children: "ceo@missolution.com.bd"
                                                             })
                                                         ]
                                                     })

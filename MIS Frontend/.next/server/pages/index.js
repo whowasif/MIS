@@ -1076,7 +1076,11 @@ const Home = (props)=>{
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                         className: "jsx-838b1a87f6f26fd3" + " " + "cta-hotline",
-                                                        children: "24/7 Hotline: +1-800-MIS-TECH"
+                                                        children: "24/7 Hotline: 02-41021991"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                        className: "jsx-838b1a87f6f26fd3" + " " + "cta-hotline",
+                                                        children: "info@missolution.com.bd"
                                                     })
                                                 ]
                                             })

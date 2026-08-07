@@ -80,6 +80,7 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
                     <div className="ceo-sig-line"></div>
                     <strong>Mohammad Ibrahim Sikder</strong>
                     <span>Founder & Managing Director</span>
+                    <a href="mailto:ceo@missolution.com.bd" style={{ fontSize: '12px', color: '#6b7280', marginTop: '2px', textDecoration: 'none' }}>ceo@missolution.com.bd</a>
                   </div>
                 </div>
               </section>
