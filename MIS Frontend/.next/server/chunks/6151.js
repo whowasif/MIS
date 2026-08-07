@@ -542,6 +542,51 @@ const Footer = (props)=>{
                                                                     })
                                                                 })
                                                             ]
+                                                        }),
+                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                            className: "jsx-65823db792a277" + " " + "footer-contact-item",
+                                                            children: [
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                    className: "jsx-65823db792a277" + " " + "footer-contact-icon-wrapper",
+                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                                        xmlns: "http://www.w3.org/2000/svg",
+                                                                        width: "18",
+                                                                        height: "18",
+                                                                        viewBox: "0 0 24 24",
+                                                                        className: "jsx-65823db792a277",
+                                                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
+                                                                            fill: "none",
+                                                                            stroke: "currentColor",
+                                                                            strokeLinecap: "round",
+                                                                            strokeLinejoin: "round",
+                                                                            strokeWidth: "2",
+                                                                            className: "jsx-65823db792a277",
+                                                                            children: [
+                                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                                    d: "m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7",
+                                                                                    className: "jsx-65823db792a277"
+                                                                                }),
+                                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                                                                                    width: "20",
+                                                                                    height: "16",
+                                                                                    x: "2",
+                                                                                    y: "4",
+                                                                                    rx: "2",
+                                                                                    className: "jsx-65823db792a277"
+                                                                                })
+                                                                            ]
+                                                                        })
+                                                                    })
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                                    href: "mailto:ceo@missolution.com.bd",
+                                                                    className: "jsx-65823db792a277",
+                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                        className: "jsx-65823db792a277" + " " + "section-content",
+                                                                        children: "ceo@missolution.com.bd"
+                                                                    })
+                                                                })
+                                                            ]
                                                         })
                                                     ]
                                                 }),

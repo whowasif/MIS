@@ -201,6 +201,11 @@ const Contact = (props) => {
                         <span>{supportEmail}</span>
                       </div>
                     </a>
+                    <a href="mailto:ceo@missolution.com.bd" style={{ marginTop: '4px', display: 'block' }}>
+                      <div className="info-value">
+                        <span>ceo@missolution.com.bd</span>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>

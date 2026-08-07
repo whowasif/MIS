@@ -335,6 +335,21 @@ const Contact = (props)=>{
                                                                             children: supportEmail
                                                                         })
                                                                     })
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                                    href: "mailto:ceo@missolution.com.bd",
+                                                                    style: {
+                                                                        marginTop: "4px",
+                                                                        display: "block"
+                                                                    },
+                                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "info-value",
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                                            children: "ceo@missolution.com.bd"
+                                                                        })
+                                                                    })
                                                                 })
                                                             ]
                                                         })
