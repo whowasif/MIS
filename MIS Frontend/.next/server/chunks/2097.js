@@ -652,7 +652,7 @@ const Navigation = ()=>{
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                                                     type: "button",
-                                                    onClick: ()=>handleMenuNavigation("/product-catalog"),
+                                                    onClick: ()=>handleMenuNavigation("/categories"),
                                                     className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-link menu-nav-link-btn",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {

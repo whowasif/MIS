@@ -458,7 +458,7 @@ const Navigation = () => {
                       <button
                         type="button"
                         className="menu-nav-link menu-nav-link-btn"
-                        onClick={() => handleMenuNavigation('/product-catalog')}
+                        onClick={() => handleMenuNavigation('/categories')}
                       >
                         <span>Products</span>
                         <span className="menu-nav-chevron">›</span>
