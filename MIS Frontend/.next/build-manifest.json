@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/Y5vtMVluQqPjbcDWiWhHh/_buildManifest.js",
-    "static/Y5vtMVluQqPjbcDWiWhHh/_ssgManifest.js"
+    "static/QVu_VVhg1-IRmu42AGJOl/_buildManifest.js",
+    "static/QVu_VVhg1-IRmu42AGJOl/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -79,7 +79,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/2097-a11d9e5b34b4ec39.js",
       "static/chunks/6151-bc1789e7e7e47660.js",
-      "static/chunks/pages/career-a28b84e66bfe680f.js"
+      "static/chunks/pages/career-fe3400867d4304fe.js"
     ],
     "/categories/[slug]": [
       "static/chunks/webpack-3483762d88c6282c.js",
@@ -115,7 +115,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/2097-a11d9e5b34b4ec39.js",
       "static/chunks/6151-bc1789e7e7e47660.js",
-      "static/chunks/pages/contact-32e5ba0c85d7056c.js"
+      "static/chunks/pages/contact-28f785d7a6f865a1.js"
     ],
     "/core-it-solutions": [
       "static/chunks/webpack-3483762d88c6282c.js",

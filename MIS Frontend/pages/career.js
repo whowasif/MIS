@@ -64,6 +64,7 @@ const CareerPage = ({ jobs = [] }) => {
           <div className="hero-content">
             <h1>Join Our Team</h1>
             <p>Build your career with Bangladesh's growing IT solutions company. Explore open positions below.</p>
+            <p style={{ marginTop: '8px', color: 'rgba(255,255,255,0.75)', fontSize: '14px' }}>Send your resume: <a href="mailto:hr@missolution.com.bd" style={{ color: '#f7e500', textDecoration: 'none', fontWeight: 600 }}>hr@missolution.com.bd</a></p>
           </div>
         </section>
 

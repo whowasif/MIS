@@ -350,6 +350,21 @@ const Contact = (props)=>{
                                                                             children: "missolution2007@gmail.com"
                                                                         })
                                                                     })
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                                    href: "mailto:sales@missolution.com.bd",
+                                                                    style: {
+                                                                        marginTop: "4px",
+                                                                        display: "block"
+                                                                    },
+                                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "info-value",
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                                            children: "sales@missolution.com.bd"
+                                                                        })
+                                                                    })
                                                                 })
                                                             ]
                                                         })

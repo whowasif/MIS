@@ -187,6 +187,27 @@ const CareerPage = ({ jobs =[]  })=>{
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                         className: "jsx-82d0b16973d78714",
                                         children: "Build your career with Bangladesh's growing IT solutions company. Explore open positions below."
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                                        style: {
+                                            marginTop: "8px",
+                                            color: "rgba(255,255,255,0.75)",
+                                            fontSize: "14px"
+                                        },
+                                        className: "jsx-82d0b16973d78714",
+                                        children: [
+                                            "Send your resume: ",
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                href: "mailto:hr@missolution.com.bd",
+                                                style: {
+                                                    color: "#f7e500",
+                                                    textDecoration: "none",
+                                                    fontWeight: 600
+                                                },
+                                                className: "jsx-82d0b16973d78714",
+                                                children: "hr@missolution.com.bd"
+                                            })
+                                        ]
                                     })
                                 ]
                             })
