@@ -123,7 +123,7 @@ const ContentDetailPage = ({ content , contentType  })=>{
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("title", {
-                        className: "jsx-f66540924b342c54",
+                        className: "jsx-8aa76e67b341728e",
                         children: [
                             content.name,
                             " | MIS Solution"
@@ -132,205 +132,221 @@ const ContentDetailPage = ({ content , contentType  })=>{
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                         name: "description",
                         content: content.description || content.name,
-                        className: "jsx-f66540924b342c54"
+                        className: "jsx-8aa76e67b341728e"
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                         rel: "icon",
                         href: "/footer%20logo.png",
-                        className: "jsx-f66540924b342c54"
+                        className: "jsx-8aa76e67b341728e"
                     })
                 ]
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("main", {
-                className: "jsx-f66540924b342c54" + " " + "content-detail-page",
+                className: "jsx-8aa76e67b341728e" + " " + "content-detail-page",
                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                    className: "jsx-f66540924b342c54" + " " + "content-shell",
+                    className: "jsx-8aa76e67b341728e" + " " + "content-shell",
                     children: [
                         content.icon_url ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f66540924b342c54" + " " + "content-hero-cover",
+                            className: "jsx-8aa76e67b341728e" + " " + "content-hero-cover",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                     src: content.icon_url,
                                     alt: content.name || content.title,
-                                    className: "jsx-f66540924b342c54"
+                                    className: "jsx-8aa76e67b341728e"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-f66540924b342c54" + " " + "content-hero-overlay"
+                                    className: "jsx-8aa76e67b341728e" + " " + "content-hero-overlay"
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f66540924b342c54" + " " + "content-hero-inner",
+                                    className: "jsx-8aa76e67b341728e" + " " + "content-hero-inner",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f66540924b342c54" + " " + "breadcrumb",
+                                            className: "jsx-8aa76e67b341728e" + " " + "breadcrumb",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-f66540924b342c54",
+                                                        className: "jsx-8aa76e67b341728e",
                                                         children: "Home"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-f66540924b342c54",
+                                                    className: "jsx-8aa76e67b341728e",
                                                     children: "/"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/core-it-solutions",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-f66540924b342c54",
+                                                        className: "jsx-8aa76e67b341728e",
                                                         children: "Core IT Solutions"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-f66540924b342c54",
+                                                    className: "jsx-8aa76e67b341728e",
                                                     children: "/"
                                                 }),
                                                 contentType === "digi_services" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/digital-services",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-f66540924b342c54",
+                                                        className: "jsx-8aa76e67b341728e",
                                                         children: "Digital Services"
                                                     })
                                                 }),
                                                 contentType === "bus_corp_sol" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/enterprise-solutions",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-f66540924b342c54",
+                                                        className: "jsx-8aa76e67b341728e",
                                                         children: "Enterprise Solutions"
                                                     })
                                                 }),
                                                 contentType === "service_maintenance" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/maintenance-support",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-f66540924b342c54",
+                                                        className: "jsx-8aa76e67b341728e",
                                                         children: "Maintenance & Support"
                                                     })
                                                 }),
                                                 contentType === "career_posts" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/career",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-f66540924b342c54",
+                                                        className: "jsx-8aa76e67b341728e",
                                                         children: "Career"
                                                     })
                                                 }),
                                                 contentType === "page_contents" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/company-information-policies",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-f66540924b342c54",
+                                                        className: "jsx-8aa76e67b341728e",
                                                         children: "About"
                                                     })
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                            className: "jsx-f66540924b342c54",
+                                            className: "jsx-8aa76e67b341728e",
                                             children: content.name || content.title
                                         }),
                                         content.description && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-f66540924b342c54" + " " + "content-hero-subtitle",
+                                            className: "jsx-8aa76e67b341728e" + " " + "content-hero-subtitle",
                                             children: content.description
                                         })
                                     ]
                                 })
                             ]
                         }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                            className: "jsx-f66540924b342c54" + " " + "content-header-nocover",
+                            className: "jsx-8aa76e67b341728e" + " " + "content-header-nocover",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f66540924b342c54" + " " + "breadcrumb",
+                                    className: "jsx-8aa76e67b341728e" + " " + "breadcrumb",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f66540924b342c54",
+                                                className: "jsx-8aa76e67b341728e",
                                                 children: "Home"
                                             })
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-f66540924b342c54",
+                                            className: "jsx-8aa76e67b341728e",
                                             children: "/"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/core-it-solutions",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f66540924b342c54",
+                                                className: "jsx-8aa76e67b341728e",
                                                 children: "Core IT Solutions"
                                             })
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-f66540924b342c54",
+                                            className: "jsx-8aa76e67b341728e",
                                             children: "/"
                                         }),
                                         contentType === "digi_services" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/digital-services",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f66540924b342c54",
+                                                className: "jsx-8aa76e67b341728e",
                                                 children: "Digital Services"
                                             })
                                         }),
                                         contentType === "bus_corp_sol" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/enterprise-solutions",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f66540924b342c54",
+                                                className: "jsx-8aa76e67b341728e",
                                                 children: "Enterprise Solutions"
                                             })
                                         }),
                                         contentType === "service_maintenance" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/maintenance-support",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f66540924b342c54",
+                                                className: "jsx-8aa76e67b341728e",
                                                 children: "Maintenance & Support"
                                             })
                                         }),
                                         contentType === "career_posts" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/career",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f66540924b342c54",
+                                                className: "jsx-8aa76e67b341728e",
                                                 children: "Career"
                                             })
                                         }),
                                         contentType === "page_contents" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/company-information-policies",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f66540924b342c54",
+                                                className: "jsx-8aa76e67b341728e",
                                                 children: "About"
                                             })
                                         })
                                     ]
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                    className: "jsx-f66540924b342c54",
+                                    className: "jsx-8aa76e67b341728e",
                                     children: content.name || content.title
                                 }),
                                 content.description && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                    className: "jsx-f66540924b342c54" + " " + "content-summary",
+                                    className: "jsx-8aa76e67b341728e" + " " + "content-summary",
                                     children: content.description
                                 })
                             ]
                         }),
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f66540924b342c54" + " " + "content-body-wrap",
+                            className: "jsx-8aa76e67b341728e" + " " + "content-body-wrap",
                             children: [
-                                content.full_description && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    dangerouslySetInnerHTML: {
-                                        __html: content.full_description
-                                    },
-                                    className: "jsx-f66540924b342c54" + " " + "content-body"
+                                content.full_description && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "jsx-8aa76e67b341728e" + " " + "content-body-modern",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "jsx-8aa76e67b341728e" + " " + "content-accent-bar"
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            dangerouslySetInnerHTML: {
+                                                __html: content.full_description
+                                            },
+                                            className: "jsx-8aa76e67b341728e" + " " + "content-rich-html"
+                                        })
+                                    ]
                                 }),
-                                !content.full_description && content.description && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-f66540924b342c54" + " " + "content-body",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-f66540924b342c54",
-                                        children: content.description
-                                    })
+                                !content.full_description && content.description && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "jsx-8aa76e67b341728e" + " " + "content-body-modern",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "jsx-8aa76e67b341728e" + " " + "content-accent-bar"
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "jsx-8aa76e67b341728e" + " " + "content-rich-html",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                className: "jsx-8aa76e67b341728e",
+                                                children: content.description
+                                            })
+                                        })
+                                    ]
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-f66540924b342c54" + " " + "content-cta-wrap",
+                                    className: "jsx-8aa76e67b341728e" + " " + "content-cta-wrap",
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                         href: "/request-custom-quote",
                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                            className: "jsx-f66540924b342c54" + " " + "btn btn-primary btn-lg content-quote-btn",
+                                            className: "jsx-8aa76e67b341728e" + " " + "content-cta-btn",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                     xmlns: "http://www.w3.org/2000/svg",
@@ -342,14 +358,14 @@ const ContentDetailPage = ({ content , contentType  })=>{
                                                     strokeWidth: "2",
                                                     strokeLinecap: "round",
                                                     strokeLinejoin: "round",
-                                                    className: "jsx-f66540924b342c54",
+                                                    className: "jsx-8aa76e67b341728e",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                         d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
-                                                        className: "jsx-f66540924b342c54"
+                                                        className: "jsx-8aa76e67b341728e"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-f66540924b342c54",
+                                                    className: "jsx-8aa76e67b341728e",
                                                     children: "Request a Quote"
                                                 })
                                             ]
@@ -363,8 +379,8 @@ const ContentDetailPage = ({ content , contentType  })=>{
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {}),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "f66540924b342c54",
-                children: ".content-detail-page.jsx-f66540924b342c54{min-height:100vh;background:#f8fafe}.content-shell.jsx-f66540924b342c54{width:100%}.content-hero-cover.jsx-f66540924b342c54{position:relative;width:100%;min-height:380px;max-height:440px;overflow:hidden}.content-hero-cover.jsx-f66540924b342c54 img.jsx-f66540924b342c54{width:100%;height:100%;min-height:380px;max-height:440px;-o-object-fit:cover;object-fit:cover;display:block}.content-hero-overlay.jsx-f66540924b342c54{position:absolute;inset:0;background:-webkit-linear-gradient(top,rgba(0,0,0,.2)0%,rgba(0,0,0,.65)100%);background:-moz-linear-gradient(top,rgba(0,0,0,.2)0%,rgba(0,0,0,.65)100%);background:-o-linear-gradient(top,rgba(0,0,0,.2)0%,rgba(0,0,0,.65)100%);background:linear-gradient(to bottom,rgba(0,0,0,.2)0%,rgba(0,0,0,.65)100%)}.content-hero-inner.jsx-f66540924b342c54{position:absolute;bottom:0;left:0;right:0;padding:40px 48px;color:#fff}.content-hero-inner.jsx-f66540924b342c54 h1.jsx-f66540924b342c54{margin:0;font-size:clamp(28px,5vw,42px);font-weight:800;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.3)}.content-hero-subtitle.jsx-f66540924b342c54{margin:10px 0 0;font-size:16px;color:rgba(255,255,255,.88);line-height:1.6;max-width:700px}.content-hero-inner.jsx-f66540924b342c54 .breadcrumb.jsx-f66540924b342c54{margin-bottom:12px}.content-hero-inner.jsx-f66540924b342c54 .breadcrumb.jsx-f66540924b342c54 span.jsx-f66540924b342c54{color:rgba(255,255,255,.7)}.content-hero-inner.jsx-f66540924b342c54 .breadcrumb.jsx-f66540924b342c54 a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}.content-hero-inner.jsx-f66540924b342c54 .breadcrumb.jsx-f66540924b342c54 a:hover{text-decoration:underline}.content-header-nocover.jsx-f66540924b342c54{max-width:820px;margin:0 auto;padding:36px 20px 0}.content-header-nocover.jsx-f66540924b342c54 h1.jsx-f66540924b342c54{margin:0;font-size:clamp(24px,4vw,36px);color:#111827;font-weight:800;line-height:1.2}.content-summary.jsx-f66540924b342c54{margin:12px 0 0;font-size:17px;color:#4b5563;line-height:1.7}.breadcrumb.jsx-f66540924b342c54{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;font-size:13px;color:#6b7280}.breadcrumb.jsx-f66540924b342c54 a{color:#4f46e5;text-decoration:none;font-weight:600}.breadcrumb.jsx-f66540924b342c54 a:hover{text-decoration:underline}.content-body-wrap.jsx-f66540924b342c54{max-width:820px;margin:0 auto;padding:36px 20px 64px}.content-body.jsx-f66540924b342c54{padding:32px;background:#fff;border:1px solid#e5e7eb;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;-webkit-box-shadow:0 2px 12px rgba(0,0,0,.03);-moz-box-shadow:0 2px 12px rgba(0,0,0,.03);box-shadow:0 2px 12px rgba(0,0,0,.03)}.content-body.jsx-f66540924b342c54 h1{font-size:28px;margin:0 0 16px;color:#111827}.content-body.jsx-f66540924b342c54 h2{font-size:22px;margin:24px 0 12px;color:#1f2937}.content-body.jsx-f66540924b342c54 h3{font-size:18px;margin:20px 0 10px;color:#374151}.content-body.jsx-f66540924b342c54 p{margin:0 0 14px;font-size:15px;line-height:1.8;color:#374151}.content-body.jsx-f66540924b342c54 ul,.content-body.jsx-f66540924b342c54 ol{margin:0 0 14px;padding-left:24px}.content-body.jsx-f66540924b342c54 li{margin-bottom:6px;font-size:15px;line-height:1.7;color:#374151}.content-body.jsx-f66540924b342c54 img{max-width:100%;height:auto;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;margin:16px 0}.content-body.jsx-f66540924b342c54 blockquote{border-left:4px solid#4f46e5;padding:12px 20px;margin:16px 0;background:#f5f3ff;-webkit-border-radius:0 8px 8px 0;-moz-border-radius:0 8px 8px 0;border-radius:0 8px 8px 0;color:#4338ca;font-style:italic}.content-body.jsx-f66540924b342c54 a{color:#4f46e5;text-decoration:underline}.content-body.jsx-f66540924b342c54 strong{font-weight:700}.content-body.jsx-f66540924b342c54 table{width:100%;border-collapse:collapse;margin:16px 0}.content-body.jsx-f66540924b342c54 th,.content-body.jsx-f66540924b342c54 td{border:1px solid#e5e7eb;padding:10px 14px;text-align:left;font-size:14px}.content-body.jsx-f66540924b342c54 th{background:#f9fafb;font-weight:700}.content-cta-wrap.jsx-f66540924b342c54{margin-top:28px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.content-quote-btn.jsx-f66540924b342c54{gap:10px;font-size:16px;padding:14px 32px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;font-weight:700;-webkit-box-shadow:0 4px 14px rgba(0,0,0,.08);-moz-box-shadow:0 4px 14px rgba(0,0,0,.08);box-shadow:0 4px 14px rgba(0,0,0,.08);-webkit-transition:-webkit-transform.15s,box-shadow.15s;-moz-transition:-moz-transform.15s,box-shadow.15s;-o-transition:-o-transform.15s,box-shadow.15s;transition:-webkit-transform.15s,box-shadow.15s;transition:-moz-transform.15s,box-shadow.15s;transition:-o-transform.15s,box-shadow.15s;transition:transform.15s,box-shadow.15s}.content-quote-btn.jsx-f66540924b342c54:hover{-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px);-webkit-box-shadow:0 8px 24px rgba(0,0,0,.12);-moz-box-shadow:0 8px 24px rgba(0,0,0,.12);box-shadow:0 8px 24px rgba(0,0,0,.12)}@media(max-width:767px){.content-hero-cover.jsx-f66540924b342c54{min-height:280px;max-height:320px}.content-hero-cover.jsx-f66540924b342c54 img.jsx-f66540924b342c54{min-height:280px;max-height:320px}.content-hero-inner.jsx-f66540924b342c54{padding:24px 20px}.content-hero-inner.jsx-f66540924b342c54 h1.jsx-f66540924b342c54{font-size:24px}.content-body-wrap.jsx-f66540924b342c54{padding:24px 16px 48px}.content-body.jsx-f66540924b342c54{padding:20px}}"
+                id: "8aa76e67b341728e",
+                children: '.content-detail-page.jsx-8aa76e67b341728e{min-height:100vh;background:#f8fafe}.content-shell.jsx-8aa76e67b341728e{width:100%}.content-hero-cover.jsx-8aa76e67b341728e{position:relative;width:100%;min-height:380px;max-height:440px;overflow:hidden}.content-hero-cover.jsx-8aa76e67b341728e img.jsx-8aa76e67b341728e{width:100%;height:100%;min-height:380px;max-height:440px;-o-object-fit:cover;object-fit:cover;display:block}.content-hero-overlay.jsx-8aa76e67b341728e{position:absolute;inset:0;background:-webkit-linear-gradient(top,rgba(0,0,0,.2)0%,rgba(0,0,0,.65)100%);background:-moz-linear-gradient(top,rgba(0,0,0,.2)0%,rgba(0,0,0,.65)100%);background:-o-linear-gradient(top,rgba(0,0,0,.2)0%,rgba(0,0,0,.65)100%);background:linear-gradient(to bottom,rgba(0,0,0,.2)0%,rgba(0,0,0,.65)100%)}.content-hero-inner.jsx-8aa76e67b341728e{position:absolute;bottom:0;left:0;right:0;padding:40px 48px;color:#fff}.content-hero-inner.jsx-8aa76e67b341728e h1.jsx-8aa76e67b341728e{margin:0;font-size:clamp(28px,5vw,42px);font-weight:800;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.3)}.content-hero-subtitle.jsx-8aa76e67b341728e{margin:10px 0 0;font-size:16px;color:rgba(255,255,255,.88);line-height:1.6;max-width:700px}.content-hero-inner.jsx-8aa76e67b341728e .breadcrumb.jsx-8aa76e67b341728e{margin-bottom:12px}.content-hero-inner.jsx-8aa76e67b341728e .breadcrumb.jsx-8aa76e67b341728e span.jsx-8aa76e67b341728e{color:rgba(255,255,255,.7)}.content-hero-inner.jsx-8aa76e67b341728e .breadcrumb.jsx-8aa76e67b341728e a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}.content-hero-inner.jsx-8aa76e67b341728e .breadcrumb.jsx-8aa76e67b341728e a:hover{text-decoration:underline}.content-header-nocover.jsx-8aa76e67b341728e{max-width:820px;margin:0 auto;padding:36px 20px 0}.content-header-nocover.jsx-8aa76e67b341728e h1.jsx-8aa76e67b341728e{margin:0;font-size:clamp(24px,4vw,36px);color:#111827;font-weight:800;line-height:1.2}.content-summary.jsx-8aa76e67b341728e{margin:12px 0 0;font-size:17px;color:#4b5563;line-height:1.7}.breadcrumb.jsx-8aa76e67b341728e{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;font-size:13px;color:#6b7280}.breadcrumb.jsx-8aa76e67b341728e a{color:#4f46e5;text-decoration:none;font-weight:600}.breadcrumb.jsx-8aa76e67b341728e a:hover{text-decoration:underline}.content-body-wrap.jsx-8aa76e67b341728e{max-width:900px;margin:0 auto;padding:48px 20px 72px}.content-body-modern.jsx-8aa76e67b341728e{position:relative;padding:48px 48px 48px 56px;background:#fff;border:1px solid#e5e7eb;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px;-webkit-box-shadow:0 4px 24px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.02);-moz-box-shadow:0 4px 24px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.02);box-shadow:0 4px 24px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.02);overflow:hidden}.content-accent-bar.jsx-8aa76e67b341728e{position:absolute;top:0;left:0;width:5px;height:100%;background:-webkit-linear-gradient(top,#f7e500 0%,#eab308 50%,#ca8a04 100%);background:-moz-linear-gradient(top,#f7e500 0%,#eab308 50%,#ca8a04 100%);background:-o-linear-gradient(top,#f7e500 0%,#eab308 50%,#ca8a04 100%);background:linear-gradient(180deg,#f7e500 0%,#eab308 50%,#ca8a04 100%);-webkit-border-radius:20px 0 0 20px;-moz-border-radius:20px 0 0 20px;border-radius:20px 0 0 20px}.content-rich-html.jsx-8aa76e67b341728e h1{font-size:30px;margin:0 0 20px;color:#0f172a;font-weight:800;letter-spacing:-.02em;line-height:1.3}.content-rich-html.jsx-8aa76e67b341728e h2{font-size:22px;margin:36px 0 14px;color:#1e293b;font-weight:700;letter-spacing:-.01em;padding-bottom:10px;border-bottom:2px solid#f1f5f9}.content-rich-html.jsx-8aa76e67b341728e h3{font-size:18px;margin:28px 0 10px;color:#334155;font-weight:700}.content-rich-html.jsx-8aa76e67b341728e p{margin:0 0 16px;font-size:15.5px;line-height:1.85;color:#475569}.content-rich-html.jsx-8aa76e67b341728e ul,.content-rich-html.jsx-8aa76e67b341728e ol{margin:0 0 20px;padding-left:0;list-style:none}.content-rich-html.jsx-8aa76e67b341728e li{position:relative;margin-bottom:10px;font-size:15px;line-height:1.75;color:#475569;padding-left:28px}.content-rich-html.jsx-8aa76e67b341728e li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;background:-webkit-linear-gradient(315deg,#f7e500,#eab308);background:-moz-linear-gradient(315deg,#f7e500,#eab308);background:-o-linear-gradient(315deg,#f7e500,#eab308);background:linear-gradient(135deg,#f7e500,#eab308);-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%}.content-rich-html.jsx-8aa76e67b341728e ol li::before{content:counter(li-counter);counter-increment:li-counter;background:#1e293b;color:#fff;font-size:11px;font-weight:700;width:20px;height:20px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;top:4px}.content-rich-html.jsx-8aa76e67b341728e ol{counter-reset:li-counter}.content-rich-html.jsx-8aa76e67b341728e img{max-width:100%;height:auto;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;margin:24px 0;-webkit-box-shadow:0 8px 32px rgba(0,0,0,.08);-moz-box-shadow:0 8px 32px rgba(0,0,0,.08);box-shadow:0 8px 32px rgba(0,0,0,.08)}.content-rich-html.jsx-8aa76e67b341728e blockquote{border-left:4px solid#f7e500;padding:16px 24px;margin:24px 0;background:-webkit-linear-gradient(315deg,#fefce8,#fef9c3);background:-moz-linear-gradient(315deg,#fefce8,#fef9c3);background:-o-linear-gradient(315deg,#fefce8,#fef9c3);background:linear-gradient(135deg,#fefce8,#fef9c3);-webkit-border-radius:0 12px 12px 0;-moz-border-radius:0 12px 12px 0;border-radius:0 12px 12px 0;color:#854d0e;font-style:italic;font-size:15px;line-height:1.7}.content-rich-html.jsx-8aa76e67b341728e a{color:#2563eb;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(37,99,235,.2);-webkit-transition:border-color.15s;-moz-transition:border-color.15s;-o-transition:border-color.15s;transition:border-color.15s}.content-rich-html.jsx-8aa76e67b341728e a:hover{border-bottom-color:#2563eb}.content-rich-html.jsx-8aa76e67b341728e strong{font-weight:700;color:#1e293b}.content-rich-html.jsx-8aa76e67b341728e table{width:100%;border-collapse:separate;border-spacing:0;margin:24px 0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;overflow:hidden;border:1px solid#e2e8f0}.content-rich-html.jsx-8aa76e67b341728e th{background:#1e293b;color:#fff;padding:12px 16px;text-align:left;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.content-rich-html.jsx-8aa76e67b341728e td{padding:12px 16px;text-align:left;font-size:14px;border-bottom:1px solid#f1f5f9;color:#475569}.content-rich-html.jsx-8aa76e67b341728e tr:last-child td{border-bottom:none}.content-rich-html.jsx-8aa76e67b341728e tr:hover td{background:#f8fafc}.content-rich-html.jsx-8aa76e67b341728e code{background:#f1f5f9;padding:2px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:13px;color:#e11d48;font-family:"JetBrains Mono",monospace}.content-rich-html.jsx-8aa76e67b341728e pre{background:#1e293b;color:#e2e8f0;padding:20px 24px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;overflow-x:auto;margin:20px 0;font-size:13px;line-height:1.7}.content-rich-html.jsx-8aa76e67b341728e hr{border:none;height:2px;background:-webkit-linear-gradient(left,transparent,#e2e8f0,transparent);background:-moz-linear-gradient(left,transparent,#e2e8f0,transparent);background:-o-linear-gradient(left,transparent,#e2e8f0,transparent);background:linear-gradient(90deg,transparent,#e2e8f0,transparent);margin:32px 0}.content-cta-wrap.jsx-8aa76e67b341728e{margin-top:36px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.content-cta-btn.jsx-8aa76e67b341728e{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px;padding:16px 36px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;font-size:16px;font-weight:700;text-decoration:none;background:#0f172a;color:#f7e500;-webkit-box-shadow:0 4px 16px rgba(15,23,42,.2);-moz-box-shadow:0 4px 16px rgba(15,23,42,.2);box-shadow:0 4px 16px rgba(15,23,42,.2);-webkit-transition:-webkit-transform.2s,box-shadow.2s;-moz-transition:-moz-transform.2s,box-shadow.2s;-o-transition:-o-transform.2s,box-shadow.2s;transition:-webkit-transform.2s,box-shadow.2s;transition:-moz-transform.2s,box-shadow.2s;transition:-o-transform.2s,box-shadow.2s;transition:transform.2s,box-shadow.2s}.content-cta-btn.jsx-8aa76e67b341728e:hover{-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 8px 32px rgba(15,23,42,.3);-moz-box-shadow:0 8px 32px rgba(15,23,42,.3);box-shadow:0 8px 32px rgba(15,23,42,.3)}@media(max-width:767px){.content-hero-cover.jsx-8aa76e67b341728e{min-height:280px;max-height:320px}.content-hero-cover.jsx-8aa76e67b341728e img.jsx-8aa76e67b341728e{min-height:280px;max-height:320px}.content-hero-inner.jsx-8aa76e67b341728e{padding:24px 20px}.content-hero-inner.jsx-8aa76e67b341728e h1.jsx-8aa76e67b341728e{font-size:24px}.content-body-wrap.jsx-8aa76e67b341728e{padding:28px 16px 48px}.content-body-modern.jsx-8aa76e67b341728e{padding:28px 24px 28px 32px;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px}.content-rich-html.jsx-8aa76e67b341728e h1{font-size:24px}.content-rich-html.jsx-8aa76e67b341728e h2{font-size:19px}}'
             })
         ]
     });
