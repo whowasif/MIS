@@ -16,16 +16,15 @@ const LogsPage = () => {
   const [isSuperAdmin, setIsSuperAdmin] = useState(false)
 
   useEffect(() => {
-    const token = document.cookie.split('; ').find((c) => c.startsWith('mis_admin_session='))?.split('=')[1]
-    if (!token) { router.replace('/portal-secure-99x/access'); return }
     // Check role
     fetch('/api/admin/me', { credentials: 'include' }).then(r => r.json()).then(data => {
+      if (data.success === false) { router.replace('/portal-secure-99x/access'); return }
       if (data.role === 'super_admin') setIsSuperAdmin(true)
     }).catch(() => {})
-    loadData(token)
+    loadData()
   }, [activeTab, days, eventFilter])
 
-  const loadData = async (token) => {
+  const loadData = async () => {
     setLoading(true)
 
     try {
