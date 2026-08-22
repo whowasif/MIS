@@ -165,26 +165,61 @@ const CareerPage = ({ jobs =[]  })=>{
                         className: "jsx-2bc1d9734c5f01ab" + " " + "career-hero",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                style: {
+                                    position: "absolute",
+                                    inset: 0,
+                                    zIndex: 0
+                                },
                                 className: "jsx-2bc1d9734c5f01ab" + " " + "hero-image-wrap",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: "/career.jpg",
                                         alt: "Join MIS Solution",
+                                        style: {
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "cover"
+                                        },
                                         className: "jsx-2bc1d9734c5f01ab" + " " + "hero-bg"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-2bc1d9734c5f01ab" + " " + "hero-overlay"
+                                        style: {
+                                            position: "absolute",
+                                            inset: 0,
+                                            background: "linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.65) 100%)",
+                                            zIndex: 1
+                                        },
+                                        className: "jsx-2bc1d9734c5f01ab"
                                     })
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                style: {
+                                    position: "relative",
+                                    zIndex: 2,
+                                    textAlign: "center",
+                                    padding: "48px 20px"
+                                },
                                 className: "jsx-2bc1d9734c5f01ab" + " " + "hero-content",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+                                        style: {
+                                            margin: 0,
+                                            fontSize: "clamp(28px, 5vw, 44px)",
+                                            color: "#fff",
+                                            fontWeight: 800
+                                        },
                                         className: "jsx-2bc1d9734c5f01ab",
                                         children: "Join Our Team"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                        style: {
+                                            margin: "12px auto 0",
+                                            maxWidth: "540px",
+                                            color: "rgba(255,255,255,0.9)",
+                                            fontSize: "16px",
+                                            lineHeight: 1.7
+                                        },
                                         className: "jsx-2bc1d9734c5f01ab",
                                         children: "Build your career with Bangladesh's growing IT solutions company. Explore open positions below."
                                     }),

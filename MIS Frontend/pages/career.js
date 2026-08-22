@@ -60,10 +60,10 @@ const CareerPage = ({ jobs = [] }) => {
 
       <main className="career-page">
         <section className="career-hero">
-          <div className="hero-image-wrap"><img src="/career.jpg" alt="Join MIS Solution" className="hero-bg" /><div className="hero-overlay" /></div>
-          <div className="hero-content">
-            <h1>Join Our Team</h1>
-            <p>Build your career with Bangladesh's growing IT solutions company. Explore open positions below.</p>
+          <div className="hero-image-wrap" style={{ position: 'absolute', inset: 0, zIndex: 0 }}><img src="/career.jpg" alt="Join MIS Solution" className="hero-bg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /><div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.65) 100%)', zIndex: 1 }} /></div>
+          <div className="hero-content" style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '48px 20px' }}>
+            <h1 style={{ margin: 0, fontSize: 'clamp(28px, 5vw, 44px)', color: '#fff', fontWeight: 800 }}>Join Our Team</h1>
+            <p style={{ margin: '12px auto 0', maxWidth: '540px', color: 'rgba(255,255,255,0.9)', fontSize: '16px', lineHeight: 1.7 }}>Build your career with Bangladesh's growing IT solutions company. Explore open positions below.</p>
             <p style={{ marginTop: '8px', color: 'rgba(255,255,255,0.75)', fontSize: '14px' }}>Send your resume: <a href="mailto:hr@missolution.com.bd" style={{ color: '#f7e500', textDecoration: 'none', fontWeight: 600 }}>hr@missolution.com.bd</a></p>
           </div>
         </section>
