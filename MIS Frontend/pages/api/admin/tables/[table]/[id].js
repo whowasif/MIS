@@ -4,6 +4,7 @@ import {
   MANAGED_TABLES,
   updateTableRow,
 } from '../../../../../lib/server/admin/tables'
+import { logAdminActivity } from '../../../../../lib/server/activity-log'
 
 export default async function handler(req, res) {
   const table = String(req.query?.table || '').toLowerCase()
@@ -22,6 +23,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ success: false, error: 'Invalid row id.' })
   }
 
+  const ipAddress = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || null
+
   try {
     if (req.method === 'PUT') {
       const values = req.body?.values || {}
@@ -35,6 +38,16 @@ export default async function handler(req, res) {
 
       const affectedRows = await updateTableRow({ table, id, values })
 
+      await logAdminActivity({
+        adminId: auth.payload?.id,
+        adminEmail: auth.payload?.email,
+        action: 'update',
+        resource: table,
+        resourceId: id,
+        details: JSON.stringify({ fields: Object.keys(values) }),
+        ipAddress,
+      })
+
       return res.status(200).json({
         success: true,
         affectedRows,
@@ -43,6 +56,15 @@ export default async function handler(req, res) {
 
     if (req.method === 'DELETE') {
       const affectedRows = await deleteTableRow({ table, id })
+
+      await logAdminActivity({
+        adminId: auth.payload?.id,
+        adminEmail: auth.payload?.email,
+        action: 'delete',
+        resource: table,
+        resourceId: id,
+        ipAddress,
+      })
 
       return res.status(200).json({
         success: true,

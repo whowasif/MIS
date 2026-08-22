@@ -1,4 +1,5 @@
 import { getDbPool } from '../../lib/server/db'
+import { logVisitorEvent } from '../../lib/server/activity-log'
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -57,6 +58,11 @@ export default async function handler(req, res) {
     )
 
     const services = [...digiServices, ...bizServices, ...maintServices]
+
+    // Log search event
+    const ipAddress = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || null
+    const userAgent = req.headers['user-agent'] || null
+    logVisitorEvent({ eventType: 'search', searchQuery: q, ipAddress, userAgent }).catch(() => {})
 
     return res.status(200).json({
       products: JSON.parse(JSON.stringify(products)),

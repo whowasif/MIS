@@ -178,7 +178,7 @@ const CareerPage = ({ jobs = [] }) => {
         .career-hero { position: relative; min-height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .hero-image-wrap { position: absolute; inset: 0; }
         .hero-bg { width: 100%; height: 100%; object-fit: cover; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%); }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 100%); }
         .hero-content { position: relative; z-index: 1; text-align: center; padding: 48px 20px; }
         .career-hero h1 { margin: 0; font-size: clamp(28px, 5vw, 44px); color: #fff; font-weight: 800; }
         .career-hero p { margin: 12px auto 0; max-width: 540px; color: rgba(255,255,255,0.9); font-size: 16px; line-height: 1.7; }

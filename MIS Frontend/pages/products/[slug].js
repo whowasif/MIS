@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -58,6 +58,17 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
   const videoUrl = String(product?.videoUrl || '').trim()
   const videoEmbedUrl = useMemo(() => getVideoEmbedUrl(videoUrl), [videoUrl])
   const showDirectVideo = videoUrl && !videoEmbedUrl && (videoUrl.startsWith('/') || isDirectVideoFile(videoUrl))
+
+  // Track product view
+  useEffect(() => {
+    if (product?.id) {
+      fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventType: 'product_view', productId: product.id, productName: product.name, page: `/products/${product.slug || product.id}` }),
+      }).catch(() => {})
+    }
+  }, [product?.id])
 
   const galleryImages = useMemo(() => {
     const fromProduct = Array.isArray(product?.images)

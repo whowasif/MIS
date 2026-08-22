@@ -36,8 +36,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _lib_auth_require_admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(322);
 /* harmony import */ var _lib_server_admin_tables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4353);
+/* harmony import */ var _lib_server_activity_log__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(174);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_lib_auth_require_admin__WEBPACK_IMPORTED_MODULE_0__]);
 _lib_auth_require_admin__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 async function handler(req, res) {
@@ -64,6 +66,7 @@ async function handler(req, res) {
             error: "Invalid row id."
         });
     }
+    const ipAddress = req.headers["x-forwarded-for"]?.split(",")[0]?.trim() || req.socket?.remoteAddress || null;
     try {
         if (req.method === "PUT") {
             const values = req.body?.values || {};
@@ -78,6 +81,17 @@ async function handler(req, res) {
                 id,
                 values
             });
+            await (0,_lib_server_activity_log__WEBPACK_IMPORTED_MODULE_2__/* .logAdminActivity */ .SC)({
+                adminId: auth.payload?.id,
+                adminEmail: auth.payload?.email,
+                action: "update",
+                resource: table,
+                resourceId: id,
+                details: JSON.stringify({
+                    fields: Object.keys(values)
+                }),
+                ipAddress
+            });
             return res.status(200).json({
                 success: true,
                 affectedRows
@@ -87,6 +101,14 @@ async function handler(req, res) {
             const affectedRows1 = await (0,_lib_server_admin_tables__WEBPACK_IMPORTED_MODULE_1__/* .deleteTableRow */ .JC)({
                 table,
                 id
+            });
+            await (0,_lib_server_activity_log__WEBPACK_IMPORTED_MODULE_2__/* .logAdminActivity */ .SC)({
+                adminId: auth.payload?.id,
+                adminEmail: auth.payload?.email,
+                action: "delete",
+                resource: table,
+                resourceId: id,
+                ipAddress
             });
             return res.status(200).json({
                 success: true,
@@ -122,7 +144,7 @@ __webpack_async_result__();
 var __webpack_require__ = require("../../../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [9563,322,6548,4353], () => (__webpack_exec__(3968)));
+var __webpack_exports__ = __webpack_require__.X(0, [9563,322,6548,174,4353], () => (__webpack_exec__(3968)));
 module.exports = __webpack_exports__;
 
 })();

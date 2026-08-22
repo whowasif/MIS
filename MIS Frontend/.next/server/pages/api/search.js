@@ -60,6 +60,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ handler)
 /* harmony export */ });
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6548);
+/* harmony import */ var _lib_server_activity_log__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(174);
+
 
 async function handler(req, res) {
     if (req.method !== "GET") {
@@ -123,6 +125,15 @@ async function handler(req, res) {
             ...bizServices,
             ...maintServices
         ];
+        // Log search event
+        const ipAddress = req.headers["x-forwarded-for"]?.split(",")[0]?.trim() || req.socket?.remoteAddress || null;
+        const userAgent = req.headers["user-agent"] || null;
+        (0,_lib_server_activity_log__WEBPACK_IMPORTED_MODULE_1__/* .logVisitorEvent */ .e9)({
+            eventType: "search",
+            searchQuery: q,
+            ipAddress,
+            userAgent
+        }).catch(()=>{});
         return res.status(200).json({
             products: JSON.parse(JSON.stringify(products)),
             services: JSON.parse(JSON.stringify(services))
@@ -145,7 +156,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(5122));
+var __webpack_exports__ = __webpack_require__.X(0, [174], () => (__webpack_exec__(5122)));
 module.exports = __webpack_exports__;
 
 })();

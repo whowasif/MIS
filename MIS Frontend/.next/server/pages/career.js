@@ -147,45 +147,45 @@ const CareerPage = ({ jobs =[]  })=>{
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                        className: "jsx-82d0b16973d78714",
+                        className: "jsx-2bc1d9734c5f01ab",
                         children: "Careers | MIS Solution"
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                         rel: "icon",
                         href: "/footer%20logo.png",
-                        className: "jsx-82d0b16973d78714"
+                        className: "jsx-2bc1d9734c5f01ab"
                     })
                 ]
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {}),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
-                className: "jsx-82d0b16973d78714" + " " + "career-page",
+                className: "jsx-2bc1d9734c5f01ab" + " " + "career-page",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-82d0b16973d78714" + " " + "career-hero",
+                        className: "jsx-2bc1d9734c5f01ab" + " " + "career-hero",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-82d0b16973d78714" + " " + "hero-image-wrap",
+                                className: "jsx-2bc1d9734c5f01ab" + " " + "hero-image-wrap",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: "/career.jpg",
                                         alt: "Join MIS Solution",
-                                        className: "jsx-82d0b16973d78714" + " " + "hero-bg"
+                                        className: "jsx-2bc1d9734c5f01ab" + " " + "hero-bg"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-82d0b16973d78714" + " " + "hero-overlay"
+                                        className: "jsx-2bc1d9734c5f01ab" + " " + "hero-overlay"
                                     })
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-82d0b16973d78714" + " " + "hero-content",
+                                className: "jsx-2bc1d9734c5f01ab" + " " + "hero-content",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                        className: "jsx-82d0b16973d78714",
+                                        className: "jsx-2bc1d9734c5f01ab",
                                         children: "Join Our Team"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-82d0b16973d78714",
+                                        className: "jsx-2bc1d9734c5f01ab",
                                         children: "Build your career with Bangladesh's growing IT solutions company. Explore open positions below."
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -194,7 +194,7 @@ const CareerPage = ({ jobs =[]  })=>{
                                             color: "rgba(255,255,255,0.75)",
                                             fontSize: "14px"
                                         },
-                                        className: "jsx-82d0b16973d78714",
+                                        className: "jsx-2bc1d9734c5f01ab",
                                         children: [
                                             "Send your resume: ",
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
@@ -204,7 +204,7 @@ const CareerPage = ({ jobs =[]  })=>{
                                                     textDecoration: "none",
                                                     fontWeight: 600
                                                 },
-                                                className: "jsx-82d0b16973d78714",
+                                                className: "jsx-2bc1d9734c5f01ab",
                                                 children: "hr@missolution.com.bd"
                                             })
                                         ]
@@ -214,16 +214,16 @@ const CareerPage = ({ jobs =[]  })=>{
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-82d0b16973d78714" + " " + "jobs-section",
+                        className: "jsx-2bc1d9734c5f01ab" + " " + "jobs-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-82d0b16973d78714" + " " + "jobs-container",
+                            className: "jsx-2bc1d9734c5f01ab" + " " + "jobs-container",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
-                                    className: "jsx-82d0b16973d78714" + " " + "section-heading",
+                                    className: "jsx-2bc1d9734c5f01ab" + " " + "section-heading",
                                     children: [
                                         "Open Positions ",
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                            className: "jsx-82d0b16973d78714",
+                                            className: "jsx-2bc1d9734c5f01ab",
                                             children: [
                                                 "(",
                                                 jobs.length,
@@ -233,66 +233,66 @@ const CareerPage = ({ jobs =[]  })=>{
                                     ]
                                 }),
                                 jobs.length === 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-82d0b16973d78714" + " " + "empty-state",
+                                    className: "jsx-2bc1d9734c5f01ab" + " " + "empty-state",
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-82d0b16973d78714",
+                                        className: "jsx-2bc1d9734c5f01ab",
                                         children: "No active openings right now. Check back soon!"
                                     })
                                 }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-82d0b16973d78714" + " " + "jobs-list",
+                                    className: "jsx-2bc1d9734c5f01ab" + " " + "jobs-list",
                                     children: jobs.map((job)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-82d0b16973d78714" + " " + "job-card",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "job-card",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-82d0b16973d78714" + " " + "job-card-left",
+                                                    className: "jsx-2bc1d9734c5f01ab" + " " + "job-card-left",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: job.title
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-82d0b16973d78714" + " " + "job-tags",
+                                                            className: "jsx-2bc1d9734c5f01ab" + " " + "job-tags",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-82d0b16973d78714" + " " + "tag type-tag",
+                                                                    className: "jsx-2bc1d9734c5f01ab" + " " + "tag type-tag",
                                                                     children: job.job_type
                                                                 }),
                                                                 job.department && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-82d0b16973d78714" + " " + "tag",
+                                                                    className: "jsx-2bc1d9734c5f01ab" + " " + "tag",
                                                                     children: job.department
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-82d0b16973d78714" + " " + "tag",
+                                                                    className: "jsx-2bc1d9734c5f01ab" + " " + "tag",
                                                                     children: job.location || "Dhaka"
                                                                 })
                                                             ]
                                                         }),
                                                         job.description && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                            className: "jsx-82d0b16973d78714" + " " + "job-summary",
+                                                            className: "jsx-2bc1d9734c5f01ab" + " " + "job-summary",
                                                             children: [
                                                                 job.description.substring(0, 150),
                                                                 job.description.length > 150 ? "..." : ""
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-82d0b16973d78714" + " " + "job-bottom-meta",
+                                                            className: "jsx-2bc1d9734c5f01ab" + " " + "job-bottom-meta",
                                                             children: [
                                                                 job.experience && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-82d0b16973d78714",
+                                                                    className: "jsx-2bc1d9734c5f01ab",
                                                                     children: [
                                                                         "Experience: ",
                                                                         job.experience
                                                                     ]
                                                                 }),
                                                                 job.salary_range && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-82d0b16973d78714",
+                                                                    className: "jsx-2bc1d9734c5f01ab",
                                                                     children: [
                                                                         "Salary: ",
                                                                         job.salary_range
                                                                     ]
                                                                 }),
                                                                 job.deadline && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-82d0b16973d78714",
+                                                                    className: "jsx-2bc1d9734c5f01ab",
                                                                     children: [
                                                                         "Deadline: ",
                                                                         formatDate(job.deadline)
@@ -303,16 +303,16 @@ const CareerPage = ({ jobs =[]  })=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-82d0b16973d78714" + " " + "job-card-right",
+                                                    className: "jsx-2bc1d9734c5f01ab" + " " + "job-card-right",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                             onClick: ()=>setViewJob(job),
-                                                            className: "jsx-82d0b16973d78714" + " " + "btn-outline-sm",
+                                                            className: "jsx-2bc1d9734c5f01ab" + " " + "btn-outline-sm",
                                                             children: "View Details"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                             onClick: ()=>setApplyJob(job),
-                                                            className: "jsx-82d0b16973d78714" + " " + "btn-primary-sm",
+                                                            className: "jsx-2bc1d9734c5f01ab" + " " + "btn-primary-sm",
                                                             children: "Apply Now"
                                                         })
                                                     ]
@@ -325,96 +325,96 @@ const CareerPage = ({ jobs =[]  })=>{
                     }),
                     viewJob && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                         onClick: ()=>setViewJob(null),
-                        className: "jsx-82d0b16973d78714" + " " + "modal-backdrop",
+                        className: "jsx-2bc1d9734c5f01ab" + " " + "modal-backdrop",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             onClick: (e)=>e.stopPropagation(),
-                            className: "jsx-82d0b16973d78714" + " " + "modal-panel",
+                            className: "jsx-2bc1d9734c5f01ab" + " " + "modal-panel",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                     onClick: ()=>setViewJob(null),
-                                    className: "jsx-82d0b16973d78714" + " " + "modal-close",
+                                    className: "jsx-2bc1d9734c5f01ab" + " " + "modal-close",
                                     children: "✕"
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-82d0b16973d78714" + " " + "modal-scroll",
+                                    className: "jsx-2bc1d9734c5f01ab" + " " + "modal-scroll",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-82d0b16973d78714" + " " + "detail-top",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "detail-top",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: viewJob.title
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-82d0b16973d78714" + " " + "tag type-tag",
+                                                    className: "jsx-2bc1d9734c5f01ab" + " " + "tag type-tag",
                                                     children: viewJob.job_type
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-82d0b16973d78714" + " " + "detail-grid",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "detail-grid",
                                             children: [
                                                 viewJob.department && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: "Department"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: viewJob.department
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: "Location"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: viewJob.location || "Dhaka, Bangladesh"
                                                         })
                                                     ]
                                                 }),
                                                 viewJob.experience && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: "Experience"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: viewJob.experience
                                                         })
                                                     ]
                                                 }),
                                                 viewJob.salary_range && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: "Salary"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: viewJob.salary_range
                                                         })
                                                     ]
                                                 }),
                                                 viewJob.deadline && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: "Deadline"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-82d0b16973d78714",
+                                                            className: "jsx-2bc1d9734c5f01ab",
                                                             children: formatDate(viewJob.deadline)
                                                         })
                                                     ]
@@ -422,75 +422,75 @@ const CareerPage = ({ jobs =[]  })=>{
                                             ]
                                         }),
                                         viewJob.description && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-82d0b16973d78714" + " " + "detail-section",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "detail-section",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: "About this Role"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: viewJob.description
                                                 })
                                             ]
                                         }),
                                         viewJob.requirements && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-82d0b16973d78714" + " " + "detail-section",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "detail-section",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: "Requirements"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: viewJob.requirements
                                                 })
                                             ]
                                         }),
                                         viewJob.responsibilities && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-82d0b16973d78714" + " " + "detail-section",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "detail-section",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: "Responsibilities"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: viewJob.responsibilities
                                                 })
                                             ]
                                         }),
                                         viewJob.benefits && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-82d0b16973d78714" + " " + "detail-section",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "detail-section",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: "Benefits"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: viewJob.benefits
                                                 })
                                             ]
                                         }),
                                         viewJob.full_description && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-82d0b16973d78714" + " " + "detail-section",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "detail-section",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                    className: "jsx-82d0b16973d78714",
+                                                    className: "jsx-2bc1d9734c5f01ab",
                                                     children: "Full Details"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                     dangerouslySetInnerHTML: {
                                                         __html: viewJob.full_description
                                                     },
-                                                    className: "jsx-82d0b16973d78714"
+                                                    className: "jsx-2bc1d9734c5f01ab"
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                             onClick: openApplyFromDetail,
-                                            className: "jsx-82d0b16973d78714" + " " + "btn-primary-full",
+                                            className: "jsx-2bc1d9734c5f01ab" + " " + "btn-primary-full",
                                             children: "Apply for this Position"
                                         })
                                     ]
@@ -500,31 +500,31 @@ const CareerPage = ({ jobs =[]  })=>{
                     }),
                     applyJob && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                         onClick: ()=>!submitting && closeApply(),
-                        className: "jsx-82d0b16973d78714" + " " + "modal-backdrop",
+                        className: "jsx-2bc1d9734c5f01ab" + " " + "modal-backdrop",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             onClick: (e)=>e.stopPropagation(),
-                            className: "jsx-82d0b16973d78714" + " " + "modal-panel",
+                            className: "jsx-2bc1d9734c5f01ab" + " " + "modal-panel",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                     onClick: closeApply,
-                                    className: "jsx-82d0b16973d78714" + " " + "modal-close",
+                                    className: "jsx-2bc1d9734c5f01ab" + " " + "modal-close",
                                     children: "✕"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-82d0b16973d78714" + " " + "modal-scroll",
+                                    className: "jsx-2bc1d9734c5f01ab" + " " + "modal-scroll",
                                     children: submitted ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-82d0b16973d78714" + " " + "success-msg",
+                                        className: "jsx-2bc1d9734c5f01ab" + " " + "success-msg",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                className: "jsx-82d0b16973d78714",
+                                                className: "jsx-2bc1d9734c5f01ab",
                                                 children: "Application Submitted!"
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                className: "jsx-82d0b16973d78714",
+                                                className: "jsx-2bc1d9734c5f01ab",
                                                 children: [
                                                     "Thank you for applying to ",
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-82d0b16973d78714",
+                                                        className: "jsx-2bc1d9734c5f01ab",
                                                         children: applyJob.title
                                                     }),
                                                     ". We'll be in touch."
@@ -532,14 +532,14 @@ const CareerPage = ({ jobs =[]  })=>{
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                 onClick: closeApply,
-                                                className: "jsx-82d0b16973d78714" + " " + "btn-primary-full",
+                                                className: "jsx-2bc1d9734c5f01ab" + " " + "btn-primary-full",
                                                 children: "Close"
                                             })
                                         ]
                                     }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                                         children: [
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
-                                                className: "jsx-82d0b16973d78714" + " " + "apply-title",
+                                                className: "jsx-2bc1d9734c5f01ab" + " " + "apply-title",
                                                 children: [
                                                     "Apply: ",
                                                     applyJob.title
@@ -547,13 +547,13 @@ const CareerPage = ({ jobs =[]  })=>{
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
                                                 onSubmit: handleApply,
-                                                className: "jsx-82d0b16973d78714" + " " + "apply-form",
+                                                className: "jsx-2bc1d9734c5f01ab" + " " + "apply-form",
                                                 children: [
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-82d0b16973d78714" + " " + "form-field",
+                                                        className: "jsx-2bc1d9734c5f01ab" + " " + "form-field",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                className: "jsx-82d0b16973d78714",
+                                                                className: "jsx-2bc1d9734c5f01ab",
                                                                 children: "Full Name *"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -564,18 +564,18 @@ const CareerPage = ({ jobs =[]  })=>{
                                                                             name: e.target.value
                                                                         })),
                                                                 required: true,
-                                                                className: "jsx-82d0b16973d78714"
+                                                                className: "jsx-2bc1d9734c5f01ab"
                                                             })
                                                         ]
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-82d0b16973d78714" + " " + "form-row",
+                                                        className: "jsx-2bc1d9734c5f01ab" + " " + "form-row",
                                                         children: [
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                className: "jsx-82d0b16973d78714" + " " + "form-field",
+                                                                className: "jsx-2bc1d9734c5f01ab" + " " + "form-field",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                        className: "jsx-82d0b16973d78714",
+                                                                        className: "jsx-2bc1d9734c5f01ab",
                                                                         children: "Email *"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -586,15 +586,15 @@ const CareerPage = ({ jobs =[]  })=>{
                                                                                     email: e.target.value
                                                                                 })),
                                                                         required: true,
-                                                                        className: "jsx-82d0b16973d78714"
+                                                                        className: "jsx-2bc1d9734c5f01ab"
                                                                     })
                                                                 ]
                                                             }),
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                className: "jsx-82d0b16973d78714" + " " + "form-field",
+                                                                className: "jsx-2bc1d9734c5f01ab" + " " + "form-field",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                        className: "jsx-82d0b16973d78714",
+                                                                        className: "jsx-2bc1d9734c5f01ab",
                                                                         children: "Phone"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -604,17 +604,17 @@ const CareerPage = ({ jobs =[]  })=>{
                                                                                     ...p,
                                                                                     phone: e.target.value
                                                                                 })),
-                                                                        className: "jsx-82d0b16973d78714"
+                                                                        className: "jsx-2bc1d9734c5f01ab"
                                                                     })
                                                                 ]
                                                             })
                                                         ]
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-82d0b16973d78714" + " " + "form-field",
+                                                        className: "jsx-2bc1d9734c5f01ab" + " " + "form-field",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                className: "jsx-82d0b16973d78714",
+                                                                className: "jsx-2bc1d9734c5f01ab",
                                                                 children: "Cover Letter"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("textarea", {
@@ -625,15 +625,15 @@ const CareerPage = ({ jobs =[]  })=>{
                                                                             coverLetter: e.target.value
                                                                         })),
                                                                 placeholder: "Why are you a good fit?",
-                                                                className: "jsx-82d0b16973d78714"
+                                                                className: "jsx-2bc1d9734c5f01ab"
                                                             })
                                                         ]
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-82d0b16973d78714" + " " + "form-field",
+                                                        className: "jsx-2bc1d9734c5f01ab" + " " + "form-field",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                className: "jsx-82d0b16973d78714",
+                                                                className: "jsx-2bc1d9734c5f01ab",
                                                                 children: "Resume / CV * (PDF or DOCX, max 5MB)"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -641,18 +641,18 @@ const CareerPage = ({ jobs =[]  })=>{
                                                                 accept: ".pdf,.doc,.docx",
                                                                 onChange: (e)=>setFile(e.target.files[0] || null),
                                                                 required: true,
-                                                                className: "jsx-82d0b16973d78714"
+                                                                className: "jsx-2bc1d9734c5f01ab"
                                                             })
                                                         ]
                                                     }),
                                                     error && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                        className: "jsx-82d0b16973d78714" + " " + "form-error",
+                                                        className: "jsx-2bc1d9734c5f01ab" + " " + "form-error",
                                                         children: error
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                         type: "submit",
                                                         disabled: submitting,
-                                                        className: "jsx-82d0b16973d78714" + " " + "btn-primary-full",
+                                                        className: "jsx-2bc1d9734c5f01ab" + " " + "btn-primary-full",
                                                         children: submitting ? "Submitting..." : "Submit Application"
                                                     })
                                                 ]
@@ -667,8 +667,8 @@ const CareerPage = ({ jobs =[]  })=>{
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "82d0b16973d78714",
-                children: '.career-page.jsx-82d0b16973d78714{min-height:100vh;background:#f8fafe}.career-hero.jsx-82d0b16973d78714{position:relative;min-height:300px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow:hidden}.hero-image-wrap.jsx-82d0b16973d78714{position:absolute;inset:0}.hero-bg.jsx-82d0b16973d78714{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.hero-overlay.jsx-82d0b16973d78714{position:absolute;inset:0;background:-webkit-linear-gradient(top,rgba(0,0,0,.6)0%,rgba(0,0,0,.4)100%);background:-moz-linear-gradient(top,rgba(0,0,0,.6)0%,rgba(0,0,0,.4)100%);background:-o-linear-gradient(top,rgba(0,0,0,.6)0%,rgba(0,0,0,.4)100%);background:linear-gradient(180deg,rgba(0,0,0,.6)0%,rgba(0,0,0,.4)100%)}.hero-content.jsx-82d0b16973d78714{position:relative;z-index:1;text-align:center;padding:48px 20px}.career-hero.jsx-82d0b16973d78714 h1.jsx-82d0b16973d78714{margin:0;font-size:clamp(28px,5vw,44px);color:#fff;font-weight:800}.career-hero.jsx-82d0b16973d78714 p.jsx-82d0b16973d78714{margin:12px auto 0;max-width:540px;color:rgba(255,255,255,.9);font-size:16px;line-height:1.7}.jobs-section.jsx-82d0b16973d78714{padding:40px 20px 64px}.jobs-container.jsx-82d0b16973d78714{max-width:860px;margin:0 auto}.section-heading.jsx-82d0b16973d78714{margin:0 0 24px;font-size:22px;color:#111827}.section-heading.jsx-82d0b16973d78714 span.jsx-82d0b16973d78714{font-weight:400;color:#6b7280;font-size:16px}.empty-state.jsx-82d0b16973d78714{text-align:center;padding:48px;border:1px dashed#d1d5db;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;color:#6b7280}.jobs-list.jsx-82d0b16973d78714{display:grid;gap:14px}.job-card.jsx-82d0b16973d78714{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;gap:20px;border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;padding:22px 24px;-webkit-transition:border-color.15s,box-shadow.15s;-moz-transition:border-color.15s,box-shadow.15s;-o-transition:border-color.15s,box-shadow.15s;transition:border-color.15s,box-shadow.15s}.job-card.jsx-82d0b16973d78714:hover{border-color:#c7d2fe;-webkit-box-shadow:0 4px 16px rgba(0,0,0,.04);-moz-box-shadow:0 4px 16px rgba(0,0,0,.04);box-shadow:0 4px 16px rgba(0,0,0,.04)}.job-card-left.jsx-82d0b16973d78714{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;min-width:0}.job-card-left.jsx-82d0b16973d78714 h3.jsx-82d0b16973d78714{margin:0 0 10px;font-size:18px;color:#111827;font-weight:700}.job-tags.jsx-82d0b16973d78714{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:6px;margin-bottom:10px}.tag.jsx-82d0b16973d78714{padding:3px 10px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:12px;font-weight:600;background:#f3f4f6;color:#4b5563}.type-tag.jsx-82d0b16973d78714{background:#eff6ff;color:#1d4ed8}.job-summary.jsx-82d0b16973d78714{margin:0 0 10px;font-size:14px;color:#4b5563;line-height:1.6}.job-bottom-meta.jsx-82d0b16973d78714{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:14px;font-size:12px;color:#9ca3af}.job-card-right.jsx-82d0b16973d78714{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.btn-outline-sm.jsx-82d0b16973d78714{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 16px;background:#fff;color:#374151;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}.btn-outline-sm.jsx-82d0b16973d78714:hover{background:#f9fafb;border-color:#9ca3af}.btn-primary-sm.jsx-82d0b16973d78714{border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 16px;background:#4f46e5;color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}.btn-primary-sm.jsx-82d0b16973d78714:hover{background:#4338ca}.modal-backdrop.jsx-82d0b16973d78714{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1200;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:20px}.modal-panel.jsx-82d0b16973d78714{position:relative;width:100%;max-width:620px;max-height:90vh;background:#fff;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden}.modal-close.jsx-82d0b16973d78714{position:absolute;top:16px;right:16px;border:none;background:transparent;font-size:22px;cursor:pointer;color:#6b7280;z-index:2}.modal-scroll.jsx-82d0b16973d78714{padding:32px;overflow-y:auto;max-height:90vh}.detail-top.jsx-82d0b16973d78714{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;margin-bottom:20px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.detail-top.jsx-82d0b16973d78714 h2.jsx-82d0b16973d78714{margin:0;font-size:22px;color:#111827}.detail-grid.jsx-82d0b16973d78714{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;padding:16px;background:#f9fafb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;border:1px solid#f3f4f6}.detail-grid.jsx-82d0b16973d78714 div.jsx-82d0b16973d78714{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:2px}.detail-grid.jsx-82d0b16973d78714 span.jsx-82d0b16973d78714{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:600}.detail-grid.jsx-82d0b16973d78714 strong.jsx-82d0b16973d78714{font-size:14px;color:#111827}.detail-section.jsx-82d0b16973d78714{margin-bottom:20px}.detail-section.jsx-82d0b16973d78714 h4.jsx-82d0b16973d78714{margin:0 0 8px;font-size:14px;color:#111827;font-weight:700;text-transform:uppercase;letter-spacing:.03em}.detail-section.jsx-82d0b16973d78714 p.jsx-82d0b16973d78714{margin:0;font-size:14px;color:#374151;line-height:1.7;white-space:pre-wrap}.btn-primary-full.jsx-82d0b16973d78714{width:100%;height:46px;border:none;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#4f46e5;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:16px}.btn-primary-full.jsx-82d0b16973d78714:hover:not(:disabled){background:#4338ca}.btn-primary-full.jsx-82d0b16973d78714:disabled{opacity:.6;cursor:wait}.apply-title.jsx-82d0b16973d78714{margin:0 0 20px;font-size:20px;color:#111827}.apply-form.jsx-82d0b16973d78714{display:grid;gap:14px}.form-field.jsx-82d0b16973d78714{display:grid;gap:5px}.form-row.jsx-82d0b16973d78714{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-field.jsx-82d0b16973d78714 label.jsx-82d0b16973d78714{font-size:13px;font-weight:600;color:#374151}.form-field.jsx-82d0b16973d78714 input.jsx-82d0b16973d78714,.form-field.jsx-82d0b16973d78714 textarea.jsx-82d0b16973d78714{width:100%;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:10px 12px;font:inherit;font-size:14px}.form-field.jsx-82d0b16973d78714 input.jsx-82d0b16973d78714:focus,.form-field.jsx-82d0b16973d78714 textarea.jsx-82d0b16973d78714:focus{outline:none;border-color:#4f46e5;-webkit-box-shadow:0 0 0 3px rgba(79,70,229,.1);-moz-box-shadow:0 0 0 3px rgba(79,70,229,.1);box-shadow:0 0 0 3px rgba(79,70,229,.1)}.form-field.jsx-82d0b16973d78714 input[type="file"].jsx-82d0b16973d78714{padding:8px}.form-error.jsx-82d0b16973d78714{margin:0;color:#dc2626;font-size:13px;font-weight:600}.success-msg.jsx-82d0b16973d78714{text-align:center;padding:20px 0}.success-msg.jsx-82d0b16973d78714 h2.jsx-82d0b16973d78714{margin:0 0 10px;color:#059669;font-size:20px}.success-msg.jsx-82d0b16973d78714 p.jsx-82d0b16973d78714{margin:0 0 20px;color:#4b5563}@media(max-width:640px){.job-card.jsx-82d0b16973d78714{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.job-card-right.jsx-82d0b16973d78714{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row;width:100%}.form-row.jsx-82d0b16973d78714{grid-template-columns:1fr}.detail-grid.jsx-82d0b16973d78714{grid-template-columns:1fr 1fr}}'
+                id: "2bc1d9734c5f01ab",
+                children: '.career-page.jsx-2bc1d9734c5f01ab{min-height:100vh;background:#f8fafe}.career-hero.jsx-2bc1d9734c5f01ab{position:relative;min-height:300px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow:hidden}.hero-image-wrap.jsx-2bc1d9734c5f01ab{position:absolute;inset:0}.hero-bg.jsx-2bc1d9734c5f01ab{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.hero-overlay.jsx-2bc1d9734c5f01ab{position:absolute;inset:0;background:-webkit-linear-gradient(top,rgba(0,0,0,.75)0%,rgba(0,0,0,.6)100%);background:-moz-linear-gradient(top,rgba(0,0,0,.75)0%,rgba(0,0,0,.6)100%);background:-o-linear-gradient(top,rgba(0,0,0,.75)0%,rgba(0,0,0,.6)100%);background:linear-gradient(180deg,rgba(0,0,0,.75)0%,rgba(0,0,0,.6)100%)}.hero-content.jsx-2bc1d9734c5f01ab{position:relative;z-index:1;text-align:center;padding:48px 20px}.career-hero.jsx-2bc1d9734c5f01ab h1.jsx-2bc1d9734c5f01ab{margin:0;font-size:clamp(28px,5vw,44px);color:#fff;font-weight:800}.career-hero.jsx-2bc1d9734c5f01ab p.jsx-2bc1d9734c5f01ab{margin:12px auto 0;max-width:540px;color:rgba(255,255,255,.9);font-size:16px;line-height:1.7}.jobs-section.jsx-2bc1d9734c5f01ab{padding:40px 20px 64px}.jobs-container.jsx-2bc1d9734c5f01ab{max-width:860px;margin:0 auto}.section-heading.jsx-2bc1d9734c5f01ab{margin:0 0 24px;font-size:22px;color:#111827}.section-heading.jsx-2bc1d9734c5f01ab span.jsx-2bc1d9734c5f01ab{font-weight:400;color:#6b7280;font-size:16px}.empty-state.jsx-2bc1d9734c5f01ab{text-align:center;padding:48px;border:1px dashed#d1d5db;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;color:#6b7280}.jobs-list.jsx-2bc1d9734c5f01ab{display:grid;gap:14px}.job-card.jsx-2bc1d9734c5f01ab{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;gap:20px;border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;padding:22px 24px;-webkit-transition:border-color.15s,box-shadow.15s;-moz-transition:border-color.15s,box-shadow.15s;-o-transition:border-color.15s,box-shadow.15s;transition:border-color.15s,box-shadow.15s}.job-card.jsx-2bc1d9734c5f01ab:hover{border-color:#c7d2fe;-webkit-box-shadow:0 4px 16px rgba(0,0,0,.04);-moz-box-shadow:0 4px 16px rgba(0,0,0,.04);box-shadow:0 4px 16px rgba(0,0,0,.04)}.job-card-left.jsx-2bc1d9734c5f01ab{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;min-width:0}.job-card-left.jsx-2bc1d9734c5f01ab h3.jsx-2bc1d9734c5f01ab{margin:0 0 10px;font-size:18px;color:#111827;font-weight:700}.job-tags.jsx-2bc1d9734c5f01ab{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:6px;margin-bottom:10px}.tag.jsx-2bc1d9734c5f01ab{padding:3px 10px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:12px;font-weight:600;background:#f3f4f6;color:#4b5563}.type-tag.jsx-2bc1d9734c5f01ab{background:#eff6ff;color:#1d4ed8}.job-summary.jsx-2bc1d9734c5f01ab{margin:0 0 10px;font-size:14px;color:#4b5563;line-height:1.6}.job-bottom-meta.jsx-2bc1d9734c5f01ab{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:14px;font-size:12px;color:#9ca3af}.job-card-right.jsx-2bc1d9734c5f01ab{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.btn-outline-sm.jsx-2bc1d9734c5f01ab{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 16px;background:#fff;color:#374151;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}.btn-outline-sm.jsx-2bc1d9734c5f01ab:hover{background:#f9fafb;border-color:#9ca3af}.btn-primary-sm.jsx-2bc1d9734c5f01ab{border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 16px;background:#4f46e5;color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}.btn-primary-sm.jsx-2bc1d9734c5f01ab:hover{background:#4338ca}.modal-backdrop.jsx-2bc1d9734c5f01ab{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1200;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:20px}.modal-panel.jsx-2bc1d9734c5f01ab{position:relative;width:100%;max-width:620px;max-height:90vh;background:#fff;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden}.modal-close.jsx-2bc1d9734c5f01ab{position:absolute;top:16px;right:16px;border:none;background:transparent;font-size:22px;cursor:pointer;color:#6b7280;z-index:2}.modal-scroll.jsx-2bc1d9734c5f01ab{padding:32px;overflow-y:auto;max-height:90vh}.detail-top.jsx-2bc1d9734c5f01ab{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;margin-bottom:20px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.detail-top.jsx-2bc1d9734c5f01ab h2.jsx-2bc1d9734c5f01ab{margin:0;font-size:22px;color:#111827}.detail-grid.jsx-2bc1d9734c5f01ab{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;padding:16px;background:#f9fafb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;border:1px solid#f3f4f6}.detail-grid.jsx-2bc1d9734c5f01ab div.jsx-2bc1d9734c5f01ab{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:2px}.detail-grid.jsx-2bc1d9734c5f01ab span.jsx-2bc1d9734c5f01ab{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:600}.detail-grid.jsx-2bc1d9734c5f01ab strong.jsx-2bc1d9734c5f01ab{font-size:14px;color:#111827}.detail-section.jsx-2bc1d9734c5f01ab{margin-bottom:20px}.detail-section.jsx-2bc1d9734c5f01ab h4.jsx-2bc1d9734c5f01ab{margin:0 0 8px;font-size:14px;color:#111827;font-weight:700;text-transform:uppercase;letter-spacing:.03em}.detail-section.jsx-2bc1d9734c5f01ab p.jsx-2bc1d9734c5f01ab{margin:0;font-size:14px;color:#374151;line-height:1.7;white-space:pre-wrap}.btn-primary-full.jsx-2bc1d9734c5f01ab{width:100%;height:46px;border:none;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#4f46e5;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:16px}.btn-primary-full.jsx-2bc1d9734c5f01ab:hover:not(:disabled){background:#4338ca}.btn-primary-full.jsx-2bc1d9734c5f01ab:disabled{opacity:.6;cursor:wait}.apply-title.jsx-2bc1d9734c5f01ab{margin:0 0 20px;font-size:20px;color:#111827}.apply-form.jsx-2bc1d9734c5f01ab{display:grid;gap:14px}.form-field.jsx-2bc1d9734c5f01ab{display:grid;gap:5px}.form-row.jsx-2bc1d9734c5f01ab{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-field.jsx-2bc1d9734c5f01ab label.jsx-2bc1d9734c5f01ab{font-size:13px;font-weight:600;color:#374151}.form-field.jsx-2bc1d9734c5f01ab input.jsx-2bc1d9734c5f01ab,.form-field.jsx-2bc1d9734c5f01ab textarea.jsx-2bc1d9734c5f01ab{width:100%;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:10px 12px;font:inherit;font-size:14px}.form-field.jsx-2bc1d9734c5f01ab input.jsx-2bc1d9734c5f01ab:focus,.form-field.jsx-2bc1d9734c5f01ab textarea.jsx-2bc1d9734c5f01ab:focus{outline:none;border-color:#4f46e5;-webkit-box-shadow:0 0 0 3px rgba(79,70,229,.1);-moz-box-shadow:0 0 0 3px rgba(79,70,229,.1);box-shadow:0 0 0 3px rgba(79,70,229,.1)}.form-field.jsx-2bc1d9734c5f01ab input[type="file"].jsx-2bc1d9734c5f01ab{padding:8px}.form-error.jsx-2bc1d9734c5f01ab{margin:0;color:#dc2626;font-size:13px;font-weight:600}.success-msg.jsx-2bc1d9734c5f01ab{text-align:center;padding:20px 0}.success-msg.jsx-2bc1d9734c5f01ab h2.jsx-2bc1d9734c5f01ab{margin:0 0 10px;color:#059669;font-size:20px}.success-msg.jsx-2bc1d9734c5f01ab p.jsx-2bc1d9734c5f01ab{margin:0 0 20px;color:#4b5563}@media(max-width:640px){.job-card.jsx-2bc1d9734c5f01ab{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.job-card-right.jsx-2bc1d9734c5f01ab{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row;width:100%}.form-row.jsx-2bc1d9734c5f01ab{grid-template-columns:1fr}.detail-grid.jsx-2bc1d9734c5f01ab{grid-template-columns:1fr 1fr}}'
             })
         ]
     });

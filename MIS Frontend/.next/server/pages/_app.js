@@ -21,10 +21,12 @@ var jsx_runtime_ = __webpack_require__(997);
 // EXTERNAL MODULE: external "next/head"
 var head_ = __webpack_require__(968);
 var head_default = /*#__PURE__*/__webpack_require__.n(head_);
-// EXTERNAL MODULE: external "next-auth/react"
-var react_ = __webpack_require__(1649);
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(6689);
+// EXTERNAL MODULE: external "next/router"
+var router_ = __webpack_require__(1853);
+// EXTERNAL MODULE: external "next-auth/react"
+var react_ = __webpack_require__(1649);
 // EXTERNAL MODULE: external "next-intl"
 var external_next_intl_ = __webpack_require__(503);
 ;// CONCATENATED MODULE: ./global-context.js
@@ -88,6 +90,36 @@ const useGlobalContext = ()=>{
 
 
 
+
+
+function PageViewTracker() {
+    const router = (0,router_.useRouter)();
+    (0,external_react_.useEffect)(()=>{
+        const trackPageView = (url)=>{
+            // Don't track admin/api pages
+            if (url.startsWith("/portal-secure") || url.startsWith("/api/")) return;
+            fetch("/api/track", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    eventType: "page_view",
+                    page: url
+                })
+            }).catch(()=>{});
+        };
+        // Track initial page load
+        trackPageView(router.asPath);
+        // Track subsequent navigations
+        const handleRouteChange = (url)=>trackPageView(url);
+        router.events.on("routeChangeComplete", handleRouteChange);
+        return ()=>router.events.off("routeChangeComplete", handleRouteChange);
+    }, [
+        router
+    ]);
+    return null;
+}
 function MyApp({ Component , pageProps: { session , ...pageProps }  }) {
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
         children: [
@@ -108,10 +140,13 @@ function MyApp({ Component , pageProps: { session , ...pageProps }  }) {
                 children: /*#__PURE__*/ jsx_runtime_.jsx(external_next_intl_.NextIntlProvider, {
                     messages: pageProps?.messages,
                     locale: pageProps?.locale,
-                    children: /*#__PURE__*/ jsx_runtime_.jsx(GlobalProvider, {
-                        children: /*#__PURE__*/ jsx_runtime_.jsx(Component, {
-                            ...pageProps
-                        })
+                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(GlobalProvider, {
+                        children: [
+                            /*#__PURE__*/ jsx_runtime_.jsx(PageViewTracker, {}),
+                            /*#__PURE__*/ jsx_runtime_.jsx(Component, {
+                                ...pageProps
+                            })
+                        ]
                     })
                 })
             })
@@ -140,6 +175,13 @@ module.exports = require("next-intl");
 /***/ ((module) => {
 
 module.exports = require("next/head");
+
+/***/ }),
+
+/***/ 1853:
+/***/ ((module) => {
+
+module.exports = require("next/router");
 
 /***/ }),
 

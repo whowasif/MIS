@@ -79,6 +79,25 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
         videoUrl
     ]);
     const showDirectVideo = videoUrl && !videoEmbedUrl && (videoUrl.startsWith("/") || isDirectVideoFile(videoUrl));
+    // Track product view
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
+        if (product?.id) {
+            fetch("/api/track", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    eventType: "product_view",
+                    productId: product.id,
+                    productName: product.name,
+                    page: `/products/${product.slug || product.id}`
+                })
+            }).catch(()=>{});
+        }
+    }, [
+        product?.id
+    ]);
     const galleryImages = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>{
         const fromProduct = Array.isArray(product?.images) ? product.images.filter(Boolean) : [];
         if (fromProduct.length > 0) return fromProduct;

@@ -5,6 +5,7 @@ import {
   getTableRows,
   MANAGED_TABLES,
 } from '../../../../../lib/server/admin/tables'
+import { logAdminActivity } from '../../../../../lib/server/activity-log'
 
 const toJsonSafe = (value) => {
   if (typeof value === 'bigint') return value.toString()
@@ -56,6 +57,17 @@ export default async function handler(req, res) {
       }
 
       const insertedId = await createTableRow({ table, values })
+
+      const ipAddress = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || null
+      await logAdminActivity({
+        adminId: auth.payload?.id,
+        adminEmail: auth.payload?.email,
+        action: 'create',
+        resource: table,
+        resourceId: insertedId,
+        details: JSON.stringify({ fields: Object.keys(values) }),
+        ipAddress,
+      })
 
       return res.status(200).json({
         success: true,
