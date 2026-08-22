@@ -8,7 +8,7 @@ import { managedTableConfig } from '../../lib/admin/managed-tables'
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 
-const RICH_TEXT_TABLES = ['digi_services', 'bus_corp_sol', 'service_maintenance', 'page_contents', 'career_posts']
+const RICH_TEXT_TABLES = ['digi_services', 'bus_corp_sol', 'service_maintenance', 'page_contents', 'career_posts', 'client_projects']
 const RICH_TEXT_COLUMN = 'full_description'
 
 const quillModules = {
