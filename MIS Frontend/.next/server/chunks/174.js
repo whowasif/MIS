@@ -70,6 +70,10 @@ exports.modules = {
             referrer || null,
             customerId || null
         ]);
+        // Auto-cleanup: delete visitor logs older than 90 days (runs ~1% of the time to avoid overhead)
+        if (Math.random() < 0.01) {
+            db.query("DELETE FROM visitor_logs WHERE created_at < DATE_SUB(NOW(), INTERVAL 90 DAY)").catch(()=>{});
+        }
     } catch (e) {
         console.error("Visitor log error:", e.message);
     }
