@@ -13,10 +13,15 @@ const LogsPage = () => {
   const [loading, setLoading] = useState(true)
   const [days, setDays] = useState(7)
   const [eventFilter, setEventFilter] = useState('')
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false)
 
   useEffect(() => {
     const token = document.cookie.split('; ').find((c) => c.startsWith('mis_admin_session='))?.split('=')[1]
     if (!token) { router.replace('/portal-secure-99x/access'); return }
+    // Check role
+    fetch('/api/admin/me', { credentials: 'include' }).then(r => r.json()).then(data => {
+      if (data.role === 'super_admin') setIsSuperAdmin(true)
+    }).catch(() => {})
     loadData(token)
   }, [activeTab, days, eventFilter])
 
@@ -54,7 +59,7 @@ const LogsPage = () => {
 
           {/* Tabs */}
           <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', background: '#fff', padding: '4px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-            {[{ key: 'stats', label: 'Overview' }, { key: 'visitor', label: 'Visitor Logs' }, { key: 'admin', label: 'Admin Activity' }].map((tab) => (
+            {[{ key: 'stats', label: 'Overview' }, { key: 'visitor', label: 'Visitor Logs' }, ...(isSuperAdmin ? [{ key: 'admin', label: 'Admin Activity' }] : [])].map((tab) => (
               <button key={tab.key} onClick={() => setActiveTab(tab.key)} style={{ flex: 1, padding: '10px 16px', borderRadius: '8px', border: 'none', background: activeTab === tab.key ? '#1e293b' : 'transparent', color: activeTab === tab.key ? '#fff' : '#64748b', fontWeight: 600, fontSize: '13px', cursor: 'pointer', transition: 'all 0.15s' }}>{tab.label}</button>
             ))}
           </div>

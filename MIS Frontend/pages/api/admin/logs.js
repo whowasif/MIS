@@ -15,6 +15,10 @@ export default async function handler(req, res) {
     const { type = 'visitor', limit = 100, offset = 0, eventType, days = 7 } = req.query
 
     if (type === 'admin') {
+      // Only super_admin can view admin activity logs
+      if (auth.role !== 'super_admin') {
+        return res.status(403).json({ success: false, error: 'Only super admin can view admin activity logs.' })
+      }
       const logs = await getAdminActivityLogs(Number(limit), Number(offset))
       return res.status(200).json({ success: true, logs })
     }
