@@ -324,7 +324,7 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "jsx-85a0df59f614475c" + " " + "cit-panel-tags",
-                                                                children: (digitalServices.length > 0 ? digitalServices.slice(0, 5) : [
+                                                                children: (digitalServices.length > 0 ? digitalServices.slice(0, 6) : [
                                                                     {
                                                                         id: 1,
                                                                         name: "Web Development"
@@ -344,6 +344,10 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                                                     {
                                                                         id: 5,
                                                                         name: "E-commerce"
+                                                                    },
+                                                                    {
+                                                                        id: 6,
+                                                                        name: "AI & ML"
                                                                     }
                                                                 ]).map((s)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                         className: "jsx-85a0df59f614475c" + " " + "cit-panel-tag",
@@ -1005,8 +1009,20 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                             logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
                                         },
                                         {
+                                            name: "TensorFlow",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                                        },
+                                        {
+                                            name: "PyTorch",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                                        },
+                                        {
                                             name: "Python",
                                             logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                        },
+                                        {
+                                            name: "OpenCV",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"
                                         },
                                         {
                                             name: "PHP",
@@ -1035,6 +1051,10 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                         {
                                             name: "Docker",
                                             logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                                        },
+                                        {
+                                            name: "Kubernetes",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg"
                                         },
                                         {
                                             name: "WordPress",
@@ -1075,6 +1095,10 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                         {
                                             name: "Redis",
                                             logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg"
+                                        },
+                                        {
+                                            name: "Jupyter",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"
                                         },
                                         {
                                             name: "Figma",
@@ -1101,8 +1125,20 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                             logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
                                         },
                                         {
+                                            name: "TensorFlow",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                                        },
+                                        {
+                                            name: "PyTorch",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                                        },
+                                        {
                                             name: "Python",
                                             logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                        },
+                                        {
+                                            name: "OpenCV",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"
                                         },
                                         {
                                             name: "PHP",
@@ -1131,6 +1167,10 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                         {
                                             name: "Docker",
                                             logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                                        },
+                                        {
+                                            name: "Kubernetes",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg"
                                         },
                                         {
                                             name: "WordPress",
@@ -1171,6 +1211,10 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
                                         {
                                             name: "Redis",
                                             logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg"
+                                        },
+                                        {
+                                            name: "Jupyter",
+                                            logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"
                                         },
                                         {
                                             name: "Figma",

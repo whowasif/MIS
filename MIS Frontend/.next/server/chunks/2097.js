@@ -647,65 +647,34 @@ const Navigation = ()=>{
                                     const isProducts = item.label === "Products";
                                     const hasChildren = item.children && item.children.length > 0;
                                     if (isProducts && categories.length > 0) {
-                                        return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                            className: "jsx-2d7fa502fee1167b",
-                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("details", {
-                                                className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-products-dropdown",
-                                                children: [
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("summary", {
-                                                        className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-link menu-nav-link-btn",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-2d7fa502fee1167b",
-                                                                children: "Products"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-chevron",
-                                                                children: "›"
-                                                            })
-                                                        ]
-                                                    }),
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-sub-list",
-                                                        children: categories.filter((c)=>!c.parent_id).map((cat)=>{
-                                                            const subs = categories.filter((c)=>c.parent_id === cat.id);
-                                                            return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("details", {
-                                                                className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-cat-item",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("summary", {
-                                                                        onClick: (e)=>{
-                                                                            if (subs.length === 0) {
-                                                                                e.preventDefault();
-                                                                                handleMenuNavigation(`/categories/${cat.slug}`);
-                                                                            }
-                                                                        },
-                                                                        className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-cat-link",
-                                                                        children: [
-                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                                className: "jsx-2d7fa502fee1167b",
-                                                                                children: cat.name
-                                                                            }),
-                                                                            subs.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                                className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-chevron",
-                                                                                children: "›"
-                                                                            })
-                                                                        ]
-                                                                    }),
-                                                                    subs.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-sub-subs",
-                                                                        children: subs.map((sub)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                                                                type: "button",
-                                                                                onClick: ()=>handleMenuNavigation(`/categories/${sub.slug}`),
-                                                                                className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-sub-link",
-                                                                                children: sub.name
-                                                                            }, sub.id))
-                                                                    })
-                                                                ]
-                                                            }, cat.id);
+                                        return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
+                                            className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-hover-parent",
+                                            children: [
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                                    type: "button",
+                                                    onClick: ()=>handleMenuNavigation("/product-catalog"),
+                                                    className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-link menu-nav-link-btn",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "jsx-2d7fa502fee1167b",
+                                                            children: "Products"
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-chevron",
+                                                            children: "›"
                                                         })
-                                                    })
-                                                ]
-                                            })
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                    className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-hover-children",
+                                                    children: categories.filter((c)=>!c.parent_id).map((cat)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                            type: "button",
+                                                            onClick: ()=>handleMenuNavigation(`/categories/${cat.slug}`),
+                                                            className: "jsx-2d7fa502fee1167b" + " " + "menu-nav-sub-link",
+                                                            children: cat.name
+                                                        }, cat.id))
+                                                })
+                                            ]
                                         }, item.href);
                                     }
                                     if (hasChildren) {

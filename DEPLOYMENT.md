@@ -70,6 +70,13 @@ touch tmp/restart.txt
 - Admin token table uses customer_id + 1000000 offset to share password_reset_tokens table
 - The "predev" script in package.json is Windows-only (doesn't affect production)
 
+## Pending SQL (run on server after deploy)
+```sql
+-- Add AI Development service to digital services
+INSERT INTO digi_services (name, slug, description, icon_url, status, display_order)
+VALUES ('AI Development & Integration', 'ai-development-integration', 'Custom AI/ML solutions including chatbots, predictive analytics, NLP, computer vision, and intelligent automation to transform your business operations.', NULL, 'active', 6);
+```
+
 ## Database Tables (21 + 1)
 admin_users, advertisements, bus_corp_sol, career_applications, career_posts,
 categories, category_specs, client_projects, company_contacts, customer_cart,

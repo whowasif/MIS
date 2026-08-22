@@ -454,33 +454,20 @@ const Navigation = () => {
 
                 if (isProducts && categories.length > 0) {
                   return (
-                    <li key={item.href}>
-                      <details className="menu-nav-products-dropdown">
-                        <summary className="menu-nav-link menu-nav-link-btn">
-                          <span>Products</span>
-                          <span className="menu-nav-chevron">›</span>
-                        </summary>
-                        <div className="menu-nav-sub-list">
-                          {categories.filter((c) => !c.parent_id).map((cat) => {
-                            const subs = categories.filter((c) => c.parent_id === cat.id)
-                            return (
-                              <details key={cat.id} className="menu-nav-cat-item">
-                                <summary className="menu-nav-cat-link" onClick={(e) => { if (subs.length === 0) { e.preventDefault(); handleMenuNavigation(`/categories/${cat.slug}`) } }}>
-                                  <span>{cat.name}</span>
-                                  {subs.length > 0 && <span className="menu-nav-chevron">›</span>}
-                                </summary>
-                                {subs.length > 0 && (
-                                  <div className="menu-nav-sub-subs">
-                                    {subs.map((sub) => (
-                                      <button key={sub.id} type="button" className="menu-nav-sub-link" onClick={() => handleMenuNavigation(`/categories/${sub.slug}`)}>{sub.name}</button>
-                                    ))}
-                                  </div>
-                                )}
-                              </details>
-                            )
-                          })}
-                        </div>
-                      </details>
+                    <li key={item.href} className="menu-nav-hover-parent">
+                      <button
+                        type="button"
+                        className="menu-nav-link menu-nav-link-btn"
+                        onClick={() => handleMenuNavigation('/product-catalog')}
+                      >
+                        <span>Products</span>
+                        <span className="menu-nav-chevron">›</span>
+                      </button>
+                      <div className="menu-nav-hover-children">
+                        {categories.filter((c) => !c.parent_id).map((cat) => (
+                          <button key={cat.id} type="button" className="menu-nav-sub-link" onClick={() => handleMenuNavigation(`/categories/${cat.slug}`)}>{cat.name}</button>
+                        ))}
+                      </div>
                     </li>
                   )
                 }

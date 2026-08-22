@@ -65,6 +65,12 @@ const fallbackServices = [
         name: "Mobile App Development",
         slug: "mobile-app-development",
         description: "Custom mobile app solutions for Android and iOS integrated with your existing systems."
+    },
+    {
+        id: "digital-6",
+        name: "AI Development & Integration",
+        slug: "ai-development-integration",
+        description: "Custom AI/ML solutions including chatbots, predictive analytics, NLP, computer vision, and intelligent automation for your business."
     }, 
 ];
 const MetricCounter = ({ end , suffix , label  })=>{

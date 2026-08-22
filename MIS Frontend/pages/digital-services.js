@@ -11,6 +11,7 @@ const fallbackServices = [
   { id: 'digital-3', name: 'Domain Registration', slug: 'domain-registration', description: 'Secure your brand with local and international domain registration and renewal support.' },
   { id: 'digital-4', name: 'Digital Marketing', slug: 'digital-marketing', description: 'SEO, social campaigns, and paid ads to increase leads, visibility, and online revenue.' },
   { id: 'digital-5', name: 'Mobile App Development', slug: 'mobile-app-development', description: 'Custom mobile app solutions for Android and iOS integrated with your existing systems.' },
+  { id: 'digital-6', name: 'AI Development & Integration', slug: 'ai-development-integration', description: 'Custom AI/ML solutions including chatbots, predictive analytics, NLP, computer vision, and intelligent automation for your business.' },
 ]
 
 const MetricCounter = ({ end, suffix, label }) => {
