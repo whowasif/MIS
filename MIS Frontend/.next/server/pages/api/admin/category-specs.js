@@ -86,7 +86,7 @@ async function handler(req, res) {
         });
         try {
             // First try to get specs for this exact category
-            let [rows] = await db.execute("SELECT id, spec_name, spec_label, display_order, is_filterable FROM category_specs WHERE category_id = ? ORDER BY display_order ASC", [
+            let [rows] = await db.execute("SELECT id, spec_name, spec_label, display_order, is_filterable, is_highlight FROM category_specs WHERE category_id = ? ORDER BY display_order ASC", [
                 categoryId
             ]);
             // If no specs found, check if this is a subcategory and get parent's specs
@@ -95,7 +95,7 @@ async function handler(req, res) {
                     categoryId
                 ]);
                 if (catRows.length > 0 && catRows[0].parent_id) {
-                    [rows] = await db.execute("SELECT id, spec_name, spec_label, display_order, is_filterable FROM category_specs WHERE category_id = ? ORDER BY display_order ASC", [
+                    [rows] = await db.execute("SELECT id, spec_name, spec_label, display_order, is_filterable, is_highlight FROM category_specs WHERE category_id = ? ORDER BY display_order ASC", [
                         catRows[0].parent_id
                     ]);
                 }

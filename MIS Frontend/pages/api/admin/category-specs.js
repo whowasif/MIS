@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     try {
       // First try to get specs for this exact category
       let [rows] = await db.execute(
-        'SELECT id, spec_name, spec_label, display_order, is_filterable FROM category_specs WHERE category_id = ? ORDER BY display_order ASC',
+        'SELECT id, spec_name, spec_label, display_order, is_filterable, is_highlight FROM category_specs WHERE category_id = ? ORDER BY display_order ASC',
         [categoryId]
       )
 
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         const [catRows] = await db.execute('SELECT parent_id FROM categories WHERE id = ?', [categoryId])
         if (catRows.length > 0 && catRows[0].parent_id) {
           [rows] = await db.execute(
-            'SELECT id, spec_name, spec_label, display_order, is_filterable FROM category_specs WHERE category_id = ? ORDER BY display_order ASC',
+            'SELECT id, spec_name, spec_label, display_order, is_filterable, is_highlight FROM category_specs WHERE category_id = ? ORDER BY display_order ASC',
             [catRows[0].parent_id]
           )
         }

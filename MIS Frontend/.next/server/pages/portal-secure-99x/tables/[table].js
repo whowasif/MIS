@@ -2460,7 +2460,7 @@ const ModernTableManager = ()=>{
                                                                         "status",
                                                                         "category_id",
                                                                         "type"
-                                                                    ].includes(n) && !n.includes("desc") && !n.includes("feature") && n !== "full_description";
+                                                                    ].includes(n) && !n.includes("desc") && !n.includes("feature") && n !== "full_description" && n !== "specifications";
                                                                 }).map((column)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                                                                         className: "jsx-71f208de48479913" + " " + "modern-field",
                                                                         children: [
@@ -2516,7 +2516,7 @@ const ModernTableManager = ()=>{
                                                             })
                                                         ]
                                                     }),
-                                                    orderedDetailColumns.some((col)=>col.columnName.toLowerCase().includes("desc") || col.columnName.toLowerCase() === "full_description" || col.columnName.toLowerCase().includes("feature")) && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                                    orderedDetailColumns.some((col)=>col.columnName.toLowerCase().includes("desc") || col.columnName.toLowerCase() === "full_description") && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                                                         className: "jsx-71f208de48479913" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
@@ -2527,7 +2527,7 @@ const ModernTableManager = ()=>{
                                                                 className: "jsx-71f208de48479913" + " " + "modern-fields",
                                                                 children: orderedDetailColumns.filter((col)=>{
                                                                     const n = col.columnName.toLowerCase();
-                                                                    return n.includes("desc") || n === "full_description" || n.includes("feature");
+                                                                    return (n.includes("desc") || n === "full_description") && !n.includes("feature");
                                                                 }).map((column)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
                                                                         className: "jsx-71f208de48479913" + " " + "modern-field",
                                                                         children: [

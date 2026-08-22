@@ -54,7 +54,7 @@ const getVideoEmbedUrl = (rawValue) => {
 
 const isDirectVideoFile = (value) => /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(String(value || ''))
 
-const ProductDetailPage = ({ product }) => {
+const ProductDetailPage = ({ product, categorySpecs = [] }) => {
   const videoUrl = String(product?.videoUrl || '').trim()
   const videoEmbedUrl = useMemo(() => getVideoEmbedUrl(videoUrl), [videoUrl])
   const showDirectVideo = videoUrl && !videoEmbedUrl && (videoUrl.startsWith('/') || isDirectVideoFile(videoUrl))
@@ -71,39 +71,41 @@ const ProductDetailPage = ({ product }) => {
 
   const [activeImage, setActiveImage] = useState(galleryImages[0])
   const [quantity, setQuantity] = useState(1)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
 
   const stockQty = Number(product?.stockQty || 0)
   const price = Number(product?.price || 0)
   const hasPrice = price > 0
   const stockLabel = stockQty > 0 ? 'In Stock' : 'Contact for availability'
 
-  // Parse features
-  const featuresList = useMemo(() => {
-    const raw = product?.features || ''
-    if (!raw) return []
-
-    try {
-      const parsed = JSON.parse(raw)
-      if (Array.isArray(parsed)) return parsed.filter(Boolean)
-    } catch (e) {
-      // Not JSON, split by newlines
-    }
-
-    return raw.split(/\n|,/).map(s => s.trim()).filter(Boolean)
-  }, [product])
-
-  // Parse specifications
-  const specsList = useMemo(() => {
+  // Parse specifications - split into highlighted and regular
+  const { highlightedSpecs, regularSpecs } = useMemo(() => {
     const raw = product?.specifications
-    if (!raw) return []
+    if (!raw) return { highlightedSpecs: [], regularSpecs: [] }
     try {
       const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw
-      if (parsed && typeof parsed === 'object') {
-        return Object.entries(parsed).filter(([k, v]) => v).map(([key, value]) => ({ key: key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), value }))
-      }
+      if (!parsed || typeof parsed !== 'object') return { highlightedSpecs: [], regularSpecs: [] }
+      
+      const highlightKeys = new Set(categorySpecs.filter(s => s.is_highlight).map(s => s.spec_name))
+      const highlighted = []
+      const regular = []
+      
+      Object.entries(parsed).filter(([k, v]) => v).forEach(([key, value]) => {
+        const specMeta = categorySpecs.find(s => s.spec_name === key)
+        const label = specMeta ? specMeta.spec_label : key.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+        const entry = { key: label, value }
+        if (highlightKeys.has(key)) {
+          highlighted.push(entry)
+        } else {
+          regular.push(entry)
+        }
+      })
+      
+      return { highlightedSpecs: highlighted, regularSpecs: regular }
     } catch (e) {}
-    return []
-  }, [product])
+    return { highlightedSpecs: [], regularSpecs: [] }
+  }, [product, categorySpecs])
 
   // Zoom feature state
   const zoomContainerRef = useRef(null)
@@ -196,6 +198,7 @@ const ProductDetailPage = ({ product }) => {
                 onMouseMove={handleZoomMove}
                 onMouseEnter={handleZoomEnter}
                 onMouseLeave={handleZoomLeave}
+                onClick={() => { setLightboxIndex(galleryImages.indexOf(activeImage)); setLightboxOpen(true) }}
               >
                 <img src={activeImage} alt={product.name} className="hero-img" />
                 <div
@@ -348,32 +351,26 @@ const ProductDetailPage = ({ product }) => {
                         <td className="dt-value">{formatCurrency(price)}</td>
                       </tr>
                     )}
+                    {highlightedSpecs.map((spec, idx) => (
+                      <tr key={`hl-${idx}`}>
+                        <td className="dt-label">{spec.key}</td>
+                        <td className="dt-value">{spec.value}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
-
-              {/* Features (if available) */}
-              {featuresList.length > 0 && (
-                <div className="features-section">
-                  <h3 className="section-title">Key Features</h3>
-                  <ul className="features-list">
-                    {featuresList.map((feature, idx) => (
-                      <li key={idx}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
             </div>
           </div>
 
           {/* Specifications Section */}
-          {specsList.length > 0 && (
+          {regularSpecs.length > 0 && (
             <section className="description-section">
               <h2>Specifications</h2>
               <div className="description-content">
                 <table className="specs-table">
                   <tbody>
-                    {specsList.map((spec, idx) => (
+                    {regularSpecs.map((spec, idx) => (
                       <tr key={idx}>
                         <td className="spec-label">{spec.key}</td>
                         <td className="spec-value">{spec.value}</td>
@@ -941,7 +938,31 @@ const ProductDetailPage = ({ product }) => {
         .specs-table tr:last-child { border-bottom: none; }
         .spec-key { padding: 10px 12px; font-size: 14px; color: #6b7280; font-weight: 500; width: 40%; text-transform: capitalize; }
         .spec-val { padding: 10px 12px; font-size: 14px; color: #111827; font-weight: 600; }
+
+        /* Lightbox */
+        .lightbox-overlay { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; }
+        .lightbox-content { position: relative; max-width: 90vw; max-height: 90vh; display: flex; align-items: center; justify-content: center; }
+        .lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+        .lightbox-close { position: fixed; top: 20px; right: 20px; background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 24px; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; z-index: 10001; }
+        .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+        .lightbox-nav { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.12); border: none; color: #fff; font-size: 36px; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10001; }
+        .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        .lightbox-counter { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 500; }
       `}</style>
+
+      {lightboxOpen && (
+        <div className="lightbox-overlay" onClick={() => setLightboxOpen(false)}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={() => setLightboxOpen(false)}>✕</button>
+            <button className="lightbox-nav lightbox-prev" onClick={() => setLightboxIndex((p) => (p - 1 + galleryImages.length) % galleryImages.length)}>‹</button>
+            <img src={galleryImages[lightboxIndex]} alt={product.name} className="lightbox-img" />
+            <button className="lightbox-nav lightbox-next" onClick={() => setLightboxIndex((p) => (p + 1) % galleryImages.length)}>›</button>
+            <div className="lightbox-counter">{lightboxIndex + 1} / {galleryImages.length}</div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
@@ -951,17 +972,32 @@ export const getServerSideProps = async (context) => {
 
   try {
     const { getCatalogProductBySlug } = await import('../../lib/server/products')
+    const { getDbPool } = await import('../../lib/server/db')
     const product = await getCatalogProductBySlug(slug)
 
     if (!product) {
       return { notFound: true }
     }
 
-    return {
-      props: {
-        product,
-      },
+    // Fetch category specs to determine highlight status
+    let categorySpecs = []
+    if (product.id) {
+      const db = getDbPool()
+      const [productRow] = await db.execute('SELECT category_id FROM products WHERE id = ?', [product.id])
+      if (productRow.length > 0 && productRow[0].category_id) {
+        const catId = productRow[0].category_id
+        let [specs] = await db.execute('SELECT spec_name, spec_label, is_highlight FROM category_specs WHERE category_id = ? ORDER BY display_order ASC', [catId])
+        if (specs.length === 0) {
+          const [catRows] = await db.execute('SELECT parent_id FROM categories WHERE id = ?', [catId])
+          if (catRows.length > 0 && catRows[0].parent_id) {
+            [specs] = await db.execute('SELECT spec_name, spec_label, is_highlight FROM category_specs WHERE category_id = ? ORDER BY display_order ASC', [catRows[0].parent_id])
+          }
+        }
+        categorySpecs = JSON.parse(JSON.stringify(specs))
+      }
     }
+
+    return { props: { product, categorySpecs } }
   } catch (error) {
     return { notFound: true }
   }

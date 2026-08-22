@@ -1675,7 +1675,7 @@ const ModernTableManager = () => {
                     <div className="modern-fields">
                       {orderedDetailColumns.filter((col) => {
                         const n = col.columnName.toLowerCase()
-                        return !['is_active', 'active', 'status', 'category_id', 'type'].includes(n) && !n.includes('desc') && !n.includes('feature') && n !== 'full_description'
+                        return !['is_active', 'active', 'status', 'category_id', 'type'].includes(n) && !n.includes('desc') && !n.includes('feature') && n !== 'full_description' && n !== 'specifications'
                       }).map((column) => (
                         <div key={column.columnName} className="modern-field">
                           <label className="modern-field-label">{resolveFieldControl(table, column).label}</label>
@@ -1702,13 +1702,13 @@ const ModernTableManager = () => {
                   )}
 
                   {/* Description Section */}
-                  {orderedDetailColumns.some((col) => col.columnName.toLowerCase().includes('desc') || col.columnName.toLowerCase() === 'full_description' || col.columnName.toLowerCase().includes('feature')) && (
+                  {orderedDetailColumns.some((col) => col.columnName.toLowerCase().includes('desc') || col.columnName.toLowerCase() === 'full_description') && (
                     <div className="modern-form-card">
                       <h4 className="modern-card-title">Description</h4>
                       <div className="modern-fields">
                         {orderedDetailColumns.filter((col) => {
                           const n = col.columnName.toLowerCase()
-                          return n.includes('desc') || n === 'full_description' || n.includes('feature')
+                          return (n.includes('desc') || n === 'full_description') && !n.includes('feature')
                         }).map((column) => (
                           <div key={column.columnName} className="modern-field">
                             <label className="modern-field-label">{resolveFieldControl(table, column).label}</label>

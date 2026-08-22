@@ -8,7 +8,7 @@ const CategorySpecsPage = ({ categories = [], specs = [] }) => {
   const [filterCat, setFilterCat] = useState('')
   const [addingTo, setAddingTo] = useState(null) // category id
   const [editing, setEditing] = useState(null)
-  const [form, setForm] = useState({ spec_name: '', spec_label: '', display_order: 0, is_filterable: 1 })
+  const [form, setForm] = useState({ spec_name: '', spec_label: '', display_order: 0, is_filterable: 1, is_highlight: 0 })
   const [saving, setSaving] = useState(false)
 
   const filteredItems = filterCat ? items.filter((s) => String(s.category_id) === filterCat) : items
@@ -27,13 +27,13 @@ const CategorySpecsPage = ({ categories = [], specs = [] }) => {
   const startAdd = (catId) => {
     setAddingTo(catId)
     setEditing(null)
-    setForm({ spec_name: '', spec_label: '', display_order: 0, is_filterable: 1 })
+    setForm({ spec_name: '', spec_label: '', display_order: 0, is_filterable: 1, is_highlight: 0 })
   }
 
   const startEdit = (spec) => {
     setEditing(spec.id)
     setAddingTo(null)
-    setForm({ spec_name: spec.spec_name, spec_label: spec.spec_label, display_order: spec.display_order || 0, is_filterable: spec.is_filterable ? 1 : 0 })
+    setForm({ spec_name: spec.spec_name, spec_label: spec.spec_label, display_order: spec.display_order || 0, is_filterable: spec.is_filterable ? 1 : 0, is_highlight: spec.is_highlight ? 1 : 0 })
   }
 
   const cancelForm = () => { setAddingTo(null); setEditing(null) }
@@ -140,6 +140,13 @@ const CategorySpecsPage = ({ categories = [], specs = [] }) => {
                   <option value={0}>No</option>
                 </select>
               </div>
+              <div className="form-field">
+                <label>Highlight</label>
+                <select value={form.is_highlight} onChange={(e) => setForm((p) => Object.assign({}, p, { is_highlight: Number(e.target.value) }))}>
+                  <option value={1}>Yes</option>
+                  <option value={0}>No</option>
+                </select>
+              </div>
             </div>
             <div className="form-actions">
               <button className="btn-save" onClick={saveSpec} disabled={saving || !form.spec_label || !form.spec_name}>{saving ? 'Saving...' : editing ? 'Update' : 'Add Spec'}</button>
@@ -163,7 +170,7 @@ const CategorySpecsPage = ({ categories = [], specs = [] }) => {
                 {catSpecs.length > 0 ? (
                   <table className="spec-table">
                     <thead>
-                      <tr><th>Label</th><th>Key</th><th>Order</th><th>Filterable</th><th>Actions</th></tr>
+                      <tr><th>Label</th><th>Key</th><th>Order</th><th>Filterable</th><th>Highlight</th><th>Actions</th></tr>
                     </thead>
                     <tbody>
                       {catSpecs.map((spec) => (
@@ -172,6 +179,7 @@ const CategorySpecsPage = ({ categories = [], specs = [] }) => {
                           <td className="td-key">{spec.spec_name}</td>
                           <td>{spec.display_order}</td>
                           <td><span className={`pill ${spec.is_filterable ? 'yes' : 'no'}`}>{spec.is_filterable ? 'Yes' : 'No'}</span></td>
+                          <td><span className={`pill ${spec.is_highlight ? 'yes' : 'no'}`}>{spec.is_highlight ? 'Yes' : 'No'}</span></td>
                           <td className="td-actions">
                             <button className="act-btn edit" onClick={() => startEdit(spec)}>Edit</button>
                             <button className="act-btn del" onClick={() => deleteSpec(spec.id)}>Delete</button>
@@ -201,7 +209,7 @@ const CategorySpecsPage = ({ categories = [], specs = [] }) => {
 
         .form-card { border: 1px solid #e5e7eb; border-radius: 14px; background: #fff; padding: 20px; }
         .form-card h3 { margin: 0 0 14px; font-size: 16px; color: #111827; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr 100px 100px; gap: 12px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr 100px 100px 100px; gap: 12px; }
         .form-field { display: flex; flex-direction: column; gap: 4px; }
         .form-field label { font-size: 11px; font-weight: 700; color: #374151; text-transform: uppercase; }
         .form-field input, .form-field select { height: 40px; border: 2px solid #c7d2fe; border-radius: 8px; padding: 0 12px; font: inherit; font-size: 14px; background: #fafbff; }
