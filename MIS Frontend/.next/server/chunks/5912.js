@@ -181,6 +181,12 @@ const coreNavigationItems = [
         label: "Applications",
         resource: "applications",
         icon: "applications"
+    },
+    {
+        href: "/portal-secure-99x/logs",
+        label: "Activity Logs",
+        resource: null,
+        icon: "activity"
     }, 
 ];
 // Icon map for table groups and items
@@ -663,6 +669,19 @@ const NavIcon = ({ name , size =18  })=>{
                     r: "2.5"
                 })
             ]
+        }),
+        activity: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+            width: size,
+            height: size,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
+                points: "22 12 18 12 15 21 9 3 6 12 2 12"
+            })
         })
     };
     return icons[name] || /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
