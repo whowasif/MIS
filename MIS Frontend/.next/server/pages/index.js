@@ -92,9 +92,95 @@ const StatCounter = ({ end , suffix ="" , label , decimals =0  })=>{
         ]
     });
 };
+// Turns a horizontally-scrollable rail into an auto-scrolling (right-to-left)
+// carousel that the user can grab with mouse or finger and drag both ways.
+// Content is expected to be duplicated (rendered twice) so the loop is seamless.
+const setupDraggableAutoScroll = (rail)=>{
+    if (!rail) return null;
+    let rafId = null;
+    let isDragging = false;
+    let hasMoved = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+    let resumeTimer = null;
+    const SPEED = 0.5 // px per frame
+    ;
+    const half = ()=>rail.scrollWidth / 2;
+    const step = ()=>{
+        if (!isDragging) {
+            rail.scrollLeft += SPEED;
+            // seamless loop: when we've scrolled past the first copy, jump back
+            if (rail.scrollLeft >= half()) rail.scrollLeft -= half();
+        }
+        rafId = requestAnimationFrame(step);
+    };
+    const normalizeLoop = ()=>{
+        const h = half();
+        if (h <= 0) return;
+        if (rail.scrollLeft >= h) rail.scrollLeft -= h;
+        else if (rail.scrollLeft < 0) rail.scrollLeft += h;
+    };
+    const onPointerDown = (e)=>{
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        isDragging = true;
+        hasMoved = false;
+        startX = e.clientX;
+        startScrollLeft = rail.scrollLeft;
+        if (resumeTimer) {
+            clearTimeout(resumeTimer);
+            resumeTimer = null;
+        }
+        try {
+            rail.setPointerCapture(e.pointerId);
+        } catch (_) {}
+    };
+    const onPointerMove = (e)=>{
+        if (!isDragging) return;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 5) {
+            hasMoved = true;
+            if (e.cancelable) e.preventDefault();
+        }
+        rail.scrollLeft = startScrollLeft - dx;
+        normalizeLoop();
+    };
+    const endDrag = (e)=>{
+        if (!isDragging) return;
+        isDragging = false;
+        try {
+            rail.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+        normalizeLoop();
+    };
+    const onClick = (e)=>{
+        if (hasMoved) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+    rail.addEventListener("pointerdown", onPointerDown);
+    rail.addEventListener("pointermove", onPointerMove);
+    rail.addEventListener("pointerup", endDrag);
+    rail.addEventListener("pointercancel", endDrag);
+    rail.addEventListener("pointerleave", endDrag);
+    rail.addEventListener("click", onClick, true);
+    rafId = requestAnimationFrame(step);
+    return ()=>{
+        if (rafId) cancelAnimationFrame(rafId);
+        if (resumeTimer) clearTimeout(resumeTimer);
+        rail.removeEventListener("pointerdown", onPointerDown);
+        rail.removeEventListener("pointermove", onPointerMove);
+        rail.removeEventListener("pointerup", endDrag);
+        rail.removeEventListener("pointercancel", endDrag);
+        rail.removeEventListener("pointerleave", endDrag);
+        rail.removeEventListener("click", onClick, true);
+    };
+};
 const Home = (props)=>{
     const { featuredProducts =[] , advertisements =[] , homeCategories =[] , featuredServices =[] , clientProjects =[]  } = props;
     const caseRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+    const productsRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+    const servicesRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const { 0: adIndex , 1: setAdIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
         if (advertisements.length <= 1) return;
@@ -149,6 +235,17 @@ const Home = (props)=>{
             rail.removeEventListener("click", onClick, true);
         };
     }, []);
+    // Auto-scroll (right-to-left) + drag/swipe control for the two card rails
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
+        const cleanups = [
+            setupDraggableAutoScroll(productsRailRef.current),
+            setupDraggableAutoScroll(servicesRailRef.current), 
+        ];
+        return ()=>cleanups.forEach((fn)=>fn && fn());
+    }, [
+        featuredProducts.length,
+        featuredServices.length
+    ]);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -512,6 +609,7 @@ const Home = (props)=>{
                                 ]
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                ref: productsRailRef,
                                 className: "jsx-838b1a87f6f26fd3" + " " + "products-rail-container",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: "jsx-838b1a87f6f26fd3" + " " + "products-rail",
@@ -622,6 +720,7 @@ const Home = (props)=>{
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: "jsx-838b1a87f6f26fd3" + " " + "services-dynamic-grid",
                                     children: featuredServices.length > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                        ref: servicesRailRef,
                                         className: "jsx-838b1a87f6f26fd3" + " " + "services-marquee-wrap",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                             className: "jsx-838b1a87f6f26fd3" + " " + "services-marquee-track",

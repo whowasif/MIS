@@ -48,9 +48,89 @@ const StatCounter = ({ end, suffix = '', label, decimals = 0 }) => {
   )
 }
 
+// Turns a horizontally-scrollable rail into an auto-scrolling (right-to-left)
+// carousel that the user can grab with mouse or finger and drag both ways.
+// Content is expected to be duplicated (rendered twice) so the loop is seamless.
+const setupDraggableAutoScroll = (rail) => {
+  if (!rail) return null
+
+  let rafId = null
+  let isDragging = false
+  let hasMoved = false
+  let startX = 0
+  let startScrollLeft = 0
+  let resumeTimer = null
+  const SPEED = 0.5 // px per frame
+
+  const half = () => rail.scrollWidth / 2
+
+  const step = () => {
+    if (!isDragging) {
+      rail.scrollLeft += SPEED
+      // seamless loop: when we've scrolled past the first copy, jump back
+      if (rail.scrollLeft >= half()) rail.scrollLeft -= half()
+    }
+    rafId = requestAnimationFrame(step)
+  }
+
+  const normalizeLoop = () => {
+    const h = half()
+    if (h <= 0) return
+    if (rail.scrollLeft >= h) rail.scrollLeft -= h
+    else if (rail.scrollLeft < 0) rail.scrollLeft += h
+  }
+
+  const onPointerDown = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return
+    isDragging = true
+    hasMoved = false
+    startX = e.clientX
+    startScrollLeft = rail.scrollLeft
+    if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null }
+    try { rail.setPointerCapture(e.pointerId) } catch (_) {}
+  }
+  const onPointerMove = (e) => {
+    if (!isDragging) return
+    const dx = e.clientX - startX
+    if (Math.abs(dx) > 5) { hasMoved = true; if (e.cancelable) e.preventDefault() }
+    rail.scrollLeft = startScrollLeft - dx
+    normalizeLoop()
+  }
+  const endDrag = (e) => {
+    if (!isDragging) return
+    isDragging = false
+    try { rail.releasePointerCapture(e.pointerId) } catch (_) {}
+    normalizeLoop()
+  }
+  const onClick = (e) => {
+    if (hasMoved) { e.preventDefault(); e.stopPropagation() }
+  }
+
+  rail.addEventListener('pointerdown', onPointerDown)
+  rail.addEventListener('pointermove', onPointerMove)
+  rail.addEventListener('pointerup', endDrag)
+  rail.addEventListener('pointercancel', endDrag)
+  rail.addEventListener('pointerleave', endDrag)
+  rail.addEventListener('click', onClick, true)
+  rafId = requestAnimationFrame(step)
+
+  return () => {
+    if (rafId) cancelAnimationFrame(rafId)
+    if (resumeTimer) clearTimeout(resumeTimer)
+    rail.removeEventListener('pointerdown', onPointerDown)
+    rail.removeEventListener('pointermove', onPointerMove)
+    rail.removeEventListener('pointerup', endDrag)
+    rail.removeEventListener('pointercancel', endDrag)
+    rail.removeEventListener('pointerleave', endDrag)
+    rail.removeEventListener('click', onClick, true)
+  }
+}
+
 const Home = (props) => {
   const { featuredProducts = [], advertisements = [], homeCategories = [], featuredServices = [], clientProjects = [] } = props
   const caseRailRef = useRef(null)
+  const productsRailRef = useRef(null)
+  const servicesRailRef = useRef(null)
   const [adIndex, setAdIndex] = useState(0)
 
   useEffect(() => {
@@ -70,6 +150,15 @@ const Home = (props) => {
     rail.addEventListener('pointerdown', onPointerDown); rail.addEventListener('pointermove', onPointerMove); rail.addEventListener('pointerup', endDrag); rail.addEventListener('pointercancel', endDrag); rail.addEventListener('pointerleave', endDrag); rail.addEventListener('click', onClick, true)
     return () => { rail.removeEventListener('pointerdown', onPointerDown); rail.removeEventListener('pointermove', onPointerMove); rail.removeEventListener('pointerup', endDrag); rail.removeEventListener('pointercancel', endDrag); rail.removeEventListener('pointerleave', endDrag); rail.removeEventListener('click', onClick, true) }
   }, [])
+
+  // Auto-scroll (right-to-left) + drag/swipe control for the two card rails
+  useEffect(() => {
+    const cleanups = [
+      setupDraggableAutoScroll(productsRailRef.current),
+      setupDraggableAutoScroll(servicesRailRef.current),
+    ]
+    return () => cleanups.forEach((fn) => fn && fn())
+  }, [featuredProducts.length, featuredServices.length])
 
   return (
     <>
@@ -150,7 +239,7 @@ const Home = (props) => {
             <h2 className="section-title">Featured Hardware &amp; Accessories</h2>
             <p className="section-subtitle">Top-selling essentials for your office and enterprise needs.</p>
           </div>
-          <div className="products-rail-container">
+          <div className="products-rail-container" ref={productsRailRef}>
             <div className="products-rail">
               {featuredProducts.length > 0 ? (
                 [...featuredProducts, ...featuredProducts].map((product, idx) => (
@@ -185,7 +274,7 @@ const Home = (props) => {
             </div>
             <div className="services-dynamic-grid">
               {featuredServices.length > 0 ? (
-                <div className="services-marquee-wrap">
+                <div className="services-marquee-wrap" ref={servicesRailRef}>
                   <div className="services-marquee-track">
                     {[...featuredServices, ...featuredServices].map((service, idx) => (
                       <Link key={`${service.type}-${idx}`} href={`/services/${service.slug}?type=${service.type}`}>
