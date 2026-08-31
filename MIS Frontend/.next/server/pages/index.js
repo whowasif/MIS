@@ -102,23 +102,22 @@ const setupDraggableAutoScroll = (rail)=>{
     let hasMoved = false;
     let startX = 0;
     let startScrollLeft = 0;
-    let resumeTimer = null;
-    const SPEED = 0.5 // px per frame
+    let pos = 0 // float position we drive scrollLeft with
+    ;
+    const SPEED = 0.6 // px per frame (~36px/s)
     ;
     const half = ()=>rail.scrollWidth / 2;
     const step = ()=>{
-        if (!isDragging) {
-            rail.scrollLeft += SPEED;
-            // seamless loop: when we've scrolled past the first copy, jump back
-            if (rail.scrollLeft >= half()) rail.scrollLeft -= half();
+        const h = half();
+        if (!isDragging && h > 0) {
+            pos += SPEED;
+            if (pos >= h) pos -= h // seamless loop back to first copy
+            ;
+            else if (pos < 0) pos += h;
+            rail.scrollLeft = pos // assign the accumulated float (rounded internally)
+            ;
         }
         rafId = requestAnimationFrame(step);
-    };
-    const normalizeLoop = ()=>{
-        const h = half();
-        if (h <= 0) return;
-        if (rail.scrollLeft >= h) rail.scrollLeft -= h;
-        else if (rail.scrollLeft < 0) rail.scrollLeft += h;
     };
     const onPointerDown = (e)=>{
         if (e.pointerType === "mouse" && e.button !== 0) return;
@@ -126,10 +125,6 @@ const setupDraggableAutoScroll = (rail)=>{
         hasMoved = false;
         startX = e.clientX;
         startScrollLeft = rail.scrollLeft;
-        if (resumeTimer) {
-            clearTimeout(resumeTimer);
-            resumeTimer = null;
-        }
         try {
             rail.setPointerCapture(e.pointerId);
         } catch (_) {}
@@ -141,8 +136,13 @@ const setupDraggableAutoScroll = (rail)=>{
             hasMoved = true;
             if (e.cancelable) e.preventDefault();
         }
-        rail.scrollLeft = startScrollLeft - dx;
-        normalizeLoop();
+        let next = startScrollLeft - dx;
+        const h = half();
+        if (h > 0) {
+            if (next >= h) next -= h;
+            else if (next < 0) next += h;
+        }
+        rail.scrollLeft = next;
     };
     const endDrag = (e)=>{
         if (!isDragging) return;
@@ -150,7 +150,8 @@ const setupDraggableAutoScroll = (rail)=>{
         try {
             rail.releasePointerCapture(e.pointerId);
         } catch (_) {}
-        normalizeLoop();
+        pos = rail.scrollLeft // resume auto-scroll from where the user left off
+        ;
     };
     const onClick = (e)=>{
         if (hasMoved) {
@@ -164,10 +165,10 @@ const setupDraggableAutoScroll = (rail)=>{
     rail.addEventListener("pointercancel", endDrag);
     rail.addEventListener("pointerleave", endDrag);
     rail.addEventListener("click", onClick, true);
+    pos = rail.scrollLeft || 0;
     rafId = requestAnimationFrame(step);
     return ()=>{
         if (rafId) cancelAnimationFrame(rafId);
-        if (resumeTimer) clearTimeout(resumeTimer);
         rail.removeEventListener("pointerdown", onPointerDown);
         rail.removeEventListener("pointermove", onPointerMove);
         rail.removeEventListener("pointerup", endDrag);
