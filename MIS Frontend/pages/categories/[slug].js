@@ -80,6 +80,108 @@ const normGraphics = (raw) => {
   return v
 }
 
+// Memory type: "8GB 3200Mhz DDR4 Laptop RAM" / "DDR5 Support" -> "DDR5"
+//              GPU memory "GDDR6X" -> "GDDR6X"
+const normMemType = (raw) => {
+  const v = clean(raw)
+  let m = v.match(/\b(GDDR\d[X]?)\b/i)
+  if (m) return m[1].toUpperCase()
+  m = v.match(/\b(DDR\d[L]?)\b/i)
+  if (m) return m[1].toUpperCase()
+  if (/lpddr/i.test(v)) { m = v.match(/\b(LPDDR\d[X]?)\b/i); if (m) return m[1].toUpperCase() }
+  return v
+}
+
+// Storage type / drive medium: "512GB NVMe SSD" -> "SSD" ; "1TB HDD" -> "HDD"
+const normStorageType = (raw) => {
+  const lower = clean(raw).toLowerCase()
+  if (lower.includes('nvme')) return 'NVMe SSD'
+  if (lower.includes('ssd')) return 'SSD'
+  if (lower.includes('hdd') || lower.includes('hard disk')) return 'HDD'
+  if (lower.includes('emmc')) return 'eMMC'
+  return clean(raw)
+}
+
+// Display size: "15.6 inch" / "27 inch" / "1.47 inch AMOLED" / "46mm" -> "15.6 inch"
+const normDisplaySize = (raw) => {
+  const v = clean(raw)
+  let m = v.match(/(\d+(?:\.\d+)?)\s*("|inch|inches|in\b)/i)
+  if (m) return `${m[1]} inch`
+  m = v.match(/(\d+(?:\.\d+)?)\s*mm\b/i)
+  if (m) return `${m[1]}mm`
+  return v
+}
+
+// Resolution: cameras -> megapixels ("2MP (1080p)" -> "2MP"); displays/GPU ->
+// standard label if present ("FHD 1920x1080 144Hz" -> "FHD"), else the WxH.
+const normResolution = (raw) => {
+  const v = clean(raw)
+  let m = v.match(/(\d+(?:\.\d+)?)\s*MP\b/i)
+  if (m) return `${m[1]}MP`
+  m = v.match(/\b(8K|4K|QHD\+?|WQHD|WQXGA|QHD|FHD\+?|FHD|HD\+?|HD|UHD|WUXGA|WXGA|SXGA|UXGA)\b/i)
+  if (m) return m[1].toUpperCase()
+  m = v.match(/(\d{3,4})\s*[x×]\s*(\d{3,4})/)
+  if (m) return `${m[1]}x${m[2]}`
+  return v
+}
+
+// Video resolution: "4K@60fps" / "1080p" / "2.7K" -> "4K" / "1080p" / "2.7K"
+const normVideoRes = (raw) => {
+  const v = clean(raw)
+  let m = v.match(/\b(8K|5K|4K|2\.7K|2K|1440p|1080p|720p)\b/i)
+  if (m) return m[1].toUpperCase().replace('P', 'p')
+  return normResolution(v)
+}
+
+// Battery: "57H Battery" / "5000mAh" / "24H Total Playback" -> "5000mAh" / "57H"
+const normBattery = (raw) => {
+  const v = clean(raw)
+  let m = v.match(/(\d+(?:,\d+)?)\s*mah\b/i)
+  if (m) return `${m[1].replace(/,/g, '')}mAh`
+  m = v.match(/(\d+(?:\.\d+)?)\s*wh\b/i)
+  if (m) return `${m[1]}Wh`
+  m = v.match(/(\d+(?:\.\d+)?)\s*(?:h|hr|hrs|hours?)\b/i)
+  if (m) return `${m[1]}H`
+  return v
+}
+
+// Socket: "AM5" / "LGA1700" / "AM4 Micro ATX Motherboard AM4" -> "AM5" / "LGA1700"
+const normSocket = (raw) => {
+  const v = clean(raw)
+  let m = v.match(/\b(LGA\s*\d{3,4})\b/i)
+  if (m) return m[1].toUpperCase().replace(/\s+/g, '')
+  m = v.match(/\b(AM\d\+?|sTRX\d|sWRX\d|TR\d)\b/i)
+  if (m) return m[1].toUpperCase()
+  m = v.match(/\b(FM\d\+?)\b/i)
+  if (m) return m[1].toUpperCase()
+  return v
+}
+
+// Speed / frequency: "4.7GHz - 5.4GHz" -> "4.7GHz" (base clock) ; "2610 MHz Boost" -> "2610MHz"
+//                    "3000Mbps (2402+574)" -> "3000Mbps"
+const normSpeed = (raw) => {
+  const v = clean(raw)
+  let m = v.match(/(\d+(?:\.\d+)?)\s*ghz\b/i)
+  if (m) return `${m[1]}GHz`
+  m = v.match(/(\d+(?:\.\d+)?)\s*mbps\b/i)
+  if (m) return `${m[1]}Mbps`
+  m = v.match(/(\d+(?:\.\d+)?)\s*gbps\b/i)
+  if (m) return `${m[1]}Gbps`
+  m = v.match(/(\d+(?:\.\d+)?)\s*mhz\b/i)
+  if (m) return `${m[1]}MHz`
+  return v
+}
+
+// Power / wattage: "65W" / "1100VA / 660W" / "550 Watt 80+ Gold" -> "660W" / "550W" / "1100VA"
+const normPower = (raw) => {
+  const v = clean(raw)
+  let m = v.match(/(\d+(?:\.\d+)?)\s*(?:w|watt|watts)\b/i)
+  if (m) return `${m[1]}W`
+  m = v.match(/(\d+(?:\.\d+)?)\s*va\b/i)
+  if (m) return `${m[1]}VA`
+  return v
+}
+
 // Generic base for any other spec: take the leading brand/keyword-ish part
 // (first 2 words, stripped of trailing model codes / units) so long sentences
 // collapse. Falls back to the raw value if nothing sensible remains.
@@ -92,18 +194,59 @@ const normGeneric = (raw) => {
 }
 
 const specNormalizers = {
+  // Processor
   processor: normProcessor,
   'processor-brand': normProcessor,
   'processor-model': normProcessor,
   cpu: normProcessor,
+  // Memory capacity
   ram: normRam,
   memory: normRam,
+  // Memory type
+  'ram-type': normMemType,
+  'memory-type': normMemType,
+  // Storage capacity
   storage: normStorage,
   ssd: normStorage,
   hdd: normStorage,
+  'storage-capacity': normStorage,
+  // Storage type
+  'storage-type': normStorageType,
+  'drive-type': normStorageType,
+  // Graphics
   'graphics-card': normGraphics,
   graphics: normGraphics,
   gpu: normGraphics,
+  // Display
+  'display-size': normDisplaySize,
+  'screen-size': normDisplaySize,
+  'display-resolution': normResolution,
+  'screen-resolution': normResolution,
+  resolution: normResolution,
+  'refresh-rate': normSpeed,
+  // Camera
+  megapixels: normResolution,
+  megapixel: normResolution,
+  'video-resolution': normVideoRes,
+  'video-quality': normVideoRes,
+  // Battery
+  battery: normBattery,
+  'battery-life': normBattery,
+  'battery-capacity': normBattery,
+  'battery-backup': normBattery,
+  // Socket
+  socket: normSocket,
+  'cpu-socket': normSocket,
+  // Speed / frequency
+  speed: normSpeed,
+  frequency: normSpeed,
+  'clock-speed': normSpeed,
+  'frequency-band': normSpeed,
+  // Power / wattage
+  power: normPower,
+  wattage: normPower,
+  'power-supply': normPower,
+  capacity: normPower,
 }
 
 const normalizeSpecValue = (specName, rawValue) => {
