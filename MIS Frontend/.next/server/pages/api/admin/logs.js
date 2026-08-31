@@ -90,7 +90,7 @@ async function handler(req, res) {
         });
     }
     try {
-        const { type ="visitor" , limit =100 , offset =0 , eventType , days =7  } = req.query;
+        const { type ="visitor" , limit =100 , offset =0 , eventType , days =7 , adminEmail , action , resource , resourceId , dateFrom , dateTo  } = req.query;
         if (type === "admin") {
             // Only super_admin can view admin activity logs
             if (auth.role !== "super_admin") {
@@ -99,10 +99,22 @@ async function handler(req, res) {
                     error: "Only super admin can view admin activity logs."
                 });
             }
-            const logs = await (0,_lib_server_activity_log__WEBPACK_IMPORTED_MODULE_1__/* .getAdminActivityLogs */ .sv)(Number(limit), Number(offset));
+            const { rows , total  } = await (0,_lib_server_activity_log__WEBPACK_IMPORTED_MODULE_1__/* .getAdminActivityLogsFiltered */ .th)({
+                limit: Number(limit) || 50,
+                offset: Number(offset) || 0,
+                adminEmail: adminEmail || null,
+                action: action || null,
+                resource: resource || null,
+                resourceId: resourceId || null,
+                dateFrom: dateFrom || null,
+                dateTo: dateTo || null
+            });
+            const options = await (0,_lib_server_activity_log__WEBPACK_IMPORTED_MODULE_1__/* .getAdminActivityFilterOptions */ .T0)();
             return res.status(200).json({
                 success: true,
-                logs
+                logs: rows,
+                total,
+                options
             });
         }
         if (type === "stats") {
@@ -113,10 +125,10 @@ async function handler(req, res) {
             });
         }
         // Default: visitor logs
-        const logs1 = await (0,_lib_server_activity_log__WEBPACK_IMPORTED_MODULE_1__/* .getVisitorLogs */ .Bm)(Number(limit), Number(offset), eventType || null);
+        const logs = await (0,_lib_server_activity_log__WEBPACK_IMPORTED_MODULE_1__/* .getVisitorLogs */ .Bm)(Number(limit), Number(offset), eventType || null);
         return res.status(200).json({
             success: true,
-            logs: logs1
+            logs
         });
     } catch (e) {
         return res.status(500).json({

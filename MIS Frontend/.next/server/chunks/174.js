@@ -9,10 +9,12 @@ exports.modules = {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Bm": () => (/* binding */ getVisitorLogs),
 /* harmony export */   "SC": () => (/* binding */ logAdminActivity),
+/* harmony export */   "T0": () => (/* binding */ getAdminActivityFilterOptions),
 /* harmony export */   "aH": () => (/* binding */ getVisitorStats),
 /* harmony export */   "e9": () => (/* binding */ logVisitorEvent),
-/* harmony export */   "sv": () => (/* binding */ getAdminActivityLogs)
+/* harmony export */   "th": () => (/* binding */ getAdminActivityLogsFiltered)
 /* harmony export */ });
+/* unused harmony export getAdminActivityLogs */
 /* harmony import */ var _db__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6548);
 
 /**
@@ -81,11 +83,75 @@ exports.modules = {
 /**
  * Get admin activity logs
  */ const getAdminActivityLogs = async (limit = 100, offset = 0)=>{
-    const db = (0,_db__WEBPACK_IMPORTED_MODULE_0__/* .getDbPool */ .z)();
+    const db = getDbPool();
     const safeLimit = Math.max(1, Math.min(500, Number(limit) || 100));
     const safeOffset = Math.max(0, Number(offset) || 0);
     const [rows] = await db.query(`SELECT * FROM admin_activity_logs ORDER BY created_at DESC LIMIT ${safeLimit} OFFSET ${safeOffset}`);
     return rows;
+};
+/**
+ * Get admin activity logs with filters + total count (for pagination).
+ * @param {object} opts
+ * @param {number} opts.limit
+ * @param {number} opts.offset
+ * @param {string} [opts.adminEmail] - exact admin email
+ * @param {string} [opts.action] - exact action (create/update/delete/login/...)
+ * @param {string} [opts.resource] - exact resource
+ * @param {string} [opts.resourceId] - resource id (matched as string)
+ * @param {string} [opts.dateFrom] - ISO/date string, inclusive
+ * @param {string} [opts.dateTo] - ISO/date string, inclusive (end of day)
+ * @returns {{ rows: any[], total: number }}
+ */ const getAdminActivityLogsFiltered = async ({ limit =50 , offset =0 , adminEmail =null , action =null , resource =null , resourceId =null , dateFrom =null , dateTo =null ,  } = {})=>{
+    const db = (0,_db__WEBPACK_IMPORTED_MODULE_0__/* .getDbPool */ .z)();
+    const safeLimit = Math.max(1, Math.min(200, Number(limit) || 50));
+    const safeOffset = Math.max(0, Number(offset) || 0);
+    const where = [];
+    const params = [];
+    if (adminEmail) {
+        where.push("admin_email = ?");
+        params.push(adminEmail);
+    }
+    if (action) {
+        where.push("action = ?");
+        params.push(action);
+    }
+    if (resource) {
+        where.push("resource = ?");
+        params.push(resource);
+    }
+    if (resourceId) {
+        where.push("resource_id = ?");
+        params.push(resourceId);
+    }
+    if (dateFrom) {
+        where.push("created_at >= ?");
+        params.push(`${dateFrom} 00:00:00`);
+    }
+    if (dateTo) {
+        where.push("created_at <= ?");
+        params.push(`${dateTo} 23:59:59`);
+    }
+    const whereClause = where.length ? ` WHERE ${where.join(" AND ")}` : "";
+    const [countRows] = await db.query(`SELECT COUNT(*) as total FROM admin_activity_logs${whereClause}`, params);
+    const total = Number(countRows[0]?.total || 0);
+    const [rows] = await db.query(`SELECT * FROM admin_activity_logs${whereClause} ORDER BY created_at DESC LIMIT ${safeLimit} OFFSET ${safeOffset}`, params);
+    return {
+        rows,
+        total
+    };
+};
+/**
+ * Distinct values for admin-log filter dropdowns.
+ */ const getAdminActivityFilterOptions = async ()=>{
+    const db = (0,_db__WEBPACK_IMPORTED_MODULE_0__/* .getDbPool */ .z)();
+    const [admins] = await db.query(`SELECT DISTINCT admin_email FROM admin_activity_logs WHERE admin_email IS NOT NULL AND admin_email <> '' ORDER BY admin_email ASC`);
+    const [actions] = await db.query(`SELECT DISTINCT action FROM admin_activity_logs WHERE action IS NOT NULL AND action <> '' ORDER BY action ASC`);
+    const [resources] = await db.query(`SELECT DISTINCT resource FROM admin_activity_logs WHERE resource IS NOT NULL AND resource <> '' ORDER BY resource ASC`);
+    return {
+        admins: admins.map((r)=>r.admin_email),
+        actions: actions.map((r)=>r.action),
+        resources: resources.map((r)=>r.resource)
+    };
 };
 /**
  * Get visitor logs

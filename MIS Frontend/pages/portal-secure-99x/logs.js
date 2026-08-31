@@ -15,6 +15,20 @@ const LogsPage = () => {
   const [eventFilter, setEventFilter] = useState('')
   const [isSuperAdmin, setIsSuperAdmin] = useState(false)
 
+  // Admin Activity filters + pagination
+  const PAGE_SIZE = 50
+  const [adminTotal, setAdminTotal] = useState(0)
+  const [adminPage, setAdminPage] = useState(1)
+  const [adminOptions, setAdminOptions] = useState({ admins: [], actions: [], resources: [] })
+  const [fAdmin, setFAdmin] = useState('')
+  const [fAction, setFAction] = useState('')
+  const [fResource, setFResource] = useState('')
+  const [fId, setFId] = useState('')
+  const [fFrom, setFFrom] = useState('')
+  const [fTo, setFTo] = useState('')
+  // Applied filters (what the query actually uses; ID/date apply on button click)
+  const [applied, setApplied] = useState({ adminEmail: '', action: '', resource: '', resourceId: '', dateFrom: '', dateTo: '' })
+
   useEffect(() => {
     // Check role
     fetch('/api/admin/me', { credentials: 'include' }).then(r => r.json()).then(data => {
@@ -22,7 +36,7 @@ const LogsPage = () => {
       if (data.role === 'super_admin') setIsSuperAdmin(true)
     }).catch(() => {})
     loadData()
-  }, [activeTab, days, eventFilter])
+  }, [activeTab, days, eventFilter, adminPage, applied])
 
   const loadData = async () => {
     setLoading(true)
@@ -38,13 +52,50 @@ const LogsPage = () => {
         const data = await res.json()
         if (data.success) setVisitorLogs(data.logs)
       } else if (activeTab === 'admin') {
-        const res = await fetch('/api/admin/logs?type=admin&limit=200', { credentials: 'include' })
+        const offset = (adminPage - 1) * PAGE_SIZE
+        const qs = new URLSearchParams({ type: 'admin', limit: String(PAGE_SIZE), offset: String(offset) })
+        if (applied.adminEmail) qs.set('adminEmail', applied.adminEmail)
+        if (applied.action) qs.set('action', applied.action)
+        if (applied.resource) qs.set('resource', applied.resource)
+        if (applied.resourceId) qs.set('resourceId', applied.resourceId)
+        if (applied.dateFrom) qs.set('dateFrom', applied.dateFrom)
+        if (applied.dateTo) qs.set('dateTo', applied.dateTo)
+        const res = await fetch(`/api/admin/logs?${qs.toString()}`, { credentials: 'include' })
         const data = await res.json()
-        if (data.success) setAdminLogs(data.logs)
+        if (data.success) {
+          setAdminLogs(data.logs)
+          setAdminTotal(data.total || 0)
+          if (data.options) setAdminOptions(data.options)
+        }
       }
     } catch (e) { console.error(e) }
     finally { setLoading(false) }
   }
+
+  const applyAdminFilters = () => {
+    setAdminPage(1)
+    setApplied({ adminEmail: fAdmin, action: fAction, resource: fResource, resourceId: fId.trim(), dateFrom: fFrom, dateTo: fTo })
+  }
+  const resetAdminFilters = () => {
+    setFAdmin(''); setFAction(''); setFResource(''); setFId(''); setFFrom(''); setFTo('')
+    setAdminPage(1)
+    setApplied({ adminEmail: '', action: '', resource: '', resourceId: '', dateFrom: '', dateTo: '' })
+  }
+
+  const totalPages = Math.max(1, Math.ceil(adminTotal / PAGE_SIZE))
+  const pageNumbers = (() => {
+    const pages = []
+    const span = 2 // pages on each side of current
+    let start = Math.max(1, adminPage - span)
+    let end = Math.min(totalPages, adminPage + span)
+    if (adminPage <= span) end = Math.min(totalPages, 1 + span * 2)
+    if (adminPage > totalPages - span) start = Math.max(1, totalPages - span * 2)
+    for (let i = start; i <= end; i++) pages.push(i)
+    return pages
+  })()
+
+  const inputStyle = { padding: '7px 10px', borderRadius: '6px', border: '1px solid #e2e8f0', fontSize: '12px', color: '#374151', background: '#fff', minWidth: '130px' }
+  const labelStyle = { fontSize: '11px', fontWeight: 600, color: '#64748b', marginBottom: '4px', display: 'block' }
 
   return (
     <>
@@ -63,7 +114,7 @@ const LogsPage = () => {
             ))}
           </div>
 
-          {loading && <div style={{ textAlign: 'center', padding: '48px', color: '#94a3b8' }}>Loading...</div>}
+          {loading && activeTab !== 'admin' && <div style={{ textAlign: 'center', padding: '48px', color: '#94a3b8' }}>Loading...</div>}
 
           {/* Stats Overview */}
           {!loading && activeTab === 'stats' && stats && (
@@ -168,8 +219,53 @@ const LogsPage = () => {
           )}
 
           {/* Admin Activity */}
-          {!loading && activeTab === 'admin' && (
-            <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden' }}>
+          {activeTab === 'admin' && (
+            <div>
+              {/* Filter bar */}
+              <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '16px', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'flex-end' }}>
+                  <div>
+                    <label style={labelStyle}>Admin</label>
+                    <select value={fAdmin} onChange={(e) => setFAdmin(e.target.value)} style={inputStyle}>
+                      <option value="">All admins</option>
+                      {adminOptions.admins.map((a) => <option key={a} value={a}>{a}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Action</label>
+                    <select value={fAction} onChange={(e) => setFAction(e.target.value)} style={inputStyle}>
+                      <option value="">All actions</option>
+                      {adminOptions.actions.map((a) => <option key={a} value={a}>{a}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Resource</label>
+                    <select value={fResource} onChange={(e) => setFResource(e.target.value)} style={inputStyle}>
+                      <option value="">All resources</option>
+                      {adminOptions.resources.map((r) => <option key={r} value={r}>{r}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={labelStyle}>ID</label>
+                    <input type="text" value={fId} onChange={(e) => setFId(e.target.value)} placeholder="Resource ID" style={{ ...inputStyle, minWidth: '110px' }} onKeyDown={(e) => { if (e.key === 'Enter') applyAdminFilters() }} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>From date</label>
+                    <input type="date" value={fFrom} onChange={(e) => setFFrom(e.target.value)} style={inputStyle} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>To date</label>
+                    <input type="date" value={fTo} onChange={(e) => setFTo(e.target.value)} style={inputStyle} />
+                  </div>
+                  <button onClick={applyAdminFilters} style={{ padding: '8px 18px', borderRadius: '6px', border: 'none', background: '#1e293b', color: '#fff', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>Apply</button>
+                  <button onClick={resetAdminFilters} style={{ padding: '8px 16px', borderRadius: '6px', border: '1px solid #e2e8f0', background: '#fff', color: '#64748b', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>Reset</button>
+                </div>
+              </div>
+
+              {loading && <div style={{ textAlign: 'center', padding: '48px', color: '#94a3b8' }}>Loading...</div>}
+
+              {!loading && (
+              <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
                 <thead>
                   <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
@@ -196,7 +292,29 @@ const LogsPage = () => {
                   ))}
                 </tbody>
               </table>
-              {adminLogs.length === 0 && <div style={{ textAlign: 'center', padding: '32px', color: '#94a3b8' }}>No admin activity logged yet.</div>}
+              {adminLogs.length === 0 && <div style={{ textAlign: 'center', padding: '32px', color: '#94a3b8' }}>No admin activity matches your filters.</div>}
+              </div>
+              )}
+
+              {/* Pagination */}
+              {!loading && adminTotal > 0 && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '16px', flexWrap: 'wrap', gap: '10px' }}>
+                  <span style={{ fontSize: '12px', color: '#64748b' }}>
+                    Showing {(adminPage - 1) * PAGE_SIZE + 1}–{Math.min(adminPage * PAGE_SIZE, adminTotal)} of {adminTotal.toLocaleString()}
+                  </span>
+                  <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                    <button onClick={() => setAdminPage(1)} disabled={adminPage === 1} style={pageBtn(adminPage === 1)}>« First</button>
+                    <button onClick={() => setAdminPage((p) => Math.max(1, p - 1))} disabled={adminPage === 1} style={pageBtn(adminPage === 1)}>‹ Prev</button>
+                    {pageNumbers[0] > 1 && <span style={{ color: '#94a3b8', fontSize: '12px', padding: '0 4px' }}>…</span>}
+                    {pageNumbers.map((n) => (
+                      <button key={n} onClick={() => setAdminPage(n)} style={pageBtn(false, n === adminPage)}>{n}</button>
+                    ))}
+                    {pageNumbers[pageNumbers.length - 1] < totalPages && <span style={{ color: '#94a3b8', fontSize: '12px', padding: '0 4px' }}>…</span>}
+                    <button onClick={() => setAdminPage((p) => Math.min(totalPages, p + 1))} disabled={adminPage === totalPages} style={pageBtn(adminPage === totalPages)}>Next ›</button>
+                    <button onClick={() => setAdminPage(totalPages)} disabled={adminPage === totalPages} style={pageBtn(adminPage === totalPages)}>Last »</button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -204,5 +322,18 @@ const LogsPage = () => {
     </>
   )
 }
+
+// Pagination button style helper
+const pageBtn = (disabled, active = false) => ({
+  padding: '6px 11px',
+  borderRadius: '6px',
+  border: '1px solid ' + (active ? '#1e293b' : '#e2e8f0'),
+  background: active ? '#1e293b' : '#fff',
+  color: active ? '#fff' : (disabled ? '#cbd5e1' : '#475569'),
+  fontSize: '12px',
+  fontWeight: 600,
+  cursor: disabled ? 'not-allowed' : 'pointer',
+  minWidth: '34px',
+})
 
 export default LogsPage

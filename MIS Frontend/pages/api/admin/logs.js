@@ -1,5 +1,5 @@
 import { requireAdminApiAuth } from '../../../lib/auth/require-admin'
-import { getAdminActivityLogs, getVisitorLogs, getVisitorStats } from '../../../lib/server/activity-log'
+import { getAdminActivityLogsFiltered, getAdminActivityFilterOptions, getVisitorLogs, getVisitorStats } from '../../../lib/server/activity-log'
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -12,15 +12,25 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { type = 'visitor', limit = 100, offset = 0, eventType, days = 7 } = req.query
+    const { type = 'visitor', limit = 100, offset = 0, eventType, days = 7, adminEmail, action, resource, resourceId, dateFrom, dateTo } = req.query
 
     if (type === 'admin') {
       // Only super_admin can view admin activity logs
       if (auth.role !== 'super_admin') {
         return res.status(403).json({ success: false, error: 'Only super admin can view admin activity logs.' })
       }
-      const logs = await getAdminActivityLogs(Number(limit), Number(offset))
-      return res.status(200).json({ success: true, logs })
+      const { rows, total } = await getAdminActivityLogsFiltered({
+        limit: Number(limit) || 50,
+        offset: Number(offset) || 0,
+        adminEmail: adminEmail || null,
+        action: action || null,
+        resource: resource || null,
+        resourceId: resourceId || null,
+        dateFrom: dateFrom || null,
+        dateTo: dateTo || null,
+      })
+      const options = await getAdminActivityFilterOptions()
+      return res.status(200).json({ success: true, logs: rows, total, options })
     }
 
     if (type === 'stats') {
