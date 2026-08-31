@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/qdRNzXdrFcXnNeB7xCMhm/_buildManifest.js",
-    "static/qdRNzXdrFcXnNeB7xCMhm/_ssgManifest.js"
+    "static/2IdwMzUrzucOPsRJIjtbN/_buildManifest.js",
+    "static/2IdwMzUrzucOPsRJIjtbN/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -97,7 +97,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/2097-1f252288755eaf92.js",
       "static/chunks/6151-bc1789e7e7e47660.js",
-      "static/chunks/pages/categories/[slug]-9a73aa5ba115b34e.js"
+      "static/chunks/pages/categories/[slug]-5b24b94ff6f032eb.js"
     ],
     "/company-information-policies": [
       "static/chunks/webpack-0e4a2b309df95f3a.js",

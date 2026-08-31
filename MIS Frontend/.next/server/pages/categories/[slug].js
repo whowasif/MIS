@@ -85,6 +85,102 @@ const formatCurrency = (v)=>`৳${Number(v || 0).toLocaleString(undefined, {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     })}`;
+// --- Filter-only spec normalization -------------------------------------
+// Collapses a free-text spec value down to its "base" so the filter sidebar
+// shows a small set of buckets instead of one checkbox per product.
+// This ONLY affects the filter UI/matching. Product cards and the product
+// detail page still show the full, original value.
+const clean = (s)=>String(s || "").replace(/\s+/g, " ").trim();
+// Processor: "Intel Core i7-12500H" / "Core i7 12500-6C" -> "Intel Core i7"
+//            "AMD Ryzen 5 9600X" / "Ryzen 5 7535HS" -> "AMD Ryzen 5"
+const normProcessor = (raw)=>{
+    const v = clean(raw);
+    const lower = v.toLowerCase();
+    // Intel Core iX
+    let m = lower.match(/core\s*i([3579])/);
+    if (m) return `Intel Core i${m[1]}`;
+    // Intel Core Ultra X
+    m = lower.match(/core\s*ultra\s*([3579])/);
+    if (m) return `Intel Core Ultra ${m[1]}`;
+    // Intel Core X (new naming: "Core 5 210H", "Core 3-N355")
+    m = lower.match(/core\s*([3579])\b/);
+    if (m) return `Intel Core ${m[1]}`;
+    // AMD Ryzen X
+    m = lower.match(/ryzen\s*([3579])/);
+    if (m) return `AMD Ryzen ${m[1]}`;
+    // Ryzen Threadripper / EPYC / Athlon
+    if (lower.includes("threadripper")) return "AMD Ryzen Threadripper";
+    if (lower.includes("epyc")) return "AMD EPYC";
+    if (lower.includes("athlon")) return "AMD Athlon";
+    // Intel families without a tier number
+    if (lower.includes("xeon")) return "Intel Xeon";
+    if (lower.includes("pentium")) return "Intel Pentium";
+    if (lower.includes("celeron")) return "Intel Celeron";
+    if (lower.includes("atom")) return "Intel Atom";
+    // Apple silicon
+    m = v.match(/\bM([1234])\b/);
+    if (m) return `Apple M${m[1]}`;
+    return v // fallback: keep as typed
+    ;
+};
+// Extract "<number><unit>" for a given unit list (GB, TB, MB) -> capacity base.
+const capacity = (raw)=>{
+    const v = clean(raw);
+    const m = v.match(/(\d+(?:\.\d+)?)\s*(tb|gb|mb)\b/i);
+    if (!m) return null;
+    const num = m[1].replace(/\.0$/, "");
+    return `${num}${m[2].toUpperCase()}`;
+};
+// RAM: "8GB 3200Mhz DDR4 Laptop RAM" -> "8GB"
+const normRam = (raw)=>capacity(raw) || clean(raw);
+// Storage: "512GB NVMe SSD" -> "512GB" ; "1TB HDD" -> "1TB"
+const normStorage = (raw)=>capacity(raw) || clean(raw);
+// Graphics: "NVIDIA RTX 4070 8GB" -> "NVIDIA RTX 4070"
+//           "Intel® UHD Graphics" -> "Intel UHD" ; "Integrated Radeon Graphics" -> "AMD Radeon"
+const normGraphics = (raw)=>{
+    const v = clean(raw).replace(/®|™/g, "");
+    const lower = v.toLowerCase();
+    let m = lower.match(/rtx\s*(\d{3,4})/);
+    if (m) return `NVIDIA RTX ${m[1]}`;
+    m = lower.match(/gtx\s*(\d{3,4})/);
+    if (m) return `NVIDIA GTX ${m[1]}`;
+    if (lower.includes("iris xe")) return "Intel Iris Xe";
+    if (lower.includes("uhd")) return "Intel UHD";
+    if (lower.includes("radeon")) return "AMD Radeon";
+    if (lower.includes("arc")) return "Intel Arc";
+    if (lower.includes("integrated")) return "Integrated";
+    return v;
+};
+// Generic base for any other spec: take the leading brand/keyword-ish part
+// (first 2 words, stripped of trailing model codes / units) so long sentences
+// collapse. Falls back to the raw value if nothing sensible remains.
+const normGeneric = (raw)=>{
+    const v = clean(raw);
+    if (v.length <= 24) return v;
+    // keep text up to first comma / colon / parenthesis / dash-with-space
+    const cut = v.split(/[,:(]| - /)[0].trim();
+    return cut.length >= 3 ? cut : v;
+};
+const specNormalizers = {
+    processor: normProcessor,
+    "processor-brand": normProcessor,
+    "processor-model": normProcessor,
+    cpu: normProcessor,
+    ram: normRam,
+    memory: normRam,
+    storage: normStorage,
+    ssd: normStorage,
+    hdd: normStorage,
+    "graphics-card": normGraphics,
+    graphics: normGraphics,
+    gpu: normGraphics
+};
+const normalizeSpecValue = (specName, rawValue)=>{
+    const key = String(specName || "").toLowerCase();
+    const fn = specNormalizers[key];
+    const out = fn ? fn(rawValue) : normGeneric(rawValue);
+    return clean(out) || clean(rawValue);
+};
 const CategoryPage = ({ category , subcategories , products , specs , brands , maxPrice  })=>{
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();
     const { 0: priceRange , 1: setPriceRange  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([
@@ -127,12 +223,14 @@ const CategoryPage = ({ category , subcategories , products , specs , brands , m
         } else if (availability === "upcoming") {
             filtered = filtered.filter((p)=>p.stock_qty === 0);
         }
-        // Spec filters (multi-select: selectedSpecs[specName] is an array)
+        // Spec filters (multi-select). selectedSpecs[specName] holds normalized
+        // "base" values; match a product by normalizing its raw value too.
         Object.entries(selectedSpecs).forEach(([specName, specValues])=>{
             if (!specValues || !Array.isArray(specValues) || specValues.length === 0) return;
             filtered = filtered.filter((p)=>{
                 const pSpec = p.specs?.find((s)=>s.spec_name === specName);
-                return pSpec?.spec_value && specValues.includes(pSpec.spec_value);
+                if (!pSpec?.spec_value) return false;
+                return specValues.includes(normalizeSpecValue(specName, pSpec.spec_value));
             });
         });
         // Sort
@@ -148,21 +246,28 @@ const CategoryPage = ({ category , subcategories , products , specs , brands , m
         availability,
         sortBy
     ]);
-    // Get unique values for each spec from current products
+    // Build filter facets: collapse each product's raw spec value to its base
+    // bucket so the sidebar shows a clean, deduped list (e.g. "Intel Core i7",
+    // "512GB"). The product cards/detail page keep the full original value.
     const specOptions = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>{
         const options = {};
         specs.forEach((spec)=>{
             const values = new Set();
             products.forEach((p)=>{
                 const pSpec = p.specs?.find((s)=>s.spec_name === spec.spec_name);
-                if (pSpec?.spec_value) values.add(pSpec.spec_value);
+                if (pSpec?.spec_value) values.add(normalizeSpecValue(spec.spec_name, pSpec.spec_value));
             });
-            if (values.size > 0) options[spec.spec_name] = {
-                label: spec.spec_label,
-                values: [
-                    ...values
-                ].sort()
-            };
+            if (values.size > 0) {
+                options[spec.spec_name] = {
+                    label: spec.spec_label,
+                    values: [
+                        ...values
+                    ].sort((a, b)=>a.localeCompare(b, undefined, {
+                            numeric: true,
+                            sensitivity: "base"
+                        }))
+                };
+            }
         });
         return options;
     }, [
