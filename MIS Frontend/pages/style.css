@@ -1628,13 +1628,17 @@
  
 .case-rail-container {
   padding: var(--spacing-md) 0 var(--spacing-lg);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
 }
 
 .case-rail-container:active {
-  cursor: default;
+  cursor: grabbing;
 }
 
 .case-rail-container::-webkit-scrollbar {
@@ -1647,14 +1651,7 @@
   flex-wrap: nowrap;
   width: max-content;
   padding: 0 var(--spacing-xl);
-  animation: scroll-cases 35s linear infinite;
 }
-
-.case-rail:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scroll-cases { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 .case-card {
   position: relative;
@@ -3952,7 +3949,7 @@ body.cart-open {
   .ad-title { font-size: 16px; }
   .product-card { flex: 0 0 220px; }
   .service-marquee-card { width: 250px; }
-  .case-rail-container { overflow: hidden; }
+  .case-rail-container { overflow-x: auto; overflow-y: hidden; }
   .case-rail { gap: 16px; padding: 0 16px; }
   .case-card { flex: 0 0 280px; }
 }

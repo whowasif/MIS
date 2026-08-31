@@ -139,26 +139,15 @@ const Home = (props) => {
     return () => clearInterval(timer)
   }, [advertisements.length])
 
-  useEffect(() => {
-    const rail = caseRailRef.current
-    if (!rail) return
-    let isDragging = false, hasMoved = false, startX = 0, startScrollLeft = 0
-    const onPointerDown = (e) => { if (e.pointerType !== 'mouse' || e.button !== 0) return; isDragging = true; hasMoved = false; startX = e.clientX; startScrollLeft = rail.scrollLeft }
-    const onPointerMove = (e) => { if (!isDragging) return; const dx = e.clientX - startX; if (Math.abs(dx) > 5) { hasMoved = true; e.preventDefault(); } rail.scrollLeft = startScrollLeft - dx }
-    const endDrag = () => { isDragging = false }
-    const onClick = (e) => { if (hasMoved) { e.preventDefault(); e.stopPropagation(); } }
-    rail.addEventListener('pointerdown', onPointerDown); rail.addEventListener('pointermove', onPointerMove); rail.addEventListener('pointerup', endDrag); rail.addEventListener('pointercancel', endDrag); rail.addEventListener('pointerleave', endDrag); rail.addEventListener('click', onClick, true)
-    return () => { rail.removeEventListener('pointerdown', onPointerDown); rail.removeEventListener('pointermove', onPointerMove); rail.removeEventListener('pointerup', endDrag); rail.removeEventListener('pointercancel', endDrag); rail.removeEventListener('pointerleave', endDrag); rail.removeEventListener('click', onClick, true) }
-  }, [])
-
-  // Auto-scroll (right-to-left) + drag/swipe control for the two card rails
+  // Auto-scroll (right-to-left) + drag/swipe control for all three card rails
   useEffect(() => {
     const cleanups = [
       setupDraggableAutoScroll(productsRailRef.current),
       setupDraggableAutoScroll(servicesRailRef.current),
+      setupDraggableAutoScroll(caseRailRef.current),
     ]
     return () => cleanups.forEach((fn) => fn && fn())
-  }, [featuredProducts.length, featuredServices.length])
+  }, [featuredProducts.length, featuredServices.length, clientProjects.length])
 
   return (
     <>
