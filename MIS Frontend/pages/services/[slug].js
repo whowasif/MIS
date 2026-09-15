@@ -49,7 +49,6 @@ const ContentDetailPage = ({ content, contentType }) => {
                   {contentType === 'bus_corp_sol' && <Link href="/enterprise-solutions"><a>Enterprise Solutions</a></Link>}
                   {contentType === 'service_maintenance' && <Link href="/maintenance-support"><a>Maintenance & Support</a></Link>}
                   {contentType === 'career_posts' && <Link href="/career"><a>Career</a></Link>}
-                  {contentType === 'page_contents' && <Link href="/company-information-policies"><a>About</a></Link>}
                 </div>
                 <h1>{content.name || content.title}</h1>
                 {content.description && (
@@ -68,7 +67,6 @@ const ContentDetailPage = ({ content, contentType }) => {
                 {contentType === 'bus_corp_sol' && <Link href="/enterprise-solutions"><a>Enterprise Solutions</a></Link>}
                 {contentType === 'service_maintenance' && <Link href="/maintenance-support"><a>Maintenance & Support</a></Link>}
                 {contentType === 'career_posts' && <Link href="/career"><a>Career</a></Link>}
-                {contentType === 'page_contents' && <Link href="/company-information-policies"><a>About</a></Link>}
               </div>
               <h1>{content.name || content.title}</h1>
               {content.description && (
@@ -281,13 +279,13 @@ export const getServerSideProps = async ({ params, query }) => {
   const contentType = query.type || null
   const tables = contentType
     ? [contentType]
-    : ['digi_services', 'bus_corp_sol', 'service_maintenance', 'page_contents', 'career_posts']
+    : ['digi_services', 'bus_corp_sol', 'service_maintenance', 'career_posts']
 
   try {
     const db = getDbPool()
 
     for (const table of tables) {
-      const safeTable = ['digi_services', 'bus_corp_sol', 'service_maintenance', 'page_contents', 'career_posts'].includes(table) ? table : null
+      const safeTable = ['digi_services', 'bus_corp_sol', 'service_maintenance', 'career_posts'].includes(table) ? table : null
       if (!safeTable) continue
 
       // career_posts uses 'title' instead of 'name'

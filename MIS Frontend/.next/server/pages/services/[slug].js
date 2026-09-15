@@ -213,13 +213,6 @@ const ContentDetailPage = ({ content , contentType  })=>{
                                                         className: "jsx-8aa76e67b341728e",
                                                         children: "Career"
                                                     })
-                                                }),
-                                                contentType === "page_contents" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                                    href: "/company-information-policies",
-                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                        className: "jsx-8aa76e67b341728e",
-                                                        children: "About"
-                                                    })
                                                 })
                                             ]
                                         }),
@@ -288,13 +281,6 @@ const ContentDetailPage = ({ content , contentType  })=>{
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                 className: "jsx-8aa76e67b341728e",
                                                 children: "Career"
-                                            })
-                                        }),
-                                        contentType === "page_contents" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                            href: "/company-information-policies",
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-8aa76e67b341728e",
-                                                children: "About"
                                             })
                                         })
                                     ]
@@ -398,7 +384,6 @@ const getServerSideProps = async ({ params , query  })=>{
         "digi_services",
         "bus_corp_sol",
         "service_maintenance",
-        "page_contents",
         "career_posts"
     ];
     try {
@@ -408,7 +393,6 @@ const getServerSideProps = async ({ params , query  })=>{
                 "digi_services",
                 "bus_corp_sol",
                 "service_maintenance",
-                "page_contents",
                 "career_posts"
             ].includes(table) ? table : null;
             if (!safeTable) continue;

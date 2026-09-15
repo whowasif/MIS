@@ -6,7 +6,6 @@ export const managedTableConfig = [
   { name: 'digi_services', label: 'Digital Services', group: 'Content' },
   { name: 'bus_corp_sol', label: 'Business & Corporate Solutions', group: 'Content' },
   { name: 'service_maintenance', label: 'Service & Maintenance', group: 'Content' },
-  { name: 'page_contents', label: 'Page Contents', group: 'Content' },
   { name: 'career_posts', label: 'Career Posts', group: 'Content' },
   { name: 'advertisements', label: 'Advertisements', group: 'Content' },
   { name: 'client_projects', label: 'Client Projects', group: 'Content' },

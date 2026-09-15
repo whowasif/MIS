@@ -58,11 +58,6 @@ const managedTableConfig = [
         group: "Content"
     },
     {
-        name: "page_contents",
-        label: "Page Contents",
-        group: "Content"
-    },
-    {
         name: "career_posts",
         label: "Career Posts",
         group: "Content"

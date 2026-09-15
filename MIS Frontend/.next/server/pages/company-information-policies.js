@@ -105,11 +105,11 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                                     className: "jsx-2ad0f6e512036635",
-                                                    children: "We, MIS Solution, are devoted to provide broad range of technology products and services for a multitude of challenging market. We prefer to work side-by-side with our customers to exploit new opportunities. Our dedicated team always promised our valued customer with end-to-end products and solution keeping in mind their specific requirements and needs."
+                                                    children: "Since 2007, MIS Solution has been devoted to providing a broad range of technology products and services across a multitude of challenging markets. For over 18 years we have worked side-by-side with our customers to exploit new opportunities, and our dedicated team has always delivered end-to-end products and solutions built around each client's specific requirements and needs."
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                                     className: "jsx-2ad0f6e512036635",
-                                                    children: "Our main focus is to construct a superior customer value proposition to become successful business organization. Customers are the key concern to us. We are always devoted to provide the best services and products to our customers."
+                                                    children: "Our main focus is to construct a superior customer value proposition and become a successful business organization. Customers are the key concern to us. We are always devoted to providing the best services and products to our customers."
                                                 })
                                             ]
                                         }),

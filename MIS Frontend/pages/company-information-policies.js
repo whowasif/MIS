@@ -52,8 +52,8 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
               <header className="page-header">
                 <p className="eyebrow">Company Information</p>
                 <h1>About Us &amp; Projects</h1>
-                <p>We, MIS Solution, are devoted to provide broad range of technology products and services for a multitude of challenging market. We prefer to work side-by-side with our customers to exploit new opportunities. Our dedicated team always promised our valued customer with end-to-end products and solution keeping in mind their specific requirements and needs.</p>
-                <p>Our main focus is to construct a superior customer value proposition to become successful business organization. Customers are the key concern to us. We are always devoted to provide the best services and products to our customers.</p>
+                <p>Since 2007, MIS Solution has been devoted to providing a broad range of technology products and services across a multitude of challenging markets. For over 18 years we have worked side-by-side with our customers to exploit new opportunities, and our dedicated team has always delivered end-to-end products and solutions built around each client&apos;s specific requirements and needs.</p>
+                <p>Our main focus is to construct a superior customer value proposition and become a successful business organization. Customers are the key concern to us. We are always devoted to providing the best services and products to our customers.</p>
               </header>
 
               <div className="mission-grid">

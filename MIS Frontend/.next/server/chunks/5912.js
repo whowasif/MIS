@@ -47,11 +47,6 @@ const managedTableConfig = [
         group: "Content"
     },
     {
-        name: "page_contents",
-        label: "Page Contents",
-        group: "Content"
-    },
-    {
         name: "career_posts",
         label: "Career Posts",
         group: "Content"
@@ -198,7 +193,6 @@ const TABLE_ICONS = {
     digi_services: "globe",
     bus_corp_sol: "briefcase",
     service_maintenance: "wrench",
-    page_contents: "file",
     career_posts: "award",
     advertisements: "megaphone",
     client_projects: "folder",

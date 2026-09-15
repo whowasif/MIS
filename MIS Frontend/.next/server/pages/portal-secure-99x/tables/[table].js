@@ -57,7 +57,6 @@ const RICH_TEXT_TABLES = [
     "digi_services",
     "bus_corp_sol",
     "service_maintenance",
-    "page_contents",
     "career_posts",
     "client_projects"
 ];
