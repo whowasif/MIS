@@ -103,9 +103,6 @@ const CoreSolutions = () => {
 
   return (
     <div className={`cs ${on ? 'on' : ''}`} ref={ref}>
-      <span className="cs-tint" aria-hidden="true" />
-      <span className="cs-blob cs-blob-a" aria-hidden="true" />
-
       <div className="cs-inner">
         <header className="cs-head">
           <span className="cs-eyebrow">What We Offer</span>
@@ -158,24 +155,12 @@ const CoreSolutions = () => {
           width: 100%;
           overflow: hidden;
           padding: clamp(56px, 7vw, 96px) 0;
-          background-color: #0a0d14;
           background-image: url('/core-it-black.jpg');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
-          color: #f4f6fb;
+          color: #111318;
         }
-        /* brand glow only — no dark overlay, so the photo shows at full brightness */
-        .cs-tint {
-          position: absolute; inset: 0; z-index: 1; pointer-events: none;
-          background: radial-gradient(1100px 460px at 82% -6%, rgba(247,229,0,0.10), transparent 60%);
-        }
-        .cs-blob {
-          position: absolute; z-index: 1; border-radius: 50%; filter: blur(70px); opacity: .5; pointer-events: none;
-          width: 420px; height: 420px; bottom: -170px; left: -120px; background: rgba(99,102,241,0.22);
-        }
-        .cs.on .cs-blob-a { animation: csFloat 18s ease-in-out infinite; }
-        @keyframes csFloat { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(24px,-26px) scale(1.06); } }
 
         .cs-inner {
           position: relative; z-index: 2;
@@ -187,21 +172,25 @@ const CoreSolutions = () => {
         .cs-head { text-align: center; max-width: 720px; margin: 0 auto clamp(34px, 4vw, 54px); }
         .cs-eyebrow {
           display: inline-block; font-weight: 800; font-size: 12.5px; letter-spacing: 3px; text-transform: uppercase;
-          color: #f7e500; background: rgba(247,229,0,0.12); border: 1px solid rgba(247,229,0,0.5);
+          color: #7a5a00; background: rgba(247,229,0,0.85); border: 1px solid rgba(180,150,0,0.6);
           padding: 6px 14px; border-radius: 999px; margin-bottom: 16px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.12);
           opacity: 0; transform: translateY(14px);
         }
         .cs-title {
           margin: 0; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em;
-          font-size: clamp(30px, 5vw, 52px); color: #ffffff; text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+          font-size: clamp(30px, 5vw, 52px); color: #0e1116;
+          text-shadow: 0 1px 0 rgba(255,255,255,0.6), 0 2px 14px rgba(255,255,255,0.5);
           opacity: 0; transform: translateY(16px);
         }
         .cs-title span {
-          background: linear-gradient(100deg, #f6b800, #f7e500 55%, #f6b800);
+          background: linear-gradient(100deg, #c98a00, #e0a900 55%, #c98a00);
           -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
         }
         .cs-sub {
-          margin: 16px auto 0; max-width: 560px; color: #c3cbd9; font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6;
+          margin: 16px auto 0; max-width: 560px; color: #2a2f38; font-weight: 500;
+          font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6;
+          text-shadow: 0 1px 6px rgba(255,255,255,0.55);
           opacity: 0; transform: translateY(16px);
         }
         .cs.on .cs-eyebrow { animation: csUp .6s cubic-bezier(.22,1,.36,1) forwards; }
@@ -213,10 +202,11 @@ const CoreSolutions = () => {
         .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2vw, 26px); align-items: stretch; }
         .cs-card {
           position: relative; display: flex; flex-direction: column; height: 100%;
-          background: linear-gradient(180deg, rgba(20,24,36,0.34), rgba(12,15,24,0.30));
-          border: 1px solid rgba(255,255,255,0.14);
+          background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.60));
+          -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
+          border: 1px solid rgba(255,255,255,0.85);
           border-radius: 22px; padding: 26px 24px 22px;
-          box-shadow: 0 18px 44px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.08);
+          box-shadow: 0 18px 44px rgba(20,30,60,0.18), inset 0 1px 0 rgba(255,255,255,0.9);
           overflow: hidden;
           opacity: 0; transform: translateY(34px);
           transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .35s ease, background .35s ease;
@@ -226,9 +216,9 @@ const CoreSolutions = () => {
         @keyframes csCardIn { to { opacity: 1; transform: translateY(0); } }
         .cs-card:hover {
           transform: translateY(-8px);
-          background: linear-gradient(180deg, rgba(26,30,44,0.44), rgba(14,18,28,0.40));
-          box-shadow: 0 28px 60px rgba(0,0,0,0.5);
-          border-color: rgba(247,229,0,0.55);
+          background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.72));
+          box-shadow: 0 28px 60px rgba(20,30,60,0.26);
+          border-color: rgba(230,180,0,0.8);
         }
         .cs-card-bar {
           position: absolute; left: 0; top: 22px; bottom: 22px; width: 5px; border-radius: 0 6px 6px 0;
@@ -240,21 +230,22 @@ const CoreSolutions = () => {
         .cs-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
         .cs-icon {
           flex: 0 0 auto; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
-          color: #ffffff; background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.16);
+          color: #1a1d24; background: #111318;
+          border: 1px solid rgba(0,0,0,0.1);
           transition: transform .4s cubic-bezier(.34,1.56,.64,1), color .3s ease, border-color .3s ease, background .3s ease;
         }
-        .cs-card:hover .cs-icon { transform: rotate(-6deg) scale(1.08); color: #f7e500; border-color: rgba(247,229,0,0.55); background: rgba(247,229,0,0.08); }
-        .cs-card-title { margin: 0; font-size: clamp(16px, 1.5vw, 18px); font-weight: 800; color: #ffffff; line-height: 1.2; }
-        .cs-card-tag { margin: 4px 0 0; font-size: 13px; color: #97a2b8; font-weight: 500; }
+        .cs-icon svg { color: #ffffff; }
+        .cs-card:hover .cs-icon { transform: rotate(-6deg) scale(1.08); background: #1a1d24; }
+        .cs-card-title { margin: 0; font-size: clamp(16px, 1.5vw, 18px); font-weight: 800; color: #14181f; line-height: 1.2; }
+        .cs-card-tag { margin: 4px 0 0; font-size: 13px; color: #55606f; font-weight: 500; }
 
         /* chips — one per row */
         .cs-chips { list-style: none; margin: 0 0 4px; padding: 0; display: flex; flex-direction: column; gap: 9px; align-content: flex-start; }
         .cs-chip {
           display: flex; align-items: center; gap: 11px; width: 100%;
           padding: 11px 13px; border-radius: 12px; text-decoration: none;
-          font-size: 14px; font-weight: 600; color: #d7dded;
-          background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09);
+          font-size: 14px; font-weight: 600; color: #262b33;
+          background: rgba(245,247,250,0.8); border: 1px solid rgba(0,0,0,0.08);
           transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
         }
         .cs-chips li { opacity: 0; transform: translateX(-12px); }
@@ -264,26 +255,27 @@ const CoreSolutions = () => {
         @keyframes csChipIn { to { opacity: 1; transform: translateX(0); } }
         .cs-chip-ic {
           flex: 0 0 auto; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
-          color: #f7e500; background: rgba(247,229,0,0.10); border: 1px solid rgba(247,229,0,0.22);
-          transition: transform .2s ease, background .2s ease;
+          color: #8a6a00; background: rgba(247,229,0,0.35); border: 1px solid rgba(200,160,0,0.4);
+          transition: transform .2s ease, background .2s ease, color .2s ease;
         }
         .cs-chip-txt { flex: 1 1 auto; }
-        .cs-chip-arrow { flex: 0 0 auto; color: #6f7a90; opacity: 0; transform: translateX(-4px); transition: opacity .2s ease, transform .2s ease, color .2s ease; }
+        .cs-chip-arrow { flex: 0 0 auto; color: #9aa3b0; opacity: 0; transform: translateX(-4px); transition: opacity .2s ease, transform .2s ease, color .2s ease; }
         .cs-chip:hover {
           transform: translateX(4px);
-          color: #ffffff; background: rgba(247,229,0,0.10); border-color: rgba(247,229,0,0.5);
-          box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+          color: #0e1116; background: #fff8cc; border-color: rgba(230,180,0,0.7);
+          box-shadow: 0 8px 20px rgba(20,30,60,0.14);
         }
-        .cs-chip:hover .cs-chip-ic { transform: scale(1.1); background: rgba(247,229,0,0.2); }
-        .cs-chip:hover .cs-chip-arrow { opacity: 1; transform: translateX(0); color: #f7e500; }
+        .cs-chip:hover .cs-chip-ic { transform: scale(1.1); background: rgba(247,229,0,0.7); color: #5c4600; }
+        .cs-chip:hover .cs-chip-arrow { opacity: 1; transform: translateX(0); color: #b8860b; }
 
         /* card link */
         .cs-card-link {
-          margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);
+          margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1);
           display: inline-flex; align-items: center; gap: 7px;
-          font-size: 14px; font-weight: 800; text-decoration: none; color: #f7e500;
-          transition: gap .25s ease;
+          font-size: 14px; font-weight: 800; text-decoration: none; color: #a67c00;
+          transition: gap .25s ease, color .25s ease;
         }
+        .cs-card:hover .cs-card-link { color: #7a5a00; }
         .cs-card-link svg { transition: transform .25s ease; }
         .cs-card:hover .cs-card-link { gap: 11px; }
         .cs-card:hover .cs-card-link svg { transform: translateX(3px); }
@@ -301,7 +293,6 @@ const CoreSolutions = () => {
           .cs .cs-eyebrow, .cs .cs-title, .cs .cs-sub,
           .cs .cs-card, .cs .cs-chips li { opacity: 1 !important; transform: none !important; animation: none !important; }
           .cs .cs-card-bar { transform: scaleY(1) !important; }
-          .cs .cs-blob { animation: none !important; }
         }
       `}</style>
     </div>
