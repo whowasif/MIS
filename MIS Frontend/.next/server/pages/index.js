@@ -21,28 +21,21 @@ exports.modules = {
 
 
 /*
- * CoreSolutionsCircuit
- * A "rich" printed-circuit-board that powers up when scrolled into view.
- * A central CPU chip feeds 4 glowing gold traces (Manhattan / 45-90 routing)
- * that fork out to 4 connector nodes. From each node a glass service card
- * hangs on a connector and swings to a gentle rest. Idle state keeps a soft
- * pulse travelling along the traces + drifting data dots.
+ * CoreSolutionsSignposts
+ * Four rustic wooden sign-posts standing in a row. Each post has a header
+ * board (the division) mounted at top, and beneath it the sub-services hang
+ * as wooden planks — each tied to the one above by two ropes, forming a
+ * vertical hanging chain (per the client's drawing).
  *
- * Pure SVG + CSS. No libs. Respects prefers-reduced-motion.
- * Brand: navy #0a101b board, gold #f7e500 traces.
- */ const BRANCHES = [
+ * On scroll into view: header boards settle, then each plank drops and swings
+ * down its chain (staggered). Idle: gentle rope sway.
+ *
+ * Pure CSS/SVG wood + rope. No images. Respects prefers-reduced-motion.
+ */ const COLUMNS = [
     {
         key: "digital",
         title: "Digital Services",
         href: "/digital-services",
-        icon: "M4 5h16v10H4z M2 19h20",
-        // Manhattan-routed trace from chip (500,470) out to a widely-spaced node.
-        trace: "M500,470 L500,440 L150,440 L150,300",
-        node: {
-            x: 150,
-            y: 300
-        },
-        align: "edge-left",
         leaves: [
             "Web Development",
             "Custom Software",
@@ -56,13 +49,6 @@ exports.modules = {
         key: "corporate",
         title: "Business & Corporate",
         href: "/enterprise-solutions",
-        icon: "M4 20V8l8-5 8 5v12 M9 20v-6h6v6",
-        trace: "M500,470 L500,420 L385,420 L385,220",
-        node: {
-            x: 385,
-            y: 220
-        },
-        align: "center",
         leaves: [
             "IT Equipments",
             "Security System",
@@ -76,13 +62,6 @@ exports.modules = {
         key: "maintenance",
         title: "Maintenance & Support",
         href: "/maintenance-support",
-        icon: "M14 6l4 4-8 8-4-1-1-4z",
-        trace: "M500,470 L500,420 L620,420 L620,220",
-        node: {
-            x: 620,
-            y: 220
-        },
-        align: "center",
         leaves: [
             "AMC Contracts",
             "On-call Repair",
@@ -95,13 +74,6 @@ exports.modules = {
         key: "procurement",
         title: "Procurement Service",
         href: "/product-catalog",
-        icon: "M6 6h15l-1.5 9h-12z M6 6 5 3H2 M9 20a1 1 0 100-2 1 1 0 000 2 M18 20a1 1 0 100-2 1 1 0 000 2",
-        trace: "M500,470 L500,440 L850,440 L850,300",
-        node: {
-            x: 850,
-            y: 300
-        },
-        align: "edge-right",
         leaves: [
             "Hardware Sourcing",
             "Bulk Supply",
@@ -112,64 +84,55 @@ exports.modules = {
         ]
     }, 
 ];
-// decorative extra traces + pads to make the board look "rich"
-const DECO_TRACES = [
-    "M500,470 L500,560 L340,560 L340,610",
-    "M500,470 L500,560 L660,560 L660,610",
-    "M250,250 L180,250 L180,300",
-    "M750,250 L820,250 L820,300",
-    "M430,230 L430,180 L360,180",
-    "M570,230 L570,180 L640,180",
-    "M340,610 L340,650 L420,650",
-    "M660,610 L660,650 L580,650", 
-];
-const DECO_PADS = [
-    {
-        x: 340,
-        y: 610
-    },
-    {
-        x: 660,
-        y: 610
-    },
-    {
-        x: 180,
-        y: 300
-    },
-    {
-        x: 820,
-        y: 300
-    },
-    {
-        x: 360,
-        y: 180
-    },
-    {
-        x: 640,
-        y: 180
-    },
-    {
-        x: 340,
-        y: 560
-    },
-    {
-        x: 660,
-        y: 560
-    },
-    {
-        x: 420,
-        y: 650
-    },
-    {
-        x: 580,
-        y: 650
-    },
-    {
-        x: 500,
-        y: 560
-    }, 
-];
-const CoreSolutionsCircuit = ()=>{
+// small SVG for a pair of ropes connecting two boards
+const RopePair = ()=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+        className: "cs-rope",
+        "aria-hidden": "true",
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            viewBox: "0 0 60 26",
+            preserveAspectRatio: "none",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("defs", {
+                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", {
+                        id: "ropeG",
+                        x1: "0",
+                        y1: "0",
+                        x2: "0",
+                        y2: "1",
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
+                                offset: "0%",
+                                stopColor: "#d8b26a"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
+                                offset: "50%",
+                                stopColor: "#b8894a"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
+                                offset: "100%",
+                                stopColor: "#d8b26a"
+                            })
+                        ]
+                    })
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M10,1 C7,10 7,16 10,25",
+                    fill: "none",
+                    stroke: "url(#ropeG)",
+                    strokeWidth: "3",
+                    strokeLinecap: "round"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M50,1 C53,10 53,16 50,25",
+                    fill: "none",
+                    stroke: "url(#ropeG)",
+                    strokeWidth: "3",
+                    strokeLinecap: "round"
+                })
+            ]
+        })
+    });
+const CoreSolutionsSignposts = ()=>{
     const wrapRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const { 0: on , 1: setOn  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
@@ -188,427 +151,101 @@ const CoreSolutionsCircuit = ()=>{
                 }
             });
         }, {
-            threshold: 0.25
+            threshold: 0.18
         });
         obs.observe(el);
         return ()=>obs.disconnect();
     }, []);
-    // fire the travelling "current" pulses along each trace once powered on
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        if (!on || !wrapRef.current) return;
-        const motions = wrapRef.current.querySelectorAll(".csc-motion");
-        motions.forEach((m, i)=>{
-            const begin = 0.15 + i * 0.15;
-            if (typeof m.beginElementAt === "function") {
-                try {
-                    m.beginElementAt(begin);
-                } catch (_) {
-                    try {
-                        m.beginElement();
-                    } catch (e) {}
-                }
-            } else if (typeof m.beginElement === "function") {
-                setTimeout(()=>{
-                    try {
-                        m.beginElement();
-                    } catch (e) {}
-                }, begin * 1000);
-            }
-        });
-    }, [
-        on
-    ]);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         ref: wrapRef,
-        className: "jsx-b7102f3b4e478a6b" + " " + `csc-wrap ${on ? "on" : ""}`,
+        className: "jsx-3d775d6f2c16690f" + " " + `cs-wrap ${on ? "on" : ""}`,
         children: [
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-b7102f3b4e478a6b" + " " + "csc-board",
-                children: [
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-                        viewBox: "0 0 1000 720",
-                        preserveAspectRatio: "xMidYMid meet",
-                        "aria-hidden": "true",
-                        className: "jsx-b7102f3b4e478a6b" + " " + "csc-svg",
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: "jsx-3d775d6f2c16690f" + " " + "cs-row",
+                children: COLUMNS.map((col, ci)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        className: "jsx-3d775d6f2c16690f" + " " + "cs-col",
                         children: [
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", {
-                                className: "jsx-b7102f3b4e478a6b",
-                                children: [
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", {
-                                        id: "traceGrad",
-                                        x1: "0",
-                                        y1: "0",
-                                        x2: "1",
-                                        y2: "1",
-                                        className: "jsx-b7102f3b4e478a6b",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "0%",
-                                                stopColor: "#f7e500",
-                                                className: "jsx-b7102f3b4e478a6b"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "100%",
-                                                stopColor: "#c99a0a",
-                                                className: "jsx-b7102f3b4e478a6b"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("radialGradient", {
-                                        id: "boardGlow",
-                                        cx: "50%",
-                                        cy: "42%",
-                                        r: "55%",
-                                        className: "jsx-b7102f3b4e478a6b",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "0%",
-                                                stopColor: "rgba(247,229,0,0.14)",
-                                                className: "jsx-b7102f3b4e478a6b"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "100%",
-                                                stopColor: "rgba(247,229,0,0)",
-                                                className: "jsx-b7102f3b4e478a6b"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", {
-                                        id: "cGlow",
-                                        x: "-60%",
-                                        y: "-60%",
-                                        width: "220%",
-                                        height: "220%",
-                                        className: "jsx-b7102f3b4e478a6b",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("feGaussianBlur", {
-                                                stdDeviation: "3.4",
-                                                result: "b",
-                                                className: "jsx-b7102f3b4e478a6b"
-                                            }),
-                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("feMerge", {
-                                                className: "jsx-b7102f3b4e478a6b",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("feMergeNode", {
-                                                        in: "b",
-                                                        className: "jsx-b7102f3b4e478a6b"
-                                                    }),
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("feMergeNode", {
-                                                        in: "SourceGraphic",
-                                                        className: "jsx-b7102f3b4e478a6b"
-                                                    })
-                                                ]
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("pattern", {
-                                        id: "grid",
-                                        width: "26",
-                                        height: "26",
-                                        patternUnits: "userSpaceOnUse",
-                                        className: "jsx-b7102f3b4e478a6b",
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                            d: "M26 0H0V26",
-                                            fill: "none",
-                                            stroke: "rgba(247,229,0,0.05)",
-                                            strokeWidth: "1",
-                                            className: "jsx-b7102f3b4e478a6b"
-                                        })
-                                    })
-                                ]
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                "aria-hidden": "true",
+                                className: "jsx-3d775d6f2c16690f" + " " + "cs-post"
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                                x: "0",
-                                y: "0",
-                                width: "1000",
-                                height: "720",
-                                fill: "url(#grid)",
-                                className: "jsx-b7102f3b4e478a6b"
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                "aria-hidden": "true",
+                                className: "jsx-3d775d6f2c16690f" + " " + "cs-beam"
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                cx: "500",
-                                cy: "300",
-                                r: "330",
-                                fill: "url(#boardGlow)",
-                                className: "jsx-b7102f3b4e478a6b" + " " + "csc-ambient"
-                            }),
-                            DECO_TRACES.map((d, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                    d: d,
-                                    fill: "none",
-                                    stroke: "rgba(247,229,0,0.16)",
-                                    strokeWidth: "2.5",
-                                    strokeLinejoin: "round",
-                                    strokeLinecap: "round",
-                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-deco"
-                                }, `deco-${i}`)),
-                            DECO_PADS.map((p, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                    cx: p.x,
-                                    cy: p.y,
-                                    r: "4",
-                                    fill: "none",
-                                    stroke: "rgba(247,229,0,0.35)",
-                                    strokeWidth: "2",
-                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-deco-pad"
-                                }, `dpad-${i}`)),
-                            BRANCHES.map((b, bi)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
-                                    className: "jsx-b7102f3b4e478a6b",
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                "aria-hidden": "true",
+                                className: "jsx-3d775d6f2c16690f" + " " + "cs-rope cs-rope-head",
+                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                    viewBox: "0 0 120 22",
+                                    preserveAspectRatio: "none",
+                                    className: "jsx-3d775d6f2c16690f",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                            d: b.trace,
+                                            d: "M28,1 C25,9 25,14 28,21",
                                             fill: "none",
-                                            stroke: "rgba(247,229,0,0.22)",
-                                            strokeWidth: "3.5",
-                                            strokeLinejoin: "round",
+                                            stroke: "#c99a54",
+                                            strokeWidth: "3.2",
                                             strokeLinecap: "round",
-                                            className: "jsx-b7102f3b4e478a6b"
+                                            className: "jsx-3d775d6f2c16690f"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                            d: b.trace,
+                                            d: "M92,1 C95,9 95,14 92,21",
                                             fill: "none",
-                                            stroke: "url(#traceGrad)",
-                                            strokeWidth: "3.5",
-                                            strokeLinejoin: "round",
+                                            stroke: "#c99a54",
+                                            strokeWidth: "3.2",
                                             strokeLinecap: "round",
-                                            filter: "url(#cGlow)",
-                                            className: "jsx-b7102f3b4e478a6b" + " " + `csc-trace csc-trace-${bi}`
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                            r: "4.5",
-                                            fill: "#fff6a8",
-                                            filter: "url(#cGlow)",
-                                            className: "jsx-b7102f3b4e478a6b" + " " + `csc-pulse csc-pulse-${bi}`,
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("animateMotion", {
-                                                dur: "1.1s",
-                                                begin: "indefinite",
-                                                fill: "freeze",
-                                                path: b.trace,
-                                                className: "jsx-b7102f3b4e478a6b" + " " + "csc-motion"
-                                            })
+                                            className: "jsx-3d775d6f2c16690f"
                                         })
                                     ]
-                                }, `trace-${b.key}`)),
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
-                                filter: "url(#cGlow)",
-                                className: "jsx-b7102f3b4e478a6b" + " " + "csc-chip",
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                                        x: "466",
-                                        y: "468",
-                                        width: "68",
-                                        height: "68",
-                                        rx: "10",
-                                        fill: "#0e1626",
-                                        stroke: "url(#traceGrad)",
-                                        strokeWidth: "2.5",
-                                        className: "jsx-b7102f3b4e478a6b"
-                                    }),
-                                    [
-                                        ...Array(4)
-                                    ].map((_, i)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), {
-                                            children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
-                                                    x1: 478 + i * 14,
-                                                    y1: "460",
-                                                    x2: 478 + i * 14,
-                                                    y2: "468",
-                                                    stroke: "#c99a0a",
-                                                    strokeWidth: "2.5",
-                                                    className: "jsx-b7102f3b4e478a6b"
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
-                                                    x1: 478 + i * 14,
-                                                    y1: "536",
-                                                    x2: 478 + i * 14,
-                                                    y2: "544",
-                                                    stroke: "#c99a0a",
-                                                    strokeWidth: "2.5",
-                                                    className: "jsx-b7102f3b4e478a6b"
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
-                                                    x1: "458",
-                                                    y1: 480 + i * 14,
-                                                    x2: "466",
-                                                    y2: 480 + i * 14,
-                                                    stroke: "#c99a0a",
-                                                    strokeWidth: "2.5",
-                                                    className: "jsx-b7102f3b4e478a6b"
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
-                                                    x1: "534",
-                                                    y1: 480 + i * 14,
-                                                    x2: "542",
-                                                    y2: 480 + i * 14,
-                                                    stroke: "#c99a0a",
-                                                    strokeWidth: "2.5",
-                                                    className: "jsx-b7102f3b4e478a6b"
-                                                })
-                                            ]
-                                        }, i)),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                                        x: "484",
-                                        y: "486",
-                                        width: "32",
-                                        height: "32",
-                                        rx: "5",
-                                        fill: "none",
-                                        stroke: "#f7e500",
-                                        strokeWidth: "2",
-                                        className: "jsx-b7102f3b4e478a6b"
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("text", {
-                                        x: "500",
-                                        y: "508",
-                                        textAnchor: "middle",
-                                        fontSize: "12",
-                                        fontWeight: "800",
-                                        fill: "#f7e500",
-                                        fontFamily: "monospace",
-                                        className: "jsx-b7102f3b4e478a6b",
-                                        children: "MIS"
-                                    })
-                                ]
+                                })
                             }),
-                            BRANCHES.map((b, bi)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
-                                    className: "jsx-b7102f3b4e478a6b" + " " + `csc-node csc-node-${bi}`,
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                            cx: b.node.x,
-                                            cy: b.node.y,
-                                            r: "10",
-                                            fill: "#0e1626",
-                                            stroke: "url(#traceGrad)",
-                                            strokeWidth: "2.5",
-                                            filter: "url(#cGlow)",
-                                            className: "jsx-b7102f3b4e478a6b"
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                            cx: b.node.x,
-                                            cy: b.node.y,
-                                            r: "4",
-                                            fill: "#f7e500",
-                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-node-core"
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
-                                            x1: b.node.x,
-                                            y1: b.node.y + 10,
-                                            x2: b.node.x,
-                                            y2: b.node.y + 34,
-                                            stroke: "rgba(247,229,0,0.5)",
-                                            strokeWidth: "2",
-                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-rope"
-                                        })
-                                    ]
-                                }, `node-${b.key}`)),
-                            on && BRANCHES.map((b, bi)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                    r: "2.4",
-                                    fill: "#f7e500",
-                                    opacity: "0",
-                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-data",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("animateMotion", {
-                                        dur: `${3 + bi * 0.4}s`,
-                                        begin: `${2.4 + bi * 0.5}s`,
-                                        repeatCount: "indefinite",
-                                        path: b.trace,
-                                        className: "jsx-b7102f3b4e478a6b"
-                                    })
-                                }, `data-${b.key}`))
-                        ]
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-b7102f3b4e478a6b" + " " + "csc-cards",
-                        children: BRANCHES.map((b, bi)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                href: b.href,
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                href: col.href,
                                 style: {
-                                    left: `${b.node.x / 1000 * 100}%`,
-                                    top: `${(b.node.y + 34) / 720 * 100}%`,
-                                    "--drop-delay": `${1.2 + bi * 0.22}s`
+                                    "--i": 0,
+                                    "--delay": `${ci * 0.12}s`
                                 },
-                                className: "jsx-b7102f3b4e478a6b" + " " + `csc-card ${b.align || "center"}`,
-                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-swing",
+                                className: "jsx-3d775d6f2c16690f" + " " + "cs-board cs-header",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "jsx-3d775d6f2c16690f" + " " + "cs-board-face",
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                        className: "jsx-3d775d6f2c16690f" + " " + "cs-header-title",
+                                        children: col.title
+                                    })
+                                })
+                            }),
+                            col.leaves.map((leaf, li)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), {
                                     children: [
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-top",
-                                            children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                    viewBox: "0 0 24 24",
-                                                    fill: "none",
-                                                    stroke: "currentColor",
-                                                    strokeWidth: "2",
-                                                    strokeLinecap: "round",
-                                                    strokeLinejoin: "round",
-                                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-ic",
-                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                        d: b.icon,
-                                                        className: "jsx-b7102f3b4e478a6b"
-                                                    })
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-title",
-                                                    children: b.title
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(RopePair, {}),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                            href: col.href,
+                                            style: {
+                                                "--i": li + 1,
+                                                "--delay": `${ci * 0.12 + (li + 1) * 0.14}s`
+                                            },
+                                            className: "jsx-3d775d6f2c16690f" + " " + "cs-board cs-plank",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                className: "jsx-3d775d6f2c16690f" + " " + "cs-board-face",
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-3d775d6f2c16690f" + " " + "cs-plank-text",
+                                                    children: leaf
                                                 })
-                                            ]
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-tags",
-                                            children: b.leaves.map((l)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-tag",
-                                                    children: l
-                                                }, l))
+                                            })
                                         })
                                     ]
-                                })
-                            }, b.key))
-                    })
-                ]
-            }),
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-b7102f3b4e478a6b" + " " + "csc-mobile",
-                children: [
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-b7102f3b4e478a6b" + " " + "csc-spine"
-                    }),
-                    BRANCHES.map((b, bi)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                            href: b.href,
-                            style: {
-                                transitionDelay: `${0.15 + bi * 0.13}s`
-                            },
-                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-card",
-                            children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-connector"
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-node"
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-body",
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-title",
-                                            children: b.title
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-tags",
-                                            children: b.leaves.map((l)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-tag",
-                                                    children: l
-                                                }, l))
-                                        })
-                                    ]
-                                })
-                            ]
-                        }, b.key))
-                ]
+                                }, leaf))
+                        ]
+                    }, col.key))
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "b7102f3b4e478a6b",
-                children: ".csc-wrap.jsx-b7102f3b4e478a6b{position:relative;width:100%}.csc-board.jsx-b7102f3b4e478a6b{position:relative;width:100%;max-width:1040px;margin:0 auto;aspect-ratio:1000/720}.csc-svg.jsx-b7102f3b4e478a6b{width:100%;height:100%;display:block;overflow:visible}.csc-ambient.jsx-b7102f3b4e478a6b{opacity:0;-webkit-transition:opacity 1.2s ease;-moz-transition:opacity 1.2s ease;-o-transition:opacity 1.2s ease;transition:opacity 1.2s ease}.on.jsx-b7102f3b4e478a6b .csc-ambient.jsx-b7102f3b4e478a6b{opacity:1}.csc-deco.jsx-b7102f3b4e478a6b,.csc-deco-pad.jsx-b7102f3b4e478a6b{opacity:0;-webkit-transition:opacity 1s ease.1s;-moz-transition:opacity 1s ease.1s;-o-transition:opacity 1s ease.1s;transition:opacity 1s ease.1s}.on.jsx-b7102f3b4e478a6b .csc-deco.jsx-b7102f3b4e478a6b,.on.jsx-b7102f3b4e478a6b .csc-deco-pad.jsx-b7102f3b4e478a6b{opacity:1}.csc-trace.jsx-b7102f3b4e478a6b{stroke-dasharray:620;stroke-dashoffset:620}.on.jsx-b7102f3b4e478a6b .csc-trace-0.jsx-b7102f3b4e478a6b{-webkit-transition:stroke-dashoffset 1.1s ease.15s;-moz-transition:stroke-dashoffset 1.1s ease.15s;-o-transition:stroke-dashoffset 1.1s ease.15s;transition:stroke-dashoffset 1.1s ease.15s;stroke-dashoffset:0}.on.jsx-b7102f3b4e478a6b .csc-trace-1.jsx-b7102f3b4e478a6b{-webkit-transition:stroke-dashoffset 1.1s ease.3s;-moz-transition:stroke-dashoffset 1.1s ease.3s;-o-transition:stroke-dashoffset 1.1s ease.3s;transition:stroke-dashoffset 1.1s ease.3s;stroke-dashoffset:0}.on.jsx-b7102f3b4e478a6b .csc-trace-2.jsx-b7102f3b4e478a6b{-webkit-transition:stroke-dashoffset 1.1s ease.45s;-moz-transition:stroke-dashoffset 1.1s ease.45s;-o-transition:stroke-dashoffset 1.1s ease.45s;transition:stroke-dashoffset 1.1s ease.45s;stroke-dashoffset:0}.on.jsx-b7102f3b4e478a6b .csc-trace-3.jsx-b7102f3b4e478a6b{-webkit-transition:stroke-dashoffset 1.1s ease.6s;-moz-transition:stroke-dashoffset 1.1s ease.6s;-o-transition:stroke-dashoffset 1.1s ease.6s;transition:stroke-dashoffset 1.1s ease.6s;stroke-dashoffset:0}.csc-chip.jsx-b7102f3b4e478a6b{opacity:.35;-webkit-transition:opacity.5s ease;-moz-transition:opacity.5s ease;-o-transition:opacity.5s ease;transition:opacity.5s ease}.on.jsx-b7102f3b4e478a6b .csc-chip.jsx-b7102f3b4e478a6b{opacity:1;-webkit-animation:chipPulse 3s ease-in-out 1.4s infinite;-moz-animation:chipPulse 3s ease-in-out 1.4s infinite;-o-animation:chipPulse 3s ease-in-out 1.4s infinite;animation:chipPulse 3s ease-in-out 1.4s infinite}@-webkit-keyframes chipPulse{0%,100%{-webkit-filter:drop-shadow(0 0 2px rgba(247,229,0,.4));filter:drop-shadow(0 0 2px rgba(247,229,0,.4))}50%{-webkit-filter:drop-shadow(0 0 8px rgba(247,229,0,.9));filter:drop-shadow(0 0 8px rgba(247,229,0,.9))}}@-moz-keyframes chipPulse{0%,100%{filter:drop-shadow(0 0 2px rgba(247,229,0,.4))}50%{filter:drop-shadow(0 0 8px rgba(247,229,0,.9))}}@-o-keyframes chipPulse{0%,100%{filter:drop-shadow(0 0 2px rgba(247,229,0,.4))}50%{filter:drop-shadow(0 0 8px rgba(247,229,0,.9))}}@keyframes chipPulse{0%,100%{-webkit-filter:drop-shadow(0 0 2px rgba(247,229,0,.4));filter:drop-shadow(0 0 2px rgba(247,229,0,.4))}50%{-webkit-filter:drop-shadow(0 0 8px rgba(247,229,0,.9));filter:drop-shadow(0 0 8px rgba(247,229,0,.9))}}.csc-node.jsx-b7102f3b4e478a6b{opacity:0;-webkit-transform:scale(0);-moz-transform:scale(0);-ms-transform:scale(0);-o-transform:scale(0);transform:scale(0);transform-box:fill-box;-webkit-transform-origin:center;-moz-transform-origin:center;-ms-transform-origin:center;-o-transform-origin:center;transform-origin:center}.on.jsx-b7102f3b4e478a6b .csc-node-0.jsx-b7102f3b4e478a6b{-webkit-transition:opacity.4s ease 1s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1s;-moz-transition:opacity.4s ease 1s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1s;-o-transition:opacity.4s ease 1s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1s;transition:opacity.4s ease 1s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1s;transition:opacity.4s ease 1s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1s;transition:opacity.4s ease 1s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1s;transition:opacity.4s ease 1s,transform.5s cubic-bezier(.34,1.56,.64,1)1s;opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.on.jsx-b7102f3b4e478a6b .csc-node-1.jsx-b7102f3b4e478a6b{-webkit-transition:opacity.4s ease 1.15s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;-moz-transition:opacity.4s ease 1.15s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;-o-transition:opacity.4s ease 1.15s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;transition:opacity.4s ease 1.15s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;transition:opacity.4s ease 1.15s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;transition:opacity.4s ease 1.15s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;transition:opacity.4s ease 1.15s,transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.on.jsx-b7102f3b4e478a6b .csc-node-2.jsx-b7102f3b4e478a6b{-webkit-transition:opacity.4s ease 1.3s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;-moz-transition:opacity.4s ease 1.3s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;-o-transition:opacity.4s ease 1.3s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;transition:opacity.4s ease 1.3s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;transition:opacity.4s ease 1.3s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;transition:opacity.4s ease 1.3s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;transition:opacity.4s ease 1.3s,transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.on.jsx-b7102f3b4e478a6b .csc-node-3.jsx-b7102f3b4e478a6b{-webkit-transition:opacity.4s ease 1.45s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;-moz-transition:opacity.4s ease 1.45s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;-o-transition:opacity.4s ease 1.45s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;transition:opacity.4s ease 1.45s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;transition:opacity.4s ease 1.45s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;transition:opacity.4s ease 1.45s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;transition:opacity.4s ease 1.45s,transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.csc-node-core.jsx-b7102f3b4e478a6b{-webkit-animation:none;-moz-animation:none;-o-animation:none;animation:none}.on.jsx-b7102f3b4e478a6b .csc-node-core.jsx-b7102f3b4e478a6b{-webkit-animation:nodeGlow 2.4s ease-in-out infinite;-moz-animation:nodeGlow 2.4s ease-in-out infinite;-o-animation:nodeGlow 2.4s ease-in-out infinite;animation:nodeGlow 2.4s ease-in-out infinite}@-webkit-keyframes nodeGlow{0%,100%{opacity:.6}50%{opacity:1}}@-moz-keyframes nodeGlow{0%,100%{opacity:.6}50%{opacity:1}}@-o-keyframes nodeGlow{0%,100%{opacity:.6}50%{opacity:1}}@keyframes nodeGlow{0%,100%{opacity:.6}50%{opacity:1}}.csc-pulse.jsx-b7102f3b4e478a6b{opacity:0}.on.jsx-b7102f3b4e478a6b .csc-pulse.jsx-b7102f3b4e478a6b{opacity:1}.csc-data.jsx-b7102f3b4e478a6b{opacity:0}.on.jsx-b7102f3b4e478a6b .csc-data.jsx-b7102f3b4e478a6b{opacity:.9}.csc-cards.jsx-b7102f3b4e478a6b{position:absolute;inset:0;pointer-events:none}.csc-card.jsx-b7102f3b4e478a6b{position:absolute;pointer-events:auto;text-decoration:none;width:210px}.csc-card.center.jsx-b7102f3b4e478a6b{-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)}.csc-card.edge-left.jsx-b7102f3b4e478a6b{-webkit-transform:translateX(-22%);-moz-transform:translateX(-22%);-ms-transform:translateX(-22%);-o-transform:translateX(-22%);transform:translateX(-22%)}.csc-card.edge-right.jsx-b7102f3b4e478a6b{-webkit-transform:translateX(-78%);-moz-transform:translateX(-78%);-ms-transform:translateX(-78%);-o-transform:translateX(-78%);transform:translateX(-78%)}.csc-card-swing.jsx-b7102f3b4e478a6b{display:block;background:-webkit-linear-gradient(290deg,rgba(20,28,43,.82),rgba(10,16,27,.9));background:-moz-linear-gradient(290deg,rgba(20,28,43,.82),rgba(10,16,27,.9));background:-o-linear-gradient(290deg,rgba(20,28,43,.82),rgba(10,16,27,.9));background:linear-gradient(160deg,rgba(20,28,43,.82),rgba(10,16,27,.9));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(247,229,0,.38);-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:12px 14px;-webkit-box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 22px rgba(247,229,0,.06);-moz-box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 22px rgba(247,229,0,.06);box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 22px rgba(247,229,0,.06);-webkit-transform-origin:top center;-moz-transform-origin:top center;-ms-transform-origin:top center;-o-transform-origin:top center;transform-origin:top center;opacity:0;-webkit-transform:translateY(-18px)scale(.96);-moz-transform:translateY(-18px)scale(.96);-ms-transform:translateY(-18px)scale(.96);-o-transform:translateY(-18px)scale(.96);transform:translateY(-18px)scale(.96)}.csc-card.edge-left.jsx-b7102f3b4e478a6b .csc-card-swing.jsx-b7102f3b4e478a6b{-webkit-transform-origin:22%top;-moz-transform-origin:22%top;-ms-transform-origin:22%top;-o-transform-origin:22%top;transform-origin:22%top}.csc-card.edge-right.jsx-b7102f3b4e478a6b .csc-card-swing.jsx-b7102f3b4e478a6b{-webkit-transform-origin:78%top;-moz-transform-origin:78%top;-ms-transform-origin:78%top;-o-transform-origin:78%top;transform-origin:78%top}.on.jsx-b7102f3b4e478a6b .csc-card.jsx-b7102f3b4e478a6b .csc-card-swing.jsx-b7102f3b4e478a6b{opacity:1;-webkit-transform:translateY(0)scale(1);-moz-transform:translateY(0)scale(1);-ms-transform:translateY(0)scale(1);-o-transform:translateY(0)scale(1);transform:translateY(0)scale(1);-webkit-transition:opacity.5s ease var(--drop-delay),-webkit-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);-moz-transition:opacity.5s ease var(--drop-delay),-moz-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);-o-transition:opacity.5s ease var(--drop-delay),-o-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);transition:opacity.5s ease var(--drop-delay),-webkit-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);transition:opacity.5s ease var(--drop-delay),-moz-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);transition:opacity.5s ease var(--drop-delay),-o-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);transition:opacity.5s ease var(--drop-delay),transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);-webkit-animation:swing 5s ease-in-out infinite;-moz-animation:swing 5s ease-in-out infinite;-o-animation:swing 5s ease-in-out infinite;animation:swing 5s ease-in-out infinite;-webkit-animation-delay:-webkit-calc(var(--drop-delay) + .7s);-moz-animation-delay:-moz-calc(var(--drop-delay) + .7s);-o-animation-delay:calc(var(--drop-delay) + .7s);animation-delay:-webkit-calc(var(--drop-delay) + .7s);animation-delay:-moz-calc(var(--drop-delay) + .7s);animation-delay:calc(var(--drop-delay) + .7s)}@-webkit-keyframes swing{0%,100%{-webkit-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-webkit-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@-moz-keyframes swing{0%,100%{-moz-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-moz-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@-o-keyframes swing{0%,100%{-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@keyframes swing{0%,100%{-webkit-transform:rotate(-1.4deg);-moz-transform:rotate(-1.4deg);-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-webkit-transform:rotate(1.4deg);-moz-transform:rotate(1.4deg);-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}}.csc-card.jsx-b7102f3b4e478a6b:hover .csc-card-swing.jsx-b7102f3b4e478a6b{border-color:#f7e500;-webkit-box-shadow:0 16px 40px rgba(247,229,0,.22),inset 0 0 26px rgba(247,229,0,.12);-moz-box-shadow:0 16px 40px rgba(247,229,0,.22),inset 0 0 26px rgba(247,229,0,.12);box-shadow:0 16px 40px rgba(247,229,0,.22),inset 0 0 26px rgba(247,229,0,.12)}.csc-card-top.jsx-b7102f3b4e478a6b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:9px}.csc-card-ic.jsx-b7102f3b4e478a6b{width:20px;height:20px;color:#f7e500;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.csc-card-title.jsx-b7102f3b4e478a6b{color:#fff;font-weight:800;font-size:14px;line-height:1.15}.csc-card-tags.jsx-b7102f3b4e478a6b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:5px;margin-top:10px}.csc-tag.jsx-b7102f3b4e478a6b{font-size:10px;font-weight:600;color:#f7e500;background:rgba(247,229,0,.1);border:1px solid rgba(247,229,0,.28);padding:3px 8px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px}.csc-mobile.jsx-b7102f3b4e478a6b{display:none;position:relative;padding:10px 0 0 22px}.csc-spine.jsx-b7102f3b4e478a6b{position:absolute;left:22px;top:0;bottom:30px;width:2px;background:-webkit-linear-gradient(#f7e500,rgba(247,229,0,.2));background:-moz-linear-gradient(#f7e500,rgba(247,229,0,.2));background:-o-linear-gradient(#f7e500,rgba(247,229,0,.2));background:linear-gradient(#f7e500,rgba(247,229,0,.2))}.csc-m-card.jsx-b7102f3b4e478a6b{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;gap:0;text-decoration:none;margin-bottom:16px;opacity:0;-webkit-transform:translateX(18px);-moz-transform:translateX(18px);-ms-transform:translateX(18px);-o-transform:translateX(18px);transform:translateX(18px);-webkit-transition:opacity.5s ease,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1);-moz-transition:opacity.5s ease,-moz-transform.5s cubic-bezier(.34,1.56,.64,1);-o-transition:opacity.5s ease,-o-transform.5s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-moz-transform.5s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-o-transform.5s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,transform.5s cubic-bezier(.34,1.56,.64,1)}.on.jsx-b7102f3b4e478a6b .csc-m-card.jsx-b7102f3b4e478a6b{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}.csc-m-connector.jsx-b7102f3b4e478a6b{width:26px;height:2px;background:rgba(247,229,0,.5);margin-top:22px;margin-left:0}.csc-m-node.jsx-b7102f3b4e478a6b{position:absolute;left:-6px;top:18px;width:10px;height:10px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#f7e500;-webkit-box-shadow:0 0 8px rgba(247,229,0,.8);-moz-box-shadow:0 0 8px rgba(247,229,0,.8);box-shadow:0 0 8px rgba(247,229,0,.8)}.csc-m-body.jsx-b7102f3b4e478a6b{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;background:-webkit-linear-gradient(290deg,rgba(20,28,43,.85),rgba(10,16,27,.92));background:-moz-linear-gradient(290deg,rgba(20,28,43,.85),rgba(10,16,27,.92));background:-o-linear-gradient(290deg,rgba(20,28,43,.85),rgba(10,16,27,.92));background:linear-gradient(160deg,rgba(20,28,43,.85),rgba(10,16,27,.92));border:1px solid rgba(247,229,0,.35);-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:12px 14px}.csc-m-title.jsx-b7102f3b4e478a6b{display:block;color:#fff;font-weight:800;font-size:15px;margin-bottom:8px}.csc-m-tags.jsx-b7102f3b4e478a6b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:6px}.csc-m-tag.jsx-b7102f3b4e478a6b{font-size:11px;font-weight:700;color:#0a101b;background:-webkit-linear-gradient(315deg,#f7e500,#d8ab12);background:-moz-linear-gradient(315deg,#f7e500,#d8ab12);background:-o-linear-gradient(315deg,#f7e500,#d8ab12);background:linear-gradient(135deg,#f7e500,#d8ab12);padding:4px 10px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px}@media(max-width:900px){.csc-board.jsx-b7102f3b4e478a6b{display:none}.csc-mobile.jsx-b7102f3b4e478a6b{display:block}}@media(prefers-reduced-motion:reduce){.csc-trace.jsx-b7102f3b4e478a6b,.csc-node.jsx-b7102f3b4e478a6b,.csc-card-swing.jsx-b7102f3b4e478a6b,.csc-m-card.jsx-b7102f3b4e478a6b,.csc-deco.jsx-b7102f3b4e478a6b,.csc-deco-pad.jsx-b7102f3b4e478a6b,.csc-ambient.jsx-b7102f3b4e478a6b{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;transition:none!important}.csc-chip.jsx-b7102f3b4e478a6b,.csc-node-core.jsx-b7102f3b4e478a6b,.on.jsx-b7102f3b4e478a6b .csc-card.jsx-b7102f3b4e478a6b .csc-card-swing.jsx-b7102f3b4e478a6b{-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}.csc-trace.jsx-b7102f3b4e478a6b{stroke-dashoffset:0!important}.csc-card-swing.jsx-b7102f3b4e478a6b{opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important;transform:none!important}}"
+                id: "3d775d6f2c16690f",
+                children: '.cs-wrap.jsx-3d775d6f2c16690f{width:100%;padding:8px 0 10px}.cs-row.jsx-3d775d6f2c16690f{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1080px;margin:0 auto;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start}.cs-col.jsx-3d775d6f2c16690f{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding-top:14px}.cs-post.jsx-3d775d6f2c16690f{position:absolute;top:0;bottom:26px;left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%);width:16px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:-webkit-linear-gradient(left,rgba(0,0,0,.35),rgba(255,255,255,.08)35%,rgba(0,0,0,.3)),-webkit-linear-gradient(top,#6b4a29,#4d3418);background:-moz-linear-gradient(left,rgba(0,0,0,.35),rgba(255,255,255,.08)35%,rgba(0,0,0,.3)),-moz-linear-gradient(top,#6b4a29,#4d3418);background:-o-linear-gradient(left,rgba(0,0,0,.35),rgba(255,255,255,.08)35%,rgba(0,0,0,.3)),-o-linear-gradient(top,#6b4a29,#4d3418);background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.08)35%,rgba(0,0,0,.3)),linear-gradient(180deg,#6b4a29,#4d3418);-webkit-box-shadow:0 0 0 1px rgba(0,0,0,.3),2px 0 6px rgba(0,0,0,.4);-moz-box-shadow:0 0 0 1px rgba(0,0,0,.3),2px 0 6px rgba(0,0,0,.4);box-shadow:0 0 0 1px rgba(0,0,0,.3),2px 0 6px rgba(0,0,0,.4);z-index:0}.cs-post.jsx-3d775d6f2c16690f::after{content:"";position:absolute;inset:0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:-webkit-repeating-linear-gradient(top,rgba(0,0,0,.12)0 2px,transparent 2px 9px);background:-moz-repeating-linear-gradient(top,rgba(0,0,0,.12)0 2px,transparent 2px 9px);background:-o-repeating-linear-gradient(top,rgba(0,0,0,.12)0 2px,transparent 2px 9px);background:repeating-linear-gradient(180deg,rgba(0,0,0,.12)0 2px,transparent 2px 9px);opacity:.5}.cs-beam.jsx-3d775d6f2c16690f{position:relative;z-index:1;width:82%;height:16px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:-webkit-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.28)),-webkit-linear-gradient(left,#7a5330,#6b4a29);background:-moz-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.28)),-moz-linear-gradient(left,#7a5330,#6b4a29);background:-o-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.28)),-o-linear-gradient(left,#7a5330,#6b4a29);background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(0,0,0,.28)),linear-gradient(90deg,#7a5330,#6b4a29);-webkit-box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.15);-moz-box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.15);box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.15);margin-bottom:-2px}.cs-rope.jsx-3d775d6f2c16690f{position:relative;z-index:1;width:100%;height:22px;display:block}.cs-rope.jsx-3d775d6f2c16690f svg.jsx-3d775d6f2c16690f{width:100%;height:100%;overflow:visible}.cs-rope-head.jsx-3d775d6f2c16690f{height:20px}.cs-board.jsx-3d775d6f2c16690f{position:relative;z-index:2;width:100%;text-decoration:none;display:block;-webkit-transform-origin:top center;-moz-transform-origin:top center;-ms-transform-origin:top center;-o-transform-origin:top center;transform-origin:top center;opacity:0;-webkit-transform:translateY(-22px)rotate(0deg);-moz-transform:translateY(-22px)rotate(0deg);-ms-transform:translateY(-22px)rotate(0deg);-o-transform:translateY(-22px)rotate(0deg);transform:translateY(-22px)rotate(0deg)}.cs-board-face.jsx-3d775d6f2c16690f{position:relative;display:block;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:10px 12px;text-align:center;background:-webkit-linear-gradient(top,rgba(255,255,255,.1),rgba(0,0,0,.18)),-webkit-repeating-linear-gradient(left,#7a5836 0 14px,#6f4f30 14px 28px);background:-moz-linear-gradient(top,rgba(255,255,255,.1),rgba(0,0,0,.18)),-moz-repeating-linear-gradient(left,#7a5836 0 14px,#6f4f30 14px 28px);background:-o-linear-gradient(top,rgba(255,255,255,.1),rgba(0,0,0,.18)),-o-repeating-linear-gradient(left,#7a5836 0 14px,#6f4f30 14px 28px);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(0,0,0,.18)),repeating-linear-gradient(90deg,#7a5836 0 14px,#6f4f30 14px 28px);border:1px solid#3f2c17;-webkit-box-shadow:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -2px 4px rgba(0,0,0,.3);-moz-box-shadow:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -2px 4px rgba(0,0,0,.3);box-shadow:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -2px 4px rgba(0,0,0,.3)}.cs-board-face.jsx-3d775d6f2c16690f::before,.cs-board-face.jsx-3d775d6f2c16690f::after{content:"";position:absolute;top:6px;width:5px;height:5px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:-webkit-radial-gradient(35%30%,circle,#c7ced6,#5b636c);background:-moz-radial-gradient(35%30%,circle,#c7ced6,#5b636c);background:-o-radial-gradient(35%30%,circle,#c7ced6,#5b636c);background:radial-gradient(circle at 35%30%,#c7ced6,#5b636c);-webkit-box-shadow:0 0 0 1px rgba(0,0,0,.4);-moz-box-shadow:0 0 0 1px rgba(0,0,0,.4);box-shadow:0 0 0 1px rgba(0,0,0,.4)}.cs-board-face.jsx-3d775d6f2c16690f::before{left:8px}.cs-board-face.jsx-3d775d6f2c16690f::after{right:8px}.cs-header.jsx-3d775d6f2c16690f .cs-board-face.jsx-3d775d6f2c16690f{background:-webkit-linear-gradient(top,rgba(255,255,255,.12),rgba(0,0,0,.2)),-webkit-repeating-linear-gradient(left,#86633c 0 16px,#78562f 16px 32px);background:-moz-linear-gradient(top,rgba(255,255,255,.12),rgba(0,0,0,.2)),-moz-repeating-linear-gradient(left,#86633c 0 16px,#78562f 16px 32px);background:-o-linear-gradient(top,rgba(255,255,255,.12),rgba(0,0,0,.2)),-o-repeating-linear-gradient(left,#86633c 0 16px,#78562f 16px 32px);background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(0,0,0,.2)),repeating-linear-gradient(90deg,#86633c 0 16px,#78562f 16px 32px);border:2px solid#f7e500;-webkit-box-shadow:0 8px 20px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);-moz-box-shadow:0 8px 20px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);box-shadow:0 8px 20px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);padding:13px 12px}.cs-header-title.jsx-3d775d6f2c16690f{color:#fff;font-weight:900;font-size:15px;line-height:1.2;text-shadow:0 1px 2px rgba(0,0,0,.6);letter-spacing:.2px}.cs-plank-text.jsx-3d775d6f2c16690f{color:#f8ecd0;font-weight:700;font-size:12.5px;text-shadow:0 1px 2px rgba(0,0,0,.55)}.cs-board.jsx-3d775d6f2c16690f:hover .cs-board-face.jsx-3d775d6f2c16690f{-webkit-filter:brightness(1.08);filter:brightness(1.08);-webkit-box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.28);-moz-box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.28);box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.28)}.on.jsx-3d775d6f2c16690f .cs-board.jsx-3d775d6f2c16690f{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0);-webkit-transition:opacity.45s ease var(--delay),-webkit-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);-moz-transition:opacity.45s ease var(--delay),-moz-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);-o-transition:opacity.45s ease var(--delay),-o-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);transition:opacity.45s ease var(--delay),-webkit-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);transition:opacity.45s ease var(--delay),-moz-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);transition:opacity.45s ease var(--delay),-o-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);transition:opacity.45s ease var(--delay),transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay)}.on.jsx-3d775d6f2c16690f .cs-board-face.jsx-3d775d6f2c16690f{-webkit-animation:cs-sway 5s ease-in-out infinite;-moz-animation:cs-sway 5s ease-in-out infinite;-o-animation:cs-sway 5s ease-in-out infinite;animation:cs-sway 5s ease-in-out infinite;-webkit-animation-delay:-webkit-calc(var(--delay) + .75s);-moz-animation-delay:-moz-calc(var(--delay) + .75s);-o-animation-delay:calc(var(--delay) + .75s);animation-delay:-webkit-calc(var(--delay) + .75s);animation-delay:-moz-calc(var(--delay) + .75s);animation-delay:calc(var(--delay) + .75s);-webkit-transform-origin:top center;-moz-transform-origin:top center;-ms-transform-origin:top center;-o-transform-origin:top center;transform-origin:top center}.on.jsx-3d775d6f2c16690f .cs-board.jsx-3d775d6f2c16690f:nth-child(4n+1) .cs-board-face.jsx-3d775d6f2c16690f{-webkit-animation-name:cs-sway-alt;-moz-animation-name:cs-sway-alt;-o-animation-name:cs-sway-alt;animation-name:cs-sway-alt}@-webkit-keyframes cs-sway{0%,100%{-webkit-transform:rotate(-1deg);transform:rotate(-1deg)}50%{-webkit-transform:rotate(1deg);transform:rotate(1deg)}}@-moz-keyframes cs-sway{0%,100%{-moz-transform:rotate(-1deg);transform:rotate(-1deg)}50%{-moz-transform:rotate(1deg);transform:rotate(1deg)}}@-o-keyframes cs-sway{0%,100%{-o-transform:rotate(-1deg);transform:rotate(-1deg)}50%{-o-transform:rotate(1deg);transform:rotate(1deg)}}@keyframes cs-sway{0%,100%{-webkit-transform:rotate(-1deg);-moz-transform:rotate(-1deg);-o-transform:rotate(-1deg);transform:rotate(-1deg)}50%{-webkit-transform:rotate(1deg);-moz-transform:rotate(1deg);-o-transform:rotate(1deg);transform:rotate(1deg)}}@-webkit-keyframes cs-sway-alt{0%,100%{-webkit-transform:rotate(1deg);transform:rotate(1deg)}50%{-webkit-transform:rotate(-1deg);transform:rotate(-1deg)}}@-moz-keyframes cs-sway-alt{0%,100%{-moz-transform:rotate(1deg);transform:rotate(1deg)}50%{-moz-transform:rotate(-1deg);transform:rotate(-1deg)}}@-o-keyframes cs-sway-alt{0%,100%{-o-transform:rotate(1deg);transform:rotate(1deg)}50%{-o-transform:rotate(-1deg);transform:rotate(-1deg)}}@keyframes cs-sway-alt{0%,100%{-webkit-transform:rotate(1deg);-moz-transform:rotate(1deg);-o-transform:rotate(1deg);transform:rotate(1deg)}50%{-webkit-transform:rotate(-1deg);-moz-transform:rotate(-1deg);-o-transform:rotate(-1deg);transform:rotate(-1deg)}}.cs-rope.jsx-3d775d6f2c16690f{opacity:0}.on.jsx-3d775d6f2c16690f .cs-rope.jsx-3d775d6f2c16690f{opacity:1;-webkit-transition:opacity.4s ease;-moz-transition:opacity.4s ease;-o-transition:opacity.4s ease;transition:opacity.4s ease}@media(max-width:900px){.cs-row.jsx-3d775d6f2c16690f{grid-template-columns:repeat(2,1fr);gap:18px}}@media(max-width:520px){.cs-row.jsx-3d775d6f2c16690f{grid-template-columns:1fr;gap:16px;max-width:320px}}@media(prefers-reduced-motion:reduce){.cs-board.jsx-3d775d6f2c16690f{opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important;transform:none!important;-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;transition:none!important;-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}.cs-rope.jsx-3d775d6f2c16690f{opacity:1!important}}'
             })
         ]
     });
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoreSolutionsCircuit);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoreSolutionsSignposts);
 
 
 /***/ }),
@@ -1283,7 +920,7 @@ const Home = (props)=>{
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                             className: "jsx-838b1a87f6f26fd3" + " " + "section-subtitle",
-                                            children: "Four connected divisions powering your business — watch the board come alive."
+                                            children: "Four divisions, every capability on the board — explore what we offer."
                                         })
                                     ]
                                 }),
