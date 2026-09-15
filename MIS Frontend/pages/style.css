@@ -3920,12 +3920,8 @@ body.cart-open {
 /* Services Marquee */
 .services-grid-section { padding: var(--spacing-4xl) 0; background-color: var(--color-surface-elevated); }
 
-/* Core IT Solutions — growing tree section (dark, unique) */
-.core-tree-section { background: radial-gradient(circle at 50% 0%, #141c2b 0%, #0a101b 60%); position: relative; overflow: hidden; padding: 72px 0 40px; }
-.core-tree-section .services-header { text-align: center; }
-.core-tree-section .core-tree-eyebrow { display: inline-block; color: #f7e500; font-weight: 800; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
-.core-tree-section .section-title { color: #ffffff; }
-.core-tree-section .section-subtitle { color: #b9c1cf; max-width: 640px; margin-left: auto; margin-right: auto; }
+/* Core IT Solutions — modern light section (styles live in components/CoreSolutionsTree.jsx) */
+.core-solutions-section { position: relative; }
 .services-container { margin: 0 auto; padding: 0 var(--spacing-xl); max-width: 100%; }
 .services-header { text-align: center; margin-bottom: var(--spacing-3xl); max-width: var(--content-max-width); margin-left: auto; margin-right: auto; }
 .services-dynamic-grid { overflow: hidden; }

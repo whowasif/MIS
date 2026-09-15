@@ -253,7 +253,7 @@ const Home = (props) => {
           </div>
         </section>
 
-        <section className="services-grid-section core-tree-section" id="core-services">
+        <section className="core-solutions-section" id="core-services">
           <CoreSolutionsSignposts />
         </section>
 

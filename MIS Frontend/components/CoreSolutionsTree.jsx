@@ -1,85 +1,90 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 /*
- * CoreSolutionsSignposts
- * Adapted from a Framer design: four hanging wooden signboard installations
- * scattered around a centered title. Each install = a wooden post + crossbeam,
- * a header board hanging by ropes, and a vertical chain of plank sub-services.
- * On scroll in: boards drop in, then gently swing like pendulums (per-plank
- * stagger). Pure CSS + IntersectionObserver (no framer-motion dependency).
- * Respects prefers-reduced-motion.
+ * CoreSolutions — modern "What We Offer" section over a dark textured
+ * background image. Three division cards, monochrome (B&W) icons, and one
+ * capability-per-row list with its own relevant icon. Scroll-reveal +
+ * hover micro-interactions, pure CSS. Responsive; respects reduced-motion.
  */
 
-const GROUPS = [
+// --- monochrome (currentColor) icons ---------------------------------------
+const Icon = {
+  browser: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="2.5" y="4" width="19" height="15" rx="2.5" /><path d="M2.5 8h19" /><circle cx="5" cy="6" r=".6" fill="currentColor" /><circle cx="7" cy="6" r=".6" fill="currentColor" /><path d="M8 12.5h8M8 15.5h5" /></svg>),
+  crown: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19h16" /><path d="M5 19V9l3 2 4-5 4 5 3-2v10" /><circle cx="12" cy="4" r="1.4" /><circle cx="4.6" cy="8.4" r="1.1" /><circle cx="19.4" cy="8.4" r="1.1" /></svg>),
+  wrench: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-.4-.4-2.1z" /></svg>),
+
+  // digital chips
+  code: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" /></svg>),
+  cube: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2.5 20 7v10l-8 4.5L4 17V7z" /><path d="M4 7l8 4.5L20 7M12 11.5V21" /></svg>),
+  mobile: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5" /><path d="M11 18.5h2" /></svg>),
+  ai: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="7" width="12" height="11" rx="2.5" /><path d="M12 7V4M9 2.5h6M9.5 12v0M14.5 12v0M2.5 11h1.5M20 11h1.5" /></svg>),
+  shield: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2.5 20 6v6c0 5-3.4 8-8 9.5C7.4 20 4 17 4 12V6z" /><path d="m9 12 2 2 4-4" /></svg>),
+  cart: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 4h2l2.2 11.2a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.2L21 7H6" /><circle cx="9.5" cy="20" r="1.3" /><circle cx="17.5" cy="20" r="1.3" /></svg>),
+
+  // corporate chips
+  monitor: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></svg>),
+  camera: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2.5" y="7" width="19" height="12" rx="2.5" /><circle cx="12" cy="13" r="3.2" /><path d="M8 7l1.5-2.5h5L16 7" /></svg>),
+  printer: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 8V3h10v5" /><rect x="4" y="8" width="16" height="8" rx="2" /><rect x="7" y="14" width="10" height="6" rx="1" /></svg>),
+  network: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="4.5" r="2" /><circle cx="5" cy="19.5" r="2" /><circle cx="19" cy="19.5" r="2" /><path d="M12 6.5v5M12 11.5 5.8 17.8M12 11.5l6.2 6.3" /></svg>),
+  server: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="7" rx="2" /><rect x="3" y="13" width="18" height="7" rx="2" /><path d="M7 7.5v0M7 16.5v0" /></svg>),
+  power: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>),
+
+  // maintenance chips
+  doc: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2.5h8l4 4V21a.5.5 0 0 1-.5.5H6A.5.5 0 0 1 5.5 21V3A.5.5 0 0 1 6 2.5z" /><path d="M14 2.5V7h4M8 12h8M8 16h5" /></svg>),
+  phone: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6.5 3h3l1.5 5-2 1.5a12 12 0 0 0 5 5l1.5-2 5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3z" /></svg>),
+  install: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v11M8 10l4 4 4-4" /><path d="M4 18h16v2.5H4z" /></svg>),
+  bug: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="8" y="7" width="8" height="11" rx="4" /><path d="M9 3l1.5 2.5M15 3l-1.5 2.5M8 10H4M20 10h-4M8 14H3.5M20.5 14H16M8.5 18l-2 2.5M15.5 18l2 2.5" /></svg>),
+  remote: (p) => (<svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="2" /><path d="M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14" /></svg>),
+}
+
+const DIVISIONS = [
   {
     key: 'digital',
     title: 'Digital Services',
+    tagline: 'Your complete digital presence',
     href: '/digital-services',
-    x: '0%', y: '2%', scale: 0.92, rotate: -3, dir: -1,
-    leaves: ['Web Development', 'Custom Software', 'Mobile Apps', 'AI Solutions', 'Cyber Security', 'E-Commerce'],
+    HeadIcon: Icon.browser,
+    chips: [
+      { label: 'Web Development', I: Icon.code },
+      { label: 'Custom Software', I: Icon.cube },
+      { label: 'Mobile Apps', I: Icon.mobile },
+      { label: 'AI Solutions', I: Icon.ai },
+      { label: 'Cyber Security', I: Icon.shield },
+      { label: 'E-Commerce', I: Icon.cart },
+    ],
   },
   {
     key: 'corporate',
-    title: 'Business & Corporate',
+    title: 'Business & Corporate Solutions',
+    tagline: 'Enterprise-grade B2B infrastructure',
     href: '/enterprise-solutions',
-    x: '17%', y: '34%', scale: 0.8, rotate: 2, dir: 1,
-    leaves: ['IT Equipments', 'Security System', 'Office Equipments', 'Networking', 'Server Setup', 'Power Solution'],
+    HeadIcon: Icon.crown,
+    chips: [
+      { label: 'IT Equipments', I: Icon.monitor },
+      { label: 'Security System', I: Icon.camera },
+      { label: 'Office Equipments', I: Icon.printer },
+      { label: 'Networking', I: Icon.network },
+      { label: 'Server Setup', I: Icon.server },
+      { label: 'Power Solution', I: Icon.power },
+    ],
   },
   {
     key: 'maintenance',
     title: 'Maintenance & Support',
+    tagline: 'Peak performance, always',
     href: '/maintenance-support',
-    x: '65%', y: '34%', scale: 0.8, rotate: 2, dir: 1,
-    leaves: ['AMC Contracts', 'On-call Repair', 'Installation', 'Troubleshooting', 'Remote Solution'],
-  },
-  {
-    key: 'procurement',
-    title: 'Procurement Service',
-    href: '/product-catalog',
-    x: '82%', y: '2%', scale: 0.92, rotate: -2, dir: -1,
-    leaves: ['Hardware Sourcing', 'Bulk Supply', 'Corporate Deals', 'Vendor Management', 'Licensing', 'Fast Delivery'],
+    HeadIcon: Icon.wrench,
+    chips: [
+      { label: 'AMC Contracts', I: Icon.doc },
+      { label: 'On-call Repair', I: Icon.phone },
+      { label: 'Installation', I: Icon.install },
+      { label: 'Troubleshooting', I: Icon.bug },
+      { label: 'Remote Solution', I: Icon.remote },
+    ],
   },
 ]
 
-const SignAssembly = ({ group, index, mobile }) => {
-  const dirClass = group.dir === 1 ? 'pos' : 'neg'
-  return (
-    <div className="sa" style={{ '--gi': index }}>
-      {/* post + crossbeam */}
-      <span className="sa-post" aria-hidden="true" />
-      <span className="sa-beam" aria-hidden="true" />
-
-      {/* header board drops from the beam */}
-      <a href={group.href} className="sa-drop sa-headwrap" style={{ '--delay': `${index * 0.12}s` }}>
-        <span className={`sa-swing sa-swing-head ${dirClass}`}>
-          <span className="sa-rope sa-rope-l" />
-          <span className="sa-rope sa-rope-r" />
-          <span className="sa-board sa-header">{group.title}</span>
-        </span>
-      </a>
-
-      {/* hanging planks */}
-      <div className="sa-planks">
-        {group.leaves.map((leaf, li) => (
-          <a
-            key={leaf}
-            href={group.href}
-            className="sa-drop sa-plankwrap"
-            style={{ '--delay': `${index * 0.12 + (li + 1) * 0.13}s` }}
-          >
-            <span className={`sa-swing sa-swing-plank ${li % 2 === 0 ? 'pos' : 'neg'}`} style={{ '--sd': `${li * 0.09}s`, '--dur': `${4.6 + li * 0.25}s` }}>
-              <span className="sa-rope sa-rope-l small" />
-              <span className="sa-rope sa-rope-r small" />
-              <span className="sa-board sa-plank">{leaf}</span>
-            </span>
-          </a>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-const CoreSolutionsSignposts = () => {
+const CoreSolutions = () => {
   const ref = useRef(null)
   const [on, setOn] = useState(false)
 
@@ -88,191 +93,221 @@ const CoreSolutionsSignposts = () => {
     if (!el) return
     const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduce) { setOn(true); return }
+    const fallback = setTimeout(() => setOn(true), 700)
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { setOn(true); obs.disconnect() } })
-    }, { threshold: 0.15 })
+      entries.forEach((e) => { if (e.isIntersecting) { setOn(true); clearTimeout(fallback); obs.disconnect() } })
+    }, { threshold: 0.12 })
     obs.observe(el)
-    return () => obs.disconnect()
+    return () => { clearTimeout(fallback); obs.disconnect() }
   }, [])
 
   return (
-    <div className={`csx ${on ? 'on' : ''}`} ref={ref}>
-      {/* desktop scattered scene */}
-      <div className="csx-scene">
-        {GROUPS.map((g, i) => (
-          <div
-            key={g.key}
-            data-group={g.key}
-            className="csx-group"
-            style={{ left: g.x, top: g.y, transform: `scale(${g.scale}) rotate(${g.rotate}deg)` }}
-          >
-            <SignAssembly group={g} index={i} />
-          </div>
-        ))}
+    <div className={`cs ${on ? 'on' : ''}`} ref={ref}>
+      <span className="cs-tint" aria-hidden="true" />
+      <span className="cs-blob cs-blob-a" aria-hidden="true" />
 
-        {/* centered title, overlaid in the middle of the scene */}
-        <div className="csx-center">
-          <span className="csx-eyebrow">What We Offer</span>
-          <h2 className="csx-title">Core IT Solutions</h2>
-          <p className="csx-sub">Four divisions, every capability on the board — explore what we offer.</p>
+      <div className="cs-inner">
+        <header className="cs-head">
+          <span className="cs-eyebrow">What We Offer</span>
+          <h2 className="cs-title">Core IT <span>Solutions</span></h2>
+          <p className="cs-sub">Three specialized divisions — each a full-spectrum capability center designed to scale with your enterprise.</p>
+        </header>
+
+        <div className="cs-cards">
+          {DIVISIONS.map((d, i) => {
+            const HeadIcon = d.HeadIcon
+            return (
+              <article key={d.key} className="cs-card" style={{ '--i': i }}>
+                <span className="cs-card-bar" aria-hidden="true" />
+                <div className="cs-card-top">
+                  <span className="cs-icon"><HeadIcon width="28" height="28" aria-hidden="true" /></span>
+                  <div className="cs-card-heads">
+                    <h3 className="cs-card-title">{d.title}</h3>
+                    <p className="cs-card-tag">{d.tagline}</p>
+                  </div>
+                </div>
+
+                <ul className="cs-chips">
+                  {d.chips.map((c, ci) => {
+                    const ChipIcon = c.I
+                    return (
+                      <li key={c.label} style={{ '--ci': ci }}>
+                        <a href={d.href} className="cs-chip">
+                          <span className="cs-chip-ic"><ChipIcon width="17" height="17" aria-hidden="true" /></span>
+                          <span className="cs-chip-txt">{c.label}</span>
+                          <svg className="cs-chip-arrow" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+                        </a>
+                      </li>
+                    )
+                  })}
+                </ul>
+
+                <a href={d.href} className="cs-card-link">
+                  Explore {d.title}
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </a>
+              </article>
+            )
+          })}
         </div>
       </div>
 
-      {/* mobile stacked scene */}
-      <div className="csx-mobile">
-        <div className="csx-center csx-center-m">
-          <span className="csx-eyebrow">What We Offer</span>
-          <h2 className="csx-title">Core IT Solutions</h2>
-          <p className="csx-sub">Four divisions, every capability on the board — explore what we offer.</p>
-        </div>
-        {GROUPS.map((g, i) => (
-          <div key={`m-${g.key}`} className="csx-mgroup"><SignAssembly group={g} index={i} mobile /></div>
-        ))}
-      </div>
-
-      <style jsx>{`
-        .csx { position: relative; width: 100%; }
-
-        /* ----- desktop scattered scene ----- */
-        .csx-scene { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; height: 780px; }
-        .csx-group { position: absolute; transform-origin: top center; }
-
-        /* centered title overlay */
-        .csx-center {
-          position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-          width: min(560px, 42%); text-align: center; z-index: 3; pointer-events: none;
+      <style jsx global>{`
+        .cs {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          padding: clamp(56px, 7vw, 96px) 0;
+          background-color: #0a0d14;
+          background-image: url('/core-it-black.jpg');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          color: #f4f6fb;
         }
-        .csx-eyebrow { display: inline-block; color: #f7e500; font-weight: 800; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
-        .csx-title { margin: 0; color: #fff; font-size: clamp(30px, 4vw, 46px); font-weight: 900; line-height: 1.05; text-shadow: 0 0 26px rgba(247,229,0,0.25); }
-        .csx-sub { margin: 14px auto 0; max-width: 42ch; color: #b9c1cf; font-size: 15px; line-height: 1.5; }
-        .csx-center-m { position: static; transform: none; width: 100%; margin-bottom: 8px; }
-
-        /* one sign installation */
-        .sa { position: relative; width: 200px; }
-
-        .sa-post {
-          position: absolute; left: 50%; transform: translateX(-50%); top: 0; width: 16px; height: 240px;
-          border-radius: 8px;
+        /* light readability tint + brand glow — keeps the photo sharp & visible */
+        .cs-tint {
+          position: absolute; inset: 0; z-index: 1; pointer-events: none;
           background:
-            linear-gradient(90deg, rgba(0,0,0,0.4), rgba(255,255,255,0.10) 40%, rgba(0,0,0,0.35)),
-            repeating-linear-gradient(180deg, rgba(0,0,0,0.10) 0 3px, transparent 3px 11px),
-            linear-gradient(180deg, #7a5330, #513718);
-          box-shadow: inset 0 0 8px rgba(0,0,0,0.4), 2px 0 6px rgba(0,0,0,0.35);
-          z-index: 0;
+            radial-gradient(1100px 460px at 82% -6%, rgba(247,229,0,0.12), transparent 60%),
+            linear-gradient(180deg, rgba(6,8,13,0.42) 0%, rgba(6,8,13,0.30) 45%, rgba(6,8,13,0.52) 100%);
         }
-        .sa-beam {
-          position: absolute; left: 50%; transform: translateX(-50%); top: 40px; width: 178px; height: 15px;
-          border-radius: 8px;
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.16), rgba(0,0,0,0.3)),
-            repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0 6px, transparent 6px 16px),
-            linear-gradient(90deg, #86633c, #6b4a29);
-          box-shadow: 0 5px 10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.18);
-          z-index: 1;
+        .cs-blob {
+          position: absolute; z-index: 1; border-radius: 50%; filter: blur(70px); opacity: .5; pointer-events: none;
+          width: 420px; height: 420px; bottom: -170px; left: -120px; background: rgba(99,102,241,0.22);
+        }
+        .cs.on .cs-blob-a { animation: csFloat 18s ease-in-out infinite; }
+        @keyframes csFloat { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(24px,-26px) scale(1.06); } }
+
+        .cs-inner {
+          position: relative; z-index: 2;
+          max-width: 1160px; margin: 0 auto;
+          padding: 0 clamp(18px, 4vw, 40px);
         }
 
-        /* drop-in wrapper (settles from above) */
-        .sa-drop {
-          position: relative; z-index: 2; display: block; text-decoration: none;
-          opacity: 0; transform: translateY(-16px);
+        /* header */
+        .cs-head { text-align: center; max-width: 720px; margin: 0 auto clamp(34px, 4vw, 54px); }
+        .cs-eyebrow {
+          display: inline-block; font-weight: 800; font-size: 12.5px; letter-spacing: 3px; text-transform: uppercase;
+          color: #f7e500; background: rgba(247,229,0,0.12); border: 1px solid rgba(247,229,0,0.5);
+          padding: 6px 14px; border-radius: 999px; margin-bottom: 16px;
+          opacity: 0; transform: translateY(14px);
         }
-        .sa-headwrap { margin-top: 54px; }
-        .sa-plankwrap { margin-top: 22px; }
-        .on .sa-drop {
-          opacity: 1; transform: translateY(0);
-          transition: opacity .45s ease var(--delay), transform .8s cubic-bezier(.22,1,.36,1) var(--delay);
+        .cs-title {
+          margin: 0; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em;
+          font-size: clamp(30px, 5vw, 52px); color: #ffffff; text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+          opacity: 0; transform: translateY(16px);
         }
+        .cs-title span {
+          background: linear-gradient(100deg, #f6b800, #f7e500 55%, #f6b800);
+          -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+        }
+        .cs-sub {
+          margin: 16px auto 0; max-width: 560px; color: #c3cbd9; font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6;
+          opacity: 0; transform: translateY(16px);
+        }
+        .cs.on .cs-eyebrow { animation: csUp .6s cubic-bezier(.22,1,.36,1) forwards; }
+        .cs.on .cs-title   { animation: csUp .7s cubic-bezier(.22,1,.36,1) .08s forwards; }
+        .cs.on .cs-sub     { animation: csUp .7s cubic-bezier(.22,1,.36,1) .16s forwards; }
+        @keyframes csUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* swing wrapper (pendulum around the top center) */
-        .sa-swing {
-          position: relative; display: block; width: 150px; margin: 0 auto;
-          transform-origin: 50% -10px; /* pivot at the beam / rope top */
+        /* cards — equal height, transparent glass (no backdrop blur so the photo stays sharp) */
+        .cs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2vw, 26px); align-items: stretch; }
+        .cs-card {
+          position: relative; display: flex; flex-direction: column; height: 100%;
+          background: linear-gradient(180deg, rgba(20,24,36,0.34), rgba(12,15,24,0.30));
+          border: 1px solid rgba(255,255,255,0.14);
+          border-radius: 22px; padding: 26px 24px 22px;
+          box-shadow: 0 18px 44px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.08);
+          overflow: hidden;
+          opacity: 0; transform: translateY(34px);
+          transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .35s ease, background .35s ease;
+          will-change: transform;
         }
-        .sa-swing-plank { width: 132px; }
-        .on .sa-swing {
-          animation: swingPos var(--dur, 5s) ease-in-out infinite;
-          animation-delay: calc(var(--delay) + .8s + var(--sd, 0s));
+        .cs.on .cs-card { animation: csCardIn .7s cubic-bezier(.22,1,.36,1) calc(.22s + var(--i) * .13s) forwards; }
+        @keyframes csCardIn { to { opacity: 1; transform: translateY(0); } }
+        .cs-card:hover {
+          transform: translateY(-8px);
+          background: linear-gradient(180deg, rgba(26,30,44,0.44), rgba(14,18,28,0.40));
+          box-shadow: 0 28px 60px rgba(0,0,0,0.5);
+          border-color: rgba(247,229,0,0.55);
         }
-        .on .sa-swing.neg { animation-name: swingNeg; }
-        .on .sa-swing-head { animation-duration: 5.4s; }
+        .cs-card-bar {
+          position: absolute; left: 0; top: 22px; bottom: 22px; width: 5px; border-radius: 0 6px 6px 0;
+          background: linear-gradient(180deg, #f7e500, #f6b800);
+          transform: scaleY(0); transform-origin: top; transition: transform .5s cubic-bezier(.22,1,.36,1);
+        }
+        .cs.on .cs-card .cs-card-bar { transform: scaleY(1); transition-delay: calc(.5s + var(--i) * .13s); }
 
-        @keyframes swingPos {
-          0%, 100% { transform: rotate(1.4deg); }
-          50% { transform: rotate(-1.4deg); }
+        .cs-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+        .cs-icon {
+          flex: 0 0 auto; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+          color: #ffffff; background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.16);
+          transition: transform .4s cubic-bezier(.34,1.56,.64,1), color .3s ease, border-color .3s ease, background .3s ease;
         }
-        @keyframes swingNeg {
-          0%, 100% { transform: rotate(-1.4deg); }
-          50% { transform: rotate(1.4deg); }
-        }
+        .cs-card:hover .cs-icon { transform: rotate(-6deg) scale(1.08); color: #f7e500; border-color: rgba(247,229,0,0.55); background: rgba(247,229,0,0.08); }
+        .cs-card-title { margin: 0; font-size: clamp(16px, 1.5vw, 18px); font-weight: 800; color: #ffffff; line-height: 1.2; }
+        .cs-card-tag { margin: 4px 0 0; font-size: 13px; color: #97a2b8; font-weight: 500; }
 
-        /* ropes */
-        .sa-rope {
-          position: absolute; top: -20px; width: 4px; height: 22px; border-radius: 99px;
-          background: linear-gradient(180deg, #e4d29a, #9b7c45);
-          box-shadow: 0 1px 2px rgba(0,0,0,0.35);
-          z-index: 3;
+        /* chips — one per row */
+        .cs-chips { list-style: none; margin: 0 0 4px; padding: 0; display: flex; flex-direction: column; gap: 9px; align-content: flex-start; }
+        .cs-chip {
+          display: flex; align-items: center; gap: 11px; width: 100%;
+          padding: 11px 13px; border-radius: 12px; text-decoration: none;
+          font-size: 14px; font-weight: 600; color: #d7dded;
+          background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09);
+          transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
         }
-        .sa-rope.small { height: 16px; top: -14px; width: 3px; }
-        .sa-rope-l { left: 26px; }
-        .sa-rope-r { right: 26px; }
-        .sa-swing-plank .sa-rope-l { left: 22px; }
-        .sa-swing-plank .sa-rope-r { right: 22px; }
+        .cs-chips li { opacity: 0; transform: translateX(-12px); }
+        .cs.on .cs-card .cs-chips li {
+          animation: csChipIn .45s cubic-bezier(.22,1,.36,1) calc(.6s + var(--i) * .13s + var(--ci) * .06s) forwards;
+        }
+        @keyframes csChipIn { to { opacity: 1; transform: translateX(0); } }
+        .cs-chip-ic {
+          flex: 0 0 auto; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
+          color: #f7e500; background: rgba(247,229,0,0.10); border: 1px solid rgba(247,229,0,0.22);
+          transition: transform .2s ease, background .2s ease;
+        }
+        .cs-chip-txt { flex: 1 1 auto; }
+        .cs-chip-arrow { flex: 0 0 auto; color: #6f7a90; opacity: 0; transform: translateX(-4px); transition: opacity .2s ease, transform .2s ease, color .2s ease; }
+        .cs-chip:hover {
+          transform: translateX(4px);
+          color: #ffffff; background: rgba(247,229,0,0.10); border-color: rgba(247,229,0,0.5);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+        }
+        .cs-chip:hover .cs-chip-ic { transform: scale(1.1); background: rgba(247,229,0,0.2); }
+        .cs-chip:hover .cs-chip-arrow { opacity: 1; transform: translateX(0); color: #f7e500; }
 
-        /* boards */
-        .sa-board {
-          position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
-          border-radius: 9px;
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.14), rgba(0,0,0,0.22)),
-            repeating-linear-gradient(11deg, rgba(255,255,255,0.06) 0 2px, rgba(0,0,0,0.05) 2px 4px),
-            linear-gradient(120deg, #8a5a2b, #6e4521 50%, #553515);
-          box-shadow: 0 9px 18px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -3px 6px rgba(0,0,0,0.3);
+        /* card link */
+        .cs-card-link {
+          margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);
+          display: inline-flex; align-items: center; gap: 7px;
+          font-size: 14px; font-weight: 800; text-decoration: none; color: #f7e500;
+          transition: gap .25s ease;
         }
-        /* iron rivets */
-        .sa-board::before, .sa-board::after {
-          content: ''; position: absolute; top: 7px; width: 5px; height: 5px; border-radius: 50%;
-          background: radial-gradient(circle at 35% 30%, #cfd6de, #5b636c); box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
-        }
-        .sa-board::before { left: 8px; } .sa-board::after { right: 8px; }
+        .cs-card-link svg { transition: transform .25s ease; }
+        .cs-card:hover .cs-card-link { gap: 11px; }
+        .cs-card:hover .cs-card-link svg { transform: translateX(3px); }
 
-        .sa-header {
-          height: 62px; padding: 6px 10px;
-          color: #fff; font-weight: 800; font-size: 14px; line-height: 1.15;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-          border: 2px solid rgba(247,229,0,0.85);
-          box-shadow: 0 10px 22px rgba(0,0,0,0.5), 0 0 18px rgba(247,229,0,0.18), inset 0 1px 0 rgba(255,255,255,0.15);
+        /* responsive */
+        @media (max-width: 980px) {
+          .cs-cards { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; gap: 20px; }
         }
-        .sa-plank {
-          height: 40px; padding: 4px 8px;
-          color: #f6ead0; font-weight: 700; font-size: 11.5px; letter-spacing: 0.02em;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.55);
-          border: 1px solid rgba(247,229,0,0.4);
-        }
-        .sa-drop:hover .sa-board { filter: brightness(1.08); box-shadow: 0 12px 26px rgba(0,0,0,0.5), 0 0 20px rgba(247,229,0,0.3); }
-
-        /* ----- mobile ----- */
-        .csx-mobile { display: none; flex-direction: column; align-items: center; gap: 30px; }
-        .csx-mgroup { transform: scale(0.9); }
-
-        @media (max-width: 1199px) {
-          .csx-scene { height: 760px; }
-          .csx-group[data-group='digital'] { left: 0% !important; top: 8% !important; transform: scale(.86) rotate(-2deg) !important; }
-          .csx-group[data-group='corporate'] { left: 4% !important; top: 54% !important; transform: scale(.8) rotate(1deg) !important; }
-          .csx-group[data-group='maintenance'] { left: 70% !important; top: 8% !important; transform: scale(.86) rotate(2deg) !important; }
-          .csx-group[data-group='procurement'] { left: 72% !important; top: 56% !important; transform: scale(.8) rotate(-1deg) !important; }
-        }
-        @media (max-width: 900px) {
-          .csx-scene { display: none; }
-          .csx-mobile { display: flex; }
+        @media (max-width: 480px) {
+          .cs-chip { font-size: 13.5px; padding: 10px 12px; }
+          .cs-icon { width: 48px; height: 48px; border-radius: 13px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .sa-drop { opacity: 1 !important; transform: none !important; transition: none !important; }
-          .on .sa-swing { animation: none !important; }
+          .cs .cs-eyebrow, .cs .cs-title, .cs .cs-sub,
+          .cs .cs-card, .cs .cs-chips li { opacity: 1 !important; transform: none !important; animation: none !important; }
+          .cs .cs-card-bar { transform: scaleY(1) !important; }
+          .cs .cs-blob { animation: none !important; }
         }
       `}</style>
     </div>
   )
 }
 
-export default CoreSolutionsSignposts
+export default CoreSolutions

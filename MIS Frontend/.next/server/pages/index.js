@@ -21,157 +21,536 @@ exports.modules = {
 
 
 /*
- * CoreSolutionsSignposts
- * Adapted from a Framer design: four hanging wooden signboard installations
- * scattered around a centered title. Each install = a wooden post + crossbeam,
- * a header board hanging by ropes, and a vertical chain of plank sub-services.
- * On scroll in: boards drop in, then gently swing like pendulums (per-plank
- * stagger). Pure CSS + IntersectionObserver (no framer-motion dependency).
- * Respects prefers-reduced-motion.
- */ const GROUPS = [
+ * CoreSolutions — modern "What We Offer" section over a dark textured
+ * background image. Three division cards, monochrome (B&W) icons, and one
+ * capability-per-row list with its own relevant icon. Scroll-reveal +
+ * hover micro-interactions, pure CSS. Responsive; respects reduced-motion.
+ */ // --- monochrome (currentColor) icons ---------------------------------------
+const Icon = {
+    browser: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.7",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "2.5",
+                    y: "4",
+                    width: "19",
+                    height: "15",
+                    rx: "2.5"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M2.5 8h19"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "5",
+                    cy: "6",
+                    r: ".6",
+                    fill: "currentColor"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "7",
+                    cy: "6",
+                    r: ".6",
+                    fill: "currentColor"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M8 12.5h8M8 15.5h5"
+                })
+            ]
+        }),
+    crown: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.7",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M4 19h16"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M5 19V9l3 2 4-5 4 5 3-2v10"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "12",
+                    cy: "4",
+                    r: "1.4"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "4.6",
+                    cy: "8.4",
+                    r: "1.1"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "19.4",
+                    cy: "8.4",
+                    r: "1.1"
+                })
+            ]
+        }),
+    wrench: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.7",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                d: "M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-.4-.4-2.1z"
+            })
+        }),
+    // digital chips
+    code: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                d: "M8 7l-5 5 5 5M16 7l5 5-5 5"
+            })
+        }),
+    cube: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M12 2.5 20 7v10l-8 4.5L4 17V7z"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M4 7l8 4.5L20 7M12 11.5V21"
+                })
+            ]
+        }),
+    mobile: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "7",
+                    y: "2.5",
+                    width: "10",
+                    height: "19",
+                    rx: "2.5"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M11 18.5h2"
+                })
+            ]
+        }),
+    ai: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "6",
+                    y: "7",
+                    width: "12",
+                    height: "11",
+                    rx: "2.5"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M12 7V4M9 2.5h6M9.5 12v0M14.5 12v0M2.5 11h1.5M20 11h1.5"
+                })
+            ]
+        }),
+    shield: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M12 2.5 20 6v6c0 5-3.4 8-8 9.5C7.4 20 4 17 4 12V6z"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "m9 12 2 2 4-4"
+                })
+            ]
+        }),
+    cart: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M3 4h2l2.2 11.2a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.2L21 7H6"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "9.5",
+                    cy: "20",
+                    r: "1.3"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "17.5",
+                    cy: "20",
+                    r: "1.3"
+                })
+            ]
+        }),
+    // corporate chips
+    monitor: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "3",
+                    y: "4",
+                    width: "18",
+                    height: "12",
+                    rx: "2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M8 20h8M12 16v4"
+                })
+            ]
+        }),
+    camera: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "2.5",
+                    y: "7",
+                    width: "19",
+                    height: "12",
+                    rx: "2.5"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "12",
+                    cy: "13",
+                    r: "3.2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M8 7l1.5-2.5h5L16 7"
+                })
+            ]
+        }),
+    printer: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M7 8V3h10v5"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "4",
+                    y: "8",
+                    width: "16",
+                    height: "8",
+                    rx: "2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "7",
+                    y: "14",
+                    width: "10",
+                    height: "6",
+                    rx: "1"
+                })
+            ]
+        }),
+    network: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "12",
+                    cy: "4.5",
+                    r: "2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "5",
+                    cy: "19.5",
+                    r: "2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "19",
+                    cy: "19.5",
+                    r: "2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M12 6.5v5M12 11.5 5.8 17.8M12 11.5l6.2 6.3"
+                })
+            ]
+        }),
+    server: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "3",
+                    y: "4",
+                    width: "18",
+                    height: "7",
+                    rx: "2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "3",
+                    y: "13",
+                    width: "18",
+                    height: "7",
+                    rx: "2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M7 7.5v0M7 16.5v0"
+                })
+            ]
+        }),
+    power: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                d: "M13 2 4 14h7l-1 8 9-12h-7z"
+            })
+        }),
+    // maintenance chips
+    doc: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M6 2.5h8l4 4V21a.5.5 0 0 1-.5.5H6A.5.5 0 0 1 5.5 21V3A.5.5 0 0 1 6 2.5z"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M14 2.5V7h4M8 12h8M8 16h5"
+                })
+            ]
+        }),
+    phone: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                d: "M6.5 3h3l1.5 5-2 1.5a12 12 0 0 0 5 5l1.5-2 5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3z"
+            })
+        }),
+    install: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M12 3v11M8 10l4 4 4-4"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M4 18h16v2.5H4z"
+                })
+            ]
+        }),
+    bug: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "8",
+                    y: "7",
+                    width: "8",
+                    height: "11",
+                    rx: "4"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M9 3l1.5 2.5M15 3l-1.5 2.5M8 10H4M20 10h-4M8 14H3.5M20.5 14H16M8.5 18l-2 2.5M15.5 18l2 2.5"
+                })
+            ]
+        }),
+    remote: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.8",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                    cx: "12",
+                    cy: "12",
+                    r: "2"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"
+                })
+            ]
+        })
+};
+const DIVISIONS = [
     {
         key: "digital",
         title: "Digital Services",
+        tagline: "Your complete digital presence",
         href: "/digital-services",
-        x: "0%",
-        y: "2%",
-        scale: 0.92,
-        rotate: -3,
-        dir: -1,
-        leaves: [
-            "Web Development",
-            "Custom Software",
-            "Mobile Apps",
-            "AI Solutions",
-            "Cyber Security",
-            "E-Commerce"
+        HeadIcon: Icon.browser,
+        chips: [
+            {
+                label: "Web Development",
+                I: Icon.code
+            },
+            {
+                label: "Custom Software",
+                I: Icon.cube
+            },
+            {
+                label: "Mobile Apps",
+                I: Icon.mobile
+            },
+            {
+                label: "AI Solutions",
+                I: Icon.ai
+            },
+            {
+                label: "Cyber Security",
+                I: Icon.shield
+            },
+            {
+                label: "E-Commerce",
+                I: Icon.cart
+            }, 
         ]
     },
     {
         key: "corporate",
-        title: "Business & Corporate",
+        title: "Business & Corporate Solutions",
+        tagline: "Enterprise-grade B2B infrastructure",
         href: "/enterprise-solutions",
-        x: "17%",
-        y: "34%",
-        scale: 0.8,
-        rotate: 2,
-        dir: 1,
-        leaves: [
-            "IT Equipments",
-            "Security System",
-            "Office Equipments",
-            "Networking",
-            "Server Setup",
-            "Power Solution"
+        HeadIcon: Icon.crown,
+        chips: [
+            {
+                label: "IT Equipments",
+                I: Icon.monitor
+            },
+            {
+                label: "Security System",
+                I: Icon.camera
+            },
+            {
+                label: "Office Equipments",
+                I: Icon.printer
+            },
+            {
+                label: "Networking",
+                I: Icon.network
+            },
+            {
+                label: "Server Setup",
+                I: Icon.server
+            },
+            {
+                label: "Power Solution",
+                I: Icon.power
+            }, 
         ]
     },
     {
         key: "maintenance",
         title: "Maintenance & Support",
+        tagline: "Peak performance, always",
         href: "/maintenance-support",
-        x: "65%",
-        y: "34%",
-        scale: 0.8,
-        rotate: 2,
-        dir: 1,
-        leaves: [
-            "AMC Contracts",
-            "On-call Repair",
-            "Installation",
-            "Troubleshooting",
-            "Remote Solution"
-        ]
-    },
-    {
-        key: "procurement",
-        title: "Procurement Service",
-        href: "/product-catalog",
-        x: "82%",
-        y: "2%",
-        scale: 0.92,
-        rotate: -2,
-        dir: -1,
-        leaves: [
-            "Hardware Sourcing",
-            "Bulk Supply",
-            "Corporate Deals",
-            "Vendor Management",
-            "Licensing",
-            "Fast Delivery"
+        HeadIcon: Icon.wrench,
+        chips: [
+            {
+                label: "AMC Contracts",
+                I: Icon.doc
+            },
+            {
+                label: "On-call Repair",
+                I: Icon.phone
+            },
+            {
+                label: "Installation",
+                I: Icon.install
+            },
+            {
+                label: "Troubleshooting",
+                I: Icon.bug
+            },
+            {
+                label: "Remote Solution",
+                I: Icon.remote
+            }, 
         ]
     }, 
 ];
-const SignAssembly = ({ group , index , mobile  })=>{
-    const dirClass = group.dir === 1 ? "pos" : "neg";
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "sa",
-        style: {
-            "--gi": index
-        },
-        children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                className: "sa-post",
-                "aria-hidden": "true"
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                className: "sa-beam",
-                "aria-hidden": "true"
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                href: group.href,
-                className: "sa-drop sa-headwrap",
-                style: {
-                    "--delay": `${index * 0.12}s`
-                },
-                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                    className: `sa-swing sa-swing-head ${dirClass}`,
-                    children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                            className: "sa-rope sa-rope-l"
-                        }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                            className: "sa-rope sa-rope-r"
-                        }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                            className: "sa-board sa-header",
-                            children: group.title
-                        })
-                    ]
-                })
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "sa-planks",
-                children: group.leaves.map((leaf, li)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                        href: group.href,
-                        className: "sa-drop sa-plankwrap",
-                        style: {
-                            "--delay": `${index * 0.12 + (li + 1) * 0.13}s`
-                        },
-                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                            className: `sa-swing sa-swing-plank ${li % 2 === 0 ? "pos" : "neg"}`,
-                            style: {
-                                "--sd": `${li * 0.09}s`,
-                                "--dur": `${4.6 + li * 0.25}s`
-                            },
-                            children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "sa-rope sa-rope-l small"
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "sa-rope sa-rope-r small"
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "sa-board sa-plank",
-                                    children: leaf
-                                })
-                            ]
-                        })
-                    }, leaf))
-            })
-        ]
-    });
-};
-const CoreSolutionsSignposts = ()=>{
+const CoreSolutions = ()=>{
     const ref = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const { 0: on , 1: setOn  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
@@ -182,96 +561,188 @@ const CoreSolutionsSignposts = ()=>{
             setOn(true);
             return;
         }
+        const fallback = setTimeout(()=>setOn(true), 700);
         const obs = new IntersectionObserver((entries)=>{
             entries.forEach((e)=>{
                 if (e.isIntersecting) {
                     setOn(true);
+                    clearTimeout(fallback);
                     obs.disconnect();
                 }
             });
         }, {
-            threshold: 0.15
+            threshold: 0.12
         });
         obs.observe(el);
-        return ()=>obs.disconnect();
+        return ()=>{
+            clearTimeout(fallback);
+            obs.disconnect();
+        };
     }, []);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         ref: ref,
-        className: "jsx-3a69433632ac6e1d" + " " + `csx ${on ? "on" : ""}`,
+        className: "jsx-d30f0f8c5c65ad74" + " " + `cs ${on ? "on" : ""}`,
         children: [
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-3a69433632ac6e1d" + " " + "csx-scene",
-                children: [
-                    GROUPS.map((g, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            "data-group": g.key,
-                            style: {
-                                left: g.x,
-                                top: g.y,
-                                transform: `scale(${g.scale}) rotate(${g.rotate}deg)`
-                            },
-                            className: "jsx-3a69433632ac6e1d" + " " + "csx-group",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(SignAssembly, {
-                                group: g,
-                                index: i
-                            })
-                        }, g.key)),
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-3a69433632ac6e1d" + " " + "csx-center",
-                        children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                className: "jsx-3a69433632ac6e1d" + " " + "csx-eyebrow",
-                                children: "What We Offer"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                className: "jsx-3a69433632ac6e1d" + " " + "csx-title",
-                                children: "Core IT Solutions"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                className: "jsx-3a69433632ac6e1d" + " " + "csx-sub",
-                                children: "Four divisions, every capability on the board — explore what we offer."
-                            })
-                        ]
-                    })
-                ]
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                "aria-hidden": "true",
+                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-tint"
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                "aria-hidden": "true",
+                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-blob cs-blob-a"
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-3a69433632ac6e1d" + " " + "csx-mobile",
+                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-inner",
                 children: [
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-3a69433632ac6e1d" + " " + "csx-center csx-center-m",
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
+                        className: "jsx-d30f0f8c5c65ad74" + " " + "cs-head",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                className: "jsx-3a69433632ac6e1d" + " " + "csx-eyebrow",
+                                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-eyebrow",
                                 children: "What We Offer"
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                className: "jsx-3a69433632ac6e1d" + " " + "csx-title",
-                                children: "Core IT Solutions"
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
+                                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-title",
+                                children: [
+                                    "Core IT ",
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                        className: "jsx-d30f0f8c5c65ad74",
+                                        children: "Solutions"
+                                    })
+                                ]
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                className: "jsx-3a69433632ac6e1d" + " " + "csx-sub",
-                                children: "Four divisions, every capability on the board — explore what we offer."
+                                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-sub",
+                                children: "Three specialized divisions — each a full-spectrum capability center designed to scale with your enterprise."
                             })
                         ]
                     }),
-                    GROUPS.map((g, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-3a69433632ac6e1d" + " " + "csx-mgroup",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(SignAssembly, {
-                                group: g,
-                                index: i,
-                                mobile: true
-                            })
-                        }, `m-${g.key}`))
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "jsx-d30f0f8c5c65ad74" + " " + "cs-cards",
+                        children: DIVISIONS.map((d, i)=>{
+                            const HeadIcon = d.HeadIcon;
+                            return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
+                                style: {
+                                    "--i": i
+                                },
+                                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-card",
+                                children: [
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                        "aria-hidden": "true",
+                                        className: "jsx-d30f0f8c5c65ad74" + " " + "cs-card-bar"
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "jsx-d30f0f8c5c65ad74" + " " + "cs-card-top",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-icon",
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(HeadIcon, {
+                                                    width: "28",
+                                                    height: "28",
+                                                    "aria-hidden": "true",
+                                                    className: "jsx-d30f0f8c5c65ad74"
+                                                })
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "jsx-d30f0f8c5c65ad74" + " " + "cs-card-heads",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                        className: "jsx-d30f0f8c5c65ad74" + " " + "cs-card-title",
+                                                        children: d.title
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                        className: "jsx-d30f0f8c5c65ad74" + " " + "cs-card-tag",
+                                                        children: d.tagline
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
+                                        className: "jsx-d30f0f8c5c65ad74" + " " + "cs-chips",
+                                        children: d.chips.map((c, ci)=>{
+                                            const ChipIcon = c.I;
+                                            return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                                style: {
+                                                    "--ci": ci
+                                                },
+                                                className: "jsx-d30f0f8c5c65ad74",
+                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                                    href: d.href,
+                                                    className: "jsx-d30f0f8c5c65ad74" + " " + "cs-chip",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "jsx-d30f0f8c5c65ad74" + " " + "cs-chip-ic",
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(ChipIcon, {
+                                                                width: "17",
+                                                                height: "17",
+                                                                "aria-hidden": "true",
+                                                                className: "jsx-d30f0f8c5c65ad74"
+                                                            })
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "jsx-d30f0f8c5c65ad74" + " " + "cs-chip-txt",
+                                                            children: c.label
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                            viewBox: "0 0 24 24",
+                                                            width: "15",
+                                                            height: "15",
+                                                            fill: "none",
+                                                            stroke: "currentColor",
+                                                            strokeWidth: "2.2",
+                                                            strokeLinecap: "round",
+                                                            strokeLinejoin: "round",
+                                                            "aria-hidden": "true",
+                                                            className: "jsx-d30f0f8c5c65ad74" + " " + "cs-chip-arrow",
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "M9 6l6 6-6 6",
+                                                                className: "jsx-d30f0f8c5c65ad74"
+                                                            })
+                                                        })
+                                                    ]
+                                                })
+                                            }, c.label);
+                                        })
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                        href: d.href,
+                                        className: "jsx-d30f0f8c5c65ad74" + " " + "cs-card-link",
+                                        children: [
+                                            "Explore ",
+                                            d.title,
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                viewBox: "0 0 24 24",
+                                                width: "16",
+                                                height: "16",
+                                                fill: "none",
+                                                stroke: "currentColor",
+                                                strokeWidth: "2.2",
+                                                strokeLinecap: "round",
+                                                strokeLinejoin: "round",
+                                                "aria-hidden": "true",
+                                                className: "jsx-d30f0f8c5c65ad74",
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                    d: "M5 12h14M13 6l6 6-6 6",
+                                                    className: "jsx-d30f0f8c5c65ad74"
+                                                })
+                                            })
+                                        ]
+                                    })
+                                ]
+                            }, d.key);
+                        })
+                    })
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "3a69433632ac6e1d",
-                children: '.csx.jsx-3a69433632ac6e1d{position:relative;width:100%}.csx-scene.jsx-3a69433632ac6e1d{position:relative;width:100%;max-width:1200px;margin:0 auto;height:780px}.csx-group.jsx-3a69433632ac6e1d{position:absolute;-webkit-transform-origin:top center;-moz-transform-origin:top center;-ms-transform-origin:top center;-o-transform-origin:top center;transform-origin:top center}.csx-center.jsx-3a69433632ac6e1d{position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:min(560px,42%);text-align:center;z-index:3;pointer-events:none}.csx-eyebrow.jsx-3a69433632ac6e1d{display:inline-block;color:#f7e500;font-weight:800;font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}.csx-title.jsx-3a69433632ac6e1d{margin:0;color:#fff;font-size:clamp(30px,4vw,46px);font-weight:900;line-height:1.05;text-shadow:0 0 26px rgba(247,229,0,.25)}.csx-sub.jsx-3a69433632ac6e1d{margin:14px auto 0;max-width:42ch;color:#b9c1cf;font-size:15px;line-height:1.5}.csx-center-m.jsx-3a69433632ac6e1d{position:static;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;width:100%;margin-bottom:8px}.sa.jsx-3a69433632ac6e1d{position:relative;width:200px}.sa-post.jsx-3a69433632ac6e1d{position:absolute;left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%);top:0;width:16px;height:240px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:-webkit-linear-gradient(left,rgba(0,0,0,.4),rgba(255,255,255,.1)40%,rgba(0,0,0,.35)),-webkit-repeating-linear-gradient(top,rgba(0,0,0,.1)0 3px,transparent 3px 11px),-webkit-linear-gradient(top,#7a5330,#513718);background:-moz-linear-gradient(left,rgba(0,0,0,.4),rgba(255,255,255,.1)40%,rgba(0,0,0,.35)),-moz-repeating-linear-gradient(top,rgba(0,0,0,.1)0 3px,transparent 3px 11px),-moz-linear-gradient(top,#7a5330,#513718);background:-o-linear-gradient(left,rgba(0,0,0,.4),rgba(255,255,255,.1)40%,rgba(0,0,0,.35)),-o-repeating-linear-gradient(top,rgba(0,0,0,.1)0 3px,transparent 3px 11px),-o-linear-gradient(top,#7a5330,#513718);background:linear-gradient(90deg,rgba(0,0,0,.4),rgba(255,255,255,.1)40%,rgba(0,0,0,.35)),repeating-linear-gradient(180deg,rgba(0,0,0,.1)0 3px,transparent 3px 11px),linear-gradient(180deg,#7a5330,#513718);-webkit-box-shadow:inset 0 0 8px rgba(0,0,0,.4),2px 0 6px rgba(0,0,0,.35);-moz-box-shadow:inset 0 0 8px rgba(0,0,0,.4),2px 0 6px rgba(0,0,0,.35);box-shadow:inset 0 0 8px rgba(0,0,0,.4),2px 0 6px rgba(0,0,0,.35);z-index:0}.sa-beam.jsx-3a69433632ac6e1d{position:absolute;left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%);top:40px;width:178px;height:15px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:-webkit-linear-gradient(top,rgba(255,255,255,.16),rgba(0,0,0,.3)),-webkit-repeating-linear-gradient(left,rgba(0,0,0,.08)0 6px,transparent 6px 16px),-webkit-linear-gradient(left,#86633c,#6b4a29);background:-moz-linear-gradient(top,rgba(255,255,255,.16),rgba(0,0,0,.3)),-moz-repeating-linear-gradient(left,rgba(0,0,0,.08)0 6px,transparent 6px 16px),-moz-linear-gradient(left,#86633c,#6b4a29);background:-o-linear-gradient(top,rgba(255,255,255,.16),rgba(0,0,0,.3)),-o-repeating-linear-gradient(left,rgba(0,0,0,.08)0 6px,transparent 6px 16px),-o-linear-gradient(left,#86633c,#6b4a29);background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(0,0,0,.3)),repeating-linear-gradient(90deg,rgba(0,0,0,.08)0 6px,transparent 6px 16px),linear-gradient(90deg,#86633c,#6b4a29);-webkit-box-shadow:0 5px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.18);-moz-box-shadow:0 5px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.18);box-shadow:0 5px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.18);z-index:1}.sa-drop.jsx-3a69433632ac6e1d{position:relative;z-index:2;display:block;text-decoration:none;opacity:0;-webkit-transform:translateY(-16px);-moz-transform:translateY(-16px);-ms-transform:translateY(-16px);-o-transform:translateY(-16px);transform:translateY(-16px)}.sa-headwrap.jsx-3a69433632ac6e1d{margin-top:54px}.sa-plankwrap.jsx-3a69433632ac6e1d{margin-top:22px}.on.jsx-3a69433632ac6e1d .sa-drop.jsx-3a69433632ac6e1d{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0);-webkit-transition:opacity.45s ease var(--delay),-webkit-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);-moz-transition:opacity.45s ease var(--delay),-moz-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);-o-transition:opacity.45s ease var(--delay),-o-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);transition:opacity.45s ease var(--delay),-webkit-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);transition:opacity.45s ease var(--delay),-moz-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);transition:opacity.45s ease var(--delay),-o-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);transition:opacity.45s ease var(--delay),transform.8s cubic-bezier(.22,1,.36,1)var(--delay)}.sa-swing.jsx-3a69433632ac6e1d{position:relative;display:block;width:150px;margin:0 auto;-webkit-transform-origin:50%-10px;-moz-transform-origin:50%-10px;-ms-transform-origin:50%-10px;-o-transform-origin:50%-10px;transform-origin:50%-10px}.sa-swing-plank.jsx-3a69433632ac6e1d{width:132px}.on.jsx-3a69433632ac6e1d .sa-swing.jsx-3a69433632ac6e1d{-webkit-animation:swingPos var(--dur,5s)ease-in-out infinite;-moz-animation:swingPos var(--dur,5s)ease-in-out infinite;-o-animation:swingPos var(--dur,5s)ease-in-out infinite;animation:swingPos var(--dur,5s)ease-in-out infinite;-webkit-animation-delay:-webkit-calc(var(--delay) + .8s + var(--sd,0s));-moz-animation-delay:-moz-calc(var(--delay) + .8s + var(--sd,0s));-o-animation-delay:calc(var(--delay) + .8s + var(--sd,0s));animation-delay:-webkit-calc(var(--delay) + .8s + var(--sd,0s));animation-delay:-moz-calc(var(--delay) + .8s + var(--sd,0s));animation-delay:calc(var(--delay) + .8s + var(--sd,0s))}.on.jsx-3a69433632ac6e1d .sa-swing.neg.jsx-3a69433632ac6e1d{-webkit-animation-name:swingNeg;-moz-animation-name:swingNeg;-o-animation-name:swingNeg;animation-name:swingNeg}.on.jsx-3a69433632ac6e1d .sa-swing-head.jsx-3a69433632ac6e1d{-webkit-animation-duration:5.4s;-moz-animation-duration:5.4s;-o-animation-duration:5.4s;animation-duration:5.4s}@-webkit-keyframes swingPos{0%,100%{-webkit-transform:rotate(1.4deg);transform:rotate(1.4deg)}50%{-webkit-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}}@-moz-keyframes swingPos{0%,100%{-moz-transform:rotate(1.4deg);transform:rotate(1.4deg)}50%{-moz-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}}@-o-keyframes swingPos{0%,100%{-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}50%{-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}}@keyframes swingPos{0%,100%{-webkit-transform:rotate(1.4deg);-moz-transform:rotate(1.4deg);-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}50%{-webkit-transform:rotate(-1.4deg);-moz-transform:rotate(-1.4deg);-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}}@-webkit-keyframes swingNeg{0%,100%{-webkit-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-webkit-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@-moz-keyframes swingNeg{0%,100%{-moz-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-moz-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@-o-keyframes swingNeg{0%,100%{-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@keyframes swingNeg{0%,100%{-webkit-transform:rotate(-1.4deg);-moz-transform:rotate(-1.4deg);-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-webkit-transform:rotate(1.4deg);-moz-transform:rotate(1.4deg);-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}}.sa-rope.jsx-3a69433632ac6e1d{position:absolute;top:-20px;width:4px;height:22px;-webkit-border-radius:99px;-moz-border-radius:99px;border-radius:99px;background:-webkit-linear-gradient(top,#e4d29a,#9b7c45);background:-moz-linear-gradient(top,#e4d29a,#9b7c45);background:-o-linear-gradient(top,#e4d29a,#9b7c45);background:linear-gradient(180deg,#e4d29a,#9b7c45);-webkit-box-shadow:0 1px 2px rgba(0,0,0,.35);-moz-box-shadow:0 1px 2px rgba(0,0,0,.35);box-shadow:0 1px 2px rgba(0,0,0,.35);z-index:3}.sa-rope.small.jsx-3a69433632ac6e1d{height:16px;top:-14px;width:3px}.sa-rope-l.jsx-3a69433632ac6e1d{left:26px}.sa-rope-r.jsx-3a69433632ac6e1d{right:26px}.sa-swing-plank.jsx-3a69433632ac6e1d .sa-rope-l.jsx-3a69433632ac6e1d{left:22px}.sa-swing-plank.jsx-3a69433632ac6e1d .sa-rope-r.jsx-3a69433632ac6e1d{right:22px}.sa-board.jsx-3a69433632ac6e1d{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center;-webkit-border-radius:9px;-moz-border-radius:9px;border-radius:9px;background:-webkit-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.22)),-webkit-repeating-linear-gradient(79deg,rgba(255,255,255,.06)0 2px,rgba(0,0,0,.05)2px 4px),-webkit-linear-gradient(330deg,#8a5a2b,#6e4521 50%,#553515);background:-moz-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.22)),-moz-repeating-linear-gradient(79deg,rgba(255,255,255,.06)0 2px,rgba(0,0,0,.05)2px 4px),-moz-linear-gradient(330deg,#8a5a2b,#6e4521 50%,#553515);background:-o-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.22)),-o-repeating-linear-gradient(79deg,rgba(255,255,255,.06)0 2px,rgba(0,0,0,.05)2px 4px),-o-linear-gradient(330deg,#8a5a2b,#6e4521 50%,#553515);background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(0,0,0,.22)),repeating-linear-gradient(11deg,rgba(255,255,255,.06)0 2px,rgba(0,0,0,.05)2px 4px),linear-gradient(120deg,#8a5a2b,#6e4521 50%,#553515);-webkit-box-shadow:0 9px 18px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -3px 6px rgba(0,0,0,.3);-moz-box-shadow:0 9px 18px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -3px 6px rgba(0,0,0,.3);box-shadow:0 9px 18px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -3px 6px rgba(0,0,0,.3)}.sa-board.jsx-3a69433632ac6e1d::before,.sa-board.jsx-3a69433632ac6e1d::after{content:"";position:absolute;top:7px;width:5px;height:5px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:-webkit-radial-gradient(35%30%,circle,#cfd6de,#5b636c);background:-moz-radial-gradient(35%30%,circle,#cfd6de,#5b636c);background:-o-radial-gradient(35%30%,circle,#cfd6de,#5b636c);background:radial-gradient(circle at 35%30%,#cfd6de,#5b636c);-webkit-box-shadow:0 0 0 1px rgba(0,0,0,.4);-moz-box-shadow:0 0 0 1px rgba(0,0,0,.4);box-shadow:0 0 0 1px rgba(0,0,0,.4)}.sa-board.jsx-3a69433632ac6e1d::before{left:8px}.sa-board.jsx-3a69433632ac6e1d::after{right:8px}.sa-header.jsx-3a69433632ac6e1d{height:62px;padding:6px 10px;color:#fff;font-weight:800;font-size:14px;line-height:1.15;text-shadow:0 1px 2px rgba(0,0,0,.6);border:2px solid rgba(247,229,0,.85);-webkit-box-shadow:0 10px 22px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);-moz-box-shadow:0 10px 22px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);box-shadow:0 10px 22px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15)}.sa-plank.jsx-3a69433632ac6e1d{height:40px;padding:4px 8px;color:#f6ead0;font-weight:700;font-size:11.5px;letter-spacing:.02em;text-shadow:0 1px 2px rgba(0,0,0,.55);border:1px solid rgba(247,229,0,.4)}.sa-drop.jsx-3a69433632ac6e1d:hover .sa-board.jsx-3a69433632ac6e1d{-webkit-filter:brightness(1.08);filter:brightness(1.08);-webkit-box-shadow:0 12px 26px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.3);-moz-box-shadow:0 12px 26px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.3);box-shadow:0 12px 26px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.3)}.csx-mobile.jsx-3a69433632ac6e1d{display:none;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:30px}.csx-mgroup.jsx-3a69433632ac6e1d{-webkit-transform:scale(.9);-moz-transform:scale(.9);-ms-transform:scale(.9);-o-transform:scale(.9);transform:scale(.9)}@media(max-width:1199px){.csx-scene.jsx-3a69433632ac6e1d{height:760px}.csx-group[data-group="digital"].jsx-3a69433632ac6e1d{left:0%!important;top:8%!important;-webkit-transform:scale(.86)rotate(-2deg)!important;-moz-transform:scale(.86)rotate(-2deg)!important;-ms-transform:scale(.86)rotate(-2deg)!important;-o-transform:scale(.86)rotate(-2deg)!important;transform:scale(.86)rotate(-2deg)!important}.csx-group[data-group="corporate"].jsx-3a69433632ac6e1d{left:4%!important;top:54%!important;-webkit-transform:scale(.8)rotate(1deg)!important;-moz-transform:scale(.8)rotate(1deg)!important;-ms-transform:scale(.8)rotate(1deg)!important;-o-transform:scale(.8)rotate(1deg)!important;transform:scale(.8)rotate(1deg)!important}.csx-group[data-group="maintenance"].jsx-3a69433632ac6e1d{left:70%!important;top:8%!important;-webkit-transform:scale(.86)rotate(2deg)!important;-moz-transform:scale(.86)rotate(2deg)!important;-ms-transform:scale(.86)rotate(2deg)!important;-o-transform:scale(.86)rotate(2deg)!important;transform:scale(.86)rotate(2deg)!important}.csx-group[data-group="procurement"].jsx-3a69433632ac6e1d{left:72%!important;top:56%!important;-webkit-transform:scale(.8)rotate(-1deg)!important;-moz-transform:scale(.8)rotate(-1deg)!important;-ms-transform:scale(.8)rotate(-1deg)!important;-o-transform:scale(.8)rotate(-1deg)!important;transform:scale(.8)rotate(-1deg)!important}}@media(max-width:900px){.csx-scene.jsx-3a69433632ac6e1d{display:none}.csx-mobile.jsx-3a69433632ac6e1d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}}@media(prefers-reduced-motion:reduce){.sa-drop.jsx-3a69433632ac6e1d{opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important;transform:none!important;-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;transition:none!important}.on.jsx-3a69433632ac6e1d .sa-swing.jsx-3a69433632ac6e1d{-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}}'
+                id: "d30f0f8c5c65ad74",
+                children: '.cs{position:relative;width:100%;overflow:hidden;padding:clamp(56px,7vw,96px)0;background-color:#0a0d14;background-image:url("/core-it-black.jpg");-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;background-position:center;background-repeat:no-repeat;color:#f4f6fb}.cs-tint{position:absolute;inset:0;z-index:1;pointer-events:none;background:-webkit-radial-gradient(82%-6%,1100px 460px,rgba(247,229,0,.12),transparent 60%),-webkit-linear-gradient(top,rgba(6,8,13,.42)0%,rgba(6,8,13,.3)45%,rgba(6,8,13,.52)100%);background:-moz-radial-gradient(82%-6%,1100px 460px,rgba(247,229,0,.12),transparent 60%),-moz-linear-gradient(top,rgba(6,8,13,.42)0%,rgba(6,8,13,.3)45%,rgba(6,8,13,.52)100%);background:-o-radial-gradient(82%-6%,1100px 460px,rgba(247,229,0,.12),transparent 60%),-o-linear-gradient(top,rgba(6,8,13,.42)0%,rgba(6,8,13,.3)45%,rgba(6,8,13,.52)100%);background:radial-gradient(1100px 460px at 82%-6%,rgba(247,229,0,.12),transparent 60%),linear-gradient(180deg,rgba(6,8,13,.42)0%,rgba(6,8,13,.3)45%,rgba(6,8,13,.52)100%)}.cs-blob{position:absolute;z-index:1;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;-webkit-filter:blur(70px);filter:blur(70px);opacity:.5;pointer-events:none;width:420px;height:420px;bottom:-170px;left:-120px;background:rgba(99,102,241,.22)}.cs.on .cs-blob-a{-webkit-animation:csFloat 18s ease-in-out infinite;-moz-animation:csFloat 18s ease-in-out infinite;-o-animation:csFloat 18s ease-in-out infinite;animation:csFloat 18s ease-in-out infinite}@-webkit-keyframes csFloat{0%,100%{-webkit-transform:translate(0,0)scale(1);transform:translate(0,0)scale(1)}50%{-webkit-transform:translate(24px,-26px)scale(1.06);transform:translate(24px,-26px)scale(1.06)}}@-moz-keyframes csFloat{0%,100%{-moz-transform:translate(0,0)scale(1);transform:translate(0,0)scale(1)}50%{-moz-transform:translate(24px,-26px)scale(1.06);transform:translate(24px,-26px)scale(1.06)}}@-o-keyframes csFloat{0%,100%{-o-transform:translate(0,0)scale(1);transform:translate(0,0)scale(1)}50%{-o-transform:translate(24px,-26px)scale(1.06);transform:translate(24px,-26px)scale(1.06)}}@keyframes csFloat{0%,100%{-webkit-transform:translate(0,0)scale(1);-moz-transform:translate(0,0)scale(1);-o-transform:translate(0,0)scale(1);transform:translate(0,0)scale(1)}50%{-webkit-transform:translate(24px,-26px)scale(1.06);-moz-transform:translate(24px,-26px)scale(1.06);-o-transform:translate(24px,-26px)scale(1.06);transform:translate(24px,-26px)scale(1.06)}}.cs-inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}.cs-head{text-align:center;max-width:720px;margin:0 auto clamp(34px,4vw,54px)}.cs-eyebrow{display:inline-block;font-weight:800;font-size:12.5px;letter-spacing:3px;text-transform:uppercase;color:#f7e500;background:rgba(247,229,0,.12);border:1px solid rgba(247,229,0,.5);padding:6px 14px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;margin-bottom:16px;opacity:0;-webkit-transform:translateY(14px);-moz-transform:translateY(14px);-ms-transform:translateY(14px);-o-transform:translateY(14px);transform:translateY(14px)}.cs-title{margin:0;font-weight:900;line-height:1.05;letter-spacing:-.02em;font-size:clamp(30px,5vw,52px);color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.5);opacity:0;-webkit-transform:translateY(16px);-moz-transform:translateY(16px);-ms-transform:translateY(16px);-o-transform:translateY(16px);transform:translateY(16px)}.cs-title span{background:-webkit-linear-gradient(350deg,#f6b800,#f7e500 55%,#f6b800);background:-moz-linear-gradient(350deg,#f6b800,#f7e500 55%,#f6b800);background:-o-linear-gradient(350deg,#f6b800,#f7e500 55%,#f6b800);background:linear-gradient(100deg,#f6b800,#f7e500 55%,#f6b800);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}.cs-sub{margin:16px auto 0;max-width:560px;color:#c3cbd9;font-size:clamp(15px,1.4vw,17px);line-height:1.6;opacity:0;-webkit-transform:translateY(16px);-moz-transform:translateY(16px);-ms-transform:translateY(16px);-o-transform:translateY(16px);transform:translateY(16px)}.cs.on .cs-eyebrow{-webkit-animation:csUp.6s cubic-bezier(.22,1,.36,1)forwards;-moz-animation:csUp.6s cubic-bezier(.22,1,.36,1)forwards;-o-animation:csUp.6s cubic-bezier(.22,1,.36,1)forwards;animation:csUp.6s cubic-bezier(.22,1,.36,1)forwards}.cs.on .cs-title{-webkit-animation:csUp.7s cubic-bezier(.22,1,.36,1).08s forwards;-moz-animation:csUp.7s cubic-bezier(.22,1,.36,1).08s forwards;-o-animation:csUp.7s cubic-bezier(.22,1,.36,1).08s forwards;animation:csUp.7s cubic-bezier(.22,1,.36,1).08s forwards}.cs.on .cs-sub{-webkit-animation:csUp.7s cubic-bezier(.22,1,.36,1).16s forwards;-moz-animation:csUp.7s cubic-bezier(.22,1,.36,1).16s forwards;-o-animation:csUp.7s cubic-bezier(.22,1,.36,1).16s forwards;animation:csUp.7s cubic-bezier(.22,1,.36,1).16s forwards}@-webkit-keyframes csUp{to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@-moz-keyframes csUp{to{opacity:1;-moz-transform:translateY(0);transform:translateY(0)}}@-o-keyframes csUp{to{opacity:1;-o-transform:translateY(0);transform:translateY(0)}}@keyframes csUp{to{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}}.cs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,26px);-webkit-box-align:stretch;-webkit-align-items:stretch;-moz-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.cs-card{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;height:100%;background:-webkit-linear-gradient(top,rgba(20,24,36,.34),rgba(12,15,24,.3));background:-moz-linear-gradient(top,rgba(20,24,36,.34),rgba(12,15,24,.3));background:-o-linear-gradient(top,rgba(20,24,36,.34),rgba(12,15,24,.3));background:linear-gradient(180deg,rgba(20,24,36,.34),rgba(12,15,24,.3));border:1px solid rgba(255,255,255,.14);-webkit-border-radius:22px;-moz-border-radius:22px;border-radius:22px;padding:26px 24px 22px;-webkit-box-shadow:0 18px 44px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.08);-moz-box-shadow:0 18px 44px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.08);box-shadow:0 18px 44px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.08);overflow:hidden;opacity:0;-webkit-transform:translateY(34px);-moz-transform:translateY(34px);-ms-transform:translateY(34px);-o-transform:translateY(34px);transform:translateY(34px);-webkit-transition:-webkit-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;-moz-transition:-moz-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;-o-transition:-o-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;transition:-webkit-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;transition:-moz-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;transition:-o-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;transition:transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;will-change:transform}.cs.on .cs-card{-webkit-animation:csCardIn.7s cubic-bezier(.22,1,.36,1)-webkit-calc(.22s + var(--i)*.13s)forwards;-moz-animation:csCardIn.7s cubic-bezier(.22,1,.36,1)-moz-calc(.22s + var(--i)*.13s)forwards;-o-animation:csCardIn.7s cubic-bezier(.22,1,.36,1)calc(.22s + var(--i)*.13s)forwards;animation:csCardIn.7s cubic-bezier(.22,1,.36,1)-webkit-calc(.22s + var(--i)*.13s)forwards;animation:csCardIn.7s cubic-bezier(.22,1,.36,1)-moz-calc(.22s + var(--i)*.13s)forwards;animation:csCardIn.7s cubic-bezier(.22,1,.36,1)calc(.22s + var(--i)*.13s)forwards}@-webkit-keyframes csCardIn{to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@-moz-keyframes csCardIn{to{opacity:1;-moz-transform:translateY(0);transform:translateY(0)}}@-o-keyframes csCardIn{to{opacity:1;-o-transform:translateY(0);transform:translateY(0)}}@keyframes csCardIn{to{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}}.cs-card:hover{-webkit-transform:translateY(-8px);-moz-transform:translateY(-8px);-ms-transform:translateY(-8px);-o-transform:translateY(-8px);transform:translateY(-8px);background:-webkit-linear-gradient(top,rgba(26,30,44,.44),rgba(14,18,28,.4));background:-moz-linear-gradient(top,rgba(26,30,44,.44),rgba(14,18,28,.4));background:-o-linear-gradient(top,rgba(26,30,44,.44),rgba(14,18,28,.4));background:linear-gradient(180deg,rgba(26,30,44,.44),rgba(14,18,28,.4));-webkit-box-shadow:0 28px 60px rgba(0,0,0,.5);-moz-box-shadow:0 28px 60px rgba(0,0,0,.5);box-shadow:0 28px 60px rgba(0,0,0,.5);border-color:rgba(247,229,0,.55)}.cs-card-bar{position:absolute;left:0;top:22px;bottom:22px;width:5px;-webkit-border-radius:0 6px 6px 0;-moz-border-radius:0 6px 6px 0;border-radius:0 6px 6px 0;background:-webkit-linear-gradient(top,#f7e500,#f6b800);background:-moz-linear-gradient(top,#f7e500,#f6b800);background:-o-linear-gradient(top,#f7e500,#f6b800);background:linear-gradient(180deg,#f7e500,#f6b800);-webkit-transform:scaleY(0);-moz-transform:scaleY(0);-ms-transform:scaleY(0);-o-transform:scaleY(0);transform:scaleY(0);-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;-o-transform-origin:top;transform-origin:top;-webkit-transition:-webkit-transform.5s cubic-bezier(.22,1,.36,1);-moz-transition:-moz-transform.5s cubic-bezier(.22,1,.36,1);-o-transition:-o-transform.5s cubic-bezier(.22,1,.36,1);transition:-webkit-transform.5s cubic-bezier(.22,1,.36,1);transition:-moz-transform.5s cubic-bezier(.22,1,.36,1);transition:-o-transform.5s cubic-bezier(.22,1,.36,1);transition:transform.5s cubic-bezier(.22,1,.36,1)}.cs.on .cs-card .cs-card-bar{-webkit-transform:scaleY(1);-moz-transform:scaleY(1);-ms-transform:scaleY(1);-o-transform:scaleY(1);transform:scaleY(1);-webkit-transition-delay:-webkit-calc(.5s + var(--i)*.13s);-moz-transition-delay:-moz-calc(.5s + var(--i)*.13s);-o-transition-delay:calc(.5s + var(--i)*.13s);transition-delay:-webkit-calc(.5s + var(--i)*.13s);transition-delay:-moz-calc(.5s + var(--i)*.13s);transition-delay:calc(.5s + var(--i)*.13s)}.cs-card-top{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px;margin-bottom:18px}.cs-icon{-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;width:52px;height:52px;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);-webkit-transition:-webkit-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;-moz-transition:-moz-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;-o-transition:-o-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;transition:-webkit-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;transition:-moz-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;transition:-o-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;transition:transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease}.cs-card:hover .cs-icon{-webkit-transform:rotate(-6deg)scale(1.08);-moz-transform:rotate(-6deg)scale(1.08);-ms-transform:rotate(-6deg)scale(1.08);-o-transform:rotate(-6deg)scale(1.08);transform:rotate(-6deg)scale(1.08);color:#f7e500;border-color:rgba(247,229,0,.55);background:rgba(247,229,0,.08)}.cs-card-title{margin:0;font-size:clamp(16px,1.5vw,18px);font-weight:800;color:#fff;line-height:1.2}.cs-card-tag{margin:4px 0 0;font-size:13px;color:#97a2b8;font-weight:500}.cs-chips{list-style:none;margin:0 0 4px;padding:0;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:9px;-webkit-align-content:flex-start;-ms-flex-line-pack:start;align-content:flex-start}.cs-chip{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:11px;width:100%;padding:11px 13px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;text-decoration:none;font-size:14px;font-weight:600;color:#d7dded;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);-webkit-transition:-webkit-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;-moz-transition:-moz-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;-o-transition:-o-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;transition:-webkit-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;transition:-moz-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;transition:-o-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;transition:transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease}.cs-chips li{opacity:0;-webkit-transform:translateX(-12px);-moz-transform:translateX(-12px);-ms-transform:translateX(-12px);-o-transform:translateX(-12px);transform:translateX(-12px)}.cs.on .cs-card .cs-chips li{-webkit-animation:csChipIn.45s cubic-bezier(.22,1,.36,1)-webkit-calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;-moz-animation:csChipIn.45s cubic-bezier(.22,1,.36,1)-moz-calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;-o-animation:csChipIn.45s cubic-bezier(.22,1,.36,1)calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;animation:csChipIn.45s cubic-bezier(.22,1,.36,1)-webkit-calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;animation:csChipIn.45s cubic-bezier(.22,1,.36,1)-moz-calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;animation:csChipIn.45s cubic-bezier(.22,1,.36,1)calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards}@-webkit-keyframes csChipIn{to{opacity:1;-webkit-transform:translateX(0);transform:translateX(0)}}@-moz-keyframes csChipIn{to{opacity:1;-moz-transform:translateX(0);transform:translateX(0)}}@-o-keyframes csChipIn{to{opacity:1;-o-transform:translateX(0);transform:translateX(0)}}@keyframes csChipIn{to{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}}.cs-chip-ic{-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;width:30px;height:30px;-webkit-border-radius:9px;-moz-border-radius:9px;border-radius:9px;display:grid;place-items:center;color:#f7e500;background:rgba(247,229,0,.1);border:1px solid rgba(247,229,0,.22);-webkit-transition:-webkit-transform.2s ease,background.2s ease;-moz-transition:-moz-transform.2s ease,background.2s ease;-o-transition:-o-transform.2s ease,background.2s ease;transition:-webkit-transform.2s ease,background.2s ease;transition:-moz-transform.2s ease,background.2s ease;transition:-o-transform.2s ease,background.2s ease;transition:transform.2s ease,background.2s ease}.cs-chip-txt{-webkit-box-flex:1;-webkit-flex:1 1 auto;-moz-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}.cs-chip-arrow{-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;color:#6f7a90;opacity:0;-webkit-transform:translateX(-4px);-moz-transform:translateX(-4px);-ms-transform:translateX(-4px);-o-transform:translateX(-4px);transform:translateX(-4px);-webkit-transition:opacity.2s ease,-webkit-transform.2s ease,color.2s ease;-moz-transition:opacity.2s ease,-moz-transform.2s ease,color.2s ease;-o-transition:opacity.2s ease,-o-transform.2s ease,color.2s ease;transition:opacity.2s ease,-webkit-transform.2s ease,color.2s ease;transition:opacity.2s ease,-moz-transform.2s ease,color.2s ease;transition:opacity.2s ease,-o-transform.2s ease,color.2s ease;transition:opacity.2s ease,transform.2s ease,color.2s ease}.cs-chip:hover{-webkit-transform:translateX(4px);-moz-transform:translateX(4px);-ms-transform:translateX(4px);-o-transform:translateX(4px);transform:translateX(4px);color:#fff;background:rgba(247,229,0,.1);border-color:rgba(247,229,0,.5);-webkit-box-shadow:0 8px 20px rgba(0,0,0,.35);-moz-box-shadow:0 8px 20px rgba(0,0,0,.35);box-shadow:0 8px 20px rgba(0,0,0,.35)}.cs-chip:hover .cs-chip-ic{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1);background:rgba(247,229,0,.2)}.cs-chip:hover .cs-chip-arrow{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0);color:#f7e500}.cs-card-link{margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:7px;font-size:14px;font-weight:800;text-decoration:none;color:#f7e500;-webkit-transition:gap.25s ease;-moz-transition:gap.25s ease;-o-transition:gap.25s ease;transition:gap.25s ease}.cs-card-link svg{-webkit-transition:-webkit-transform.25s ease;-moz-transition:-moz-transform.25s ease;-o-transition:-o-transform.25s ease;transition:-webkit-transform.25s ease;transition:-moz-transform.25s ease;transition:-o-transform.25s ease;transition:transform.25s ease}.cs-card:hover .cs-card-link{gap:11px}.cs-card:hover .cs-card-link svg{-webkit-transform:translateX(3px);-moz-transform:translateX(3px);-ms-transform:translateX(3px);-o-transform:translateX(3px);transform:translateX(3px)}@media(max-width:980px){.cs-cards{grid-template-columns:1fr;max-width:560px;margin:0 auto;gap:20px}}@media(max-width:480px){.cs-chip{font-size:13.5px;padding:10px 12px}.cs-icon{width:48px;height:48px;-webkit-border-radius:13px;-moz-border-radius:13px;border-radius:13px}}@media(prefers-reduced-motion:reduce){.cs .cs-eyebrow,.cs .cs-title,.cs .cs-sub,.cs .cs-card,.cs .cs-chips li{opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important;transform:none!important;-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}.cs .cs-card-bar{-webkit-transform:scaleY(1)!important;-moz-transform:scaleY(1)!important;-ms-transform:scaleY(1)!important;-o-transform:scaleY(1)!important;transform:scaleY(1)!important}.cs .cs-blob{-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}}'
             })
         ]
     });
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoreSolutionsSignposts);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoreSolutions);
 
 
 /***/ }),
@@ -929,7 +1400,7 @@ const Home = (props)=>{
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         id: "core-services",
-                        className: "jsx-838b1a87f6f26fd3" + " " + "services-grid-section core-tree-section",
+                        className: "jsx-838b1a87f6f26fd3" + " " + "core-solutions-section",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {})
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
