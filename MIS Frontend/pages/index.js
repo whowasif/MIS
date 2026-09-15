@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
+import CoreSolutionsTree from '../components/CoreSolutionsTree'
 
 const fallbackProductImage = 'https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500'
 
@@ -129,7 +130,6 @@ const Home = (props) => {
   const { featuredProducts = [], advertisements = [], homeCategories = [], featuredServices = [], clientProjects = [] } = props
   const caseRailRef = useRef(null)
   const productsRailRef = useRef(null)
-  const servicesRailRef = useRef(null)
   const [adIndex, setAdIndex] = useState(0)
 
   useEffect(() => {
@@ -142,11 +142,10 @@ const Home = (props) => {
   useEffect(() => {
     const cleanups = [
       setupDraggableAutoScroll(productsRailRef.current),
-      setupDraggableAutoScroll(servicesRailRef.current),
       setupDraggableAutoScroll(caseRailRef.current),
     ]
     return () => cleanups.forEach((fn) => fn && fn())
-  }, [featuredProducts.length, featuredServices.length, clientProjects.length])
+  }, [featuredProducts.length, clientProjects.length])
 
   return (
     <>
@@ -254,35 +253,14 @@ const Home = (props) => {
           </div>
         </section>
 
-        <section className="services-grid-section" id="core-services">
+        <section className="services-grid-section core-tree-section" id="core-services">
           <div className="services-container">
             <div className="services-header">
+              <span className="core-tree-eyebrow">What We Offer</span>
               <h2 className="section-title">Core IT Solutions</h2>
-              <p className="section-subtitle">Tailored services designed to scale with your enterprise.</p>
+              <p className="section-subtitle">Three specialized divisions plus a full hardware lineup — watch our capabilities branch out.</p>
             </div>
-            <div className="services-dynamic-grid">
-              {featuredServices.length > 0 ? (
-                <div className="services-marquee-wrap" ref={servicesRailRef}>
-                  <div className="services-marquee-track">
-                    {[...featuredServices, ...featuredServices].map((service, idx) => (
-                      <Link key={`${service.type}-${idx}`} href={`/services/${service.slug}?type=${service.type}`}>
-                        <a className="service-marquee-card">
-                          <div className="service-marquee-img">
-                            {service.icon_url ? <img src={service.icon_url} alt={service.name} /> : <div className="service-marquee-placeholder">{service.name.charAt(0)}</div>}
-                          </div>
-                          <div className="service-marquee-info">
-                            <h3>{service.name}</h3>
-                            <p>{service.description?.substring(0, 80)}{service.description?.length > 80 ? '...' : ''}</p>
-                          </div>
-                        </a>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="services-marquee-wrap"><p style={{textAlign:'center',color:'#64748b'}}>Featured services will appear here once marked in admin panel.</p></div>
-              )}
-            </div>
+            <CoreSolutionsTree />
           </div>
         </section>
 

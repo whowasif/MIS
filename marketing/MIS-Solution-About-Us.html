@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MIS Solution — Company Profile & Offerings</title>
+<style>
+  :root {
+    --accent: #f7e500;
+    --accent-dark: #e6d400;
+    --dark: #0a101b;
+    --dark-2: #141c2b;
+    --ink: #111827;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --bg-soft: #f8fafc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink);
+    background: #9aa3b2;
+    line-height: 1.55;
+  }
+  /* Each .page is one A4 sheet */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 12px auto;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  }
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+  }
+  .pad { padding: 20mm 18mm; }
+
+  /* ---------- COVER ---------- */
+  .cover {
+    background: radial-gradient(circle at 78% 12%, rgba(247,229,0,0.14), transparent 42%), var(--dark);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 297mm;
+  }
+  .cover-top { padding: 22mm 18mm 0; flex: 1; display: flex; flex-direction: column; }
+  .cover-logo-chip { background: #fff; border-radius: 14px; padding: 12px 18px; display: inline-flex; align-self: flex-start; }
+  .cover-logo { height: 46px; width: auto; display: block; }
+  .cover-eyebrow {
+    margin-top: 60mm;
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--accent);
+    color: var(--dark);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 999px;
+  }
+  .cover-title {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.08;
+    margin-top: 18px;
+    max-width: 15ch;
+  }
+  .cover-title span { color: var(--accent); }
+  .cover-sub {
+    margin-top: 18px;
+    font-size: 16px;
+    color: #c7cfdb;
+    max-width: 52ch;
+  }
+  .cover-strip {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    margin-top: 40px;
+  }
+  .cover-strip div { flex: 1; padding: 22px 8px; text-align: center; }
+  .cover-strip div + div { border-left: 1px solid rgba(255,255,255,0.12); }
+  .cover-strip .n { font-size: 30px; font-weight: 900; color: var(--accent); }
+  .cover-strip .l { font-size: 11px; color: #aab3c2; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .cover-foot {
+    background: var(--dark-2);
+    padding: 16px 18mm;
+    font-size: 12px;
+    color: #aab3c2;
+    display: flex;
+    justify-content: space-between;
+  }
+  .cover-foot b { color: #fff; }
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .kicker {
+    color: #a68f00;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .kicker::before {
+    content: '';
+    display: inline-block;
+    width: 26px; height: 3px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 2px;
+  }
+  h2.sec {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--dark);
+    margin: 10px 0 6px;
+  }
+  .sec-lead { color: var(--muted); font-size: 14px; max-width: 62ch; margin-bottom: 26px; }
+
+  /* about grid */
+  .about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  .about-card { border: 1px solid var(--line); border-radius: 14px; padding: 20px; background: var(--bg-soft); }
+  .about-card h3 { font-size: 15px; color: var(--dark); margin-bottom: 6px; }
+  .about-card h3 .ic { color: var(--accent-dark); margin-right: 6px; }
+  .about-card p { font-size: 12.5px; color: var(--muted); }
+
+  /* pillar block */
+  .pillar { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-bottom: 20px; }
+  .pillar-head {
+    background: var(--dark);
+    color: #fff;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .pillar-num {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--accent); color: var(--dark);
+    font-weight: 900; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pillar-head h3 { font-size: 19px; font-weight: 800; }
+  .pillar-head p { font-size: 12px; color: #b9c1cf; margin-top: 2px; }
+  .svc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .svc {
+    padding: 14px 20px;
+    border-top: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+  .svc:nth-child(2n) { border-right: none; }
+  .svc h4 { font-size: 13.5px; color: var(--dark); display: flex; align-items: center; gap: 8px; }
+  .svc h4 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .svc p { font-size: 11.5px; color: var(--muted); margin-top: 5px; padding-left: 15px; }
+
+  /* product categories */
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .cat {
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: #fff;
+  }
+  .cat b { font-size: 13px; color: var(--dark); display: block; }
+  .cat span { font-size: 10.5px; color: var(--muted); }
+
+  /* why choose / methodology */
+  .row4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+  .mini { border: 1px solid var(--line); border-radius: 12px; padding: 16px; text-align: center; background: var(--bg-soft); }
+  .mini .ic { font-size: 24px; }
+  .mini b { display: block; font-size: 13px; color: var(--dark); margin-top: 8px; }
+  .mini span { font-size: 11px; color: var(--muted); }
+
+  .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 8px; }
+  .step { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; }
+  .step .no { font-size: 22px; font-weight: 900; color: var(--accent-dark); }
+  .step b { display: block; font-size: 13px; color: var(--dark); margin-top: 2px; }
+  .step span { font-size: 11px; color: var(--muted); }
+
+  .industry-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .industry-tags span { background: var(--dark); color: #fff; font-size: 11.5px; font-weight: 600; padding: 6px 13px; border-radius: 999px; }
+
+  /* clients */
+  .client-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 8px; }
+  .client-cell {
+    border: 1px solid var(--line); border-radius: 10px; height: 72px;
+    display: flex; align-items: center; justify-content: center; padding: 8px; background: #fff;
+  }
+  .client-cell img { max-width: 100%; max-height: 100%; object-fit: contain; filter: none; }
+
+  /* contact panel */
+  .contact-wrap { background: var(--dark); color: #fff; border-radius: 18px; padding: 30px; margin-top: 10px; }
+  .contact-wrap h2 { color: #fff; font-size: 26px; font-weight: 900; }
+  .contact-wrap .accent { color: var(--accent); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .cinfo { display: flex; gap: 12px; align-items: flex-start; }
+  .cinfo .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(247,229,0,0.15); color: var(--accent); display:flex; align-items:center; justify-content:center; font-size: 18px; flex-shrink: 0; }
+  .cinfo .lbl { font-size: 11px; color: #93a0b3; text-transform: uppercase; letter-spacing: 1px; }
+  .cinfo .val { font-size: 14px; color: #fff; font-weight: 600; }
+  .foot-note { text-align:center; margin-top: 26px; color: var(--muted); font-size: 11px; }
+
+  .page-num { position: absolute; bottom: 10mm; right: 18mm; font-size: 10px; color: #b0b7c3; }
+  .wm { position: absolute; bottom: 10mm; left: 18mm; font-size: 10px; color: #b0b7c3; font-weight: 700; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1: COVER ============ -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo-chip"><img src="assets/logo.png" class="cover-logo" alt="MIS Solution" /></div>
+    <span class="cover-eyebrow">Company Profile &amp; Offerings</span>
+    <h1 class="cover-title">Empowering Your Business Through <span>Innovative Technology</span></h1>
+    <p class="cover-sub">Your premier destination for comprehensive e-commerce, corporate IT services, and enterprise solutions tailored for technological excellence.</p>
+    <div class="cover-strip">
+      <div><div class="n">100+</div><div class="l">Projects Completed</div></div>
+      <div><div class="n">100+</div><div class="l">Enterprise Clients</div></div>
+      <div><div class="n">99.9%</div><div class="l">Support SLA</div></div>
+      <div><div class="n">100%</div><div class="l">Warranty Coverage</div></div>
+    </div>
+  </div>
+  <div class="cover-foot">
+    <span><b>MIS Solution</b> — Committed to service</span>
+    <span>missolution.com.bd</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 2: ABOUT + CORE IT (Digital + Business) ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="kicker">Who We Are</div>
+    <h2 class="sec">About MIS Solution</h2>
+    <p class="sec-lead">MIS Solution is a full-spectrum technology partner delivering everything from IT hardware and e-commerce to enterprise infrastructure and managed support. From concept to deployment and beyond, we build lasting digital infrastructure that helps businesses grow.</p>
+
+    <div class="about-cards">
+      <div class="about-card"><h3><span class="ic">◆</span>What We Do</h3><p>We combine a complete IT product catalog with three specialized service divisions — Digital Services, Business &amp; Corporate Solutions, and Maintenance &amp; Support — to cover the full technology lifecycle of any organization.</p></div>
+      <div class="about-card"><h3><span class="ic">◆</span>Who We Serve</h3><p>Enterprises, SMEs, government bodies, and startups across finance, e-commerce, telecom, healthcare, education, retail, logistics, manufacturing and more.</p></div>
+      <div class="about-card"><h3><span class="ic">◆</span>How We Work</h3><p>A proven methodology — Assessment &amp; Planning, Design &amp; Prototyping, Development &amp; Deployment, and ongoing Support &amp; Optimization.</p></div>
+      <div class="about-card"><h3><span class="ic">◆</span>Why Choose Us</h3><p>Proven expertise, 24/7 availability, tailored solutions, and scalable architecture — backed by transparent warranty and rapid response support.</p></div>
+    </div>
+
+    <div style="margin-top:28px" class="kicker">What We Offer</div>
+    <h2 class="sec">Core IT Solutions</h2>
+    <p class="sec-lead">Three specialized divisions — each a full-spectrum capability center designed to scale with your enterprise.</p>
+
+    <div class="pillar">
+      <div class="pillar-head">
+        <div class="pillar-num">1</div>
+        <div><h3>Digital Services</h3><p>Build your complete digital presence.</p></div>
+      </div>
+      <div class="svc-list">
+        <div class="svc"><h4><span class="dot"></span>Website Design &amp; Development</h4><p>Modern responsive websites with SEO-friendly structure and conversion-focused design.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Web Domain &amp; Hosting</h4><p>Domain setup, DNS, secure hosting, SSL, and performance optimization for reliable uptime.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Domain Registration</h4><p>Local and international domain registration and renewal support to secure your brand.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Digital Marketing</h4><p>SEO, social campaigns, and paid ads to increase leads, visibility, and online revenue.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Mobile App Development</h4><p>Custom Android &amp; iOS apps integrated with your existing systems.</p></div>
+        <div class="svc"><h4><span class="dot"></span>AI Development &amp; Integration</h4><p>Chatbots, predictive analytics, NLP, computer vision, and intelligent automation.</p></div>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-head">
+        <div class="pillar-num">2</div>
+        <div><h3>Business &amp; Corporate Solutions</h3><p>Enterprise-grade B2B infrastructure &amp; deployments.</p></div>
+      </div>
+      <div class="svc-list">
+        <div class="svc"><h4><span class="dot"></span>Data Center Solution</h4><p>End-to-end enterprise data center design and deployment.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Structured Cabling</h4><p>Reliable structured cabling for modern enterprise infrastructure.</p></div>
+        <div class="svc"><h4><span class="dot"></span>CCTV / IP Camera Surveillance</h4><p>Scalable surveillance architecture for corporate security.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Networking Infrastructure</h4><p>Routers, switches, firewalls, and enterprise network accessories.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Power Solutions</h4><p>UPS, batteries, and monitoring systems for uninterrupted operations.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Corporate ID Card Printing</h4><p>Bulk professional printing support for enterprise operations.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="wm">MIS SOLUTION</div>
+  <div class="page-num">02</div>
+</section>
+
+<!-- ============ PAGE 3: Maintenance + methodology + industries ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="pillar">
+      <div class="pillar-head">
+        <div class="pillar-num">3</div>
+        <div><h3>Maintenance &amp; Support</h3><p>Keep your IT running at peak performance.</p></div>
+      </div>
+      <div class="svc-list">
+        <div class="svc"><h4><span class="dot"></span>Yearly IT Maintenance Contract</h4><p>Annual coverage for preventive checks, monitoring, upgrades, and support response.</p></div>
+        <div class="svc"><h4><span class="dot"></span>On-call Repairs &amp; Troubleshooting</h4><p>Fast-response repair support for desktops, servers, network devices, and office systems.</p></div>
+        <div class="svc"><h4><span class="dot"></span>Project Basis Installation &amp; Delivery</h4><p>Project-based setup and commissioning for IT hardware, network, and corporate rollouts.</p></div>
+        <div class="svc"><h4><span class="dot"></span>What Our Support Covers</h4><p>Desktops, servers &amp; storage, network switches, printers, CCTV, UPS, software/OS, and data backup &amp; recovery.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:26px" class="kicker">How We Deliver</div>
+    <h2 class="sec">Our Methodology</h2>
+    <div class="steps">
+      <div class="step"><div class="no">01</div><b>Assessment &amp; Planning</b><span>Understand needs, scope, and goals.</span></div>
+      <div class="step"><div class="no">02</div><b>Design &amp; Prototyping</b><span>Architect the right solution.</span></div>
+      <div class="step"><div class="no">03</div><b>Development &amp; Deployment</b><span>Build, test, and roll out.</span></div>
+      <div class="step"><div class="no">04</div><b>Support &amp; Optimization</b><span>Maintain and continuously improve.</span></div>
+    </div>
+
+    <div style="margin-top:26px" class="kicker">Our Strengths</div>
+    <h2 class="sec">Why Enterprises Choose Us</h2>
+    <div class="row4">
+      <div class="mini"><div class="ic">🏆</div><b>Proven Expertise</b><span>10+ years of delivery</span></div>
+      <div class="mini"><div class="ic">🕘</div><b>24/7 Availability</b><span>Always-on support</span></div>
+      <div class="mini"><div class="ic">🧩</div><b>Tailored Solutions</b><span>Built around you</span></div>
+      <div class="mini"><div class="ic">📈</div><b>Scalable Architecture</b><span>Grows with you</span></div>
+    </div>
+
+    <div style="margin-top:26px" class="kicker">Sectors</div>
+    <h2 class="sec">Industries We Serve</h2>
+    <div class="industry-tags">
+      <span>Finance &amp; Banking</span><span>E-commerce</span><span>Telecom</span><span>Real Estate</span>
+      <span>Healthcare</span><span>Education</span><span>Logistics</span><span>Manufacturing</span>
+      <span>Retail</span><span>Government</span><span>Startups</span><span>NGO &amp; Non-Profit</span>
+    </div>
+  </div>
+  <div class="wm">MIS SOLUTION</div>
+  <div class="page-num">03</div>
+</section>
+
+<!-- ============ PAGE 4: Products + Clients + Contact ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="kicker">Hardware &amp; Retail</div>
+    <h2 class="sec">Product Categories</h2>
+    <p class="sec-lead">A complete catalog of IT products for your office and enterprise needs — genuine, warranty-backed, and EMI available.</p>
+    <div class="cat-grid">
+      <div class="cat"><b>Desktop</b><span>Gaming, Brand, AI, Mini &amp; Apple Mac</span></div>
+      <div class="cat"><b>Laptop</b><span>Gaming, Ultrabook &amp; accessories</span></div>
+      <div class="cat"><b>Component</b><span>CPU, GPU, RAM, storage, cooling</span></div>
+      <div class="cat"><b>Monitor</b><span>Gaming, curved, 4K, portable</span></div>
+      <div class="cat"><b>Power</b><span>UPS, IPS, stabilizer, solar</span></div>
+      <div class="cat"><b>Office Equipment</b><span>Projector, printer, scanner</span></div>
+      <div class="cat"><b>Camera</b><span>DSLR, mirrorless, action, dash</span></div>
+      <div class="cat"><b>Security</b><span>IP/CC camera, DVR, access control</span></div>
+      <div class="cat"><b>Networking</b><span>Router, switch, firewall, AP</span></div>
+      <div class="cat"><b>Software</b><span>OS, Office, antivirus, cloud</span></div>
+      <div class="cat"><b>Server &amp; Storage</b><span>Server, workstation, NAS</span></div>
+      <div class="cat"><b>Accessories</b><span>Keyboard, mouse, audio, docks</span></div>
+      <div class="cat"><b>Gadget</b><span>Watch, earbuds, power bank, drone</span></div>
+      <div class="cat"><b>Gaming</b><span>Chair, desk, gear, console, VR</span></div>
+      <div class="cat"><b>TV</b><span>LED, Smart, Android, 4K</span></div>
+    </div>
+
+    <div style="margin-top:26px" class="kicker">Trusted By</div>
+    <h2 class="sec">Our Clients</h2>
+    <div class="client-grid" id="clientGrid"></div>
+
+    <div class="contact-wrap">
+      <h2>Let's <span class="accent">Work Together</span></h2>
+      <div class="contact-grid">
+        <div class="cinfo"><div class="ic">✆</div><div><div class="lbl">Hotline</div><div class="val">+880 2 48122762</div></div></div>
+        <div class="cinfo"><div class="ic">✉</div><div><div class="lbl">Email</div><div class="val">info@missolution.com.bd</div></div></div>
+        <div class="cinfo"><div class="ic">⌂</div><div><div class="lbl">Address</div><div class="val">55/3, North Dhanmondi, Kalabagan, Dhaka 1205</div></div></div>
+        <div class="cinfo"><div class="ic">◎</div><div><div class="lbl">Web &amp; WhatsApp</div><div class="val">missolution.com.bd · +880 1916 178126</div></div></div>
+      </div>
+    </div>
+    <div class="foot-note">© 2026 MIS Solution. All rights reserved. · Committed to service.</div>
+  </div>
+  <div class="wm">MIS SOLUTION</div>
+  <div class="page-num">04</div>
+</section>
+
+<script>
+  // Fill client logos from the assets/clients folder
+  var CLIENTS = ["Picture1.jpg","Picture1.png","Picture10.png","Picture11.png","Picture12.png","Picture13.jpg","Picture14.jpg","Picture15.jpg","Picture16.png","Picture17.jpg","Picture18.png","Picture19.jpg","Picture20.png","Picture21.png","Picture22.png","Picture23.jpg","Picture24.jpg","Picture25.jpg","Picture26.png","Picture27.png"];
+  var grid = document.getElementById('clientGrid');
+  CLIENTS.slice(0, 20).forEach(function (f) {
+    var cell = document.createElement('div');
+    cell.className = 'client-cell';
+    var img = document.createElement('img');
+    img.src = 'assets/clients/' + f;
+    cell.appendChild(img);
+    grid.appendChild(cell);
+  });
+</script>
+</body>
+</html>
