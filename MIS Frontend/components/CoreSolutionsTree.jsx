@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 /*
- * CoreSolutionsTree
- * A realistic, growing "solutions tree" that animates into view when the
- * section scrolls onto screen. The trunk grows, splits into 4 branches
- * (3 service pillars + a Hardware/Products branch), and leaves (sub-categories)
- * sprout at the branch tips with a staggered, organic animation.
+ * CoreSolutionsCircuit
+ * A "rich" printed-circuit-board that powers up when scrolled into view.
+ * A central CPU chip feeds 4 glowing gold traces (Manhattan / 45-90 routing)
+ * that fork out to 4 connector nodes. From each node a glass service card
+ * hangs on a connector and swings to a gentle rest. Idle state keeps a soft
+ * pulse travelling along the traces + drifting data dots.
  *
- * Pure SVG + CSS. No external animation libs. Respects prefers-reduced-motion.
+ * Pure SVG + CSS. No libs. Respects prefers-reduced-motion.
+ * Brand: navy #0a101b board, gold #f7e500 traces.
  */
 
 const BRANCHES = [
@@ -15,334 +17,347 @@ const BRANCHES = [
     key: 'digital',
     title: 'Digital Services',
     href: '/digital-services',
-    // path is drawn from trunk-top toward the tip; tip is where leaves cluster
-    path: 'M500,470 C420,400 360,360 300,300 C255,255 225,220 205,180',
-    twigs: ['M300,300 C285,285 275,270 288,250', 'M360,360 C350,340 345,325 335,312'],
-    tip: { x: 205, y: 175 },
-    labelSide: 'left',
+    icon: 'M4 5h16v10H4z M2 19h20', // monitor-ish
+    // Manhattan-routed trace from chip (500,470) out to a widely-spaced node.
+    trace: 'M500,470 L500,440 L150,440 L150,300',
+    node: { x: 150, y: 300 },
+    align: 'edge-left',
     leaves: ['Web Development', 'Custom Software', 'Mobile Apps', 'AI Solutions', 'Cyber Security', 'E-Commerce'],
   },
   {
     key: 'corporate',
     title: 'Business & Corporate',
     href: '/enterprise-solutions',
-    path: 'M500,470 C455,395 435,345 420,285 C407,235 402,195 400,150',
-    twigs: ['M420,285 C405,272 395,258 408,242', 'M435,345 C422,332 415,318 425,305'],
-    tip: { x: 400, y: 145 },
-    labelSide: 'left',
+    icon: 'M4 20V8l8-5 8 5v12 M9 20v-6h6v6',
+    trace: 'M500,470 L500,420 L385,420 L385,220',
+    node: { x: 385, y: 220 },
+    align: 'center',
     leaves: ['IT Equipments', 'Security System', 'Office Equipments', 'Networking', 'Server Setup', 'Power Solution'],
   },
   {
     key: 'maintenance',
     title: 'Maintenance & Support',
     href: '/maintenance-support',
-    path: 'M500,470 C545,395 565,345 580,285 C593,235 598,195 600,150',
-    twigs: ['M580,285 C595,272 605,258 592,242', 'M565,345 C578,332 585,318 575,305'],
-    tip: { x: 600, y: 145 },
-    labelSide: 'right',
+    icon: 'M14 6l4 4-8 8-4-1-1-4z',
+    trace: 'M500,470 L500,420 L620,420 L620,220',
+    node: { x: 620, y: 220 },
+    align: 'center',
     leaves: ['AMC Contracts', 'On-call Repair', 'Installation', 'Troubleshooting', 'Remote Solution'],
   },
   {
-    key: 'hardware',
-    title: 'Hardware & Products',
-    href: '/categories/desktop',
-    path: 'M500,470 C580,400 640,360 700,300 C745,255 775,220 795,180',
-    twigs: ['M700,300 C715,285 725,270 712,250', 'M640,360 C650,340 655,325 665,312'],
-    tip: { x: 795, y: 175 },
-    labelSide: 'right',
-    leaves: ['Desktops', 'Laptops', 'Components', 'Monitors', 'Networking', 'Accessories'],
+    key: 'procurement',
+    title: 'Procurement Service',
+    href: '/product-catalog',
+    icon: 'M6 6h15l-1.5 9h-12z M6 6 5 3H2 M9 20a1 1 0 100-2 1 1 0 000 2 M18 20a1 1 0 100-2 1 1 0 000 2',
+    trace: 'M500,470 L500,440 L850,440 L850,300',
+    node: { x: 850, y: 300 },
+    align: 'edge-right',
+    leaves: ['Hardware Sourcing', 'Bulk Supply', 'Corporate Deals', 'Vendor Management', 'Licensing', 'Fast Delivery'],
   },
 ]
 
-// deterministic offsets producing a FULL, organic canopy at each branch tip.
-// We render more leaves than sub-categories (some are decorative filler) so the
-// tips look like real foliage. Each leaf carries a scale + rotation.
-const buildCanopy = (count) => {
-  const leaves = []
-  // compact cluster: leaves fan out and up around the tip, not scattered wide
-  const total = Math.max(count + 4, 10)
-  for (let i = 0; i < total; i++) {
-    const t = i / (total - 1)
-    const angle = (-150 + t * 300) * (Math.PI / 180) // fan left→right, biased upward
-    const ring = i % 3
-    const r = 14 + ring * 11 + ((i % 2) * 5) // tight radius
-    const dx = Math.cos(angle) * r
-    const dy = Math.sin(angle) * r * 0.7 - 8 // lift the cluster slightly above tip
-    // leaves point outward from cluster center for a natural spray
-    const rot = (angle * 180) / Math.PI + 90 + ((i % 2) ? 10 : -10)
-    const scale = ring === 0 ? 0.72 : ring === 1 ? 0.92 : 1.1
-    leaves.push({ dx, dy, rot, scale })
-  }
-  return leaves
-}
+// decorative extra traces + pads to make the board look "rich"
+const DECO_TRACES = [
+  'M500,470 L500,560 L340,560 L340,610',
+  'M500,470 L500,560 L660,560 L660,610',
+  'M250,250 L180,250 L180,300',
+  'M750,250 L820,250 L820,300',
+  'M430,230 L430,180 L360,180',
+  'M570,230 L570,180 L640,180',
+  'M340,610 L340,650 L420,650',
+  'M660,610 L660,650 L580,650',
+]
+const DECO_PADS = [
+  { x: 340, y: 610 }, { x: 660, y: 610 }, { x: 180, y: 300 }, { x: 820, y: 300 },
+  { x: 360, y: 180 }, { x: 640, y: 180 }, { x: 340, y: 560 }, { x: 660, y: 560 },
+  { x: 420, y: 650 }, { x: 580, y: 650 }, { x: 500, y: 560 },
+]
 
-const CoreSolutionsTree = () => {
+const CoreSolutionsCircuit = () => {
   const wrapRef = useRef(null)
-  const [grown, setGrown] = useState(false)
+  const [on, setOn] = useState(false)
 
   useEffect(() => {
     const el = wrapRef.current
     if (!el) return
     const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) { setGrown(true); return }
+    if (reduce) { setOn(true); return }
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { setGrown(true); obs.disconnect() } })
+      entries.forEach((e) => { if (e.isIntersecting) { setOn(true); obs.disconnect() } })
     }, { threshold: 0.25 })
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
 
+  // fire the travelling "current" pulses along each trace once powered on
+  useEffect(() => {
+    if (!on || !wrapRef.current) return
+    const motions = wrapRef.current.querySelectorAll('.csc-motion')
+    motions.forEach((m, i) => {
+      const begin = 0.15 + i * 0.15
+      if (typeof m.beginElementAt === 'function') {
+        try { m.beginElementAt(begin) } catch (_) { try { m.beginElement() } catch (e) {} }
+      } else if (typeof m.beginElement === 'function') {
+        setTimeout(() => { try { m.beginElement() } catch (e) {} }, begin * 1000)
+      }
+    })
+  }, [on])
+
   return (
-    <div className={`cst-wrap ${grown ? 'grown' : ''}`} ref={wrapRef}>
-      {/* ---------- DESKTOP / TABLET: SVG TREE ---------- */}
-      <div className="cst-tree" aria-hidden="true">
-        <svg viewBox="0 0 1000 720" preserveAspectRatio="xMidYMax meet" className="cst-svg">
+    <div className={`csc-wrap ${on ? 'on' : ''}`} ref={wrapRef}>
+      {/* ---------- DESKTOP / TABLET: SVG CIRCUIT BOARD ---------- */}
+      <div className="csc-board">
+        <svg viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid meet" className="csc-svg" aria-hidden="true">
           <defs>
-            <linearGradient id="bark" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="#3a2a17" />
-              <stop offset="45%" stopColor="#5a3d21" />
-              <stop offset="100%" stopColor="#7a5330" />
+            <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#f7e500" />
+              <stop offset="100%" stopColor="#c99a0a" />
             </linearGradient>
-            <linearGradient id="barkThin" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="#5a3d21" />
-              <stop offset="100%" stopColor="#8a5f36" />
-            </linearGradient>
-            <radialGradient id="leafGrad" cx="35%" cy="30%" r="80%">
-              <stop offset="0%" stopColor="#fff59a" />
-              <stop offset="45%" stopColor="#f7e500" />
-              <stop offset="100%" stopColor="#d8ab12" />
-            </radialGradient>
-            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(247,229,0,0.35)" />
+            <radialGradient id="boardGlow" cx="50%" cy="42%" r="55%">
+              <stop offset="0%" stopColor="rgba(247,229,0,0.14)" />
               <stop offset="100%" stopColor="rgba(247,229,0,0)" />
             </radialGradient>
-            <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="2" />
+            <filter id="cGlow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="3.4" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
             </filter>
+            <pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse">
+              <path d="M26 0H0V26" fill="none" stroke="rgba(247,229,0,0.05)" strokeWidth="1" />
+            </pattern>
           </defs>
 
-          {/* ground shadow */}
-          <ellipse className="cst-ground" cx="500" cy="690" rx="260" ry="26" fill="rgba(0,0,0,0.45)" filter="url(#soft)" />
+          {/* faint pcb grid + ambient glow */}
+          <rect x="0" y="0" width="1000" height="720" fill="url(#grid)" />
+          <circle className="csc-ambient" cx="500" cy="300" r="330" fill="url(#boardGlow)" />
 
-          {/* soft ambient glow behind canopy */}
-          <circle className="cst-ambient" cx="500" cy="220" r="300" fill="url(#glow)" />
-
-          {/* drifting light particles */}
-          {[...Array(9)].map((_, i) => (
-            <circle key={i} className={`cst-spore s${i}`} r={1.6 + (i % 3) * 0.7} cx={300 + i * 55} cy={640} fill="#f7e500" opacity="0" />
+          {/* decorative traces (dim, part of the "rich" board) */}
+          {DECO_TRACES.map((d, i) => (
+            <path key={`deco-${i}`} className="csc-deco" d={d} fill="none" stroke="rgba(247,229,0,0.16)" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+          ))}
+          {DECO_PADS.map((p, i) => (
+            <circle key={`dpad-${i}`} className="csc-deco-pad" cx={p.x} cy={p.y} r="4" fill="none" stroke="rgba(247,229,0,0.35)" strokeWidth="2" />
           ))}
 
-          {/* trunk (thick, grows first) */}
-          <path
-            className="cst-trunk"
-            d="M500,700 C492,620 488,560 496,500 C500,486 500,480 500,470"
-            fill="none"
-            stroke="url(#bark)"
-            strokeWidth="34"
-            strokeLinecap="round"
-          />
-          {/* trunk base flare */}
-          <path className="cst-flare" d="M470,700 Q500,660 530,700 Z" fill="url(#bark)" />
-
-          {/* branches */}
+          {/* MAIN traces: a dim base layer + a bright layer that "fills" on power-up */}
           {BRANCHES.map((b, bi) => (
-            <path
-              key={b.key}
-              className={`cst-branch cst-branch-${bi}`}
-              d={b.path}
-              fill="none"
-              stroke="url(#barkThin)"
-              strokeWidth="16"
-              strokeLinecap="round"
-            />
-          ))}
-
-          {/* secondary twigs for organic realism */}
-          {BRANCHES.map((b, bi) => (
-            b.twigs?.map((tw, ti) => (
+            <g key={`trace-${b.key}`}>
+              <path d={b.trace} fill="none" stroke="rgba(247,229,0,0.22)" strokeWidth="3.5" strokeLinejoin="round" strokeLinecap="round" />
               <path
-                key={`${b.key}-tw-${ti}`}
-                className={`cst-branch cst-branch-${bi}`}
-                d={tw}
+                className={`csc-trace csc-trace-${bi}`}
+                d={b.trace}
                 fill="none"
-                stroke="url(#barkThin)"
-                strokeWidth="6"
+                stroke="url(#traceGrad)"
+                strokeWidth="3.5"
+                strokeLinejoin="round"
                 strokeLinecap="round"
+                filter="url(#cGlow)"
               />
-            ))
+              {/* travelling pulse dot */}
+              <circle className={`csc-pulse csc-pulse-${bi}`} r="4.5" fill="#fff6a8" filter="url(#cGlow)">
+                <animateMotion className="csc-motion" dur="1.1s" begin="indefinite" fill="freeze" path={b.trace} />
+              </circle>
+            </g>
           ))}
 
-          {/* full canopy of leaves at each branch tip */}
-          {BRANCHES.map((b, bi) => {
-            const canopy = buildCanopy(b.leaves.length)
-            return (
-              <g key={`leaves-${b.key}`}>
-                {canopy.map((o, li) => {
-                  const cx = b.tip.x + o.dx
-                  const cy = b.tip.y + o.dy
-                  const delay = 0.95 + bi * 0.16 + li * 0.05
-                  const s = o.scale
-                  // Leaf drawn from base point (cx,cy) upward; width w, height h scaled.
-                  const w = 15 * s
-                  const h = 38 * s
-                  const rib = 34 * s
-                  return (
-                    <g
-                      key={li}
-                      className="cst-leaf"
-                      style={{ transformOrigin: `${cx}px ${cy}px`, transitionDelay: `${delay}s`, animationDelay: `${delay + 1.2}s` }}
-                      transform={`rotate(${o.rot} ${cx} ${cy})`}
-                    >
-                      <path
-                        d={`M${cx},${cy} C${cx - w},${cy - h * 0.24} ${cx - w},${cy - h * 0.74} ${cx},${cy - h} C${cx + w},${cy - h * 0.74} ${cx + w},${cy - h * 0.24} ${cx},${cy} Z`}
-                        fill="url(#leafGrad)"
-                        stroke="#c99a0a"
-                        strokeWidth="0.7"
-                      />
-                      <line x1={cx} y1={cy - 2} x2={cx} y2={cy - rib} stroke="#b8890a" strokeWidth="0.7" opacity="0.65" />
-                    </g>
-                  )
-                })}
-              </g>
-            )
-          })}
+          {/* CPU chip at the base */}
+          <g className="csc-chip" filter="url(#cGlow)">
+            <rect x="466" y="468" width="68" height="68" rx="10" fill="#0e1626" stroke="url(#traceGrad)" strokeWidth="2.5" />
+            {/* pins */}
+            {[...Array(4)].map((_, i) => (
+              <React.Fragment key={i}>
+                <line x1={478 + i * 14} y1="460" x2={478 + i * 14} y2="468" stroke="#c99a0a" strokeWidth="2.5" />
+                <line x1={478 + i * 14} y1="536" x2={478 + i * 14} y2="544" stroke="#c99a0a" strokeWidth="2.5" />
+                <line x1="458" y1={480 + i * 14} x2="466" y2={480 + i * 14} stroke="#c99a0a" strokeWidth="2.5" />
+                <line x1="534" y1={480 + i * 14} x2="542" y2={480 + i * 14} stroke="#c99a0a" strokeWidth="2.5" />
+              </React.Fragment>
+            ))}
+            <rect x="484" y="486" width="32" height="32" rx="5" fill="none" stroke="#f7e500" strokeWidth="2" />
+            <text x="500" y="508" textAnchor="middle" fontSize="12" fontWeight="800" fill="#f7e500" fontFamily="monospace">MIS</text>
+          </g>
+
+          {/* connector nodes at each trace tip */}
+          {BRANCHES.map((b, bi) => (
+            <g key={`node-${b.key}`} className={`csc-node csc-node-${bi}`}>
+              <circle cx={b.node.x} cy={b.node.y} r="10" fill="#0e1626" stroke="url(#traceGrad)" strokeWidth="2.5" filter="url(#cGlow)" />
+              <circle className="csc-node-core" cx={b.node.x} cy={b.node.y} r="4" fill="#f7e500" />
+              {/* short connector down to the hanging card */}
+              <line className="csc-rope" x1={b.node.x} y1={b.node.y + 10} x2={b.node.x} y2={b.node.y + 34} stroke="rgba(247,229,0,0.5)" strokeWidth="2" />
+            </g>
+          ))}
+
+          {/* drifting data dots along the two outer traces */}
+          {on && BRANCHES.map((b, bi) => (
+            <circle key={`data-${b.key}`} className="csc-data" r="2.4" fill="#f7e500" opacity="0">
+              <animateMotion dur={`${3 + bi * 0.4}s`} begin={`${2.4 + bi * 0.5}s`} repeatCount="indefinite" path={b.trace} />
+            </circle>
+          ))}
         </svg>
 
-        {/* HTML labels layered over the SVG tips (crisp text + clickable) */}
-        <div className="cst-labels">
+        {/* HANGING GLASS CARDS (HTML for crisp text + interactivity) */}
+        <div className="csc-cards">
           {BRANCHES.map((b, bi) => (
             <a
               key={b.key}
               href={b.href}
-              className={`cst-label ${b.labelSide}`}
+              className={`csc-card ${b.align || 'center'}`}
               style={{
-                left: `${(b.tip.x / 1000) * 100}%`,
-                top: `${(b.tip.y / 720) * 100}%`,
-                transitionDelay: `${1.5 + bi * 0.18}s`,
+                left: `${(b.node.x / 1000) * 100}%`,
+                top: `${((b.node.y + 34) / 720) * 100}%`,
+                '--drop-delay': `${1.2 + bi * 0.22}s`,
               }}
             >
-              <span className="cst-label-title">{b.title}</span>
-              <span className="cst-label-tags">{b.leaves.join(' · ')}</span>
+              <span className="csc-card-swing">
+                <span className="csc-card-top">
+                  <svg className="csc-card-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={b.icon} /></svg>
+                  <span className="csc-card-title">{b.title}</span>
+                </span>
+                <span className="csc-card-tags">
+                  {b.leaves.map((l) => <span key={l} className="csc-tag">{l}</span>)}
+                </span>
+              </span>
             </a>
           ))}
         </div>
       </div>
 
-      {/* ---------- MOBILE FALLBACK: vertical growing list ---------- */}
-      <div className="cst-mobile">
+      {/* ---------- MOBILE FALLBACK: vertical circuit spine ---------- */}
+      <div className="csc-mobile">
+        <div className="csc-spine" />
         {BRANCHES.map((b, bi) => (
-          <a key={b.key} href={b.href} className="cst-m-branch" style={{ transitionDelay: `${0.2 + bi * 0.14}s` }}>
-            <div className="cst-m-stem" />
-            <div className="cst-m-card">
-              <h3>{b.title}</h3>
-              <div className="cst-m-leaves">
-                {b.leaves.map((l, li) => (
-                  <span key={l} className="cst-m-leaf" style={{ transitionDelay: `${0.5 + bi * 0.14 + li * 0.05}s` }}>{l}</span>
-                ))}
-              </div>
-            </div>
+          <a key={b.key} href={b.href} className="csc-m-card" style={{ transitionDelay: `${0.15 + bi * 0.13}s` }}>
+            <span className="csc-m-connector" />
+            <span className="csc-m-node" />
+            <span className="csc-m-body">
+              <span className="csc-m-title">{b.title}</span>
+              <span className="csc-m-tags">{b.leaves.map((l) => <span key={l} className="csc-m-tag">{l}</span>)}</span>
+            </span>
           </a>
         ))}
       </div>
 
       <style jsx>{`
-        .cst-wrap { position: relative; width: 100%; }
+        .csc-wrap { position: relative; width: 100%; }
 
-        /* ---- SVG tree container ---- */
-        .cst-tree { position: relative; width: 100%; max-width: 1000px; margin: 0 auto; aspect-ratio: 1000 / 720; }
-        .cst-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+        /* board */
+        .csc-board { position: relative; width: 100%; max-width: 1040px; margin: 0 auto; aspect-ratio: 1000 / 720; }
+        .csc-svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
-        /* trunk & branches: draw with stroke-dash */
-        .cst-trunk { stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 1s cubic-bezier(.4,0,.2,1); }
-        .cst-flare { opacity: 0; transition: opacity .5s ease .3s; }
-        .cst-branch { stroke-dasharray: 500; stroke-dashoffset: 500; }
-        .cst-branch-0 { transition: stroke-dashoffset .9s cubic-bezier(.4,0,.2,1) .75s; }
-        .cst-branch-1 { transition: stroke-dashoffset .9s cubic-bezier(.4,0,.2,1) .9s; }
-        .cst-branch-2 { transition: stroke-dashoffset .9s cubic-bezier(.4,0,.2,1) 1.0s; }
-        .cst-branch-3 { transition: stroke-dashoffset .9s cubic-bezier(.4,0,.2,1) 1.15s; }
+        .csc-ambient { opacity: 0; transition: opacity 1.2s ease; }
+        .on .csc-ambient { opacity: 1; }
 
-        .cst-ground { opacity: 0; transform: scaleX(.4); transform-origin: 500px 690px; transition: opacity .6s ease, transform .8s ease; }
-        .cst-ambient { opacity: 0; transition: opacity 1.4s ease .8s; }
+        /* deco traces fade in dim */
+        .csc-deco, .csc-deco-pad { opacity: 0; transition: opacity 1s ease .1s; }
+        .on .csc-deco, .on .csc-deco-pad { opacity: 1; }
 
-        .cst-leaf { opacity: 0; transform: scale(0); transition: opacity .5s ease, transform .55s cubic-bezier(.34,1.56,.64,1); }
+        /* main bright traces "fill" via dash draw */
+        .csc-trace { stroke-dasharray: 620; stroke-dashoffset: 620; }
+        .on .csc-trace-0 { transition: stroke-dashoffset 1.1s ease .15s; stroke-dashoffset: 0; }
+        .on .csc-trace-1 { transition: stroke-dashoffset 1.1s ease .30s; stroke-dashoffset: 0; }
+        .on .csc-trace-2 { transition: stroke-dashoffset 1.1s ease .45s; stroke-dashoffset: 0; }
+        .on .csc-trace-3 { transition: stroke-dashoffset 1.1s ease .60s; stroke-dashoffset: 0; }
 
-        /* spores idle drift (only after grown) */
-        .cst-spore { animation: none; }
+        /* chip powers on */
+        .csc-chip { opacity: 0.35; transition: opacity .5s ease; }
+        .on .csc-chip { opacity: 1; animation: chipPulse 3s ease-in-out 1.4s infinite; }
+        @keyframes chipPulse { 0%,100% { filter: drop-shadow(0 0 2px rgba(247,229,0,0.4)); } 50% { filter: drop-shadow(0 0 8px rgba(247,229,0,0.9)); } }
 
-        /* labels */
-        .cst-labels { position: absolute; inset: 0; pointer-events: none; }
-        .cst-label {
-          position: absolute; transform: translate(-50%, -140%);
+        /* nodes pop when the trace reaches them */
+        .csc-node { opacity: 0; transform: scale(0); transform-box: fill-box; transform-origin: center; }
+        .on .csc-node-0 { transition: opacity .4s ease 1.0s, transform .5s cubic-bezier(.34,1.56,.64,1) 1.0s; opacity: 1; transform: scale(1); }
+        .on .csc-node-1 { transition: opacity .4s ease 1.15s, transform .5s cubic-bezier(.34,1.56,.64,1) 1.15s; opacity: 1; transform: scale(1); }
+        .on .csc-node-2 { transition: opacity .4s ease 1.30s, transform .5s cubic-bezier(.34,1.56,.64,1) 1.30s; opacity: 1; transform: scale(1); }
+        .on .csc-node-3 { transition: opacity .4s ease 1.45s, transform .5s cubic-bezier(.34,1.56,.64,1) 1.45s; opacity: 1; transform: scale(1); }
+        .csc-node-core { animation: none; }
+        .on .csc-node-core { animation: nodeGlow 2.4s ease-in-out infinite; }
+        @keyframes nodeGlow { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
+
+        .csc-pulse { opacity: 0; }
+        .on .csc-pulse { opacity: 1; }
+        .csc-data { opacity: 0; }
+        .on .csc-data { opacity: .9; }
+
+        /* ---- hanging glass cards ---- */
+        .csc-cards { position: absolute; inset: 0; pointer-events: none; }
+        .csc-card {
+          position: absolute;
           pointer-events: auto; text-decoration: none;
-          background: rgba(10,16,27,0.72); backdrop-filter: blur(6px);
-          border: 1px solid rgba(247,229,0,0.35); border-radius: 12px;
-          padding: 8px 12px; min-width: 150px; max-width: 210px;
-          opacity: 0; transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.56,.64,1);
-          box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+          width: 210px;
         }
-        .cst-label.left { transform: translate(-92%, -120%); }
-        .cst-label.right { transform: translate(-8%, -120%); }
-        .cst-label:hover { border-color: #f7e500; box-shadow: 0 10px 30px rgba(247,229,0,0.25); }
-        .cst-label-title { display: block; color: #fff; font-weight: 800; font-size: 14px; line-height: 1.2; }
-        .cst-label-tags { display: block; color: #b9c1cf; font-size: 10.5px; margin-top: 4px; line-height: 1.35; }
+        .csc-card.center { transform: translateX(-50%); }
+        .csc-card.edge-left { transform: translateX(-22%); }
+        .csc-card.edge-right { transform: translateX(-78%); }
+        .csc-card-swing {
+          display: block;
+          background: linear-gradient(160deg, rgba(20,28,43,0.82), rgba(10,16,27,0.9));
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(247,229,0,0.38);
+          border-radius: 14px;
+          padding: 12px 14px;
+          box-shadow: 0 14px 34px rgba(0,0,0,0.5), inset 0 0 22px rgba(247,229,0,0.06);
+          transform-origin: top center;
+          opacity: 0;
+          transform: translateY(-18px) scale(.96);
+        }
+        .csc-card.edge-left .csc-card-swing { transform-origin: 22% top; }
+        .csc-card.edge-right .csc-card-swing { transform-origin: 78% top; }
+        .on .csc-card .csc-card-swing {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          transition: opacity .5s ease var(--drop-delay), transform .7s cubic-bezier(.34,1.4,.5,1) var(--drop-delay);
+          animation: swing 5s ease-in-out infinite;
+          animation-delay: calc(var(--drop-delay) + .7s);
+        }
+        @keyframes swing {
+          0%, 100% { transform: rotate(-1.4deg); }
+          50% { transform: rotate(1.4deg); }
+        }
+        .csc-card:hover .csc-card-swing { border-color: #f7e500; box-shadow: 0 16px 40px rgba(247,229,0,0.22), inset 0 0 26px rgba(247,229,0,0.12); }
 
-        /* ---- GROWN state ---- */
-        .grown .cst-trunk { stroke-dashoffset: 0; }
-        .grown .cst-flare { opacity: 1; }
-        .grown .cst-branch { stroke-dashoffset: 0; }
-        .grown .cst-ground { opacity: 1; transform: scaleX(1); }
-        .grown .cst-ambient { opacity: 1; }
-        .grown .cst-leaf { opacity: 1; transform: scale(1); animation: sway 4.5s ease-in-out infinite; }
-        .grown .cst-label { opacity: 1; }
-        .grown .cst-label.left { transform: translate(-92%, -100%); }
-        .grown .cst-label.right { transform: translate(-8%, -100%); }
-        .grown .cst-spore { animation: rise 6s linear infinite; }
-        .grown .cst-spore.s1 { animation-delay: .8s } .grown .cst-spore.s2 { animation-delay: 1.6s }
-        .grown .cst-spore.s3 { animation-delay: 2.4s } .grown .cst-spore.s4 { animation-delay: 3.2s }
-        .grown .cst-spore.s5 { animation-delay: 4s } .grown .cst-spore.s6 { animation-delay: 1.2s }
-        .grown .cst-spore.s7 { animation-delay: 2.8s } .grown .cst-spore.s8 { animation-delay: 3.6s }
-
-        @keyframes sway {
-          0%, 100% { transform: rotate(0deg); }
-          50% { transform: rotate(2.5deg); }
-        }
-        @keyframes rise {
-          0% { opacity: 0; transform: translateY(0) translateX(0); }
-          15% { opacity: .9; }
-          100% { opacity: 0; transform: translateY(-520px) translateX(30px); }
+        .csc-card-top { display: flex; align-items: center; gap: 9px; }
+        .csc-card-ic { width: 20px; height: 20px; color: #f7e500; flex-shrink: 0; }
+        .csc-card-title { color: #fff; font-weight: 800; font-size: 14px; line-height: 1.15; }
+        .csc-card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+        .csc-tag {
+          font-size: 10px; font-weight: 600; color: #f7e500;
+          background: rgba(247,229,0,0.10);
+          border: 1px solid rgba(247,229,0,0.28);
+          padding: 3px 8px; border-radius: 999px;
         }
 
-        /* ---- Mobile fallback (hidden on desktop) ---- */
-        .cst-mobile { display: none; }
-        .cst-m-branch {
-          display: flex; gap: 14px; text-decoration: none;
-          opacity: 0; transform: translateY(24px);
-          transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.56,.64,1);
+        /* ---- mobile ---- */
+        .csc-mobile { display: none; position: relative; padding: 10px 0 0 22px; }
+        .csc-spine { position: absolute; left: 22px; top: 0; bottom: 30px; width: 2px; background: linear-gradient(#f7e500, rgba(247,229,0,0.2)); }
+        .csc-m-card {
+          position: relative; display: flex; align-items: flex-start; gap: 0;
+          text-decoration: none; margin-bottom: 16px;
+          opacity: 0; transform: translateX(18px);
+          transition: opacity .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1);
         }
-        .grown .cst-m-branch { opacity: 1; transform: translateY(0); }
-        .cst-m-stem { width: 4px; border-radius: 4px; background: linear-gradient(#7a5330, #f7e500); flex-shrink: 0; }
-        .cst-m-card { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(247,229,0,0.25); border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; }
-        .cst-m-card h3 { margin: 0 0 10px; color: #fff; font-size: 16px; font-weight: 800; }
-        .cst-m-leaves { display: flex; flex-wrap: wrap; gap: 8px; }
-        .cst-m-leaf {
-          background: linear-gradient(135deg, #f7e500, #d8ab12); color: #0a101b;
-          font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px;
-          opacity: 0; transform: scale(.6);
-          transition: opacity .4s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
+        .on .csc-m-card { opacity: 1; transform: translateX(0); }
+        .csc-m-connector { width: 26px; height: 2px; background: rgba(247,229,0,0.5); margin-top: 22px; margin-left: 0; }
+        .csc-m-node { position: absolute; left: -6px; top: 18px; width: 10px; height: 10px; border-radius: 50%; background: #f7e500; box-shadow: 0 0 8px rgba(247,229,0,0.8); }
+        .csc-m-body {
+          flex: 1; background: linear-gradient(160deg, rgba(20,28,43,0.85), rgba(10,16,27,0.92));
+          border: 1px solid rgba(247,229,0,0.35); border-radius: 14px; padding: 12px 14px;
         }
-        .grown .cst-m-leaf { opacity: 1; transform: scale(1); }
+        .csc-m-title { display: block; color: #fff; font-weight: 800; font-size: 15px; margin-bottom: 8px; }
+        .csc-m-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .csc-m-tag { font-size: 11px; font-weight: 700; color: #0a101b; background: linear-gradient(135deg, #f7e500, #d8ab12); padding: 4px 10px; border-radius: 999px; }
 
-        @media (max-width: 820px) {
-          .cst-tree { display: none; }
-          .cst-mobile { display: block; }
+        @media (max-width: 900px) {
+          .csc-board { display: none; }
+          .csc-mobile { display: block; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .cst-trunk, .cst-branch, .cst-leaf, .cst-label, .cst-m-branch, .cst-m-leaf, .cst-ground, .cst-ambient { transition: none !important; animation: none !important; }
+          .csc-trace, .csc-node, .csc-card-swing, .csc-m-card, .csc-deco, .csc-deco-pad, .csc-ambient { transition: none !important; }
+          .csc-chip, .csc-node-core, .on .csc-card .csc-card-swing { animation: none !important; }
+          .csc-trace { stroke-dashoffset: 0 !important; }
+          .csc-card-swing { opacity: 1 !important; transform: none !important; }
         }
       `}</style>
     </div>
   )
 }
 
-export default CoreSolutionsTree
+export default CoreSolutionsCircuit

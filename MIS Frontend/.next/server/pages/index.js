@@ -21,29 +21,28 @@ exports.modules = {
 
 
 /*
- * CoreSolutionsTree
- * A realistic, growing "solutions tree" that animates into view when the
- * section scrolls onto screen. The trunk grows, splits into 4 branches
- * (3 service pillars + a Hardware/Products branch), and leaves (sub-categories)
- * sprout at the branch tips with a staggered, organic animation.
+ * CoreSolutionsCircuit
+ * A "rich" printed-circuit-board that powers up when scrolled into view.
+ * A central CPU chip feeds 4 glowing gold traces (Manhattan / 45-90 routing)
+ * that fork out to 4 connector nodes. From each node a glass service card
+ * hangs on a connector and swings to a gentle rest. Idle state keeps a soft
+ * pulse travelling along the traces + drifting data dots.
  *
- * Pure SVG + CSS. No external animation libs. Respects prefers-reduced-motion.
+ * Pure SVG + CSS. No libs. Respects prefers-reduced-motion.
+ * Brand: navy #0a101b board, gold #f7e500 traces.
  */ const BRANCHES = [
     {
         key: "digital",
         title: "Digital Services",
         href: "/digital-services",
-        // path is drawn from trunk-top toward the tip; tip is where leaves cluster
-        path: "M500,470 C420,400 360,360 300,300 C255,255 225,220 205,180",
-        twigs: [
-            "M300,300 C285,285 275,270 288,250",
-            "M360,360 C350,340 345,325 335,312"
-        ],
-        tip: {
-            x: 205,
-            y: 175
+        icon: "M4 5h16v10H4z M2 19h20",
+        // Manhattan-routed trace from chip (500,470) out to a widely-spaced node.
+        trace: "M500,470 L500,440 L150,440 L150,300",
+        node: {
+            x: 150,
+            y: 300
         },
-        labelSide: "left",
+        align: "edge-left",
         leaves: [
             "Web Development",
             "Custom Software",
@@ -57,16 +56,13 @@ exports.modules = {
         key: "corporate",
         title: "Business & Corporate",
         href: "/enterprise-solutions",
-        path: "M500,470 C455,395 435,345 420,285 C407,235 402,195 400,150",
-        twigs: [
-            "M420,285 C405,272 395,258 408,242",
-            "M435,345 C422,332 415,318 425,305"
-        ],
-        tip: {
-            x: 400,
-            y: 145
+        icon: "M4 20V8l8-5 8 5v12 M9 20v-6h6v6",
+        trace: "M500,470 L500,420 L385,420 L385,220",
+        node: {
+            x: 385,
+            y: 220
         },
-        labelSide: "left",
+        align: "center",
         leaves: [
             "IT Equipments",
             "Security System",
@@ -80,16 +76,13 @@ exports.modules = {
         key: "maintenance",
         title: "Maintenance & Support",
         href: "/maintenance-support",
-        path: "M500,470 C545,395 565,345 580,285 C593,235 598,195 600,150",
-        twigs: [
-            "M580,285 C595,272 605,258 592,242",
-            "M565,345 C578,332 585,318 575,305"
-        ],
-        tip: {
-            x: 600,
-            y: 145
+        icon: "M14 6l4 4-8 8-4-1-1-4z",
+        trace: "M500,470 L500,420 L620,420 L620,220",
+        node: {
+            x: 620,
+            y: 220
         },
-        labelSide: "right",
+        align: "center",
         leaves: [
             "AMC Contracts",
             "On-call Repair",
@@ -99,73 +92,98 @@ exports.modules = {
         ]
     },
     {
-        key: "hardware",
-        title: "Hardware & Products",
-        href: "/categories/desktop",
-        path: "M500,470 C580,400 640,360 700,300 C745,255 775,220 795,180",
-        twigs: [
-            "M700,300 C715,285 725,270 712,250",
-            "M640,360 C650,340 655,325 665,312"
-        ],
-        tip: {
-            x: 795,
-            y: 175
+        key: "procurement",
+        title: "Procurement Service",
+        href: "/product-catalog",
+        icon: "M6 6h15l-1.5 9h-12z M6 6 5 3H2 M9 20a1 1 0 100-2 1 1 0 000 2 M18 20a1 1 0 100-2 1 1 0 000 2",
+        trace: "M500,470 L500,440 L850,440 L850,300",
+        node: {
+            x: 850,
+            y: 300
         },
-        labelSide: "right",
+        align: "edge-right",
         leaves: [
-            "Desktops",
-            "Laptops",
-            "Components",
-            "Monitors",
-            "Networking",
-            "Accessories"
+            "Hardware Sourcing",
+            "Bulk Supply",
+            "Corporate Deals",
+            "Vendor Management",
+            "Licensing",
+            "Fast Delivery"
         ]
     }, 
 ];
-// deterministic offsets producing a FULL, organic canopy at each branch tip.
-// We render more leaves than sub-categories (some are decorative filler) so the
-// tips look like real foliage. Each leaf carries a scale + rotation.
-const buildCanopy = (count)=>{
-    const leaves = [];
-    // compact cluster: leaves fan out and up around the tip, not scattered wide
-    const total = Math.max(count + 4, 10);
-    for(let i = 0; i < total; i++){
-        const t = i / (total - 1);
-        const angle = (-150 + t * 300) * (Math.PI / 180 // fan left→right, biased upward
-        );
-        const ring = i % 3;
-        const r = 14 + ring * 11 + i % 2 * 5 // tight radius
-        ;
-        const dx = Math.cos(angle) * r;
-        const dy = Math.sin(angle) * r * 0.7 - 8 // lift the cluster slightly above tip
-        ;
-        // leaves point outward from cluster center for a natural spray
-        const rot = angle * 180 / Math.PI + 90 + (i % 2 ? 10 : -10);
-        const scale = ring === 0 ? 0.72 : ring === 1 ? 0.92 : 1.1;
-        leaves.push({
-            dx,
-            dy,
-            rot,
-            scale
-        });
-    }
-    return leaves;
-};
-const CoreSolutionsTree = ()=>{
+// decorative extra traces + pads to make the board look "rich"
+const DECO_TRACES = [
+    "M500,470 L500,560 L340,560 L340,610",
+    "M500,470 L500,560 L660,560 L660,610",
+    "M250,250 L180,250 L180,300",
+    "M750,250 L820,250 L820,300",
+    "M430,230 L430,180 L360,180",
+    "M570,230 L570,180 L640,180",
+    "M340,610 L340,650 L420,650",
+    "M660,610 L660,650 L580,650", 
+];
+const DECO_PADS = [
+    {
+        x: 340,
+        y: 610
+    },
+    {
+        x: 660,
+        y: 610
+    },
+    {
+        x: 180,
+        y: 300
+    },
+    {
+        x: 820,
+        y: 300
+    },
+    {
+        x: 360,
+        y: 180
+    },
+    {
+        x: 640,
+        y: 180
+    },
+    {
+        x: 340,
+        y: 560
+    },
+    {
+        x: 660,
+        y: 560
+    },
+    {
+        x: 420,
+        y: 650
+    },
+    {
+        x: 580,
+        y: 650
+    },
+    {
+        x: 500,
+        y: 560
+    }, 
+];
+const CoreSolutionsCircuit = ()=>{
     const wrapRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const { 0: grown , 1: setGrown  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+    const { 0: on , 1: setOn  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
         const el = wrapRef.current;
         if (!el) return;
         const reduce =  false && 0;
         if (reduce) {
-            setGrown(true);
+            setOn(true);
             return;
         }
         const obs = new IntersectionObserver((entries)=>{
             entries.forEach((e)=>{
                 if (e.isIntersecting) {
-                    setGrown(true);
+                    setOn(true);
                     obs.disconnect();
                 }
             });
@@ -175,291 +193,422 @@ const CoreSolutionsTree = ()=>{
         obs.observe(el);
         return ()=>obs.disconnect();
     }, []);
+    // fire the travelling "current" pulses along each trace once powered on
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
+        if (!on || !wrapRef.current) return;
+        const motions = wrapRef.current.querySelectorAll(".csc-motion");
+        motions.forEach((m, i)=>{
+            const begin = 0.15 + i * 0.15;
+            if (typeof m.beginElementAt === "function") {
+                try {
+                    m.beginElementAt(begin);
+                } catch (_) {
+                    try {
+                        m.beginElement();
+                    } catch (e) {}
+                }
+            } else if (typeof m.beginElement === "function") {
+                setTimeout(()=>{
+                    try {
+                        m.beginElement();
+                    } catch (e) {}
+                }, begin * 1000);
+            }
+        });
+    }, [
+        on
+    ]);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         ref: wrapRef,
-        className: "jsx-61cca3b3e60ff6c1" + " " + `cst-wrap ${grown ? "grown" : ""}`,
+        className: "jsx-b7102f3b4e478a6b" + " " + `csc-wrap ${on ? "on" : ""}`,
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                "aria-hidden": "true",
-                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-tree",
+                className: "jsx-b7102f3b4e478a6b" + " " + "csc-board",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                         viewBox: "0 0 1000 720",
-                        preserveAspectRatio: "xMidYMax meet",
-                        className: "jsx-61cca3b3e60ff6c1" + " " + "cst-svg",
+                        preserveAspectRatio: "xMidYMid meet",
+                        "aria-hidden": "true",
+                        className: "jsx-b7102f3b4e478a6b" + " " + "csc-svg",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", {
-                                className: "jsx-61cca3b3e60ff6c1",
+                                className: "jsx-b7102f3b4e478a6b",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", {
-                                        id: "bark",
+                                        id: "traceGrad",
                                         x1: "0",
-                                        y1: "1",
-                                        x2: "0",
-                                        y2: "0",
-                                        className: "jsx-61cca3b3e60ff6c1",
+                                        y1: "0",
+                                        x2: "1",
+                                        y2: "1",
+                                        className: "jsx-b7102f3b4e478a6b",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
                                                 offset: "0%",
-                                                stopColor: "#3a2a17",
-                                                className: "jsx-61cca3b3e60ff6c1"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "45%",
-                                                stopColor: "#5a3d21",
-                                                className: "jsx-61cca3b3e60ff6c1"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "100%",
-                                                stopColor: "#7a5330",
-                                                className: "jsx-61cca3b3e60ff6c1"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", {
-                                        id: "barkThin",
-                                        x1: "0",
-                                        y1: "1",
-                                        x2: "0",
-                                        y2: "0",
-                                        className: "jsx-61cca3b3e60ff6c1",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "0%",
-                                                stopColor: "#5a3d21",
-                                                className: "jsx-61cca3b3e60ff6c1"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "100%",
-                                                stopColor: "#8a5f36",
-                                                className: "jsx-61cca3b3e60ff6c1"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("radialGradient", {
-                                        id: "leafGrad",
-                                        cx: "35%",
-                                        cy: "30%",
-                                        r: "80%",
-                                        className: "jsx-61cca3b3e60ff6c1",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "0%",
-                                                stopColor: "#fff59a",
-                                                className: "jsx-61cca3b3e60ff6c1"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                                offset: "45%",
                                                 stopColor: "#f7e500",
-                                                className: "jsx-61cca3b3e60ff6c1"
+                                                className: "jsx-b7102f3b4e478a6b"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
                                                 offset: "100%",
-                                                stopColor: "#d8ab12",
-                                                className: "jsx-61cca3b3e60ff6c1"
+                                                stopColor: "#c99a0a",
+                                                className: "jsx-b7102f3b4e478a6b"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("radialGradient", {
-                                        id: "glow",
+                                        id: "boardGlow",
                                         cx: "50%",
-                                        cy: "50%",
-                                        r: "50%",
-                                        className: "jsx-61cca3b3e60ff6c1",
+                                        cy: "42%",
+                                        r: "55%",
+                                        className: "jsx-b7102f3b4e478a6b",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
                                                 offset: "0%",
-                                                stopColor: "rgba(247,229,0,0.35)",
-                                                className: "jsx-61cca3b3e60ff6c1"
+                                                stopColor: "rgba(247,229,0,0.14)",
+                                                className: "jsx-b7102f3b4e478a6b"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
                                                 offset: "100%",
                                                 stopColor: "rgba(247,229,0,0)",
-                                                className: "jsx-61cca3b3e60ff6c1"
+                                                className: "jsx-b7102f3b4e478a6b"
                                             })
                                         ]
                                     }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("filter", {
-                                        id: "soft",
-                                        x: "-30%",
-                                        y: "-30%",
-                                        width: "160%",
-                                        height: "160%",
-                                        className: "jsx-61cca3b3e60ff6c1",
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("feGaussianBlur", {
-                                            stdDeviation: "2",
-                                            className: "jsx-61cca3b3e60ff6c1"
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", {
+                                        id: "cGlow",
+                                        x: "-60%",
+                                        y: "-60%",
+                                        width: "220%",
+                                        height: "220%",
+                                        className: "jsx-b7102f3b4e478a6b",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("feGaussianBlur", {
+                                                stdDeviation: "3.4",
+                                                result: "b",
+                                                className: "jsx-b7102f3b4e478a6b"
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("feMerge", {
+                                                className: "jsx-b7102f3b4e478a6b",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("feMergeNode", {
+                                                        in: "b",
+                                                        className: "jsx-b7102f3b4e478a6b"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("feMergeNode", {
+                                                        in: "SourceGraphic",
+                                                        className: "jsx-b7102f3b4e478a6b"
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("pattern", {
+                                        id: "grid",
+                                        width: "26",
+                                        height: "26",
+                                        patternUnits: "userSpaceOnUse",
+                                        className: "jsx-b7102f3b4e478a6b",
+                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                            d: "M26 0H0V26",
+                                            fill: "none",
+                                            stroke: "rgba(247,229,0,0.05)",
+                                            strokeWidth: "1",
+                                            className: "jsx-b7102f3b4e478a6b"
                                         })
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ellipse", {
-                                cx: "500",
-                                cy: "690",
-                                rx: "260",
-                                ry: "26",
-                                fill: "rgba(0,0,0,0.45)",
-                                filter: "url(#soft)",
-                                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-ground"
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                                x: "0",
+                                y: "0",
+                                width: "1000",
+                                height: "720",
+                                fill: "url(#grid)",
+                                className: "jsx-b7102f3b4e478a6b"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                 cx: "500",
-                                cy: "220",
-                                r: "300",
-                                fill: "url(#glow)",
-                                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-ambient"
+                                cy: "300",
+                                r: "330",
+                                fill: "url(#boardGlow)",
+                                className: "jsx-b7102f3b4e478a6b" + " " + "csc-ambient"
                             }),
-                            [
-                                ...Array(9)
-                            ].map((_, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                    r: 1.6 + i % 3 * 0.7,
-                                    cx: 300 + i * 55,
-                                    cy: 640,
-                                    fill: "#f7e500",
-                                    opacity: "0",
-                                    className: "jsx-61cca3b3e60ff6c1" + " " + `cst-spore s${i}`
-                                }, i)),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                d: "M500,700 C492,620 488,560 496,500 C500,486 500,480 500,470",
-                                fill: "none",
-                                stroke: "url(#bark)",
-                                strokeWidth: "34",
-                                strokeLinecap: "round",
-                                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-trunk"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                d: "M470,700 Q500,660 530,700 Z",
-                                fill: "url(#bark)",
-                                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-flare"
-                            }),
-                            BRANCHES.map((b, bi)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                    d: b.path,
+                            DECO_TRACES.map((d, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                    d: d,
                                     fill: "none",
-                                    stroke: "url(#barkThin)",
-                                    strokeWidth: "16",
+                                    stroke: "rgba(247,229,0,0.16)",
+                                    strokeWidth: "2.5",
+                                    strokeLinejoin: "round",
                                     strokeLinecap: "round",
-                                    className: "jsx-61cca3b3e60ff6c1" + " " + `cst-branch cst-branch-${bi}`
-                                }, b.key)),
-                            BRANCHES.map((b, bi)=>b.twigs?.map((tw, ti)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                        d: tw,
-                                        fill: "none",
-                                        stroke: "url(#barkThin)",
-                                        strokeWidth: "6",
-                                        strokeLinecap: "round",
-                                        className: "jsx-61cca3b3e60ff6c1" + " " + `cst-branch cst-branch-${bi}`
-                                    }, `${b.key}-tw-${ti}`))),
-                            BRANCHES.map((b, bi)=>{
-                                const canopy = buildCanopy(b.leaves.length);
-                                return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("g", {
-                                    className: "jsx-61cca3b3e60ff6c1",
-                                    children: canopy.map((o, li)=>{
-                                        const cx = b.tip.x + o.dx;
-                                        const cy = b.tip.y + o.dy;
-                                        const delay = 0.95 + bi * 0.16 + li * 0.05;
-                                        const s = o.scale;
-                                        // Leaf drawn from base point (cx,cy) upward; width w, height h scaled.
-                                        const w = 15 * s;
-                                        const h = 38 * s;
-                                        const rib = 34 * s;
-                                        return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
-                                            style: {
-                                                transformOrigin: `${cx}px ${cy}px`,
-                                                transitionDelay: `${delay}s`,
-                                                animationDelay: `${delay + 1.2}s`
-                                            },
-                                            transform: `rotate(${o.rot} ${cx} ${cy})`,
-                                            className: "jsx-61cca3b3e60ff6c1" + " " + "cst-leaf",
+                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-deco"
+                                }, `deco-${i}`)),
+                            DECO_PADS.map((p, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                    cx: p.x,
+                                    cy: p.y,
+                                    r: "4",
+                                    fill: "none",
+                                    stroke: "rgba(247,229,0,0.35)",
+                                    strokeWidth: "2",
+                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-deco-pad"
+                                }, `dpad-${i}`)),
+                            BRANCHES.map((b, bi)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
+                                    className: "jsx-b7102f3b4e478a6b",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                            d: b.trace,
+                                            fill: "none",
+                                            stroke: "rgba(247,229,0,0.22)",
+                                            strokeWidth: "3.5",
+                                            strokeLinejoin: "round",
+                                            strokeLinecap: "round",
+                                            className: "jsx-b7102f3b4e478a6b"
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                            d: b.trace,
+                                            fill: "none",
+                                            stroke: "url(#traceGrad)",
+                                            strokeWidth: "3.5",
+                                            strokeLinejoin: "round",
+                                            strokeLinecap: "round",
+                                            filter: "url(#cGlow)",
+                                            className: "jsx-b7102f3b4e478a6b" + " " + `csc-trace csc-trace-${bi}`
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                            r: "4.5",
+                                            fill: "#fff6a8",
+                                            filter: "url(#cGlow)",
+                                            className: "jsx-b7102f3b4e478a6b" + " " + `csc-pulse csc-pulse-${bi}`,
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("animateMotion", {
+                                                dur: "1.1s",
+                                                begin: "indefinite",
+                                                fill: "freeze",
+                                                path: b.trace,
+                                                className: "jsx-b7102f3b4e478a6b" + " " + "csc-motion"
+                                            })
+                                        })
+                                    ]
+                                }, `trace-${b.key}`)),
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
+                                filter: "url(#cGlow)",
+                                className: "jsx-b7102f3b4e478a6b" + " " + "csc-chip",
+                                children: [
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                                        x: "466",
+                                        y: "468",
+                                        width: "68",
+                                        height: "68",
+                                        rx: "10",
+                                        fill: "#0e1626",
+                                        stroke: "url(#traceGrad)",
+                                        strokeWidth: "2.5",
+                                        className: "jsx-b7102f3b4e478a6b"
+                                    }),
+                                    [
+                                        ...Array(4)
+                                    ].map((_, i)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), {
                                             children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                    d: `M${cx},${cy} C${cx - w},${cy - h * 0.24} ${cx - w},${cy - h * 0.74} ${cx},${cy - h} C${cx + w},${cy - h * 0.74} ${cx + w},${cy - h * 0.24} ${cx},${cy} Z`,
-                                                    fill: "url(#leafGrad)",
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                    x1: 478 + i * 14,
+                                                    y1: "460",
+                                                    x2: 478 + i * 14,
+                                                    y2: "468",
                                                     stroke: "#c99a0a",
-                                                    strokeWidth: "0.7",
-                                                    className: "jsx-61cca3b3e60ff6c1"
+                                                    strokeWidth: "2.5",
+                                                    className: "jsx-b7102f3b4e478a6b"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
-                                                    x1: cx,
-                                                    y1: cy - 2,
-                                                    x2: cx,
-                                                    y2: cy - rib,
-                                                    stroke: "#b8890a",
-                                                    strokeWidth: "0.7",
-                                                    opacity: "0.65",
-                                                    className: "jsx-61cca3b3e60ff6c1"
+                                                    x1: 478 + i * 14,
+                                                    y1: "536",
+                                                    x2: 478 + i * 14,
+                                                    y2: "544",
+                                                    stroke: "#c99a0a",
+                                                    strokeWidth: "2.5",
+                                                    className: "jsx-b7102f3b4e478a6b"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                    x1: "458",
+                                                    y1: 480 + i * 14,
+                                                    x2: "466",
+                                                    y2: 480 + i * 14,
+                                                    stroke: "#c99a0a",
+                                                    strokeWidth: "2.5",
+                                                    className: "jsx-b7102f3b4e478a6b"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                    x1: "534",
+                                                    y1: 480 + i * 14,
+                                                    x2: "542",
+                                                    y2: 480 + i * 14,
+                                                    stroke: "#c99a0a",
+                                                    strokeWidth: "2.5",
+                                                    className: "jsx-b7102f3b4e478a6b"
                                                 })
                                             ]
-                                        }, li);
+                                        }, i)),
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                                        x: "484",
+                                        y: "486",
+                                        width: "32",
+                                        height: "32",
+                                        rx: "5",
+                                        fill: "none",
+                                        stroke: "#f7e500",
+                                        strokeWidth: "2",
+                                        className: "jsx-b7102f3b4e478a6b"
+                                    }),
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("text", {
+                                        x: "500",
+                                        y: "508",
+                                        textAnchor: "middle",
+                                        fontSize: "12",
+                                        fontWeight: "800",
+                                        fill: "#f7e500",
+                                        fontFamily: "monospace",
+                                        className: "jsx-b7102f3b4e478a6b",
+                                        children: "MIS"
                                     })
-                                }, `leaves-${b.key}`);
-                            })
+                                ]
+                            }),
+                            BRANCHES.map((b, bi)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
+                                    className: "jsx-b7102f3b4e478a6b" + " " + `csc-node csc-node-${bi}`,
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                            cx: b.node.x,
+                                            cy: b.node.y,
+                                            r: "10",
+                                            fill: "#0e1626",
+                                            stroke: "url(#traceGrad)",
+                                            strokeWidth: "2.5",
+                                            filter: "url(#cGlow)",
+                                            className: "jsx-b7102f3b4e478a6b"
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                            cx: b.node.x,
+                                            cy: b.node.y,
+                                            r: "4",
+                                            fill: "#f7e500",
+                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-node-core"
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                            x1: b.node.x,
+                                            y1: b.node.y + 10,
+                                            x2: b.node.x,
+                                            y2: b.node.y + 34,
+                                            stroke: "rgba(247,229,0,0.5)",
+                                            strokeWidth: "2",
+                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-rope"
+                                        })
+                                    ]
+                                }, `node-${b.key}`)),
+                            on && BRANCHES.map((b, bi)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                    r: "2.4",
+                                    fill: "#f7e500",
+                                    opacity: "0",
+                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-data",
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("animateMotion", {
+                                        dur: `${3 + bi * 0.4}s`,
+                                        begin: `${2.4 + bi * 0.5}s`,
+                                        repeatCount: "indefinite",
+                                        path: b.trace,
+                                        className: "jsx-b7102f3b4e478a6b"
+                                    })
+                                }, `data-${b.key}`))
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-61cca3b3e60ff6c1" + " " + "cst-labels",
-                        children: BRANCHES.map((b, bi)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                        className: "jsx-b7102f3b4e478a6b" + " " + "csc-cards",
+                        children: BRANCHES.map((b, bi)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                 href: b.href,
                                 style: {
-                                    left: `${b.tip.x / 1000 * 100}%`,
-                                    top: `${b.tip.y / 720 * 100}%`,
-                                    transitionDelay: `${1.5 + bi * 0.18}s`
+                                    left: `${b.node.x / 1000 * 100}%`,
+                                    top: `${(b.node.y + 34) / 720 * 100}%`,
+                                    "--drop-delay": `${1.2 + bi * 0.22}s`
                                 },
-                                className: "jsx-61cca3b3e60ff6c1" + " " + `cst-label ${b.labelSide}`,
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                        className: "jsx-61cca3b3e60ff6c1" + " " + "cst-label-title",
-                                        children: b.title
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                        className: "jsx-61cca3b3e60ff6c1" + " " + "cst-label-tags",
-                                        children: b.leaves.join(" \xb7 ")
-                                    })
-                                ]
+                                className: "jsx-b7102f3b4e478a6b" + " " + `csc-card ${b.align || "center"}`,
+                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-swing",
+                                    children: [
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-top",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                    viewBox: "0 0 24 24",
+                                                    fill: "none",
+                                                    stroke: "currentColor",
+                                                    strokeWidth: "2",
+                                                    strokeLinecap: "round",
+                                                    strokeLinejoin: "round",
+                                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-ic",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                        d: b.icon,
+                                                        className: "jsx-b7102f3b4e478a6b"
+                                                    })
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-title",
+                                                    children: b.title
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-card-tags",
+                                            children: b.leaves.map((l)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-tag",
+                                                    children: l
+                                                }, l))
+                                        })
+                                    ]
+                                })
                             }, b.key))
                     })
                 ]
             }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-mobile",
-                children: BRANCHES.map((b, bi)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                        href: b.href,
-                        style: {
-                            transitionDelay: `${0.2 + bi * 0.14}s`
-                        },
-                        className: "jsx-61cca3b3e60ff6c1" + " " + "cst-m-branch",
-                        children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-m-stem"
-                            }),
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-m-card",
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                        className: "jsx-61cca3b3e60ff6c1",
-                                        children: b.title
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-61cca3b3e60ff6c1" + " " + "cst-m-leaves",
-                                        children: b.leaves.map((l, li)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                style: {
-                                                    transitionDelay: `${0.5 + bi * 0.14 + li * 0.05}s`
-                                                },
-                                                className: "jsx-61cca3b3e60ff6c1" + " " + "cst-m-leaf",
-                                                children: l
-                                            }, l))
-                                    })
-                                ]
-                            })
-                        ]
-                    }, b.key))
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "jsx-b7102f3b4e478a6b" + " " + "csc-mobile",
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "jsx-b7102f3b4e478a6b" + " " + "csc-spine"
+                    }),
+                    BRANCHES.map((b, bi)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                            href: b.href,
+                            style: {
+                                transitionDelay: `${0.15 + bi * 0.13}s`
+                            },
+                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-card",
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-connector"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-node"
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-body",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-title",
+                                            children: b.title
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-tags",
+                                            children: b.leaves.map((l)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-b7102f3b4e478a6b" + " " + "csc-m-tag",
+                                                    children: l
+                                                }, l))
+                                        })
+                                    ]
+                                })
+                            ]
+                        }, b.key))
+                ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "61cca3b3e60ff6c1",
-                children: ".cst-wrap.jsx-61cca3b3e60ff6c1{position:relative;width:100%}.cst-tree.jsx-61cca3b3e60ff6c1{position:relative;width:100%;max-width:1e3px;margin:0 auto;aspect-ratio:1000/720}.cst-svg.jsx-61cca3b3e60ff6c1{width:100%;height:100%;display:block;overflow:visible}.cst-trunk.jsx-61cca3b3e60ff6c1{stroke-dasharray:300;stroke-dashoffset:300;-webkit-transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);-moz-transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);-o-transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)}.cst-flare.jsx-61cca3b3e60ff6c1{opacity:0;-webkit-transition:opacity.5s ease.3s;-moz-transition:opacity.5s ease.3s;-o-transition:opacity.5s ease.3s;transition:opacity.5s ease.3s}.cst-branch.jsx-61cca3b3e60ff6c1{stroke-dasharray:500;stroke-dashoffset:500}.cst-branch-0.jsx-61cca3b3e60ff6c1{-webkit-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1).75s;-moz-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1).75s;-o-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1).75s;transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1).75s}.cst-branch-1.jsx-61cca3b3e60ff6c1{-webkit-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1).9s;-moz-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1).9s;-o-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1).9s;transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1).9s}.cst-branch-2.jsx-61cca3b3e60ff6c1{-webkit-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1)1s;-moz-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1)1s;-o-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1)1s;transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1)1s}.cst-branch-3.jsx-61cca3b3e60ff6c1{-webkit-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1)1.15s;-moz-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1)1.15s;-o-transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1)1.15s;transition:stroke-dashoffset.9s cubic-bezier(.4,0,.2,1)1.15s}.cst-ground.jsx-61cca3b3e60ff6c1{opacity:0;-webkit-transform:scaleX(.4);-moz-transform:scaleX(.4);-ms-transform:scaleX(.4);-o-transform:scaleX(.4);transform:scaleX(.4);-webkit-transform-origin:500px 690px;-moz-transform-origin:500px 690px;-ms-transform-origin:500px 690px;-o-transform-origin:500px 690px;transform-origin:500px 690px;-webkit-transition:opacity.6s ease,-webkit-transform.8s ease;-moz-transition:opacity.6s ease,-moz-transform.8s ease;-o-transition:opacity.6s ease,-o-transform.8s ease;transition:opacity.6s ease,-webkit-transform.8s ease;transition:opacity.6s ease,-moz-transform.8s ease;transition:opacity.6s ease,-o-transform.8s ease;transition:opacity.6s ease,transform.8s ease}.cst-ambient.jsx-61cca3b3e60ff6c1{opacity:0;-webkit-transition:opacity 1.4s ease.8s;-moz-transition:opacity 1.4s ease.8s;-o-transition:opacity 1.4s ease.8s;transition:opacity 1.4s ease.8s}.cst-leaf.jsx-61cca3b3e60ff6c1{opacity:0;-webkit-transform:scale(0);-moz-transform:scale(0);-ms-transform:scale(0);-o-transform:scale(0);transform:scale(0);-webkit-transition:opacity.5s ease,-webkit-transform.55s cubic-bezier(.34,1.56,.64,1);-moz-transition:opacity.5s ease,-moz-transform.55s cubic-bezier(.34,1.56,.64,1);-o-transition:opacity.5s ease,-o-transform.55s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-webkit-transform.55s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-moz-transform.55s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-o-transform.55s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,transform.55s cubic-bezier(.34,1.56,.64,1)}.cst-spore.jsx-61cca3b3e60ff6c1{-webkit-animation:none;-moz-animation:none;-o-animation:none;animation:none}.cst-labels.jsx-61cca3b3e60ff6c1{position:absolute;inset:0;pointer-events:none}.cst-label.jsx-61cca3b3e60ff6c1{position:absolute;-webkit-transform:translate(-50%,-140%);-moz-transform:translate(-50%,-140%);-ms-transform:translate(-50%,-140%);-o-transform:translate(-50%,-140%);transform:translate(-50%,-140%);pointer-events:auto;text-decoration:none;background:rgba(10,16,27,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(247,229,0,.35);-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:8px 12px;min-width:150px;max-width:210px;opacity:0;-webkit-transition:opacity.6s ease,-webkit-transform.6s cubic-bezier(.34,1.56,.64,1);-moz-transition:opacity.6s ease,-moz-transform.6s cubic-bezier(.34,1.56,.64,1);-o-transition:opacity.6s ease,-o-transform.6s cubic-bezier(.34,1.56,.64,1);transition:opacity.6s ease,-webkit-transform.6s cubic-bezier(.34,1.56,.64,1);transition:opacity.6s ease,-moz-transform.6s cubic-bezier(.34,1.56,.64,1);transition:opacity.6s ease,-o-transform.6s cubic-bezier(.34,1.56,.64,1);transition:opacity.6s ease,transform.6s cubic-bezier(.34,1.56,.64,1);-webkit-box-shadow:0 8px 24px rgba(0,0,0,.35);-moz-box-shadow:0 8px 24px rgba(0,0,0,.35);box-shadow:0 8px 24px rgba(0,0,0,.35)}.cst-label.left.jsx-61cca3b3e60ff6c1{-webkit-transform:translate(-92%,-120%);-moz-transform:translate(-92%,-120%);-ms-transform:translate(-92%,-120%);-o-transform:translate(-92%,-120%);transform:translate(-92%,-120%)}.cst-label.right.jsx-61cca3b3e60ff6c1{-webkit-transform:translate(-8%,-120%);-moz-transform:translate(-8%,-120%);-ms-transform:translate(-8%,-120%);-o-transform:translate(-8%,-120%);transform:translate(-8%,-120%)}.cst-label.jsx-61cca3b3e60ff6c1:hover{border-color:#f7e500;-webkit-box-shadow:0 10px 30px rgba(247,229,0,.25);-moz-box-shadow:0 10px 30px rgba(247,229,0,.25);box-shadow:0 10px 30px rgba(247,229,0,.25)}.cst-label-title.jsx-61cca3b3e60ff6c1{display:block;color:#fff;font-weight:800;font-size:14px;line-height:1.2}.cst-label-tags.jsx-61cca3b3e60ff6c1{display:block;color:#b9c1cf;font-size:10.5px;margin-top:4px;line-height:1.35}.grown.jsx-61cca3b3e60ff6c1 .cst-trunk.jsx-61cca3b3e60ff6c1{stroke-dashoffset:0}.grown.jsx-61cca3b3e60ff6c1 .cst-flare.jsx-61cca3b3e60ff6c1{opacity:1}.grown.jsx-61cca3b3e60ff6c1 .cst-branch.jsx-61cca3b3e60ff6c1{stroke-dashoffset:0}.grown.jsx-61cca3b3e60ff6c1 .cst-ground.jsx-61cca3b3e60ff6c1{opacity:1;-webkit-transform:scaleX(1);-moz-transform:scaleX(1);-ms-transform:scaleX(1);-o-transform:scaleX(1);transform:scaleX(1)}.grown.jsx-61cca3b3e60ff6c1 .cst-ambient.jsx-61cca3b3e60ff6c1{opacity:1}.grown.jsx-61cca3b3e60ff6c1 .cst-leaf.jsx-61cca3b3e60ff6c1{opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1);-webkit-animation:sway 4.5s ease-in-out infinite;-moz-animation:sway 4.5s ease-in-out infinite;-o-animation:sway 4.5s ease-in-out infinite;animation:sway 4.5s ease-in-out infinite}.grown.jsx-61cca3b3e60ff6c1 .cst-label.jsx-61cca3b3e60ff6c1{opacity:1}.grown.jsx-61cca3b3e60ff6c1 .cst-label.left.jsx-61cca3b3e60ff6c1{-webkit-transform:translate(-92%,-100%);-moz-transform:translate(-92%,-100%);-ms-transform:translate(-92%,-100%);-o-transform:translate(-92%,-100%);transform:translate(-92%,-100%)}.grown.jsx-61cca3b3e60ff6c1 .cst-label.right.jsx-61cca3b3e60ff6c1{-webkit-transform:translate(-8%,-100%);-moz-transform:translate(-8%,-100%);-ms-transform:translate(-8%,-100%);-o-transform:translate(-8%,-100%);transform:translate(-8%,-100%)}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.jsx-61cca3b3e60ff6c1{-webkit-animation:rise 6s linear infinite;-moz-animation:rise 6s linear infinite;-o-animation:rise 6s linear infinite;animation:rise 6s linear infinite}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.s1.jsx-61cca3b3e60ff6c1{-webkit-animation-delay:.8s;-moz-animation-delay:.8s;-o-animation-delay:.8s;animation-delay:.8s}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.s2.jsx-61cca3b3e60ff6c1{-webkit-animation-delay:1.6s;-moz-animation-delay:1.6s;-o-animation-delay:1.6s;animation-delay:1.6s}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.s3.jsx-61cca3b3e60ff6c1{-webkit-animation-delay:2.4s;-moz-animation-delay:2.4s;-o-animation-delay:2.4s;animation-delay:2.4s}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.s4.jsx-61cca3b3e60ff6c1{-webkit-animation-delay:3.2s;-moz-animation-delay:3.2s;-o-animation-delay:3.2s;animation-delay:3.2s}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.s5.jsx-61cca3b3e60ff6c1{-webkit-animation-delay:4s;-moz-animation-delay:4s;-o-animation-delay:4s;animation-delay:4s}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.s6.jsx-61cca3b3e60ff6c1{-webkit-animation-delay:1.2s;-moz-animation-delay:1.2s;-o-animation-delay:1.2s;animation-delay:1.2s}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.s7.jsx-61cca3b3e60ff6c1{-webkit-animation-delay:2.8s;-moz-animation-delay:2.8s;-o-animation-delay:2.8s;animation-delay:2.8s}.grown.jsx-61cca3b3e60ff6c1 .cst-spore.s8.jsx-61cca3b3e60ff6c1{-webkit-animation-delay:3.6s;-moz-animation-delay:3.6s;-o-animation-delay:3.6s;animation-delay:3.6s}@-webkit-keyframes sway{0%,100%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}50%{-webkit-transform:rotate(2.5deg);transform:rotate(2.5deg)}}@-moz-keyframes sway{0%,100%{-moz-transform:rotate(0deg);transform:rotate(0deg)}50%{-moz-transform:rotate(2.5deg);transform:rotate(2.5deg)}}@-o-keyframes sway{0%,100%{-o-transform:rotate(0deg);transform:rotate(0deg)}50%{-o-transform:rotate(2.5deg);transform:rotate(2.5deg)}}@keyframes sway{0%,100%{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg)}50%{-webkit-transform:rotate(2.5deg);-moz-transform:rotate(2.5deg);-o-transform:rotate(2.5deg);transform:rotate(2.5deg)}}@-webkit-keyframes rise{0%{opacity:0;-webkit-transform:translateY(0)translateX(0);transform:translateY(0)translateX(0)}15%{opacity:.9}100%{opacity:0;-webkit-transform:translateY(-520px)translateX(30px);transform:translateY(-520px)translateX(30px)}}@-moz-keyframes rise{0%{opacity:0;-moz-transform:translateY(0)translateX(0);transform:translateY(0)translateX(0)}15%{opacity:.9}100%{opacity:0;-moz-transform:translateY(-520px)translateX(30px);transform:translateY(-520px)translateX(30px)}}@-o-keyframes rise{0%{opacity:0;-o-transform:translateY(0)translateX(0);transform:translateY(0)translateX(0)}15%{opacity:.9}100%{opacity:0;-o-transform:translateY(-520px)translateX(30px);transform:translateY(-520px)translateX(30px)}}@keyframes rise{0%{opacity:0;-webkit-transform:translateY(0)translateX(0);-moz-transform:translateY(0)translateX(0);-o-transform:translateY(0)translateX(0);transform:translateY(0)translateX(0)}15%{opacity:.9}100%{opacity:0;-webkit-transform:translateY(-520px)translateX(30px);-moz-transform:translateY(-520px)translateX(30px);-o-transform:translateY(-520px)translateX(30px);transform:translateY(-520px)translateX(30px)}}.cst-mobile.jsx-61cca3b3e60ff6c1{display:none}.cst-m-branch.jsx-61cca3b3e60ff6c1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;text-decoration:none;opacity:0;-webkit-transform:translateY(24px);-moz-transform:translateY(24px);-ms-transform:translateY(24px);-o-transform:translateY(24px);transform:translateY(24px);-webkit-transition:opacity.6s ease,-webkit-transform.6s cubic-bezier(.34,1.56,.64,1);-moz-transition:opacity.6s ease,-moz-transform.6s cubic-bezier(.34,1.56,.64,1);-o-transition:opacity.6s ease,-o-transform.6s cubic-bezier(.34,1.56,.64,1);transition:opacity.6s ease,-webkit-transform.6s cubic-bezier(.34,1.56,.64,1);transition:opacity.6s ease,-moz-transform.6s cubic-bezier(.34,1.56,.64,1);transition:opacity.6s ease,-o-transform.6s cubic-bezier(.34,1.56,.64,1);transition:opacity.6s ease,transform.6s cubic-bezier(.34,1.56,.64,1)}.grown.jsx-61cca3b3e60ff6c1 .cst-m-branch.jsx-61cca3b3e60ff6c1{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}.cst-m-stem.jsx-61cca3b3e60ff6c1{width:4px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:-webkit-linear-gradient(#7a5330,#f7e500);background:-moz-linear-gradient(#7a5330,#f7e500);background:-o-linear-gradient(#7a5330,#f7e500);background:linear-gradient(#7a5330,#f7e500);-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.cst-m-card.jsx-61cca3b3e60ff6c1{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(247,229,0,.25);-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:14px 16px;margin-bottom:14px}.cst-m-card.jsx-61cca3b3e60ff6c1 h3.jsx-61cca3b3e60ff6c1{margin:0 0 10px;color:#fff;font-size:16px;font-weight:800}.cst-m-leaves.jsx-61cca3b3e60ff6c1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.cst-m-leaf.jsx-61cca3b3e60ff6c1{background:-webkit-linear-gradient(315deg,#f7e500,#d8ab12);background:-moz-linear-gradient(315deg,#f7e500,#d8ab12);background:-o-linear-gradient(315deg,#f7e500,#d8ab12);background:linear-gradient(135deg,#f7e500,#d8ab12);color:#0a101b;font-size:12px;font-weight:700;padding:5px 11px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;opacity:0;-webkit-transform:scale(.6);-moz-transform:scale(.6);-ms-transform:scale(.6);-o-transform:scale(.6);transform:scale(.6);-webkit-transition:opacity.4s ease,-webkit-transform.45s cubic-bezier(.34,1.56,.64,1);-moz-transition:opacity.4s ease,-moz-transform.45s cubic-bezier(.34,1.56,.64,1);-o-transition:opacity.4s ease,-o-transform.45s cubic-bezier(.34,1.56,.64,1);transition:opacity.4s ease,-webkit-transform.45s cubic-bezier(.34,1.56,.64,1);transition:opacity.4s ease,-moz-transform.45s cubic-bezier(.34,1.56,.64,1);transition:opacity.4s ease,-o-transform.45s cubic-bezier(.34,1.56,.64,1);transition:opacity.4s ease,transform.45s cubic-bezier(.34,1.56,.64,1)}.grown.jsx-61cca3b3e60ff6c1 .cst-m-leaf.jsx-61cca3b3e60ff6c1{opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}@media(max-width:820px){.cst-tree.jsx-61cca3b3e60ff6c1{display:none}.cst-mobile.jsx-61cca3b3e60ff6c1{display:block}}@media(prefers-reduced-motion:reduce){.cst-trunk.jsx-61cca3b3e60ff6c1,.cst-branch.jsx-61cca3b3e60ff6c1,.cst-leaf.jsx-61cca3b3e60ff6c1,.cst-label.jsx-61cca3b3e60ff6c1,.cst-m-branch.jsx-61cca3b3e60ff6c1,.cst-m-leaf.jsx-61cca3b3e60ff6c1,.cst-ground.jsx-61cca3b3e60ff6c1,.cst-ambient.jsx-61cca3b3e60ff6c1{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;transition:none!important;-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}}"
+                id: "b7102f3b4e478a6b",
+                children: ".csc-wrap.jsx-b7102f3b4e478a6b{position:relative;width:100%}.csc-board.jsx-b7102f3b4e478a6b{position:relative;width:100%;max-width:1040px;margin:0 auto;aspect-ratio:1000/720}.csc-svg.jsx-b7102f3b4e478a6b{width:100%;height:100%;display:block;overflow:visible}.csc-ambient.jsx-b7102f3b4e478a6b{opacity:0;-webkit-transition:opacity 1.2s ease;-moz-transition:opacity 1.2s ease;-o-transition:opacity 1.2s ease;transition:opacity 1.2s ease}.on.jsx-b7102f3b4e478a6b .csc-ambient.jsx-b7102f3b4e478a6b{opacity:1}.csc-deco.jsx-b7102f3b4e478a6b,.csc-deco-pad.jsx-b7102f3b4e478a6b{opacity:0;-webkit-transition:opacity 1s ease.1s;-moz-transition:opacity 1s ease.1s;-o-transition:opacity 1s ease.1s;transition:opacity 1s ease.1s}.on.jsx-b7102f3b4e478a6b .csc-deco.jsx-b7102f3b4e478a6b,.on.jsx-b7102f3b4e478a6b .csc-deco-pad.jsx-b7102f3b4e478a6b{opacity:1}.csc-trace.jsx-b7102f3b4e478a6b{stroke-dasharray:620;stroke-dashoffset:620}.on.jsx-b7102f3b4e478a6b .csc-trace-0.jsx-b7102f3b4e478a6b{-webkit-transition:stroke-dashoffset 1.1s ease.15s;-moz-transition:stroke-dashoffset 1.1s ease.15s;-o-transition:stroke-dashoffset 1.1s ease.15s;transition:stroke-dashoffset 1.1s ease.15s;stroke-dashoffset:0}.on.jsx-b7102f3b4e478a6b .csc-trace-1.jsx-b7102f3b4e478a6b{-webkit-transition:stroke-dashoffset 1.1s ease.3s;-moz-transition:stroke-dashoffset 1.1s ease.3s;-o-transition:stroke-dashoffset 1.1s ease.3s;transition:stroke-dashoffset 1.1s ease.3s;stroke-dashoffset:0}.on.jsx-b7102f3b4e478a6b .csc-trace-2.jsx-b7102f3b4e478a6b{-webkit-transition:stroke-dashoffset 1.1s ease.45s;-moz-transition:stroke-dashoffset 1.1s ease.45s;-o-transition:stroke-dashoffset 1.1s ease.45s;transition:stroke-dashoffset 1.1s ease.45s;stroke-dashoffset:0}.on.jsx-b7102f3b4e478a6b .csc-trace-3.jsx-b7102f3b4e478a6b{-webkit-transition:stroke-dashoffset 1.1s ease.6s;-moz-transition:stroke-dashoffset 1.1s ease.6s;-o-transition:stroke-dashoffset 1.1s ease.6s;transition:stroke-dashoffset 1.1s ease.6s;stroke-dashoffset:0}.csc-chip.jsx-b7102f3b4e478a6b{opacity:.35;-webkit-transition:opacity.5s ease;-moz-transition:opacity.5s ease;-o-transition:opacity.5s ease;transition:opacity.5s ease}.on.jsx-b7102f3b4e478a6b .csc-chip.jsx-b7102f3b4e478a6b{opacity:1;-webkit-animation:chipPulse 3s ease-in-out 1.4s infinite;-moz-animation:chipPulse 3s ease-in-out 1.4s infinite;-o-animation:chipPulse 3s ease-in-out 1.4s infinite;animation:chipPulse 3s ease-in-out 1.4s infinite}@-webkit-keyframes chipPulse{0%,100%{-webkit-filter:drop-shadow(0 0 2px rgba(247,229,0,.4));filter:drop-shadow(0 0 2px rgba(247,229,0,.4))}50%{-webkit-filter:drop-shadow(0 0 8px rgba(247,229,0,.9));filter:drop-shadow(0 0 8px rgba(247,229,0,.9))}}@-moz-keyframes chipPulse{0%,100%{filter:drop-shadow(0 0 2px rgba(247,229,0,.4))}50%{filter:drop-shadow(0 0 8px rgba(247,229,0,.9))}}@-o-keyframes chipPulse{0%,100%{filter:drop-shadow(0 0 2px rgba(247,229,0,.4))}50%{filter:drop-shadow(0 0 8px rgba(247,229,0,.9))}}@keyframes chipPulse{0%,100%{-webkit-filter:drop-shadow(0 0 2px rgba(247,229,0,.4));filter:drop-shadow(0 0 2px rgba(247,229,0,.4))}50%{-webkit-filter:drop-shadow(0 0 8px rgba(247,229,0,.9));filter:drop-shadow(0 0 8px rgba(247,229,0,.9))}}.csc-node.jsx-b7102f3b4e478a6b{opacity:0;-webkit-transform:scale(0);-moz-transform:scale(0);-ms-transform:scale(0);-o-transform:scale(0);transform:scale(0);transform-box:fill-box;-webkit-transform-origin:center;-moz-transform-origin:center;-ms-transform-origin:center;-o-transform-origin:center;transform-origin:center}.on.jsx-b7102f3b4e478a6b .csc-node-0.jsx-b7102f3b4e478a6b{-webkit-transition:opacity.4s ease 1s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1s;-moz-transition:opacity.4s ease 1s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1s;-o-transition:opacity.4s ease 1s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1s;transition:opacity.4s ease 1s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1s;transition:opacity.4s ease 1s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1s;transition:opacity.4s ease 1s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1s;transition:opacity.4s ease 1s,transform.5s cubic-bezier(.34,1.56,.64,1)1s;opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.on.jsx-b7102f3b4e478a6b .csc-node-1.jsx-b7102f3b4e478a6b{-webkit-transition:opacity.4s ease 1.15s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;-moz-transition:opacity.4s ease 1.15s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;-o-transition:opacity.4s ease 1.15s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;transition:opacity.4s ease 1.15s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;transition:opacity.4s ease 1.15s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;transition:opacity.4s ease 1.15s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;transition:opacity.4s ease 1.15s,transform.5s cubic-bezier(.34,1.56,.64,1)1.15s;opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.on.jsx-b7102f3b4e478a6b .csc-node-2.jsx-b7102f3b4e478a6b{-webkit-transition:opacity.4s ease 1.3s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;-moz-transition:opacity.4s ease 1.3s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;-o-transition:opacity.4s ease 1.3s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;transition:opacity.4s ease 1.3s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;transition:opacity.4s ease 1.3s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;transition:opacity.4s ease 1.3s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;transition:opacity.4s ease 1.3s,transform.5s cubic-bezier(.34,1.56,.64,1)1.3s;opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.on.jsx-b7102f3b4e478a6b .csc-node-3.jsx-b7102f3b4e478a6b{-webkit-transition:opacity.4s ease 1.45s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;-moz-transition:opacity.4s ease 1.45s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;-o-transition:opacity.4s ease 1.45s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;transition:opacity.4s ease 1.45s,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;transition:opacity.4s ease 1.45s,-moz-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;transition:opacity.4s ease 1.45s,-o-transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;transition:opacity.4s ease 1.45s,transform.5s cubic-bezier(.34,1.56,.64,1)1.45s;opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.csc-node-core.jsx-b7102f3b4e478a6b{-webkit-animation:none;-moz-animation:none;-o-animation:none;animation:none}.on.jsx-b7102f3b4e478a6b .csc-node-core.jsx-b7102f3b4e478a6b{-webkit-animation:nodeGlow 2.4s ease-in-out infinite;-moz-animation:nodeGlow 2.4s ease-in-out infinite;-o-animation:nodeGlow 2.4s ease-in-out infinite;animation:nodeGlow 2.4s ease-in-out infinite}@-webkit-keyframes nodeGlow{0%,100%{opacity:.6}50%{opacity:1}}@-moz-keyframes nodeGlow{0%,100%{opacity:.6}50%{opacity:1}}@-o-keyframes nodeGlow{0%,100%{opacity:.6}50%{opacity:1}}@keyframes nodeGlow{0%,100%{opacity:.6}50%{opacity:1}}.csc-pulse.jsx-b7102f3b4e478a6b{opacity:0}.on.jsx-b7102f3b4e478a6b .csc-pulse.jsx-b7102f3b4e478a6b{opacity:1}.csc-data.jsx-b7102f3b4e478a6b{opacity:0}.on.jsx-b7102f3b4e478a6b .csc-data.jsx-b7102f3b4e478a6b{opacity:.9}.csc-cards.jsx-b7102f3b4e478a6b{position:absolute;inset:0;pointer-events:none}.csc-card.jsx-b7102f3b4e478a6b{position:absolute;pointer-events:auto;text-decoration:none;width:210px}.csc-card.center.jsx-b7102f3b4e478a6b{-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)}.csc-card.edge-left.jsx-b7102f3b4e478a6b{-webkit-transform:translateX(-22%);-moz-transform:translateX(-22%);-ms-transform:translateX(-22%);-o-transform:translateX(-22%);transform:translateX(-22%)}.csc-card.edge-right.jsx-b7102f3b4e478a6b{-webkit-transform:translateX(-78%);-moz-transform:translateX(-78%);-ms-transform:translateX(-78%);-o-transform:translateX(-78%);transform:translateX(-78%)}.csc-card-swing.jsx-b7102f3b4e478a6b{display:block;background:-webkit-linear-gradient(290deg,rgba(20,28,43,.82),rgba(10,16,27,.9));background:-moz-linear-gradient(290deg,rgba(20,28,43,.82),rgba(10,16,27,.9));background:-o-linear-gradient(290deg,rgba(20,28,43,.82),rgba(10,16,27,.9));background:linear-gradient(160deg,rgba(20,28,43,.82),rgba(10,16,27,.9));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(247,229,0,.38);-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:12px 14px;-webkit-box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 22px rgba(247,229,0,.06);-moz-box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 22px rgba(247,229,0,.06);box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 22px rgba(247,229,0,.06);-webkit-transform-origin:top center;-moz-transform-origin:top center;-ms-transform-origin:top center;-o-transform-origin:top center;transform-origin:top center;opacity:0;-webkit-transform:translateY(-18px)scale(.96);-moz-transform:translateY(-18px)scale(.96);-ms-transform:translateY(-18px)scale(.96);-o-transform:translateY(-18px)scale(.96);transform:translateY(-18px)scale(.96)}.csc-card.edge-left.jsx-b7102f3b4e478a6b .csc-card-swing.jsx-b7102f3b4e478a6b{-webkit-transform-origin:22%top;-moz-transform-origin:22%top;-ms-transform-origin:22%top;-o-transform-origin:22%top;transform-origin:22%top}.csc-card.edge-right.jsx-b7102f3b4e478a6b .csc-card-swing.jsx-b7102f3b4e478a6b{-webkit-transform-origin:78%top;-moz-transform-origin:78%top;-ms-transform-origin:78%top;-o-transform-origin:78%top;transform-origin:78%top}.on.jsx-b7102f3b4e478a6b .csc-card.jsx-b7102f3b4e478a6b .csc-card-swing.jsx-b7102f3b4e478a6b{opacity:1;-webkit-transform:translateY(0)scale(1);-moz-transform:translateY(0)scale(1);-ms-transform:translateY(0)scale(1);-o-transform:translateY(0)scale(1);transform:translateY(0)scale(1);-webkit-transition:opacity.5s ease var(--drop-delay),-webkit-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);-moz-transition:opacity.5s ease var(--drop-delay),-moz-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);-o-transition:opacity.5s ease var(--drop-delay),-o-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);transition:opacity.5s ease var(--drop-delay),-webkit-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);transition:opacity.5s ease var(--drop-delay),-moz-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);transition:opacity.5s ease var(--drop-delay),-o-transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);transition:opacity.5s ease var(--drop-delay),transform.7s cubic-bezier(.34,1.4,.5,1)var(--drop-delay);-webkit-animation:swing 5s ease-in-out infinite;-moz-animation:swing 5s ease-in-out infinite;-o-animation:swing 5s ease-in-out infinite;animation:swing 5s ease-in-out infinite;-webkit-animation-delay:-webkit-calc(var(--drop-delay) + .7s);-moz-animation-delay:-moz-calc(var(--drop-delay) + .7s);-o-animation-delay:calc(var(--drop-delay) + .7s);animation-delay:-webkit-calc(var(--drop-delay) + .7s);animation-delay:-moz-calc(var(--drop-delay) + .7s);animation-delay:calc(var(--drop-delay) + .7s)}@-webkit-keyframes swing{0%,100%{-webkit-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-webkit-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@-moz-keyframes swing{0%,100%{-moz-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-moz-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@-o-keyframes swing{0%,100%{-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@keyframes swing{0%,100%{-webkit-transform:rotate(-1.4deg);-moz-transform:rotate(-1.4deg);-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-webkit-transform:rotate(1.4deg);-moz-transform:rotate(1.4deg);-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}}.csc-card.jsx-b7102f3b4e478a6b:hover .csc-card-swing.jsx-b7102f3b4e478a6b{border-color:#f7e500;-webkit-box-shadow:0 16px 40px rgba(247,229,0,.22),inset 0 0 26px rgba(247,229,0,.12);-moz-box-shadow:0 16px 40px rgba(247,229,0,.22),inset 0 0 26px rgba(247,229,0,.12);box-shadow:0 16px 40px rgba(247,229,0,.22),inset 0 0 26px rgba(247,229,0,.12)}.csc-card-top.jsx-b7102f3b4e478a6b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:9px}.csc-card-ic.jsx-b7102f3b4e478a6b{width:20px;height:20px;color:#f7e500;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.csc-card-title.jsx-b7102f3b4e478a6b{color:#fff;font-weight:800;font-size:14px;line-height:1.15}.csc-card-tags.jsx-b7102f3b4e478a6b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:5px;margin-top:10px}.csc-tag.jsx-b7102f3b4e478a6b{font-size:10px;font-weight:600;color:#f7e500;background:rgba(247,229,0,.1);border:1px solid rgba(247,229,0,.28);padding:3px 8px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px}.csc-mobile.jsx-b7102f3b4e478a6b{display:none;position:relative;padding:10px 0 0 22px}.csc-spine.jsx-b7102f3b4e478a6b{position:absolute;left:22px;top:0;bottom:30px;width:2px;background:-webkit-linear-gradient(#f7e500,rgba(247,229,0,.2));background:-moz-linear-gradient(#f7e500,rgba(247,229,0,.2));background:-o-linear-gradient(#f7e500,rgba(247,229,0,.2));background:linear-gradient(#f7e500,rgba(247,229,0,.2))}.csc-m-card.jsx-b7102f3b4e478a6b{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;gap:0;text-decoration:none;margin-bottom:16px;opacity:0;-webkit-transform:translateX(18px);-moz-transform:translateX(18px);-ms-transform:translateX(18px);-o-transform:translateX(18px);transform:translateX(18px);-webkit-transition:opacity.5s ease,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1);-moz-transition:opacity.5s ease,-moz-transform.5s cubic-bezier(.34,1.56,.64,1);-o-transition:opacity.5s ease,-o-transform.5s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-webkit-transform.5s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-moz-transform.5s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,-o-transform.5s cubic-bezier(.34,1.56,.64,1);transition:opacity.5s ease,transform.5s cubic-bezier(.34,1.56,.64,1)}.on.jsx-b7102f3b4e478a6b .csc-m-card.jsx-b7102f3b4e478a6b{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}.csc-m-connector.jsx-b7102f3b4e478a6b{width:26px;height:2px;background:rgba(247,229,0,.5);margin-top:22px;margin-left:0}.csc-m-node.jsx-b7102f3b4e478a6b{position:absolute;left:-6px;top:18px;width:10px;height:10px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#f7e500;-webkit-box-shadow:0 0 8px rgba(247,229,0,.8);-moz-box-shadow:0 0 8px rgba(247,229,0,.8);box-shadow:0 0 8px rgba(247,229,0,.8)}.csc-m-body.jsx-b7102f3b4e478a6b{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;background:-webkit-linear-gradient(290deg,rgba(20,28,43,.85),rgba(10,16,27,.92));background:-moz-linear-gradient(290deg,rgba(20,28,43,.85),rgba(10,16,27,.92));background:-o-linear-gradient(290deg,rgba(20,28,43,.85),rgba(10,16,27,.92));background:linear-gradient(160deg,rgba(20,28,43,.85),rgba(10,16,27,.92));border:1px solid rgba(247,229,0,.35);-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:12px 14px}.csc-m-title.jsx-b7102f3b4e478a6b{display:block;color:#fff;font-weight:800;font-size:15px;margin-bottom:8px}.csc-m-tags.jsx-b7102f3b4e478a6b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:6px}.csc-m-tag.jsx-b7102f3b4e478a6b{font-size:11px;font-weight:700;color:#0a101b;background:-webkit-linear-gradient(315deg,#f7e500,#d8ab12);background:-moz-linear-gradient(315deg,#f7e500,#d8ab12);background:-o-linear-gradient(315deg,#f7e500,#d8ab12);background:linear-gradient(135deg,#f7e500,#d8ab12);padding:4px 10px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px}@media(max-width:900px){.csc-board.jsx-b7102f3b4e478a6b{display:none}.csc-mobile.jsx-b7102f3b4e478a6b{display:block}}@media(prefers-reduced-motion:reduce){.csc-trace.jsx-b7102f3b4e478a6b,.csc-node.jsx-b7102f3b4e478a6b,.csc-card-swing.jsx-b7102f3b4e478a6b,.csc-m-card.jsx-b7102f3b4e478a6b,.csc-deco.jsx-b7102f3b4e478a6b,.csc-deco-pad.jsx-b7102f3b4e478a6b,.csc-ambient.jsx-b7102f3b4e478a6b{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;transition:none!important}.csc-chip.jsx-b7102f3b4e478a6b,.csc-node-core.jsx-b7102f3b4e478a6b,.on.jsx-b7102f3b4e478a6b .csc-card.jsx-b7102f3b4e478a6b .csc-card-swing.jsx-b7102f3b4e478a6b{-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}.csc-trace.jsx-b7102f3b4e478a6b{stroke-dashoffset:0!important}.csc-card-swing.jsx-b7102f3b4e478a6b{opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important;transform:none!important}}"
             })
         ]
     });
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoreSolutionsTree);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoreSolutionsCircuit);
 
 
 /***/ }),
@@ -1134,7 +1283,7 @@ const Home = (props)=>{
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                             className: "jsx-838b1a87f6f26fd3" + " " + "section-subtitle",
-                                            children: "Three specialized divisions plus a full hardware lineup — watch our capabilities branch out."
+                                            children: "Four connected divisions powering your business — watch the board come alive."
                                         })
                                     ]
                                 }),

@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
-import CoreSolutionsTree from '../components/CoreSolutionsTree'
+import CoreSolutionsCircuit from '../components/CoreSolutionsTree'
 
 const fallbackProductImage = 'https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500'
 
@@ -258,9 +258,9 @@ const Home = (props) => {
             <div className="services-header">
               <span className="core-tree-eyebrow">What We Offer</span>
               <h2 className="section-title">Core IT Solutions</h2>
-              <p className="section-subtitle">Three specialized divisions plus a full hardware lineup — watch our capabilities branch out.</p>
+              <p className="section-subtitle">Four connected divisions powering your business — watch the board come alive.</p>
             </div>
-            <CoreSolutionsTree />
+            <CoreSolutionsCircuit />
           </div>
         </section>
 
