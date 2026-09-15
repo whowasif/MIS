@@ -254,14 +254,7 @@ const Home = (props) => {
         </section>
 
         <section className="services-grid-section core-tree-section" id="core-services">
-          <div className="services-container">
-            <div className="services-header">
-              <span className="core-tree-eyebrow">What We Offer</span>
-              <h2 className="section-title">Core IT Solutions</h2>
-              <p className="section-subtitle">Four divisions, every capability on the board — explore what we offer.</p>
-            </div>
-            <CoreSolutionsSignposts />
-          </div>
+          <CoreSolutionsSignposts />
         </section>
 
         <section className="stats-section">

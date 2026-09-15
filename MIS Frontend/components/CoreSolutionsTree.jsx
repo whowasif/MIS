@@ -2,249 +2,273 @@ import React, { useEffect, useRef, useState } from 'react'
 
 /*
  * CoreSolutionsSignposts
- * Four rustic wooden sign-posts standing in a row. Each post has a header
- * board (the division) mounted at top, and beneath it the sub-services hang
- * as wooden planks — each tied to the one above by two ropes, forming a
- * vertical hanging chain (per the client's drawing).
- *
- * On scroll into view: header boards settle, then each plank drops and swings
- * down its chain (staggered). Idle: gentle rope sway.
- *
- * Pure CSS/SVG wood + rope. No images. Respects prefers-reduced-motion.
+ * Adapted from a Framer design: four hanging wooden signboard installations
+ * scattered around a centered title. Each install = a wooden post + crossbeam,
+ * a header board hanging by ropes, and a vertical chain of plank sub-services.
+ * On scroll in: boards drop in, then gently swing like pendulums (per-plank
+ * stagger). Pure CSS + IntersectionObserver (no framer-motion dependency).
+ * Respects prefers-reduced-motion.
  */
 
-const COLUMNS = [
+const GROUPS = [
   {
     key: 'digital',
     title: 'Digital Services',
     href: '/digital-services',
+    x: '0%', y: '2%', scale: 0.92, rotate: -3, dir: -1,
     leaves: ['Web Development', 'Custom Software', 'Mobile Apps', 'AI Solutions', 'Cyber Security', 'E-Commerce'],
   },
   {
     key: 'corporate',
     title: 'Business & Corporate',
     href: '/enterprise-solutions',
+    x: '17%', y: '34%', scale: 0.8, rotate: 2, dir: 1,
     leaves: ['IT Equipments', 'Security System', 'Office Equipments', 'Networking', 'Server Setup', 'Power Solution'],
   },
   {
     key: 'maintenance',
     title: 'Maintenance & Support',
     href: '/maintenance-support',
+    x: '65%', y: '34%', scale: 0.8, rotate: 2, dir: 1,
     leaves: ['AMC Contracts', 'On-call Repair', 'Installation', 'Troubleshooting', 'Remote Solution'],
   },
   {
     key: 'procurement',
     title: 'Procurement Service',
     href: '/product-catalog',
+    x: '82%', y: '2%', scale: 0.92, rotate: -2, dir: -1,
     leaves: ['Hardware Sourcing', 'Bulk Supply', 'Corporate Deals', 'Vendor Management', 'Licensing', 'Fast Delivery'],
   },
 ]
 
-// small SVG for a pair of ropes connecting two boards
-const RopePair = () => (
-  <span className="cs-rope" aria-hidden="true">
-    <svg viewBox="0 0 60 26" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="ropeG" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#d8b26a" />
-          <stop offset="50%" stopColor="#b8894a" />
-          <stop offset="100%" stopColor="#d8b26a" />
-        </linearGradient>
-      </defs>
-      {/* left rope (slight sag) */}
-      <path d="M10,1 C7,10 7,16 10,25" fill="none" stroke="url(#ropeG)" strokeWidth="3" strokeLinecap="round" />
-      {/* right rope */}
-      <path d="M50,1 C53,10 53,16 50,25" fill="none" stroke="url(#ropeG)" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  </span>
-)
+const SignAssembly = ({ group, index, mobile }) => {
+  const dirClass = group.dir === 1 ? 'pos' : 'neg'
+  return (
+    <div className="sa" style={{ '--gi': index }}>
+      {/* post + crossbeam */}
+      <span className="sa-post" aria-hidden="true" />
+      <span className="sa-beam" aria-hidden="true" />
+
+      {/* header board drops from the beam */}
+      <a href={group.href} className="sa-drop sa-headwrap" style={{ '--delay': `${index * 0.12}s` }}>
+        <span className={`sa-swing sa-swing-head ${dirClass}`}>
+          <span className="sa-rope sa-rope-l" />
+          <span className="sa-rope sa-rope-r" />
+          <span className="sa-board sa-header">{group.title}</span>
+        </span>
+      </a>
+
+      {/* hanging planks */}
+      <div className="sa-planks">
+        {group.leaves.map((leaf, li) => (
+          <a
+            key={leaf}
+            href={group.href}
+            className="sa-drop sa-plankwrap"
+            style={{ '--delay': `${index * 0.12 + (li + 1) * 0.13}s` }}
+          >
+            <span className={`sa-swing sa-swing-plank ${li % 2 === 0 ? 'pos' : 'neg'}`} style={{ '--sd': `${li * 0.09}s`, '--dur': `${4.6 + li * 0.25}s` }}>
+              <span className="sa-rope sa-rope-l small" />
+              <span className="sa-rope sa-rope-r small" />
+              <span className="sa-board sa-plank">{leaf}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const CoreSolutionsSignposts = () => {
-  const wrapRef = useRef(null)
+  const ref = useRef(null)
   const [on, setOn] = useState(false)
 
   useEffect(() => {
-    const el = wrapRef.current
+    const el = ref.current
     if (!el) return
     const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduce) { setOn(true); return }
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { setOn(true); obs.disconnect() } })
-    }, { threshold: 0.18 })
+    }, { threshold: 0.15 })
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
 
   return (
-    <div className={`cs-wrap ${on ? 'on' : ''}`} ref={wrapRef}>
-      <div className="cs-row">
-        {COLUMNS.map((col, ci) => (
-          <div className="cs-col" key={col.key}>
-            {/* wooden post behind the column */}
-            <span className="cs-post" aria-hidden="true" />
-            {/* top cross-beam the header hangs from */}
-            <span className="cs-beam" aria-hidden="true" />
-
-            {/* header board */}
-            <span className="cs-rope cs-rope-head" aria-hidden="true">
-              <svg viewBox="0 0 120 22" preserveAspectRatio="none">
-                <path d="M28,1 C25,9 25,14 28,21" fill="none" stroke="#c99a54" strokeWidth="3.2" strokeLinecap="round" />
-                <path d="M92,1 C95,9 95,14 92,21" fill="none" stroke="#c99a54" strokeWidth="3.2" strokeLinecap="round" />
-              </svg>
-            </span>
-
-            <a
-              href={col.href}
-              className="cs-board cs-header"
-              style={{ '--i': 0, '--delay': `${ci * 0.12}s` }}
-            >
-              <span className="cs-board-face">
-                <span className="cs-header-title">{col.title}</span>
-              </span>
-            </a>
-
-            {/* hanging sub-service planks */}
-            {col.leaves.map((leaf, li) => (
-              <React.Fragment key={leaf}>
-                <RopePair />
-                <a
-                  href={col.href}
-                  className="cs-board cs-plank"
-                  style={{ '--i': li + 1, '--delay': `${ci * 0.12 + (li + 1) * 0.14}s` }}
-                >
-                  <span className="cs-board-face">
-                    <span className="cs-plank-text">{leaf}</span>
-                  </span>
-                </a>
-              </React.Fragment>
-            ))}
+    <div className={`csx ${on ? 'on' : ''}`} ref={ref}>
+      {/* desktop scattered scene */}
+      <div className="csx-scene">
+        {GROUPS.map((g, i) => (
+          <div
+            key={g.key}
+            data-group={g.key}
+            className="csx-group"
+            style={{ left: g.x, top: g.y, transform: `scale(${g.scale}) rotate(${g.rotate}deg)` }}
+          >
+            <SignAssembly group={g} index={i} />
           </div>
+        ))}
+
+        {/* centered title, overlaid in the middle of the scene */}
+        <div className="csx-center">
+          <span className="csx-eyebrow">What We Offer</span>
+          <h2 className="csx-title">Core IT Solutions</h2>
+          <p className="csx-sub">Four divisions, every capability on the board — explore what we offer.</p>
+        </div>
+      </div>
+
+      {/* mobile stacked scene */}
+      <div className="csx-mobile">
+        <div className="csx-center csx-center-m">
+          <span className="csx-eyebrow">What We Offer</span>
+          <h2 className="csx-title">Core IT Solutions</h2>
+          <p className="csx-sub">Four divisions, every capability on the board — explore what we offer.</p>
+        </div>
+        {GROUPS.map((g, i) => (
+          <div key={`m-${g.key}`} className="csx-mgroup"><SignAssembly group={g} index={i} mobile /></div>
         ))}
       </div>
 
       <style jsx>{`
-        .cs-wrap { width: 100%; padding: 8px 0 10px; }
-        .cs-row {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 22px;
-          max-width: 1080px;
-          margin: 0 auto;
-          align-items: start;
-        }
-        .cs-col { position: relative; display: flex; flex-direction: column; align-items: center; padding-top: 14px; }
+        .csx { position: relative; width: 100%; }
 
-        /* wooden post standing behind each column */
-        .cs-post {
-          position: absolute; top: 0; bottom: 26px; left: 50%; transform: translateX(-50%);
-          width: 16px; border-radius: 4px;
+        /* ----- desktop scattered scene ----- */
+        .csx-scene { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; height: 780px; }
+        .csx-group { position: absolute; transform-origin: top center; }
+
+        /* centered title overlay */
+        .csx-center {
+          position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+          width: min(560px, 42%); text-align: center; z-index: 3; pointer-events: none;
+        }
+        .csx-eyebrow { display: inline-block; color: #f7e500; font-weight: 800; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+        .csx-title { margin: 0; color: #fff; font-size: clamp(30px, 4vw, 46px); font-weight: 900; line-height: 1.05; text-shadow: 0 0 26px rgba(247,229,0,0.25); }
+        .csx-sub { margin: 14px auto 0; max-width: 42ch; color: #b9c1cf; font-size: 15px; line-height: 1.5; }
+        .csx-center-m { position: static; transform: none; width: 100%; margin-bottom: 8px; }
+
+        /* one sign installation */
+        .sa { position: relative; width: 200px; }
+
+        .sa-post {
+          position: absolute; left: 50%; transform: translateX(-50%); top: 0; width: 16px; height: 240px;
+          border-radius: 8px;
           background:
-            linear-gradient(90deg, rgba(0,0,0,0.35), rgba(255,255,255,0.08) 35%, rgba(0,0,0,0.3)),
-            linear-gradient(180deg, #6b4a29, #4d3418);
-          box-shadow: 0 0 0 1px rgba(0,0,0,0.3), 2px 0 6px rgba(0,0,0,0.4);
+            linear-gradient(90deg, rgba(0,0,0,0.4), rgba(255,255,255,0.10) 40%, rgba(0,0,0,0.35)),
+            repeating-linear-gradient(180deg, rgba(0,0,0,0.10) 0 3px, transparent 3px 11px),
+            linear-gradient(180deg, #7a5330, #513718);
+          box-shadow: inset 0 0 8px rgba(0,0,0,0.4), 2px 0 6px rgba(0,0,0,0.35);
           z-index: 0;
         }
-        .cs-post::after { /* grain */
-          content: ''; position: absolute; inset: 0; border-radius: 4px;
-          background: repeating-linear-gradient(180deg, rgba(0,0,0,0.12) 0 2px, transparent 2px 9px);
-          opacity: .5;
-        }
-        /* top cross-beam */
-        .cs-beam {
-          position: relative; z-index: 1;
-          width: 82%; height: 16px; border-radius: 5px;
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.14), rgba(0,0,0,0.28)),
-            linear-gradient(90deg, #7a5330, #6b4a29);
-          box-shadow: 0 3px 8px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
-          margin-bottom: -2px;
-        }
-
-        /* rope connectors */
-        .cs-rope { position: relative; z-index: 1; width: 100%; height: 22px; display: block; }
-        .cs-rope svg { width: 100%; height: 100%; overflow: visible; }
-        .cs-rope-head { height: 20px; }
-
-        /* boards (wood cards) */
-        .cs-board {
-          position: relative; z-index: 2;
-          width: 100%; text-decoration: none; display: block;
-          transform-origin: top center;
-          opacity: 0;
-          transform: translateY(-22px) rotate(0deg);
-        }
-        .cs-board-face {
-          position: relative;
-          display: block;
+        .sa-beam {
+          position: absolute; left: 50%; transform: translateX(-50%); top: 40px; width: 178px; height: 15px;
           border-radius: 8px;
-          padding: 10px 12px;
-          text-align: center;
           background:
-            linear-gradient(180deg, rgba(255,255,255,0.10), rgba(0,0,0,0.18)),
-            repeating-linear-gradient(90deg, #7a5836 0 14px, #6f4f30 14px 28px);
-          border: 1px solid #3f2c17;
-          box-shadow: 0 6px 16px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -2px 4px rgba(0,0,0,0.3);
+            linear-gradient(180deg, rgba(255,255,255,0.16), rgba(0,0,0,0.3)),
+            repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0 6px, transparent 6px 16px),
+            linear-gradient(90deg, #86633c, #6b4a29);
+          box-shadow: 0 5px 10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.18);
+          z-index: 1;
         }
-        /* iron rivets on the corners */
-        .cs-board-face::before, .cs-board-face::after {
-          content: ''; position: absolute; top: 6px; width: 5px; height: 5px; border-radius: 50%;
-          background: radial-gradient(circle at 35% 30%, #c7ced6, #5b636c);
-          box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
-        }
-        .cs-board-face::before { left: 8px; }
-        .cs-board-face::after { right: 8px; }
 
-        .cs-header .cs-board-face {
+        /* drop-in wrapper (settles from above) */
+        .sa-drop {
+          position: relative; z-index: 2; display: block; text-decoration: none;
+          opacity: 0; transform: translateY(-16px);
+        }
+        .sa-headwrap { margin-top: 54px; }
+        .sa-plankwrap { margin-top: 22px; }
+        .on .sa-drop {
+          opacity: 1; transform: translateY(0);
+          transition: opacity .45s ease var(--delay), transform .8s cubic-bezier(.22,1,.36,1) var(--delay);
+        }
+
+        /* swing wrapper (pendulum around the top center) */
+        .sa-swing {
+          position: relative; display: block; width: 150px; margin: 0 auto;
+          transform-origin: 50% -10px; /* pivot at the beam / rope top */
+        }
+        .sa-swing-plank { width: 132px; }
+        .on .sa-swing {
+          animation: swingPos var(--dur, 5s) ease-in-out infinite;
+          animation-delay: calc(var(--delay) + .8s + var(--sd, 0s));
+        }
+        .on .sa-swing.neg { animation-name: swingNeg; }
+        .on .sa-swing-head { animation-duration: 5.4s; }
+
+        @keyframes swingPos {
+          0%, 100% { transform: rotate(1.4deg); }
+          50% { transform: rotate(-1.4deg); }
+        }
+        @keyframes swingNeg {
+          0%, 100% { transform: rotate(-1.4deg); }
+          50% { transform: rotate(1.4deg); }
+        }
+
+        /* ropes */
+        .sa-rope {
+          position: absolute; top: -20px; width: 4px; height: 22px; border-radius: 99px;
+          background: linear-gradient(180deg, #e4d29a, #9b7c45);
+          box-shadow: 0 1px 2px rgba(0,0,0,0.35);
+          z-index: 3;
+        }
+        .sa-rope.small { height: 16px; top: -14px; width: 3px; }
+        .sa-rope-l { left: 26px; }
+        .sa-rope-r { right: 26px; }
+        .sa-swing-plank .sa-rope-l { left: 22px; }
+        .sa-swing-plank .sa-rope-r { right: 22px; }
+
+        /* boards */
+        .sa-board {
+          position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
+          border-radius: 9px;
           background:
-            linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.2)),
-            repeating-linear-gradient(90deg, #86633c 0 16px, #78562f 16px 32px);
-          border: 2px solid #f7e500;
-          box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 18px rgba(247,229,0,0.18), inset 0 1px 0 rgba(255,255,255,0.15);
-          padding: 13px 12px;
+            linear-gradient(180deg, rgba(255,255,255,0.14), rgba(0,0,0,0.22)),
+            repeating-linear-gradient(11deg, rgba(255,255,255,0.06) 0 2px, rgba(0,0,0,0.05) 2px 4px),
+            linear-gradient(120deg, #8a5a2b, #6e4521 50%, #553515);
+          box-shadow: 0 9px 18px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -3px 6px rgba(0,0,0,0.3);
         }
-        .cs-header-title { color: #fff; font-weight: 900; font-size: 15px; line-height: 1.2; text-shadow: 0 1px 2px rgba(0,0,0,0.6); letter-spacing: 0.2px; }
-        .cs-plank-text { color: #f8ecd0; font-weight: 700; font-size: 12.5px; text-shadow: 0 1px 2px rgba(0,0,0,0.55); }
-
-        .cs-board:hover .cs-board-face { filter: brightness(1.08); box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 20px rgba(247,229,0,0.28); }
-
-        /* ---- ON: drop + settle each board (translate on the anchor) ---- */
-        .on .cs-board {
-          opacity: 1;
-          transform: translateY(0);
-          transition: opacity .45s ease var(--delay), transform .75s cubic-bezier(.34,1.5,.5,1) var(--delay);
+        /* iron rivets */
+        .sa-board::before, .sa-board::after {
+          content: ''; position: absolute; top: 7px; width: 5px; height: 5px; border-radius: 50%;
+          background: radial-gradient(circle at 35% 30%, #cfd6de, #5b636c); box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
         }
-        /* idle sway lives on the inner face so it doesn't fight the drop transform */
-        .on .cs-board-face {
-          animation: cs-sway 5s ease-in-out infinite;
-          animation-delay: calc(var(--delay) + .75s);
-          transform-origin: top center;
-        }
-        .on .cs-board:nth-child(4n+1) .cs-board-face { animation-name: cs-sway-alt; }
+        .sa-board::before { left: 8px; } .sa-board::after { right: 8px; }
 
-        @keyframes cs-sway {
-          0%, 100% { transform: rotate(-1deg); }
-          50% { transform: rotate(1deg); }
+        .sa-header {
+          height: 62px; padding: 6px 10px;
+          color: #fff; font-weight: 800; font-size: 14px; line-height: 1.15;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+          border: 2px solid rgba(247,229,0,0.85);
+          box-shadow: 0 10px 22px rgba(0,0,0,0.5), 0 0 18px rgba(247,229,0,0.18), inset 0 1px 0 rgba(255,255,255,0.15);
         }
-        @keyframes cs-sway-alt {
-          0%, 100% { transform: rotate(1deg); }
-          50% { transform: rotate(-1deg); }
+        .sa-plank {
+          height: 40px; padding: 4px 8px;
+          color: #f6ead0; font-weight: 700; font-size: 11.5px; letter-spacing: 0.02em;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.55);
+          border: 1px solid rgba(247,229,0,0.4);
         }
+        .sa-drop:hover .sa-board { filter: brightness(1.08); box-shadow: 0 12px 26px rgba(0,0,0,0.5), 0 0 20px rgba(247,229,0,0.3); }
 
-        /* ropes fade in with the board above them */
-        .cs-rope { opacity: 0; }
-        .on .cs-rope { opacity: 1; transition: opacity .4s ease; }
+        /* ----- mobile ----- */
+        .csx-mobile { display: none; flex-direction: column; align-items: center; gap: 30px; }
+        .csx-mgroup { transform: scale(0.9); }
 
-        /* ---- responsive ---- */
+        @media (max-width: 1199px) {
+          .csx-scene { height: 760px; }
+          .csx-group[data-group='digital'] { left: 0% !important; top: 8% !important; transform: scale(.86) rotate(-2deg) !important; }
+          .csx-group[data-group='corporate'] { left: 4% !important; top: 54% !important; transform: scale(.8) rotate(1deg) !important; }
+          .csx-group[data-group='maintenance'] { left: 70% !important; top: 8% !important; transform: scale(.86) rotate(2deg) !important; }
+          .csx-group[data-group='procurement'] { left: 72% !important; top: 56% !important; transform: scale(.8) rotate(-1deg) !important; }
+        }
         @media (max-width: 900px) {
-          .cs-row { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-        }
-        @media (max-width: 520px) {
-          .cs-row { grid-template-columns: 1fr; gap: 16px; max-width: 320px; }
+          .csx-scene { display: none; }
+          .csx-mobile { display: flex; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .cs-board { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
-          .cs-rope { opacity: 1 !important; }
+          .sa-drop { opacity: 1 !important; transform: none !important; transition: none !important; }
+          .on .sa-swing { animation: none !important; }
         }
       `}</style>
     </div>

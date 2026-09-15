@@ -22,20 +22,22 @@ exports.modules = {
 
 /*
  * CoreSolutionsSignposts
- * Four rustic wooden sign-posts standing in a row. Each post has a header
- * board (the division) mounted at top, and beneath it the sub-services hang
- * as wooden planks — each tied to the one above by two ropes, forming a
- * vertical hanging chain (per the client's drawing).
- *
- * On scroll into view: header boards settle, then each plank drops and swings
- * down its chain (staggered). Idle: gentle rope sway.
- *
- * Pure CSS/SVG wood + rope. No images. Respects prefers-reduced-motion.
- */ const COLUMNS = [
+ * Adapted from a Framer design: four hanging wooden signboard installations
+ * scattered around a centered title. Each install = a wooden post + crossbeam,
+ * a header board hanging by ropes, and a vertical chain of plank sub-services.
+ * On scroll in: boards drop in, then gently swing like pendulums (per-plank
+ * stagger). Pure CSS + IntersectionObserver (no framer-motion dependency).
+ * Respects prefers-reduced-motion.
+ */ const GROUPS = [
     {
         key: "digital",
         title: "Digital Services",
         href: "/digital-services",
+        x: "0%",
+        y: "2%",
+        scale: 0.92,
+        rotate: -3,
+        dir: -1,
         leaves: [
             "Web Development",
             "Custom Software",
@@ -49,6 +51,11 @@ exports.modules = {
         key: "corporate",
         title: "Business & Corporate",
         href: "/enterprise-solutions",
+        x: "17%",
+        y: "34%",
+        scale: 0.8,
+        rotate: 2,
+        dir: 1,
         leaves: [
             "IT Equipments",
             "Security System",
@@ -62,6 +69,11 @@ exports.modules = {
         key: "maintenance",
         title: "Maintenance & Support",
         href: "/maintenance-support",
+        x: "65%",
+        y: "34%",
+        scale: 0.8,
+        rotate: 2,
+        dir: 1,
         leaves: [
             "AMC Contracts",
             "On-call Repair",
@@ -74,6 +86,11 @@ exports.modules = {
         key: "procurement",
         title: "Procurement Service",
         href: "/product-catalog",
+        x: "82%",
+        y: "2%",
+        scale: 0.92,
+        rotate: -2,
+        dir: -1,
         leaves: [
             "Hardware Sourcing",
             "Bulk Supply",
@@ -84,59 +101,81 @@ exports.modules = {
         ]
     }, 
 ];
-// small SVG for a pair of ropes connecting two boards
-const RopePair = ()=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-        className: "cs-rope",
-        "aria-hidden": "true",
-        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            viewBox: "0 0 60 26",
-            preserveAspectRatio: "none",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("defs", {
-                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", {
-                        id: "ropeG",
-                        x1: "0",
-                        y1: "0",
-                        x2: "0",
-                        y2: "1",
-                        children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                offset: "0%",
-                                stopColor: "#d8b26a"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                offset: "50%",
-                                stopColor: "#b8894a"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("stop", {
-                                offset: "100%",
-                                stopColor: "#d8b26a"
-                            })
-                        ]
-                    })
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M10,1 C7,10 7,16 10,25",
-                    fill: "none",
-                    stroke: "url(#ropeG)",
-                    strokeWidth: "3",
-                    strokeLinecap: "round"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M50,1 C53,10 53,16 50,25",
-                    fill: "none",
-                    stroke: "url(#ropeG)",
-                    strokeWidth: "3",
-                    strokeLinecap: "round"
+const SignAssembly = ({ group , index , mobile  })=>{
+    const dirClass = group.dir === 1 ? "pos" : "neg";
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "sa",
+        style: {
+            "--gi": index
+        },
+        children: [
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                className: "sa-post",
+                "aria-hidden": "true"
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                className: "sa-beam",
+                "aria-hidden": "true"
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                href: group.href,
+                className: "sa-drop sa-headwrap",
+                style: {
+                    "--delay": `${index * 0.12}s`
+                },
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                    className: `sa-swing sa-swing-head ${dirClass}`,
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            className: "sa-rope sa-rope-l"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            className: "sa-rope sa-rope-r"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            className: "sa-board sa-header",
+                            children: group.title
+                        })
+                    ]
                 })
-            ]
-        })
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: "sa-planks",
+                children: group.leaves.map((leaf, li)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                        href: group.href,
+                        className: "sa-drop sa-plankwrap",
+                        style: {
+                            "--delay": `${index * 0.12 + (li + 1) * 0.13}s`
+                        },
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                            className: `sa-swing sa-swing-plank ${li % 2 === 0 ? "pos" : "neg"}`,
+                            style: {
+                                "--sd": `${li * 0.09}s`,
+                                "--dur": `${4.6 + li * 0.25}s`
+                            },
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "sa-rope sa-rope-l small"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "sa-rope sa-rope-r small"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "sa-board sa-plank",
+                                    children: leaf
+                                })
+                            ]
+                        })
+                    }, leaf))
+            })
+        ]
     });
+};
 const CoreSolutionsSignposts = ()=>{
-    const wrapRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+    const ref = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const { 0: on , 1: setOn  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        const el = wrapRef.current;
+        const el = ref.current;
         if (!el) return;
         const reduce =  false && 0;
         if (reduce) {
@@ -151,96 +190,83 @@ const CoreSolutionsSignposts = ()=>{
                 }
             });
         }, {
-            threshold: 0.18
+            threshold: 0.15
         });
         obs.observe(el);
         return ()=>obs.disconnect();
     }, []);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        ref: wrapRef,
-        className: "jsx-3d775d6f2c16690f" + " " + `cs-wrap ${on ? "on" : ""}`,
+        ref: ref,
+        className: "jsx-3a69433632ac6e1d" + " " + `csx ${on ? "on" : ""}`,
         children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "jsx-3d775d6f2c16690f" + " " + "cs-row",
-                children: COLUMNS.map((col, ci)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-3d775d6f2c16690f" + " " + "cs-col",
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "jsx-3a69433632ac6e1d" + " " + "csx-scene",
+                children: [
+                    GROUPS.map((g, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            "data-group": g.key,
+                            style: {
+                                left: g.x,
+                                top: g.y,
+                                transform: `scale(${g.scale}) rotate(${g.rotate}deg)`
+                            },
+                            className: "jsx-3a69433632ac6e1d" + " " + "csx-group",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(SignAssembly, {
+                                group: g,
+                                index: i
+                            })
+                        }, g.key)),
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        className: "jsx-3a69433632ac6e1d" + " " + "csx-center",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                "aria-hidden": "true",
-                                className: "jsx-3d775d6f2c16690f" + " " + "cs-post"
+                                className: "jsx-3a69433632ac6e1d" + " " + "csx-eyebrow",
+                                children: "What We Offer"
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                "aria-hidden": "true",
-                                className: "jsx-3d775d6f2c16690f" + " " + "cs-beam"
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                className: "jsx-3a69433632ac6e1d" + " " + "csx-title",
+                                children: "Core IT Solutions"
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                "aria-hidden": "true",
-                                className: "jsx-3d775d6f2c16690f" + " " + "cs-rope cs-rope-head",
-                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-                                    viewBox: "0 0 120 22",
-                                    preserveAspectRatio: "none",
-                                    className: "jsx-3d775d6f2c16690f",
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                            d: "M28,1 C25,9 25,14 28,21",
-                                            fill: "none",
-                                            stroke: "#c99a54",
-                                            strokeWidth: "3.2",
-                                            strokeLinecap: "round",
-                                            className: "jsx-3d775d6f2c16690f"
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                            d: "M92,1 C95,9 95,14 92,21",
-                                            fill: "none",
-                                            stroke: "#c99a54",
-                                            strokeWidth: "3.2",
-                                            strokeLinecap: "round",
-                                            className: "jsx-3d775d6f2c16690f"
-                                        })
-                                    ]
-                                })
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                href: col.href,
-                                style: {
-                                    "--i": 0,
-                                    "--delay": `${ci * 0.12}s`
-                                },
-                                className: "jsx-3d775d6f2c16690f" + " " + "cs-board cs-header",
-                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "jsx-3d775d6f2c16690f" + " " + "cs-board-face",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                        className: "jsx-3d775d6f2c16690f" + " " + "cs-header-title",
-                                        children: col.title
-                                    })
-                                })
-                            }),
-                            col.leaves.map((leaf, li)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), {
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(RopePair, {}),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                            href: col.href,
-                                            style: {
-                                                "--i": li + 1,
-                                                "--delay": `${ci * 0.12 + (li + 1) * 0.14}s`
-                                            },
-                                            className: "jsx-3d775d6f2c16690f" + " " + "cs-board cs-plank",
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-3d775d6f2c16690f" + " " + "cs-board-face",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-3d775d6f2c16690f" + " " + "cs-plank-text",
-                                                    children: leaf
-                                                })
-                                            })
-                                        })
-                                    ]
-                                }, leaf))
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                className: "jsx-3a69433632ac6e1d" + " " + "csx-sub",
+                                children: "Four divisions, every capability on the board — explore what we offer."
+                            })
                         ]
-                    }, col.key))
+                    })
+                ]
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "jsx-3a69433632ac6e1d" + " " + "csx-mobile",
+                children: [
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        className: "jsx-3a69433632ac6e1d" + " " + "csx-center csx-center-m",
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                className: "jsx-3a69433632ac6e1d" + " " + "csx-eyebrow",
+                                children: "What We Offer"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                className: "jsx-3a69433632ac6e1d" + " " + "csx-title",
+                                children: "Core IT Solutions"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                className: "jsx-3a69433632ac6e1d" + " " + "csx-sub",
+                                children: "Four divisions, every capability on the board — explore what we offer."
+                            })
+                        ]
+                    }),
+                    GROUPS.map((g, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "jsx-3a69433632ac6e1d" + " " + "csx-mgroup",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(SignAssembly, {
+                                group: g,
+                                index: i,
+                                mobile: true
+                            })
+                        }, `m-${g.key}`))
+                ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "3d775d6f2c16690f",
-                children: '.cs-wrap.jsx-3d775d6f2c16690f{width:100%;padding:8px 0 10px}.cs-row.jsx-3d775d6f2c16690f{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1080px;margin:0 auto;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start}.cs-col.jsx-3d775d6f2c16690f{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding-top:14px}.cs-post.jsx-3d775d6f2c16690f{position:absolute;top:0;bottom:26px;left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%);width:16px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:-webkit-linear-gradient(left,rgba(0,0,0,.35),rgba(255,255,255,.08)35%,rgba(0,0,0,.3)),-webkit-linear-gradient(top,#6b4a29,#4d3418);background:-moz-linear-gradient(left,rgba(0,0,0,.35),rgba(255,255,255,.08)35%,rgba(0,0,0,.3)),-moz-linear-gradient(top,#6b4a29,#4d3418);background:-o-linear-gradient(left,rgba(0,0,0,.35),rgba(255,255,255,.08)35%,rgba(0,0,0,.3)),-o-linear-gradient(top,#6b4a29,#4d3418);background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.08)35%,rgba(0,0,0,.3)),linear-gradient(180deg,#6b4a29,#4d3418);-webkit-box-shadow:0 0 0 1px rgba(0,0,0,.3),2px 0 6px rgba(0,0,0,.4);-moz-box-shadow:0 0 0 1px rgba(0,0,0,.3),2px 0 6px rgba(0,0,0,.4);box-shadow:0 0 0 1px rgba(0,0,0,.3),2px 0 6px rgba(0,0,0,.4);z-index:0}.cs-post.jsx-3d775d6f2c16690f::after{content:"";position:absolute;inset:0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:-webkit-repeating-linear-gradient(top,rgba(0,0,0,.12)0 2px,transparent 2px 9px);background:-moz-repeating-linear-gradient(top,rgba(0,0,0,.12)0 2px,transparent 2px 9px);background:-o-repeating-linear-gradient(top,rgba(0,0,0,.12)0 2px,transparent 2px 9px);background:repeating-linear-gradient(180deg,rgba(0,0,0,.12)0 2px,transparent 2px 9px);opacity:.5}.cs-beam.jsx-3d775d6f2c16690f{position:relative;z-index:1;width:82%;height:16px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;background:-webkit-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.28)),-webkit-linear-gradient(left,#7a5330,#6b4a29);background:-moz-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.28)),-moz-linear-gradient(left,#7a5330,#6b4a29);background:-o-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.28)),-o-linear-gradient(left,#7a5330,#6b4a29);background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(0,0,0,.28)),linear-gradient(90deg,#7a5330,#6b4a29);-webkit-box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.15);-moz-box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.15);box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.15);margin-bottom:-2px}.cs-rope.jsx-3d775d6f2c16690f{position:relative;z-index:1;width:100%;height:22px;display:block}.cs-rope.jsx-3d775d6f2c16690f svg.jsx-3d775d6f2c16690f{width:100%;height:100%;overflow:visible}.cs-rope-head.jsx-3d775d6f2c16690f{height:20px}.cs-board.jsx-3d775d6f2c16690f{position:relative;z-index:2;width:100%;text-decoration:none;display:block;-webkit-transform-origin:top center;-moz-transform-origin:top center;-ms-transform-origin:top center;-o-transform-origin:top center;transform-origin:top center;opacity:0;-webkit-transform:translateY(-22px)rotate(0deg);-moz-transform:translateY(-22px)rotate(0deg);-ms-transform:translateY(-22px)rotate(0deg);-o-transform:translateY(-22px)rotate(0deg);transform:translateY(-22px)rotate(0deg)}.cs-board-face.jsx-3d775d6f2c16690f{position:relative;display:block;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:10px 12px;text-align:center;background:-webkit-linear-gradient(top,rgba(255,255,255,.1),rgba(0,0,0,.18)),-webkit-repeating-linear-gradient(left,#7a5836 0 14px,#6f4f30 14px 28px);background:-moz-linear-gradient(top,rgba(255,255,255,.1),rgba(0,0,0,.18)),-moz-repeating-linear-gradient(left,#7a5836 0 14px,#6f4f30 14px 28px);background:-o-linear-gradient(top,rgba(255,255,255,.1),rgba(0,0,0,.18)),-o-repeating-linear-gradient(left,#7a5836 0 14px,#6f4f30 14px 28px);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(0,0,0,.18)),repeating-linear-gradient(90deg,#7a5836 0 14px,#6f4f30 14px 28px);border:1px solid#3f2c17;-webkit-box-shadow:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -2px 4px rgba(0,0,0,.3);-moz-box-shadow:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -2px 4px rgba(0,0,0,.3);box-shadow:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -2px 4px rgba(0,0,0,.3)}.cs-board-face.jsx-3d775d6f2c16690f::before,.cs-board-face.jsx-3d775d6f2c16690f::after{content:"";position:absolute;top:6px;width:5px;height:5px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:-webkit-radial-gradient(35%30%,circle,#c7ced6,#5b636c);background:-moz-radial-gradient(35%30%,circle,#c7ced6,#5b636c);background:-o-radial-gradient(35%30%,circle,#c7ced6,#5b636c);background:radial-gradient(circle at 35%30%,#c7ced6,#5b636c);-webkit-box-shadow:0 0 0 1px rgba(0,0,0,.4);-moz-box-shadow:0 0 0 1px rgba(0,0,0,.4);box-shadow:0 0 0 1px rgba(0,0,0,.4)}.cs-board-face.jsx-3d775d6f2c16690f::before{left:8px}.cs-board-face.jsx-3d775d6f2c16690f::after{right:8px}.cs-header.jsx-3d775d6f2c16690f .cs-board-face.jsx-3d775d6f2c16690f{background:-webkit-linear-gradient(top,rgba(255,255,255,.12),rgba(0,0,0,.2)),-webkit-repeating-linear-gradient(left,#86633c 0 16px,#78562f 16px 32px);background:-moz-linear-gradient(top,rgba(255,255,255,.12),rgba(0,0,0,.2)),-moz-repeating-linear-gradient(left,#86633c 0 16px,#78562f 16px 32px);background:-o-linear-gradient(top,rgba(255,255,255,.12),rgba(0,0,0,.2)),-o-repeating-linear-gradient(left,#86633c 0 16px,#78562f 16px 32px);background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(0,0,0,.2)),repeating-linear-gradient(90deg,#86633c 0 16px,#78562f 16px 32px);border:2px solid#f7e500;-webkit-box-shadow:0 8px 20px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);-moz-box-shadow:0 8px 20px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);box-shadow:0 8px 20px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);padding:13px 12px}.cs-header-title.jsx-3d775d6f2c16690f{color:#fff;font-weight:900;font-size:15px;line-height:1.2;text-shadow:0 1px 2px rgba(0,0,0,.6);letter-spacing:.2px}.cs-plank-text.jsx-3d775d6f2c16690f{color:#f8ecd0;font-weight:700;font-size:12.5px;text-shadow:0 1px 2px rgba(0,0,0,.55)}.cs-board.jsx-3d775d6f2c16690f:hover .cs-board-face.jsx-3d775d6f2c16690f{-webkit-filter:brightness(1.08);filter:brightness(1.08);-webkit-box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.28);-moz-box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.28);box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.28)}.on.jsx-3d775d6f2c16690f .cs-board.jsx-3d775d6f2c16690f{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0);-webkit-transition:opacity.45s ease var(--delay),-webkit-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);-moz-transition:opacity.45s ease var(--delay),-moz-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);-o-transition:opacity.45s ease var(--delay),-o-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);transition:opacity.45s ease var(--delay),-webkit-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);transition:opacity.45s ease var(--delay),-moz-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);transition:opacity.45s ease var(--delay),-o-transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay);transition:opacity.45s ease var(--delay),transform.75s cubic-bezier(.34,1.5,.5,1)var(--delay)}.on.jsx-3d775d6f2c16690f .cs-board-face.jsx-3d775d6f2c16690f{-webkit-animation:cs-sway 5s ease-in-out infinite;-moz-animation:cs-sway 5s ease-in-out infinite;-o-animation:cs-sway 5s ease-in-out infinite;animation:cs-sway 5s ease-in-out infinite;-webkit-animation-delay:-webkit-calc(var(--delay) + .75s);-moz-animation-delay:-moz-calc(var(--delay) + .75s);-o-animation-delay:calc(var(--delay) + .75s);animation-delay:-webkit-calc(var(--delay) + .75s);animation-delay:-moz-calc(var(--delay) + .75s);animation-delay:calc(var(--delay) + .75s);-webkit-transform-origin:top center;-moz-transform-origin:top center;-ms-transform-origin:top center;-o-transform-origin:top center;transform-origin:top center}.on.jsx-3d775d6f2c16690f .cs-board.jsx-3d775d6f2c16690f:nth-child(4n+1) .cs-board-face.jsx-3d775d6f2c16690f{-webkit-animation-name:cs-sway-alt;-moz-animation-name:cs-sway-alt;-o-animation-name:cs-sway-alt;animation-name:cs-sway-alt}@-webkit-keyframes cs-sway{0%,100%{-webkit-transform:rotate(-1deg);transform:rotate(-1deg)}50%{-webkit-transform:rotate(1deg);transform:rotate(1deg)}}@-moz-keyframes cs-sway{0%,100%{-moz-transform:rotate(-1deg);transform:rotate(-1deg)}50%{-moz-transform:rotate(1deg);transform:rotate(1deg)}}@-o-keyframes cs-sway{0%,100%{-o-transform:rotate(-1deg);transform:rotate(-1deg)}50%{-o-transform:rotate(1deg);transform:rotate(1deg)}}@keyframes cs-sway{0%,100%{-webkit-transform:rotate(-1deg);-moz-transform:rotate(-1deg);-o-transform:rotate(-1deg);transform:rotate(-1deg)}50%{-webkit-transform:rotate(1deg);-moz-transform:rotate(1deg);-o-transform:rotate(1deg);transform:rotate(1deg)}}@-webkit-keyframes cs-sway-alt{0%,100%{-webkit-transform:rotate(1deg);transform:rotate(1deg)}50%{-webkit-transform:rotate(-1deg);transform:rotate(-1deg)}}@-moz-keyframes cs-sway-alt{0%,100%{-moz-transform:rotate(1deg);transform:rotate(1deg)}50%{-moz-transform:rotate(-1deg);transform:rotate(-1deg)}}@-o-keyframes cs-sway-alt{0%,100%{-o-transform:rotate(1deg);transform:rotate(1deg)}50%{-o-transform:rotate(-1deg);transform:rotate(-1deg)}}@keyframes cs-sway-alt{0%,100%{-webkit-transform:rotate(1deg);-moz-transform:rotate(1deg);-o-transform:rotate(1deg);transform:rotate(1deg)}50%{-webkit-transform:rotate(-1deg);-moz-transform:rotate(-1deg);-o-transform:rotate(-1deg);transform:rotate(-1deg)}}.cs-rope.jsx-3d775d6f2c16690f{opacity:0}.on.jsx-3d775d6f2c16690f .cs-rope.jsx-3d775d6f2c16690f{opacity:1;-webkit-transition:opacity.4s ease;-moz-transition:opacity.4s ease;-o-transition:opacity.4s ease;transition:opacity.4s ease}@media(max-width:900px){.cs-row.jsx-3d775d6f2c16690f{grid-template-columns:repeat(2,1fr);gap:18px}}@media(max-width:520px){.cs-row.jsx-3d775d6f2c16690f{grid-template-columns:1fr;gap:16px;max-width:320px}}@media(prefers-reduced-motion:reduce){.cs-board.jsx-3d775d6f2c16690f{opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important;transform:none!important;-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;transition:none!important;-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}.cs-rope.jsx-3d775d6f2c16690f{opacity:1!important}}'
+                id: "3a69433632ac6e1d",
+                children: '.csx.jsx-3a69433632ac6e1d{position:relative;width:100%}.csx-scene.jsx-3a69433632ac6e1d{position:relative;width:100%;max-width:1200px;margin:0 auto;height:780px}.csx-group.jsx-3a69433632ac6e1d{position:absolute;-webkit-transform-origin:top center;-moz-transform-origin:top center;-ms-transform-origin:top center;-o-transform-origin:top center;transform-origin:top center}.csx-center.jsx-3a69433632ac6e1d{position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:min(560px,42%);text-align:center;z-index:3;pointer-events:none}.csx-eyebrow.jsx-3a69433632ac6e1d{display:inline-block;color:#f7e500;font-weight:800;font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}.csx-title.jsx-3a69433632ac6e1d{margin:0;color:#fff;font-size:clamp(30px,4vw,46px);font-weight:900;line-height:1.05;text-shadow:0 0 26px rgba(247,229,0,.25)}.csx-sub.jsx-3a69433632ac6e1d{margin:14px auto 0;max-width:42ch;color:#b9c1cf;font-size:15px;line-height:1.5}.csx-center-m.jsx-3a69433632ac6e1d{position:static;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;width:100%;margin-bottom:8px}.sa.jsx-3a69433632ac6e1d{position:relative;width:200px}.sa-post.jsx-3a69433632ac6e1d{position:absolute;left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%);top:0;width:16px;height:240px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:-webkit-linear-gradient(left,rgba(0,0,0,.4),rgba(255,255,255,.1)40%,rgba(0,0,0,.35)),-webkit-repeating-linear-gradient(top,rgba(0,0,0,.1)0 3px,transparent 3px 11px),-webkit-linear-gradient(top,#7a5330,#513718);background:-moz-linear-gradient(left,rgba(0,0,0,.4),rgba(255,255,255,.1)40%,rgba(0,0,0,.35)),-moz-repeating-linear-gradient(top,rgba(0,0,0,.1)0 3px,transparent 3px 11px),-moz-linear-gradient(top,#7a5330,#513718);background:-o-linear-gradient(left,rgba(0,0,0,.4),rgba(255,255,255,.1)40%,rgba(0,0,0,.35)),-o-repeating-linear-gradient(top,rgba(0,0,0,.1)0 3px,transparent 3px 11px),-o-linear-gradient(top,#7a5330,#513718);background:linear-gradient(90deg,rgba(0,0,0,.4),rgba(255,255,255,.1)40%,rgba(0,0,0,.35)),repeating-linear-gradient(180deg,rgba(0,0,0,.1)0 3px,transparent 3px 11px),linear-gradient(180deg,#7a5330,#513718);-webkit-box-shadow:inset 0 0 8px rgba(0,0,0,.4),2px 0 6px rgba(0,0,0,.35);-moz-box-shadow:inset 0 0 8px rgba(0,0,0,.4),2px 0 6px rgba(0,0,0,.35);box-shadow:inset 0 0 8px rgba(0,0,0,.4),2px 0 6px rgba(0,0,0,.35);z-index:0}.sa-beam.jsx-3a69433632ac6e1d{position:absolute;left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%);top:40px;width:178px;height:15px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:-webkit-linear-gradient(top,rgba(255,255,255,.16),rgba(0,0,0,.3)),-webkit-repeating-linear-gradient(left,rgba(0,0,0,.08)0 6px,transparent 6px 16px),-webkit-linear-gradient(left,#86633c,#6b4a29);background:-moz-linear-gradient(top,rgba(255,255,255,.16),rgba(0,0,0,.3)),-moz-repeating-linear-gradient(left,rgba(0,0,0,.08)0 6px,transparent 6px 16px),-moz-linear-gradient(left,#86633c,#6b4a29);background:-o-linear-gradient(top,rgba(255,255,255,.16),rgba(0,0,0,.3)),-o-repeating-linear-gradient(left,rgba(0,0,0,.08)0 6px,transparent 6px 16px),-o-linear-gradient(left,#86633c,#6b4a29);background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(0,0,0,.3)),repeating-linear-gradient(90deg,rgba(0,0,0,.08)0 6px,transparent 6px 16px),linear-gradient(90deg,#86633c,#6b4a29);-webkit-box-shadow:0 5px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.18);-moz-box-shadow:0 5px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.18);box-shadow:0 5px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.18);z-index:1}.sa-drop.jsx-3a69433632ac6e1d{position:relative;z-index:2;display:block;text-decoration:none;opacity:0;-webkit-transform:translateY(-16px);-moz-transform:translateY(-16px);-ms-transform:translateY(-16px);-o-transform:translateY(-16px);transform:translateY(-16px)}.sa-headwrap.jsx-3a69433632ac6e1d{margin-top:54px}.sa-plankwrap.jsx-3a69433632ac6e1d{margin-top:22px}.on.jsx-3a69433632ac6e1d .sa-drop.jsx-3a69433632ac6e1d{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0);-webkit-transition:opacity.45s ease var(--delay),-webkit-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);-moz-transition:opacity.45s ease var(--delay),-moz-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);-o-transition:opacity.45s ease var(--delay),-o-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);transition:opacity.45s ease var(--delay),-webkit-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);transition:opacity.45s ease var(--delay),-moz-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);transition:opacity.45s ease var(--delay),-o-transform.8s cubic-bezier(.22,1,.36,1)var(--delay);transition:opacity.45s ease var(--delay),transform.8s cubic-bezier(.22,1,.36,1)var(--delay)}.sa-swing.jsx-3a69433632ac6e1d{position:relative;display:block;width:150px;margin:0 auto;-webkit-transform-origin:50%-10px;-moz-transform-origin:50%-10px;-ms-transform-origin:50%-10px;-o-transform-origin:50%-10px;transform-origin:50%-10px}.sa-swing-plank.jsx-3a69433632ac6e1d{width:132px}.on.jsx-3a69433632ac6e1d .sa-swing.jsx-3a69433632ac6e1d{-webkit-animation:swingPos var(--dur,5s)ease-in-out infinite;-moz-animation:swingPos var(--dur,5s)ease-in-out infinite;-o-animation:swingPos var(--dur,5s)ease-in-out infinite;animation:swingPos var(--dur,5s)ease-in-out infinite;-webkit-animation-delay:-webkit-calc(var(--delay) + .8s + var(--sd,0s));-moz-animation-delay:-moz-calc(var(--delay) + .8s + var(--sd,0s));-o-animation-delay:calc(var(--delay) + .8s + var(--sd,0s));animation-delay:-webkit-calc(var(--delay) + .8s + var(--sd,0s));animation-delay:-moz-calc(var(--delay) + .8s + var(--sd,0s));animation-delay:calc(var(--delay) + .8s + var(--sd,0s))}.on.jsx-3a69433632ac6e1d .sa-swing.neg.jsx-3a69433632ac6e1d{-webkit-animation-name:swingNeg;-moz-animation-name:swingNeg;-o-animation-name:swingNeg;animation-name:swingNeg}.on.jsx-3a69433632ac6e1d .sa-swing-head.jsx-3a69433632ac6e1d{-webkit-animation-duration:5.4s;-moz-animation-duration:5.4s;-o-animation-duration:5.4s;animation-duration:5.4s}@-webkit-keyframes swingPos{0%,100%{-webkit-transform:rotate(1.4deg);transform:rotate(1.4deg)}50%{-webkit-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}}@-moz-keyframes swingPos{0%,100%{-moz-transform:rotate(1.4deg);transform:rotate(1.4deg)}50%{-moz-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}}@-o-keyframes swingPos{0%,100%{-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}50%{-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}}@keyframes swingPos{0%,100%{-webkit-transform:rotate(1.4deg);-moz-transform:rotate(1.4deg);-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}50%{-webkit-transform:rotate(-1.4deg);-moz-transform:rotate(-1.4deg);-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}}@-webkit-keyframes swingNeg{0%,100%{-webkit-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-webkit-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@-moz-keyframes swingNeg{0%,100%{-moz-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-moz-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@-o-keyframes swingNeg{0%,100%{-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}}@keyframes swingNeg{0%,100%{-webkit-transform:rotate(-1.4deg);-moz-transform:rotate(-1.4deg);-o-transform:rotate(-1.4deg);transform:rotate(-1.4deg)}50%{-webkit-transform:rotate(1.4deg);-moz-transform:rotate(1.4deg);-o-transform:rotate(1.4deg);transform:rotate(1.4deg)}}.sa-rope.jsx-3a69433632ac6e1d{position:absolute;top:-20px;width:4px;height:22px;-webkit-border-radius:99px;-moz-border-radius:99px;border-radius:99px;background:-webkit-linear-gradient(top,#e4d29a,#9b7c45);background:-moz-linear-gradient(top,#e4d29a,#9b7c45);background:-o-linear-gradient(top,#e4d29a,#9b7c45);background:linear-gradient(180deg,#e4d29a,#9b7c45);-webkit-box-shadow:0 1px 2px rgba(0,0,0,.35);-moz-box-shadow:0 1px 2px rgba(0,0,0,.35);box-shadow:0 1px 2px rgba(0,0,0,.35);z-index:3}.sa-rope.small.jsx-3a69433632ac6e1d{height:16px;top:-14px;width:3px}.sa-rope-l.jsx-3a69433632ac6e1d{left:26px}.sa-rope-r.jsx-3a69433632ac6e1d{right:26px}.sa-swing-plank.jsx-3a69433632ac6e1d .sa-rope-l.jsx-3a69433632ac6e1d{left:22px}.sa-swing-plank.jsx-3a69433632ac6e1d .sa-rope-r.jsx-3a69433632ac6e1d{right:22px}.sa-board.jsx-3a69433632ac6e1d{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center;-webkit-border-radius:9px;-moz-border-radius:9px;border-radius:9px;background:-webkit-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.22)),-webkit-repeating-linear-gradient(79deg,rgba(255,255,255,.06)0 2px,rgba(0,0,0,.05)2px 4px),-webkit-linear-gradient(330deg,#8a5a2b,#6e4521 50%,#553515);background:-moz-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.22)),-moz-repeating-linear-gradient(79deg,rgba(255,255,255,.06)0 2px,rgba(0,0,0,.05)2px 4px),-moz-linear-gradient(330deg,#8a5a2b,#6e4521 50%,#553515);background:-o-linear-gradient(top,rgba(255,255,255,.14),rgba(0,0,0,.22)),-o-repeating-linear-gradient(79deg,rgba(255,255,255,.06)0 2px,rgba(0,0,0,.05)2px 4px),-o-linear-gradient(330deg,#8a5a2b,#6e4521 50%,#553515);background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(0,0,0,.22)),repeating-linear-gradient(11deg,rgba(255,255,255,.06)0 2px,rgba(0,0,0,.05)2px 4px),linear-gradient(120deg,#8a5a2b,#6e4521 50%,#553515);-webkit-box-shadow:0 9px 18px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -3px 6px rgba(0,0,0,.3);-moz-box-shadow:0 9px 18px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -3px 6px rgba(0,0,0,.3);box-shadow:0 9px 18px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -3px 6px rgba(0,0,0,.3)}.sa-board.jsx-3a69433632ac6e1d::before,.sa-board.jsx-3a69433632ac6e1d::after{content:"";position:absolute;top:7px;width:5px;height:5px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:-webkit-radial-gradient(35%30%,circle,#cfd6de,#5b636c);background:-moz-radial-gradient(35%30%,circle,#cfd6de,#5b636c);background:-o-radial-gradient(35%30%,circle,#cfd6de,#5b636c);background:radial-gradient(circle at 35%30%,#cfd6de,#5b636c);-webkit-box-shadow:0 0 0 1px rgba(0,0,0,.4);-moz-box-shadow:0 0 0 1px rgba(0,0,0,.4);box-shadow:0 0 0 1px rgba(0,0,0,.4)}.sa-board.jsx-3a69433632ac6e1d::before{left:8px}.sa-board.jsx-3a69433632ac6e1d::after{right:8px}.sa-header.jsx-3a69433632ac6e1d{height:62px;padding:6px 10px;color:#fff;font-weight:800;font-size:14px;line-height:1.15;text-shadow:0 1px 2px rgba(0,0,0,.6);border:2px solid rgba(247,229,0,.85);-webkit-box-shadow:0 10px 22px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);-moz-box-shadow:0 10px 22px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15);box-shadow:0 10px 22px rgba(0,0,0,.5),0 0 18px rgba(247,229,0,.18),inset 0 1px 0 rgba(255,255,255,.15)}.sa-plank.jsx-3a69433632ac6e1d{height:40px;padding:4px 8px;color:#f6ead0;font-weight:700;font-size:11.5px;letter-spacing:.02em;text-shadow:0 1px 2px rgba(0,0,0,.55);border:1px solid rgba(247,229,0,.4)}.sa-drop.jsx-3a69433632ac6e1d:hover .sa-board.jsx-3a69433632ac6e1d{-webkit-filter:brightness(1.08);filter:brightness(1.08);-webkit-box-shadow:0 12px 26px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.3);-moz-box-shadow:0 12px 26px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.3);box-shadow:0 12px 26px rgba(0,0,0,.5),0 0 20px rgba(247,229,0,.3)}.csx-mobile.jsx-3a69433632ac6e1d{display:none;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:30px}.csx-mgroup.jsx-3a69433632ac6e1d{-webkit-transform:scale(.9);-moz-transform:scale(.9);-ms-transform:scale(.9);-o-transform:scale(.9);transform:scale(.9)}@media(max-width:1199px){.csx-scene.jsx-3a69433632ac6e1d{height:760px}.csx-group[data-group="digital"].jsx-3a69433632ac6e1d{left:0%!important;top:8%!important;-webkit-transform:scale(.86)rotate(-2deg)!important;-moz-transform:scale(.86)rotate(-2deg)!important;-ms-transform:scale(.86)rotate(-2deg)!important;-o-transform:scale(.86)rotate(-2deg)!important;transform:scale(.86)rotate(-2deg)!important}.csx-group[data-group="corporate"].jsx-3a69433632ac6e1d{left:4%!important;top:54%!important;-webkit-transform:scale(.8)rotate(1deg)!important;-moz-transform:scale(.8)rotate(1deg)!important;-ms-transform:scale(.8)rotate(1deg)!important;-o-transform:scale(.8)rotate(1deg)!important;transform:scale(.8)rotate(1deg)!important}.csx-group[data-group="maintenance"].jsx-3a69433632ac6e1d{left:70%!important;top:8%!important;-webkit-transform:scale(.86)rotate(2deg)!important;-moz-transform:scale(.86)rotate(2deg)!important;-ms-transform:scale(.86)rotate(2deg)!important;-o-transform:scale(.86)rotate(2deg)!important;transform:scale(.86)rotate(2deg)!important}.csx-group[data-group="procurement"].jsx-3a69433632ac6e1d{left:72%!important;top:56%!important;-webkit-transform:scale(.8)rotate(-1deg)!important;-moz-transform:scale(.8)rotate(-1deg)!important;-ms-transform:scale(.8)rotate(-1deg)!important;-o-transform:scale(.8)rotate(-1deg)!important;transform:scale(.8)rotate(-1deg)!important}}@media(max-width:900px){.csx-scene.jsx-3a69433632ac6e1d{display:none}.csx-mobile.jsx-3a69433632ac6e1d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}}@media(prefers-reduced-motion:reduce){.sa-drop.jsx-3a69433632ac6e1d{opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important;transform:none!important;-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;transition:none!important}.on.jsx-3a69433632ac6e1d .sa-swing.jsx-3a69433632ac6e1d{-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}}'
             })
         ]
     });
@@ -904,29 +930,7 @@ const Home = (props)=>{
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         id: "core-services",
                         className: "jsx-838b1a87f6f26fd3" + " " + "services-grid-section core-tree-section",
-                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-838b1a87f6f26fd3" + " " + "services-container",
-                            children: [
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-838b1a87f6f26fd3" + " " + "services-header",
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "core-tree-eyebrow",
-                                            children: "What We Offer"
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "section-title",
-                                            children: "Core IT Solutions"
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "section-subtitle",
-                                            children: "Four divisions, every capability on the board — explore what we offer."
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {})
-                            ]
-                        })
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {})
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         className: "jsx-838b1a87f6f26fd3" + " " + "stats-section",
