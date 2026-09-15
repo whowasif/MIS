@@ -895,12 +895,18 @@ const setupDraggableAutoScroll = (rail)=>{
             e.stopPropagation();
         }
     };
+    // On desktop, mouse-dragging over an <img>/<a> starts the browser's native
+    // drag-and-drop, which steals the pointer and breaks our drag. Suppress it.
+    const onDragStart = (e)=>{
+        e.preventDefault();
+    };
     rail.addEventListener("pointerdown", onPointerDown);
     rail.addEventListener("pointermove", onPointerMove);
     rail.addEventListener("pointerup", endDrag);
     rail.addEventListener("pointercancel", endDrag);
     rail.addEventListener("pointerleave", endDrag);
     rail.addEventListener("click", onClick, true);
+    rail.addEventListener("dragstart", onDragStart);
     pos = rail.scrollLeft || 0;
     rafId = requestAnimationFrame(step);
     return ()=>{
@@ -911,6 +917,7 @@ const setupDraggableAutoScroll = (rail)=>{
         rail.removeEventListener("pointercancel", endDrag);
         rail.removeEventListener("pointerleave", endDrag);
         rail.removeEventListener("click", onClick, true);
+        rail.removeEventListener("dragstart", onDragStart);
     };
 };
 const Home = (props)=>{
@@ -1476,13 +1483,6 @@ const Home = (props)=>{
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "case-title",
                                                                 children: project.name
                                                             }),
-                                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                                className: "jsx-838b1a87f6f26fd3" + " " + "section-content",
-                                                                children: [
-                                                                    project.description?.substring(0, 120),
-                                                                    project.description?.length > 120 ? "..." : ""
-                                                                ]
-                                                            }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "btn-link",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
@@ -1514,10 +1514,6 @@ const Home = (props)=>{
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "case-title",
                                                                 children: "Global Finance Data Center"
                                                             }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-838b1a87f6f26fd3" + " " + "section-content",
-                                                                children: "Complete tier-3 data center setup including networking, security, and redundant power."
-                                                            }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "btn-link",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
@@ -1547,10 +1543,6 @@ const Home = (props)=>{
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "case-title",
                                                                 children: "City Mall Security Overhaul"
                                                             }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-838b1a87f6f26fd3" + " " + "section-content",
-                                                                children: "Advanced CCTV and access control across 50,000 sq. ft. of retail space."
-                                                            }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "btn-link",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
@@ -1579,10 +1571,6 @@ const Home = (props)=>{
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "case-title",
                                                                 children: "EduTech Digital Platform"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-838b1a87f6f26fd3" + " " + "section-content",
-                                                                children: "Custom web application and cloud hosting for a national learning initiative."
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "jsx-838b1a87f6f26fd3" + " " + "btn-link",

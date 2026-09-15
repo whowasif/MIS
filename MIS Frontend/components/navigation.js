@@ -76,6 +76,9 @@ const Navigation = () => {
   const [cartCount, setCartCount] = useState(0)
   const [socialLinks, setSocialLinks] = useState(defaultSocialLinks)
   const [categories, setCategories] = useState([])
+  const [openSubmenu, setOpenSubmenu] = useState(null)
+
+  const toggleSubmenu = (key) => setOpenSubmenu((prev) => (prev === key ? null : key))
 
   // Load categories for the nav bar
   useEffect(() => {
@@ -196,7 +199,10 @@ const Navigation = () => {
     }
   }, [])
 
-  const closeMenu = () => setIsMenuOpen(false)
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+    setOpenSubmenu(null)
+  }
 
   const handleMenuNavigation = (href) => {
     closeMenu()
@@ -453,17 +459,28 @@ const Navigation = () => {
                 const hasChildren = item.children && item.children.length > 0
 
                 if (isProducts && categories.length > 0) {
+                  const isOpen = openSubmenu === 'Products'
                   return (
                     <li key={item.href} className="menu-nav-hover-parent">
-                      <button
-                        type="button"
-                        className="menu-nav-link menu-nav-link-btn"
-                        onClick={() => handleMenuNavigation('/categories')}
-                      >
-                        <span>Products</span>
-                        <span className="menu-nav-chevron">›</span>
-                      </button>
-                      <div className="menu-nav-hover-children">
+                      <div className="menu-nav-parent-row">
+                        <button
+                          type="button"
+                          className="menu-nav-link menu-nav-link-btn"
+                          onClick={() => handleMenuNavigation('/categories')}
+                        >
+                          <span>Products</span>
+                        </button>
+                        <button
+                          type="button"
+                          className={`menu-nav-chevron-btn ${isOpen ? 'is-open' : ''}`}
+                          aria-label={isOpen ? 'Collapse Products submenu' : 'Expand Products submenu'}
+                          aria-expanded={isOpen}
+                          onClick={() => toggleSubmenu('Products')}
+                        >
+                          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                        </button>
+                      </div>
+                      <div className={`menu-nav-hover-children ${isOpen ? 'is-open' : ''}`}>
                         {categories.filter((c) => !c.parent_id).map((cat) => (
                           <button key={cat.id} type="button" className="menu-nav-sub-link" onClick={() => handleMenuNavigation(`/categories/${cat.slug}`)}>{cat.name}</button>
                         ))}
@@ -473,17 +490,28 @@ const Navigation = () => {
                 }
 
                 if (hasChildren) {
+                  const isOpen = openSubmenu === item.label
                   return (
                     <li key={item.href} className="menu-nav-hover-parent">
-                      <button
-                        type="button"
-                        className="menu-nav-link menu-nav-link-btn"
-                        onClick={() => handleMenuNavigation(item.href)}
-                      >
-                        <span>{item.label}</span>
-                        <span className="menu-nav-chevron">›</span>
-                      </button>
-                      <div className="menu-nav-hover-children">
+                      <div className="menu-nav-parent-row">
+                        <button
+                          type="button"
+                          className="menu-nav-link menu-nav-link-btn"
+                          onClick={() => handleMenuNavigation(item.href)}
+                        >
+                          <span>{item.label}</span>
+                        </button>
+                        <button
+                          type="button"
+                          className={`menu-nav-chevron-btn ${isOpen ? 'is-open' : ''}`}
+                          aria-label={isOpen ? `Collapse ${item.label} submenu` : `Expand ${item.label} submenu`}
+                          aria-expanded={isOpen}
+                          onClick={() => toggleSubmenu(item.label)}
+                        >
+                          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                        </button>
+                      </div>
+                      <div className={`menu-nav-hover-children ${isOpen ? 'is-open' : ''}`}>
                         {item.children.map((child) => (
                           <button key={child.href} type="button" className="menu-nav-sub-link" onClick={() => handleMenuNavigation(child.href)}>{child.label}</button>
                         ))}
@@ -851,7 +879,6 @@ const Navigation = () => {
         .menu-nav-products-dropdown { margin: 0; }
         .menu-nav-products-dropdown > summary { display: flex; justify-content: space-between; }
         .menu-nav-products-dropdown > summary::-webkit-details-marker { display: none; }
-        .menu-nav-chevron { font-size: 16px; opacity: 0.5; transition: transform 0.2s; }
         details[open] > summary > .menu-nav-chevron { transform: rotate(90deg); }
 
         .menu-nav-sub-list {
@@ -896,8 +923,39 @@ const Navigation = () => {
         }
         .menu-nav-sub-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
 
-        /* Hover dropdown for Core IT Solutions */
+        /* Click-toggle dropdown for Products / Core IT Solutions */
         .menu-nav-hover-parent { position: relative; }
+        .menu-nav-parent-row {
+          display: flex;
+          align-items: center;
+          width: 100%;
+        }
+        .menu-nav-parent-row .menu-nav-link-btn {
+          flex: 1 1 auto;
+          min-width: 0;
+        }
+        .menu-nav-chevron-btn {
+          flex: 0 0 auto;
+          margin-left: auto;
+          width: 36px;
+          height: 36px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border: 0;
+          border-radius: 6px;
+          background: transparent;
+          color: #f3f3f3;
+          cursor: pointer;
+          transition: transform 0.22s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+        .menu-nav-chevron-btn:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: var(--color-primary);
+        }
+        .menu-nav-chevron-btn.is-open {
+          transform: rotate(90deg);
+        }
         .menu-nav-hover-children {
           display: none;
           padding: 4px 0 8px 12px;
@@ -906,8 +964,7 @@ const Navigation = () => {
           margin-top: 2px;
           flex-direction: column;
         }
-        .menu-nav-hover-parent:hover .menu-nav-hover-children,
-        .menu-nav-hover-parent:focus-within .menu-nav-hover-children {
+        .menu-nav-hover-children.is-open {
           display: flex;
         }
 

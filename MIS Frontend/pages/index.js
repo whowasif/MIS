@@ -105,6 +105,9 @@ const setupDraggableAutoScroll = (rail) => {
   const onClick = (e) => {
     if (hasMoved) { e.preventDefault(); e.stopPropagation() }
   }
+  // On desktop, mouse-dragging over an <img>/<a> starts the browser's native
+  // drag-and-drop, which steals the pointer and breaks our drag. Suppress it.
+  const onDragStart = (e) => { e.preventDefault() }
 
   rail.addEventListener('pointerdown', onPointerDown)
   rail.addEventListener('pointermove', onPointerMove)
@@ -112,6 +115,7 @@ const setupDraggableAutoScroll = (rail) => {
   rail.addEventListener('pointercancel', endDrag)
   rail.addEventListener('pointerleave', endDrag)
   rail.addEventListener('click', onClick, true)
+  rail.addEventListener('dragstart', onDragStart)
   pos = rail.scrollLeft || 0
   rafId = requestAnimationFrame(step)
 
@@ -123,6 +127,7 @@ const setupDraggableAutoScroll = (rail) => {
     rail.removeEventListener('pointercancel', endDrag)
     rail.removeEventListener('pointerleave', endDrag)
     rail.removeEventListener('click', onClick, true)
+    rail.removeEventListener('dragstart', onDragStart)
   }
 }
 
@@ -282,7 +287,6 @@ const Home = (props) => {
                       <div className="case-image"><img src={project.icon_url || fallbackProductImage} alt={project.name} /></div>
                       <div className="case-content">
                         <h3 className="case-title">{project.name}</h3>
-                        <p className="section-content">{project.description?.substring(0, 120)}{project.description?.length > 120 ? '...' : ''}</p>
                         <div className="btn-link"><span>View Full Story</span></div>
                       </div>
                     </a>
@@ -290,9 +294,9 @@ const Home = (props) => {
                 ))
               ) : (
                 <>
-                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/1181335/pexels-photo-1181335.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Data Center" /></div><div className="case-content"><h3 className="case-title">Global Finance Data Center</h3><p className="section-content">Complete tier-3 data center setup including networking, security, and redundant power.</p><div className="btn-link"><span>View Full Story</span></div></div></div>
-                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Security" /></div><div className="case-content"><h3 className="case-title">City Mall Security Overhaul</h3><p className="section-content">Advanced CCTV and access control across 50,000 sq. ft. of retail space.</p><div className="btn-link"><span>View Full Story</span></div></div></div>
-                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Digital" /></div><div className="case-content"><h3 className="case-title">EduTech Digital Platform</h3><p className="section-content">Custom web application and cloud hosting for a national learning initiative.</p><div className="btn-link"><span>View Full Story</span></div></div></div>
+                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/1181335/pexels-photo-1181335.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Data Center" /></div><div className="case-content"><h3 className="case-title">Global Finance Data Center</h3><div className="btn-link"><span>View Full Story</span></div></div></div>
+                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Security" /></div><div className="case-content"><h3 className="case-title">City Mall Security Overhaul</h3><div className="btn-link"><span>View Full Story</span></div></div></div>
+                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Digital" /></div><div className="case-content"><h3 className="case-title">EduTech Digital Platform</h3><div className="btn-link"><span>View Full Story</span></div></div></div>
                 </>
               )}
             </div>

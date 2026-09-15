@@ -1695,13 +1695,34 @@
 }
  
 .case-content {
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
 }
  
 .case-title {
   color: var(--color-on-surface);
-  font-size: var(--font-size-xl);
-  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  margin-bottom: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.case-content .btn-link {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 0;
+  color: var(--color-on-surface);
+  font-weight: var(--font-weight-heading);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-primary);
+}
+
+.case-content .btn-link:hover {
+  color: var(--color-primary);
 }
  
 .testimonials-section {
@@ -3929,7 +3950,7 @@ body.cart-open {
 .product-info { padding: var(--spacing-lg); }
 .product-category { color: var(--color-accent); font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); letter-spacing: 0.05em; text-transform: uppercase; }
 .product-name { color: var(--color-on-surface); margin: var(--spacing-xs) 0 var(--spacing-md); font-size: var(--font-size-base); }
-.product-price-tag { display: block; color: var(--color-primary); font-size: var(--font-size-base); font-weight: var(--font-weight-heading); }
+.product-price-tag { display: inline-block; color: var(--color-on-surface); font-size: var(--font-size-lg); font-weight: 800; margin-top: var(--spacing-xs); background-color: color-mix(in srgb, var(--color-primary) 22%, transparent); padding: 2px 10px; border-radius: var(--border-radius-sm); }
 
 /* Services Marquee */
 .services-grid-section { padding: var(--spacing-4xl) 0; background-color: var(--color-surface-elevated); }
