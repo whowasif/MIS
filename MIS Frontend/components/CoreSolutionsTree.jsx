@@ -165,12 +165,10 @@ const CoreSolutions = () => {
           background-repeat: no-repeat;
           color: #f4f6fb;
         }
-        /* light readability tint + brand glow — keeps the photo sharp & visible */
+        /* brand glow only — no dark overlay, so the photo shows at full brightness */
         .cs-tint {
           position: absolute; inset: 0; z-index: 1; pointer-events: none;
-          background:
-            radial-gradient(1100px 460px at 82% -6%, rgba(247,229,0,0.12), transparent 60%),
-            linear-gradient(180deg, rgba(6,8,13,0.42) 0%, rgba(6,8,13,0.30) 45%, rgba(6,8,13,0.52) 100%);
+          background: radial-gradient(1100px 460px at 82% -6%, rgba(247,229,0,0.10), transparent 60%);
         }
         .cs-blob {
           position: absolute; z-index: 1; border-radius: 50%; filter: blur(70px); opacity: .5; pointer-events: none;
