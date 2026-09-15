@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import Script from 'dangerous-html/react'
 import { useTranslations } from 'next-intl'
@@ -52,7 +53,7 @@ const StatCounter = ({ end, suffix = '', label, decimals = 0 }) => {
 // Turns a horizontally-scrollable rail into an auto-scrolling (right-to-left)
 // carousel that the user can grab with mouse or finger and drag both ways.
 // Content is expected to be duplicated (rendered twice) so the loop is seamless.
-const setupDraggableAutoScroll = (rail) => {
+const setupDraggableAutoScroll = (rail, onNavigate) => {
   if (!rail) return null
 
   let rafId = null
@@ -102,8 +103,26 @@ const setupDraggableAutoScroll = (rail) => {
     try { rail.releasePointerCapture(e.pointerId) } catch (_) {}
     pos = rail.scrollLeft            // resume auto-scroll from where the user left off
   }
+  const onPointerUp = (e) => {
+    const wasDragging = isDragging
+    const moved = hasMoved
+    endDrag(e)
+    // A clean release (no meaningful drag) should navigate to the card's page.
+    // We do this manually because pointer capture on the rail can swallow the
+    // anchor's native click on desktop, so the <Link> would never fire.
+    if (wasDragging && !moved && typeof onNavigate === 'function') {
+      const anchor = e.target && e.target.closest && e.target.closest('a[href]')
+      if (anchor) {
+        const href = anchor.getAttribute('href')
+        if (href) onNavigate(href)
+      }
+    }
+  }
   const onClick = (e) => {
-    if (hasMoved) { e.preventDefault(); e.stopPropagation() }
+    // Always prevent the native anchor navigation; we handle it in onPointerUp.
+    // (Prevents double navigation and blocks clicks that ended a drag.)
+    e.preventDefault()
+    if (hasMoved) { e.stopPropagation() }
   }
   // On desktop, mouse-dragging over an <img>/<a> starts the browser's native
   // drag-and-drop, which steals the pointer and breaks our drag. Suppress it.
@@ -111,7 +130,7 @@ const setupDraggableAutoScroll = (rail) => {
 
   rail.addEventListener('pointerdown', onPointerDown)
   rail.addEventListener('pointermove', onPointerMove)
-  rail.addEventListener('pointerup', endDrag)
+  rail.addEventListener('pointerup', onPointerUp)
   rail.addEventListener('pointercancel', endDrag)
   rail.addEventListener('pointerleave', endDrag)
   rail.addEventListener('click', onClick, true)
@@ -123,7 +142,7 @@ const setupDraggableAutoScroll = (rail) => {
     if (rafId) cancelAnimationFrame(rafId)
     rail.removeEventListener('pointerdown', onPointerDown)
     rail.removeEventListener('pointermove', onPointerMove)
-    rail.removeEventListener('pointerup', endDrag)
+    rail.removeEventListener('pointerup', onPointerUp)
     rail.removeEventListener('pointercancel', endDrag)
     rail.removeEventListener('pointerleave', endDrag)
     rail.removeEventListener('click', onClick, true)
@@ -133,6 +152,7 @@ const setupDraggableAutoScroll = (rail) => {
 
 const Home = (props) => {
   const { featuredProducts = [], advertisements = [], homeCategories = [], featuredServices = [], clientProjects = [] } = props
+  const router = useRouter()
   const caseRailRef = useRef(null)
   const productsRailRef = useRef(null)
   const [adIndex, setAdIndex] = useState(0)
@@ -145,9 +165,10 @@ const Home = (props) => {
 
   // Auto-scroll (right-to-left) + drag/swipe control for all three card rails
   useEffect(() => {
+    const navigate = (href) => router.push(href)
     const cleanups = [
-      setupDraggableAutoScroll(productsRailRef.current),
-      setupDraggableAutoScroll(caseRailRef.current),
+      setupDraggableAutoScroll(productsRailRef.current, navigate),
+      setupDraggableAutoScroll(caseRailRef.current, navigate),
     ]
     return () => cleanups.forEach((fn) => fn && fn())
   }, [featuredProducts.length, clientProjects.length])

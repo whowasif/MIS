@@ -758,14 +758,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7027);
-/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(503);
-/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_intl__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2097);
-/* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6151);
-/* harmony import */ var _components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8966);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__]);
-([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7027);
+/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(503);
+/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_intl__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2097);
+/* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6151);
+/* harmony import */ var _components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(8966);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__, _components_footer__WEBPACK_IMPORTED_MODULE_9__]);
+([dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__, _components_footer__WEBPACK_IMPORTED_MODULE_9__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -831,7 +834,7 @@ const StatCounter = ({ end , suffix ="" , label , decimals =0  })=>{
 // Turns a horizontally-scrollable rail into an auto-scrolling (right-to-left)
 // carousel that the user can grab with mouse or finger and drag both ways.
 // Content is expected to be duplicated (rendered twice) so the loop is seamless.
-const setupDraggableAutoScroll = (rail)=>{
+const setupDraggableAutoScroll = (rail, onNavigate)=>{
     if (!rail) return null;
     let rafId = null;
     let isDragging = false;
@@ -889,9 +892,26 @@ const setupDraggableAutoScroll = (rail)=>{
         pos = rail.scrollLeft // resume auto-scroll from where the user left off
         ;
     };
+    const onPointerUp = (e)=>{
+        const wasDragging = isDragging;
+        const moved = hasMoved;
+        endDrag(e);
+        // A clean release (no meaningful drag) should navigate to the card's page.
+        // We do this manually because pointer capture on the rail can swallow the
+        // anchor's native click on desktop, so the <Link> would never fire.
+        if (wasDragging && !moved && typeof onNavigate === "function") {
+            const anchor = e.target && e.target.closest && e.target.closest("a[href]");
+            if (anchor) {
+                const href = anchor.getAttribute("href");
+                if (href) onNavigate(href);
+            }
+        }
+    };
     const onClick = (e)=>{
+        // Always prevent the native anchor navigation; we handle it in onPointerUp.
+        // (Prevents double navigation and blocks clicks that ended a drag.)
+        e.preventDefault();
         if (hasMoved) {
-            e.preventDefault();
             e.stopPropagation();
         }
     };
@@ -902,7 +922,7 @@ const setupDraggableAutoScroll = (rail)=>{
     };
     rail.addEventListener("pointerdown", onPointerDown);
     rail.addEventListener("pointermove", onPointerMove);
-    rail.addEventListener("pointerup", endDrag);
+    rail.addEventListener("pointerup", onPointerUp);
     rail.addEventListener("pointercancel", endDrag);
     rail.addEventListener("pointerleave", endDrag);
     rail.addEventListener("click", onClick, true);
@@ -913,7 +933,7 @@ const setupDraggableAutoScroll = (rail)=>{
         if (rafId) cancelAnimationFrame(rafId);
         rail.removeEventListener("pointerdown", onPointerDown);
         rail.removeEventListener("pointermove", onPointerMove);
-        rail.removeEventListener("pointerup", endDrag);
+        rail.removeEventListener("pointerup", onPointerUp);
         rail.removeEventListener("pointercancel", endDrag);
         rail.removeEventListener("pointerleave", endDrag);
         rail.removeEventListener("click", onClick, true);
@@ -922,6 +942,7 @@ const setupDraggableAutoScroll = (rail)=>{
 };
 const Home = (props)=>{
     const { featuredProducts =[] , advertisements =[] , homeCategories =[] , featuredServices =[] , clientProjects =[]  } = props;
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();
     const caseRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const productsRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const { 0: adIndex , 1: setAdIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
@@ -936,9 +957,10 @@ const Home = (props)=>{
     ]);
     // Auto-scroll (right-to-left) + drag/swipe control for all three card rails
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
+        const navigate = (href)=>router.push(href);
         const cleanups = [
-            setupDraggableAutoScroll(productsRailRef.current),
-            setupDraggableAutoScroll(caseRailRef.current), 
+            setupDraggableAutoScroll(productsRailRef.current, navigate),
+            setupDraggableAutoScroll(caseRailRef.current, navigate), 
         ];
         return ()=>cleanups.forEach((fn)=>fn && fn());
     }, [
@@ -963,7 +985,7 @@ const Home = (props)=>{
                             })
                         ]
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {}),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
                         className: "jsx-838b1a87f6f26fd3" + " " + "hero-section",
                         children: [
@@ -1400,7 +1422,7 @@ const Home = (props)=>{
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         id: "core-services",
                         className: "jsx-838b1a87f6f26fd3" + " " + "core-solutions-section",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {})
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z, {})
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         className: "jsx-838b1a87f6f26fd3" + " " + "stats-section",
@@ -1812,7 +1834,7 @@ const Home = (props)=>{
                         className: "jsx-838b1a87f6f26fd3" + " " + "home-container2",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "jsx-838b1a87f6f26fd3" + " " + "home-container3",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
                                 html: `<style>@keyframes fadeIn {from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);}}</style>`
                             })
                         })
@@ -1821,12 +1843,12 @@ const Home = (props)=>{
                         className: "jsx-838b1a87f6f26fd3" + " " + "home-container4",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "jsx-838b1a87f6f26fd3" + " " + "home-container5",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
                                 html: `<script defer data-name="mis-solution-logic">(function(){ const testimonials = document.querySelectorAll(".testimonial-item"); const dots = document.querySelectorAll(".carousel-dot"); let currentTestimonial = 0; function showTestimonial(index) { testimonials.forEach((item, i) => { item.classList.toggle("active", i === index) }); dots.forEach((dot, i) => { dot.classList.toggle("active", i === index) }); currentTestimonial = index; } dots.forEach((dot, index) => { dot.addEventListener("click", () => { showTestimonial(index) }) }); setInterval(() => { let next = (currentTestimonial + 1) % testimonials.length; showTestimonial(next) }, 5000) })()</script>`
                             })
                         })
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {})
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {})
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {

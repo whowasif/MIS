@@ -3942,15 +3942,14 @@ body.cart-open {
 .products-rail-container { padding: var(--spacing-md) 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; cursor: grab; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
 .products-rail-container:active { cursor: grabbing; }
 .products-rail-container::-webkit-scrollbar { display: none; }
-.products-rail { gap: var(--spacing-xl); display: flex; width: max-content; }
-
-.product-card { flex: 0 0 280px; border: 1px solid var(--color-border); overflow: hidden; background: var(--color-surface-elevated); transition: transform 0.3s ease, box-shadow 0.3s ease; border-radius: var(--border-radius-card); cursor: pointer; }
+.products-rail { gap: var(--spacing-xl); display: flex; width: max-content; align-items: stretch; }
+.product-card { flex: 0 0 280px; display: flex; flex-direction: column; border: 1px solid var(--color-border); overflow: hidden; background: var(--color-surface-elevated); transition: transform 0.3s ease, box-shadow 0.3s ease; border-radius: var(--border-radius-card); cursor: pointer; }
 .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1); }
-.product-image-box { height: 180px; overflow: hidden; background-color: #f8f9fa; }
-.product-info { padding: var(--spacing-lg); }
+.product-image-box { height: 180px; flex: 0 0 auto; overflow: hidden; background-color: #f8f9fa; }
+.product-info { padding: var(--spacing-lg); display: flex; flex-direction: column; flex: 1 1 auto; }
 .product-category { color: var(--color-accent); font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); letter-spacing: 0.05em; text-transform: uppercase; }
 .product-name { color: var(--color-on-surface); margin: var(--spacing-xs) 0 var(--spacing-md); font-size: var(--font-size-base); }
-.product-price-tag { display: inline-block; color: var(--color-on-surface); font-size: var(--font-size-lg); font-weight: 800; margin-top: var(--spacing-xs); background-color: color-mix(in srgb, var(--color-primary) 22%, transparent); padding: 2px 10px; border-radius: var(--border-radius-sm); }
+.product-price-tag { align-self: flex-start; margin-top: auto; color: var(--color-on-surface); font-size: var(--font-size-lg); font-weight: 800; background-color: color-mix(in srgb, var(--color-primary) 22%, transparent); padding: 2px 10px; border-radius: var(--border-radius-sm); }
 
 /* Services Marquee */
 .services-grid-section { padding: var(--spacing-4xl) 0; background-color: var(--color-surface-elevated); }
