@@ -100,16 +100,21 @@ const ALERT_RECIPIENTS = {
 };
 const SITE_URL = "http://localhost:3000" || 0;
 const escapeHtml = (value)=>String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+// Company logo (absolute URL so it renders in email clients).
+const LOGO_URL = `${SITE_URL}/mis_logo_cut-w.png`;
 // Shared branded shell so every email looks consistent.
 const layout = ({ heading , bodyHtml , accent ="#1e293b"  })=>`
   <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-    <div style="text-align: center; margin-bottom: 30px;">
-      <h1 style="color: #1e293b; margin: 0;">MIS Solution</h1>
+    <div style="text-align: center; margin-bottom: 30px; background: #1e293b; border-radius: 12px; padding: 24px 20px;">
+      <img src="${LOGO_URL}" alt="MIS Solution" width="180" style="display: inline-block; max-width: 180px; height: auto;" />
     </div>
     <h2 style="color: ${accent};">${heading}</h2>
     ${bodyHtml}
     <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;" />
-    <p style="color: #9ca3af; font-size: 12px; text-align: center;">MIS Solution - ${DOMAIN}</p>
+    <div style="text-align: center;">
+      <img src="${LOGO_URL}" alt="MIS Solution" width="90" style="display: inline-block; max-width: 90px; height: auto; opacity: 0.85; margin-bottom: 8px;" />
+      <p style="color: #9ca3af; font-size: 12px; margin: 4px 0 0;">MIS Solution - ${DOMAIN}</p>
+    </div>
   </div>
 `;
 const paragraph = (text)=>`<p style="color: #4b5563; line-height: 1.6;">${text}</p>`;
@@ -127,11 +132,13 @@ const sendWelcomeEmail = async ({ to , name  })=>{
         heading: "Welcome to MIS Solution",
         bodyHtml: `
       ${paragraph(`Hi ${escapeHtml(name) || "there"},`)}
-      ${paragraph("Your account has been created successfully. You can now sign in to browse products, request quotes, and track your orders.")}
+      ${paragraph("Welcome to MIS Solution.")}
+      ${paragraph("Your account has been successfully created. You can now sign in to explore our products, submit quote requests, place orders, and manage your account.")}
+      ${paragraph("We’re glad to have you with us.")}
       <div style="text-align: center; margin: 30px 0;">
         <a href="${SITE_URL}/login" style="background: #1e293b; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; display: inline-block;">Sign In</a>
       </div>
-      ${paragraph("If you didn't create this account, please ignore this email.")}
+      ${paragraph("If you did not create this account, please disregard this email.")}
     `
     });
     return sendEmail({
@@ -143,11 +150,14 @@ const sendWelcomeEmail = async ({ to , name  })=>{
 // --- Career application: confirmation to applicant ---
 const sendApplicationReceivedEmail = async ({ to , name  })=>{
     const html = layout({
-        heading: "We received your application",
+        heading: "Application Received",
         bodyHtml: `
       ${paragraph(`Hi ${escapeHtml(name) || "there"},`)}
-      ${paragraph("Thank you for applying to MIS Solution. Our HR team has received your application and will review it shortly. If your profile matches, we'll reach out to you directly.")}
-      ${paragraph("We appreciate your interest in joining our team.")}
+      ${paragraph("Thank you for your interest in joining MIS Solution.")}
+      ${paragraph("We have successfully received your application for the position you applied for. Our HR team will review your application and qualifications.")}
+      ${paragraph("If your profile is shortlisted, a member of our team will contact you regarding the next steps.")}
+      ${paragraph("We appreciate the time and effort you put into your application and wish you the best.")}
+      ${paragraph("Regards,<br/>HR<br/>MIS Solution")}
     `
     });
     return sendEmail({
@@ -159,29 +169,36 @@ const sendApplicationReceivedEmail = async ({ to , name  })=>{
 // --- Career application: alert to HR ---
 const sendApplicationAlertToAdmin = async ({ applicantName , email , phone , careerPostId  })=>{
     const html = layout({
-        heading: "New career application",
+        heading: "New Career Application Received",
         accent: "#7c3aed",
         bodyHtml: `
+      ${paragraph("A new career application has been submitted through the MIS Solution website.")}
       ${paragraph(`<strong>Applicant:</strong> ${escapeHtml(applicantName) || "—"}`)}
       ${paragraph(`<strong>Email:</strong> ${escapeHtml(email)}`)}
       ${paragraph(`<strong>Phone:</strong> ${escapeHtml(phone) || "—"}`)}
       ${paragraph(`<strong>Position ID:</strong> ${escapeHtml(careerPostId)}`)}
-      ${paragraph(`Review it in the admin panel: <a href="${SITE_URL}/admin">Open admin</a>`)}
+      ${paragraph("Please review the application in the admin panel.")}
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="${SITE_URL}/admin" style="background: #7c3aed; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; display: inline-block;">Open Admin Panel</a>
+      </div>
     `
     });
     return sendEmail({
         to: ALERT_RECIPIENTS.applications,
-        subject: `New application from ${applicantName || email}`,
+        subject: "New Career Application Received",
         html
     });
 };
 // --- Quote / inquiry: confirmation to client ---
 const sendQuoteReceivedEmail = async ({ to , name  })=>{
     const html = layout({
-        heading: "We received your request",
+        heading: "Request Received",
         bodyHtml: `
       ${paragraph(`Hi ${escapeHtml(name) || "there"},`)}
-      ${paragraph("Thank you for reaching out to MIS Solution. We've received your request and our team will get back to you within one business day with the details you need.")}
+      ${paragraph("Thank you for contacting MIS Solution.")}
+      ${paragraph("We have received your inquiry and our team will review your requirements. A member of our team will get in touch with you soon to discuss your request and provide the necessary information.")}
+      ${paragraph("We appreciate your interest in MIS Solution and look forward to assisting you.")}
+      ${paragraph("Regards,<br/>MIS Solution")}
     `
     });
     return sendEmail({
@@ -193,35 +210,42 @@ const sendQuoteReceivedEmail = async ({ to , name  })=>{
 // --- Quote / inquiry: alert to sales ---
 const sendQuoteAlertToAdmin = async ({ clientName , companyName , email , projectType , requirements  })=>{
     const html = layout({
-        heading: "New quote / inquiry",
+        heading: "New Quote / Inquiry Received",
         accent: "#7c3aed",
         bodyHtml: `
+      ${paragraph("A new quote or business inquiry has been submitted through the MIS Solution website.")}
       ${paragraph(`<strong>Client:</strong> ${escapeHtml(clientName) || "—"}`)}
       ${paragraph(`<strong>Company:</strong> ${escapeHtml(companyName) || "—"}`)}
       ${paragraph(`<strong>Email:</strong> ${escapeHtml(email)}`)}
-      ${paragraph(`<strong>Type:</strong> ${escapeHtml(projectType) || "general"}`)}
+      ${paragraph(`<strong>Project Type:</strong> ${escapeHtml(projectType) || "general"}`)}
       ${paragraph(`<strong>Requirements:</strong><br/>${escapeHtml(requirements).replace(/\n/g, "<br/>")}`)}
-      ${paragraph(`Review it in the admin panel: <a href="${SITE_URL}/admin">Open admin</a>`)}
+      ${paragraph("Please review the inquiry in the admin panel and follow up with the client as appropriate.")}
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="${SITE_URL}/admin" style="background: #7c3aed; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; display: inline-block;">Open Admin Panel</a>
+      </div>
     `
     });
     return sendEmail({
         to: ALERT_RECIPIENTS.quotes,
-        subject: `New quote request from ${clientName || email}`,
+        subject: "New Quote / Inquiry Received",
         html
     });
 };
 // --- Newsletter: welcome to subscriber ---
 const sendNewsletterWelcomeEmail = async ({ to  })=>{
     const html = layout({
-        heading: "You're subscribed",
+        heading: "Welcome to the MIS Solution Newsletter",
         bodyHtml: `
-      ${paragraph("Thanks for subscribing to the MIS Solution newsletter. You'll now receive our latest products, offers, and updates.")}
-      ${paragraph("If you didn't subscribe, you can safely ignore this email.")}
+      ${paragraph("Dear User,")}
+      ${paragraph("Thank you for subscribing to the MIS Solution newsletter.")}
+      ${paragraph("You’ll now receive updates about our latest products, services, offers, announcements, and other relevant news from MIS Solution.")}
+      ${paragraph("We’re pleased to have you with us.")}
+      ${paragraph("If you did not subscribe to our newsletter, you can safely disregard this email.")}
     `
     });
     return sendEmail({
         to,
-        subject: "Subscribed to MIS Solution Newsletter",
+        subject: "Welcome to the MIS Solution Newsletter",
         html
     });
 };
@@ -235,10 +259,12 @@ const sendOrderConfirmationEmail = async ({ to , name , orderNo , totalAmount , 
           <td style="padding: 8px; border-bottom: 1px solid #e5e7eb; text-align: right;">${money(it.price)} BDT</td>
         </tr>`).join("");
     const html = layout({
-        heading: "Order confirmed",
+        heading: "Order Confirmation",
         bodyHtml: `
       ${paragraph(`Hi ${escapeHtml(name) || "there"},`)}
-      ${paragraph(`Thank you for your order. Your order number is <strong>${escapeHtml(orderNo)}</strong>.`)}
+      ${paragraph("Thank you for your order with MIS Solution.")}
+      ${paragraph("Your order has been successfully received.")}
+      ${paragraph(`<strong>Order Number:</strong> ${escapeHtml(orderNo)}`)}
       <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
         <thead>
           <tr>
@@ -250,12 +276,15 @@ const sendOrderConfirmationEmail = async ({ to , name , orderNo , totalAmount , 
         <tbody>${rows}</tbody>
       </table>
       ${paragraph(`<strong>Total: ${money(totalAmount)} BDT</strong>`)}
-      ${paragraph("We'll contact you shortly to confirm delivery. Thank you for shopping with MIS Solution.")}
+      ${paragraph("Our team will contact you shortly to confirm your order and arrange the next steps for delivery.")}
+      ${paragraph("If you have any questions regarding your order, please feel free to contact us.")}
+      ${paragraph("Thank you for choosing MIS Solution.")}
+      ${paragraph("Regards,<br/>MIS Solution")}
     `
     });
     return sendEmail({
         to,
-        subject: `Order Confirmation ${orderNo} - MIS Solution`,
+        subject: "Order Confirmation - MIS Solution",
         html
     });
 };
