@@ -101,15 +101,15 @@ const MaintenanceSupport = ({ services = [] }) => {
               {supportItems.map((item, idx) => (
                 <Link key={item.id} href={`/services/${encodeURIComponent(item.slug || item.id)}?type=service_maintenance`}>
                   <a className="ms-service-card">
-                    <div className="ms-service-icon-wrap">
+                    <div className="ms-service-img">
                       {item.iconUrl ? (
-                        <img src={item.iconUrl} alt={item.name} className="ms-service-icon-img" />
+                        <img src={item.iconUrl} alt={item.name} />
                       ) : (
-                        <div className="ms-service-icon">
-                          {idx === 0 && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
-                          {idx === 1 && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>}
-                          {idx === 2 && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>}
-                          {idx > 2 && <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
+                        <div className="ms-service-placeholder">
+                          {idx === 0 && <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+                          {idx === 1 && <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>}
+                          {idx === 2 && <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>}
+                          {idx > 2 && <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
                         </div>
                       )}
                     </div>
@@ -210,20 +210,20 @@ const MaintenanceSupport = ({ services = [] }) => {
 
         /* Services */
         .ms-services-section { padding: 72px 24px; background: #f8fafc; }
-        .ms-services-container { max-width: 1080px; margin: 0 auto; }
+        .ms-services-container { max-width: 1140px; margin: 0 auto; }
         .ms-services-header { text-align: center; margin-bottom: 40px; }
         .ms-services-header h2 { margin: 0; font-size: clamp(26px, 3.5vw, 34px); font-weight: 800; color: #111827; }
         .ms-services-header p { margin: 10px 0 0; font-size: 16px; color: #6b7280; }
-        .ms-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; }
-        .ms-service-card { display: flex; flex-direction: column; padding: 32px 28px; border-radius: 16px; border: 1px solid #e5e7eb; background: #ffffff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s; height: 100%; }
-        .ms-service-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.06); transform: translateY(-3px); border-color: #f7e500; }
-        .ms-service-icon-wrap { margin-bottom: 20px; }
-        .ms-service-icon { width: 56px; height: 56px; border-radius: 14px; background: #0a101b; display: flex; align-items: center; justify-content: center; color: #f7e500; }
-        .ms-service-icon-img { width: 56px; height: 56px; border-radius: 14px; object-fit: cover; }
-        .ms-service-body { display: flex; flex-direction: column; flex: 1; }
-        .ms-service-body h3 { margin: 0 0 10px; font-size: 18px; font-weight: 700; color: #111827; line-height: 1.35; }
+        .ms-services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        .ms-service-card { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid #e5e7eb; background: #ffffff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s; }
+        .ms-service-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.08); transform: translateY(-3px); }
+        .ms-service-img { height: 160px; background: linear-gradient(135deg, #0a101b, #1e293b); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .ms-service-img img { width: 100%; height: 100%; object-fit: cover; }
+        .ms-service-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #f7e500; opacity: 0.65; }
+        .ms-service-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+        .ms-service-body h3 { margin: 0; font-size: 18px; font-weight: 700; color: #111827; line-height: 1.35; }
         .ms-service-body p { margin: 0; font-size: 14px; color: #6b7280; line-height: 1.7; }
-        .ms-service-link { display: inline-block; margin-top: auto; padding-top: 18px; font-size: 13px; font-weight: 700; color: #0a101b; }
+        .ms-service-link { font-size: 13px; font-weight: 700; color: #0a101b; margin-top: auto; padding-top: 8px; }
         .ms-service-card:hover .ms-service-link { color: #b8860b; }
 
         /* Coverage */
