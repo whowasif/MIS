@@ -65,7 +65,7 @@ const EnterpriseSolutions = ({ services = [] }) => {
         {/* Hero */}
         <section className="es-hero">
           <div className="es-hero-bg">
-            <img src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" aria-hidden="true" />
+            <img src="/business%20corporate%20sol.webp" alt="" aria-hidden="true" />
             <div className="es-hero-overlay"></div>
           </div>
           <div className="es-hero-content">

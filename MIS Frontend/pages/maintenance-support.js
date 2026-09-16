@@ -64,7 +64,7 @@ const MaintenanceSupport = ({ services = [] }) => {
         {/* Hero */}
         <section className="ms-hero">
           <div className="ms-hero-bg">
-            <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" aria-hidden="true" />
+            <img src="/maintenance%20support.png" alt="" aria-hidden="true" />
             <div className="ms-hero-overlay"></div>
           </div>
           <div className="ms-hero-content">
@@ -210,20 +210,20 @@ const MaintenanceSupport = ({ services = [] }) => {
 
         /* Services */
         .ms-services-section { padding: 72px 24px; background: #f8fafc; }
-        .ms-services-container { max-width: 1000px; margin: 0 auto; }
+        .ms-services-container { max-width: 1080px; margin: 0 auto; }
         .ms-services-header { text-align: center; margin-bottom: 40px; }
         .ms-services-header h2 { margin: 0; font-size: clamp(26px, 3.5vw, 34px); font-weight: 800; color: #111827; }
         .ms-services-header p { margin: 10px 0 0; font-size: 16px; color: #6b7280; }
-        .ms-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .ms-service-card { display: flex; gap: 20px; align-items: flex-start; padding: 28px; border-radius: 16px; border: 1px solid #e5e7eb; background: #ffffff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s; }
-        .ms-service-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.06); transform: translateY(-2px); border-color: #f7e500; }
-        .ms-service-icon-wrap { flex-shrink: 0; }
-        .ms-service-icon { width: 52px; height: 52px; border-radius: 14px; background: #0a101b; display: flex; align-items: center; justify-content: center; color: #f7e500; }
-        .ms-service-icon-img { width: 52px; height: 52px; border-radius: 14px; object-fit: cover; }
-        .ms-service-body { flex: 1; }
-        .ms-service-body h3 { margin: 0 0 8px; font-size: 17px; font-weight: 700; color: #111827; }
+        .ms-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; }
+        .ms-service-card { display: flex; flex-direction: column; padding: 32px 28px; border-radius: 16px; border: 1px solid #e5e7eb; background: #ffffff; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s; height: 100%; }
+        .ms-service-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.06); transform: translateY(-3px); border-color: #f7e500; }
+        .ms-service-icon-wrap { margin-bottom: 20px; }
+        .ms-service-icon { width: 56px; height: 56px; border-radius: 14px; background: #0a101b; display: flex; align-items: center; justify-content: center; color: #f7e500; }
+        .ms-service-icon-img { width: 56px; height: 56px; border-radius: 14px; object-fit: cover; }
+        .ms-service-body { display: flex; flex-direction: column; flex: 1; }
+        .ms-service-body h3 { margin: 0 0 10px; font-size: 18px; font-weight: 700; color: #111827; line-height: 1.35; }
         .ms-service-body p { margin: 0; font-size: 14px; color: #6b7280; line-height: 1.7; }
-        .ms-service-link { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 700; color: #0a101b; }
+        .ms-service-link { display: inline-block; margin-top: auto; padding-top: 18px; font-size: 13px; font-weight: 700; color: #0a101b; }
         .ms-service-card:hover .ms-service-link { color: #b8860b; }
 
         /* Coverage */
@@ -254,7 +254,6 @@ const MaintenanceSupport = ({ services = [] }) => {
           .ms-hero-content { padding: 100px 20px 36px; }
           .ms-metrics-container { grid-template-columns: repeat(2, 1fr); gap: 16px; }
           .ms-services-grid { grid-template-columns: 1fr; }
-          .ms-service-card { flex-direction: column; gap: 14px; }
           .ms-covered-grid { grid-template-columns: 1fr; }
         }
       `}</style>

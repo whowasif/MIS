@@ -140,7 +140,7 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                                 className: "jsx-ec1fb6139075438a" + " " + "es-hero-bg",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                        src: "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1500",
+                                        src: "/business%20corporate%20sol.webp",
                                         alt: "",
                                         "aria-hidden": "true",
                                         className: "jsx-ec1fb6139075438a"

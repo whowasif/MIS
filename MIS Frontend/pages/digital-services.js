@@ -67,7 +67,7 @@ const DigitalServices = ({ services = [] }) => {
         {/* Hero */}
         <section className="ds-hero">
           <div className="ds-hero-bg">
-            <img src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="" aria-hidden="true" />
+            <img src="/digital%20services.webp" alt="" aria-hidden="true" />
             <div className="ds-hero-overlay"></div>
           </div>
           <div className="ds-hero-content">

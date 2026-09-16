@@ -152,7 +152,7 @@ const DigitalServices = ({ services =[]  })=>{
                                 className: "jsx-f762ff05ce38ec9e" + " " + "ds-hero-bg",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                        src: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1500",
+                                        src: "/digital%20services.webp",
                                         alt: "",
                                         "aria-hidden": "true",
                                         className: "jsx-f762ff05ce38ec9e"
