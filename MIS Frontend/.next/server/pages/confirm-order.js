@@ -140,6 +140,8 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
     const user = session?.user || null;
     const { 0: items , 1: setItems  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
     const { 0: placed , 1: setPlaced  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+    const { 0: placing , 1: setPlacing  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+    const { 0: orderError , 1: setOrderError  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
     const { 0: selectedZone , 1: setSelectedZone  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
     const { 0: promoCode , 1: setPromoCode  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
     const { 0: promoDiscount , 1: setPromoDiscount  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
@@ -224,27 +226,34 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
     };
     const handlePlaceOrder = async (event)=>{
         event.preventDefault();
+        const fullAddress = [
+            formAddress,
+            formDistrict,
+            formDivision
+        ].filter(Boolean).join(", ");
         const orderData = {
-            fullName: formName,
-            email: formEmail,
-            phone: formPhone,
-            division: formDivision,
-            district: formDistrict,
-            address: formAddress,
+            customer: {
+                fullName: formName,
+                email: formEmail,
+                phone: formPhone,
+                division: formDivision,
+                district: formDistrict,
+                address: fullAddress
+            },
             paymentMethod: event.currentTarget.paymentMethod.value,
-            deliveryZoneId: selectedZone || null,
+            deliveryZone: selectedZone || null,
+            deliveryCharge,
             promoCode: promoCode || null,
+            promoDiscount: discount,
             items: items.map((i)=>({
-                    id: i.id,
+                    productId: i.id,
                     name: i.name,
                     price: i.price,
                     quantity: i.quantity
-                })),
-            subtotal,
-            deliveryCharge,
-            discount,
-            total
+                }))
         };
+        setOrderError("");
+        setPlacing(true);
         try {
             const res = await fetch("/api/orders", {
                 method: "POST",
@@ -254,93 +263,94 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                 body: JSON.stringify(orderData)
             });
             const data = await res.json();
-            if (data.success) {
+            if (res.ok && data.success) {
                 setPlaced(true);
                 window.localStorage.removeItem("misCart");
                 window.dispatchEvent(new Event("mis-cart-updated"));
                 setItems([]);
+            } else {
+                setOrderError(data.error || "Unable to place order. Please try again.");
             }
         } catch (e) {
-            setPlaced(true);
-            window.localStorage.removeItem("misCart");
-            window.dispatchEvent(new Event("mis-cart-updated"));
-            setItems([]);
+            setOrderError("Network error. Please check your connection and try again.");
+        } finally{
+            setPlacing(false);
         }
     };
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-a05ef1fcee26ebd1" + " " + "confirm-order-page",
+                className: "jsx-97c9fbf0f1f6b030" + " " + "confirm-order-page",
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                            className: "jsx-a05ef1fcee26ebd1",
+                            className: "jsx-97c9fbf0f1f6b030",
                             children: "Confirm Order | MIS Solution"
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("main", {
-                        className: "jsx-a05ef1fcee26ebd1" + " " + "confirm-order-main",
+                        className: "jsx-97c9fbf0f1f6b030" + " " + "confirm-order-main",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                            className: "jsx-a05ef1fcee26ebd1" + " " + "confirm-order-shell",
+                            className: "jsx-97c9fbf0f1f6b030" + " " + "confirm-order-shell",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                                    className: "jsx-a05ef1fcee26ebd1" + " " + "confirm-order-header",
+                                    className: "jsx-97c9fbf0f1f6b030" + " " + "confirm-order-header",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-a05ef1fcee26ebd1" + " " + "eyebrow",
+                                            className: "jsx-97c9fbf0f1f6b030" + " " + "eyebrow",
                                             children: "Checkout"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                            className: "jsx-a05ef1fcee26ebd1",
+                                            className: "jsx-97c9fbf0f1f6b030",
                                             children: "Confirm Your Order"
                                         })
                                     ]
                                 }),
                                 placed ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-a05ef1fcee26ebd1" + " " + "placed-card",
+                                    className: "jsx-97c9fbf0f1f6b030" + " " + "placed-card",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "jsx-a05ef1fcee26ebd1" + " " + "placed-icon",
+                                            className: "jsx-97c9fbf0f1f6b030" + " " + "placed-icon",
                                             children: "✓"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-a05ef1fcee26ebd1",
+                                            className: "jsx-97c9fbf0f1f6b030",
                                             children: "Order Placed Successfully!"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-a05ef1fcee26ebd1",
+                                            className: "jsx-97c9fbf0f1f6b030",
                                             children: "Thank you! Our team will contact you within 24 hours."
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/categories/desktop",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-a05ef1fcee26ebd1" + " " + "btn btn-primary btn-lg",
+                                                className: "jsx-97c9fbf0f1f6b030" + " " + "btn btn-primary btn-lg",
                                                 children: "Continue Shopping"
                                             })
                                         })
                                     ]
                                 }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-a05ef1fcee26ebd1" + " " + "checkout-grid",
+                                    className: "jsx-97c9fbf0f1f6b030" + " " + "checkout-grid",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                                            className: "jsx-a05ef1fcee26ebd1" + " " + "order-items-card",
+                                            className: "jsx-97c9fbf0f1f6b030" + " " + "order-items-card",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                    className: "jsx-97c9fbf0f1f6b030",
                                                     children: "Order Summary"
                                                 }),
                                                 items.length === 0 ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-a05ef1fcee26ebd1" + " " + "empty-state",
+                                                    className: "jsx-97c9fbf0f1f6b030" + " " + "empty-state",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                            className: "jsx-97c9fbf0f1f6b030",
                                                             children: "Your cart is empty."
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                             href: "/categories/desktop",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                                className: "jsx-a05ef1fcee26ebd1" + " " + "btn btn-primary",
+                                                                className: "jsx-97c9fbf0f1f6b030" + " " + "btn btn-primary",
                                                                 children: "Browse Products"
                                                             })
                                                         })
@@ -348,24 +358,24 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                 }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "items-list",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "items-list",
                                                             children: items.map((item)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                                    className: "jsx-a05ef1fcee26ebd1" + " " + "item-row",
+                                                                    className: "jsx-97c9fbf0f1f6b030" + " " + "item-row",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                                             src: item.image || "/placeholder.png",
                                                                             alt: item.name,
-                                                                            className: "jsx-a05ef1fcee26ebd1"
+                                                                            className: "jsx-97c9fbf0f1f6b030"
                                                                         }),
                                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "item-info",
+                                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "item-info",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                                     children: item.name
                                                                                 }),
                                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                                     children: [
                                                                                         formatCurrency(item.price),
                                                                                         " \xd7 ",
@@ -375,72 +385,72 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                                             ]
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: formatCurrency((item.price || 0) * (item.quantity || 1))
                                                                         })
                                                                     ]
                                                                 }, item.id))
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "promo-section",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "promo-section",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                     type: "text",
                                                                     value: promoCode,
                                                                     onChange: (e)=>setPromoCode(e.target.value),
                                                                     placeholder: "Promo code",
-                                                                    className: "jsx-a05ef1fcee26ebd1"
+                                                                    className: "jsx-97c9fbf0f1f6b030"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                     type: "button",
                                                                     onClick: handleApplyPromo,
-                                                                    className: "jsx-a05ef1fcee26ebd1" + " " + "promo-btn",
+                                                                    className: "jsx-97c9fbf0f1f6b030" + " " + "promo-btn",
                                                                     children: "Apply"
                                                                 })
                                                             ]
                                                         }),
                                                         promoMsg && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "promo-msg",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "promo-msg",
                                                             children: promoMsg
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "totals-box",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "totals-box",
                                                             children: [
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Subtotal"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: formatCurrency(subtotal)
                                                                         })
                                                                     ]
                                                                 }),
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Delivery Charge"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: formatCurrency(deliveryCharge)
                                                                         })
                                                                     ]
                                                                 }),
                                                                 discount > 0 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                    className: "jsx-a05ef1fcee26ebd1" + " " + "discount-row",
+                                                                    className: "jsx-97c9fbf0f1f6b030" + " " + "discount-row",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Discount"
                                                                         }),
                                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("strong", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: [
                                                                                 "-",
                                                                                 formatCurrency(discount)
@@ -449,14 +459,14 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                                     ]
                                                                 }),
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                    className: "jsx-a05ef1fcee26ebd1" + " " + "grand-total",
+                                                                    className: "jsx-97c9fbf0f1f6b030" + " " + "grand-total",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Total"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: formatCurrency(total)
                                                                         })
                                                                     ]
@@ -468,21 +478,21 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                                            className: "jsx-a05ef1fcee26ebd1" + " " + "order-form-card",
+                                            className: "jsx-97c9fbf0f1f6b030" + " " + "order-form-card",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                    className: "jsx-97c9fbf0f1f6b030",
                                                     children: "Delivery & Payment"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
                                                     onSubmit: handlePlaceOrder,
-                                                    className: "jsx-a05ef1fcee26ebd1" + " " + "order-form",
+                                                    className: "jsx-97c9fbf0f1f6b030" + " " + "order-form",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "form-field",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "form-field",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: "Full Name"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -491,15 +501,15 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                                     value: formName,
                                                                     onChange: (e)=>setFormName(e.target.value),
                                                                     required: true,
-                                                                    className: "jsx-a05ef1fcee26ebd1"
+                                                                    className: "jsx-97c9fbf0f1f6b030"
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "form-field",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "form-field",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: "Email"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -508,15 +518,15 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                                     value: formEmail,
                                                                     onChange: (e)=>setFormEmail(e.target.value),
                                                                     required: true,
-                                                                    className: "jsx-a05ef1fcee26ebd1"
+                                                                    className: "jsx-97c9fbf0f1f6b030"
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "form-field",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "form-field",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: "Phone"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -525,34 +535,34 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                                     value: formPhone,
                                                                     onChange: (e)=>setFormPhone(e.target.value),
                                                                     required: true,
-                                                                    className: "jsx-a05ef1fcee26ebd1"
+                                                                    className: "jsx-97c9fbf0f1f6b030"
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "form-row-2",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "form-row-2",
                                                             children: [
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                    className: "jsx-a05ef1fcee26ebd1" + " " + "form-field",
+                                                                    className: "jsx-97c9fbf0f1f6b030" + " " + "form-field",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Division"
                                                                         }),
                                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                                                             value: formDivision,
                                                                             onChange: (e)=>setFormDivision(e.target.value),
                                                                             required: true,
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                                     value: "",
-                                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                                     children: "Select Division"
                                                                                 }),
                                                                                 DIVISIONS.map((d)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                                         value: d,
-                                                                                        className: "jsx-a05ef1fcee26ebd1",
+                                                                                        className: "jsx-97c9fbf0f1f6b030",
                                                                                         children: d
                                                                                     }, d))
                                                                             ]
@@ -560,26 +570,26 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                                     ]
                                                                 }),
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                    className: "jsx-a05ef1fcee26ebd1" + " " + "form-field",
+                                                                    className: "jsx-97c9fbf0f1f6b030" + " " + "form-field",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "District"
                                                                         }),
                                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                                                             value: formDistrict,
                                                                             onChange: (e)=>setFormDistrict(e.target.value),
                                                                             required: true,
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                                     value: "",
-                                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                                     children: "Select District"
                                                                                 }),
                                                                                 (DISTRICTS_BY_DIVISION[formDivision] || []).map((d)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                                         value: d,
-                                                                                        className: "jsx-a05ef1fcee26ebd1",
+                                                                                        className: "jsx-97c9fbf0f1f6b030",
                                                                                         children: d
                                                                                     }, d))
                                                                             ]
@@ -589,10 +599,10 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "form-field",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "form-field",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: "Full Address"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("textarea", {
@@ -601,30 +611,30 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                                     onChange: (e)=>setFormAddress(e.target.value),
                                                                     placeholder: "House, Road, Area...",
                                                                     required: true,
-                                                                    className: "jsx-a05ef1fcee26ebd1"
+                                                                    className: "jsx-97c9fbf0f1f6b030"
                                                                 })
                                                             ]
                                                         }),
                                                         deliveryZones.length > 0 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "form-field",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "form-field",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: "Delivery Zone"
                                                                 }),
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                                                     value: selectedZone,
                                                                     onChange: (e)=>setSelectedZone(e.target.value),
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: "",
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Auto (based on division)"
                                                                         }),
                                                                         deliveryZones.map((z)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("option", {
                                                                                 value: z.id,
-                                                                                className: "jsx-a05ef1fcee26ebd1",
+                                                                                className: "jsx-97c9fbf0f1f6b030",
                                                                                 children: [
                                                                                     z.name,
                                                                                     " — ৳",
@@ -639,61 +649,62 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "form-field",
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "form-field",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: "Payment Method"
                                                                 }),
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                                                     name: "paymentMethod",
                                                                     required: true,
                                                                     defaultValue: "",
-                                                                    className: "jsx-a05ef1fcee26ebd1",
+                                                                    className: "jsx-97c9fbf0f1f6b030",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: "",
                                                                             disabled: true,
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Select payment method"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: "cod",
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Cash on Delivery"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: "bkash",
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "bKash"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: "nagad",
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Nagad"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: "bank",
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Bank Transfer"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: "card",
-                                                                            className: "jsx-a05ef1fcee26ebd1",
+                                                                            className: "jsx-97c9fbf0f1f6b030",
                                                                             children: "Card Payment"
                                                                         })
                                                                     ]
                                                                 })
                                                             ]
                                                         }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                                        orderError && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "order-error",
+                                                            children: orderError
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                             type: "submit",
-                                                            disabled: items.length === 0,
-                                                            className: "jsx-a05ef1fcee26ebd1" + " " + "place-order-btn",
-                                                            children: [
-                                                                "Place Order — ",
-                                                                formatCurrency(total)
-                                                            ]
+                                                            disabled: items.length === 0 || placing,
+                                                            className: "jsx-97c9fbf0f1f6b030" + " " + "place-order-btn",
+                                                            children: placing ? "Placing Order…" : `Place Order — ${formatCurrency(total)}`
                                                         })
                                                     ]
                                                 })
@@ -708,8 +719,8 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "a05ef1fcee26ebd1",
-                children: ".confirm-order-page.jsx-a05ef1fcee26ebd1{min-height:100vh;background:#f5f7fb}.confirm-order-main.jsx-a05ef1fcee26ebd1{padding:40px 20px}.confirm-order-shell.jsx-a05ef1fcee26ebd1{max-width:1100px;margin:0 auto}.confirm-order-header.jsx-a05ef1fcee26ebd1{margin-bottom:24px}.eyebrow.jsx-a05ef1fcee26ebd1{margin:0 0 6px;letter-spacing:.08em;text-transform:uppercase;color:#6366f1;font-weight:700;font-size:13px}h1.jsx-a05ef1fcee26ebd1{margin:0 0 8px;font-size:clamp(24px,4vw,32px);color:#111827}h2.jsx-a05ef1fcee26ebd1{margin:0 0 16px;font-size:20px;color:#111827}.checkout-grid.jsx-a05ef1fcee26ebd1{display:grid;gap:20px;grid-template-columns:1.2fr 1fr}.order-items-card.jsx-a05ef1fcee26ebd1,.order-form-card.jsx-a05ef1fcee26ebd1,.placed-card.jsx-a05ef1fcee26ebd1{border:1px solid#e5e7eb;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;padding:24px;-webkit-box-shadow:0 4px 20px rgba(0,0,0,.04);-moz-box-shadow:0 4px 20px rgba(0,0,0,.04);box-shadow:0 4px 20px rgba(0,0,0,.04)}.placed-card.jsx-a05ef1fcee26ebd1{max-width:500px;margin:0 auto;text-align:center}.placed-icon.jsx-a05ef1fcee26ebd1{width:64px;height:64px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#d1fae5;color:#059669;font-size:28px;font-weight:800;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;margin:0 auto 16px}.items-list.jsx-a05ef1fcee26ebd1{display:grid;gap:10px;margin-bottom:16px}.item-row.jsx-a05ef1fcee26ebd1{display:grid;grid-template-columns:60px 1fr auto;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding:10px;border:1px solid#f1f5f9;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}.item-row.jsx-a05ef1fcee26ebd1 img.jsx-a05ef1fcee26ebd1{width:60px;height:48px;-o-object-fit:cover;object-fit:cover;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#f9fafb}.item-info.jsx-a05ef1fcee26ebd1 h3.jsx-a05ef1fcee26ebd1{margin:0;font-size:13px;color:#111827}.item-info.jsx-a05ef1fcee26ebd1 p.jsx-a05ef1fcee26ebd1{margin:2px 0 0;font-size:12px;color:#6b7280}.item-row.jsx-a05ef1fcee26ebd1 strong.jsx-a05ef1fcee26ebd1{font-size:13px;color:#111827}.promo-section.jsx-a05ef1fcee26ebd1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-bottom:8px}.promo-section.jsx-a05ef1fcee26ebd1 input.jsx-a05ef1fcee26ebd1{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;padding:10px 14px;border:2px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;font-size:14px}.promo-section.jsx-a05ef1fcee26ebd1 input.jsx-a05ef1fcee26ebd1:focus{outline:none;border-color:#6366f1}.promo-btn.jsx-a05ef1fcee26ebd1{padding:10px 18px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#4f46e5;color:#fff;font-weight:700;cursor:pointer;font-size:13px}.promo-msg.jsx-a05ef1fcee26ebd1{font-size:13px;color:#059669;margin:0 0 8px}.totals-box.jsx-a05ef1fcee26ebd1{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:14px;display:grid;gap:8px}.totals-box.jsx-a05ef1fcee26ebd1 div.jsx-a05ef1fcee26ebd1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;font-size:14px;color:#374151}.discount-row.jsx-a05ef1fcee26ebd1 strong.jsx-a05ef1fcee26ebd1{color:#059669}.grand-total.jsx-a05ef1fcee26ebd1{border-top:1px solid#e5e7eb;padding-top:10px;font-size:16px;font-weight:700}.order-form.jsx-a05ef1fcee26ebd1{display:grid;gap:14px}.form-field.jsx-a05ef1fcee26ebd1{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px}.form-field.jsx-a05ef1fcee26ebd1 label.jsx-a05ef1fcee26ebd1{font-size:12px;font-weight:700;color:#374151}.form-field.jsx-a05ef1fcee26ebd1 input.jsx-a05ef1fcee26ebd1,.form-field.jsx-a05ef1fcee26ebd1 select.jsx-a05ef1fcee26ebd1,.form-field.jsx-a05ef1fcee26ebd1 textarea.jsx-a05ef1fcee26ebd1{width:100%;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:11px 14px;font:inherit;font-size:14px;color:#111827;background:#fafbff}.form-field.jsx-a05ef1fcee26ebd1 input.jsx-a05ef1fcee26ebd1:focus,.form-field.jsx-a05ef1fcee26ebd1 select.jsx-a05ef1fcee26ebd1:focus,.form-field.jsx-a05ef1fcee26ebd1 textarea.jsx-a05ef1fcee26ebd1:focus{outline:none;border-color:#6366f1;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1);background:#fff}.form-field.jsx-a05ef1fcee26ebd1 textarea.jsx-a05ef1fcee26ebd1{resize:vertical;min-height:70px}.form-row-2.jsx-a05ef1fcee26ebd1{display:grid;grid-template-columns:1fr 1fr;gap:12px}.place-order-btn.jsx-a05ef1fcee26ebd1{width:100%;padding:14px;border:none;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#4f46e5;color:#fff;font-size:15px;font-weight:700;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.place-order-btn.jsx-a05ef1fcee26ebd1:hover:not(:disabled){background:#4338ca}.place-order-btn.jsx-a05ef1fcee26ebd1:disabled{opacity:.5;cursor:not-allowed}.empty-state.jsx-a05ef1fcee26ebd1{border:1px dashed#d1d5db;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:24px;text-align:center}.empty-state.jsx-a05ef1fcee26ebd1 p.jsx-a05ef1fcee26ebd1{margin:0 0 12px;color:#6b7280}@media(max-width:900px){.checkout-grid.jsx-a05ef1fcee26ebd1{grid-template-columns:1fr}.form-row-2.jsx-a05ef1fcee26ebd1{grid-template-columns:1fr}}"
+                id: "97c9fbf0f1f6b030",
+                children: ".confirm-order-page.jsx-97c9fbf0f1f6b030{min-height:100vh;background:#f5f7fb}.confirm-order-main.jsx-97c9fbf0f1f6b030{padding:40px 20px}.confirm-order-shell.jsx-97c9fbf0f1f6b030{max-width:1100px;margin:0 auto}.confirm-order-header.jsx-97c9fbf0f1f6b030{margin-bottom:24px}.eyebrow.jsx-97c9fbf0f1f6b030{margin:0 0 6px;letter-spacing:.08em;text-transform:uppercase;color:#6366f1;font-weight:700;font-size:13px}h1.jsx-97c9fbf0f1f6b030{margin:0 0 8px;font-size:clamp(24px,4vw,32px);color:#111827}h2.jsx-97c9fbf0f1f6b030{margin:0 0 16px;font-size:20px;color:#111827}.checkout-grid.jsx-97c9fbf0f1f6b030{display:grid;gap:20px;grid-template-columns:1.2fr 1fr}.order-items-card.jsx-97c9fbf0f1f6b030,.order-form-card.jsx-97c9fbf0f1f6b030,.placed-card.jsx-97c9fbf0f1f6b030{border:1px solid#e5e7eb;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;padding:24px;-webkit-box-shadow:0 4px 20px rgba(0,0,0,.04);-moz-box-shadow:0 4px 20px rgba(0,0,0,.04);box-shadow:0 4px 20px rgba(0,0,0,.04)}.placed-card.jsx-97c9fbf0f1f6b030{max-width:500px;margin:0 auto;text-align:center}.placed-icon.jsx-97c9fbf0f1f6b030{width:64px;height:64px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#d1fae5;color:#059669;font-size:28px;font-weight:800;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;margin:0 auto 16px}.items-list.jsx-97c9fbf0f1f6b030{display:grid;gap:10px;margin-bottom:16px}.item-row.jsx-97c9fbf0f1f6b030{display:grid;grid-template-columns:60px 1fr auto;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding:10px;border:1px solid#f1f5f9;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}.item-row.jsx-97c9fbf0f1f6b030 img.jsx-97c9fbf0f1f6b030{width:60px;height:48px;-o-object-fit:cover;object-fit:cover;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#f9fafb}.item-info.jsx-97c9fbf0f1f6b030 h3.jsx-97c9fbf0f1f6b030{margin:0;font-size:13px;color:#111827}.item-info.jsx-97c9fbf0f1f6b030 p.jsx-97c9fbf0f1f6b030{margin:2px 0 0;font-size:12px;color:#6b7280}.item-row.jsx-97c9fbf0f1f6b030 strong.jsx-97c9fbf0f1f6b030{font-size:13px;color:#111827}.promo-section.jsx-97c9fbf0f1f6b030{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-bottom:8px}.promo-section.jsx-97c9fbf0f1f6b030 input.jsx-97c9fbf0f1f6b030{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;padding:10px 14px;border:2px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;font-size:14px}.promo-section.jsx-97c9fbf0f1f6b030 input.jsx-97c9fbf0f1f6b030:focus{outline:none;border-color:#6366f1}.promo-btn.jsx-97c9fbf0f1f6b030{padding:10px 18px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#4f46e5;color:#fff;font-weight:700;cursor:pointer;font-size:13px}.promo-msg.jsx-97c9fbf0f1f6b030{font-size:13px;color:#059669;margin:0 0 8px}.totals-box.jsx-97c9fbf0f1f6b030{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:14px;display:grid;gap:8px}.totals-box.jsx-97c9fbf0f1f6b030 div.jsx-97c9fbf0f1f6b030{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;font-size:14px;color:#374151}.discount-row.jsx-97c9fbf0f1f6b030 strong.jsx-97c9fbf0f1f6b030{color:#059669}.grand-total.jsx-97c9fbf0f1f6b030{border-top:1px solid#e5e7eb;padding-top:10px;font-size:16px;font-weight:700}.order-form.jsx-97c9fbf0f1f6b030{display:grid;gap:14px}.form-field.jsx-97c9fbf0f1f6b030{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px}.form-field.jsx-97c9fbf0f1f6b030 label.jsx-97c9fbf0f1f6b030{font-size:12px;font-weight:700;color:#374151}.form-field.jsx-97c9fbf0f1f6b030 input.jsx-97c9fbf0f1f6b030,.form-field.jsx-97c9fbf0f1f6b030 select.jsx-97c9fbf0f1f6b030,.form-field.jsx-97c9fbf0f1f6b030 textarea.jsx-97c9fbf0f1f6b030{width:100%;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:11px 14px;font:inherit;font-size:14px;color:#111827;background:#fafbff}.form-field.jsx-97c9fbf0f1f6b030 input.jsx-97c9fbf0f1f6b030:focus,.form-field.jsx-97c9fbf0f1f6b030 select.jsx-97c9fbf0f1f6b030:focus,.form-field.jsx-97c9fbf0f1f6b030 textarea.jsx-97c9fbf0f1f6b030:focus{outline:none;border-color:#6366f1;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1);background:#fff}.form-field.jsx-97c9fbf0f1f6b030 textarea.jsx-97c9fbf0f1f6b030{resize:vertical;min-height:70px}.form-row-2.jsx-97c9fbf0f1f6b030{display:grid;grid-template-columns:1fr 1fr;gap:12px}.place-order-btn.jsx-97c9fbf0f1f6b030{width:100%;padding:14px;border:none;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#4f46e5;color:#fff;font-size:15px;font-weight:700;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.place-order-btn.jsx-97c9fbf0f1f6b030:hover:not(:disabled){background:#4338ca}.place-order-btn.jsx-97c9fbf0f1f6b030:disabled{opacity:.5;cursor:not-allowed}.order-error.jsx-97c9fbf0f1f6b030{margin:0;padding:10px 14px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fef2f2;border:1px solid#fecaca;color:#b91c1c;font-size:13px;font-weight:600}.empty-state.jsx-97c9fbf0f1f6b030{border:1px dashed#d1d5db;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:24px;text-align:center}.empty-state.jsx-97c9fbf0f1f6b030 p.jsx-97c9fbf0f1f6b030{margin:0 0 12px;color:#6b7280}@media(max-width:900px){.checkout-grid.jsx-97c9fbf0f1f6b030{grid-template-columns:1fr}.form-row-2.jsx-97c9fbf0f1f6b030{grid-template-columns:1fr}}"
             })
         ]
     });

@@ -28,6 +28,8 @@ const ConfirmOrder = ({ deliveryZones = [], defaultDeliveryCharge = 100, custome
 
   const [items, setItems] = useState([])
   const [placed, setPlaced] = useState(false)
+  const [placing, setPlacing] = useState(false)
+  const [orderError, setOrderError] = useState('')
   const [selectedZone, setSelectedZone] = useState('')
   const [promoCode, setPromoCode] = useState('')
   const [promoDiscount, setPromoDiscount] = useState(0)
@@ -93,34 +95,41 @@ const ConfirmOrder = ({ deliveryZones = [], defaultDeliveryCharge = 100, custome
 
   const handlePlaceOrder = async (event) => {
     event.preventDefault()
+    const fullAddress = [formAddress, formDistrict, formDivision].filter(Boolean).join(', ')
     const orderData = {
-      fullName: formName,
-      email: formEmail,
-      phone: formPhone,
-      division: formDivision,
-      district: formDistrict,
-      address: formAddress,
+      customer: {
+        fullName: formName,
+        email: formEmail,
+        phone: formPhone,
+        division: formDivision,
+        district: formDistrict,
+        address: fullAddress,
+      },
       paymentMethod: event.currentTarget.paymentMethod.value,
-      deliveryZoneId: selectedZone || null,
+      deliveryZone: selectedZone || null,
+      deliveryCharge,
       promoCode: promoCode || null,
-      items: items.map(i => ({ id: i.id, name: i.name, price: i.price, quantity: i.quantity })),
-      subtotal, deliveryCharge, discount, total,
+      promoDiscount: discount,
+      items: items.map(i => ({ productId: i.id, name: i.name, price: i.price, quantity: i.quantity })),
     }
 
+    setOrderError('')
+    setPlacing(true)
     try {
       const res = await fetch('/api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(orderData) })
       const data = await res.json()
-      if (data.success) {
+      if (res.ok && data.success) {
         setPlaced(true)
         window.localStorage.removeItem('misCart')
         window.dispatchEvent(new Event('mis-cart-updated'))
         setItems([])
+      } else {
+        setOrderError(data.error || 'Unable to place order. Please try again.')
       }
     } catch (e) {
-      setPlaced(true)
-      window.localStorage.removeItem('misCart')
-      window.dispatchEvent(new Event('mis-cart-updated'))
-      setItems([])
+      setOrderError('Network error. Please check your connection and try again.')
+    } finally {
+      setPlacing(false)
     }
   }
 
@@ -220,7 +229,8 @@ const ConfirmOrder = ({ deliveryZones = [], defaultDeliveryCharge = 100, custome
                         <option value="card">Card Payment</option>
                       </select>
                     </div>
-                    <button type="submit" className="place-order-btn" disabled={items.length === 0}>Place Order — {formatCurrency(total)}</button>
+                    {orderError && <p className="order-error">{orderError}</p>}
+                    <button type="submit" className="place-order-btn" disabled={items.length === 0 || placing}>{placing ? 'Placing Order…' : `Place Order — ${formatCurrency(total)}`}</button>
                   </form>
                 </section>
               </div>
@@ -275,6 +285,7 @@ const ConfirmOrder = ({ deliveryZones = [], defaultDeliveryCharge = 100, custome
         .place-order-btn { width: 100%; padding: 14px; border: none; border-radius: 10px; background: #4f46e5; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
         .place-order-btn:hover:not(:disabled) { background: #4338ca; }
         .place-order-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .order-error { margin: 0; padding: 10px 14px; border-radius: 8px; background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; font-size: 13px; font-weight: 600; }
 
         .empty-state { border: 1px dashed #d1d5db; border-radius: 12px; padding: 24px; text-align: center; }
         .empty-state p { margin: 0 0 12px; color: #6b7280; }

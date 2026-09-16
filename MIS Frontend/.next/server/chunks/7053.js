@@ -98,7 +98,7 @@ const ALERT_RECIPIENTS = {
     orders: process.env.ALERT_EMAIL_ORDERS || `sales@${DOMAIN}`,
     fallback: process.env.ALERT_EMAIL_FALLBACK || `info@${DOMAIN}`
 };
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || `https://${DOMAIN}`;
+const SITE_URL = "http://localhost:3000" || 0;
 const escapeHtml = (value)=>String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 // Shared branded shell so every email looks consistent.
 const layout = ({ heading , bodyHtml , accent ="#1e293b"  })=>`
