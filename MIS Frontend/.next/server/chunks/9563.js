@@ -16,9 +16,10 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */   "gO": () => (/* binding */ createAdminSessionToken),
 /* harmony export */   "iI": () => (/* binding */ ADMIN_SESSION_COOKIE),
 /* harmony export */   "kI": () => (/* binding */ ADMIN_ROLES),
-/* harmony export */   "mC": () => (/* binding */ ROLE_RESTRICTIONS)
+/* harmony export */   "mC": () => (/* binding */ ROLE_RESTRICTIONS),
+/* harmony export */   "nc": () => (/* binding */ ADMIN_SESSION_TTL_SECONDS)
 /* harmony export */ });
-/* unused harmony exports ADMIN_ROLE_COOKIE, ADMIN_SESSION_TTL_SECONDS */
+/* unused harmony export ADMIN_ROLE_COOKIE */
 /* harmony import */ var jose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9369);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jose__WEBPACK_IMPORTED_MODULE_0__]);
 jose__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];

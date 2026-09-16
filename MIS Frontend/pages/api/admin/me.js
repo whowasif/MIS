@@ -40,5 +40,8 @@ export default async function handler(req, res) {
     email: payload.email || '',
     role: payload.role || '',
     profileImage,
+    // Absolute session expiry (epoch seconds) so the client timer stays in sync
+    // with the real JWT lifetime even across page refreshes.
+    expiresAt: payload.exp || null,
   })
 }

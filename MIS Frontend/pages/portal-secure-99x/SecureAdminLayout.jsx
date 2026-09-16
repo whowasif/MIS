@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -89,9 +89,14 @@ const SecureAdminLayout = ({ children }) => {
   const [adminInfo, setAdminInfo] = useState({ name: '', email: '', role: '', profileImage: '' })
   const [clock, setClock] = useState('')
   const [sessionRemaining, setSessionRemaining] = useState(null)
+  const [sessionExpired, setSessionExpired] = useState(false)
   const [notifications, setNotifications] = useState([])
   const [notifUnread, setNotifUnread] = useState(0)
   const [notifOpen, setNotifOpen] = useState(false)
+  // Absolute session expiry (epoch ms). Single source of truth for the timer,
+  // seeded from the real server JWT so a page refresh does not desync it.
+  const expiresAtRef = useRef(0)
+  const lastRefreshRef = useRef(0)
   const tableGroups = useMemo(() => buildTableGroups(), [])
 
   // Clock
@@ -102,56 +107,82 @@ const SecureAdminLayout = ({ children }) => {
     return () => clearInterval(timer)
   }, [])
 
-  // Session Timer - 30 min TTL, resets on admin API activity
+  // Re-issue the server session (extends the real JWT + cookie) and sync the
+  // client timer to the returned absolute expiry. Throttled so rapid activity
+  // doesn't spam the endpoint.
+  const refreshSession = useCallback((force = false) => {
+    const now = Date.now()
+    if (!force && now - lastRefreshRef.current < 20000) return // at most once / 20s
+    lastRefreshRef.current = now
+    fetch('/api/admin/refresh-session', { method: 'POST', credentials: 'include' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data?.success && data.expiresAt) {
+          expiresAtRef.current = Number(data.expiresAt) * 1000
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  // Session Timer - driven by the REAL session expiry (from the server), so a
+  // page refresh keeps the countdown in sync instead of resetting it. Any real
+  // admin API activity extends the session server-side.
   useEffect(() => {
-    const SESSION_TTL = 30 * 60 // 30 minutes in seconds
-    const STORAGE_KEY = 'mis_admin_session_start'
+    let intervalId = null
 
-    const initSession = () => {
-      const stored = sessionStorage.getItem(STORAGE_KEY)
-      if (!stored) {
-        sessionStorage.setItem(STORAGE_KEY, String(Date.now()))
-      }
-    }
-
-    const getRemaining = () => {
-      const start = Number(sessionStorage.getItem(STORAGE_KEY) || Date.now())
-      const elapsed = Math.floor((Date.now() - start) / 1000)
-      return Math.max(0, SESSION_TTL - elapsed)
-    }
-
-    const resetSessionTimer = () => {
-      sessionStorage.setItem(STORAGE_KEY, String(Date.now()))
-    }
-
-    // Reset timer on any fetch to admin API (intercept)
+    // Reset timer on any fetch to admin API (intercept). Background polling
+    // (notification count, refresh-session itself) must NOT extend the session.
     const originalFetch = window.fetch
     window.fetch = function (...args) {
       const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || ''
-      // Background notification polling must NOT keep the session alive.
-      const isNotifPoll = url.includes('/api/admin/notifications') && url.includes('count')
-      if (url.includes('/api/admin/') && !isNotifPoll) {
-        resetSessionTimer()
+      const isBackground =
+        url.includes('/api/admin/refresh-session') ||
+        (url.includes('/api/admin/notifications') && url.includes('count'))
+      if (url.includes('/api/admin/') && !isBackground) {
+        refreshSession()
       }
       return originalFetch.apply(this, args)
     }
 
-    initSession()
+    // Seed the expiry from the real session, then start the countdown.
+    fetch('/api/admin/me', { credentials: 'include' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data?.expiresAt) {
+          expiresAtRef.current = Number(data.expiresAt) * 1000
+        } else {
+          // Fallback: assume a full window from now.
+          expiresAtRef.current = Date.now() + 30 * 60 * 1000
+        }
+      })
+      .catch(() => { expiresAtRef.current = Date.now() + 30 * 60 * 1000 })
 
-    const interval = setInterval(() => {
-      const remaining = getRemaining()
+    intervalId = setInterval(() => {
+      if (!expiresAtRef.current) return
+      const remaining = Math.max(0, Math.round((expiresAtRef.current - Date.now()) / 1000))
       setSessionRemaining(remaining)
       if (remaining <= 0) {
-        clearInterval(interval)
-        router.push('/portal-secure-99x/access?reason=session')
+        clearInterval(intervalId)
+        setSessionExpired(true) // show "time's up" modal; redirect handled there
       }
     }, 1000)
 
     return () => {
-      clearInterval(interval)
+      if (intervalId) clearInterval(intervalId)
       window.fetch = originalFetch
     }
-  }, [])
+  }, [refreshSession])
+
+  // When the session expires, hold the "time's up" modal briefly, then send the
+  // admin back to the login page using a same-origin absolute redirect (avoids
+  // the browser-back "localhost" issue from router.push).
+  useEffect(() => {
+    if (!sessionExpired) return
+    const t = setTimeout(() => {
+      window.location.assign('/portal-secure-99x/access?reason=session')
+    }, 2500)
+    return () => clearTimeout(t)
+  }, [sessionExpired])
 
   const formatSessionTime = (seconds) => {
     if (seconds === null) return '--:--'
@@ -175,20 +206,31 @@ const SecureAdminLayout = ({ children }) => {
       .catch(() => {})
   }, [])
 
-  // Poll unread notification count (lightweight, does not keep session alive).
+  // Near-realtime unread notification count: short poll interval + immediate
+  // refresh whenever the tab regains focus/visibility. Lightweight and does not
+  // keep the session alive (excluded from the fetch interceptor above).
   useEffect(() => {
     let cancelled = false
     const loadCount = () => {
-      if (document.hidden) return
+      if (document.hidden || sessionExpired) return
       fetch('/api/admin/notifications?count=1', { credentials: 'include' })
         .then((r) => (r.ok ? r.json() : null))
         .then((data) => { if (!cancelled && data?.success) setNotifUnread(Number(data.unread || 0)) })
         .catch(() => {})
     }
     loadCount()
-    const interval = setInterval(loadCount, 45000)
-    return () => { cancelled = true; clearInterval(interval) }
-  }, [])
+    const interval = setInterval(loadCount, 10000) // ~realtime
+    const onFocus = () => loadCount()
+    const onVisible = () => { if (!document.hidden) loadCount() }
+    window.addEventListener('focus', onFocus)
+    document.addEventListener('visibilitychange', onVisible)
+    return () => {
+      cancelled = true
+      clearInterval(interval)
+      window.removeEventListener('focus', onFocus)
+      document.removeEventListener('visibilitychange', onVisible)
+    }
+  }, [sessionExpired])
 
   const loadNotifications = () => {
     fetch('/api/admin/notifications', { credentials: 'include' })
@@ -249,6 +291,18 @@ const SecureAdminLayout = ({ children }) => {
 
   return (
     <div className="admin-shell">
+      {sessionExpired && (
+        <div className="session-expired-overlay">
+          <div className="session-expired-modal" role="alertdialog" aria-modal="true">
+            <div className="session-expired-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Time&apos;s up</h3>
+            <p>Your secure session has timed out. Redirecting you to the login page…</p>
+            <button type="button" onClick={() => window.location.assign('/portal-secure-99x/access?reason=session')}>Go to login now</button>
+          </div>
+        </div>
+      )}
       <aside className={`admin-sidebar ${sidebarOpen ? 'is-open' : ''}`}>
         <div className="sidebar-top">
           <div className="brand">
@@ -361,6 +415,14 @@ const SecureAdminLayout = ({ children }) => {
 
       <style jsx>{`
         .admin-shell { min-height: 100vh; display: grid; grid-template-columns: 270px minmax(0, 1fr); background: #f4f6fa; color: #2b2a3c; font-family: 'Segoe UI', 'Inter', Arial, sans-serif; }
+        .session-expired-overlay { position: fixed; inset: 0; z-index: 3000; background: rgba(15,23,42,0.62); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .session-expired-modal { width: min(400px, 100%); background: #fff; border-radius: 18px; padding: 32px 28px; text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.3); animation: sessionPop 0.2s ease-out; }
+        @keyframes sessionPop { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .session-expired-icon { width: 64px; height: 64px; border-radius: 50%; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+        .session-expired-modal h3 { margin: 0 0 8px; font-size: 20px; font-weight: 800; color: #111827; }
+        .session-expired-modal p { margin: 0 0 20px; font-size: 14px; color: #6b7280; line-height: 1.6; }
+        .session-expired-modal button { border: none; border-radius: 10px; padding: 11px 22px; background: #4f46e5; color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; transition: background 0.15s; }
+        .session-expired-modal button:hover { background: #4338ca; }
         .admin-sidebar { background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%); padding: 20px 14px 24px; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; }
         .admin-sidebar::-webkit-scrollbar { width: 4px; }
         .admin-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }

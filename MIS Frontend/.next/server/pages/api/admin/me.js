@@ -112,7 +112,10 @@ async function handler(req, res) {
         name: payload.name || "",
         email: payload.email || "",
         role: payload.role || "",
-        profileImage
+        profileImage,
+        // Absolute session expiry (epoch seconds) so the client timer stays in sync
+        // with the real JWT lifetime even across page refreshes.
+        expiresAt: payload.exp || null
     });
 }
 
