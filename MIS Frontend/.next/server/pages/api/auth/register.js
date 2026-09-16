@@ -12,6 +12,13 @@ module.exports = require("mysql2/promise");
 
 /***/ }),
 
+/***/ 5184:
+/***/ ((module) => {
+
+module.exports = require("nodemailer");
+
+/***/ }),
+
 /***/ 7618:
 /***/ ((module) => {
 
@@ -30,8 +37,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bcryptjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7618);
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6548);
 /* harmony import */ var _lib_server_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7942);
+/* harmony import */ var _lib_server_mailer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5333);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([bcryptjs__WEBPACK_IMPORTED_MODULE_0__]);
 bcryptjs__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -82,6 +91,11 @@ async function handler(req, res) {
             resourceId: regResult?.insertId || null,
             minRoleRank: _lib_server_notifications__WEBPACK_IMPORTED_MODULE_2__/* .VISIBILITY.SUPER_ONLY */ .ix.SUPER_ONLY
         }).catch(()=>{});
+        // Welcome email to the new customer (fire-and-forget).
+        (0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_3__/* .safeSend */ .iV)(()=>(0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_3__/* .sendWelcomeEmail */ .Pi)({
+                to: cleanEmail,
+                name: cleanName
+            }), "welcome email");
         return res.status(201).json({
             success: true,
             message: "Account created successfully."
@@ -106,7 +120,7 @@ __webpack_async_result__();
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [7942], () => (__webpack_exec__(8567)));
+var __webpack_exports__ = __webpack_require__.X(0, [7053,7942], () => (__webpack_exec__(8567)));
 module.exports = __webpack_exports__;
 
 })();

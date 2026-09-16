@@ -1,5 +1,6 @@
 import { getDbPool } from '../../lib/server/db'
 import { createNotification, VISIBILITY } from '../../lib/server/notifications'
+import { safeSend, sendOrderConfirmationEmail, sendOrderAlertToAdmin } from '../../lib/server/mailer'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -105,6 +106,16 @@ export default async function handler(req, res) {
       resourceId: orderId,
       minRoleRank: VISIBILITY.SUPER_ONLY,
     }).catch(() => {})
+
+    // Confirmation to customer + alert to sales (fire-and-forget).
+    safeSend(() => sendOrderConfirmationEmail({
+      to: email,
+      name: fullName,
+      orderNo,
+      totalAmount,
+      items: items.map((it) => ({ name: it.name, quantity: it.quantity, price: it.price })),
+    }), 'order confirmation')
+    safeSend(() => sendOrderAlertToAdmin({ orderNo, customerName: fullName, email, totalAmount }), 'order alert')
 
     return res.status(201).json({
       success: true,

@@ -2,7 +2,7 @@
 (() => {
 var exports = {};
 exports.id = 7471;
-exports.ids = [7471,6548];
+exports.ids = [7471];
 exports.modules = {
 
 /***/ 2418:
@@ -12,43 +12,10 @@ module.exports = require("mysql2/promise");
 
 /***/ }),
 
-/***/ 6548:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ 5184:
+/***/ ((module) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "z": () => (/* binding */ getDbPool)
-/* harmony export */ });
-/* harmony import */ var mysql2_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2418);
-/* harmony import */ var mysql2_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mysql2_promise__WEBPACK_IMPORTED_MODULE_0__);
-
-const requiredEnvVars = [
-    "DB_HOST",
-    "DB_USER",
-    "DB_PASSWORD",
-    "DB_NAME"
-];
-const getMissingEnvVars = ()=>requiredEnvVars.filter((envKey)=>!process.env[envKey] || !String(process.env[envKey]).trim());
-const getDbPool = ()=>{
-    if (globalThis.__misDbPool) return globalThis.__misDbPool;
-    const missingEnvVars = getMissingEnvVars();
-    if (missingEnvVars.length > 0) {
-        throw new Error(`Missing database environment variables: ${missingEnvVars.join(", ")}`);
-    }
-    const pool = mysql2_promise__WEBPACK_IMPORTED_MODULE_0___default().createPool({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-        waitForConnections: true,
-        connectionLimit: 5,
-        queueLimit: 0,
-        namedPlaceholders: true,
-        timezone: "Z"
-    });
-    globalThis.__misDbPool = pool;
-    return pool;
-};
-
+module.exports = require("nodemailer");
 
 /***/ }),
 
@@ -60,6 +27,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ handler)
 /* harmony export */ });
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6548);
+/* harmony import */ var _lib_server_mailer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5333);
+
 
 async function handler(req, res) {
     if (req.method !== "POST") {
@@ -87,6 +56,18 @@ async function handler(req, res) {
             serviceType || "General Inquiry",
             message
         ]);
+        // Confirmation to client + alert to sales (fire-and-forget).
+        (0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_1__/* .safeSend */ .iV)(()=>(0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_1__/* .sendQuoteReceivedEmail */ .ZZ)({
+                to: email,
+                name: clientName
+            }), "inquiry confirmation");
+        (0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_1__/* .safeSend */ .iV)(()=>(0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_1__/* .sendQuoteAlertToAdmin */ .F7)({
+                clientName,
+                companyName: "",
+                email,
+                projectType: serviceType || "General Inquiry",
+                requirements: message
+            }), "inquiry alert");
         // Redirect back to contact page with success
         return res.redirect(302, "/contact?status=success");
     } catch (error) {
@@ -105,7 +86,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(3200));
+var __webpack_exports__ = __webpack_require__.X(0, [7053], () => (__webpack_exec__(3200)));
 module.exports = __webpack_exports__;
 
 })();

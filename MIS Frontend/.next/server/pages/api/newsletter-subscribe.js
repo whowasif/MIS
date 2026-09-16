@@ -12,6 +12,13 @@ module.exports = require("mysql2/promise");
 
 /***/ }),
 
+/***/ 5184:
+/***/ ((module) => {
+
+module.exports = require("nodemailer");
+
+/***/ }),
+
 /***/ 695:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -21,6 +28,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6548);
 /* harmony import */ var _lib_server_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7942);
+/* harmony import */ var _lib_server_mailer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5333);
+
 
 
 async function handler(req, res) {
@@ -62,6 +71,10 @@ async function handler(req, res) {
             resourceId: subResult?.insertId || null,
             minRoleRank: _lib_server_notifications__WEBPACK_IMPORTED_MODULE_1__/* .VISIBILITY.ALL_ADMINS */ .ix.ALL_ADMINS
         }).catch(()=>{});
+        // Welcome email to the new subscriber (fire-and-forget).
+        (0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_2__/* .safeSend */ .iV)(()=>(0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_2__/* .sendNewsletterWelcomeEmail */ .Ky)({
+                to: email
+            }), "newsletter welcome");
         return res.status(201).json({
             success: true,
             message: "Subscribed successfully!"
@@ -84,7 +97,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [7942], () => (__webpack_exec__(695)));
+var __webpack_exports__ = __webpack_require__.X(0, [7053,7942], () => (__webpack_exec__(695)));
 module.exports = __webpack_exports__;
 
 })();

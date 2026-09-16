@@ -1,5 +1,6 @@
 import { getDbPool } from '../../lib/server/db'
 import { createNotification, VISIBILITY } from '../../lib/server/notifications'
+import { safeSend, sendQuoteReceivedEmail, sendQuoteAlertToAdmin } from '../../lib/server/mailer'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -36,6 +37,16 @@ export default async function handler(req, res) {
       resourceId: result.insertId,
       minRoleRank: VISIBILITY.SUPER_ONLY,
     }).catch(() => {})
+
+    // Confirmation to client + alert to sales (fire-and-forget).
+    safeSend(() => sendQuoteReceivedEmail({ to: String(email).trim(), name: String(clientName).trim() }), 'quote confirmation')
+    safeSend(() => sendQuoteAlertToAdmin({
+      clientName: String(clientName).trim(),
+      companyName: String(companyName || '').trim(),
+      email: String(email).trim(),
+      projectType: String(projectType || '').trim(),
+      requirements: String(requirements).trim(),
+    }), 'quote alert')
 
     return res.status(201).json({
       success: true,

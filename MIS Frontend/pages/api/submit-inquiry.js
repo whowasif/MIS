@@ -1,4 +1,5 @@
 import { getDbPool } from '../../lib/server/db'
+import { safeSend, sendQuoteReceivedEmail, sendQuoteAlertToAdmin } from '../../lib/server/mailer'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -25,6 +26,16 @@ export default async function handler(req, res) {
        VALUES (?, ?, ?, ?, ?, 'new')`,
       [clientName, '', email, serviceType || 'General Inquiry', message]
     )
+
+    // Confirmation to client + alert to sales (fire-and-forget).
+    safeSend(() => sendQuoteReceivedEmail({ to: email, name: clientName }), 'inquiry confirmation')
+    safeSend(() => sendQuoteAlertToAdmin({
+      clientName,
+      companyName: '',
+      email,
+      projectType: serviceType || 'General Inquiry',
+      requirements: message,
+    }), 'inquiry alert')
 
     // Redirect back to contact page with success
     return res.redirect(302, '/contact?status=success')

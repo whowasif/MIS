@@ -12,6 +12,13 @@ module.exports = require("mysql2/promise");
 
 /***/ }),
 
+/***/ 5184:
+/***/ ((module) => {
+
+module.exports = require("nodemailer");
+
+/***/ }),
+
 /***/ 6705:
 /***/ ((module) => {
 
@@ -49,8 +56,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6548);
 /* harmony import */ var _lib_server_notifications__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7942);
+/* harmony import */ var _lib_server_mailer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5333);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([formidable__WEBPACK_IMPORTED_MODULE_0__]);
 formidable__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -138,6 +147,17 @@ async function handler(req, res) {
             resourceId: applyResult?.insertId || null,
             minRoleRank: _lib_server_notifications__WEBPACK_IMPORTED_MODULE_4__/* .VISIBILITY.SENIOR_UP */ .ix.SENIOR_UP
         }).catch(()=>{});
+        // Confirmation to applicant + alert to HR (fire-and-forget).
+        (0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_5__/* .safeSend */ .iV)(()=>(0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_5__/* .sendApplicationReceivedEmail */ .mm)({
+                to: email,
+                name: applicantName
+            }), "application confirmation");
+        (0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_5__/* .safeSend */ .iV)(()=>(0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_5__/* .sendApplicationAlertToAdmin */ .t3)({
+                applicantName,
+                email,
+                phone,
+                careerPostId
+            }), "application alert");
         return res.status(201).json({
             success: true,
             message: "Application submitted successfully."
@@ -167,7 +187,7 @@ __webpack_async_result__();
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [7942], () => (__webpack_exec__(1774)));
+var __webpack_exports__ = __webpack_require__.X(0, [7053,7942], () => (__webpack_exec__(1774)));
 module.exports = __webpack_exports__;
 
 })();

@@ -1,5 +1,6 @@
 import { getDbPool } from '../../lib/server/db'
 import { createNotification, VISIBILITY } from '../../lib/server/notifications'
+import { safeSend, sendNewsletterWelcomeEmail } from '../../lib/server/mailer'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -40,6 +41,9 @@ export default async function handler(req, res) {
       resourceId: subResult?.insertId || null,
       minRoleRank: VISIBILITY.ALL_ADMINS,
     }).catch(() => {})
+
+    // Welcome email to the new subscriber (fire-and-forget).
+    safeSend(() => sendNewsletterWelcomeEmail({ to: email }), 'newsletter welcome')
 
     return res.status(201).json({ success: true, message: 'Subscribed successfully!' })
   } catch (error) {

@@ -12,6 +12,13 @@ module.exports = require("mysql2/promise");
 
 /***/ }),
 
+/***/ 5184:
+/***/ ((module) => {
+
+module.exports = require("nodemailer");
+
+/***/ }),
+
 /***/ 6309:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -21,6 +28,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6548);
 /* harmony import */ var _lib_server_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7942);
+/* harmony import */ var _lib_server_mailer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5333);
+
 
 
 async function handler(req, res) {
@@ -54,6 +63,18 @@ async function handler(req, res) {
             resourceId: result.insertId,
             minRoleRank: _lib_server_notifications__WEBPACK_IMPORTED_MODULE_1__/* .VISIBILITY.SUPER_ONLY */ .ix.SUPER_ONLY
         }).catch(()=>{});
+        // Confirmation to client + alert to sales (fire-and-forget).
+        (0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_2__/* .safeSend */ .iV)(()=>(0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_2__/* .sendQuoteReceivedEmail */ .ZZ)({
+                to: String(email).trim(),
+                name: String(clientName).trim()
+            }), "quote confirmation");
+        (0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_2__/* .safeSend */ .iV)(()=>(0,_lib_server_mailer__WEBPACK_IMPORTED_MODULE_2__/* .sendQuoteAlertToAdmin */ .F7)({
+                clientName: String(clientName).trim(),
+                companyName: String(companyName || "").trim(),
+                email: String(email).trim(),
+                projectType: String(projectType || "").trim(),
+                requirements: String(requirements).trim()
+            }), "quote alert");
         return res.status(201).json({
             success: true,
             quoteId: result.insertId,
@@ -77,7 +98,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [7942], () => (__webpack_exec__(6309)));
+var __webpack_exports__ = __webpack_require__.X(0, [7053,7942], () => (__webpack_exec__(6309)));
 module.exports = __webpack_exports__;
 
 })();

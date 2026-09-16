@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { getDbPool } from '../../../lib/server/db'
 import { createNotification, VISIBILITY } from '../../../lib/server/notifications'
+import { safeSend, sendApplicationReceivedEmail, sendApplicationAlertToAdmin } from '../../../lib/server/mailer'
 
 export const config = { api: { bodyParser: false } }
 
@@ -79,6 +80,10 @@ export default async function handler(req, res) {
       resourceId: applyResult?.insertId || null,
       minRoleRank: VISIBILITY.SENIOR_UP,
     }).catch(() => {})
+
+    // Confirmation to applicant + alert to HR (fire-and-forget).
+    safeSend(() => sendApplicationReceivedEmail({ to: email, name: applicantName }), 'application confirmation')
+    safeSend(() => sendApplicationAlertToAdmin({ applicantName, email, phone, careerPostId }), 'application alert')
 
     return res.status(201).json({ success: true, message: 'Application submitted successfully.' })
   } catch (error) {

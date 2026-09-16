@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import { getDbPool } from '../../../lib/server/db'
 import { createNotification, VISIBILITY } from '../../../lib/server/notifications'
+import { safeSend, sendWelcomeEmail } from '../../../lib/server/mailer'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -51,6 +52,9 @@ export default async function handler(req, res) {
       resourceId: regResult?.insertId || null,
       minRoleRank: VISIBILITY.SUPER_ONLY,
     }).catch(() => {})
+
+    // Welcome email to the new customer (fire-and-forget).
+    safeSend(() => sendWelcomeEmail({ to: cleanEmail, name: cleanName }), 'welcome email')
 
     return res.status(201).json({ success: true, message: 'Account created successfully.' })
   } catch (error) {
