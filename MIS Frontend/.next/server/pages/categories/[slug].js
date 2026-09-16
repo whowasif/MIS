@@ -1164,19 +1164,48 @@ const getServerSideProps = async ({ params  })=>{
         const [subcats] = await db.execute("SELECT id, name, slug FROM categories WHERE parent_id = ? AND deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC", [
             category.id
         ]);
-        // Get category specs (for filters)
-        const [specs] = await db.execute("SELECT spec_name, spec_label, display_order FROM category_specs WHERE category_id = ? AND is_filterable = 1 ORDER BY display_order ASC", [
+        // Build the set of related category ids: the viewed category, its parent,
+        // and its subcategories. Specs may be defined on the parent and filter
+        // options may be stored under a subcategory (that's where products live),
+        // so we look across all of them to surface every relevant filter.
+        const relatedIds = [
+            category.id,
+            ...subcats.map((s)=>s.id),
+            ...category.parent_id ? [
+                category.parent_id
+            ] : [], 
+        ];
+        const relatedPlaceholders = relatedIds.map(()=>"?").join(",");
+        // Get filterable category specs across the related categories, deduped by
+        // spec_name (prefer the one on the viewed category, else parent/sub).
+        const [specRows] = await db.execute(`SELECT spec_name, spec_label, display_order, category_id FROM category_specs
+       WHERE category_id IN (${relatedPlaceholders}) AND is_filterable = 1
+       ORDER BY (category_id = ?) DESC, display_order ASC`, [
+            ...relatedIds,
             category.id
         ]);
-        // Get the manually-curated filter option values for this category.
+        const specsByName = {};
+        specRows.forEach((r)=>{
+            if (!specsByName[r.spec_name]) {
+                specsByName[r.spec_name] = {
+                    spec_name: r.spec_name,
+                    spec_label: r.spec_label,
+                    display_order: r.display_order
+                };
+            }
+        });
+        const specs = Object.values(specsByName).sort((a, b)=>(a.display_order || 0) - (b.display_order || 0));
+        // Get the manually-curated filter option values across related categories.
         let filterOptions = {};
         try {
-            const [optRows] = await db.execute("SELECT spec_name, option_value FROM spec_filter_options WHERE category_id = ? ORDER BY spec_name ASC, display_order ASC, option_value ASC", [
-                category.id
-            ]);
+            const [optRows] = await db.execute(`SELECT spec_name, option_value FROM spec_filter_options
+         WHERE category_id IN (${relatedPlaceholders})
+         ORDER BY spec_name ASC, display_order ASC, option_value ASC`, relatedIds);
             optRows.forEach((r)=>{
                 if (!filterOptions[r.spec_name]) filterOptions[r.spec_name] = [];
-                if (!filterOptions[r.spec_name].includes(r.option_value)) filterOptions[r.spec_name].push(r.option_value);
+                if (!filterOptions[r.spec_name].some((v)=>v.toLowerCase() === String(r.option_value).toLowerCase())) {
+                    filterOptions[r.spec_name].push(r.option_value);
+                }
             });
         } catch (e) {
             filterOptions = {};
