@@ -19,6 +19,20 @@ module.exports = require("nodemailer");
 
 /***/ }),
 
+/***/ 7147:
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 1017:
+/***/ ((module) => {
+
+module.exports = require("path");
+
+/***/ }),
+
 /***/ 695:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 

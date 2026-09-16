@@ -1,6 +1,31 @@
 import nodemailer from 'nodemailer'
+import fs from 'fs'
+import path from 'path'
 
 let transporter = null
+
+// Load the logo once and embed it in every email as an inline (CID) attachment.
+// Remote <img src> URLs are often blocked/hidden by mail clients (e.g. Gmail proxy),
+// so shipping the image inside the message is the reliable approach.
+const LOGO_CID = 'mislogo'
+let logoAttachment = null
+const getLogoAttachment = () => {
+  if (logoAttachment !== null) return logoAttachment || undefined
+  try {
+    const logoPath = path.join(process.cwd(), 'public', 'mis_logo_cut-w.png')
+    const content = fs.readFileSync(logoPath)
+    logoAttachment = {
+      filename: 'mis_logo_cut-w.png',
+      content,
+      cid: LOGO_CID,
+      contentType: 'image/png',
+    }
+  } catch (err) {
+    console.error('[mailer] could not load logo for embedding:', err?.message || err)
+    logoAttachment = false // remember failure; fall back to no logo attachment
+  }
+  return logoAttachment || undefined
+}
 
 const getTransporter = () => {
   if (transporter) return transporter
@@ -23,7 +48,10 @@ export const sendEmail = async ({ to, subject, html }) => {
   const transport = getTransporter()
   const from = process.env.SMTP_FROM || process.env.SMTP_USER
 
-  return transport.sendMail({ from, to, subject, html })
+  const logo = getLogoAttachment()
+  const attachments = logo ? [logo] : []
+
+  return transport.sendMail({ from, to, subject, html, attachments })
 }
 
 // --- Admin alert recipients (configurable via env, with sensible defaults) ---
@@ -44,20 +72,20 @@ const escapeHtml = (value) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 
-// Company logo (absolute URL so it renders in email clients).
-const LOGO_URL = `${SITE_URL}/mis_logo_cut-w.png`
+// Company logo referenced via the inline CID attachment added in sendEmail().
+const LOGO_SRC = `cid:${LOGO_CID}`
 
 // Shared branded shell so every email looks consistent.
 const layout = ({ heading, bodyHtml, accent = '#1e293b' }) => `
   <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
     <div style="text-align: center; margin-bottom: 30px; background: #1e293b; border-radius: 12px; padding: 24px 20px;">
-      <img src="${LOGO_URL}" alt="MIS Solution" width="180" style="display: inline-block; max-width: 180px; height: auto;" />
+      <img src="${LOGO_SRC}" alt="MIS Solution" width="180" style="display: inline-block; max-width: 180px; height: auto;" />
     </div>
     <h2 style="color: ${accent};">${heading}</h2>
     ${bodyHtml}
     <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;" />
     <div style="text-align: center;">
-      <img src="${LOGO_URL}" alt="MIS Solution" width="90" style="display: inline-block; max-width: 90px; height: auto; opacity: 0.85; margin-bottom: 8px;" />
+      <img src="${LOGO_SRC}" alt="MIS Solution" width="90" style="display: inline-block; max-width: 90px; height: auto; opacity: 0.85; margin-bottom: 8px;" />
       <p style="color: #9ca3af; font-size: 12px; margin: 4px 0 0;">MIS Solution - ${DOMAIN}</p>
     </div>
   </div>

@@ -26,6 +26,20 @@ module.exports = import("bcryptjs");;
 
 /***/ }),
 
+/***/ 7147:
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 1017:
+/***/ ((module) => {
+
+module.exports = require("path");
+
+/***/ }),
+
 /***/ 8567:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
