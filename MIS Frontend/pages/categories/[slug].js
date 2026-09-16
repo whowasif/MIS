@@ -294,12 +294,19 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
     }
 
     // Spec filters (multi-select). selectedSpecs[specName] holds curated option
-    // values; a product matches if its raw spec value equals or contains any of
-    // the selected options (case-insensitive). OR within a spec.
+    // values. A product matches when its manually-assigned filter value
+    // (stored as "<spec>__filter") equals a selected option (case-insensitive).
+    // Falls back to the raw spec value contains/equals when no filter value set.
     Object.entries(selectedSpecs).forEach(([specName, specValues]) => {
       if (!specValues || !Array.isArray(specValues) || specValues.length === 0) return
       filtered = filtered.filter((p) => {
-        const pSpec = p.specs?.find((s) => s.spec_name === specName)
+        const allSpecs = p.filterSpecs || p.specs
+        const pFilter = allSpecs?.find((s) => s.spec_name === `${specName}__filter`)
+        const filterVal = pFilter?.spec_value ? String(pFilter.spec_value).toLowerCase() : ''
+        if (filterVal) {
+          return specValues.some((opt) => String(opt).toLowerCase() === filterVal)
+        }
+        const pSpec = allSpecs?.find((s) => s.spec_name === specName)
         if (!pSpec?.spec_value) return false
         const raw = String(pSpec.spec_value).toLowerCase()
         return specValues.some((opt) => {
@@ -751,7 +758,10 @@ export const getServerSideProps = async ({ params }) => {
         const parsed = p.specifications ? JSON.parse(p.specifications) : {}
         specs = Object.entries(parsed).map(([key, val]) => ({ spec_name: key, spec_value: val }))
       } catch (e) {}
-      return { ...p, specs }
+      // Keep the "__filter" companion values available for filtering, but the
+      // display list (product cards/detail) should not show them as bullets.
+      const displaySpecs = specs.filter((s) => !String(s.spec_name).endsWith('__filter'))
+      return { ...p, specs: displaySpecs, filterSpecs: specs }
     })
 
     // Get unique brands

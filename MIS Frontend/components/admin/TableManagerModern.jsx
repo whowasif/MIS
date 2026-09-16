@@ -799,7 +799,8 @@ const ModernTableManager = () => {
     const filterableNames = categorySpecs.filter((s) => s.is_filterable).map((s) => s.spec_name)
     const pending = []
     filterableNames.forEach((specName) => {
-      const value = typeof specsObj[specName] === 'string' ? specsObj[specName].trim() : ''
+      // The curated filter option is the separately-entered "<spec>__filter" value.
+      const value = typeof specsObj[`${specName}__filter`] === 'string' ? specsObj[`${specName}__filter`].trim() : ''
       if (!value) return
       const existing = specOptions[specName] || []
       if (existing.some((v) => v.toLowerCase() === value.toLowerCase())) return
@@ -1783,11 +1784,13 @@ const ModernTableManager = () => {
                           const specsObj = (() => {
                             try { return JSON.parse(activeFormValues.specifications || '{}') } catch (e) { return {} }
                           })()
-                          const setSpecValue = (val) => {
-                            const updated = { ...specsObj, [spec.spec_name]: val }
+                          const filterKey = `${spec.spec_name}__filter`
+                          const setSpecField = (key, val) => {
+                            const updated = { ...specsObj, [key]: val }
                             handleFormChange('specifications', JSON.stringify(updated))
                           }
                           const currentValue = specsObj[spec.spec_name] || ''
+                          const currentFilter = specsObj[filterKey] || ''
                           const options = specOptions[spec.spec_name] || []
                           const isFilterable = !!spec.is_filterable
                           return (
@@ -1800,25 +1803,33 @@ const ModernTableManager = () => {
                                 type="text"
                                 style={{ width: '100%', height: '48px', padding: '0 14px', border: '2px solid #c7d2fe', borderRadius: '10px', background: '#fafbff', color: '#0f172a', fontSize: '14px', fontFamily: 'inherit' }}
                                 value={currentValue}
-                                onChange={(e) => setSpecValue(e.target.value)}
+                                onChange={(e) => setSpecField(spec.spec_name, e.target.value)}
                                 placeholder={`Enter ${spec.spec_label.toLowerCase()}`}
                               />
                               {isFilterable && (
                                 <div className="spec-filter-picker">
+                                  <label className="spec-filter-sublabel">Filter value</label>
+                                  <input
+                                    type="text"
+                                    style={{ width: '100%', height: '40px', padding: '0 12px', border: '2px solid #e0e7ff', borderRadius: '10px', background: '#fff', color: '#0f172a', fontSize: '13px', fontFamily: 'inherit' }}
+                                    value={currentFilter}
+                                    onChange={(e) => setSpecField(filterKey, e.target.value)}
+                                    placeholder={`e.g. a short label to group this in filters`}
+                                  />
                                   <select
-                                    value={options.includes(currentValue) ? currentValue : ''}
-                                    onChange={(e) => { if (e.target.value) setSpecValue(e.target.value) }}
-                                    style={{ width: '100%', height: '40px', padding: '0 12px', border: '2px solid #e0e7ff', borderRadius: '10px', background: '#f5f7ff', color: '#4338ca', fontSize: '13px', fontFamily: 'inherit', cursor: 'pointer' }}
+                                    value={options.includes(currentFilter) ? currentFilter : ''}
+                                    onChange={(e) => { if (e.target.value) setSpecField(filterKey, e.target.value) }}
+                                    style={{ width: '100%', height: '38px', padding: '0 12px', border: '2px solid #e0e7ff', borderRadius: '10px', background: '#f5f7ff', color: '#4338ca', fontSize: '13px', fontFamily: 'inherit', cursor: 'pointer' }}
                                   >
                                     <option value="">
-                                      {options.length ? '— Pick a saved filter value —' : '— No saved values yet —'}
+                                      {options.length ? '— Or pick a saved filter value —' : '— No saved values yet —'}
                                     </option>
                                     {options.map((opt) => (
                                       <option key={opt} value={opt}>{opt}</option>
                                     ))}
                                   </select>
                                   <span className="spec-filter-hint">
-                                    Pick an existing filter value, or type a new one above — it&apos;s saved as a filter option when you save the product.
+                                    Type the short filter label (e.g. &quot;Ryzen 5&quot; for &quot;AMD Ryzen 5 5600 Ti&quot;) or pick a saved one. This is what appears in the storefront filter.
                                   </span>
                                 </div>
                               )}
@@ -2522,6 +2533,18 @@ const ModernTableManager = () => {
           flex-direction: column;
           gap: 5px;
           margin-top: 8px;
+          padding: 10px;
+          border: 1px dashed #c7d2fe;
+          border-radius: 10px;
+          background: #fafbff;
+        }
+
+        .spec-filter-sublabel {
+          font-size: 11px;
+          font-weight: 700;
+          color: #4338ca;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
         }
 
         .spec-filter-hint {

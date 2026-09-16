@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/Slkl_6JDhsYIpJUum02Xi/_buildManifest.js",
-    "static/Slkl_6JDhsYIpJUum02Xi/_ssgManifest.js"
+    "static/C2BPUDhj9nBns3k5USu57/_buildManifest.js",
+    "static/C2BPUDhj9nBns3k5USu57/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -97,7 +97,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/2097-c9d58c04bfc299b1.js",
       "static/chunks/6151-c29b21dd9e4201ce.js",
-      "static/chunks/pages/categories/[slug]-99aeffd91e4f100b.js"
+      "static/chunks/pages/categories/[slug]-3a3156b7b9cf7223.js"
     ],
     "/company-information-policies": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
@@ -262,7 +262,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/3792-430ab35430483c06.js",
       "static/chunks/5912-42b459b59c8d92a9.js",
-      "static/chunks/pages/portal-secure-99x/tables/[table]-8c7d694b04a96e5b.js"
+      "static/chunks/pages/portal-secure-99x/tables/[table]-f6dd1ad462528be4.js"
     ],
     "/portal-secure-99x/tables/admin_users": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
@@ -296,7 +296,7 @@
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/2097-c9d58c04bfc299b1.js",
       "static/chunks/6151-c29b21dd9e4201ce.js",
-      "static/chunks/pages/products/[slug]-a59676160d1b4953.js"
+      "static/chunks/pages/products/[slug]-d70d8a48a97512c4.js"
     ],
     "/profile": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",

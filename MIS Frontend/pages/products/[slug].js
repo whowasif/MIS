@@ -102,7 +102,7 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
       const highlighted = []
       const regular = []
       
-      Object.entries(parsed).filter(([k, v]) => v).forEach(([key, value]) => {
+      Object.entries(parsed).filter(([k, v]) => v && !String(k).endsWith('__filter')).forEach(([key, value]) => {
         const specMeta = categorySpecs.find(s => s.spec_name === key)
         const label = specMeta ? specMeta.spec_label : key.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
         const entry = { key: label, value }
