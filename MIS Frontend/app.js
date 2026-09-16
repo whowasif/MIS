@@ -14,12 +14,22 @@ const app = next({ dev, hostname, port })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
+  // Public site host, used so middleware redirects don't leak the internal
+  // localhost:3000 origin. Falls back to NEXTAUTH_URL's host.
+  const publicHost = process.env.PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || ''
+  const publicHostname = publicHost.replace(/^https?:\/\//, '').replace(/\/$/, '')
+
   createServer((req, res) => {
-    // Ensure host header is set for Next.js middleware
-    if (!req.headers.host) {
-      req.headers.host = process.env.NEXTAUTH_URL
-        ? process.env.NEXTAUTH_URL.replace(/^https?:\/\//, '')
-        : `${hostname}:${port}`
+    // Behind Passenger/cPanel the internal host header is 127.0.0.1:3000.
+    // Prefer the real public host from the proxy's forwarded header, then the
+    // configured public host, so Next.js middleware builds correct redirects.
+    const forwardedHost = req.headers['x-forwarded-host']
+    if (forwardedHost) {
+      req.headers.host = Array.isArray(forwardedHost) ? forwardedHost[0] : String(forwardedHost).split(',')[0].trim()
+    } else if (publicHostname && (!req.headers.host || req.headers.host.includes('127.0.0.1') || req.headers.host.includes('localhost'))) {
+      req.headers.host = publicHostname
+    } else if (!req.headers.host) {
+      req.headers.host = `${hostname}:${port}`
     }
     const parsedUrl = parse(req.url, true)
     handle(req, res, parsedUrl)

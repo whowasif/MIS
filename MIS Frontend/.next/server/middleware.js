@@ -66,6 +66,21 @@ const getCookieValue = (request, name)=>{
     }
     return null;
 };
+// Build a redirect URL that uses the PUBLIC host the browser actually reached,
+// not the internal origin Next sees behind the Passenger/cPanel proxy (which is
+// localhost:3000). We prefer the forwarded headers set by the proxy; if absent
+// we fall back to the request's own host header, and only then to nextUrl.
+const buildRedirectUrl = (request, pathname, params = {})=>{
+    const fwdHost = request.headers.get("x-forwarded-host");
+    const hostHeader = request.headers.get("host");
+    const fwdProto = request.headers.get("x-forwarded-proto");
+    const publicHost = fwdHost || hostHeader || request.nextUrl.host;
+    const publicProto = fwdProto || (publicHost.includes("localhost") ? "http" : "https");
+    const url = new URL(`${publicProto}://${publicHost}`);
+    url.pathname = pathname;
+    Object.entries(params).forEach(([key, value])=>url.searchParams.set(key, value));
+    return url;
+};
 async function middleware(request) {
     const { pathname , search  } = request.nextUrl;
     // Allow access to these pages without auth
@@ -75,17 +90,17 @@ async function middleware(request) {
     const sessionToken = getCookieValue(request, ADMIN_SESSION_COOKIE);
     const roleCookie = getCookieValue(request, ADMIN_ROLE_COOKIE);
     if (!sessionToken) {
-        const redirectUrl = request.nextUrl.clone();
-        redirectUrl.pathname = ACCESS_ROUTE;
-        redirectUrl.searchParams.set("next", `${pathname}${search || ""}`);
-        redirectUrl.searchParams.set("reason", "session");
+        const redirectUrl = buildRedirectUrl(request, ACCESS_ROUTE, {
+            next: `${pathname}${search || ""}`,
+            reason: "session"
+        });
         return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.redirect(redirectUrl);
     }
     const resolvedRole = roleCookie;
     if (!VALID_ADMIN_ROLES.includes(resolvedRole)) {
-        const redirectUrl1 = request.nextUrl.clone();
-        redirectUrl1.pathname = ACCESS_ROUTE;
-        redirectUrl1.searchParams.set("reason", "role");
+        const redirectUrl1 = buildRedirectUrl(request, ACCESS_ROUTE, {
+            reason: "role"
+        });
         return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.redirect(redirectUrl1);
     }
     return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.next();
