@@ -14,6 +14,8 @@ const LogsPage = () => {
   const [days, setDays] = useState(7)
   const [eventFilter, setEventFilter] = useState('')
   const [isSuperAdmin, setIsSuperAdmin] = useState(false)
+  const [visitorTotal, setVisitorTotal] = useState(0)
+  const [visitorPage, setVisitorPage] = useState(1)
 
   // Admin Activity filters + pagination
   const PAGE_SIZE = 50
@@ -36,7 +38,7 @@ const LogsPage = () => {
       if (data.role === 'super_admin') setIsSuperAdmin(true)
     }).catch(() => {})
     loadData()
-  }, [activeTab, days, eventFilter, adminPage, applied])
+  }, [activeTab, days, eventFilter, adminPage, applied, visitorPage])
 
   const loadData = async () => {
     setLoading(true)
@@ -47,10 +49,15 @@ const LogsPage = () => {
         const data = await res.json()
         if (data.success) setStats(data.stats)
       } else if (activeTab === 'visitor') {
-        const url = eventFilter ? `/api/admin/logs?type=visitor&limit=200&eventType=${eventFilter}` : '/api/admin/logs?type=visitor&limit=200'
-        const res = await fetch(url, { credentials: 'include' })
+        const offset = (visitorPage - 1) * PAGE_SIZE
+        const qs = new URLSearchParams({ type: 'visitor', limit: String(PAGE_SIZE), offset: String(offset) })
+        if (eventFilter) qs.set('eventType', eventFilter)
+        const res = await fetch(`/api/admin/logs?${qs.toString()}`, { credentials: 'include' })
         const data = await res.json()
-        if (data.success) setVisitorLogs(data.logs)
+        if (data.success) {
+          setVisitorLogs(data.logs)
+          setVisitorTotal(data.total || 0)
+        }
       } else if (activeTab === 'admin') {
         const offset = (adminPage - 1) * PAGE_SIZE
         const qs = new URLSearchParams({ type: 'admin', limit: String(PAGE_SIZE), offset: String(offset) })
@@ -185,7 +192,7 @@ const LogsPage = () => {
               <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', alignItems: 'center' }}>
                 <span style={{ fontSize: '13px', color: '#64748b' }}>Filter:</span>
                 {['', 'page_view', 'search', 'product_view'].map((f) => (
-                  <button key={f} onClick={() => setEventFilter(f)} style={{ padding: '5px 12px', borderRadius: '6px', border: '1px solid ' + (eventFilter === f ? '#3b82f6' : '#e2e8f0'), background: eventFilter === f ? '#eff6ff' : '#fff', color: eventFilter === f ? '#3b82f6' : '#64748b', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>{f || 'All'}</button>
+                  <button key={f} onClick={() => { setEventFilter(f); setVisitorPage(1) }} style={{ padding: '5px 12px', borderRadius: '6px', border: '1px solid ' + (eventFilter === f ? '#3b82f6' : '#e2e8f0'), background: eventFilter === f ? '#eff6ff' : '#fff', color: eventFilter === f ? '#3b82f6' : '#64748b', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>{f || 'All'}</button>
                 ))}
               </div>
               <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden' }}>
@@ -215,6 +222,36 @@ const LogsPage = () => {
                 </table>
                 {visitorLogs.length === 0 && <div style={{ textAlign: 'center', padding: '32px', color: '#94a3b8' }}>No visitor logs yet. Logs will appear after deployment.</div>}
               </div>
+
+              {/* Visitor pagination (50 per page, same as Admin Activity) */}
+              {visitorTotal > 0 && (() => {
+                const vTotalPages = Math.max(1, Math.ceil(visitorTotal / PAGE_SIZE))
+                const span = 2
+                let start = Math.max(1, visitorPage - span)
+                let end = Math.min(vTotalPages, visitorPage + span)
+                if (visitorPage <= span) end = Math.min(vTotalPages, 1 + span * 2)
+                if (visitorPage > vTotalPages - span) start = Math.max(1, vTotalPages - span * 2)
+                const vPages = []
+                for (let i = start; i <= end; i++) vPages.push(i)
+                return (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '16px', flexWrap: 'wrap', gap: '10px' }}>
+                    <span style={{ fontSize: '12px', color: '#64748b' }}>
+                      Showing {(visitorPage - 1) * PAGE_SIZE + 1}–{Math.min(visitorPage * PAGE_SIZE, visitorTotal)} of {visitorTotal.toLocaleString()}
+                    </span>
+                    <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                      <button onClick={() => setVisitorPage(1)} disabled={visitorPage === 1} style={pageBtn(visitorPage === 1)}>« First</button>
+                      <button onClick={() => setVisitorPage((p) => Math.max(1, p - 1))} disabled={visitorPage === 1} style={pageBtn(visitorPage === 1)}>‹ Prev</button>
+                      {vPages[0] > 1 && <span style={{ color: '#94a3b8', fontSize: '12px', padding: '0 4px' }}>…</span>}
+                      {vPages.map((n) => (
+                        <button key={n} onClick={() => setVisitorPage(n)} style={pageBtn(false, n === visitorPage)}>{n}</button>
+                      ))}
+                      {vPages[vPages.length - 1] < vTotalPages && <span style={{ color: '#94a3b8', fontSize: '12px', padding: '0 4px' }}>…</span>}
+                      <button onClick={() => setVisitorPage((p) => Math.min(vTotalPages, p + 1))} disabled={visitorPage === vTotalPages} style={pageBtn(visitorPage === vTotalPages)}>Next ›</button>
+                      <button onClick={() => setVisitorPage(vTotalPages)} disabled={visitorPage === vTotalPages} style={pageBtn(visitorPage === vTotalPages)}>Last »</button>
+                    </div>
+                  </div>
+                )
+              })()}
             </div>
           )}
 

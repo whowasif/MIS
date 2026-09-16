@@ -714,6 +714,9 @@ const SecureAdminLayout = ({ children  })=>{
     });
     const { 0: clock , 1: setClock  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
     const { 0: sessionRemaining , 1: setSessionRemaining  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+    const { 0: notifications , 1: setNotifications  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
+    const { 0: notifUnread , 1: setNotifUnread  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
+    const { 0: notifOpen , 1: setNotifOpen  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
     const tableGroups = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>buildTableGroups(), []);
     // Clock
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
@@ -752,7 +755,9 @@ const SecureAdminLayout = ({ children  })=>{
         const originalFetch = window.fetch;
         window.fetch = function(...args) {
             const url = typeof args[0] === "string" ? args[0] : args[0]?.url || "";
-            if (url.includes("/api/admin/")) {
+            // Background notification polling must NOT keep the session alive.
+            const isNotifPoll = url.includes("/api/admin/notifications") && url.includes("count");
+            if (url.includes("/api/admin/") && !isNotifPoll) {
                 resetSessionTimer();
             }
             return originalFetch.apply(this, args);
@@ -792,6 +797,72 @@ const SecureAdminLayout = ({ children  })=>{
             }
         }).catch(()=>{});
     }, []);
+    // Poll unread notification count (lightweight, does not keep session alive).
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
+        let cancelled = false;
+        const loadCount = ()=>{
+            if (document.hidden) return;
+            fetch("/api/admin/notifications?count=1", {
+                credentials: "include"
+            }).then((r)=>r.ok ? r.json() : null).then((data)=>{
+                if (!cancelled && data?.success) setNotifUnread(Number(data.unread || 0));
+            }).catch(()=>{});
+        };
+        loadCount();
+        const interval = setInterval(loadCount, 45000);
+        return ()=>{
+            cancelled = true;
+            clearInterval(interval);
+        };
+    }, []);
+    const loadNotifications = ()=>{
+        fetch("/api/admin/notifications", {
+            credentials: "include"
+        }).then((r)=>r.ok ? r.json() : null).then((data)=>{
+            if (data?.success) {
+                setNotifications(Array.isArray(data.notifications) ? data.notifications : []);
+                setNotifUnread(Number(data.unread || 0));
+            }
+        }).catch(()=>{});
+    };
+    const toggleNotifications = ()=>{
+        const next = !notifOpen;
+        setNotifOpen(next);
+        if (next) loadNotifications();
+    };
+    const markAllNotificationsSeen = ()=>{
+        // Optimistically clear the badge; server marks seen for THIS admin only.
+        setNotifications((prev)=>prev.map((n)=>({
+                    ...n,
+                    is_read: true
+                })));
+        setNotifUnread(0);
+        fetch("/api/admin/notifications", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({})
+        }).catch(()=>{});
+    };
+    const formatNotifTime = (value)=>{
+        if (!value) return "";
+        const d = new Date(value);
+        if (Number.isNaN(d.getTime())) return "";
+        const diffMs = Date.now() - d.getTime();
+        const mins = Math.floor(diffMs / 60000);
+        if (mins < 1) return "just now";
+        if (mins < 60) return `${mins}m ago`;
+        const hrs = Math.floor(mins / 60);
+        if (hrs < 24) return `${hrs}h ago`;
+        return d.toLocaleString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    };
     const restrictions = ROLE_RESTRICTIONS[adminRole] || [];
     const canAccess = (resource)=>!resource || !restrictions.includes(resource);
     const filteredCoreNav = coreNavigationItems.filter((item)=>canAccess(item.resource));
@@ -808,21 +879,21 @@ const SecureAdminLayout = ({ children  })=>{
         router.push("/portal-secure-99x/access?reason=session");
     };
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "jsx-dc383b8529eff6f7" + " " + "admin-shell",
+        className: "jsx-5764d96973b29a1b" + " " + "admin-shell",
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("aside", {
-                className: "jsx-dc383b8529eff6f7" + " " + `admin-sidebar ${sidebarOpen ? "is-open" : ""}`,
+                className: "jsx-5764d96973b29a1b" + " " + `admin-sidebar ${sidebarOpen ? "is-open" : ""}`,
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-dc383b8529eff6f7" + " " + "sidebar-top",
+                        className: "jsx-5764d96973b29a1b" + " " + "sidebar-top",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-dc383b8529eff6f7" + " " + "brand",
+                                className: "jsx-5764d96973b29a1b" + " " + "brand",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: "/footer logo.png",
                                         alt: "MIS",
-                                        className: "jsx-dc383b8529eff6f7" + " " + "brand-logo"
+                                        className: "jsx-5764d96973b29a1b" + " " + "brand-logo"
                                     }),
                                     "MIS Admin"
                                 ]
@@ -830,17 +901,17 @@ const SecureAdminLayout = ({ children  })=>{
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                 onClick: ()=>setSidebarOpen(false),
                                 "aria-label": "Close menu",
-                                className: "jsx-dc383b8529eff6f7" + " " + "sidebar-close",
+                                className: "jsx-5764d96973b29a1b" + " " + "sidebar-close",
                                 children: "✕"
                             })
                         ]
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("nav", {
                         "aria-label": "Core admin navigation",
-                        className: "jsx-dc383b8529eff6f7" + " " + "menu-block",
+                        className: "jsx-5764d96973b29a1b" + " " + "menu-block",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                className: "jsx-dc383b8529eff6f7" + " " + "menu-section-label",
+                                className: "jsx-5764d96973b29a1b" + " " + "menu-section-label",
                                 children: "Main"
                             }),
                             filteredCoreNav.map((item)=>{
@@ -849,17 +920,17 @@ const SecureAdminLayout = ({ children  })=>{
                                     href: item.href,
                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                                         onClick: ()=>setSidebarOpen(false),
-                                        className: "jsx-dc383b8529eff6f7" + " " + `menu-link ${isActive ? "is-active" : ""}`,
+                                        className: "jsx-5764d96973b29a1b" + " " + `menu-link ${isActive ? "is-active" : ""}`,
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-dc383b8529eff6f7" + " " + "menu-icon",
+                                                className: "jsx-5764d96973b29a1b" + " " + "menu-icon",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(NavIcon, {
                                                     name: item.icon,
                                                     size: 18
                                                 })
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-dc383b8529eff6f7" + " " + "menu-text",
+                                                className: "jsx-5764d96973b29a1b" + " " + "menu-text",
                                                 children: item.label
                                             })
                                         ]
@@ -869,10 +940,10 @@ const SecureAdminLayout = ({ children  })=>{
                         ]
                     }),
                     filteredTableGroups.map(([groupName, rows])=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-dc383b8529eff6f7" + " " + "menu-group",
+                            className: "jsx-5764d96973b29a1b" + " " + "menu-group",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                    className: "jsx-dc383b8529eff6f7" + " " + "menu-section-label",
+                                    className: "jsx-5764d96973b29a1b" + " " + "menu-section-label",
                                     children: groupName
                                 }),
                                 rows.map((row)=>{
@@ -882,17 +953,17 @@ const SecureAdminLayout = ({ children  })=>{
                                         href: href,
                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                                             onClick: ()=>setSidebarOpen(false),
-                                            className: "jsx-dc383b8529eff6f7" + " " + `menu-link ${isActive ? "is-active" : ""}`,
+                                            className: "jsx-5764d96973b29a1b" + " " + `menu-link ${isActive ? "is-active" : ""}`,
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-dc383b8529eff6f7" + " " + "menu-icon",
+                                                    className: "jsx-5764d96973b29a1b" + " " + "menu-icon",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(NavIcon, {
                                                         name: TABLE_ICONS[row.name] || "file",
                                                         size: 18
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-dc383b8529eff6f7" + " " + "menu-text",
+                                                    className: "jsx-5764d96973b29a1b" + " " + "menu-text",
                                                     children: row.label
                                                 })
                                             ]
@@ -905,18 +976,18 @@ const SecureAdminLayout = ({ children  })=>{
             }),
             sidebarOpen && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                 onClick: ()=>setSidebarOpen(false),
-                className: "jsx-dc383b8529eff6f7" + " " + "sidebar-backdrop"
+                className: "jsx-5764d96973b29a1b" + " " + "sidebar-backdrop"
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                className: "jsx-dc383b8529eff6f7" + " " + "admin-main",
+                className: "jsx-5764d96973b29a1b" + " " + "admin-main",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                        className: "jsx-dc383b8529eff6f7" + " " + "admin-topbar",
+                        className: "jsx-5764d96973b29a1b" + " " + "admin-topbar",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                 onClick: ()=>setSidebarOpen(true),
                                 "aria-label": "Open menu",
-                                className: "jsx-dc383b8529eff6f7" + " " + "hamburger-btn",
+                                className: "jsx-5764d96973b29a1b" + " " + "hamburger-btn",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                     width: "22",
                                     height: "22",
@@ -925,19 +996,19 @@ const SecureAdminLayout = ({ children  })=>{
                                     stroke: "currentColor",
                                     strokeWidth: "2.5",
                                     strokeLinecap: "round",
-                                    className: "jsx-dc383b8529eff6f7",
+                                    className: "jsx-5764d96973b29a1b",
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                         d: "M3 6h18M3 12h18M3 18h18",
-                                        className: "jsx-dc383b8529eff6f7"
+                                        className: "jsx-5764d96973b29a1b"
                                     })
                                 })
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-dc383b8529eff6f7" + " " + "topbar-clock",
+                                className: "jsx-5764d96973b29a1b" + " " + "topbar-clock",
                                 children: clock
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-dc383b8529eff6f7" + " " + (sessionTimerClass || ""),
+                                className: "jsx-5764d96973b29a1b" + " " + (sessionTimerClass || ""),
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                         width: "14",
@@ -948,52 +1019,149 @@ const SecureAdminLayout = ({ children  })=>{
                                         strokeWidth: "2.5",
                                         strokeLinecap: "round",
                                         strokeLinejoin: "round",
-                                        className: "jsx-dc383b8529eff6f7",
+                                        className: "jsx-5764d96973b29a1b",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                 cx: "12",
                                                 cy: "12",
                                                 r: "10",
-                                                className: "jsx-dc383b8529eff6f7"
+                                                className: "jsx-5764d96973b29a1b"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
                                                 points: "12 6 12 12 16 14",
-                                                className: "jsx-dc383b8529eff6f7"
+                                                className: "jsx-5764d96973b29a1b"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                        className: "jsx-dc383b8529eff6f7",
+                                        className: "jsx-5764d96973b29a1b",
                                         children: formatSessionTime(sessionRemaining)
                                     })
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-dc383b8529eff6f7" + " " + "topbar-right",
+                                className: "jsx-5764d96973b29a1b" + " " + "topbar-right",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-dc383b8529eff6f7" + " " + "topbar-admin-info",
+                                        className: "jsx-5764d96973b29a1b" + " " + "notif-wrap",
+                                        children: [
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                                type: "button",
+                                                onClick: toggleNotifications,
+                                                "aria-label": "Notifications",
+                                                className: "jsx-5764d96973b29a1b" + " " + "notif-bell",
+                                                children: [
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                        width: "20",
+                                                        height: "20",
+                                                        viewBox: "0 0 24 24",
+                                                        fill: "none",
+                                                        stroke: "currentColor",
+                                                        strokeWidth: "2",
+                                                        strokeLinecap: "round",
+                                                        strokeLinejoin: "round",
+                                                        className: "jsx-5764d96973b29a1b",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9",
+                                                                className: "jsx-5764d96973b29a1b"
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "M13.73 21a2 2 0 01-3.46 0",
+                                                                className: "jsx-5764d96973b29a1b"
+                                                            })
+                                                        ]
+                                                    }),
+                                                    notifUnread > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                        className: "jsx-5764d96973b29a1b" + " " + "notif-badge",
+                                                        children: notifUnread > 99 ? "99+" : notifUnread
+                                                    })
+                                                ]
+                                            }),
+                                            notifOpen && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        onClick: ()=>setNotifOpen(false),
+                                                        className: "jsx-5764d96973b29a1b" + " " + "notif-backdrop"
+                                                    }),
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                        className: "jsx-5764d96973b29a1b" + " " + "notif-dropdown",
+                                                        children: [
+                                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                                className: "jsx-5764d96973b29a1b" + " " + "notif-header",
+                                                                children: [
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
+                                                                        className: "jsx-5764d96973b29a1b",
+                                                                        children: "Notifications"
+                                                                    }),
+                                                                    notifUnread > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                                        type: "button",
+                                                                        onClick: markAllNotificationsSeen,
+                                                                        className: "jsx-5764d96973b29a1b" + " " + "notif-markall",
+                                                                        children: "Mark all as read"
+                                                                    })
+                                                                ]
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                className: "jsx-5764d96973b29a1b" + " " + "notif-list",
+                                                                children: notifications.length === 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                    className: "jsx-5764d96973b29a1b" + " " + "notif-empty",
+                                                                    children: "No notifications yet."
+                                                                }) : notifications.map((n)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                                        className: "jsx-5764d96973b29a1b" + " " + `notif-item ${n.is_read ? "" : "is-unread"}`,
+                                                                        children: [
+                                                                            !n.is_read && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                                className: "jsx-5764d96973b29a1b" + " " + "notif-dot"
+                                                                            }),
+                                                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                                                className: "jsx-5764d96973b29a1b" + " " + "notif-body",
+                                                                                children: [
+                                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                                        className: "jsx-5764d96973b29a1b" + " " + "notif-title",
+                                                                                        children: n.title
+                                                                                    }),
+                                                                                    n.message && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                                        className: "jsx-5764d96973b29a1b" + " " + "notif-msg",
+                                                                                        children: n.message
+                                                                                    }),
+                                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                                        className: "jsx-5764d96973b29a1b" + " " + "notif-time",
+                                                                                        children: formatNotifTime(n.created_at)
+                                                                                    })
+                                                                                ]
+                                                                            })
+                                                                        ]
+                                                                    }, n.id))
+                                                            })
+                                                        ]
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "jsx-5764d96973b29a1b" + " " + "topbar-admin-info",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "jsx-dc383b8529eff6f7" + " " + "topbar-avatar",
+                                                className: "jsx-5764d96973b29a1b" + " " + "topbar-avatar",
                                                 children: adminInfo.profileImage ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                     src: adminInfo.profileImage,
                                                     alt: adminInfo.name,
-                                                    className: "jsx-dc383b8529eff6f7" + " " + "topbar-avatar-img"
+                                                    className: "jsx-5764d96973b29a1b" + " " + "topbar-avatar-img"
                                                 }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-dc383b8529eff6f7",
+                                                    className: "jsx-5764d96973b29a1b",
                                                     children: (adminInfo.name || "A").charAt(0).toUpperCase()
                                                 })
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-dc383b8529eff6f7" + " " + "topbar-admin-text",
+                                                className: "jsx-5764d96973b29a1b" + " " + "topbar-admin-text",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-dc383b8529eff6f7",
+                                                        className: "jsx-5764d96973b29a1b",
                                                         children: adminInfo.name || "Admin"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-dc383b8529eff6f7",
+                                                        className: "jsx-5764d96973b29a1b",
                                                         children: ROLES.find((r)=>r.value === (adminInfo.role || adminRole))?.label || adminRole
                                                     })
                                                 ]
@@ -1003,7 +1171,7 @@ const SecureAdminLayout = ({ children  })=>{
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                         type: "button",
                                         onClick: handleForceLogout,
-                                        className: "jsx-dc383b8529eff6f7" + " " + "logout-btn",
+                                        className: "jsx-5764d96973b29a1b" + " " + "logout-btn",
                                         children: "Sign out"
                                     })
                                 ]
@@ -1011,14 +1179,14 @@ const SecureAdminLayout = ({ children  })=>{
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("main", {
-                        className: "jsx-dc383b8529eff6f7" + " " + "admin-content",
+                        className: "jsx-5764d96973b29a1b" + " " + "admin-content",
                         children: children
                     })
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "dc383b8529eff6f7",
-                children: '.admin-shell.jsx-dc383b8529eff6f7{min-height:100vh;display:grid;grid-template-columns:270px minmax(0,1fr);background:#f4f6fa;color:#2b2a3c;font-family:"Segoe UI","Inter",Arial,sans-serif}.admin-sidebar.jsx-dc383b8529eff6f7{background:-webkit-linear-gradient(top,#1e1b4b 0%,#312e81 100%);background:-moz-linear-gradient(top,#1e1b4b 0%,#312e81 100%);background:-o-linear-gradient(top,#1e1b4b 0%,#312e81 100%);background:linear-gradient(180deg,#1e1b4b 0%,#312e81 100%);padding:20px 14px 24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px;overflow-y:auto}.admin-sidebar.jsx-dc383b8529eff6f7::-webkit-scrollbar{width:4px}.admin-sidebar.jsx-dc383b8529eff6f7::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}.sidebar-top.jsx-dc383b8529eff6f7{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;margin-bottom:8px}.sidebar-close.jsx-dc383b8529eff6f7{display:none;border:none;background:none;font-size:20px;cursor:pointer;color:rgba(255,255,255,.7);padding:4px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.sidebar-close.jsx-dc383b8529eff6f7:hover{background:rgba(255,255,255,.1)}.sidebar-backdrop.jsx-dc383b8529eff6f7{display:none}.brand.jsx-dc383b8529eff6f7{font-size:22px;font-weight:800;color:#fff;padding:8px 10px 12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.brand-logo.jsx-dc383b8529eff6f7{width:38px;height:38px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;-o-object-fit:contain;object-fit:contain;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.menu-block.jsx-dc383b8529eff6f7,.menu-group.jsx-dc383b8529eff6f7{display:grid;gap:2px}.menu-section-label.jsx-dc383b8529eff6f7{margin:14px 12px 6px;font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em}.menu-link.jsx-dc383b8529eff6f7{text-decoration:none;color:rgba(255,255,255,.7);-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:9px 12px;font-weight:500;font-size:13px;-webkit-transition:all.15s ease;-moz-transition:all.15s ease;-o-transition:all.15s ease;transition:all.15s ease;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.menu-link.jsx-dc383b8529eff6f7:hover{background:rgba(255,255,255,.08);color:#fff}.menu-link.is-active.jsx-dc383b8529eff6f7{background:-webkit-linear-gradient(left,#7c3aed 0%,#6d28d9 100%);background:-moz-linear-gradient(left,#7c3aed 0%,#6d28d9 100%);background:-o-linear-gradient(left,#7c3aed 0%,#6d28d9 100%);background:linear-gradient(90deg,#7c3aed 0%,#6d28d9 100%);color:#fff;-webkit-box-shadow:0 4px 12px rgba(124,58,237,.3);-moz-box-shadow:0 4px 12px rgba(124,58,237,.3);box-shadow:0 4px 12px rgba(124,58,237,.3)}.menu-link.is-active.jsx-dc383b8529eff6f7 .menu-icon.jsx-dc383b8529eff6f7{color:#fff}.menu-icon.jsx-dc383b8529eff6f7{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;width:20px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;opacity:.85}.menu-link.is-active.jsx-dc383b8529eff6f7 .menu-icon.jsx-dc383b8529eff6f7{opacity:1}.menu-text.jsx-dc383b8529eff6f7{white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.admin-main.jsx-dc383b8529eff6f7{min-width:0;display:grid;grid-template-rows:auto 1fr}.admin-topbar.jsx-dc383b8529eff6f7{height:66px;border-bottom:1px solid#e5e7eb;background:#fff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0 24px;gap:12px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.04);-moz-box-shadow:0 1px 3px rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.04);position:-webkit-sticky;position:sticky;top:0;z-index:100}.topbar-clock.jsx-dc383b8529eff6f7{font-size:13px;color:#6b7280;font-weight:500;font-family:"JetBrains Mono",monospace;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.session-timer.jsx-dc383b8529eff6f7{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;padding:6px 12px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#ecfdf5;border:1px solid#a7f3d0;font-size:13px;font-weight:700;color:#047857;font-family:"JetBrains Mono",monospace;white-space:nowrap}.session-timer.jsx-dc383b8529eff6f7 svg.jsx-dc383b8529eff6f7{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.session-timer.is-warning.jsx-dc383b8529eff6f7{background:#fef3c7;border-color:#fbbf24;color:#b45309;-webkit-animation:pulse-warning 1s ease-in-out infinite;-moz-animation:pulse-warning 1s ease-in-out infinite;-o-animation:pulse-warning 1s ease-in-out infinite;animation:pulse-warning 1s ease-in-out infinite}@-webkit-keyframes pulse-warning{0%,100%{opacity:1}50%{opacity:.7}}@-moz-keyframes pulse-warning{0%,100%{opacity:1}50%{opacity:.7}}@-o-keyframes pulse-warning{0%,100%{opacity:1}50%{opacity:.7}}@keyframes pulse-warning{0%,100%{opacity:1}50%{opacity:.7}}.topbar-right.jsx-dc383b8529eff6f7{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px}.topbar-admin-info.jsx-dc383b8529eff6f7{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.topbar-avatar.jsx-dc383b8529eff6f7{width:38px;height:38px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:-webkit-linear-gradient(315deg,#7c3aed,#6d28d9);background:-moz-linear-gradient(315deg,#7c3aed,#6d28d9);background:-o-linear-gradient(315deg,#7c3aed,#6d28d9);background:linear-gradient(135deg,#7c3aed,#6d28d9);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;overflow:hidden}.topbar-avatar.jsx-dc383b8529eff6f7 span.jsx-dc383b8529eff6f7{color:#fff;font-size:14px;font-weight:800}.topbar-avatar-img.jsx-dc383b8529eff6f7{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.topbar-admin-text.jsx-dc383b8529eff6f7{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.topbar-admin-text.jsx-dc383b8529eff6f7 strong.jsx-dc383b8529eff6f7{font-size:13px;color:#1f2937;line-height:1.2;font-weight:700}.topbar-admin-text.jsx-dc383b8529eff6f7 span.jsx-dc383b8529eff6f7{font-size:11px;color:#7c3aed;font-weight:600}.hamburger-btn.jsx-dc383b8529eff6f7{display:none;border:none;background:none;cursor:pointer;padding:6px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;color:#4a4864}.hamburger-btn.jsx-dc383b8529eff6f7:hover{background:#f1ebff}.logout-btn.jsx-dc383b8529eff6f7{border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:9px 14px;background:#fff;color:#dc2626;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;-webkit-transition:all.15s;-moz-transition:all.15s;-o-transition:all.15s;transition:all.15s}.logout-btn.jsx-dc383b8529eff6f7:hover{background:#fef2f2;border-color:#fecaca}.admin-content.jsx-dc383b8529eff6f7{padding:24px;overflow-x:auto}@media(max-width:1080px){.admin-shell.jsx-dc383b8529eff6f7{grid-template-columns:1fr}.admin-sidebar.jsx-dc383b8529eff6f7{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:1200;-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);transform:translateX(-100%);-webkit-transition:-webkit-transform.3s ease;-moz-transition:-moz-transform.3s ease;-o-transition:-o-transform.3s ease;transition:-webkit-transform.3s ease;transition:-moz-transform.3s ease;transition:-o-transform.3s ease;transition:transform.3s ease;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none}.admin-sidebar.is-open.jsx-dc383b8529eff6f7{-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0);-webkit-box-shadow:4px 0 24px rgba(0,0,0,.3);-moz-box-shadow:4px 0 24px rgba(0,0,0,.3);box-shadow:4px 0 24px rgba(0,0,0,.3)}.sidebar-close.jsx-dc383b8529eff6f7{display:block}.sidebar-backdrop.jsx-dc383b8529eff6f7{display:block;position:fixed;inset:0;z-index:1100;background:rgba(0,0,0,.5)}.hamburger-btn.jsx-dc383b8529eff6f7{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}}'
+                id: "5764d96973b29a1b",
+                children: '.admin-shell.jsx-5764d96973b29a1b{min-height:100vh;display:grid;grid-template-columns:270px minmax(0,1fr);background:#f4f6fa;color:#2b2a3c;font-family:"Segoe UI","Inter",Arial,sans-serif}.admin-sidebar.jsx-5764d96973b29a1b{background:-webkit-linear-gradient(top,#1e1b4b 0%,#312e81 100%);background:-moz-linear-gradient(top,#1e1b4b 0%,#312e81 100%);background:-o-linear-gradient(top,#1e1b4b 0%,#312e81 100%);background:linear-gradient(180deg,#1e1b4b 0%,#312e81 100%);padding:20px 14px 24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px;overflow-y:auto}.admin-sidebar.jsx-5764d96973b29a1b::-webkit-scrollbar{width:4px}.admin-sidebar.jsx-5764d96973b29a1b::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}.sidebar-top.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;margin-bottom:8px}.sidebar-close.jsx-5764d96973b29a1b{display:none;border:none;background:none;font-size:20px;cursor:pointer;color:rgba(255,255,255,.7);padding:4px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.sidebar-close.jsx-5764d96973b29a1b:hover{background:rgba(255,255,255,.1)}.sidebar-backdrop.jsx-5764d96973b29a1b{display:none}.brand.jsx-5764d96973b29a1b{font-size:22px;font-weight:800;color:#fff;padding:8px 10px 12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.brand-logo.jsx-5764d96973b29a1b{width:38px;height:38px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;-o-object-fit:contain;object-fit:contain;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.menu-block.jsx-5764d96973b29a1b,.menu-group.jsx-5764d96973b29a1b{display:grid;gap:2px}.menu-section-label.jsx-5764d96973b29a1b{margin:14px 12px 6px;font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em}.menu-link.jsx-5764d96973b29a1b{text-decoration:none;color:rgba(255,255,255,.7);-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:9px 12px;font-weight:500;font-size:13px;-webkit-transition:all.15s ease;-moz-transition:all.15s ease;-o-transition:all.15s ease;transition:all.15s ease;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.menu-link.jsx-5764d96973b29a1b:hover{background:rgba(255,255,255,.08);color:#fff}.menu-link.is-active.jsx-5764d96973b29a1b{background:-webkit-linear-gradient(left,#7c3aed 0%,#6d28d9 100%);background:-moz-linear-gradient(left,#7c3aed 0%,#6d28d9 100%);background:-o-linear-gradient(left,#7c3aed 0%,#6d28d9 100%);background:linear-gradient(90deg,#7c3aed 0%,#6d28d9 100%);color:#fff;-webkit-box-shadow:0 4px 12px rgba(124,58,237,.3);-moz-box-shadow:0 4px 12px rgba(124,58,237,.3);box-shadow:0 4px 12px rgba(124,58,237,.3)}.menu-link.is-active.jsx-5764d96973b29a1b .menu-icon.jsx-5764d96973b29a1b{color:#fff}.menu-icon.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;width:20px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;opacity:.85}.menu-link.is-active.jsx-5764d96973b29a1b .menu-icon.jsx-5764d96973b29a1b{opacity:1}.menu-text.jsx-5764d96973b29a1b{white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.admin-main.jsx-5764d96973b29a1b{min-width:0;display:grid;grid-template-rows:auto 1fr}.admin-topbar.jsx-5764d96973b29a1b{height:66px;border-bottom:1px solid#e5e7eb;background:#fff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0 24px;gap:12px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.04);-moz-box-shadow:0 1px 3px rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.04);position:-webkit-sticky;position:sticky;top:0;z-index:100}.topbar-clock.jsx-5764d96973b29a1b{font-size:13px;color:#6b7280;font-weight:500;font-family:"JetBrains Mono",monospace;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.session-timer.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;padding:6px 12px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#ecfdf5;border:1px solid#a7f3d0;font-size:13px;font-weight:700;color:#047857;font-family:"JetBrains Mono",monospace;white-space:nowrap}.session-timer.jsx-5764d96973b29a1b svg.jsx-5764d96973b29a1b{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.session-timer.is-warning.jsx-5764d96973b29a1b{background:#fef3c7;border-color:#fbbf24;color:#b45309;-webkit-animation:pulse-warning 1s ease-in-out infinite;-moz-animation:pulse-warning 1s ease-in-out infinite;-o-animation:pulse-warning 1s ease-in-out infinite;animation:pulse-warning 1s ease-in-out infinite}@-webkit-keyframes pulse-warning{0%,100%{opacity:1}50%{opacity:.7}}@-moz-keyframes pulse-warning{0%,100%{opacity:1}50%{opacity:.7}}@-o-keyframes pulse-warning{0%,100%{opacity:1}50%{opacity:.7}}@keyframes pulse-warning{0%,100%{opacity:1}50%{opacity:.7}}.topbar-right.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px}.notif-wrap.jsx-5764d96973b29a1b{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.notif-bell.jsx-5764d96973b29a1b{position:relative;border:1px solid#e5e7eb;background:#fff;color:#4b5563;width:40px;height:40px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;-webkit-transition:all.15s;-moz-transition:all.15s;-o-transition:all.15s;transition:all.15s}.notif-bell.jsx-5764d96973b29a1b:hover{background:#f5f3ff;border-color:#ddd6fe;color:#6d28d9}.notif-badge.jsx-5764d96973b29a1b{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 5px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:#ef4444;color:#fff;font-size:10px;font-weight:800;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-shadow:0 0 0 2px#fff;-moz-box-shadow:0 0 0 2px#fff;box-shadow:0 0 0 2px#fff}.notif-backdrop.jsx-5764d96973b29a1b{position:fixed;inset:0;z-index:190}.notif-dropdown.jsx-5764d96973b29a1b{position:absolute;top:52px;right:0;width:340px;max-width:88vw;background:#fff;border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;-webkit-box-shadow:0 16px 48px rgba(0,0,0,.16);-moz-box-shadow:0 16px 48px rgba(0,0,0,.16);box-shadow:0 16px 48px rgba(0,0,0,.16);z-index:200;overflow:hidden}.notif-header.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:14px 16px;border-bottom:1px solid#f1f5f9}.notif-header.jsx-5764d96973b29a1b strong.jsx-5764d96973b29a1b{font-size:14px;color:#111827}.notif-markall.jsx-5764d96973b29a1b{border:none;background:none;color:#6d28d9;font-size:12px;font-weight:700;cursor:pointer;padding:0}.notif-markall.jsx-5764d96973b29a1b:hover{text-decoration:underline}.notif-list.jsx-5764d96973b29a1b{max-height:380px;overflow-y:auto}.notif-empty.jsx-5764d96973b29a1b{padding:32px 16px;text-align:center;color:#9ca3af;font-size:13px}.notif-item.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid#f8fafc;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.notif-item.is-unread.jsx-5764d96973b29a1b{background:#faf5ff}.notif-dot.jsx-5764d96973b29a1b{width:8px;height:8px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#7c3aed;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;margin-top:5px}.notif-item.jsx-5764d96973b29a1b:not(.is-unread) .notif-body.jsx-5764d96973b29a1b{padding-left:18px}.notif-body.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:2px;min-width:0}.notif-title.jsx-5764d96973b29a1b{font-size:13px;font-weight:700;color:#1f2937}.notif-msg.jsx-5764d96973b29a1b{font-size:12px;color:#6b7280;line-height:1.4;word-break:break-word}.notif-time.jsx-5764d96973b29a1b{font-size:11px;color:#9ca3af;margin-top:2px}.topbar-admin-info.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.topbar-avatar.jsx-5764d96973b29a1b{width:38px;height:38px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:-webkit-linear-gradient(315deg,#7c3aed,#6d28d9);background:-moz-linear-gradient(315deg,#7c3aed,#6d28d9);background:-o-linear-gradient(315deg,#7c3aed,#6d28d9);background:linear-gradient(135deg,#7c3aed,#6d28d9);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;overflow:hidden}.topbar-avatar.jsx-5764d96973b29a1b span.jsx-5764d96973b29a1b{color:#fff;font-size:14px;font-weight:800}.topbar-avatar-img.jsx-5764d96973b29a1b{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.topbar-admin-text.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.topbar-admin-text.jsx-5764d96973b29a1b strong.jsx-5764d96973b29a1b{font-size:13px;color:#1f2937;line-height:1.2;font-weight:700}.topbar-admin-text.jsx-5764d96973b29a1b span.jsx-5764d96973b29a1b{font-size:11px;color:#7c3aed;font-weight:600}.hamburger-btn.jsx-5764d96973b29a1b{display:none;border:none;background:none;cursor:pointer;padding:6px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;color:#4a4864}.hamburger-btn.jsx-5764d96973b29a1b:hover{background:#f1ebff}.logout-btn.jsx-5764d96973b29a1b{border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:9px 14px;background:#fff;color:#dc2626;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap;-webkit-transition:all.15s;-moz-transition:all.15s;-o-transition:all.15s;transition:all.15s}.logout-btn.jsx-5764d96973b29a1b:hover{background:#fef2f2;border-color:#fecaca}.admin-content.jsx-5764d96973b29a1b{padding:24px;overflow-x:auto}@media(max-width:1080px){.admin-shell.jsx-5764d96973b29a1b{grid-template-columns:1fr}.admin-sidebar.jsx-5764d96973b29a1b{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:1200;-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);transform:translateX(-100%);-webkit-transition:-webkit-transform.3s ease;-moz-transition:-moz-transform.3s ease;-o-transition:-o-transform.3s ease;transition:-webkit-transform.3s ease;transition:-moz-transform.3s ease;transition:-o-transform.3s ease;transition:transform.3s ease;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none}.admin-sidebar.is-open.jsx-5764d96973b29a1b{-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0);-webkit-box-shadow:4px 0 24px rgba(0,0,0,.3);-moz-box-shadow:4px 0 24px rgba(0,0,0,.3);box-shadow:4px 0 24px rgba(0,0,0,.3)}.sidebar-close.jsx-5764d96973b29a1b{display:block}.sidebar-backdrop.jsx-5764d96973b29a1b{display:block;position:fixed;inset:0;z-index:1100;background:rgba(0,0,0,.5)}.hamburger-btn.jsx-5764d96973b29a1b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}}'
             })
         ]
     });

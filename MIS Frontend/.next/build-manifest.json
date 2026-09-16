@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/iZVF989ZruzHvEZeaO1So/_buildManifest.js",
-    "static/iZVF989ZruzHvEZeaO1So/_ssgManifest.js"
+    "static/0UgP5NcMGJAzUr576Ecm8/_buildManifest.js",
+    "static/0UgP5NcMGJAzUr576Ecm8/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -167,16 +167,16 @@
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
-      "static/chunks/pages/portal-secure-99x-79d459f2a77e40c5.js"
+      "static/chunks/5912-140f2abfbeccc0a9.js",
+      "static/chunks/pages/portal-secure-99x-38b223e2289d9b7b.js"
     ],
     "/portal-secure-99x/SecureAdminLayout": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
-      "static/chunks/pages/portal-secure-99x/SecureAdminLayout-5b89e098516b0e31.js"
+      "static/chunks/5912-140f2abfbeccc0a9.js",
+      "static/chunks/pages/portal-secure-99x/SecureAdminLayout-30a5056e60463036.js"
     ],
     "/portal-secure-99x/access": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
@@ -190,15 +190,15 @@
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
-      "static/chunks/pages/portal-secure-99x/applications-359bb15a011de493.js"
+      "static/chunks/5912-140f2abfbeccc0a9.js",
+      "static/chunks/pages/portal-secure-99x/applications-2d9e0c00b752ae9d.js"
     ],
     "/portal-secure-99x/category-manager": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
+      "static/chunks/5912-140f2abfbeccc0a9.js",
       "static/chunks/pages/portal-secure-99x/category-manager-5345e10eeb3c77d7.js"
     ],
     "/portal-secure-99x/forgot-password": [
@@ -218,14 +218,14 @@
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
-      "static/chunks/pages/portal-secure-99x/logs-8c0fcfb998dd03e0.js"
+      "static/chunks/pages/portal-secure-99x/logs-d2936a254a6f5c17.js"
     ],
     "/portal-secure-99x/orders": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
+      "static/chunks/5912-140f2abfbeccc0a9.js",
       "static/chunks/pages/portal-secure-99x/orders-6365916bda66b703.js"
     ],
     "/portal-secure-99x/quotes": [
@@ -239,8 +239,8 @@
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
-      "static/chunks/pages/portal-secure-99x/quotes-manager-2b56ab93d16ce7e2.js"
+      "static/chunks/5912-140f2abfbeccc0a9.js",
+      "static/chunks/pages/portal-secure-99x/quotes-manager-64e514f318fe7eb3.js"
     ],
     "/portal-secure-99x/reset-password": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
@@ -261,7 +261,7 @@
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
       "static/chunks/3792-430ab35430483c06.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
+      "static/chunks/5912-140f2abfbeccc0a9.js",
       "static/chunks/pages/portal-secure-99x/tables/[table]-f6dd1ad462528be4.js"
     ],
     "/portal-secure-99x/tables/admin_users": [
@@ -269,16 +269,16 @@
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
-      "static/chunks/pages/portal-secure-99x/tables/admin_users-3348af69cef8f12f.js"
+      "static/chunks/5912-140f2abfbeccc0a9.js",
+      "static/chunks/pages/portal-secure-99x/tables/admin_users-81b8b50186a05e95.js"
     ],
     "/portal-secure-99x/tables/category_specs": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",
       "static/chunks/framework-a070cbfff3c750c5.js",
       "static/chunks/main-9ea35c4ed9ea9239.js",
       "static/chunks/1400-0d9050b8bd455c77.js",
-      "static/chunks/5912-42b459b59c8d92a9.js",
-      "static/chunks/pages/portal-secure-99x/tables/category_specs-a4c2a424f7196883.js"
+      "static/chunks/5912-140f2abfbeccc0a9.js",
+      "static/chunks/pages/portal-secure-99x/tables/category_specs-a0e794d8fe540eda.js"
     ],
     "/product-catalog": [
       "static/chunks/webpack-eeb0fba5bf7ab16c.js",

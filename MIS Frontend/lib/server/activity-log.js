@@ -155,6 +155,30 @@ export const getVisitorLogs = async (limit = 100, offset = 0, eventType = null) 
 }
 
 /**
+ * Get visitor logs with a total count (for pagination).
+ * @returns {{ rows: any[], total: number }}
+ */
+export const getVisitorLogsPaged = async (limit = 50, offset = 0, eventType = null) => {
+  const db = getDbPool()
+  const safeLimit = Math.max(1, Math.min(200, Number(limit) || 50))
+  const safeOffset = Math.max(0, Number(offset) || 0)
+
+  const where = []
+  const params = []
+  if (eventType) { where.push('event_type = ?'); params.push(eventType) }
+  const whereClause = where.length ? ` WHERE ${where.join(' AND ')}` : ''
+
+  const [countRows] = await db.query(`SELECT COUNT(*) as total FROM visitor_logs${whereClause}`, params)
+  const total = Number(countRows[0]?.total || 0)
+
+  const [rows] = await db.query(
+    `SELECT * FROM visitor_logs${whereClause} ORDER BY created_at DESC LIMIT ${safeLimit} OFFSET ${safeOffset}`,
+    params
+  )
+  return { rows, total }
+}
+
+/**
  * Get visitor stats summary
  */
 export const getVisitorStats = async (days = 7) => {

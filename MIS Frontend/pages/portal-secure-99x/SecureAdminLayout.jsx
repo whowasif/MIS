@@ -89,6 +89,9 @@ const SecureAdminLayout = ({ children }) => {
   const [adminInfo, setAdminInfo] = useState({ name: '', email: '', role: '', profileImage: '' })
   const [clock, setClock] = useState('')
   const [sessionRemaining, setSessionRemaining] = useState(null)
+  const [notifications, setNotifications] = useState([])
+  const [notifUnread, setNotifUnread] = useState(0)
+  const [notifOpen, setNotifOpen] = useState(false)
   const tableGroups = useMemo(() => buildTableGroups(), [])
 
   // Clock
@@ -125,7 +128,9 @@ const SecureAdminLayout = ({ children }) => {
     const originalFetch = window.fetch
     window.fetch = function (...args) {
       const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || ''
-      if (url.includes('/api/admin/')) {
+      // Background notification polling must NOT keep the session alive.
+      const isNotifPoll = url.includes('/api/admin/notifications') && url.includes('count')
+      if (url.includes('/api/admin/') && !isNotifPoll) {
         resetSessionTimer()
       }
       return originalFetch.apply(this, args)
@@ -169,6 +174,64 @@ const SecureAdminLayout = ({ children }) => {
       })
       .catch(() => {})
   }, [])
+
+  // Poll unread notification count (lightweight, does not keep session alive).
+  useEffect(() => {
+    let cancelled = false
+    const loadCount = () => {
+      if (document.hidden) return
+      fetch('/api/admin/notifications?count=1', { credentials: 'include' })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => { if (!cancelled && data?.success) setNotifUnread(Number(data.unread || 0)) })
+        .catch(() => {})
+    }
+    loadCount()
+    const interval = setInterval(loadCount, 45000)
+    return () => { cancelled = true; clearInterval(interval) }
+  }, [])
+
+  const loadNotifications = () => {
+    fetch('/api/admin/notifications', { credentials: 'include' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data?.success) {
+          setNotifications(Array.isArray(data.notifications) ? data.notifications : [])
+          setNotifUnread(Number(data.unread || 0))
+        }
+      })
+      .catch(() => {})
+  }
+
+  const toggleNotifications = () => {
+    const next = !notifOpen
+    setNotifOpen(next)
+    if (next) loadNotifications()
+  }
+
+  const markAllNotificationsSeen = () => {
+    // Optimistically clear the badge; server marks seen for THIS admin only.
+    setNotifications((prev) => prev.map((n) => ({ ...n, is_read: true })))
+    setNotifUnread(0)
+    fetch('/api/admin/notifications', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({}),
+    }).catch(() => {})
+  }
+
+  const formatNotifTime = (value) => {
+    if (!value) return ''
+    const d = new Date(value)
+    if (Number.isNaN(d.getTime())) return ''
+    const diffMs = Date.now() - d.getTime()
+    const mins = Math.floor(diffMs / 60000)
+    if (mins < 1) return 'just now'
+    if (mins < 60) return `${mins}m ago`
+    const hrs = Math.floor(mins / 60)
+    if (hrs < 24) return `${hrs}h ago`
+    return d.toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
+  }
 
   const restrictions = ROLE_RESTRICTIONS[adminRole] || []
   const canAccess = (resource) => !resource || !restrictions.includes(resource)
@@ -242,6 +305,41 @@ const SecureAdminLayout = ({ children }) => {
             <span>{formatSessionTime(sessionRemaining)}</span>
           </div>
           <div className="topbar-right">
+            <div className="notif-wrap">
+              <button type="button" className="notif-bell" onClick={toggleNotifications} aria-label="Notifications">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                {notifUnread > 0 && <span className="notif-badge">{notifUnread > 99 ? '99+' : notifUnread}</span>}
+              </button>
+              {notifOpen && (
+                <>
+                  <div className="notif-backdrop" onClick={() => setNotifOpen(false)} />
+                  <div className="notif-dropdown">
+                    <div className="notif-header">
+                      <strong>Notifications</strong>
+                      {notifUnread > 0 && (
+                        <button type="button" className="notif-markall" onClick={markAllNotificationsSeen}>Mark all as read</button>
+                      )}
+                    </div>
+                    <div className="notif-list">
+                      {notifications.length === 0 ? (
+                        <div className="notif-empty">No notifications yet.</div>
+                      ) : (
+                        notifications.map((n) => (
+                          <div key={n.id} className={`notif-item ${n.is_read ? '' : 'is-unread'}`}>
+                            {!n.is_read && <span className="notif-dot" />}
+                            <div className="notif-body">
+                              <span className="notif-title">{n.title}</span>
+                              {n.message && <span className="notif-msg">{n.message}</span>}
+                              <span className="notif-time">{formatNotifTime(n.created_at)}</span>
+                            </div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
             <div className="topbar-admin-info">
               <div className="topbar-avatar">
                 {adminInfo.profileImage ? (
@@ -289,6 +387,26 @@ const SecureAdminLayout = ({ children }) => {
         .session-timer.is-warning { background: #fef3c7; border-color: #fbbf24; color: #b45309; animation: pulse-warning 1s ease-in-out infinite; }
         @keyframes pulse-warning { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         .topbar-right { display: flex; align-items: center; gap: 14px; }
+        .notif-wrap { position: relative; display: flex; align-items: center; }
+        .notif-bell { position: relative; border: 1px solid #e5e7eb; background: #fff; color: #4b5563; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; }
+        .notif-bell:hover { background: #f5f3ff; border-color: #ddd6fe; color: #6d28d9; }
+        .notif-badge { position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #ef4444; color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #fff; }
+        .notif-backdrop { position: fixed; inset: 0; z-index: 190; }
+        .notif-dropdown { position: absolute; top: 52px; right: 0; width: 340px; max-width: 88vw; background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; box-shadow: 0 16px 48px rgba(0,0,0,0.16); z-index: 200; overflow: hidden; }
+        .notif-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #f1f5f9; }
+        .notif-header strong { font-size: 14px; color: #111827; }
+        .notif-markall { border: none; background: none; color: #6d28d9; font-size: 12px; font-weight: 700; cursor: pointer; padding: 0; }
+        .notif-markall:hover { text-decoration: underline; }
+        .notif-list { max-height: 380px; overflow-y: auto; }
+        .notif-empty { padding: 32px 16px; text-align: center; color: #9ca3af; font-size: 13px; }
+        .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid #f8fafc; align-items: flex-start; }
+        .notif-item.is-unread { background: #faf5ff; }
+        .notif-dot { width: 8px; height: 8px; border-radius: 50%; background: #7c3aed; flex-shrink: 0; margin-top: 5px; }
+        .notif-item:not(.is-unread) .notif-body { padding-left: 18px; }
+        .notif-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .notif-title { font-size: 13px; font-weight: 700; color: #1f2937; }
+        .notif-msg { font-size: 12px; color: #6b7280; line-height: 1.4; word-break: break-word; }
+        .notif-time { font-size: 11px; color: #9ca3af; margin-top: 2px; }
         .topbar-admin-info { display: flex; align-items: center; gap: 10px; }
         .topbar-avatar { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, #7c3aed, #6d28d9); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
         .topbar-avatar span { color: #ffffff; font-size: 14px; font-weight: 800; }

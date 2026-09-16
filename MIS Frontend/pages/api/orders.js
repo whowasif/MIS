@@ -1,4 +1,5 @@
 import { getDbPool } from '../../lib/server/db'
+import { createNotification, VISIBILITY } from '../../lib/server/notifications'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -94,6 +95,16 @@ export default async function handler(req, res) {
     }
 
     await connection.commit()
+
+    // Notify (super admin only): a new order was placed.
+    createNotification({
+      type: 'new_order',
+      title: 'New order placed',
+      message: `Order ${orderNo} — ${new Intl.NumberFormat('en-BD').format(Number(totalAmount || 0))} BDT`,
+      resource: 'orders',
+      resourceId: orderId,
+      minRoleRank: VISIBILITY.SUPER_ONLY,
+    }).catch(() => {})
 
     return res.status(201).json({
       success: true,

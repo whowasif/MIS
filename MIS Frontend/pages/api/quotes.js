@@ -1,4 +1,5 @@
 import { getDbPool } from '../../lib/server/db'
+import { createNotification, VISIBILITY } from '../../lib/server/notifications'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -25,6 +26,16 @@ export default async function handler(req, res) {
         String(requirements).trim(),
       ]
     )
+
+    // Notify (super admin only): a new quotation request arrived.
+    createNotification({
+      type: 'new_quote',
+      title: 'New quotation request',
+      message: `${String(clientName).trim()}${companyName ? ` (${String(companyName).trim()})` : ''} — ${String(projectType || 'general').trim()}`,
+      resource: 'quotes',
+      resourceId: result.insertId,
+      minRoleRank: VISIBILITY.SUPER_ONLY,
+    }).catch(() => {})
 
     return res.status(201).json({
       success: true,

@@ -1,5 +1,5 @@
 import { requireAdminApiAuth } from '../../../lib/auth/require-admin'
-import { getAdminActivityLogsFiltered, getAdminActivityFilterOptions, getVisitorLogs, getVisitorStats } from '../../../lib/server/activity-log'
+import { getAdminActivityLogsFiltered, getAdminActivityFilterOptions, getVisitorLogsPaged, getVisitorStats } from '../../../lib/server/activity-log'
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -38,9 +38,9 @@ export default async function handler(req, res) {
       return res.status(200).json({ success: true, stats })
     }
 
-    // Default: visitor logs
-    const logs = await getVisitorLogs(Number(limit), Number(offset), eventType || null)
-    return res.status(200).json({ success: true, logs })
+    // Default: visitor logs (paginated)
+    const { rows: visitorRows, total: visitorTotal } = await getVisitorLogsPaged(Number(limit) || 50, Number(offset) || 0, eventType || null)
+    return res.status(200).json({ success: true, logs: visitorRows, total: visitorTotal })
   } catch (e) {
     return res.status(500).json({ success: false, error: 'Failed to fetch logs', details: process.env.NODE_ENV === 'development' ? e.message : undefined })
   }

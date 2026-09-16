@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 
 import { getDbPool } from '../../../lib/server/db'
 import { verifyCaptchaAnswer } from '../../../lib/auth/captcha'
+import { createNotification, VISIBILITY } from '../../../lib/server/notifications'
 import {
   buildRoleCookie,
   buildSessionCookie,
@@ -111,14 +112,26 @@ export default async function handler(req, res) {
       name: adminUser.name,
     })
 
+    const loginIp = getClientIp(req)
     await db.execute(
       `UPDATE admin_users
        SET failed_login_attempts = 0,
            last_login_ip = ?,
            updated_at = NOW()
        WHERE id = ?`,
-      [getClientIp(req), adminUser.id]
+      [loginIp, adminUser.id]
     )
+
+    // Notify (super admin only): who logged in and from which IP.
+    createNotification({
+      type: 'admin_login',
+      title: 'Admin sign-in',
+      message: `${adminUser.name || adminUser.email} signed in from ${loginIp || 'unknown IP'}`,
+      resource: 'admin_users',
+      resourceId: adminUser.id,
+      ipAddress: loginIp,
+      minRoleRank: VISIBILITY.SUPER_ONLY,
+    }).catch(() => {})
 
     res.setHeader('Cache-Control', 'no-store')
     res.setHeader('Set-Cookie', [

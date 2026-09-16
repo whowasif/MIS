@@ -671,5 +671,39 @@ INSERT INTO admin_users (name, username, email, role, password_hash) VALUES
 ('Super Admin', 'superadmin', 'admin@mrssolution.com.bd', 'super_admin', '$2b$12$3su1XAfqkN6YjT75BFN7fOo7LvMzF/T3aHMhcD.Wzh6jtotgnxfii');
 
 -- ============================================================
+-- ADMIN NOTIFICATIONS (role-based, per-admin seen state)
+-- ============================================================
+-- min_role_rank controls who can see a notification:
+--   3 = super_admin only, 2 = senior_admin and above, 1 = all admins.
+-- An admin sees a notification when their role rank >= min_role_rank
+-- (super_admin=3, senior_admin=2, junior_admin=1).
+CREATE TABLE IF NOT EXISTS `admin_notifications` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(50) NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
+  `message` VARCHAR(500) DEFAULT NULL,
+  `resource` VARCHAR(100) DEFAULT NULL,
+  `resource_id` VARCHAR(100) DEFAULT NULL,
+  `ip_address` VARCHAR(45) DEFAULT NULL,
+  `min_role_rank` TINYINT NOT NULL DEFAULT 3,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_admin_notifications_created` (`created_at`),
+  KEY `idx_admin_notifications_rank` (`min_role_rank`, `created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Per-admin "seen" state. A row here means that admin has seen that
+-- notification. One admin seeing it never affects another admin.
+CREATE TABLE IF NOT EXISTS `admin_notification_reads` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `notification_id` INT NOT NULL,
+  `admin_id` INT NOT NULL,
+  `read_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_notif_admin` (`notification_id`, `admin_id`),
+  KEY `idx_notif_reads_admin` (`admin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================
 -- DONE! Your database is ready.
 -- ============================================================

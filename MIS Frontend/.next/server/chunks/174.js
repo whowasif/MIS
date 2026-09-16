@@ -1,20 +1,20 @@
 "use strict";
 exports.id = 174;
-exports.ids = [174];
+exports.ids = [174,6548];
 exports.modules = {
 
 /***/ 174:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Bm": () => (/* binding */ getVisitorLogs),
 /* harmony export */   "SC": () => (/* binding */ logAdminActivity),
 /* harmony export */   "T0": () => (/* binding */ getAdminActivityFilterOptions),
 /* harmony export */   "aH": () => (/* binding */ getVisitorStats),
 /* harmony export */   "e9": () => (/* binding */ logVisitorEvent),
-/* harmony export */   "th": () => (/* binding */ getAdminActivityLogsFiltered)
+/* harmony export */   "th": () => (/* binding */ getAdminActivityLogsFiltered),
+/* harmony export */   "u_": () => (/* binding */ getVisitorLogsPaged)
 /* harmony export */ });
-/* unused harmony export getAdminActivityLogs */
+/* unused harmony exports getAdminActivityLogs, getVisitorLogs */
 /* harmony import */ var _db__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6548);
 
 /**
@@ -156,7 +156,7 @@ exports.modules = {
 /**
  * Get visitor logs
  */ const getVisitorLogs = async (limit = 100, offset = 0, eventType = null)=>{
-    const db = (0,_db__WEBPACK_IMPORTED_MODULE_0__/* .getDbPool */ .z)();
+    const db = getDbPool();
     const safeLimit = Math.max(1, Math.min(500, Number(limit) || 100));
     const safeOffset = Math.max(0, Number(offset) || 0);
     let query = "SELECT * FROM visitor_logs";
@@ -168,6 +168,28 @@ exports.modules = {
     query += ` ORDER BY created_at DESC LIMIT ${safeLimit} OFFSET ${safeOffset}`;
     const [rows] = await db.query(query, params);
     return rows;
+};
+/**
+ * Get visitor logs with a total count (for pagination).
+ * @returns {{ rows: any[], total: number }}
+ */ const getVisitorLogsPaged = async (limit = 50, offset = 0, eventType = null)=>{
+    const db = (0,_db__WEBPACK_IMPORTED_MODULE_0__/* .getDbPool */ .z)();
+    const safeLimit = Math.max(1, Math.min(200, Number(limit) || 50));
+    const safeOffset = Math.max(0, Number(offset) || 0);
+    const where = [];
+    const params = [];
+    if (eventType) {
+        where.push("event_type = ?");
+        params.push(eventType);
+    }
+    const whereClause = where.length ? ` WHERE ${where.join(" AND ")}` : "";
+    const [countRows] = await db.query(`SELECT COUNT(*) as total FROM visitor_logs${whereClause}`, params);
+    const total = Number(countRows[0]?.total || 0);
+    const [rows] = await db.query(`SELECT * FROM visitor_logs${whereClause} ORDER BY created_at DESC LIMIT ${safeLimit} OFFSET ${safeOffset}`, params);
+    return {
+        rows,
+        total
+    };
 };
 /**
  * Get visitor stats summary
@@ -203,6 +225,46 @@ exports.modules = {
         topSearches,
         topProducts
     };
+};
+
+
+/***/ }),
+
+/***/ 6548:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "z": () => (/* binding */ getDbPool)
+/* harmony export */ });
+/* harmony import */ var mysql2_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2418);
+/* harmony import */ var mysql2_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mysql2_promise__WEBPACK_IMPORTED_MODULE_0__);
+
+const requiredEnvVars = [
+    "DB_HOST",
+    "DB_USER",
+    "DB_PASSWORD",
+    "DB_NAME"
+];
+const getMissingEnvVars = ()=>requiredEnvVars.filter((envKey)=>!process.env[envKey] || !String(process.env[envKey]).trim());
+const getDbPool = ()=>{
+    if (globalThis.__misDbPool) return globalThis.__misDbPool;
+    const missingEnvVars = getMissingEnvVars();
+    if (missingEnvVars.length > 0) {
+        throw new Error(`Missing database environment variables: ${missingEnvVars.join(", ")}`);
+    }
+    const pool = mysql2_promise__WEBPACK_IMPORTED_MODULE_0___default().createPool({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        waitForConnections: true,
+        connectionLimit: 5,
+        queueLimit: 0,
+        namedPlaceholders: true,
+        timezone: "Z"
+    });
+    globalThis.__misDbPool = pool;
+    return pool;
 };
 
 

@@ -2,7 +2,7 @@
 (() => {
 var exports = {};
 exports.id = 7339;
-exports.ids = [7339,6548,8930];
+exports.ids = [7339,6548];
 exports.modules = {
 
 /***/ 2418:

@@ -2,6 +2,7 @@ import formidable from 'formidable'
 import fs from 'fs'
 import path from 'path'
 import { getDbPool } from '../../../lib/server/db'
+import { createNotification, VISIBILITY } from '../../../lib/server/notifications'
 
 export const config = { api: { bodyParser: false } }
 
@@ -63,11 +64,21 @@ export default async function handler(req, res) {
 
     // Save to database
     const db = getDbPool()
-    await db.execute(
+    const [applyResult] = await db.execute(
       `INSERT INTO career_applications (career_post_id, applicant_name, email, phone, cover_letter, resume_path)
        VALUES (?, ?, ?, ?, ?, ?)`,
       [careerPostId, applicantName, email, phone || null, coverLetter || null, resumeUrl]
     )
+
+    // Notify (senior admin and up): a new career application arrived.
+    createNotification({
+      type: 'new_application',
+      title: 'New career application',
+      message: `${applicantName || email} applied`,
+      resource: 'career_applications',
+      resourceId: applyResult?.insertId || null,
+      minRoleRank: VISIBILITY.SENIOR_UP,
+    }).catch(() => {})
 
     return res.status(201).json({ success: true, message: 'Application submitted successfully.' })
   } catch (error) {

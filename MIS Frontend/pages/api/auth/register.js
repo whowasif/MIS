@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs'
 import { getDbPool } from '../../../lib/server/db'
+import { createNotification, VISIBILITY } from '../../../lib/server/notifications'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -36,10 +37,20 @@ export default async function handler(req, res) {
 
   // Create customer
   try {
-    await db.execute(
+    const [regResult] = await db.execute(
       'INSERT INTO customers (full_name, email, password_hash, is_email_verified) VALUES (?, ?, ?, 0)',
       [cleanName, cleanEmail, passwordHash]
     )
+
+    // Notify (super admin only): a new customer registered.
+    createNotification({
+      type: 'new_customer',
+      title: 'New customer joined',
+      message: `${cleanName} (${cleanEmail})`,
+      resource: 'customers',
+      resourceId: regResult?.insertId || null,
+      minRoleRank: VISIBILITY.SUPER_ONLY,
+    }).catch(() => {})
 
     return res.status(201).json({ success: true, message: 'Account created successfully.' })
   } catch (error) {

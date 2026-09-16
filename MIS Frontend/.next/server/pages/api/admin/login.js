@@ -36,10 +36,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var bcryptjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7618);
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6548);
-/* harmony import */ var _lib_auth_captcha__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(554);
-/* harmony import */ var _lib_auth_session__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9563);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([bcryptjs__WEBPACK_IMPORTED_MODULE_0__, _lib_auth_session__WEBPACK_IMPORTED_MODULE_2__]);
-([bcryptjs__WEBPACK_IMPORTED_MODULE_0__, _lib_auth_session__WEBPACK_IMPORTED_MODULE_2__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _lib_auth_captcha__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(554);
+/* harmony import */ var _lib_server_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7942);
+/* harmony import */ var _lib_auth_session__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9563);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([bcryptjs__WEBPACK_IMPORTED_MODULE_0__, _lib_auth_session__WEBPACK_IMPORTED_MODULE_3__]);
+([bcryptjs__WEBPACK_IMPORTED_MODULE_0__, _lib_auth_session__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -80,7 +82,7 @@ async function handler(req, res) {
                 error: "Email or username and password are required."
             });
         }
-        const isCaptchaValid = await (0,_lib_auth_captcha__WEBPACK_IMPORTED_MODULE_3__/* .verifyCaptchaAnswer */ .a)({
+        const isCaptchaValid = await (0,_lib_auth_captcha__WEBPACK_IMPORTED_MODULE_4__/* .verifyCaptchaAnswer */ .a)({
             token: turnstileToken
         });
         if (!isCaptchaValid) {
@@ -141,24 +143,35 @@ async function handler(req, res) {
                 error: "Password policy violation. Use at least 10 characters with upper, lower, number, and symbol."
             });
         }
-        const sessionToken = await (0,_lib_auth_session__WEBPACK_IMPORTED_MODULE_2__/* .createAdminSessionToken */ .gO)({
+        const sessionToken = await (0,_lib_auth_session__WEBPACK_IMPORTED_MODULE_3__/* .createAdminSessionToken */ .gO)({
             id: adminUser.id,
             role: adminUser.role,
             email: adminUser.email,
             name: adminUser.name
         });
+        const loginIp = getClientIp(req);
         await db.execute(`UPDATE admin_users
        SET failed_login_attempts = 0,
            last_login_ip = ?,
            updated_at = NOW()
        WHERE id = ?`, [
-            getClientIp(req),
+            loginIp,
             adminUser.id
         ]);
+        // Notify (super admin only): who logged in and from which IP.
+        (0,_lib_server_notifications__WEBPACK_IMPORTED_MODULE_2__/* .createNotification */ .sc)({
+            type: "admin_login",
+            title: "Admin sign-in",
+            message: `${adminUser.name || adminUser.email} signed in from ${loginIp || "unknown IP"}`,
+            resource: "admin_users",
+            resourceId: adminUser.id,
+            ipAddress: loginIp,
+            minRoleRank: _lib_server_notifications__WEBPACK_IMPORTED_MODULE_2__/* .VISIBILITY.SUPER_ONLY */ .ix.SUPER_ONLY
+        }).catch(()=>{});
         res.setHeader("Cache-Control", "no-store");
         res.setHeader("Set-Cookie", [
-            (0,_lib_auth_session__WEBPACK_IMPORTED_MODULE_2__/* .buildSessionCookie */ .cc)(sessionToken),
-            (0,_lib_auth_session__WEBPACK_IMPORTED_MODULE_2__/* .buildRoleCookie */ .Kh)(adminUser.role), 
+            (0,_lib_auth_session__WEBPACK_IMPORTED_MODULE_3__/* .buildSessionCookie */ .cc)(sessionToken),
+            (0,_lib_auth_session__WEBPACK_IMPORTED_MODULE_3__/* .buildRoleCookie */ .Kh)(adminUser.role), 
         ]);
         return res.status(200).json({
             success: true,
@@ -191,7 +204,7 @@ __webpack_async_result__();
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [9563,6548,554], () => (__webpack_exec__(1059)));
+var __webpack_exports__ = __webpack_require__.X(0, [9563,7942,554], () => (__webpack_exec__(1059)));
 module.exports = __webpack_exports__;
 
 })();

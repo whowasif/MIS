@@ -1,4 +1,5 @@
 import { getDbPool } from '../../lib/server/db'
+import { createNotification, VISIBILITY } from '../../lib/server/notifications'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -25,10 +26,20 @@ export default async function handler(req, res) {
       return res.status(200).json({ success: true, message: 'You are already subscribed!' })
     }
 
-    await db.execute(
+    const [subResult] = await db.execute(
       'INSERT INTO newsletter_subscribers (email, subscribed_at) VALUES (?, NOW())',
       [email]
     )
+
+    // Notify (all admins): a new newsletter subscriber.
+    createNotification({
+      type: 'new_subscriber',
+      title: 'New newsletter subscriber',
+      message: email,
+      resource: 'newsletter_subscribers',
+      resourceId: subResult?.insertId || null,
+      minRoleRank: VISIBILITY.ALL_ADMINS,
+    }).catch(() => {})
 
     return res.status(201).json({ success: true, message: 'Subscribed successfully!' })
   } catch (error) {
