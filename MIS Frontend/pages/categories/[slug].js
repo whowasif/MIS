@@ -256,7 +256,7 @@ const normalizeSpecValue = (specName, rawValue) => {
   return clean(out) || clean(rawValue)
 }
 
-const CategoryPage = ({ category, subcategories, products, specs, brands, maxPrice }) => {
+const CategoryPage = ({ category, subcategories, products, specs, filterOptions = {}, brands, maxPrice }) => {
   const router = useRouter()
   const [priceRange, setPriceRange] = useState([0, maxPrice || 500000])
   const [selectedBrand, setSelectedBrand] = useState('')
@@ -293,14 +293,19 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
       filtered = filtered.filter((p) => p.stock_qty === 0)
     }
 
-    // Spec filters (multi-select). selectedSpecs[specName] holds normalized
-    // "base" values; match a product by normalizing its raw value too.
+    // Spec filters (multi-select). selectedSpecs[specName] holds curated option
+    // values; a product matches if its raw spec value equals or contains any of
+    // the selected options (case-insensitive). OR within a spec.
     Object.entries(selectedSpecs).forEach(([specName, specValues]) => {
       if (!specValues || !Array.isArray(specValues) || specValues.length === 0) return
       filtered = filtered.filter((p) => {
         const pSpec = p.specs?.find((s) => s.spec_name === specName)
         if (!pSpec?.spec_value) return false
-        return specValues.includes(normalizeSpecValue(specName, pSpec.spec_value))
+        const raw = String(pSpec.spec_value).toLowerCase()
+        return specValues.some((opt) => {
+          const o = String(opt).toLowerCase()
+          return raw === o || raw.includes(o)
+        })
       })
     })
 
@@ -312,26 +317,21 @@ const CategoryPage = ({ category, subcategories, products, specs, brands, maxPri
     return filtered
   }, [products, priceRange, selectedBrand, selectedSpecs, availability, sortBy])
 
-  // Build filter facets: collapse each product's raw spec value to its base
-  // bucket so the sidebar shows a clean, deduped list (e.g. "Intel Core i7",
-  // "512GB"). The product cards/detail page keep the full original value.
+  // Build filter facets from the MANUALLY-CURATED option list (set in admin).
+  // Only show a spec if it is filterable AND has at least one curated option.
   const specOptions = useMemo(() => {
     const options = {}
     specs.forEach((spec) => {
-      const values = new Set()
-      products.forEach((p) => {
-        const pSpec = p.specs?.find((s) => s.spec_name === spec.spec_name)
-        if (pSpec?.spec_value) values.add(normalizeSpecValue(spec.spec_name, pSpec.spec_value))
-      })
-      if (values.size > 0) {
+      const curated = filterOptions[spec.spec_name] || []
+      if (curated.length > 0) {
         options[spec.spec_name] = {
           label: spec.spec_label,
-          values: [...values].sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })),
+          values: [...curated].sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })),
         }
       }
     })
     return options
-  }, [specs, products])
+  }, [specs, filterOptions])
 
   if (!category) {
     return (
@@ -716,6 +716,21 @@ export const getServerSideProps = async ({ params }) => {
       [category.id]
     )
 
+    // Get the manually-curated filter option values for this category.
+    let filterOptions = {}
+    try {
+      const [optRows] = await db.execute(
+        'SELECT spec_name, option_value FROM spec_filter_options WHERE category_id = ? ORDER BY spec_name ASC, display_order ASC, option_value ASC',
+        [category.id]
+      )
+      optRows.forEach((r) => {
+        if (!filterOptions[r.spec_name]) filterOptions[r.spec_name] = []
+        if (!filterOptions[r.spec_name].includes(r.option_value)) filterOptions[r.spec_name].push(r.option_value)
+      })
+    } catch (e) {
+      filterOptions = {}
+    }
+
     // Get products in this category (and subcategories)
     const categoryIds = [category.id, ...subcats.map((s) => s.id)]
     const placeholders = categoryIds.map(() => '?').join(',')
@@ -751,6 +766,7 @@ export const getServerSideProps = async ({ params }) => {
         subcategories: JSON.parse(JSON.stringify(subcats)),
         products: JSON.parse(JSON.stringify(productsWithSpecs)),
         specs: JSON.parse(JSON.stringify(specs)),
+        filterOptions: JSON.parse(JSON.stringify(filterOptions)),
         brands,
         maxPrice,
       },

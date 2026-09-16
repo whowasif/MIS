@@ -508,6 +508,8 @@ const ModernTableManager = () => {
   const [editForm, setEditForm] = useState({})
   const [createSlugEdited, setCreateSlugEdited] = useState(false)
   const [categorySpecs, setCategorySpecs] = useState([])
+  const [specOptions, setSpecOptions] = useState({}) // { [spec_name]: string[] } curated filter values
+  const [activeCategoryId, setActiveCategoryId] = useState(null)
   const [allCategories, setAllCategories] = useState([])
   const [allProducts, setAllProducts] = useState([])
   const [previewImages, setPreviewImages] = useState([])
@@ -765,7 +767,8 @@ const ModernTableManager = () => {
   }
 
   const fetchCategorySpecs = async (categoryId) => {
-    if (!categoryId) { setCategorySpecs([]); return }
+    if (!categoryId) { setCategorySpecs([]); setSpecOptions({}); setActiveCategoryId(null); return }
+    setActiveCategoryId(categoryId)
     try {
       const res = await fetch(`/api/admin/category-specs?category_id=${categoryId}`)
       const data = await res.json()
@@ -777,6 +780,51 @@ const ModernTableManager = () => {
     } catch (e) {
       setCategorySpecs([])
     }
+    // Load the curated filter option values for this category's filterable specs.
+    try {
+      const optRes = await fetch(`/api/admin/spec-options?category_id=${categoryId}`)
+      const optData = await optRes.json()
+      setSpecOptions(optData.success && optData.options ? optData.options : {})
+    } catch (e) {
+      setSpecOptions({})
+    }
+  }
+
+  // Persist any new values entered for filterable specs so they appear in the
+  // dropdown next time. De-duplication is enforced server-side by a unique key.
+  const persistFilterOptionValues = async (categoryId, specificationsJson) => {
+    if (!categoryId) return
+    let specsObj = {}
+    try { specsObj = JSON.parse(specificationsJson || '{}') } catch (e) { specsObj = {} }
+    const filterableNames = categorySpecs.filter((s) => s.is_filterable).map((s) => s.spec_name)
+    const pending = []
+    filterableNames.forEach((specName) => {
+      const value = typeof specsObj[specName] === 'string' ? specsObj[specName].trim() : ''
+      if (!value) return
+      const existing = specOptions[specName] || []
+      if (existing.some((v) => v.toLowerCase() === value.toLowerCase())) return
+      pending.push({ specName, value })
+    })
+    if (pending.length === 0) return
+    await Promise.all(
+      pending.map((item) =>
+        fetch('/api/admin/spec-options', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ category_id: categoryId, spec_name: item.specName, option_value: item.value }),
+        }).catch(() => {})
+      )
+    )
+    // Reflect the newly-added values locally so the dropdown updates immediately.
+    setSpecOptions((prev) => {
+      const next = { ...prev }
+      pending.forEach((item) => {
+        const list = next[item.specName] ? [...next[item.specName]] : []
+        if (!list.some((v) => v.toLowerCase() === item.value.toLowerCase())) list.push(item.value)
+        next[item.specName] = list.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+      })
+      return next
+    })
   }
 
   const openCreateForm = () => {
@@ -865,6 +913,12 @@ const ModernTableManager = () => {
 
       if (!response.ok || !payload?.success) {
         throw new Error(payload?.details || payload?.error || 'Unable to save record.')
+      }
+
+      // For products, persist any new filterable spec values as curated filter options.
+      if (table === 'products') {
+        const catId = activeCategoryId || values.category_id
+        await persistFilterOptionValues(catId, values.specifications)
       }
 
       setSuccess(editRowId !== null ? 'Record updated successfully.' : 'New record created successfully.')
@@ -1729,19 +1783,45 @@ const ModernTableManager = () => {
                           const specsObj = (() => {
                             try { return JSON.parse(activeFormValues.specifications || '{}') } catch (e) { return {} }
                           })()
+                          const setSpecValue = (val) => {
+                            const updated = { ...specsObj, [spec.spec_name]: val }
+                            handleFormChange('specifications', JSON.stringify(updated))
+                          }
+                          const currentValue = specsObj[spec.spec_name] || ''
+                          const options = specOptions[spec.spec_name] || []
+                          const isFilterable = !!spec.is_filterable
                           return (
                             <div key={spec.id} className="modern-field">
-                              <label className="modern-field-label">{spec.spec_label}</label>
+                              <label className="modern-field-label">
+                                {spec.spec_label}
+                                {isFilterable && <span className="spec-filterable-tag">Filterable</span>}
+                              </label>
                               <input
                                 type="text"
                                 style={{ width: '100%', height: '48px', padding: '0 14px', border: '2px solid #c7d2fe', borderRadius: '10px', background: '#fafbff', color: '#0f172a', fontSize: '14px', fontFamily: 'inherit' }}
-                                value={specsObj[spec.spec_name] || ''}
-                                onChange={(e) => {
-                                  const updated = { ...specsObj, [spec.spec_name]: e.target.value }
-                                  handleFormChange('specifications', JSON.stringify(updated))
-                                }}
+                                value={currentValue}
+                                onChange={(e) => setSpecValue(e.target.value)}
                                 placeholder={`Enter ${spec.spec_label.toLowerCase()}`}
                               />
+                              {isFilterable && (
+                                <div className="spec-filter-picker">
+                                  <select
+                                    value={options.includes(currentValue) ? currentValue : ''}
+                                    onChange={(e) => { if (e.target.value) setSpecValue(e.target.value) }}
+                                    style={{ width: '100%', height: '40px', padding: '0 12px', border: '2px solid #e0e7ff', borderRadius: '10px', background: '#f5f7ff', color: '#4338ca', fontSize: '13px', fontFamily: 'inherit', cursor: 'pointer' }}
+                                  >
+                                    <option value="">
+                                      {options.length ? '— Pick a saved filter value —' : '— No saved values yet —'}
+                                    </option>
+                                    {options.map((opt) => (
+                                      <option key={opt} value={opt}>{opt}</option>
+                                    ))}
+                                  </select>
+                                  <span className="spec-filter-hint">
+                                    Pick an existing filter value, or type a new one above — it&apos;s saved as a filter option when you save the product.
+                                  </span>
+                                </div>
+                              )}
                             </div>
                           )
                         })}
@@ -2421,6 +2501,33 @@ const ModernTableManager = () => {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 14px;
+        }
+
+        .spec-filterable-tag {
+          display: inline-block;
+          margin-left: 8px;
+          padding: 2px 8px;
+          border-radius: 999px;
+          background: #eef2ff;
+          color: #4338ca;
+          font-size: 10px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          vertical-align: middle;
+        }
+
+        .spec-filter-picker {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          margin-top: 8px;
+        }
+
+        .spec-filter-hint {
+          font-size: 11px;
+          color: #94a3b8;
+          line-height: 1.4;
         }
 
         .modern-card-subtitle {

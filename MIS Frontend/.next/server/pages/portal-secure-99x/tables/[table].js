@@ -634,6 +634,9 @@ const ModernTableManager = ()=>{
     const { 0: editForm , 1: setEditForm  } = (0,external_react_.useState)({});
     const { 0: createSlugEdited , 1: setCreateSlugEdited  } = (0,external_react_.useState)(false);
     const { 0: categorySpecs , 1: setCategorySpecs  } = (0,external_react_.useState)([]);
+    const { 0: specOptions , 1: setSpecOptions  } = (0,external_react_.useState)({}) // { [spec_name]: string[] } curated filter values
+    ;
+    const { 0: activeCategoryId , 1: setActiveCategoryId  } = (0,external_react_.useState)(null);
     const { 0: allCategories , 1: setAllCategories  } = (0,external_react_.useState)([]);
     const { 0: allProducts , 1: setAllProducts  } = (0,external_react_.useState)([]);
     const { 0: previewImages , 1: setPreviewImages  } = (0,external_react_.useState)([]);
@@ -925,8 +928,11 @@ const ModernTableManager = ()=>{
     const fetchCategorySpecs = async (categoryId)=>{
         if (!categoryId) {
             setCategorySpecs([]);
+            setSpecOptions({});
+            setActiveCategoryId(null);
             return;
         }
+        setActiveCategoryId(categoryId);
         try {
             const res = await fetch(`/api/admin/category-specs?category_id=${categoryId}`);
             const data = await res.json();
@@ -938,6 +944,66 @@ const ModernTableManager = ()=>{
         } catch (e) {
             setCategorySpecs([]);
         }
+        // Load the curated filter option values for this category's filterable specs.
+        try {
+            const optRes = await fetch(`/api/admin/spec-options?category_id=${categoryId}`);
+            const optData = await optRes.json();
+            setSpecOptions(optData.success && optData.options ? optData.options : {});
+        } catch (e1) {
+            setSpecOptions({});
+        }
+    };
+    // Persist any new values entered for filterable specs so they appear in the
+    // dropdown next time. De-duplication is enforced server-side by a unique key.
+    const persistFilterOptionValues = async (categoryId, specificationsJson)=>{
+        if (!categoryId) return;
+        let specsObj = {};
+        try {
+            specsObj = JSON.parse(specificationsJson || "{}");
+        } catch (e) {
+            specsObj = {};
+        }
+        const filterableNames = categorySpecs.filter((s)=>s.is_filterable).map((s)=>s.spec_name);
+        const pending = [];
+        filterableNames.forEach((specName)=>{
+            const value = typeof specsObj[specName] === "string" ? specsObj[specName].trim() : "";
+            if (!value) return;
+            const existing = specOptions[specName] || [];
+            if (existing.some((v)=>v.toLowerCase() === value.toLowerCase())) return;
+            pending.push({
+                specName,
+                value
+            });
+        });
+        if (pending.length === 0) return;
+        await Promise.all(pending.map((item)=>fetch("/api/admin/spec-options", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    category_id: categoryId,
+                    spec_name: item.specName,
+                    option_value: item.value
+                })
+            }).catch(()=>{})));
+        // Reflect the newly-added values locally so the dropdown updates immediately.
+        setSpecOptions((prev)=>{
+            const next = {
+                ...prev
+            };
+            pending.forEach((item)=>{
+                const list = next[item.specName] ? [
+                    ...next[item.specName]
+                ] : [];
+                if (!list.some((v)=>v.toLowerCase() === item.value.toLowerCase())) list.push(item.value);
+                next[item.specName] = list.sort((a, b)=>a.localeCompare(b, undefined, {
+                        numeric: true,
+                        sensitivity: "base"
+                    }));
+            });
+            return next;
+        });
     };
     const openCreateForm = ()=>{
         setEditRowId(null);
@@ -1014,6 +1080,11 @@ const ModernTableManager = ()=>{
             const payload = await response.json();
             if (!response.ok || !payload?.success) {
                 throw new Error(payload?.details || payload?.error || "Unable to save record.");
+            }
+            // For products, persist any new filterable spec values as curated filter options.
+            if (table === "products") {
+                const catId = activeCategoryId || values.category_id;
+                await persistFilterOptionValues(catId, values.specifications);
             }
             setSuccess(editRowId !== null ? "Record updated successfully." : "New record created successfully.");
             await loadTableData();
@@ -1776,29 +1847,29 @@ const ModernTableManager = ()=>{
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx((head_default()), {
                 children: /*#__PURE__*/ jsx_runtime_.jsx("title", {
-                    className: "jsx-71f208de48479913",
+                    className: "jsx-f620b90ab8840e7b",
                     children: tableMeta ? `${tableMeta.label} | MIS Admin` : "Table Manager | MIS Admin"
                 })
             }),
             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
-                className: "jsx-71f208de48479913" + " " + "manager-shell",
+                className: "jsx-f620b90ab8840e7b" + " " + "manager-shell",
                 children: [
                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("header", {
-                        className: "jsx-71f208de48479913" + " " + "manager-head",
+                        className: "jsx-f620b90ab8840e7b" + " " + "manager-head",
                         children: [
                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-71f208de48479913",
+                                className: "jsx-f620b90ab8840e7b",
                                 children: [
                                     /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                        className: "jsx-71f208de48479913" + " " + "kicker",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "kicker",
                                         children: "Managed Database Table"
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx("h2", {
-                                        className: "jsx-71f208de48479913",
+                                        className: "jsx-f620b90ab8840e7b",
                                         children: tableMeta ? tableMeta.label : "Table"
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
-                                        className: "jsx-71f208de48479913" + " " + "subline",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "subline",
                                         children: [
                                             "Modern, form-first control for ",
                                             table || "selected table",
@@ -1808,19 +1879,19 @@ const ModernTableManager = ()=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-71f208de48479913" + " " + "head-actions",
+                                className: "jsx-f620b90ab8840e7b" + " " + "head-actions",
                                 children: [
                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                         type: "button",
                                         onClick: loadTableData,
                                         disabled: loading,
-                                        className: "jsx-71f208de48479913" + " " + "refresh-btn",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "refresh-btn",
                                         children: loading ? "Loading..." : "Refresh"
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                         type: "button",
                                         onClick: openCreateForm,
-                                        className: "jsx-71f208de48479913" + " " + "create-btn",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "create-btn",
                                         children: "Add New Record"
                                     })
                                 ]
@@ -1828,28 +1899,28 @@ const ModernTableManager = ()=>{
                         ]
                     }),
                     error ? /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        className: "jsx-71f208de48479913" + " " + "alert error",
+                        className: "jsx-f620b90ab8840e7b" + " " + "alert error",
                         children: error
                     }) : null,
                     success ? /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        className: "jsx-71f208de48479913" + " " + "alert success",
+                        className: "jsx-f620b90ab8840e7b" + " " + "alert success",
                         children: success
                     }) : null,
                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
-                        className: "jsx-71f208de48479913" + " " + "card inventory-card",
+                        className: "jsx-f620b90ab8840e7b" + " " + "card inventory-card",
                         children: [
                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-71f208de48479913" + " " + "inventory-toolbar",
+                                className: "jsx-f620b90ab8840e7b" + " " + "inventory-toolbar",
                                 children: [
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                        className: "jsx-71f208de48479913",
+                                        className: "jsx-f620b90ab8840e7b",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("h3", {
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: "Records"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: [
                                                     filteredRows.length,
                                                     " of ",
@@ -1860,13 +1931,13 @@ const ModernTableManager = ()=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                        className: "jsx-71f208de48479913" + " " + "inventory-filters",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "inventory-filters",
                                         children: [
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                                className: "jsx-71f208de48479913" + " " + "search-field",
+                                                className: "jsx-f620b90ab8840e7b" + " " + "search-field",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "Search"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("input", {
@@ -1874,18 +1945,18 @@ const ModernTableManager = ()=>{
                                                         value: searchText,
                                                         onChange: (event)=>setSearchText(event.target.value),
                                                         placeholder: "Search records...",
-                                                        className: "jsx-71f208de48479913"
+                                                        className: "jsx-f620b90ab8840e7b"
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-71f208de48479913" + " " + "view-toggle-group",
+                                                className: "jsx-f620b90ab8840e7b" + " " + "view-toggle-group",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                                         type: "button",
                                                         onClick: ()=>setViewMode("list"),
                                                         "aria-label": "List view",
-                                                        className: "jsx-71f208de48479913" + " " + `view-toggle-btn ${viewMode === "list" ? "is-active" : ""}`,
+                                                        className: "jsx-f620b90ab8840e7b" + " " + `view-toggle-btn ${viewMode === "list" ? "is-active" : ""}`,
                                                         children: /*#__PURE__*/ jsx_runtime_.jsx("svg", {
                                                             width: "16",
                                                             height: "16",
@@ -1893,10 +1964,10 @@ const ModernTableManager = ()=>{
                                                             fill: "none",
                                                             stroke: "currentColor",
                                                             strokeWidth: "2.5",
-                                                            className: "jsx-71f208de48479913",
+                                                            className: "jsx-f620b90ab8840e7b",
                                                             children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                 d: "M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01",
-                                                                className: "jsx-71f208de48479913"
+                                                                className: "jsx-f620b90ab8840e7b"
                                                             })
                                                         })
                                                     }),
@@ -1904,7 +1975,7 @@ const ModernTableManager = ()=>{
                                                         type: "button",
                                                         onClick: ()=>setViewMode("grid"),
                                                         "aria-label": "Grid view",
-                                                        className: "jsx-71f208de48479913" + " " + `view-toggle-btn ${viewMode === "grid" ? "is-active" : ""}`,
+                                                        className: "jsx-f620b90ab8840e7b" + " " + `view-toggle-btn ${viewMode === "grid" ? "is-active" : ""}`,
                                                         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                             width: "16",
                                                             height: "16",
@@ -1912,7 +1983,7 @@ const ModernTableManager = ()=>{
                                                             fill: "none",
                                                             stroke: "currentColor",
                                                             strokeWidth: "2.5",
-                                                            className: "jsx-71f208de48479913",
+                                                            className: "jsx-f620b90ab8840e7b",
                                                             children: [
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                     x: "3",
@@ -1920,7 +1991,7 @@ const ModernTableManager = ()=>{
                                                                     width: "7",
                                                                     height: "7",
                                                                     rx: "1",
-                                                                    className: "jsx-71f208de48479913"
+                                                                    className: "jsx-f620b90ab8840e7b"
                                                                 }),
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                     x: "14",
@@ -1928,7 +1999,7 @@ const ModernTableManager = ()=>{
                                                                     width: "7",
                                                                     height: "7",
                                                                     rx: "1",
-                                                                    className: "jsx-71f208de48479913"
+                                                                    className: "jsx-f620b90ab8840e7b"
                                                                 }),
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                     x: "3",
@@ -1936,7 +2007,7 @@ const ModernTableManager = ()=>{
                                                                     width: "7",
                                                                     height: "7",
                                                                     rx: "1",
-                                                                    className: "jsx-71f208de48479913"
+                                                                    className: "jsx-f620b90ab8840e7b"
                                                                 }),
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                     x: "14",
@@ -1944,7 +2015,7 @@ const ModernTableManager = ()=>{
                                                                     width: "7",
                                                                     height: "7",
                                                                     rx: "1",
-                                                                    className: "jsx-71f208de48479913"
+                                                                    className: "jsx-f620b90ab8840e7b"
                                                                 })
                                                             ]
                                                         })
@@ -1956,43 +2027,43 @@ const ModernTableManager = ()=>{
                                 ]
                             }),
                             table === "products" && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-71f208de48479913" + " " + "filter-bar",
+                                className: "jsx-f620b90ab8840e7b" + " " + "filter-bar",
                                 children: [
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                        className: "jsx-71f208de48479913" + " " + "filter-select",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "filter-select",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: "Sort By"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("select", {
                                                 value: sortBy,
                                                 onChange: (e)=>setSortBy(e.target.value),
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "default",
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "Default"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "newest",
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "Newest First"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "oldest",
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "Oldest First"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "price-high",
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "Price: High to Low"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "price-low",
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "Price: Low to High"
                                                     })
                                                 ]
@@ -2000,25 +2071,25 @@ const ModernTableManager = ()=>{
                                         ]
                                     }),
                                     availableCategories.length > 0 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                        className: "jsx-71f208de48479913" + " " + "filter-select",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "filter-select",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: "Category"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("select", {
                                                 value: filterCategory,
                                                 onChange: (e)=>setFilterCategory(e.target.value),
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "",
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "All Categories"
                                                     }),
                                                     availableCategories.map((cat)=>/*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                             value: cat.id,
-                                                            className: "jsx-71f208de48479913",
+                                                            className: "jsx-f620b90ab8840e7b",
                                                             children: cat.name
                                                         }, cat.id))
                                                 ]
@@ -2026,25 +2097,25 @@ const ModernTableManager = ()=>{
                                         ]
                                     }),
                                     availableBrands.length > 0 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                        className: "jsx-71f208de48479913" + " " + "filter-select",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "filter-select",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: "Brand"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("select", {
                                                 value: filterBrand,
                                                 onChange: (e)=>setFilterBrand(e.target.value),
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "",
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "All Brands"
                                                     }),
                                                     availableBrands.map((brand)=>/*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                             value: brand,
-                                                            className: "jsx-71f208de48479913",
+                                                            className: "jsx-f620b90ab8840e7b",
                                                             children: brand
                                                         }, brand))
                                                 ]
@@ -2062,39 +2133,39 @@ const ModernTableManager = ()=>{
                                             alignSelf: "flex-end",
                                             marginBottom: "2px"
                                         },
-                                        className: "jsx-71f208de48479913" + " " + "ghost-btn",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "ghost-btn",
                                         children: "Clear Filters"
                                     })
                                 ]
                             }),
                             viewMode === "grid" ? /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                className: "jsx-71f208de48479913" + " " + "records-grid",
+                                className: "jsx-f620b90ab8840e7b" + " " + "records-grid",
                                 children: filteredRows.length ? filteredRows.map((row, index)=>{
                                     const rowId = row[primaryColumn];
                                     const title = getDisplayTitle(row, columns, primaryColumn);
                                     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                        className: "jsx-71f208de48479913" + " " + "record-grid-card",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "record-grid-card",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "jsx-71f208de48479913" + " " + "rgc-preview",
+                                                className: "jsx-f620b90ab8840e7b" + " " + "rgc-preview",
                                                 children: renderTablePreview(row, "large")
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-71f208de48479913" + " " + "rgc-body",
+                                                className: "jsx-f620b90ab8840e7b" + " " + "rgc-body",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("strong", {
-                                                        className: "jsx-71f208de48479913" + " " + "rgc-title",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "rgc-title",
                                                         children: title
                                                     }),
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("span", {
-                                                        className: "jsx-71f208de48479913" + " " + "rgc-id",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "rgc-id",
                                                         children: [
                                                             "ID: ",
                                                             safeText(rowId)
                                                         ]
                                                     }),
                                                     tableColumns.slice(0, 2).map((col)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("span", {
-                                                            className: "jsx-71f208de48479913" + " " + "rgc-meta",
+                                                            className: "jsx-f620b90ab8840e7b" + " " + "rgc-meta",
                                                             children: [
                                                                 toTitleCase(col.columnName),
                                                                 ": ",
@@ -2104,12 +2175,12 @@ const ModernTableManager = ()=>{
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-71f208de48479913" + " " + "rgc-actions",
+                                                className: "jsx-f620b90ab8840e7b" + " " + "rgc-actions",
                                                 children: [
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
                                                         type: "button",
                                                         onClick: ()=>openEditForm(row),
-                                                        className: "jsx-71f208de48479913" + " " + "action-btn",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "action-btn",
                                                         children: [
                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                 viewBox: "0 0 24 24",
@@ -2118,15 +2189,15 @@ const ModernTableManager = ()=>{
                                                                 strokeWidth: "2",
                                                                 strokeLinecap: "round",
                                                                 strokeLinejoin: "round",
-                                                                className: "jsx-71f208de48479913",
+                                                                className: "jsx-f620b90ab8840e7b",
                                                                 children: [
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                         d: "M12 20h9",
-                                                                        className: "jsx-71f208de48479913"
+                                                                        className: "jsx-f620b90ab8840e7b"
                                                                     }),
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                         d: "M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z",
-                                                                        className: "jsx-71f208de48479913"
+                                                                        className: "jsx-f620b90ab8840e7b"
                                                                     })
                                                                 ]
                                                             }),
@@ -2136,7 +2207,7 @@ const ModernTableManager = ()=>{
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
                                                         type: "button",
                                                         onClick: ()=>handleDeleteRow(rowId),
-                                                        className: "jsx-71f208de48479913" + " " + "action-btn danger",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "action-btn danger",
                                                         children: [
                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                 viewBox: "0 0 24 24",
@@ -2145,15 +2216,15 @@ const ModernTableManager = ()=>{
                                                                 strokeWidth: "2",
                                                                 strokeLinecap: "round",
                                                                 strokeLinejoin: "round",
-                                                                className: "jsx-71f208de48479913",
+                                                                className: "jsx-f620b90ab8840e7b",
                                                                 children: [
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                         d: "M3 6h18",
-                                                                        className: "jsx-71f208de48479913"
+                                                                        className: "jsx-f620b90ab8840e7b"
                                                                     }),
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                         d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2",
-                                                                        className: "jsx-71f208de48479913"
+                                                                        className: "jsx-f620b90ab8840e7b"
                                                                     })
                                                                 ]
                                                             }),
@@ -2168,98 +2239,98 @@ const ModernTableManager = ()=>{
                                     style: {
                                         gridColumn: "1 / -1"
                                     },
-                                    className: "jsx-71f208de48479913" + " " + "empty-state",
+                                    className: "jsx-f620b90ab8840e7b" + " " + "empty-state",
                                     children: [
                                         /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                            className: "jsx-71f208de48479913",
+                                            className: "jsx-f620b90ab8840e7b",
                                             children: "No records match your search."
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                             type: "button",
                                             onClick: ()=>setSearchText(""),
-                                            className: "jsx-71f208de48479913" + " " + "ghost-btn",
+                                            className: "jsx-f620b90ab8840e7b" + " " + "ghost-btn",
                                             children: "Clear Search"
                                         })
                                     ]
                                 })
                             }) : /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                className: "jsx-71f208de48479913" + " " + "table-shell",
+                                className: "jsx-f620b90ab8840e7b" + " " + "table-shell",
                                 children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("table", {
-                                    className: "jsx-71f208de48479913" + " " + "inventory-table",
+                                    className: "jsx-f620b90ab8840e7b" + " " + "inventory-table",
                                     children: [
                                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("colgroup", {
-                                            className: "jsx-71f208de48479913",
+                                            className: "jsx-f620b90ab8840e7b",
                                             children: [
                                                 /*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                     style: {
                                                         width: "80px"
                                                     },
-                                                    className: "jsx-71f208de48479913"
+                                                    className: "jsx-f620b90ab8840e7b"
                                                 }),
                                                 /*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                     style: {
                                                         width: "84px"
                                                     },
-                                                    className: "jsx-71f208de48479913"
+                                                    className: "jsx-f620b90ab8840e7b"
                                                 }),
                                                 /*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                     style: {
                                                         width: "auto"
                                                     },
-                                                    className: "jsx-71f208de48479913"
+                                                    className: "jsx-f620b90ab8840e7b"
                                                 }),
                                                 tableColumns.map((column)=>/*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                         style: {
                                                             width: "auto"
                                                         },
-                                                        className: "jsx-71f208de48479913"
+                                                        className: "jsx-f620b90ab8840e7b"
                                                     }, column.columnName)),
                                                 /*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                     style: {
                                                         width: "140px"
                                                     },
-                                                    className: "jsx-71f208de48479913"
+                                                    className: "jsx-f620b90ab8840e7b"
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("thead", {
-                                            className: "jsx-71f208de48479913",
+                                            className: "jsx-f620b90ab8840e7b",
                                             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("tr", {
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "ID"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "Image"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: tableMeta?.label ? "Name" : "Record"
                                                     }),
                                                     tableColumns.map((column)=>/*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                            className: "jsx-71f208de48479913",
+                                                            className: "jsx-f620b90ab8840e7b",
                                                             children: toTitleCase(column.columnName)
                                                         }, column.columnName)),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                        className: "jsx-71f208de48479913",
+                                                        className: "jsx-f620b90ab8840e7b",
                                                         children: "Actions"
                                                     })
                                                 ]
                                             })
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("tbody", {
-                                            className: "jsx-71f208de48479913",
+                                            className: "jsx-f620b90ab8840e7b",
                                             children: filteredRows.length ? filteredRows.map((row, index)=>{
                                                 const rowId = row[primaryColumn];
                                                 const title = getDisplayTitle(row, columns, primaryColumn);
                                                 return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("tr", {
-                                                    className: "jsx-71f208de48479913",
+                                                    className: "jsx-f620b90ab8840e7b",
                                                     children: [
                                                         /*#__PURE__*/ jsx_runtime_.jsx("td", {
-                                                            className: "jsx-71f208de48479913" + " " + "id-cell",
+                                                            className: "jsx-f620b90ab8840e7b" + " " + "id-cell",
                                                             children: safeText(rowId)
                                                         }),
                                                         /*#__PURE__*/ jsx_runtime_.jsx("td", {
@@ -2270,35 +2341,35 @@ const ModernTableManager = ()=>{
                                                                 padding: "12px 12px",
                                                                 boxSizing: "border-box"
                                                             },
-                                                            className: "jsx-71f208de48479913" + " " + "image-cell",
+                                                            className: "jsx-f620b90ab8840e7b" + " " + "image-cell",
                                                             children: renderTablePreview(row)
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("td", {
-                                                            className: "jsx-71f208de48479913" + " " + "name-cell",
+                                                            className: "jsx-f620b90ab8840e7b" + " " + "name-cell",
                                                             children: [
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("strong", {
-                                                                    className: "jsx-71f208de48479913",
+                                                                    className: "jsx-f620b90ab8840e7b",
                                                                     children: title
                                                                 }),
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                                    className: "jsx-71f208de48479913",
+                                                                    className: "jsx-f620b90ab8840e7b",
                                                                     children: tableMeta?.label || "Record"
                                                                 })
                                                             ]
                                                         }),
                                                         tableColumns.map((column)=>/*#__PURE__*/ jsx_runtime_.jsx("td", {
-                                                                className: "jsx-71f208de48479913",
+                                                                className: "jsx-f620b90ab8840e7b",
                                                                 children: renderTableCellValue(row, column)
                                                             }, column.columnName)),
                                                         /*#__PURE__*/ jsx_runtime_.jsx("td", {
-                                                            className: "jsx-71f208de48479913",
+                                                            className: "jsx-f620b90ab8840e7b",
                                                             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                className: "jsx-71f208de48479913" + " " + "table-actions",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "table-actions",
                                                                 children: [
                                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
                                                                         type: "button",
                                                                         onClick: ()=>openEditForm(row),
-                                                                        className: "jsx-71f208de48479913" + " " + "action-btn",
+                                                                        className: "jsx-f620b90ab8840e7b" + " " + "action-btn",
                                                                         children: [
                                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                                 viewBox: "0 0 24 24",
@@ -2308,15 +2379,15 @@ const ModernTableManager = ()=>{
                                                                                 strokeLinecap: "round",
                                                                                 strokeLinejoin: "round",
                                                                                 "aria-hidden": "true",
-                                                                                className: "jsx-71f208de48479913",
+                                                                                className: "jsx-f620b90ab8840e7b",
                                                                                 children: [
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                                         d: "M12 20h9",
-                                                                                        className: "jsx-71f208de48479913"
+                                                                                        className: "jsx-f620b90ab8840e7b"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                                         d: "M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z",
-                                                                                        className: "jsx-71f208de48479913"
+                                                                                        className: "jsx-f620b90ab8840e7b"
                                                                                     })
                                                                                 ]
                                                                             }),
@@ -2326,7 +2397,7 @@ const ModernTableManager = ()=>{
                                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
                                                                         type: "button",
                                                                         onClick: ()=>handleDeleteRow(rowId),
-                                                                        className: "jsx-71f208de48479913" + " " + "action-btn danger",
+                                                                        className: "jsx-f620b90ab8840e7b" + " " + "action-btn danger",
                                                                         children: [
                                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                                 viewBox: "0 0 24 24",
@@ -2336,29 +2407,29 @@ const ModernTableManager = ()=>{
                                                                                 strokeLinecap: "round",
                                                                                 strokeLinejoin: "round",
                                                                                 "aria-hidden": "true",
-                                                                                className: "jsx-71f208de48479913",
+                                                                                className: "jsx-f620b90ab8840e7b",
                                                                                 children: [
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                                         d: "M3 6h18",
-                                                                                        className: "jsx-71f208de48479913"
+                                                                                        className: "jsx-f620b90ab8840e7b"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                                         d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2",
-                                                                                        className: "jsx-71f208de48479913"
+                                                                                        className: "jsx-f620b90ab8840e7b"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("line", {
                                                                                         x1: "10",
                                                                                         y1: "11",
                                                                                         x2: "10",
                                                                                         y2: "17",
-                                                                                        className: "jsx-71f208de48479913"
+                                                                                        className: "jsx-f620b90ab8840e7b"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("line", {
                                                                                         x1: "14",
                                                                                         y1: "11",
                                                                                         x2: "14",
                                                                                         y2: "17",
-                                                                                        className: "jsx-71f208de48479913"
+                                                                                        className: "jsx-f620b90ab8840e7b"
                                                                                     })
                                                                                 ]
                                                                             }),
@@ -2371,21 +2442,21 @@ const ModernTableManager = ()=>{
                                                     ]
                                                 }, String(rowId ?? index));
                                             }) : /*#__PURE__*/ jsx_runtime_.jsx("tr", {
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx("td", {
                                                     colSpan: 4 + tableColumns.length,
-                                                    className: "jsx-71f208de48479913",
+                                                    className: "jsx-f620b90ab8840e7b",
                                                     children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-71f208de48479913" + " " + "empty-state",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "empty-state",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                                                className: "jsx-71f208de48479913",
+                                                                className: "jsx-f620b90ab8840e7b",
                                                                 children: "No records match your search."
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                                                 type: "button",
                                                                 onClick: ()=>setSearchText(""),
-                                                                className: "jsx-71f208de48479913" + " " + "ghost-btn",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "ghost-btn",
                                                                 children: "Clear Search"
                                                             })
                                                         ]
@@ -2400,26 +2471,26 @@ const ModernTableManager = ()=>{
                     }),
                     showForm ? /*#__PURE__*/ jsx_runtime_.jsx("section", {
                         ref: formSectionRef,
-                        className: "jsx-71f208de48479913" + " " + "form-section",
+                        className: "jsx-f620b90ab8840e7b" + " " + "form-section",
                         children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                            className: "jsx-71f208de48479913" + " " + "form-modal-overlay",
+                            className: "jsx-f620b90ab8840e7b" + " " + "form-modal-overlay",
                             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-71f208de48479913" + " " + "modern-form-shell",
+                                className: "jsx-f620b90ab8840e7b" + " " + "modern-form-shell",
                                 children: [
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                        className: "jsx-71f208de48479913" + " " + "modern-form-topbar",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-form-topbar",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("h3", {
-                                                className: "jsx-71f208de48479913",
+                                                className: "jsx-f620b90ab8840e7b",
                                                 children: editRowId !== null ? `Edit ${tableMeta?.label || "Record"}` : `Add ${tableMeta?.label || "Record"}`
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-71f208de48479913" + " " + "modern-form-topbar-actions",
+                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-form-topbar-actions",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                                         type: "button",
                                                         onClick: closeForm,
-                                                        className: "jsx-71f208de48479913" + " " + "cancel-btn",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "cancel-btn",
                                                         children: "Cancel"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
@@ -2429,7 +2500,7 @@ const ModernTableManager = ()=>{
                                                             const form = e.target.closest(".modern-form-shell").querySelector("form");
                                                             if (form) form.requestSubmit();
                                                         },
-                                                        className: "jsx-71f208de48479913" + " " + "submit-btn",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "submit-btn",
                                                         children: submitting ? "Saving..." : editRowId !== null ? "Save Changes" : "Create Record"
                                                     })
                                                 ]
@@ -2438,20 +2509,20 @@ const ModernTableManager = ()=>{
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("form", {
                                         onSubmit: submitRecord,
-                                        className: "jsx-71f208de48479913" + " " + "modern-form-layout",
+                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-form-layout",
                                         children: [
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-71f208de48479913" + " " + "modern-form-main",
+                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-form-main",
                                                 children: [
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-71f208de48479913" + " " + "modern-form-card",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-card-title",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-card-title",
                                                                 children: "General"
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-fields",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-fields",
                                                                 children: orderedDetailColumns.filter((col)=>{
                                                                     const n = col.columnName.toLowerCase();
                                                                     return ![
@@ -2462,15 +2533,15 @@ const ModernTableManager = ()=>{
                                                                         "type"
                                                                     ].includes(n) && !n.includes("desc") && !n.includes("feature") && n !== "full_description" && n !== "specifications";
                                                                 }).map((column)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                        className: "jsx-71f208de48479913" + " " + "modern-field",
+                                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-field",
                                                                         children: [
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                                                className: "jsx-71f208de48479913" + " " + "modern-field-label",
+                                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-field-label",
                                                                                 children: resolveFieldControl(table, column).label
                                                                             }),
                                                                             renderInput(column),
                                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("span", {
-                                                                                className: "jsx-71f208de48479913" + " " + "modern-field-hint",
+                                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-field-hint",
                                                                                 children: [
                                                                                     "Enter the ",
                                                                                     resolveFieldControl(table, column).label.toLowerCase(),
@@ -2489,14 +2560,14 @@ const ModernTableManager = ()=>{
                                                             "category_id",
                                                             "type"
                                                         ].includes(col.columnName.toLowerCase())) && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-71f208de48479913" + " " + "modern-form-card",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-card-title",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-card-title",
                                                                 children: "Settings"
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-fields",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-fields",
                                                                 children: orderedDetailColumns.filter((col)=>[
                                                                         "category_id",
                                                                         "type",
@@ -2504,10 +2575,10 @@ const ModernTableManager = ()=>{
                                                                         "active",
                                                                         "status"
                                                                     ].includes(col.columnName.toLowerCase())).map((column)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                        className: "jsx-71f208de48479913" + " " + "modern-field",
+                                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-field",
                                                                         children: [
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                                                className: "jsx-71f208de48479913" + " " + "modern-field-label",
+                                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-field-label",
                                                                                 children: resolveFieldControl(table, column).label
                                                                             }),
                                                                             renderInput(column)
@@ -2517,22 +2588,22 @@ const ModernTableManager = ()=>{
                                                         ]
                                                     }),
                                                     orderedDetailColumns.some((col)=>col.columnName.toLowerCase().includes("desc") || col.columnName.toLowerCase() === "full_description") && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-71f208de48479913" + " " + "modern-form-card",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-card-title",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-card-title",
                                                                 children: "Description"
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-fields",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-fields",
                                                                 children: orderedDetailColumns.filter((col)=>{
                                                                     const n = col.columnName.toLowerCase();
                                                                     return (n.includes("desc") || n === "full_description") && !n.includes("feature");
                                                                 }).map((column)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                        className: "jsx-71f208de48479913" + " " + "modern-field",
+                                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-field",
                                                                         children: [
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                                                className: "jsx-71f208de48479913" + " " + "modern-field-label",
+                                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-field-label",
                                                                                 children: resolveFieldControl(table, column).label
                                                                             }),
                                                                             renderInput(column)
@@ -2542,18 +2613,18 @@ const ModernTableManager = ()=>{
                                                         ]
                                                     }),
                                                     table === "products" && categorySpecs.length > 0 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-71f208de48479913" + " " + "modern-form-card",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-card-title",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-card-title",
                                                                 children: "Specifications"
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-card-subtitle",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-card-subtitle",
                                                                 children: "Fill in the specs for this product category."
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-fields specs-grid",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-fields specs-grid",
                                                                 children: categorySpecs.map((spec)=>{
                                                                     const specsObj = (()=>{
                                                                         try {
@@ -2562,12 +2633,28 @@ const ModernTableManager = ()=>{
                                                                             return {};
                                                                         }
                                                                     })();
+                                                                    const setSpecValue = (val)=>{
+                                                                        const updated = {
+                                                                            ...specsObj,
+                                                                            [spec.spec_name]: val
+                                                                        };
+                                                                        handleFormChange("specifications", JSON.stringify(updated));
+                                                                    };
+                                                                    const currentValue = specsObj[spec.spec_name] || "";
+                                                                    const options = specOptions[spec.spec_name] || [];
+                                                                    const isFilterable = !!spec.is_filterable;
                                                                     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                        className: "jsx-71f208de48479913" + " " + "modern-field",
+                                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-field",
                                                                         children: [
-                                                                            /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                                                className: "jsx-71f208de48479913" + " " + "modern-field-label",
-                                                                                children: spec.spec_label
+                                                                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
+                                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-field-label",
+                                                                                children: [
+                                                                                    spec.spec_label,
+                                                                                    isFilterable && /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                                                                        className: "jsx-f620b90ab8840e7b" + " " + "spec-filterable-tag",
+                                                                                        children: "Filterable"
+                                                                                    })
+                                                                                ]
                                                                             }),
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("input", {
                                                                                 type: "text",
@@ -2582,16 +2669,50 @@ const ModernTableManager = ()=>{
                                                                                     fontSize: "14px",
                                                                                     fontFamily: "inherit"
                                                                                 },
-                                                                                value: specsObj[spec.spec_name] || "",
-                                                                                onChange: (e)=>{
-                                                                                    const updated = {
-                                                                                        ...specsObj,
-                                                                                        [spec.spec_name]: e.target.value
-                                                                                    };
-                                                                                    handleFormChange("specifications", JSON.stringify(updated));
-                                                                                },
+                                                                                value: currentValue,
+                                                                                onChange: (e)=>setSpecValue(e.target.value),
                                                                                 placeholder: `Enter ${spec.spec_label.toLowerCase()}`,
-                                                                                className: "jsx-71f208de48479913"
+                                                                                className: "jsx-f620b90ab8840e7b"
+                                                                            }),
+                                                                            isFilterable && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                                                                className: "jsx-f620b90ab8840e7b" + " " + "spec-filter-picker",
+                                                                                children: [
+                                                                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("select", {
+                                                                                        value: options.includes(currentValue) ? currentValue : "",
+                                                                                        onChange: (e)=>{
+                                                                                            if (e.target.value) setSpecValue(e.target.value);
+                                                                                        },
+                                                                                        style: {
+                                                                                            width: "100%",
+                                                                                            height: "40px",
+                                                                                            padding: "0 12px",
+                                                                                            border: "2px solid #e0e7ff",
+                                                                                            borderRadius: "10px",
+                                                                                            background: "#f5f7ff",
+                                                                                            color: "#4338ca",
+                                                                                            fontSize: "13px",
+                                                                                            fontFamily: "inherit",
+                                                                                            cursor: "pointer"
+                                                                                        },
+                                                                                        className: "jsx-f620b90ab8840e7b",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ jsx_runtime_.jsx("option", {
+                                                                                                value: "",
+                                                                                                className: "jsx-f620b90ab8840e7b",
+                                                                                                children: options.length ? "— Pick a saved filter value —" : "— No saved values yet —"
+                                                                                            }),
+                                                                                            options.map((opt)=>/*#__PURE__*/ jsx_runtime_.jsx("option", {
+                                                                                                    value: opt,
+                                                                                                    className: "jsx-f620b90ab8840e7b",
+                                                                                                    children: opt
+                                                                                                }, opt))
+                                                                                        ]
+                                                                                    }),
+                                                                                    /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                                                                        className: "jsx-f620b90ab8840e7b" + " " + "spec-filter-hint",
+                                                                                        children: "Pick an existing filter value, or type a new one above — it's saved as a filter option when you save the product."
+                                                                                    })
+                                                                                ]
                                                                             })
                                                                         ]
                                                                     }, spec.id);
@@ -2600,10 +2721,10 @@ const ModernTableManager = ()=>{
                                                         ]
                                                     }),
                                                     orderedMediaColumns.length > 0 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-71f208de48479913" + " " + "modern-form-card modern-media-card",
+                                                        className: "jsx-f620b90ab8840e7b" + " " + "modern-form-card modern-media-card",
                                                         children: [
                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h4", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-card-title media-card-title",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-card-title media-card-title",
                                                                 children: [
                                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                         width: "20",
@@ -2614,7 +2735,7 @@ const ModernTableManager = ()=>{
                                                                         strokeWidth: "2",
                                                                         strokeLinecap: "round",
                                                                         strokeLinejoin: "round",
-                                                                        className: "jsx-71f208de48479913",
+                                                                        className: "jsx-f620b90ab8840e7b",
                                                                         children: [
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                                 x: "3",
@@ -2622,17 +2743,17 @@ const ModernTableManager = ()=>{
                                                                                 width: "18",
                                                                                 height: "18",
                                                                                 rx: "2",
-                                                                                className: "jsx-71f208de48479913"
+                                                                                className: "jsx-f620b90ab8840e7b"
                                                                             }),
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("circle", {
                                                                                 cx: "8.5",
                                                                                 cy: "8.5",
                                                                                 r: "1.5",
-                                                                                className: "jsx-71f208de48479913"
+                                                                                className: "jsx-f620b90ab8840e7b"
                                                                             }),
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("polyline", {
                                                                                 points: "21 15 16 10 5 21",
-                                                                                className: "jsx-71f208de48479913"
+                                                                                className: "jsx-f620b90ab8840e7b"
                                                                             })
                                                                         ]
                                                                     }),
@@ -2640,13 +2761,13 @@ const ModernTableManager = ()=>{
                                                                 ]
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-71f208de48479913" + " " + "modern-media-fields",
+                                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-media-fields",
                                                                 children: orderedMediaColumns.map((column)=>{
                                                                     const columnNameLower = String(column.columnName).toLowerCase();
                                                                     const isGallery = columnNameLower === "photos";
                                                                     const isVideo = columnNameLower.includes("video");
                                                                     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                        className: "jsx-71f208de48479913" + " " + `modern-media-item ${isGallery || isVideo ? "full-width" : ""}`,
+                                                                        className: "jsx-f620b90ab8840e7b" + " " + `modern-media-item ${isGallery || isVideo ? "full-width" : ""}`,
                                                                         children: renderMediaField(column)
                                                                     }, column.columnName);
                                                                 })
@@ -2656,7 +2777,7 @@ const ModernTableManager = ()=>{
                                                 ]
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "jsx-71f208de48479913" + " " + "modern-form-sidebar"
+                                                className: "jsx-f620b90ab8840e7b" + " " + "modern-form-sidebar"
                                             })
                                         ]
                                     })
@@ -2667,8 +2788,8 @@ const ModernTableManager = ()=>{
                 ]
             }),
             jsx_runtime_.jsx((style_default()), {
-                id: "71f208de48479913",
-                children: ".manager-shell.jsx-71f208de48479913{display:grid;gap:18px;max-width:100%;overflow-x:hidden}.manager-head.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:14px;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.kicker.jsx-71f208de48479913,.form-kicker.jsx-71f208de48479913{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7f7f95;font-weight:800}h2.jsx-71f208de48479913{margin:6px 0 4px;font-size:30px;color:#2e2d3f}.subline.jsx-71f208de48479913{margin:0;color:#73728f}.head-actions.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.refresh-btn.jsx-71f208de48479913,.create-btn.jsx-71f208de48479913,.primary-btn.jsx-71f208de48479913,.ghost-btn.jsx-71f208de48479913,.cancel-btn.jsx-71f208de48479913,.submit-btn.jsx-71f208de48479913,.close-form-btn.jsx-71f208de48479913,.upload-trigger.jsx-71f208de48479913,.mini-btn.jsx-71f208de48479913{border:0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700;font:inherit}.refresh-btn.jsx-71f208de48479913{background:#8a5dff;color:#fff}.create-btn.jsx-71f208de48479913,.primary-btn.jsx-71f208de48479913,.submit-btn.jsx-71f208de48479913{background:#2f3d7a;color:#fff}.ghost-btn.jsx-71f208de48479913,.cancel-btn.jsx-71f208de48479913,.close-form-btn.jsx-71f208de48479913{background:#fff;color:#393657;border:1px solid#d8d3ef}.action-btn.jsx-71f208de48479913{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:5px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:600;line-height:1.2;white-space:nowrap;cursor:pointer;font-family:inherit;border:1px solid transparent;-webkit-transition:background-color.15s ease,border-color.15s ease,color.15s ease;-moz-transition:background-color.15s ease,border-color.15s ease,color.15s ease;-o-transition:background-color.15s ease,border-color.15s ease,color.15s ease;transition:background-color.15s ease,border-color.15s ease,color.15s ease}.action-btn.jsx-71f208de48479913 svg.jsx-71f208de48479913{width:14px;height:14px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.action-btn.jsx-71f208de48479913:not(.danger){background:#eef2ff;color:#2f3d7a;border-color:#c7d2fe}.action-btn.danger.jsx-71f208de48479913{background:#fef2f2;color:#c0344f;border-color:#f7c4cf}.refresh-btn.jsx-71f208de48479913:disabled,.primary-btn.jsx-71f208de48479913:disabled,.submit-btn.jsx-71f208de48479913:disabled,.upload-trigger.jsx-71f208de48479913:disabled{opacity:.7;cursor:wait}.alert.jsx-71f208de48479913{-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:12px 14px;font-weight:600}.alert.error.jsx-71f208de48479913{background:#ffe3e7;color:#ab2d44}.alert.success.jsx-71f208de48479913{background:#dbffe8;color:#1f8a52}.card.jsx-71f208de48479913{-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;background:#fff;border:1px solid#e6e3f5;-webkit-box-shadow:0 10px 30px rgba(34,27,72,.06);-moz-box-shadow:0 10px 30px rgba(34,27,72,.06);box-shadow:0 10px 30px rgba(34,27,72,.06)}.inventory-card.jsx-71f208de48479913{padding:18px}.inventory-toolbar.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:12px;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:14px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.inventory-toolbar.jsx-71f208de48479913 h3.jsx-71f208de48479913{margin:0;color:#2e2d3f}.inventory-toolbar.jsx-71f208de48479913 p.jsx-71f208de48479913{margin:0;color:#747391}.inventory-filters.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end}.search-field.jsx-71f208de48479913{display:grid;gap:6px;min-width:180px;-webkit-box-flex:1;-webkit-flex:1 1 220px;-moz-box-flex:1;-ms-flex:1 1 220px;flex:1 1 220px}.search-field.jsx-71f208de48479913 span.jsx-71f208de48479913{font-size:12px;font-weight:700;color:#666283;text-transform:uppercase;letter-spacing:.05em}.search-field.jsx-71f208de48479913 input.jsx-71f208de48479913,.search-field.jsx-71f208de48479913 select.jsx-71f208de48479913{width:100%;border:1px solid#d6d2eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:11px 12px;background:#fbfaff;color:#29293d;font:inherit}.table-shell.jsx-71f208de48479913{width:100%;overflow-x:auto}.view-toggle-group.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;border:1px solid#d6d2eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden}.view-toggle-btn.jsx-71f208de48479913{border:none;background:#fff;padding:9px 12px;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#6b7280;-webkit-transition:all.15s;-moz-transition:all.15s;-o-transition:all.15s;transition:all.15s}.view-toggle-btn.is-active.jsx-71f208de48479913{background:#7c3aed;color:#fff}.view-toggle-btn.jsx-71f208de48479913:not(.is-active):hover{background:#f5f3ff}.filter-bar.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:16px;padding:12px 14px;background:#faf9ff;border:1px solid#ede9fe;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px}.filter-select.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;min-width:140px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;max-width:200px}.filter-select.jsx-71f208de48479913 span.jsx-71f208de48479913{font-size:11px;font-weight:700;color:#6b21a8;text-transform:uppercase;letter-spacing:.05em}.filter-select.jsx-71f208de48479913 select.jsx-71f208de48479913{width:100%;border:1px solid#d6d2eb;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 10px;background:#fff;color:#29293d;font:inherit;font-size:13px;cursor:pointer}.filter-select.jsx-71f208de48479913 select.jsx-71f208de48479913:focus{outline:none;border-color:#7c3aed;-webkit-box-shadow:0 0 0 2px rgba(124,58,237,.12);-moz-box-shadow:0 0 0 2px rgba(124,58,237,.12);box-shadow:0 0 0 2px rgba(124,58,237,.12)}.records-grid.jsx-71f208de48479913{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}.record-grid-card.jsx-71f208de48479913{border:1px solid#e6e3f5;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;overflow:hidden;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.record-grid-card.jsx-71f208de48479913:hover{-webkit-box-shadow:0 8px 24px rgba(0,0,0,.08);-moz-box-shadow:0 8px 24px rgba(0,0,0,.08);box-shadow:0 8px 24px rgba(0,0,0,.08);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.rgc-preview.jsx-71f208de48479913{height:140px;background:#f4f1ff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow:hidden}.rgc-body.jsx-71f208de48479913{padding:14px 16px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.rgc-title.jsx-71f208de48479913{font-size:14px;font-weight:700;color:#1e1b4b;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rgc-id.jsx-71f208de48479913{font-size:11px;color:#7c3aed;font-weight:600}.rgc-meta.jsx-71f208de48479913{font-size:12px;color:#6b7280;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.rgc-actions.jsx-71f208de48479913{padding:10px 16px;border-top:1px solid#f1eef8;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.inventory-table.jsx-71f208de48479913{width:100%;min-width:0;table-layout:auto;border-collapse:collapse;overflow:hidden;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;border:1px solid#e6e3f5}.inventory-table.jsx-71f208de48479913 thead.jsx-71f208de48479913 th.jsx-71f208de48479913{text-align:left;padding:14px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5e6480;background:#eef4f8;border-bottom:1px solid#dde4ef;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.inventory-table.jsx-71f208de48479913 tbody.jsx-71f208de48479913 td.jsx-71f208de48479913{padding:14px 16px;border-bottom:1px solid#edf0f7;color:#2f3146;vertical-align:middle;overflow-wrap:anywhere;word-break:break-word}.inventory-table.jsx-71f208de48479913 tbody.jsx-71f208de48479913 tr.jsx-71f208de48479913:hover{background:#fafbff}.inventory-table.jsx-71f208de48479913 thead.jsx-71f208de48479913 th.jsx-71f208de48479913:nth-child(1){width:80px}.inventory-table.jsx-71f208de48479913 thead.jsx-71f208de48479913 th.jsx-71f208de48479913:nth-child(2),.inventory-table.jsx-71f208de48479913 tbody.jsx-71f208de48479913 td.image-cell.jsx-71f208de48479913{width:84px!important;min-width:84px!important;max-width:84px!important;-webkit-box-sizing:border-box!important;-moz-box-sizing:border-box!important;box-sizing:border-box!important;padding-left:12px;padding-right:12px}.inventory-table.jsx-71f208de48479913 thead.jsx-71f208de48479913 th.jsx-71f208de48479913:last-child{width:180px}.id-cell.jsx-71f208de48479913{white-space:nowrap;font-weight:700;color:#2d3a60;width:84px}.table-preview.jsx-71f208de48479913{width:54px;height:54px;min-width:54px;max-width:54px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;overflow:hidden;background:#f2f5fb;border:1px solid#e0e6f1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#7d8399;font-size:11px;font-weight:700;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.table-preview.jsx-71f208de48479913 img.jsx-71f208de48479913{width:54px;height:54px;max-width:54px;max-height:54px;-o-object-fit:contain;object-fit:contain;display:block}.rgc-preview.jsx-71f208de48479913 .table-preview.jsx-71f208de48479913{width:100%;height:140px;max-width:100%;min-width:100%;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;border:none}.rgc-preview.jsx-71f208de48479913 .table-preview.jsx-71f208de48479913 img.jsx-71f208de48479913{width:100%;height:140px;max-width:100%;max-height:140px;-o-object-fit:cover;object-fit:cover}.rgc-preview.jsx-71f208de48479913 .table-preview.empty.jsx-71f208de48479913{height:140px;font-size:14px}.table-preview.empty.jsx-71f208de48479913{padding:8px;text-align:center}.table-preview.empty.jsx-71f208de48479913 span.jsx-71f208de48479913{display:block;line-height:1.1}.name-cell.jsx-71f208de48479913 strong.jsx-71f208de48479913{display:block;font-size:15px;line-height:1.35;color:#28304d}.name-cell.jsx-71f208de48479913,.inventory-table.jsx-71f208de48479913 tbody.jsx-71f208de48479913 td.jsx-71f208de48479913:not(.id-cell):not(.image-cell):not(:last-child){min-width:0}.name-cell.jsx-71f208de48479913 span.jsx-71f208de48479913,.table-muted.jsx-71f208de48479913{display:block;color:#7d8399;font-size:12px;margin-top:2px}.status-pill.jsx-71f208de48479913{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:6px 10px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;font-size:12px;font-weight:700}.status-pill.is-yes.jsx-71f208de48479913{background:#dff5e8;color:#157347}.status-pill.is-no.jsx-71f208de48479913{background:#ffe1e1;color:#b03030}.table-actions.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;-webkit-flex-wrap:nowrap;-ms-flex-wrap:nowrap;flex-wrap:nowrap;-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.empty-state.jsx-71f208de48479913{border:1px dashed#cfcae8;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:18px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:12px;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;background:#fff}.form-section.jsx-71f208de48479913{padding:0;scroll-margin-top:110px;position:fixed;inset:0;z-index:1000;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow-y:auto;padding:40px 20px}.form-modal-overlay.jsx-71f208de48479913{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow-y:auto;padding:40px 16px}.modern-form-shell.jsx-71f208de48479913{width:100%;max-width:920px;background:#f8fafc;border:1px solid#e2e8f0;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;-webkit-box-shadow:0 24px 48px rgba(0,0,0,.15);-moz-box-shadow:0 24px 48px rgba(0,0,0,.15);box-shadow:0 24px 48px rgba(0,0,0,.15)}.modern-form-topbar.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:16px 24px;background:#fff;border-bottom:1px solid#e2e8f0}.modern-form-topbar.jsx-71f208de48479913 h3.jsx-71f208de48479913{margin:0;font-size:18px;color:#1e293b;font-weight:700}.modern-form-topbar-actions.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.modern-form-layout.jsx-71f208de48479913{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start;max-height:-webkit-calc(100vh - 140px);max-height:-moz-calc(100vh - 140px);max-height:calc(100vh - 140px);overflow-y:auto}.modern-form-main.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px}.modern-form-sidebar.jsx-71f208de48479913{display:none}.modern-form-card.jsx-71f208de48479913,.modern-sidebar-card.jsx-71f208de48479913{background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:20px}.modern-card-title.jsx-71f208de48479913{margin:0 0 16px;font-size:16px;font-weight:800;color:#0f172a;padding-bottom:12px;border-bottom:2px solid#e2e8f0}.modern-fields.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:16px}.modern-fields.specs-grid.jsx-71f208de48479913{display:grid;grid-template-columns:1fr 1fr;gap:14px}.modern-card-subtitle.jsx-71f208de48479913{margin:-8px 0 14px;font-size:12px;color:#94a3b8}.modern-field.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913,.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913,.modern-field.jsx-71f208de48479913 select.jsx-71f208de48479913{width:100%;border:1.5px solid#cbd5e1;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f8fafc;color:#0f172a;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;transition:border-color.15s ease,box-shadow.15s ease,background.15s ease}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913,.modern-field.jsx-71f208de48479913 select.jsx-71f208de48479913{height:46px;padding:0 14px}.modern-field.jsx-71f208de48479913 select.jsx-71f208de48479913{cursor:pointer;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913{min-height:110px;padding:12px 14px;resize:vertical;line-height:1.6}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913::-webkit-input-placeholder,.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913::-webkit-input-placeholder{color:#94a3b8}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913:-moz-placeholder,.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913:-moz-placeholder{color:#94a3b8}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913::-moz-placeholder,.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913::-moz-placeholder{color:#94a3b8}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913:-ms-input-placeholder,.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913:-ms-input-placeholder{color:#94a3b8}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913::-ms-input-placeholder,.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913::-ms-input-placeholder{color:#94a3b8}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913::placeholder,.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913::placeholder{color:#94a3b8}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913:focus,.modern-field.jsx-71f208de48479913 select.jsx-71f208de48479913:focus,.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.12);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.12);box-shadow:0 0 0 3px rgba(99,102,241,.12)}.modern-field.jsx-71f208de48479913 input.jsx-71f208de48479913:hover:not(:focus),.modern-field.jsx-71f208de48479913 select.jsx-71f208de48479913:hover:not(:focus),.modern-field.jsx-71f208de48479913 textarea.jsx-71f208de48479913:hover:not(:focus){border-color:#94a3b8}.modern-field-label.jsx-71f208de48479913{font-size:13px;font-weight:700;color:#1e293b;letter-spacing:.01em}.modern-field-hint.jsx-71f208de48479913{font-size:11px;color:#64748b;font-style:italic}.form-input-styled.jsx-71f208de48479913{width:100%;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff;color:#0f172a;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;transition:border-color.15s ease,box-shadow.15s ease,background.15s ease}input.form-input-styled.jsx-71f208de48479913,select.form-input-styled.jsx-71f208de48479913{height:48px;padding:0 14px}select.form-input-styled.jsx-71f208de48479913{cursor:pointer}textarea.form-input-styled.jsx-71f208de48479913{min-height:110px;padding:12px 14px;resize:vertical;line-height:1.6}.form-input-styled.jsx-71f208de48479913::-webkit-input-placeholder{color:#94a3b8}.form-input-styled.jsx-71f208de48479913:-moz-placeholder{color:#94a3b8}.form-input-styled.jsx-71f208de48479913::-moz-placeholder{color:#94a3b8}.form-input-styled.jsx-71f208de48479913:-ms-input-placeholder{color:#94a3b8}.form-input-styled.jsx-71f208de48479913::-ms-input-placeholder{color:#94a3b8}.form-input-styled.jsx-71f208de48479913::placeholder{color:#94a3b8}.form-input-styled.jsx-71f208de48479913:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 4px rgba(99,102,241,.12);-moz-box-shadow:0 0 0 4px rgba(99,102,241,.12);box-shadow:0 0 0 4px rgba(99,102,241,.12)}.form-input-styled.jsx-71f208de48479913:hover:not(:focus){border-color:#a5b4fc}.searchable-select.jsx-71f208de48479913{position:relative;width:100%}.ss-display.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;height:44px;padding:0 14px;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;cursor:pointer;font-size:14px;color:#1d2939}.ss-display.jsx-71f208de48479913:hover{border-color:#9ca3af}.ss-placeholder.jsx-71f208de48479913{color:#9ca3af}.ss-arrow.jsx-71f208de48479913{color:#6b7280;font-size:12px}.ss-dropdown.jsx-71f208de48479913{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#fff;border:1px solid#e5e7eb;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-webkit-box-shadow:0 8px 24px rgba(0,0,0,.12);-moz-box-shadow:0 8px 24px rgba(0,0,0,.12);box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;overflow:hidden;max-height:280px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.ss-search.jsx-71f208de48479913{width:100%;border:none;border-bottom:1px solid#f3f4f6;padding:10px 14px;font-size:13px;outline:none;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.ss-options.jsx-71f208de48479913{max-height:220px;overflow-y:auto;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.ss-option.jsx-71f208de48479913{padding:8px 14px;font-size:13px;cursor:pointer;color:#374151}.ss-option.jsx-71f208de48479913:hover{background:#f3f4f6}.ss-option.is-selected.jsx-71f208de48479913{background:#eff6ff;color:#1d4ed8;font-weight:600}.ss-no-results.jsx-71f208de48479913{padding:12px 14px;font-size:13px;color:#9ca3af;text-align:center}.modern-media-card.jsx-71f208de48479913{border:2px solid#c7d2fe;background:-webkit-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:-moz-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:-o-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:linear-gradient(135deg,#faf5ff 0%,#eef2ff 100%)}.media-card-title.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;border-bottom-color:#c7d2fe}.modern-media-fields.jsx-71f208de48479913{display:grid;grid-template-columns:1fr;gap:14px}.modern-media-item.full-width.jsx-71f208de48479913{grid-column:auto}.media-field-box.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:10px;padding:16px;border:2px solid#c7d2fe;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff}.media-preview-fixed.jsx-71f208de48479913{position:relative;width:100%;height:140px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:2px solid#e0e7ff;background:#f1f5f9;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-preview-fixed.jsx-71f208de48479913 img.jsx-71f208de48479913{width:100%;height:140px;-o-object-fit:contain;object-fit:contain;-o-object-position:center;object-position:center;display:block;background:#f8fafc}.media-preview-video.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#eef2ff}.media-preview-remove.jsx-71f208de48479913{position:absolute;top:6px;right:6px;width:24px;height:24px;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:16px;line-height:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.media-preview-remove.jsx-71f208de48479913:hover{background:rgba(220,38,38,.85)}.media-file-name-row.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:8px}.modern-thumbnail-preview.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;min-height:160px;border:1px dashed#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;overflow:hidden}.modern-thumb-img.jsx-71f208de48479913{width:100%;max-height:200px;-o-object-fit:contain;object-fit:contain;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px}.modern-thumb-placeholder.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:24px;color:#9ca3af;font-size:12px;text-align:center}@media(max-width:900px){.modern-form-layout.jsx-71f208de48479913{grid-template-columns:1fr}.modern-form-sidebar.jsx-71f208de48479913{position:static}.modern-media-fields.jsx-71f208de48479913{grid-template-columns:1fr}.modern-media-item.full-width.jsx-71f208de48479913{grid-column:auto}}.block-head.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid#f1f3f9}.block-number.jsx-71f208de48479913{width:32px;height:32px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#eef1ff;color:#4252a6;font-size:12px;font-weight:800;-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto}.block-head.jsx-71f208de48479913 h4.jsx-71f208de48479913{margin:0;font-size:15px;color:#1f2638;letter-spacing:-.01em;font-weight:700}.block-head.jsx-71f208de48479913 p.jsx-71f208de48479913{margin:3px 0 0;color:#74809a;font-size:12.5px;line-height:1.45}.field-grid.jsx-71f208de48479913{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px 18px}.field-group.jsx-71f208de48479913{grid-column:span 4;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px;min-width:0}.field-group.span-3.jsx-71f208de48479913{grid-column:span 3}.field-group.span-4.jsx-71f208de48479913{grid-column:span 4}.field-group.span-6.jsx-71f208de48479913{grid-column:span 6}.field-group.span-12.jsx-71f208de48479913{grid-column:span 12}.field-group.status-field.jsx-71f208de48479913{max-width:260px}.field-label.jsx-71f208de48479913{display:block;color:#344054;font-size:13px;line-height:1.3;font-weight:600;margin-bottom:2px}.field-group.jsx-71f208de48479913>span.jsx-71f208de48479913{color:#475467;font-size:12.5px;line-height:1.2;font-weight:600}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913,.field-group.jsx-71f208de48479913 select.jsx-71f208de48479913,.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913{width:100%;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#1d2939;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease;transition:border-color.15s ease,box-shadow.15s ease}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913,.field-group.jsx-71f208de48479913 select.jsx-71f208de48479913{height:44px;padding:0 14px}.field-group.jsx-71f208de48479913 select.jsx-71f208de48479913{cursor:pointer}.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913{min-height:110px;padding:10px 14px;resize:vertical;line-height:1.6}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913::-webkit-input-placeholder,.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913::-webkit-input-placeholder{color:#98a2b3}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913:-moz-placeholder,.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913:-moz-placeholder{color:#98a2b3}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913::-moz-placeholder,.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913::-moz-placeholder{color:#98a2b3}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913:-ms-input-placeholder,.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913:-ms-input-placeholder{color:#98a2b3}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913::-ms-input-placeholder,.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913::-ms-input-placeholder{color:#98a2b3}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913::placeholder,.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913::placeholder{color:#98a2b3}.field-group.jsx-71f208de48479913 input.jsx-71f208de48479913:focus,.field-group.jsx-71f208de48479913 select.jsx-71f208de48479913:focus,.field-group.jsx-71f208de48479913 textarea.jsx-71f208de48479913:focus{outline:none;border-color:#5b6abf;-webkit-box-shadow:0 0 0 3px rgba(91,106,191,.12);-moz-box-shadow:0 0 0 3px rgba(91,106,191,.12);box-shadow:0 0 0 3px rgba(91,106,191,.12)}.rich-editor-wrap.jsx-71f208de48479913{width:100%;min-height:300px}.rich-editor-wrap.jsx-71f208de48479913 .ql-container{min-height:250px;font-size:14px;-webkit-border-radius:0 0 8px 8px;-moz-border-radius:0 0 8px 8px;border-radius:0 0 8px 8px}.rich-editor-wrap.jsx-71f208de48479913 .ql-toolbar{-webkit-border-radius:8px 8px 0 0;-moz-border-radius:8px 8px 0 0;border-radius:8px 8px 0 0;background:#f9fafb}.rich-editor-wrap.jsx-71f208de48479913 .ql-editor{min-height:250px}.media-section-grid.jsx-71f208de48479913{display:grid;grid-template-columns:1fr;gap:16px}.media-section-item.jsx-71f208de48479913{min-width:0}.media-full-width.jsx-71f208de48479913{grid-column:auto}.media-field-label-row.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.media-field-label.jsx-71f208de48479913{margin:0;font-size:13px;font-weight:700;color:#1e293b}.media-badge.jsx-71f208de48479913{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:#eef2ff;color:#4f46e5;font-size:11px;font-weight:700}.media-status-dot.jsx-71f208de48479913{width:8px;height:8px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#22c55e;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-drop-box.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:12px;padding:28px 20px;border:2px dashed#818cf8;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;cursor:pointer;-webkit-transition:border-color.2s,background.2s,box-shadow.2s;-moz-transition:border-color.2s,background.2s,box-shadow.2s;-o-transition:border-color.2s,background.2s,box-shadow.2s;transition:border-color.2s,background.2s,box-shadow.2s;-webkit-box-shadow:0 2px 8px rgba(79,70,229,.06);-moz-box-shadow:0 2px 8px rgba(79,70,229,.06);box-shadow:0 2px 8px rgba(79,70,229,.06)}.media-drop-box.jsx-71f208de48479913:hover,.media-drop-box.drag-over.jsx-71f208de48479913{border-color:#4f46e5;background:#eef2ff;-webkit-box-shadow:0 4px 16px rgba(79,70,229,.15);-moz-box-shadow:0 4px 16px rgba(79,70,229,.15);box-shadow:0 4px 16px rgba(79,70,229,.15)}.media-drop-icon.jsx-71f208de48479913{width:48px;height:48px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.media-drop-text.jsx-71f208de48479913{margin:0;font-size:14px;color:#475569;text-align:center;line-height:1.5}.media-drop-or.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;width:100%;max-width:180px}.media-drop-or.jsx-71f208de48479913::before,.media-drop-or.jsx-71f208de48479913::after{content:\"\";-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:1px;background:#e2e8f0}.media-drop-or.jsx-71f208de48479913 span.jsx-71f208de48479913{font-size:12px;color:#94a3b8;font-weight:600;letter-spacing:.05em}.media-browse-btn.jsx-71f208de48479913{padding:10px 24px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#4f46e5;color:#fff;font-size:14px;font-weight:600;cursor:pointer;-webkit-transition:background.15s,-webkit-transform.1s;-moz-transition:background.15s,-moz-transform.1s;-o-transition:background.15s,-o-transform.1s;transition:background.15s,-webkit-transform.1s;transition:background.15s,-moz-transform.1s;transition:background.15s,-o-transform.1s;transition:background.15s,transform.1s}.media-browse-btn.jsx-71f208de48479913:hover{background:#4338ca;-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);-o-transform:translateY(-1px);transform:translateY(-1px)}.media-thumb-row.jsx-71f208de48479913{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,80px));gap:10px}.media-thumb.jsx-71f208de48479913{position:relative;width:80px;height:80px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:2px solid#c7d2fe;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;background:#f8fafc}.media-thumb.jsx-71f208de48479913 img.jsx-71f208de48479913{width:80px;height:80px;-o-object-fit:cover;object-fit:cover;display:block}.media-thumb-remove.jsx-71f208de48479913{position:absolute;top:4px;right:4px;width:20px;height:20px;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:14px;line-height:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;opacity:0;-webkit-transition:opacity.15s;-moz-transition:opacity.15s;-o-transition:opacity.15s;transition:opacity.15s}.media-thumb.jsx-71f208de48479913:hover .media-thumb-remove.jsx-71f208de48479913{opacity:1}.media-current-name.jsx-71f208de48479913{font-size:12px;color:#475569;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.media-remove-file.jsx-71f208de48479913{border:none;background:none;color:#ef4444;font-size:12px;font-weight:600;cursor:pointer;padding:2px 6px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-remove-file.jsx-71f208de48479913:hover{background:#fef2f2}.media-field-card.jsx-71f208de48479913{display:none}.media-field-header.jsx-71f208de48479913,.media-field-title-row.jsx-71f208de48479913,.media-title-icon.jsx-71f208de48479913,.media-field-title.jsx-71f208de48479913,.media-status-active.jsx-71f208de48479913,.media-field-body.jsx-71f208de48479913,.media-upload-area.jsx-71f208de48479913,.media-dropzone.jsx-71f208de48479913,.media-dropzone-icon.jsx-71f208de48479913,.media-dropzone-text.jsx-71f208de48479913,.media-dropzone-compact.jsx-71f208de48479913,.media-inline-preview.jsx-71f208de48479913,.media-preview-overlay.jsx-71f208de48479913,.media-file-info.jsx-71f208de48479913,.media-file-name.jsx-71f208de48479913,.media-clear-btn.jsx-71f208de48479913{}.media-input-group.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px}.media-input-label.jsx-71f208de48479913{font-size:12px;font-weight:600;color:#667085}.media-url-input.jsx-71f208de48479913,.media-textarea.jsx-71f208de48479913{width:100%;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;color:#0f172a;font:inherit;font-size:13px;-webkit-transition:border-color.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease;transition:border-color.15s ease,box-shadow.15s ease}.media-textarea.jsx-71f208de48479913{min-height:64px;padding:10px 14px;resize:vertical;line-height:1.6}.media-textarea.jsx-71f208de48479913::-webkit-input-placeholder{color:#94a3b8}.media-textarea.jsx-71f208de48479913:-moz-placeholder{color:#94a3b8}.media-textarea.jsx-71f208de48479913::-moz-placeholder{color:#94a3b8}.media-textarea.jsx-71f208de48479913:-ms-input-placeholder{color:#94a3b8}.media-textarea.jsx-71f208de48479913::-ms-input-placeholder{color:#94a3b8}.media-textarea.jsx-71f208de48479913::placeholder{color:#94a3b8}.media-textarea.jsx-71f208de48479913:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1)}.media-or-divider.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.media-or-divider.jsx-71f208de48479913::before,.media-or-divider.jsx-71f208de48479913::after{content:\"\";-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:1px;background:#e4e7ec}.media-or-divider.jsx-71f208de48479913 span.jsx-71f208de48479913{font-size:12px;color:#98a2b3;font-weight:500;text-transform:uppercase;letter-spacing:.04em}.media-upload-btn.jsx-71f208de48479913{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:8px;height:42px;padding:0 18px;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#344054;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;-webkit-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;transition:border-color.15s ease,background.15s ease,box-shadow.15s ease}.media-upload-btn.jsx-71f208de48479913:hover{border-color:#98a2b3;background:#f9fafb;-webkit-box-shadow:0 1px 3px rgba(16,24,40,.06);-moz-box-shadow:0 1px 3px rgba(16,24,40,.06);box-shadow:0 1px 3px rgba(16,24,40,.06)}.media-upload-btn.jsx-71f208de48479913:disabled{opacity:.6;cursor:wait}.media-preview-grid.jsx-71f208de48479913{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px}.media-preview-item.jsx-71f208de48479913{position:relative;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:1px solid#e5e7eb;background:#f9fafb;aspect-ratio:1}.media-preview-item.jsx-71f208de48479913 img.jsx-71f208de48479913{display:block;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.media-remove-btn.jsx-71f208de48479913{position:absolute;top:4px;right:4px;width:24px;height:24px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;opacity:0;-webkit-transition:opacity.15s ease;-moz-transition:opacity.15s ease;-o-transition:opacity.15s ease;transition:opacity.15s ease}.media-preview-item.jsx-71f208de48479913:hover .media-remove-btn.jsx-71f208de48479913{opacity:1}.hidden-file-input.jsx-71f208de48479913{display:none!important;width:0!important;height:0!important;opacity:0!important;pointer-events:none!important;position:absolute!important}.form-actions.jsx-71f208de48479913{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding-top:22px;border-top:1px solid#edf1f7}.cancel-btn.jsx-71f208de48479913,.submit-btn.jsx-71f208de48479913{height:44px;padding-left:20px;padding-right:20px}.submit-btn.jsx-71f208de48479913{-webkit-box-shadow:0 1px 3px rgba(47,61,122,.15);-moz-box-shadow:0 1px 3px rgba(47,61,122,.15);box-shadow:0 1px 3px rgba(47,61,122,.15)}.submit-btn.jsx-71f208de48479913:hover,.create-btn.jsx-71f208de48479913:hover,.refresh-btn.jsx-71f208de48479913:hover{-webkit-filter:brightness(1.04);filter:brightness(1.04)}.cancel-btn.jsx-71f208de48479913:hover,.close-form-btn.jsx-71f208de48479913:hover,.ghost-btn.jsx-71f208de48479913:hover{border-color:#bfc7dd;background:#f9fafb}.action-btn.jsx-71f208de48479913:not(.danger):hover{background:#2f3d7a;color:#fff;border-color:#2f3d7a}.action-btn.danger.jsx-71f208de48479913:hover{background:#c0344f;color:#fff;border-color:#c0344f}.product-form-card.jsx-71f208de48479913 .field-group.jsx-71f208de48479913 select.jsx-71f208de48479913{-ms-appearance:none!important;appearance:none!important;-webkit-appearance:none!important;-moz-appearance:none!important;padding-right:40px!important;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")!important;background-repeat:no-repeat!important;background-position:right 14px center!important;cursor:pointer!important}@media(max-width:1080px){.field-group.jsx-71f208de48479913,.field-group.span-3.jsx-71f208de48479913{grid-column:span 4}.field-group.span-6.jsx-71f208de48479913{grid-column:span 6}.field-group.span-12.jsx-71f208de48479913{grid-column:span 12}.field-group.status-field.jsx-71f208de48479913{max-width:none}}@media(max-width:840px){.inventory-toolbar.jsx-71f208de48479913,.empty-state.jsx-71f208de48479913{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.inventory-filters.jsx-71f208de48479913{width:100%}.search-field.jsx-71f208de48479913{width:100%;min-width:0}.table-actions.jsx-71f208de48479913{-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.inventory-table.jsx-71f208de48479913 thead.jsx-71f208de48479913 th.jsx-71f208de48479913:nth-child(n+5):not(:last-child),.inventory-table.jsx-71f208de48479913 tbody.jsx-71f208de48479913 td.jsx-71f208de48479913:nth-child(n+5):not(:last-child){display:none}.product-form-header.jsx-71f208de48479913{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-entry-form.jsx-71f208de48479913,.product-form-header.jsx-71f208de48479913{padding-left:20px;padding-right:20px}.form-block.jsx-71f208de48479913{padding:18px}.field-group.jsx-71f208de48479913,.field-group.span-3.jsx-71f208de48479913,.field-group.span-4.jsx-71f208de48479913,.field-group.span-6.jsx-71f208de48479913,.field-group.span-12.jsx-71f208de48479913{grid-column:span 12}.media-section-grid.jsx-71f208de48479913{grid-template-columns:1fr}.media-full-width.jsx-71f208de48479913{grid-column:auto}}@media(max-width:560px){.inventory-card.jsx-71f208de48479913,.admin-content.jsx-71f208de48479913{padding-left:12px;padding-right:12px}.inventory-table.jsx-71f208de48479913 thead.jsx-71f208de48479913 th.jsx-71f208de48479913:nth-child(3),.inventory-table.jsx-71f208de48479913 tbody.jsx-71f208de48479913 td.jsx-71f208de48479913:nth-child(3){width:auto}.inventory-table.jsx-71f208de48479913 thead.jsx-71f208de48479913 th.jsx-71f208de48479913:nth-child(n+4):not(:last-child),.inventory-table.jsx-71f208de48479913 tbody.jsx-71f208de48479913 td.jsx-71f208de48479913:nth-child(n+4):not(:last-child){display:none}.product-form-card.jsx-71f208de48479913{-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px}.product-entry-form.jsx-71f208de48479913,.product-form-header.jsx-71f208de48479913{padding:16px}.product-form-header.jsx-71f208de48479913 h3.jsx-71f208de48479913{font-size:20px}.block-head.jsx-71f208de48479913{gap:10px}.form-actions.jsx-71f208de48479913{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-webkit-flex-direction:column-reverse;-moz-box-orient:vertical;-moz-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-box-align:stretch;-webkit-align-items:stretch;-moz-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.cancel-btn.jsx-71f208de48479913,.submit-btn.jsx-71f208de48479913,.close-form-btn.jsx-71f208de48479913{width:100%}}"
+                id: "f620b90ab8840e7b",
+                children: ".manager-shell.jsx-f620b90ab8840e7b{display:grid;gap:18px;max-width:100%;overflow-x:hidden}.manager-head.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:14px;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.kicker.jsx-f620b90ab8840e7b,.form-kicker.jsx-f620b90ab8840e7b{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7f7f95;font-weight:800}h2.jsx-f620b90ab8840e7b{margin:6px 0 4px;font-size:30px;color:#2e2d3f}.subline.jsx-f620b90ab8840e7b{margin:0;color:#73728f}.head-actions.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.refresh-btn.jsx-f620b90ab8840e7b,.create-btn.jsx-f620b90ab8840e7b,.primary-btn.jsx-f620b90ab8840e7b,.ghost-btn.jsx-f620b90ab8840e7b,.cancel-btn.jsx-f620b90ab8840e7b,.submit-btn.jsx-f620b90ab8840e7b,.close-form-btn.jsx-f620b90ab8840e7b,.upload-trigger.jsx-f620b90ab8840e7b,.mini-btn.jsx-f620b90ab8840e7b{border:0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700;font:inherit}.refresh-btn.jsx-f620b90ab8840e7b{background:#8a5dff;color:#fff}.create-btn.jsx-f620b90ab8840e7b,.primary-btn.jsx-f620b90ab8840e7b,.submit-btn.jsx-f620b90ab8840e7b{background:#2f3d7a;color:#fff}.ghost-btn.jsx-f620b90ab8840e7b,.cancel-btn.jsx-f620b90ab8840e7b,.close-form-btn.jsx-f620b90ab8840e7b{background:#fff;color:#393657;border:1px solid#d8d3ef}.action-btn.jsx-f620b90ab8840e7b{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:5px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:600;line-height:1.2;white-space:nowrap;cursor:pointer;font-family:inherit;border:1px solid transparent;-webkit-transition:background-color.15s ease,border-color.15s ease,color.15s ease;-moz-transition:background-color.15s ease,border-color.15s ease,color.15s ease;-o-transition:background-color.15s ease,border-color.15s ease,color.15s ease;transition:background-color.15s ease,border-color.15s ease,color.15s ease}.action-btn.jsx-f620b90ab8840e7b svg.jsx-f620b90ab8840e7b{width:14px;height:14px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.action-btn.jsx-f620b90ab8840e7b:not(.danger){background:#eef2ff;color:#2f3d7a;border-color:#c7d2fe}.action-btn.danger.jsx-f620b90ab8840e7b{background:#fef2f2;color:#c0344f;border-color:#f7c4cf}.refresh-btn.jsx-f620b90ab8840e7b:disabled,.primary-btn.jsx-f620b90ab8840e7b:disabled,.submit-btn.jsx-f620b90ab8840e7b:disabled,.upload-trigger.jsx-f620b90ab8840e7b:disabled{opacity:.7;cursor:wait}.alert.jsx-f620b90ab8840e7b{-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:12px 14px;font-weight:600}.alert.error.jsx-f620b90ab8840e7b{background:#ffe3e7;color:#ab2d44}.alert.success.jsx-f620b90ab8840e7b{background:#dbffe8;color:#1f8a52}.card.jsx-f620b90ab8840e7b{-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;background:#fff;border:1px solid#e6e3f5;-webkit-box-shadow:0 10px 30px rgba(34,27,72,.06);-moz-box-shadow:0 10px 30px rgba(34,27,72,.06);box-shadow:0 10px 30px rgba(34,27,72,.06)}.inventory-card.jsx-f620b90ab8840e7b{padding:18px}.inventory-toolbar.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:12px;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:14px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.inventory-toolbar.jsx-f620b90ab8840e7b h3.jsx-f620b90ab8840e7b{margin:0;color:#2e2d3f}.inventory-toolbar.jsx-f620b90ab8840e7b p.jsx-f620b90ab8840e7b{margin:0;color:#747391}.inventory-filters.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end}.search-field.jsx-f620b90ab8840e7b{display:grid;gap:6px;min-width:180px;-webkit-box-flex:1;-webkit-flex:1 1 220px;-moz-box-flex:1;-ms-flex:1 1 220px;flex:1 1 220px}.search-field.jsx-f620b90ab8840e7b span.jsx-f620b90ab8840e7b{font-size:12px;font-weight:700;color:#666283;text-transform:uppercase;letter-spacing:.05em}.search-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b,.search-field.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b{width:100%;border:1px solid#d6d2eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:11px 12px;background:#fbfaff;color:#29293d;font:inherit}.table-shell.jsx-f620b90ab8840e7b{width:100%;overflow-x:auto}.view-toggle-group.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;border:1px solid#d6d2eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden}.view-toggle-btn.jsx-f620b90ab8840e7b{border:none;background:#fff;padding:9px 12px;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#6b7280;-webkit-transition:all.15s;-moz-transition:all.15s;-o-transition:all.15s;transition:all.15s}.view-toggle-btn.is-active.jsx-f620b90ab8840e7b{background:#7c3aed;color:#fff}.view-toggle-btn.jsx-f620b90ab8840e7b:not(.is-active):hover{background:#f5f3ff}.filter-bar.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:16px;padding:12px 14px;background:#faf9ff;border:1px solid#ede9fe;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px}.filter-select.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;min-width:140px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;max-width:200px}.filter-select.jsx-f620b90ab8840e7b span.jsx-f620b90ab8840e7b{font-size:11px;font-weight:700;color:#6b21a8;text-transform:uppercase;letter-spacing:.05em}.filter-select.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b{width:100%;border:1px solid#d6d2eb;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 10px;background:#fff;color:#29293d;font:inherit;font-size:13px;cursor:pointer}.filter-select.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b:focus{outline:none;border-color:#7c3aed;-webkit-box-shadow:0 0 0 2px rgba(124,58,237,.12);-moz-box-shadow:0 0 0 2px rgba(124,58,237,.12);box-shadow:0 0 0 2px rgba(124,58,237,.12)}.records-grid.jsx-f620b90ab8840e7b{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}.record-grid-card.jsx-f620b90ab8840e7b{border:1px solid#e6e3f5;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;overflow:hidden;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.record-grid-card.jsx-f620b90ab8840e7b:hover{-webkit-box-shadow:0 8px 24px rgba(0,0,0,.08);-moz-box-shadow:0 8px 24px rgba(0,0,0,.08);box-shadow:0 8px 24px rgba(0,0,0,.08);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.rgc-preview.jsx-f620b90ab8840e7b{height:140px;background:#f4f1ff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow:hidden}.rgc-body.jsx-f620b90ab8840e7b{padding:14px 16px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.rgc-title.jsx-f620b90ab8840e7b{font-size:14px;font-weight:700;color:#1e1b4b;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rgc-id.jsx-f620b90ab8840e7b{font-size:11px;color:#7c3aed;font-weight:600}.rgc-meta.jsx-f620b90ab8840e7b{font-size:12px;color:#6b7280;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.rgc-actions.jsx-f620b90ab8840e7b{padding:10px 16px;border-top:1px solid#f1eef8;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.inventory-table.jsx-f620b90ab8840e7b{width:100%;min-width:0;table-layout:auto;border-collapse:collapse;overflow:hidden;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;border:1px solid#e6e3f5}.inventory-table.jsx-f620b90ab8840e7b thead.jsx-f620b90ab8840e7b th.jsx-f620b90ab8840e7b{text-align:left;padding:14px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5e6480;background:#eef4f8;border-bottom:1px solid#dde4ef;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.inventory-table.jsx-f620b90ab8840e7b tbody.jsx-f620b90ab8840e7b td.jsx-f620b90ab8840e7b{padding:14px 16px;border-bottom:1px solid#edf0f7;color:#2f3146;vertical-align:middle;overflow-wrap:anywhere;word-break:break-word}.inventory-table.jsx-f620b90ab8840e7b tbody.jsx-f620b90ab8840e7b tr.jsx-f620b90ab8840e7b:hover{background:#fafbff}.inventory-table.jsx-f620b90ab8840e7b thead.jsx-f620b90ab8840e7b th.jsx-f620b90ab8840e7b:nth-child(1){width:80px}.inventory-table.jsx-f620b90ab8840e7b thead.jsx-f620b90ab8840e7b th.jsx-f620b90ab8840e7b:nth-child(2),.inventory-table.jsx-f620b90ab8840e7b tbody.jsx-f620b90ab8840e7b td.image-cell.jsx-f620b90ab8840e7b{width:84px!important;min-width:84px!important;max-width:84px!important;-webkit-box-sizing:border-box!important;-moz-box-sizing:border-box!important;box-sizing:border-box!important;padding-left:12px;padding-right:12px}.inventory-table.jsx-f620b90ab8840e7b thead.jsx-f620b90ab8840e7b th.jsx-f620b90ab8840e7b:last-child{width:180px}.id-cell.jsx-f620b90ab8840e7b{white-space:nowrap;font-weight:700;color:#2d3a60;width:84px}.table-preview.jsx-f620b90ab8840e7b{width:54px;height:54px;min-width:54px;max-width:54px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;overflow:hidden;background:#f2f5fb;border:1px solid#e0e6f1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#7d8399;font-size:11px;font-weight:700;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.table-preview.jsx-f620b90ab8840e7b img.jsx-f620b90ab8840e7b{width:54px;height:54px;max-width:54px;max-height:54px;-o-object-fit:contain;object-fit:contain;display:block}.rgc-preview.jsx-f620b90ab8840e7b .table-preview.jsx-f620b90ab8840e7b{width:100%;height:140px;max-width:100%;min-width:100%;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;border:none}.rgc-preview.jsx-f620b90ab8840e7b .table-preview.jsx-f620b90ab8840e7b img.jsx-f620b90ab8840e7b{width:100%;height:140px;max-width:100%;max-height:140px;-o-object-fit:cover;object-fit:cover}.rgc-preview.jsx-f620b90ab8840e7b .table-preview.empty.jsx-f620b90ab8840e7b{height:140px;font-size:14px}.table-preview.empty.jsx-f620b90ab8840e7b{padding:8px;text-align:center}.table-preview.empty.jsx-f620b90ab8840e7b span.jsx-f620b90ab8840e7b{display:block;line-height:1.1}.name-cell.jsx-f620b90ab8840e7b strong.jsx-f620b90ab8840e7b{display:block;font-size:15px;line-height:1.35;color:#28304d}.name-cell.jsx-f620b90ab8840e7b,.inventory-table.jsx-f620b90ab8840e7b tbody.jsx-f620b90ab8840e7b td.jsx-f620b90ab8840e7b:not(.id-cell):not(.image-cell):not(:last-child){min-width:0}.name-cell.jsx-f620b90ab8840e7b span.jsx-f620b90ab8840e7b,.table-muted.jsx-f620b90ab8840e7b{display:block;color:#7d8399;font-size:12px;margin-top:2px}.status-pill.jsx-f620b90ab8840e7b{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:6px 10px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;font-size:12px;font-weight:700}.status-pill.is-yes.jsx-f620b90ab8840e7b{background:#dff5e8;color:#157347}.status-pill.is-no.jsx-f620b90ab8840e7b{background:#ffe1e1;color:#b03030}.table-actions.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;-webkit-flex-wrap:nowrap;-ms-flex-wrap:nowrap;flex-wrap:nowrap;-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.empty-state.jsx-f620b90ab8840e7b{border:1px dashed#cfcae8;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:18px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:12px;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;background:#fff}.form-section.jsx-f620b90ab8840e7b{padding:0;scroll-margin-top:110px;position:fixed;inset:0;z-index:1000;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow-y:auto;padding:40px 20px}.form-modal-overlay.jsx-f620b90ab8840e7b{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow-y:auto;padding:40px 16px}.modern-form-shell.jsx-f620b90ab8840e7b{width:100%;max-width:920px;background:#f8fafc;border:1px solid#e2e8f0;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;-webkit-box-shadow:0 24px 48px rgba(0,0,0,.15);-moz-box-shadow:0 24px 48px rgba(0,0,0,.15);box-shadow:0 24px 48px rgba(0,0,0,.15)}.modern-form-topbar.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:16px 24px;background:#fff;border-bottom:1px solid#e2e8f0}.modern-form-topbar.jsx-f620b90ab8840e7b h3.jsx-f620b90ab8840e7b{margin:0;font-size:18px;color:#1e293b;font-weight:700}.modern-form-topbar-actions.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.modern-form-layout.jsx-f620b90ab8840e7b{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start;max-height:-webkit-calc(100vh - 140px);max-height:-moz-calc(100vh - 140px);max-height:calc(100vh - 140px);overflow-y:auto}.modern-form-main.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px}.modern-form-sidebar.jsx-f620b90ab8840e7b{display:none}.modern-form-card.jsx-f620b90ab8840e7b,.modern-sidebar-card.jsx-f620b90ab8840e7b{background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:20px}.modern-card-title.jsx-f620b90ab8840e7b{margin:0 0 16px;font-size:16px;font-weight:800;color:#0f172a;padding-bottom:12px;border-bottom:2px solid#e2e8f0}.modern-fields.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:16px}.modern-fields.specs-grid.jsx-f620b90ab8840e7b{display:grid;grid-template-columns:1fr 1fr;gap:14px}.spec-filterable-tag.jsx-f620b90ab8840e7b{display:inline-block;margin-left:8px;padding:2px 8px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:#eef2ff;color:#4338ca;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;vertical-align:middle}.spec-filter-picker.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px;margin-top:8px}.spec-filter-hint.jsx-f620b90ab8840e7b{font-size:11px;color:#94a3b8;line-height:1.4}.modern-card-subtitle.jsx-f620b90ab8840e7b{margin:-8px 0 14px;font-size:12px;color:#94a3b8}.modern-field.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b,.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b,.modern-field.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b{width:100%;border:1.5px solid#cbd5e1;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f8fafc;color:#0f172a;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;transition:border-color.15s ease,box-shadow.15s ease,background.15s ease}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b,.modern-field.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b{height:46px;padding:0 14px}.modern-field.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b{cursor:pointer;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b{min-height:110px;padding:12px 14px;resize:vertical;line-height:1.6}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b::-webkit-input-placeholder,.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b::-webkit-input-placeholder{color:#94a3b8}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b:-moz-placeholder,.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b:-moz-placeholder{color:#94a3b8}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b::-moz-placeholder,.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b::-moz-placeholder{color:#94a3b8}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b:-ms-input-placeholder,.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b:-ms-input-placeholder{color:#94a3b8}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b::-ms-input-placeholder,.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b::-ms-input-placeholder{color:#94a3b8}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b::placeholder,.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b::placeholder{color:#94a3b8}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b:focus,.modern-field.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b:focus,.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.12);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.12);box-shadow:0 0 0 3px rgba(99,102,241,.12)}.modern-field.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b:hover:not(:focus),.modern-field.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b:hover:not(:focus),.modern-field.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b:hover:not(:focus){border-color:#94a3b8}.modern-field-label.jsx-f620b90ab8840e7b{font-size:13px;font-weight:700;color:#1e293b;letter-spacing:.01em}.modern-field-hint.jsx-f620b90ab8840e7b{font-size:11px;color:#64748b;font-style:italic}.form-input-styled.jsx-f620b90ab8840e7b{width:100%;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff;color:#0f172a;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;transition:border-color.15s ease,box-shadow.15s ease,background.15s ease}input.form-input-styled.jsx-f620b90ab8840e7b,select.form-input-styled.jsx-f620b90ab8840e7b{height:48px;padding:0 14px}select.form-input-styled.jsx-f620b90ab8840e7b{cursor:pointer}textarea.form-input-styled.jsx-f620b90ab8840e7b{min-height:110px;padding:12px 14px;resize:vertical;line-height:1.6}.form-input-styled.jsx-f620b90ab8840e7b::-webkit-input-placeholder{color:#94a3b8}.form-input-styled.jsx-f620b90ab8840e7b:-moz-placeholder{color:#94a3b8}.form-input-styled.jsx-f620b90ab8840e7b::-moz-placeholder{color:#94a3b8}.form-input-styled.jsx-f620b90ab8840e7b:-ms-input-placeholder{color:#94a3b8}.form-input-styled.jsx-f620b90ab8840e7b::-ms-input-placeholder{color:#94a3b8}.form-input-styled.jsx-f620b90ab8840e7b::placeholder{color:#94a3b8}.form-input-styled.jsx-f620b90ab8840e7b:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 4px rgba(99,102,241,.12);-moz-box-shadow:0 0 0 4px rgba(99,102,241,.12);box-shadow:0 0 0 4px rgba(99,102,241,.12)}.form-input-styled.jsx-f620b90ab8840e7b:hover:not(:focus){border-color:#a5b4fc}.searchable-select.jsx-f620b90ab8840e7b{position:relative;width:100%}.ss-display.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;height:44px;padding:0 14px;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;cursor:pointer;font-size:14px;color:#1d2939}.ss-display.jsx-f620b90ab8840e7b:hover{border-color:#9ca3af}.ss-placeholder.jsx-f620b90ab8840e7b{color:#9ca3af}.ss-arrow.jsx-f620b90ab8840e7b{color:#6b7280;font-size:12px}.ss-dropdown.jsx-f620b90ab8840e7b{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#fff;border:1px solid#e5e7eb;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-webkit-box-shadow:0 8px 24px rgba(0,0,0,.12);-moz-box-shadow:0 8px 24px rgba(0,0,0,.12);box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;overflow:hidden;max-height:280px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.ss-search.jsx-f620b90ab8840e7b{width:100%;border:none;border-bottom:1px solid#f3f4f6;padding:10px 14px;font-size:13px;outline:none;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.ss-options.jsx-f620b90ab8840e7b{max-height:220px;overflow-y:auto;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.ss-option.jsx-f620b90ab8840e7b{padding:8px 14px;font-size:13px;cursor:pointer;color:#374151}.ss-option.jsx-f620b90ab8840e7b:hover{background:#f3f4f6}.ss-option.is-selected.jsx-f620b90ab8840e7b{background:#eff6ff;color:#1d4ed8;font-weight:600}.ss-no-results.jsx-f620b90ab8840e7b{padding:12px 14px;font-size:13px;color:#9ca3af;text-align:center}.modern-media-card.jsx-f620b90ab8840e7b{border:2px solid#c7d2fe;background:-webkit-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:-moz-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:-o-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:linear-gradient(135deg,#faf5ff 0%,#eef2ff 100%)}.media-card-title.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;border-bottom-color:#c7d2fe}.modern-media-fields.jsx-f620b90ab8840e7b{display:grid;grid-template-columns:1fr;gap:14px}.modern-media-item.full-width.jsx-f620b90ab8840e7b{grid-column:auto}.media-field-box.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:10px;padding:16px;border:2px solid#c7d2fe;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff}.media-preview-fixed.jsx-f620b90ab8840e7b{position:relative;width:100%;height:140px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:2px solid#e0e7ff;background:#f1f5f9;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-preview-fixed.jsx-f620b90ab8840e7b img.jsx-f620b90ab8840e7b{width:100%;height:140px;-o-object-fit:contain;object-fit:contain;-o-object-position:center;object-position:center;display:block;background:#f8fafc}.media-preview-video.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#eef2ff}.media-preview-remove.jsx-f620b90ab8840e7b{position:absolute;top:6px;right:6px;width:24px;height:24px;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:16px;line-height:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.media-preview-remove.jsx-f620b90ab8840e7b:hover{background:rgba(220,38,38,.85)}.media-file-name-row.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:8px}.modern-thumbnail-preview.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;min-height:160px;border:1px dashed#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;overflow:hidden}.modern-thumb-img.jsx-f620b90ab8840e7b{width:100%;max-height:200px;-o-object-fit:contain;object-fit:contain;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px}.modern-thumb-placeholder.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:24px;color:#9ca3af;font-size:12px;text-align:center}@media(max-width:900px){.modern-form-layout.jsx-f620b90ab8840e7b{grid-template-columns:1fr}.modern-form-sidebar.jsx-f620b90ab8840e7b{position:static}.modern-media-fields.jsx-f620b90ab8840e7b{grid-template-columns:1fr}.modern-media-item.full-width.jsx-f620b90ab8840e7b{grid-column:auto}}.block-head.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid#f1f3f9}.block-number.jsx-f620b90ab8840e7b{width:32px;height:32px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#eef1ff;color:#4252a6;font-size:12px;font-weight:800;-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto}.block-head.jsx-f620b90ab8840e7b h4.jsx-f620b90ab8840e7b{margin:0;font-size:15px;color:#1f2638;letter-spacing:-.01em;font-weight:700}.block-head.jsx-f620b90ab8840e7b p.jsx-f620b90ab8840e7b{margin:3px 0 0;color:#74809a;font-size:12.5px;line-height:1.45}.field-grid.jsx-f620b90ab8840e7b{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px 18px}.field-group.jsx-f620b90ab8840e7b{grid-column:span 4;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px;min-width:0}.field-group.span-3.jsx-f620b90ab8840e7b{grid-column:span 3}.field-group.span-4.jsx-f620b90ab8840e7b{grid-column:span 4}.field-group.span-6.jsx-f620b90ab8840e7b{grid-column:span 6}.field-group.span-12.jsx-f620b90ab8840e7b{grid-column:span 12}.field-group.status-field.jsx-f620b90ab8840e7b{max-width:260px}.field-label.jsx-f620b90ab8840e7b{display:block;color:#344054;font-size:13px;line-height:1.3;font-weight:600;margin-bottom:2px}.field-group.jsx-f620b90ab8840e7b>span.jsx-f620b90ab8840e7b{color:#475467;font-size:12.5px;line-height:1.2;font-weight:600}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b,.field-group.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b,.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b{width:100%;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#1d2939;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease;transition:border-color.15s ease,box-shadow.15s ease}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b,.field-group.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b{height:44px;padding:0 14px}.field-group.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b{cursor:pointer}.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b{min-height:110px;padding:10px 14px;resize:vertical;line-height:1.6}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b::-webkit-input-placeholder,.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b::-webkit-input-placeholder{color:#98a2b3}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b:-moz-placeholder,.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b:-moz-placeholder{color:#98a2b3}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b::-moz-placeholder,.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b::-moz-placeholder{color:#98a2b3}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b:-ms-input-placeholder,.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b:-ms-input-placeholder{color:#98a2b3}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b::-ms-input-placeholder,.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b::-ms-input-placeholder{color:#98a2b3}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b::placeholder,.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b::placeholder{color:#98a2b3}.field-group.jsx-f620b90ab8840e7b input.jsx-f620b90ab8840e7b:focus,.field-group.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b:focus,.field-group.jsx-f620b90ab8840e7b textarea.jsx-f620b90ab8840e7b:focus{outline:none;border-color:#5b6abf;-webkit-box-shadow:0 0 0 3px rgba(91,106,191,.12);-moz-box-shadow:0 0 0 3px rgba(91,106,191,.12);box-shadow:0 0 0 3px rgba(91,106,191,.12)}.rich-editor-wrap.jsx-f620b90ab8840e7b{width:100%;min-height:300px}.rich-editor-wrap.jsx-f620b90ab8840e7b .ql-container{min-height:250px;font-size:14px;-webkit-border-radius:0 0 8px 8px;-moz-border-radius:0 0 8px 8px;border-radius:0 0 8px 8px}.rich-editor-wrap.jsx-f620b90ab8840e7b .ql-toolbar{-webkit-border-radius:8px 8px 0 0;-moz-border-radius:8px 8px 0 0;border-radius:8px 8px 0 0;background:#f9fafb}.rich-editor-wrap.jsx-f620b90ab8840e7b .ql-editor{min-height:250px}.media-section-grid.jsx-f620b90ab8840e7b{display:grid;grid-template-columns:1fr;gap:16px}.media-section-item.jsx-f620b90ab8840e7b{min-width:0}.media-full-width.jsx-f620b90ab8840e7b{grid-column:auto}.media-field-label-row.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.media-field-label.jsx-f620b90ab8840e7b{margin:0;font-size:13px;font-weight:700;color:#1e293b}.media-badge.jsx-f620b90ab8840e7b{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:#eef2ff;color:#4f46e5;font-size:11px;font-weight:700}.media-status-dot.jsx-f620b90ab8840e7b{width:8px;height:8px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#22c55e;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-drop-box.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:12px;padding:28px 20px;border:2px dashed#818cf8;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;cursor:pointer;-webkit-transition:border-color.2s,background.2s,box-shadow.2s;-moz-transition:border-color.2s,background.2s,box-shadow.2s;-o-transition:border-color.2s,background.2s,box-shadow.2s;transition:border-color.2s,background.2s,box-shadow.2s;-webkit-box-shadow:0 2px 8px rgba(79,70,229,.06);-moz-box-shadow:0 2px 8px rgba(79,70,229,.06);box-shadow:0 2px 8px rgba(79,70,229,.06)}.media-drop-box.jsx-f620b90ab8840e7b:hover,.media-drop-box.drag-over.jsx-f620b90ab8840e7b{border-color:#4f46e5;background:#eef2ff;-webkit-box-shadow:0 4px 16px rgba(79,70,229,.15);-moz-box-shadow:0 4px 16px rgba(79,70,229,.15);box-shadow:0 4px 16px rgba(79,70,229,.15)}.media-drop-icon.jsx-f620b90ab8840e7b{width:48px;height:48px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.media-drop-text.jsx-f620b90ab8840e7b{margin:0;font-size:14px;color:#475569;text-align:center;line-height:1.5}.media-drop-or.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;width:100%;max-width:180px}.media-drop-or.jsx-f620b90ab8840e7b::before,.media-drop-or.jsx-f620b90ab8840e7b::after{content:\"\";-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:1px;background:#e2e8f0}.media-drop-or.jsx-f620b90ab8840e7b span.jsx-f620b90ab8840e7b{font-size:12px;color:#94a3b8;font-weight:600;letter-spacing:.05em}.media-browse-btn.jsx-f620b90ab8840e7b{padding:10px 24px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#4f46e5;color:#fff;font-size:14px;font-weight:600;cursor:pointer;-webkit-transition:background.15s,-webkit-transform.1s;-moz-transition:background.15s,-moz-transform.1s;-o-transition:background.15s,-o-transform.1s;transition:background.15s,-webkit-transform.1s;transition:background.15s,-moz-transform.1s;transition:background.15s,-o-transform.1s;transition:background.15s,transform.1s}.media-browse-btn.jsx-f620b90ab8840e7b:hover{background:#4338ca;-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);-o-transform:translateY(-1px);transform:translateY(-1px)}.media-thumb-row.jsx-f620b90ab8840e7b{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,80px));gap:10px}.media-thumb.jsx-f620b90ab8840e7b{position:relative;width:80px;height:80px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:2px solid#c7d2fe;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;background:#f8fafc}.media-thumb.jsx-f620b90ab8840e7b img.jsx-f620b90ab8840e7b{width:80px;height:80px;-o-object-fit:cover;object-fit:cover;display:block}.media-thumb-remove.jsx-f620b90ab8840e7b{position:absolute;top:4px;right:4px;width:20px;height:20px;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:14px;line-height:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;opacity:0;-webkit-transition:opacity.15s;-moz-transition:opacity.15s;-o-transition:opacity.15s;transition:opacity.15s}.media-thumb.jsx-f620b90ab8840e7b:hover .media-thumb-remove.jsx-f620b90ab8840e7b{opacity:1}.media-current-name.jsx-f620b90ab8840e7b{font-size:12px;color:#475569;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.media-remove-file.jsx-f620b90ab8840e7b{border:none;background:none;color:#ef4444;font-size:12px;font-weight:600;cursor:pointer;padding:2px 6px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-remove-file.jsx-f620b90ab8840e7b:hover{background:#fef2f2}.media-field-card.jsx-f620b90ab8840e7b{display:none}.media-field-header.jsx-f620b90ab8840e7b,.media-field-title-row.jsx-f620b90ab8840e7b,.media-title-icon.jsx-f620b90ab8840e7b,.media-field-title.jsx-f620b90ab8840e7b,.media-status-active.jsx-f620b90ab8840e7b,.media-field-body.jsx-f620b90ab8840e7b,.media-upload-area.jsx-f620b90ab8840e7b,.media-dropzone.jsx-f620b90ab8840e7b,.media-dropzone-icon.jsx-f620b90ab8840e7b,.media-dropzone-text.jsx-f620b90ab8840e7b,.media-dropzone-compact.jsx-f620b90ab8840e7b,.media-inline-preview.jsx-f620b90ab8840e7b,.media-preview-overlay.jsx-f620b90ab8840e7b,.media-file-info.jsx-f620b90ab8840e7b,.media-file-name.jsx-f620b90ab8840e7b,.media-clear-btn.jsx-f620b90ab8840e7b{}.media-input-group.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px}.media-input-label.jsx-f620b90ab8840e7b{font-size:12px;font-weight:600;color:#667085}.media-url-input.jsx-f620b90ab8840e7b,.media-textarea.jsx-f620b90ab8840e7b{width:100%;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;color:#0f172a;font:inherit;font-size:13px;-webkit-transition:border-color.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease;transition:border-color.15s ease,box-shadow.15s ease}.media-textarea.jsx-f620b90ab8840e7b{min-height:64px;padding:10px 14px;resize:vertical;line-height:1.6}.media-textarea.jsx-f620b90ab8840e7b::-webkit-input-placeholder{color:#94a3b8}.media-textarea.jsx-f620b90ab8840e7b:-moz-placeholder{color:#94a3b8}.media-textarea.jsx-f620b90ab8840e7b::-moz-placeholder{color:#94a3b8}.media-textarea.jsx-f620b90ab8840e7b:-ms-input-placeholder{color:#94a3b8}.media-textarea.jsx-f620b90ab8840e7b::-ms-input-placeholder{color:#94a3b8}.media-textarea.jsx-f620b90ab8840e7b::placeholder{color:#94a3b8}.media-textarea.jsx-f620b90ab8840e7b:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1)}.media-or-divider.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.media-or-divider.jsx-f620b90ab8840e7b::before,.media-or-divider.jsx-f620b90ab8840e7b::after{content:\"\";-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:1px;background:#e4e7ec}.media-or-divider.jsx-f620b90ab8840e7b span.jsx-f620b90ab8840e7b{font-size:12px;color:#98a2b3;font-weight:500;text-transform:uppercase;letter-spacing:.04em}.media-upload-btn.jsx-f620b90ab8840e7b{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:8px;height:42px;padding:0 18px;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#344054;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;-webkit-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;transition:border-color.15s ease,background.15s ease,box-shadow.15s ease}.media-upload-btn.jsx-f620b90ab8840e7b:hover{border-color:#98a2b3;background:#f9fafb;-webkit-box-shadow:0 1px 3px rgba(16,24,40,.06);-moz-box-shadow:0 1px 3px rgba(16,24,40,.06);box-shadow:0 1px 3px rgba(16,24,40,.06)}.media-upload-btn.jsx-f620b90ab8840e7b:disabled{opacity:.6;cursor:wait}.media-preview-grid.jsx-f620b90ab8840e7b{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px}.media-preview-item.jsx-f620b90ab8840e7b{position:relative;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:1px solid#e5e7eb;background:#f9fafb;aspect-ratio:1}.media-preview-item.jsx-f620b90ab8840e7b img.jsx-f620b90ab8840e7b{display:block;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.media-remove-btn.jsx-f620b90ab8840e7b{position:absolute;top:4px;right:4px;width:24px;height:24px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;opacity:0;-webkit-transition:opacity.15s ease;-moz-transition:opacity.15s ease;-o-transition:opacity.15s ease;transition:opacity.15s ease}.media-preview-item.jsx-f620b90ab8840e7b:hover .media-remove-btn.jsx-f620b90ab8840e7b{opacity:1}.hidden-file-input.jsx-f620b90ab8840e7b{display:none!important;width:0!important;height:0!important;opacity:0!important;pointer-events:none!important;position:absolute!important}.form-actions.jsx-f620b90ab8840e7b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding-top:22px;border-top:1px solid#edf1f7}.cancel-btn.jsx-f620b90ab8840e7b,.submit-btn.jsx-f620b90ab8840e7b{height:44px;padding-left:20px;padding-right:20px}.submit-btn.jsx-f620b90ab8840e7b{-webkit-box-shadow:0 1px 3px rgba(47,61,122,.15);-moz-box-shadow:0 1px 3px rgba(47,61,122,.15);box-shadow:0 1px 3px rgba(47,61,122,.15)}.submit-btn.jsx-f620b90ab8840e7b:hover,.create-btn.jsx-f620b90ab8840e7b:hover,.refresh-btn.jsx-f620b90ab8840e7b:hover{-webkit-filter:brightness(1.04);filter:brightness(1.04)}.cancel-btn.jsx-f620b90ab8840e7b:hover,.close-form-btn.jsx-f620b90ab8840e7b:hover,.ghost-btn.jsx-f620b90ab8840e7b:hover{border-color:#bfc7dd;background:#f9fafb}.action-btn.jsx-f620b90ab8840e7b:not(.danger):hover{background:#2f3d7a;color:#fff;border-color:#2f3d7a}.action-btn.danger.jsx-f620b90ab8840e7b:hover{background:#c0344f;color:#fff;border-color:#c0344f}.product-form-card.jsx-f620b90ab8840e7b .field-group.jsx-f620b90ab8840e7b select.jsx-f620b90ab8840e7b{-ms-appearance:none!important;appearance:none!important;-webkit-appearance:none!important;-moz-appearance:none!important;padding-right:40px!important;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")!important;background-repeat:no-repeat!important;background-position:right 14px center!important;cursor:pointer!important}@media(max-width:1080px){.field-group.jsx-f620b90ab8840e7b,.field-group.span-3.jsx-f620b90ab8840e7b{grid-column:span 4}.field-group.span-6.jsx-f620b90ab8840e7b{grid-column:span 6}.field-group.span-12.jsx-f620b90ab8840e7b{grid-column:span 12}.field-group.status-field.jsx-f620b90ab8840e7b{max-width:none}}@media(max-width:840px){.inventory-toolbar.jsx-f620b90ab8840e7b,.empty-state.jsx-f620b90ab8840e7b{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.inventory-filters.jsx-f620b90ab8840e7b{width:100%}.search-field.jsx-f620b90ab8840e7b{width:100%;min-width:0}.table-actions.jsx-f620b90ab8840e7b{-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.inventory-table.jsx-f620b90ab8840e7b thead.jsx-f620b90ab8840e7b th.jsx-f620b90ab8840e7b:nth-child(n+5):not(:last-child),.inventory-table.jsx-f620b90ab8840e7b tbody.jsx-f620b90ab8840e7b td.jsx-f620b90ab8840e7b:nth-child(n+5):not(:last-child){display:none}.product-form-header.jsx-f620b90ab8840e7b{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-entry-form.jsx-f620b90ab8840e7b,.product-form-header.jsx-f620b90ab8840e7b{padding-left:20px;padding-right:20px}.form-block.jsx-f620b90ab8840e7b{padding:18px}.field-group.jsx-f620b90ab8840e7b,.field-group.span-3.jsx-f620b90ab8840e7b,.field-group.span-4.jsx-f620b90ab8840e7b,.field-group.span-6.jsx-f620b90ab8840e7b,.field-group.span-12.jsx-f620b90ab8840e7b{grid-column:span 12}.media-section-grid.jsx-f620b90ab8840e7b{grid-template-columns:1fr}.media-full-width.jsx-f620b90ab8840e7b{grid-column:auto}}@media(max-width:560px){.inventory-card.jsx-f620b90ab8840e7b,.admin-content.jsx-f620b90ab8840e7b{padding-left:12px;padding-right:12px}.inventory-table.jsx-f620b90ab8840e7b thead.jsx-f620b90ab8840e7b th.jsx-f620b90ab8840e7b:nth-child(3),.inventory-table.jsx-f620b90ab8840e7b tbody.jsx-f620b90ab8840e7b td.jsx-f620b90ab8840e7b:nth-child(3){width:auto}.inventory-table.jsx-f620b90ab8840e7b thead.jsx-f620b90ab8840e7b th.jsx-f620b90ab8840e7b:nth-child(n+4):not(:last-child),.inventory-table.jsx-f620b90ab8840e7b tbody.jsx-f620b90ab8840e7b td.jsx-f620b90ab8840e7b:nth-child(n+4):not(:last-child){display:none}.product-form-card.jsx-f620b90ab8840e7b{-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px}.product-entry-form.jsx-f620b90ab8840e7b,.product-form-header.jsx-f620b90ab8840e7b{padding:16px}.product-form-header.jsx-f620b90ab8840e7b h3.jsx-f620b90ab8840e7b{font-size:20px}.block-head.jsx-f620b90ab8840e7b{gap:10px}.form-actions.jsx-f620b90ab8840e7b{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-webkit-flex-direction:column-reverse;-moz-box-orient:vertical;-moz-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-box-align:stretch;-webkit-align-items:stretch;-moz-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.cancel-btn.jsx-f620b90ab8840e7b,.submit-btn.jsx-f620b90ab8840e7b,.close-form-btn.jsx-f620b90ab8840e7b{width:100%}}"
             })
         ]
     });

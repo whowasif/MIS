@@ -85,6 +85,21 @@ CREATE TABLE IF NOT EXISTS `category_specs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
+-- 4b. SPEC FILTER OPTIONS (manually curated filter values per spec)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS `spec_filter_options` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `category_id` INT NOT NULL,
+  `spec_name` VARCHAR(255) NOT NULL,
+  `option_value` VARCHAR(255) NOT NULL,
+  `display_order` INT NOT NULL DEFAULT 0,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_spec_option` (`category_id`, `spec_name`, `option_value`),
+  KEY `idx_spec_options_lookup` (`category_id`, `spec_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================
 -- 5. PRODUCTS
 -- ============================================================
 CREATE TABLE IF NOT EXISTS `products` (
