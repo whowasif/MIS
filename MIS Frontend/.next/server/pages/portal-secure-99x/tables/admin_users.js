@@ -270,25 +270,25 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                    className: "jsx-ed3adbfbfe0fa5ba",
+                    className: "jsx-481736279e86fd7a",
                     children: "Admin Users | MIS Admin"
                 })
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-ed3adbfbfe0fa5ba" + " " + "admin-users-page",
+                className: "jsx-481736279e86fd7a" + " " + "admin-users-page",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                        className: "jsx-ed3adbfbfe0fa5ba" + " " + "page-head",
+                        className: "jsx-481736279e86fd7a" + " " + "page-head",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-ed3adbfbfe0fa5ba",
+                                className: "jsx-481736279e86fd7a",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                        className: "jsx-ed3adbfbfe0fa5ba",
+                                        className: "jsx-481736279e86fd7a",
                                         children: "Admin Users"
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                        className: "jsx-ed3adbfbfe0fa5ba",
+                                        className: "jsx-481736279e86fd7a",
                                         children: [
                                             items.length,
                                             " admin",
@@ -300,56 +300,56 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                 onClick: openAdd,
-                                className: "jsx-ed3adbfbfe0fa5ba" + " " + "btn-add",
+                                className: "jsx-481736279e86fd7a" + " " + "btn-add",
                                 children: "+ Add Admin"
                             })
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-ed3adbfbfe0fa5ba" + " " + "users-grid",
+                        className: "jsx-481736279e86fd7a" + " " + "users-grid",
                         children: items.map((user)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-ed3adbfbfe0fa5ba" + " " + "user-card",
+                                className: "jsx-481736279e86fd7a" + " " + "user-card",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-ed3adbfbfe0fa5ba" + " " + "user-avatar",
+                                        className: "jsx-481736279e86fd7a" + " " + "user-avatar",
                                         children: user.profile_image ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                             src: user.profile_image,
                                             alt: user.name,
-                                            className: "jsx-ed3adbfbfe0fa5ba"
+                                            className: "jsx-481736279e86fd7a"
                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "jsx-ed3adbfbfe0fa5ba",
+                                            className: "jsx-481736279e86fd7a",
                                             children: (user.name || "A").charAt(0).toUpperCase()
                                         })
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-ed3adbfbfe0fa5ba" + " " + "user-info",
+                                        className: "jsx-481736279e86fd7a" + " " + "user-info",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                className: "jsx-ed3adbfbfe0fa5ba",
+                                                className: "jsx-481736279e86fd7a",
                                                 children: user.name
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-ed3adbfbfe0fa5ba" + " " + "user-email",
+                                                className: "jsx-481736279e86fd7a" + " " + "user-email",
                                                 children: user.email
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-ed3adbfbfe0fa5ba" + " " + `role-badge role-${user.role}`,
+                                                className: "jsx-481736279e86fd7a" + " " + `role-badge role-${user.role}`,
                                                 children: ROLES.find((r)=>r.value === user.role)?.label || user.role
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-ed3adbfbfe0fa5ba" + " " + "user-meta",
+                                        className: "jsx-481736279e86fd7a" + " " + "user-meta",
                                         children: [
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                className: "jsx-ed3adbfbfe0fa5ba",
+                                                className: "jsx-481736279e86fd7a",
                                                 children: [
                                                     "Joined: ",
                                                     formatDate(user.created_at)
                                                 ]
                                             }),
                                             user.last_login_ip && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                className: "jsx-ed3adbfbfe0fa5ba",
+                                                className: "jsx-481736279e86fd7a",
                                                 children: [
                                                     "Last IP: ",
                                                     user.last_login_ip
@@ -358,16 +358,16 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-ed3adbfbfe0fa5ba" + " " + "user-actions",
+                                        className: "jsx-481736279e86fd7a" + " " + "user-actions",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                 onClick: ()=>openEdit(user),
-                                                className: "jsx-ed3adbfbfe0fa5ba" + " " + "act-btn edit",
+                                                className: "jsx-481736279e86fd7a" + " " + "act-btn edit",
                                                 children: "Edit"
                                             }),
                                             user.id !== currentAdminId && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                 onClick: ()=>handleDelete(user.id),
-                                                className: "jsx-ed3adbfbfe0fa5ba" + " " + "act-btn del",
+                                                className: "jsx-481736279e86fd7a" + " " + "act-btn del",
                                                 children: "Delete"
                                             })
                                         ]
@@ -377,48 +377,48 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                     }),
                     showForm && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                         onClick: closeForm,
-                        className: "jsx-ed3adbfbfe0fa5ba" + " " + "modal-overlay",
+                        className: "jsx-481736279e86fd7a" + " " + "modal-overlay",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             onClick: (e)=>e.stopPropagation(),
-                            className: "jsx-ed3adbfbfe0fa5ba" + " " + "modal-card",
+                            className: "jsx-481736279e86fd7a" + " " + "modal-card",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "modal-header",
+                                    className: "jsx-481736279e86fd7a" + " " + "modal-header",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-ed3adbfbfe0fa5ba",
+                                            className: "jsx-481736279e86fd7a",
                                             children: editing ? "Edit Admin User" : "Add New Admin"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                             onClick: closeForm,
-                                            className: "jsx-ed3adbfbfe0fa5ba" + " " + "close-x",
+                                            className: "jsx-481736279e86fd7a" + " " + "close-x",
                                             children: "✕"
                                         })
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "modal-body",
+                                    className: "jsx-481736279e86fd7a" + " " + "modal-body",
                                     children: [
                                         error && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-ed3adbfbfe0fa5ba" + " " + "form-error",
+                                            className: "jsx-481736279e86fd7a" + " " + "form-error",
                                             children: error
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ed3adbfbfe0fa5ba" + " " + "avatar-upload",
+                                            className: "jsx-481736279e86fd7a" + " " + "avatar-upload",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "avatar-preview",
+                                                    className: "jsx-481736279e86fd7a" + " " + "avatar-preview",
                                                     children: form.profile_image ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                         src: form.profile_image,
                                                         alt: "Profile",
-                                                        className: "jsx-ed3adbfbfe0fa5ba"
+                                                        className: "jsx-481736279e86fd7a"
                                                     }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-ed3adbfbfe0fa5ba",
+                                                        className: "jsx-481736279e86fd7a",
                                                         children: (form.name || "A").charAt(0).toUpperCase()
                                                     })
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "upload-btn",
+                                                    className: "jsx-481736279e86fd7a" + " " + "upload-btn",
                                                     children: [
                                                         "Upload Photo",
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -426,7 +426,7 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                                             accept: "image/*",
                                                             onChange: handleUpload,
                                                             hidden: true,
-                                                            className: "jsx-ed3adbfbfe0fa5ba"
+                                                            className: "jsx-481736279e86fd7a"
                                                         })
                                                     ]
                                                 }),
@@ -435,19 +435,19 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                                     onClick: ()=>setForm((p)=>Object.assign({}, p, {
                                                                 profile_image: ""
                                                             })),
-                                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "remove-btn",
+                                                    className: "jsx-481736279e86fd7a" + " " + "remove-btn",
                                                     children: "Remove"
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ed3adbfbfe0fa5ba" + " " + "form-grid",
+                                            className: "jsx-481736279e86fd7a" + " " + "form-grid",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "form-field",
+                                                    className: "jsx-481736279e86fd7a" + " " + "form-field",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                            className: "jsx-ed3adbfbfe0fa5ba",
+                                                            className: "jsx-481736279e86fd7a",
                                                             children: "Full Name *"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -468,15 +468,15 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                                                     })),
                                                             placeholder: "Enter full name",
                                                             required: true,
-                                                            className: "jsx-ed3adbfbfe0fa5ba"
+                                                            className: "jsx-481736279e86fd7a"
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "form-field",
+                                                    className: "jsx-481736279e86fd7a" + " " + "form-field",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                            className: "jsx-ed3adbfbfe0fa5ba",
+                                                            className: "jsx-481736279e86fd7a",
                                                             children: "Username"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -496,15 +496,15 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                                                         username: e.target.value
                                                                     })),
                                                             placeholder: "Optional username",
-                                                            className: "jsx-ed3adbfbfe0fa5ba"
+                                                            className: "jsx-481736279e86fd7a"
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "form-field",
+                                                    className: "jsx-481736279e86fd7a" + " " + "form-field",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                            className: "jsx-ed3adbfbfe0fa5ba",
+                                                            className: "jsx-481736279e86fd7a",
                                                             children: "Email Address *"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -526,15 +526,15 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                                                     })),
                                                             placeholder: "admin@company.com",
                                                             required: true,
-                                                            className: "jsx-ed3adbfbfe0fa5ba"
+                                                            className: "jsx-481736279e86fd7a"
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "form-field",
+                                                    className: "jsx-481736279e86fd7a" + " " + "form-field",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                            className: "jsx-ed3adbfbfe0fa5ba",
+                                                            className: "jsx-481736279e86fd7a",
                                                             children: editing ? "New Password (leave blank to keep)" : "Password *"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -555,15 +555,15 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                                                         password: e.target.value
                                                                     })),
                                                             placeholder: editing ? "Leave blank to keep current" : "Min 8 characters",
-                                                            className: "jsx-ed3adbfbfe0fa5ba"
+                                                            className: "jsx-481736279e86fd7a"
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "form-field full-width",
+                                                    className: "jsx-481736279e86fd7a" + " " + "form-field full-width",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                            className: "jsx-ed3adbfbfe0fa5ba",
+                                                            className: "jsx-481736279e86fd7a",
                                                             children: "Role *"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("select", {
@@ -583,10 +583,10 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                                             onChange: (e)=>setForm((p)=>Object.assign({}, p, {
                                                                         role: e.target.value
                                                                     })),
-                                                            className: "jsx-ed3adbfbfe0fa5ba",
+                                                            className: "jsx-481736279e86fd7a",
                                                             children: ROLES.map((r)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                     value: r.value,
-                                                                    className: "jsx-ed3adbfbfe0fa5ba",
+                                                                    className: "jsx-481736279e86fd7a",
                                                                     children: r.label
                                                                 }, r.value))
                                                         })
@@ -597,17 +597,17 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ed3adbfbfe0fa5ba" + " " + "modal-footer",
+                                    className: "jsx-481736279e86fd7a" + " " + "modal-footer",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                             onClick: closeForm,
-                                            className: "jsx-ed3adbfbfe0fa5ba" + " " + "btn-cancel",
+                                            className: "jsx-481736279e86fd7a" + " " + "btn-cancel",
                                             children: "Cancel"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                             onClick: handleSave,
                                             disabled: saving || !form.name || !form.email,
-                                            className: "jsx-ed3adbfbfe0fa5ba" + " " + "btn-save",
+                                            className: "jsx-481736279e86fd7a" + " " + "btn-save",
                                             children: saving ? "Saving..." : editing ? "Save Changes" : "Create Admin"
                                         })
                                     ]
@@ -618,8 +618,8 @@ const AdminUsersPage = ({ users =[] , currentAdminId =null  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "ed3adbfbfe0fa5ba",
-                children: ".admin-users-page.jsx-ed3adbfbfe0fa5ba{display:grid;gap:20px}.page-head.jsx-ed3adbfbfe0fa5ba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.page-head.jsx-ed3adbfbfe0fa5ba h1.jsx-ed3adbfbfe0fa5ba{margin:0;font-size:24px;color:#1f2937}.page-head.jsx-ed3adbfbfe0fa5ba p.jsx-ed3adbfbfe0fa5ba{margin:4px 0 0;color:#6b7280;font-size:14px}.btn-add.jsx-ed3adbfbfe0fa5ba{border:none;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:10px 20px;background:#4f46e5;color:#fff;font-weight:700;font-size:14px;cursor:pointer}.btn-add.jsx-ed3adbfbfe0fa5ba:hover{background:#4338ca}.users-grid.jsx-ed3adbfbfe0fa5ba{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}.user-card.jsx-ed3adbfbfe0fa5ba{border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;padding:20px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:12px;-webkit-transition:box-shadow.2s;-moz-transition:box-shadow.2s;-o-transition:box-shadow.2s;transition:box-shadow.2s}.user-card.jsx-ed3adbfbfe0fa5ba:hover{-webkit-box-shadow:0 4px 16px rgba(0,0,0,.06);-moz-box-shadow:0 4px 16px rgba(0,0,0,.06);box-shadow:0 4px 16px rgba(0,0,0,.06)}.user-avatar.jsx-ed3adbfbfe0fa5ba{width:56px;height:56px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;overflow:hidden;background:-webkit-linear-gradient(315deg,#667eea,#764ba2);background:-moz-linear-gradient(315deg,#667eea,#764ba2);background:-o-linear-gradient(315deg,#667eea,#764ba2);background:linear-gradient(135deg,#667eea,#764ba2);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.user-avatar.jsx-ed3adbfbfe0fa5ba img.jsx-ed3adbfbfe0fa5ba{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.user-avatar.jsx-ed3adbfbfe0fa5ba span.jsx-ed3adbfbfe0fa5ba{color:#fff;font-size:22px;font-weight:800}.user-info.jsx-ed3adbfbfe0fa5ba strong.jsx-ed3adbfbfe0fa5ba{display:block;font-size:16px;color:#111827}.user-email.jsx-ed3adbfbfe0fa5ba{margin:2px 0 6px;font-size:13px;color:#6b7280}.role-badge.jsx-ed3adbfbfe0fa5ba{display:inline-block;padding:3px 10px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase}.role-super_admin.jsx-ed3adbfbfe0fa5ba{background:#fef3c7;color:#92400e}.role-senior_admin.jsx-ed3adbfbfe0fa5ba{background:#dbeafe;color:#1e40af}.role-junior_admin.jsx-ed3adbfbfe0fa5ba{background:#f3f4f6;color:#374151}.user-meta.jsx-ed3adbfbfe0fa5ba{font-size:12px;color:#9ca3af;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:2px}.user-actions.jsx-ed3adbfbfe0fa5ba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-top:auto}.act-btn.jsx-ed3adbfbfe0fa5ba{-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer}.act-btn.edit.jsx-ed3adbfbfe0fa5ba{border:1px solid#c7d2fe;background:#eef2ff;color:#4338ca}.act-btn.edit.jsx-ed3adbfbfe0fa5ba:hover{background:#e0e7ff}.act-btn.del.jsx-ed3adbfbfe0fa5ba{border:1px solid#fecaca;background:#fef2f2;color:#dc2626}.act-btn.del.jsx-ed3adbfbfe0fa5ba:hover{background:#fee2e2}.modal-overlay.jsx-ed3adbfbfe0fa5ba{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1000;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:20px}.modal-card.jsx-ed3adbfbfe0fa5ba{width:100%;max-width:560px;background:#fff;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;-webkit-box-shadow:0 24px 48px rgba(0,0,0,.15);-moz-box-shadow:0 24px 48px rgba(0,0,0,.15);box-shadow:0 24px 48px rgba(0,0,0,.15);overflow:hidden}.modal-header.jsx-ed3adbfbfe0fa5ba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:20px 24px;border-bottom:1px solid#f1f5f9}.modal-header.jsx-ed3adbfbfe0fa5ba h2.jsx-ed3adbfbfe0fa5ba{margin:0;font-size:18px;color:#111827}.close-x.jsx-ed3adbfbfe0fa5ba{border:none;background:none;font-size:20px;cursor:pointer;color:#9ca3af}.modal-body.jsx-ed3adbfbfe0fa5ba{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px;max-height:70vh;overflow-y:auto}.modal-footer.jsx-ed3adbfbfe0fa5ba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;gap:10px;padding:16px 24px;border-top:1px solid#f1f5f9}.form-error.jsx-ed3adbfbfe0fa5ba{margin:0;padding:10px 14px;background:#fef2f2;border:1px solid#fecaca;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;color:#dc2626;font-size:13px;font-weight:600}.avatar-upload.jsx-ed3adbfbfe0fa5ba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px}.avatar-preview.jsx-ed3adbfbfe0fa5ba{width:64px;height:64px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;overflow:hidden;background:-webkit-linear-gradient(315deg,#667eea,#764ba2);background:-moz-linear-gradient(315deg,#667eea,#764ba2);background:-o-linear-gradient(315deg,#667eea,#764ba2);background:linear-gradient(135deg,#667eea,#764ba2);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.avatar-preview.jsx-ed3adbfbfe0fa5ba img.jsx-ed3adbfbfe0fa5ba{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.avatar-preview.jsx-ed3adbfbfe0fa5ba span.jsx-ed3adbfbfe0fa5ba{color:#fff;font-size:26px;font-weight:800}.upload-btn.jsx-ed3adbfbfe0fa5ba{padding:8px 16px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer}.upload-btn.jsx-ed3adbfbfe0fa5ba:hover{background:#f3f4f6}.remove-btn.jsx-ed3adbfbfe0fa5ba{border:none;background:none;color:#dc2626;font-size:12px;font-weight:600;cursor:pointer}.form-grid.jsx-ed3adbfbfe0fa5ba{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form-field.jsx-ed3adbfbfe0fa5ba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px}.form-field.full-width.jsx-ed3adbfbfe0fa5ba{grid-column:span 2}.form-field.jsx-ed3adbfbfe0fa5ba label.jsx-ed3adbfbfe0fa5ba{font-size:12px;font-weight:700;color:#374151}.btn-cancel.jsx-ed3adbfbfe0fa5ba{padding:10px 20px;border:1px solid#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fff;color:#374151;font-weight:600;cursor:pointer;font-size:14px}.btn-save.jsx-ed3adbfbfe0fa5ba{padding:10px 20px;border:none;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#4f46e5;color:#fff;font-weight:700;cursor:pointer;font-size:14px}.btn-save.jsx-ed3adbfbfe0fa5ba:disabled{opacity:.5}.btn-save.jsx-ed3adbfbfe0fa5ba:hover:not(:disabled){background:#4338ca}@media(max-width:640px){.form-grid.jsx-ed3adbfbfe0fa5ba{grid-template-columns:1fr}.form-field.full-width.jsx-ed3adbfbfe0fa5ba{grid-column:auto}.users-grid.jsx-ed3adbfbfe0fa5ba{grid-template-columns:1fr}}"
+                id: "481736279e86fd7a",
+                children: ".admin-users-page.jsx-481736279e86fd7a{display:grid;gap:20px}.page-head.jsx-481736279e86fd7a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.page-head.jsx-481736279e86fd7a h1.jsx-481736279e86fd7a{margin:0;font-size:24px;color:#1f2937}.page-head.jsx-481736279e86fd7a p.jsx-481736279e86fd7a{margin:4px 0 0;color:#6b7280;font-size:14px}.btn-add.jsx-481736279e86fd7a{border:none;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:10px 20px;background:#4f46e5;color:#fff;font-weight:700;font-size:14px;cursor:pointer}.btn-add.jsx-481736279e86fd7a:hover{background:#4338ca}.users-grid.jsx-481736279e86fd7a{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}.user-card.jsx-481736279e86fd7a{border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;padding:20px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:12px;-webkit-transition:box-shadow.2s;-moz-transition:box-shadow.2s;-o-transition:box-shadow.2s;transition:box-shadow.2s}.user-card.jsx-481736279e86fd7a:hover{-webkit-box-shadow:0 4px 16px rgba(0,0,0,.06);-moz-box-shadow:0 4px 16px rgba(0,0,0,.06);box-shadow:0 4px 16px rgba(0,0,0,.06)}.user-avatar.jsx-481736279e86fd7a{width:56px;height:56px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;overflow:hidden;background:-webkit-linear-gradient(315deg,#667eea,#764ba2);background:-moz-linear-gradient(315deg,#667eea,#764ba2);background:-o-linear-gradient(315deg,#667eea,#764ba2);background:linear-gradient(135deg,#667eea,#764ba2);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.user-avatar.jsx-481736279e86fd7a img.jsx-481736279e86fd7a{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.user-avatar.jsx-481736279e86fd7a span.jsx-481736279e86fd7a{color:#fff;font-size:22px;font-weight:800}.user-info.jsx-481736279e86fd7a strong.jsx-481736279e86fd7a{display:block;font-size:16px;color:#111827}.user-email.jsx-481736279e86fd7a{margin:2px 0 6px;font-size:13px;color:#6b7280}.role-badge.jsx-481736279e86fd7a{display:inline-block;padding:3px 10px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase}.role-super_admin.jsx-481736279e86fd7a{background:#fef3c7;color:#92400e}.role-senior_admin.jsx-481736279e86fd7a{background:#dbeafe;color:#1e40af}.role-junior_admin.jsx-481736279e86fd7a{background:#f3f4f6;color:#374151}.user-meta.jsx-481736279e86fd7a{font-size:12px;color:#9ca3af;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:2px}.user-actions.jsx-481736279e86fd7a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-top:auto}.act-btn.jsx-481736279e86fd7a{-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer}.act-btn.edit.jsx-481736279e86fd7a{border:1px solid#c7d2fe;background:#eef2ff;color:#4338ca}.act-btn.edit.jsx-481736279e86fd7a:hover{background:#e0e7ff}.act-btn.del.jsx-481736279e86fd7a{border:1px solid#fecaca;background:#fef2f2;color:#dc2626}.act-btn.del.jsx-481736279e86fd7a:hover{background:#fee2e2}.modal-overlay.jsx-481736279e86fd7a{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1000;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:20px}.modal-card.jsx-481736279e86fd7a{width:100%;max-width:560px;background:#fff;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;-webkit-box-shadow:0 24px 48px rgba(0,0,0,.15);-moz-box-shadow:0 24px 48px rgba(0,0,0,.15);box-shadow:0 24px 48px rgba(0,0,0,.15);overflow:hidden}.modal-header.jsx-481736279e86fd7a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:20px 24px;border-bottom:1px solid#f1f5f9}.modal-header.jsx-481736279e86fd7a h2.jsx-481736279e86fd7a{margin:0;font-size:18px;color:#111827}.close-x.jsx-481736279e86fd7a{border:none;background:none;font-size:20px;cursor:pointer;color:#9ca3af}.modal-body.jsx-481736279e86fd7a{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px;max-height:70vh;overflow-y:auto}.modal-footer.jsx-481736279e86fd7a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;gap:10px;padding:16px 24px;border-top:1px solid#f1f5f9}.form-error.jsx-481736279e86fd7a{margin:0;padding:10px 14px;background:#fef2f2;border:1px solid#fecaca;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;color:#dc2626;font-size:13px;font-weight:600}.avatar-upload.jsx-481736279e86fd7a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px}.avatar-preview.jsx-481736279e86fd7a{width:64px;height:64px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;overflow:hidden;background:-webkit-linear-gradient(315deg,#667eea,#764ba2);background:-moz-linear-gradient(315deg,#667eea,#764ba2);background:-o-linear-gradient(315deg,#667eea,#764ba2);background:linear-gradient(135deg,#667eea,#764ba2);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.avatar-preview.jsx-481736279e86fd7a img.jsx-481736279e86fd7a{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.avatar-preview.jsx-481736279e86fd7a span.jsx-481736279e86fd7a{color:#fff;font-size:26px;font-weight:800}.upload-btn.jsx-481736279e86fd7a{padding:8px 16px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer}.upload-btn.jsx-481736279e86fd7a:hover{background:#f3f4f6}.remove-btn.jsx-481736279e86fd7a{border:none;background:none;color:#dc2626;font-size:12px;font-weight:600;cursor:pointer}.form-grid.jsx-481736279e86fd7a{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form-field.jsx-481736279e86fd7a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px}.form-field.full-width.jsx-481736279e86fd7a{grid-column:span 2}.form-field.jsx-481736279e86fd7a label.jsx-481736279e86fd7a{font-size:12px;font-weight:700;color:#374151}.btn-cancel.jsx-481736279e86fd7a{padding:10px 20px;border:1px solid#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fff;color:#374151;font-weight:600;cursor:pointer;font-size:14px}.btn-save.jsx-481736279e86fd7a{padding:10px 20px;border:none;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#4f46e5;color:#fff;font-weight:700;cursor:pointer;font-size:14px}.btn-save.jsx-481736279e86fd7a:disabled{opacity:.5}.btn-save.jsx-481736279e86fd7a:hover:not(:disabled){background:#4338ca}@media(max-width:640px){.form-grid.jsx-481736279e86fd7a{grid-template-columns:1fr}.form-field.full-width.jsx-481736279e86fd7a{grid-column:auto}.users-grid.jsx-481736279e86fd7a{grid-template-columns:1fr}}"
             })
         ]
     });

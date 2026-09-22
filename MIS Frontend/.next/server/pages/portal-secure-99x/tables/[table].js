@@ -48,7 +48,7 @@ var managed_tables = __webpack_require__(7500);
 const ReactQuill = dynamic_default()(null, {
     loadableGenerated: {
         modules: [
-            "..\\components\\admin\\TableManagerModern.jsx -> " + "react-quill"
+            "../components/admin/TableManagerModern.jsx -> " + "react-quill"
         ]
     },
     ssr: false
@@ -577,7 +577,7 @@ const normalizeSubmitValues = (table, columns, formValues)=>{
         if (!Object.prototype.hasOwnProperty.call(formValues, column.columnName)) return;
         const control = resolveFieldControl(table, column);
         let value = formValues[column.columnName];
-        if (control.kind === "textarea" && column.columnName === "photos") {
+        if ((control.kind === "textarea" || control.kind === "gallery-upload") && column.columnName === "photos") {
             normalized[column.columnName] = JSON.stringify(parseMediaUrls(value));
             return;
         }
@@ -1848,29 +1848,29 @@ const ModernTableManager = ()=>{
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx((head_default()), {
                 children: /*#__PURE__*/ jsx_runtime_.jsx("title", {
-                    className: "jsx-46592118eeea9a8f",
+                    className: "jsx-67dcb872b111ec8",
                     children: tableMeta ? `${tableMeta.label} | MIS Admin` : "Table Manager | MIS Admin"
                 })
             }),
             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
-                className: "jsx-46592118eeea9a8f" + " " + "manager-shell",
+                className: "jsx-67dcb872b111ec8" + " " + "manager-shell",
                 children: [
                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("header", {
-                        className: "jsx-46592118eeea9a8f" + " " + "manager-head",
+                        className: "jsx-67dcb872b111ec8" + " " + "manager-head",
                         children: [
                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-46592118eeea9a8f",
+                                className: "jsx-67dcb872b111ec8",
                                 children: [
                                     /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                        className: "jsx-46592118eeea9a8f" + " " + "kicker",
+                                        className: "jsx-67dcb872b111ec8" + " " + "kicker",
                                         children: "Managed Database Table"
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx("h2", {
-                                        className: "jsx-46592118eeea9a8f",
+                                        className: "jsx-67dcb872b111ec8",
                                         children: tableMeta ? tableMeta.label : "Table"
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
-                                        className: "jsx-46592118eeea9a8f" + " " + "subline",
+                                        className: "jsx-67dcb872b111ec8" + " " + "subline",
                                         children: [
                                             "Modern, form-first control for ",
                                             table || "selected table",
@@ -1880,19 +1880,19 @@ const ModernTableManager = ()=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-46592118eeea9a8f" + " " + "head-actions",
+                                className: "jsx-67dcb872b111ec8" + " " + "head-actions",
                                 children: [
                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                         type: "button",
                                         onClick: loadTableData,
                                         disabled: loading,
-                                        className: "jsx-46592118eeea9a8f" + " " + "refresh-btn",
+                                        className: "jsx-67dcb872b111ec8" + " " + "refresh-btn",
                                         children: loading ? "Loading..." : "Refresh"
                                     }),
                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                         type: "button",
                                         onClick: openCreateForm,
-                                        className: "jsx-46592118eeea9a8f" + " " + "create-btn",
+                                        className: "jsx-67dcb872b111ec8" + " " + "create-btn",
                                         children: "Add New Record"
                                     })
                                 ]
@@ -1900,28 +1900,28 @@ const ModernTableManager = ()=>{
                         ]
                     }),
                     error ? /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        className: "jsx-46592118eeea9a8f" + " " + "alert error",
+                        className: "jsx-67dcb872b111ec8" + " " + "alert error",
                         children: error
                     }) : null,
                     success ? /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        className: "jsx-46592118eeea9a8f" + " " + "alert success",
+                        className: "jsx-67dcb872b111ec8" + " " + "alert success",
                         children: success
                     }) : null,
                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
-                        className: "jsx-46592118eeea9a8f" + " " + "card inventory-card",
+                        className: "jsx-67dcb872b111ec8" + " " + "card inventory-card",
                         children: [
                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-46592118eeea9a8f" + " " + "inventory-toolbar",
+                                className: "jsx-67dcb872b111ec8" + " " + "inventory-toolbar",
                                 children: [
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                        className: "jsx-46592118eeea9a8f",
+                                        className: "jsx-67dcb872b111ec8",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("h3", {
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: "Records"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: [
                                                     filteredRows.length,
                                                     " of ",
@@ -1932,13 +1932,13 @@ const ModernTableManager = ()=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                        className: "jsx-46592118eeea9a8f" + " " + "inventory-filters",
+                                        className: "jsx-67dcb872b111ec8" + " " + "inventory-filters",
                                         children: [
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                                className: "jsx-46592118eeea9a8f" + " " + "search-field",
+                                                className: "jsx-67dcb872b111ec8" + " " + "search-field",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "Search"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("input", {
@@ -1946,18 +1946,18 @@ const ModernTableManager = ()=>{
                                                         value: searchText,
                                                         onChange: (event)=>setSearchText(event.target.value),
                                                         placeholder: "Search records...",
-                                                        className: "jsx-46592118eeea9a8f"
+                                                        className: "jsx-67dcb872b111ec8"
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-46592118eeea9a8f" + " " + "view-toggle-group",
+                                                className: "jsx-67dcb872b111ec8" + " " + "view-toggle-group",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                                         type: "button",
                                                         onClick: ()=>setViewMode("list"),
                                                         "aria-label": "List view",
-                                                        className: "jsx-46592118eeea9a8f" + " " + `view-toggle-btn ${viewMode === "list" ? "is-active" : ""}`,
+                                                        className: "jsx-67dcb872b111ec8" + " " + `view-toggle-btn ${viewMode === "list" ? "is-active" : ""}`,
                                                         children: /*#__PURE__*/ jsx_runtime_.jsx("svg", {
                                                             width: "16",
                                                             height: "16",
@@ -1965,10 +1965,10 @@ const ModernTableManager = ()=>{
                                                             fill: "none",
                                                             stroke: "currentColor",
                                                             strokeWidth: "2.5",
-                                                            className: "jsx-46592118eeea9a8f",
+                                                            className: "jsx-67dcb872b111ec8",
                                                             children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                 d: "M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01",
-                                                                className: "jsx-46592118eeea9a8f"
+                                                                className: "jsx-67dcb872b111ec8"
                                                             })
                                                         })
                                                     }),
@@ -1976,7 +1976,7 @@ const ModernTableManager = ()=>{
                                                         type: "button",
                                                         onClick: ()=>setViewMode("grid"),
                                                         "aria-label": "Grid view",
-                                                        className: "jsx-46592118eeea9a8f" + " " + `view-toggle-btn ${viewMode === "grid" ? "is-active" : ""}`,
+                                                        className: "jsx-67dcb872b111ec8" + " " + `view-toggle-btn ${viewMode === "grid" ? "is-active" : ""}`,
                                                         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                             width: "16",
                                                             height: "16",
@@ -1984,7 +1984,7 @@ const ModernTableManager = ()=>{
                                                             fill: "none",
                                                             stroke: "currentColor",
                                                             strokeWidth: "2.5",
-                                                            className: "jsx-46592118eeea9a8f",
+                                                            className: "jsx-67dcb872b111ec8",
                                                             children: [
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                     x: "3",
@@ -1992,7 +1992,7 @@ const ModernTableManager = ()=>{
                                                                     width: "7",
                                                                     height: "7",
                                                                     rx: "1",
-                                                                    className: "jsx-46592118eeea9a8f"
+                                                                    className: "jsx-67dcb872b111ec8"
                                                                 }),
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                     x: "14",
@@ -2000,7 +2000,7 @@ const ModernTableManager = ()=>{
                                                                     width: "7",
                                                                     height: "7",
                                                                     rx: "1",
-                                                                    className: "jsx-46592118eeea9a8f"
+                                                                    className: "jsx-67dcb872b111ec8"
                                                                 }),
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                     x: "3",
@@ -2008,7 +2008,7 @@ const ModernTableManager = ()=>{
                                                                     width: "7",
                                                                     height: "7",
                                                                     rx: "1",
-                                                                    className: "jsx-46592118eeea9a8f"
+                                                                    className: "jsx-67dcb872b111ec8"
                                                                 }),
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                     x: "14",
@@ -2016,7 +2016,7 @@ const ModernTableManager = ()=>{
                                                                     width: "7",
                                                                     height: "7",
                                                                     rx: "1",
-                                                                    className: "jsx-46592118eeea9a8f"
+                                                                    className: "jsx-67dcb872b111ec8"
                                                                 })
                                                             ]
                                                         })
@@ -2028,43 +2028,43 @@ const ModernTableManager = ()=>{
                                 ]
                             }),
                             table === "products" && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-46592118eeea9a8f" + " " + "filter-bar",
+                                className: "jsx-67dcb872b111ec8" + " " + "filter-bar",
                                 children: [
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                        className: "jsx-46592118eeea9a8f" + " " + "filter-select",
+                                        className: "jsx-67dcb872b111ec8" + " " + "filter-select",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: "Sort By"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("select", {
                                                 value: sortBy,
                                                 onChange: (e)=>setSortBy(e.target.value),
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "default",
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "Default"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "newest",
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "Newest First"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "oldest",
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "Oldest First"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "price-high",
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "Price: High to Low"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "price-low",
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "Price: Low to High"
                                                     })
                                                 ]
@@ -2072,25 +2072,25 @@ const ModernTableManager = ()=>{
                                         ]
                                     }),
                                     availableCategories.length > 0 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                        className: "jsx-46592118eeea9a8f" + " " + "filter-select",
+                                        className: "jsx-67dcb872b111ec8" + " " + "filter-select",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: "Category"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("select", {
                                                 value: filterCategory,
                                                 onChange: (e)=>setFilterCategory(e.target.value),
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "",
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "All Categories"
                                                     }),
                                                     availableCategories.map((cat)=>/*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                             value: cat.id,
-                                                            className: "jsx-46592118eeea9a8f",
+                                                            className: "jsx-67dcb872b111ec8",
                                                             children: cat.name
                                                         }, cat.id))
                                                 ]
@@ -2098,25 +2098,25 @@ const ModernTableManager = ()=>{
                                         ]
                                     }),
                                     availableBrands.length > 0 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                        className: "jsx-46592118eeea9a8f" + " " + "filter-select",
+                                        className: "jsx-67dcb872b111ec8" + " " + "filter-select",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: "Brand"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("select", {
                                                 value: filterBrand,
                                                 onChange: (e)=>setFilterBrand(e.target.value),
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                         value: "",
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "All Brands"
                                                     }),
                                                     availableBrands.map((brand)=>/*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                             value: brand,
-                                                            className: "jsx-46592118eeea9a8f",
+                                                            className: "jsx-67dcb872b111ec8",
                                                             children: brand
                                                         }, brand))
                                                 ]
@@ -2134,39 +2134,39 @@ const ModernTableManager = ()=>{
                                             alignSelf: "flex-end",
                                             marginBottom: "2px"
                                         },
-                                        className: "jsx-46592118eeea9a8f" + " " + "ghost-btn",
+                                        className: "jsx-67dcb872b111ec8" + " " + "ghost-btn",
                                         children: "Clear Filters"
                                     })
                                 ]
                             }),
                             viewMode === "grid" ? /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                className: "jsx-46592118eeea9a8f" + " " + "records-grid",
+                                className: "jsx-67dcb872b111ec8" + " " + "records-grid",
                                 children: filteredRows.length ? filteredRows.map((row, index)=>{
                                     const rowId = row[primaryColumn];
                                     const title = getDisplayTitle(row, columns, primaryColumn);
                                     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                        className: "jsx-46592118eeea9a8f" + " " + "record-grid-card",
+                                        className: "jsx-67dcb872b111ec8" + " " + "record-grid-card",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "jsx-46592118eeea9a8f" + " " + "rgc-preview",
+                                                className: "jsx-67dcb872b111ec8" + " " + "rgc-preview",
                                                 children: renderTablePreview(row, "large")
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-46592118eeea9a8f" + " " + "rgc-body",
+                                                className: "jsx-67dcb872b111ec8" + " " + "rgc-body",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("strong", {
-                                                        className: "jsx-46592118eeea9a8f" + " " + "rgc-title",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "rgc-title",
                                                         children: title
                                                     }),
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("span", {
-                                                        className: "jsx-46592118eeea9a8f" + " " + "rgc-id",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "rgc-id",
                                                         children: [
                                                             "ID: ",
                                                             safeText(rowId)
                                                         ]
                                                     }),
                                                     tableColumns.slice(0, 2).map((col)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("span", {
-                                                            className: "jsx-46592118eeea9a8f" + " " + "rgc-meta",
+                                                            className: "jsx-67dcb872b111ec8" + " " + "rgc-meta",
                                                             children: [
                                                                 toTitleCase(col.columnName),
                                                                 ": ",
@@ -2176,12 +2176,12 @@ const ModernTableManager = ()=>{
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-46592118eeea9a8f" + " " + "rgc-actions",
+                                                className: "jsx-67dcb872b111ec8" + " " + "rgc-actions",
                                                 children: [
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
                                                         type: "button",
                                                         onClick: ()=>openEditForm(row),
-                                                        className: "jsx-46592118eeea9a8f" + " " + "action-btn",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "action-btn",
                                                         children: [
                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                 viewBox: "0 0 24 24",
@@ -2190,15 +2190,15 @@ const ModernTableManager = ()=>{
                                                                 strokeWidth: "2",
                                                                 strokeLinecap: "round",
                                                                 strokeLinejoin: "round",
-                                                                className: "jsx-46592118eeea9a8f",
+                                                                className: "jsx-67dcb872b111ec8",
                                                                 children: [
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                         d: "M12 20h9",
-                                                                        className: "jsx-46592118eeea9a8f"
+                                                                        className: "jsx-67dcb872b111ec8"
                                                                     }),
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                         d: "M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z",
-                                                                        className: "jsx-46592118eeea9a8f"
+                                                                        className: "jsx-67dcb872b111ec8"
                                                                     })
                                                                 ]
                                                             }),
@@ -2208,7 +2208,7 @@ const ModernTableManager = ()=>{
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
                                                         type: "button",
                                                         onClick: ()=>handleDeleteRow(rowId),
-                                                        className: "jsx-46592118eeea9a8f" + " " + "action-btn danger",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "action-btn danger",
                                                         children: [
                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                 viewBox: "0 0 24 24",
@@ -2217,15 +2217,15 @@ const ModernTableManager = ()=>{
                                                                 strokeWidth: "2",
                                                                 strokeLinecap: "round",
                                                                 strokeLinejoin: "round",
-                                                                className: "jsx-46592118eeea9a8f",
+                                                                className: "jsx-67dcb872b111ec8",
                                                                 children: [
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                         d: "M3 6h18",
-                                                                        className: "jsx-46592118eeea9a8f"
+                                                                        className: "jsx-67dcb872b111ec8"
                                                                     }),
                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                         d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2",
-                                                                        className: "jsx-46592118eeea9a8f"
+                                                                        className: "jsx-67dcb872b111ec8"
                                                                     })
                                                                 ]
                                                             }),
@@ -2240,98 +2240,98 @@ const ModernTableManager = ()=>{
                                     style: {
                                         gridColumn: "1 / -1"
                                     },
-                                    className: "jsx-46592118eeea9a8f" + " " + "empty-state",
+                                    className: "jsx-67dcb872b111ec8" + " " + "empty-state",
                                     children: [
                                         /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                            className: "jsx-46592118eeea9a8f",
+                                            className: "jsx-67dcb872b111ec8",
                                             children: "No records match your search."
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                             type: "button",
                                             onClick: ()=>setSearchText(""),
-                                            className: "jsx-46592118eeea9a8f" + " " + "ghost-btn",
+                                            className: "jsx-67dcb872b111ec8" + " " + "ghost-btn",
                                             children: "Clear Search"
                                         })
                                     ]
                                 })
                             }) : /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                className: "jsx-46592118eeea9a8f" + " " + "table-shell",
+                                className: "jsx-67dcb872b111ec8" + " " + "table-shell",
                                 children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("table", {
-                                    className: "jsx-46592118eeea9a8f" + " " + "inventory-table",
+                                    className: "jsx-67dcb872b111ec8" + " " + "inventory-table",
                                     children: [
                                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("colgroup", {
-                                            className: "jsx-46592118eeea9a8f",
+                                            className: "jsx-67dcb872b111ec8",
                                             children: [
                                                 /*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                     style: {
                                                         width: "80px"
                                                     },
-                                                    className: "jsx-46592118eeea9a8f"
+                                                    className: "jsx-67dcb872b111ec8"
                                                 }),
                                                 /*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                     style: {
                                                         width: "84px"
                                                     },
-                                                    className: "jsx-46592118eeea9a8f"
+                                                    className: "jsx-67dcb872b111ec8"
                                                 }),
                                                 /*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                     style: {
                                                         width: "auto"
                                                     },
-                                                    className: "jsx-46592118eeea9a8f"
+                                                    className: "jsx-67dcb872b111ec8"
                                                 }),
                                                 tableColumns.map((column)=>/*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                         style: {
                                                             width: "auto"
                                                         },
-                                                        className: "jsx-46592118eeea9a8f"
+                                                        className: "jsx-67dcb872b111ec8"
                                                     }, column.columnName)),
                                                 /*#__PURE__*/ jsx_runtime_.jsx("col", {
                                                     style: {
                                                         width: "140px"
                                                     },
-                                                    className: "jsx-46592118eeea9a8f"
+                                                    className: "jsx-67dcb872b111ec8"
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("thead", {
-                                            className: "jsx-46592118eeea9a8f",
+                                            className: "jsx-67dcb872b111ec8",
                                             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("tr", {
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "ID"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "Image"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: tableMeta?.label ? "Name" : "Record"
                                                     }),
                                                     tableColumns.map((column)=>/*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                            className: "jsx-46592118eeea9a8f",
+                                                            className: "jsx-67dcb872b111ec8",
                                                             children: toTitleCase(column.columnName)
                                                         }, column.columnName)),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("th", {
-                                                        className: "jsx-46592118eeea9a8f",
+                                                        className: "jsx-67dcb872b111ec8",
                                                         children: "Actions"
                                                     })
                                                 ]
                                             })
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("tbody", {
-                                            className: "jsx-46592118eeea9a8f",
+                                            className: "jsx-67dcb872b111ec8",
                                             children: filteredRows.length ? filteredRows.map((row, index)=>{
                                                 const rowId = row[primaryColumn];
                                                 const title = getDisplayTitle(row, columns, primaryColumn);
                                                 return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("tr", {
-                                                    className: "jsx-46592118eeea9a8f",
+                                                    className: "jsx-67dcb872b111ec8",
                                                     children: [
                                                         /*#__PURE__*/ jsx_runtime_.jsx("td", {
-                                                            className: "jsx-46592118eeea9a8f" + " " + "id-cell",
+                                                            className: "jsx-67dcb872b111ec8" + " " + "id-cell",
                                                             children: safeText(rowId)
                                                         }),
                                                         /*#__PURE__*/ jsx_runtime_.jsx("td", {
@@ -2342,35 +2342,35 @@ const ModernTableManager = ()=>{
                                                                 padding: "12px 12px",
                                                                 boxSizing: "border-box"
                                                             },
-                                                            className: "jsx-46592118eeea9a8f" + " " + "image-cell",
+                                                            className: "jsx-67dcb872b111ec8" + " " + "image-cell",
                                                             children: renderTablePreview(row)
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("td", {
-                                                            className: "jsx-46592118eeea9a8f" + " " + "name-cell",
+                                                            className: "jsx-67dcb872b111ec8" + " " + "name-cell",
                                                             children: [
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("strong", {
-                                                                    className: "jsx-46592118eeea9a8f",
+                                                                    className: "jsx-67dcb872b111ec8",
                                                                     children: title
                                                                 }),
                                                                 /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                                    className: "jsx-46592118eeea9a8f",
+                                                                    className: "jsx-67dcb872b111ec8",
                                                                     children: tableMeta?.label || "Record"
                                                                 })
                                                             ]
                                                         }),
                                                         tableColumns.map((column)=>/*#__PURE__*/ jsx_runtime_.jsx("td", {
-                                                                className: "jsx-46592118eeea9a8f",
+                                                                className: "jsx-67dcb872b111ec8",
                                                                 children: renderTableCellValue(row, column)
                                                             }, column.columnName)),
                                                         /*#__PURE__*/ jsx_runtime_.jsx("td", {
-                                                            className: "jsx-46592118eeea9a8f",
+                                                            className: "jsx-67dcb872b111ec8",
                                                             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "table-actions",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "table-actions",
                                                                 children: [
                                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
                                                                         type: "button",
                                                                         onClick: ()=>openEditForm(row),
-                                                                        className: "jsx-46592118eeea9a8f" + " " + "action-btn",
+                                                                        className: "jsx-67dcb872b111ec8" + " " + "action-btn",
                                                                         children: [
                                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                                 viewBox: "0 0 24 24",
@@ -2380,15 +2380,15 @@ const ModernTableManager = ()=>{
                                                                                 strokeLinecap: "round",
                                                                                 strokeLinejoin: "round",
                                                                                 "aria-hidden": "true",
-                                                                                className: "jsx-46592118eeea9a8f",
+                                                                                className: "jsx-67dcb872b111ec8",
                                                                                 children: [
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                                         d: "M12 20h9",
-                                                                                        className: "jsx-46592118eeea9a8f"
+                                                                                        className: "jsx-67dcb872b111ec8"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                                         d: "M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z",
-                                                                                        className: "jsx-46592118eeea9a8f"
+                                                                                        className: "jsx-67dcb872b111ec8"
                                                                                     })
                                                                                 ]
                                                                             }),
@@ -2398,7 +2398,7 @@ const ModernTableManager = ()=>{
                                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
                                                                         type: "button",
                                                                         onClick: ()=>handleDeleteRow(rowId),
-                                                                        className: "jsx-46592118eeea9a8f" + " " + "action-btn danger",
+                                                                        className: "jsx-67dcb872b111ec8" + " " + "action-btn danger",
                                                                         children: [
                                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                                 viewBox: "0 0 24 24",
@@ -2408,29 +2408,29 @@ const ModernTableManager = ()=>{
                                                                                 strokeLinecap: "round",
                                                                                 strokeLinejoin: "round",
                                                                                 "aria-hidden": "true",
-                                                                                className: "jsx-46592118eeea9a8f",
+                                                                                className: "jsx-67dcb872b111ec8",
                                                                                 children: [
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                                         d: "M3 6h18",
-                                                                                        className: "jsx-46592118eeea9a8f"
+                                                                                        className: "jsx-67dcb872b111ec8"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("path", {
                                                                                         d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2",
-                                                                                        className: "jsx-46592118eeea9a8f"
+                                                                                        className: "jsx-67dcb872b111ec8"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("line", {
                                                                                         x1: "10",
                                                                                         y1: "11",
                                                                                         x2: "10",
                                                                                         y2: "17",
-                                                                                        className: "jsx-46592118eeea9a8f"
+                                                                                        className: "jsx-67dcb872b111ec8"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("line", {
                                                                                         x1: "14",
                                                                                         y1: "11",
                                                                                         x2: "14",
                                                                                         y2: "17",
-                                                                                        className: "jsx-46592118eeea9a8f"
+                                                                                        className: "jsx-67dcb872b111ec8"
                                                                                     })
                                                                                 ]
                                                                             }),
@@ -2443,21 +2443,21 @@ const ModernTableManager = ()=>{
                                                     ]
                                                 }, String(rowId ?? index));
                                             }) : /*#__PURE__*/ jsx_runtime_.jsx("tr", {
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: /*#__PURE__*/ jsx_runtime_.jsx("td", {
                                                     colSpan: 4 + tableColumns.length,
-                                                    className: "jsx-46592118eeea9a8f",
+                                                    className: "jsx-67dcb872b111ec8",
                                                     children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-46592118eeea9a8f" + " " + "empty-state",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "empty-state",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                                                className: "jsx-46592118eeea9a8f",
+                                                                className: "jsx-67dcb872b111ec8",
                                                                 children: "No records match your search."
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                                                 type: "button",
                                                                 onClick: ()=>setSearchText(""),
-                                                                className: "jsx-46592118eeea9a8f" + " " + "ghost-btn",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "ghost-btn",
                                                                 children: "Clear Search"
                                                             })
                                                         ]
@@ -2472,26 +2472,26 @@ const ModernTableManager = ()=>{
                     }),
                     showForm ? /*#__PURE__*/ jsx_runtime_.jsx("section", {
                         ref: formSectionRef,
-                        className: "jsx-46592118eeea9a8f" + " " + "form-section",
+                        className: "jsx-67dcb872b111ec8" + " " + "form-section",
                         children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                            className: "jsx-46592118eeea9a8f" + " " + "form-modal-overlay",
+                            className: "jsx-67dcb872b111ec8" + " " + "form-modal-overlay",
                             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                className: "jsx-46592118eeea9a8f" + " " + "modern-form-shell",
+                                className: "jsx-67dcb872b111ec8" + " " + "modern-form-shell",
                                 children: [
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                        className: "jsx-46592118eeea9a8f" + " " + "modern-form-topbar",
+                                        className: "jsx-67dcb872b111ec8" + " " + "modern-form-topbar",
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx("h3", {
-                                                className: "jsx-46592118eeea9a8f",
+                                                className: "jsx-67dcb872b111ec8",
                                                 children: editRowId !== null ? `Edit ${tableMeta?.label || "Record"}` : `Add ${tableMeta?.label || "Record"}`
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-46592118eeea9a8f" + " " + "modern-form-topbar-actions",
+                                                className: "jsx-67dcb872b111ec8" + " " + "modern-form-topbar-actions",
                                                 children: [
                                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
                                                         type: "button",
                                                         onClick: closeForm,
-                                                        className: "jsx-46592118eeea9a8f" + " " + "cancel-btn",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "cancel-btn",
                                                         children: "Cancel"
                                                     }),
                                                     /*#__PURE__*/ jsx_runtime_.jsx("button", {
@@ -2501,7 +2501,7 @@ const ModernTableManager = ()=>{
                                                             const form = e.target.closest(".modern-form-shell").querySelector("form");
                                                             if (form) form.requestSubmit();
                                                         },
-                                                        className: "jsx-46592118eeea9a8f" + " " + "submit-btn",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "submit-btn",
                                                         children: submitting ? "Saving..." : editRowId !== null ? "Save Changes" : "Create Record"
                                                     })
                                                 ]
@@ -2510,20 +2510,20 @@ const ModernTableManager = ()=>{
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("form", {
                                         onSubmit: submitRecord,
-                                        className: "jsx-46592118eeea9a8f" + " " + "modern-form-layout",
+                                        className: "jsx-67dcb872b111ec8" + " " + "modern-form-layout",
                                         children: [
                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                className: "jsx-46592118eeea9a8f" + " " + "modern-form-main",
+                                                className: "jsx-67dcb872b111ec8" + " " + "modern-form-main",
                                                 children: [
                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-form-card",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-card-title",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-card-title",
                                                                 children: "General"
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-fields",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-fields",
                                                                 children: orderedDetailColumns.filter((col)=>{
                                                                     const n = col.columnName.toLowerCase();
                                                                     return ![
@@ -2534,15 +2534,15 @@ const ModernTableManager = ()=>{
                                                                         "type"
                                                                     ].includes(n) && !n.includes("desc") && !n.includes("feature") && n !== "full_description" && n !== "specifications";
                                                                 }).map((column)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-field",
+                                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-field",
                                                                         children: [
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-field-label",
+                                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-field-label",
                                                                                 children: resolveFieldControl(table, column).label
                                                                             }),
                                                                             renderInput(column),
                                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("span", {
-                                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-field-hint",
+                                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-field-hint",
                                                                                 children: [
                                                                                     "Enter the ",
                                                                                     resolveFieldControl(table, column).label.toLowerCase(),
@@ -2561,14 +2561,14 @@ const ModernTableManager = ()=>{
                                                             "category_id",
                                                             "type"
                                                         ].includes(col.columnName.toLowerCase())) && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-form-card",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-card-title",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-card-title",
                                                                 children: "Settings"
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-fields",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-fields",
                                                                 children: orderedDetailColumns.filter((col)=>[
                                                                         "category_id",
                                                                         "type",
@@ -2576,10 +2576,10 @@ const ModernTableManager = ()=>{
                                                                         "active",
                                                                         "status"
                                                                     ].includes(col.columnName.toLowerCase())).map((column)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-field",
+                                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-field",
                                                                         children: [
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-field-label",
+                                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-field-label",
                                                                                 children: resolveFieldControl(table, column).label
                                                                             }),
                                                                             renderInput(column)
@@ -2589,22 +2589,22 @@ const ModernTableManager = ()=>{
                                                         ]
                                                     }),
                                                     orderedDetailColumns.some((col)=>col.columnName.toLowerCase().includes("desc") || col.columnName.toLowerCase() === "full_description") && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-form-card",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-card-title",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-card-title",
                                                                 children: "Description"
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-fields",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-fields",
                                                                 children: orderedDetailColumns.filter((col)=>{
                                                                     const n = col.columnName.toLowerCase();
                                                                     return (n.includes("desc") || n === "full_description") && !n.includes("feature");
                                                                 }).map((column)=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-field",
+                                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-field",
                                                                         children: [
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-field-label",
+                                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-field-label",
                                                                                 children: resolveFieldControl(table, column).label
                                                                             }),
                                                                             renderInput(column)
@@ -2614,18 +2614,18 @@ const ModernTableManager = ()=>{
                                                         ]
                                                     }),
                                                     table === "products" && categorySpecs.length > 0 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-form-card",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-form-card",
                                                         children: [
                                                             /*#__PURE__*/ jsx_runtime_.jsx("h4", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-card-title",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-card-title",
                                                                 children: "Specifications"
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-card-subtitle",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-card-subtitle",
                                                                 children: "Fill in the specs for this product category."
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-fields specs-grid",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-fields specs-grid",
                                                                 children: categorySpecs.map((spec)=>{
                                                                     const specsObj = (()=>{
                                                                         try {
@@ -2647,14 +2647,14 @@ const ModernTableManager = ()=>{
                                                                     const options = specOptions[spec.spec_name] || [];
                                                                     const isFilterable = !!spec.is_filterable;
                                                                     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-field",
+                                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-field",
                                                                         children: [
                                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
-                                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-field-label",
+                                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-field-label",
                                                                                 children: [
                                                                                     spec.spec_label,
                                                                                     isFilterable && /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                                                        className: "jsx-46592118eeea9a8f" + " " + "spec-filterable-tag",
+                                                                                        className: "jsx-67dcb872b111ec8" + " " + "spec-filterable-tag",
                                                                                         children: "Filterable"
                                                                                     })
                                                                                 ]
@@ -2675,13 +2675,13 @@ const ModernTableManager = ()=>{
                                                                                 value: currentValue,
                                                                                 onChange: (e)=>setSpecField(spec.spec_name, e.target.value),
                                                                                 placeholder: `Enter ${spec.spec_label.toLowerCase()}`,
-                                                                                className: "jsx-46592118eeea9a8f"
+                                                                                className: "jsx-67dcb872b111ec8"
                                                                             }),
                                                                             isFilterable && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                                                className: "jsx-46592118eeea9a8f" + " " + "spec-filter-picker",
+                                                                                className: "jsx-67dcb872b111ec8" + " " + "spec-filter-picker",
                                                                                 children: [
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                                                        className: "jsx-46592118eeea9a8f" + " " + "spec-filter-sublabel",
+                                                                                        className: "jsx-67dcb872b111ec8" + " " + "spec-filter-sublabel",
                                                                                         children: "Filter value"
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("input", {
@@ -2700,7 +2700,7 @@ const ModernTableManager = ()=>{
                                                                                         value: currentFilter,
                                                                                         onChange: (e)=>setSpecField(filterKey, e.target.value),
                                                                                         placeholder: `e.g. a short label to group this in filters`,
-                                                                                        className: "jsx-46592118eeea9a8f"
+                                                                                        className: "jsx-67dcb872b111ec8"
                                                                                     }),
                                                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("select", {
                                                                                         value: options.includes(currentFilter) ? currentFilter : "",
@@ -2719,22 +2719,22 @@ const ModernTableManager = ()=>{
                                                                                             fontFamily: "inherit",
                                                                                             cursor: "pointer"
                                                                                         },
-                                                                                        className: "jsx-46592118eeea9a8f",
+                                                                                        className: "jsx-67dcb872b111ec8",
                                                                                         children: [
                                                                                             /*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                                                                 value: "",
-                                                                                                className: "jsx-46592118eeea9a8f",
+                                                                                                className: "jsx-67dcb872b111ec8",
                                                                                                 children: options.length ? "— Or pick a saved filter value —" : "— No saved values yet —"
                                                                                             }),
                                                                                             options.map((opt)=>/*#__PURE__*/ jsx_runtime_.jsx("option", {
                                                                                                     value: opt,
-                                                                                                    className: "jsx-46592118eeea9a8f",
+                                                                                                    className: "jsx-67dcb872b111ec8",
                                                                                                     children: opt
                                                                                                 }, opt))
                                                                                         ]
                                                                                     }),
                                                                                     /*#__PURE__*/ jsx_runtime_.jsx("span", {
-                                                                                        className: "jsx-46592118eeea9a8f" + " " + "spec-filter-hint",
+                                                                                        className: "jsx-67dcb872b111ec8" + " " + "spec-filter-hint",
                                                                                         children: 'Type the short filter label (e.g. "Ryzen 5" for "AMD Ryzen 5 5600 Ti") or pick a saved one. This is what appears in the storefront filter.'
                                                                                     })
                                                                                 ]
@@ -2746,10 +2746,10 @@ const ModernTableManager = ()=>{
                                                         ]
                                                     }),
                                                     orderedMediaColumns.length > 0 && /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                        className: "jsx-46592118eeea9a8f" + " " + "modern-form-card modern-media-card",
+                                                        className: "jsx-67dcb872b111ec8" + " " + "modern-form-card modern-media-card",
                                                         children: [
                                                             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h4", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-card-title media-card-title",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-card-title media-card-title",
                                                                 children: [
                                                                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
                                                                         width: "20",
@@ -2760,7 +2760,7 @@ const ModernTableManager = ()=>{
                                                                         strokeWidth: "2",
                                                                         strokeLinecap: "round",
                                                                         strokeLinejoin: "round",
-                                                                        className: "jsx-46592118eeea9a8f",
+                                                                        className: "jsx-67dcb872b111ec8",
                                                                         children: [
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("rect", {
                                                                                 x: "3",
@@ -2768,17 +2768,17 @@ const ModernTableManager = ()=>{
                                                                                 width: "18",
                                                                                 height: "18",
                                                                                 rx: "2",
-                                                                                className: "jsx-46592118eeea9a8f"
+                                                                                className: "jsx-67dcb872b111ec8"
                                                                             }),
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("circle", {
                                                                                 cx: "8.5",
                                                                                 cy: "8.5",
                                                                                 r: "1.5",
-                                                                                className: "jsx-46592118eeea9a8f"
+                                                                                className: "jsx-67dcb872b111ec8"
                                                                             }),
                                                                             /*#__PURE__*/ jsx_runtime_.jsx("polyline", {
                                                                                 points: "21 15 16 10 5 21",
-                                                                                className: "jsx-46592118eeea9a8f"
+                                                                                className: "jsx-67dcb872b111ec8"
                                                                             })
                                                                         ]
                                                                     }),
@@ -2786,13 +2786,13 @@ const ModernTableManager = ()=>{
                                                                 ]
                                                             }),
                                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                className: "jsx-46592118eeea9a8f" + " " + "modern-media-fields",
+                                                                className: "jsx-67dcb872b111ec8" + " " + "modern-media-fields",
                                                                 children: orderedMediaColumns.map((column)=>{
                                                                     const columnNameLower = String(column.columnName).toLowerCase();
                                                                     const isGallery = columnNameLower === "photos";
                                                                     const isVideo = columnNameLower.includes("video");
                                                                     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                                        className: "jsx-46592118eeea9a8f" + " " + `modern-media-item ${isGallery || isVideo ? "full-width" : ""}`,
+                                                                        className: "jsx-67dcb872b111ec8" + " " + `modern-media-item ${isGallery || isVideo ? "full-width" : ""}`,
                                                                         children: renderMediaField(column)
                                                                     }, column.columnName);
                                                                 })
@@ -2802,7 +2802,7 @@ const ModernTableManager = ()=>{
                                                 ]
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                                className: "jsx-46592118eeea9a8f" + " " + "modern-form-sidebar"
+                                                className: "jsx-67dcb872b111ec8" + " " + "modern-form-sidebar"
                                             })
                                         ]
                                     })
@@ -2813,8 +2813,8 @@ const ModernTableManager = ()=>{
                 ]
             }),
             jsx_runtime_.jsx((style_default()), {
-                id: "46592118eeea9a8f",
-                children: ".manager-shell.jsx-46592118eeea9a8f{display:grid;gap:18px;max-width:100%;overflow-x:hidden}.manager-head.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:14px;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.kicker.jsx-46592118eeea9a8f,.form-kicker.jsx-46592118eeea9a8f{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7f7f95;font-weight:800}h2.jsx-46592118eeea9a8f{margin:6px 0 4px;font-size:30px;color:#2e2d3f}.subline.jsx-46592118eeea9a8f{margin:0;color:#73728f}.head-actions.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.refresh-btn.jsx-46592118eeea9a8f,.create-btn.jsx-46592118eeea9a8f,.primary-btn.jsx-46592118eeea9a8f,.ghost-btn.jsx-46592118eeea9a8f,.cancel-btn.jsx-46592118eeea9a8f,.submit-btn.jsx-46592118eeea9a8f,.close-form-btn.jsx-46592118eeea9a8f,.upload-trigger.jsx-46592118eeea9a8f,.mini-btn.jsx-46592118eeea9a8f{border:0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700;font:inherit}.refresh-btn.jsx-46592118eeea9a8f{background:#8a5dff;color:#fff}.create-btn.jsx-46592118eeea9a8f,.primary-btn.jsx-46592118eeea9a8f,.submit-btn.jsx-46592118eeea9a8f{background:#2f3d7a;color:#fff}.ghost-btn.jsx-46592118eeea9a8f,.cancel-btn.jsx-46592118eeea9a8f,.close-form-btn.jsx-46592118eeea9a8f{background:#fff;color:#393657;border:1px solid#d8d3ef}.action-btn.jsx-46592118eeea9a8f{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:5px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:600;line-height:1.2;white-space:nowrap;cursor:pointer;font-family:inherit;border:1px solid transparent;-webkit-transition:background-color.15s ease,border-color.15s ease,color.15s ease;-moz-transition:background-color.15s ease,border-color.15s ease,color.15s ease;-o-transition:background-color.15s ease,border-color.15s ease,color.15s ease;transition:background-color.15s ease,border-color.15s ease,color.15s ease}.action-btn.jsx-46592118eeea9a8f svg.jsx-46592118eeea9a8f{width:14px;height:14px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.action-btn.jsx-46592118eeea9a8f:not(.danger){background:#eef2ff;color:#2f3d7a;border-color:#c7d2fe}.action-btn.danger.jsx-46592118eeea9a8f{background:#fef2f2;color:#c0344f;border-color:#f7c4cf}.refresh-btn.jsx-46592118eeea9a8f:disabled,.primary-btn.jsx-46592118eeea9a8f:disabled,.submit-btn.jsx-46592118eeea9a8f:disabled,.upload-trigger.jsx-46592118eeea9a8f:disabled{opacity:.7;cursor:wait}.alert.jsx-46592118eeea9a8f{-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:12px 14px;font-weight:600}.alert.error.jsx-46592118eeea9a8f{background:#ffe3e7;color:#ab2d44}.alert.success.jsx-46592118eeea9a8f{background:#dbffe8;color:#1f8a52}.card.jsx-46592118eeea9a8f{-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;background:#fff;border:1px solid#e6e3f5;-webkit-box-shadow:0 10px 30px rgba(34,27,72,.06);-moz-box-shadow:0 10px 30px rgba(34,27,72,.06);box-shadow:0 10px 30px rgba(34,27,72,.06)}.inventory-card.jsx-46592118eeea9a8f{padding:18px}.inventory-toolbar.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:12px;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:14px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.inventory-toolbar.jsx-46592118eeea9a8f h3.jsx-46592118eeea9a8f{margin:0;color:#2e2d3f}.inventory-toolbar.jsx-46592118eeea9a8f p.jsx-46592118eeea9a8f{margin:0;color:#747391}.inventory-filters.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end}.search-field.jsx-46592118eeea9a8f{display:grid;gap:6px;min-width:180px;-webkit-box-flex:1;-webkit-flex:1 1 220px;-moz-box-flex:1;-ms-flex:1 1 220px;flex:1 1 220px}.search-field.jsx-46592118eeea9a8f span.jsx-46592118eeea9a8f{font-size:12px;font-weight:700;color:#666283;text-transform:uppercase;letter-spacing:.05em}.search-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f,.search-field.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f{width:100%;border:1px solid#d6d2eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:11px 12px;background:#fbfaff;color:#29293d;font:inherit}.table-shell.jsx-46592118eeea9a8f{width:100%;overflow-x:auto}.view-toggle-group.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;border:1px solid#d6d2eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden}.view-toggle-btn.jsx-46592118eeea9a8f{border:none;background:#fff;padding:9px 12px;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#6b7280;-webkit-transition:all.15s;-moz-transition:all.15s;-o-transition:all.15s;transition:all.15s}.view-toggle-btn.is-active.jsx-46592118eeea9a8f{background:#7c3aed;color:#fff}.view-toggle-btn.jsx-46592118eeea9a8f:not(.is-active):hover{background:#f5f3ff}.filter-bar.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:16px;padding:12px 14px;background:#faf9ff;border:1px solid#ede9fe;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px}.filter-select.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;min-width:140px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;max-width:200px}.filter-select.jsx-46592118eeea9a8f span.jsx-46592118eeea9a8f{font-size:11px;font-weight:700;color:#6b21a8;text-transform:uppercase;letter-spacing:.05em}.filter-select.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f{width:100%;border:1px solid#d6d2eb;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 10px;background:#fff;color:#29293d;font:inherit;font-size:13px;cursor:pointer}.filter-select.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f:focus{outline:none;border-color:#7c3aed;-webkit-box-shadow:0 0 0 2px rgba(124,58,237,.12);-moz-box-shadow:0 0 0 2px rgba(124,58,237,.12);box-shadow:0 0 0 2px rgba(124,58,237,.12)}.records-grid.jsx-46592118eeea9a8f{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}.record-grid-card.jsx-46592118eeea9a8f{border:1px solid#e6e3f5;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;overflow:hidden;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.record-grid-card.jsx-46592118eeea9a8f:hover{-webkit-box-shadow:0 8px 24px rgba(0,0,0,.08);-moz-box-shadow:0 8px 24px rgba(0,0,0,.08);box-shadow:0 8px 24px rgba(0,0,0,.08);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.rgc-preview.jsx-46592118eeea9a8f{height:140px;background:#f4f1ff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow:hidden}.rgc-body.jsx-46592118eeea9a8f{padding:14px 16px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.rgc-title.jsx-46592118eeea9a8f{font-size:14px;font-weight:700;color:#1e1b4b;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rgc-id.jsx-46592118eeea9a8f{font-size:11px;color:#7c3aed;font-weight:600}.rgc-meta.jsx-46592118eeea9a8f{font-size:12px;color:#6b7280;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.rgc-actions.jsx-46592118eeea9a8f{padding:10px 16px;border-top:1px solid#f1eef8;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.inventory-table.jsx-46592118eeea9a8f{width:100%;min-width:0;table-layout:auto;border-collapse:collapse;overflow:hidden;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;border:1px solid#e6e3f5}.inventory-table.jsx-46592118eeea9a8f thead.jsx-46592118eeea9a8f th.jsx-46592118eeea9a8f{text-align:left;padding:14px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5e6480;background:#eef4f8;border-bottom:1px solid#dde4ef;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.inventory-table.jsx-46592118eeea9a8f tbody.jsx-46592118eeea9a8f td.jsx-46592118eeea9a8f{padding:14px 16px;border-bottom:1px solid#edf0f7;color:#2f3146;vertical-align:middle;overflow-wrap:anywhere;word-break:break-word}.inventory-table.jsx-46592118eeea9a8f tbody.jsx-46592118eeea9a8f tr.jsx-46592118eeea9a8f:hover{background:#fafbff}.inventory-table.jsx-46592118eeea9a8f thead.jsx-46592118eeea9a8f th.jsx-46592118eeea9a8f:nth-child(1){width:80px}.inventory-table.jsx-46592118eeea9a8f thead.jsx-46592118eeea9a8f th.jsx-46592118eeea9a8f:nth-child(2),.inventory-table.jsx-46592118eeea9a8f tbody.jsx-46592118eeea9a8f td.image-cell.jsx-46592118eeea9a8f{width:84px!important;min-width:84px!important;max-width:84px!important;-webkit-box-sizing:border-box!important;-moz-box-sizing:border-box!important;box-sizing:border-box!important;padding-left:12px;padding-right:12px}.inventory-table.jsx-46592118eeea9a8f thead.jsx-46592118eeea9a8f th.jsx-46592118eeea9a8f:last-child{width:180px}.id-cell.jsx-46592118eeea9a8f{white-space:nowrap;font-weight:700;color:#2d3a60;width:84px}.table-preview.jsx-46592118eeea9a8f{width:54px;height:54px;min-width:54px;max-width:54px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;overflow:hidden;background:#f2f5fb;border:1px solid#e0e6f1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#7d8399;font-size:11px;font-weight:700;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.table-preview.jsx-46592118eeea9a8f img.jsx-46592118eeea9a8f{width:54px;height:54px;max-width:54px;max-height:54px;-o-object-fit:contain;object-fit:contain;display:block}.rgc-preview.jsx-46592118eeea9a8f .table-preview.jsx-46592118eeea9a8f{width:100%;height:140px;max-width:100%;min-width:100%;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;border:none}.rgc-preview.jsx-46592118eeea9a8f .table-preview.jsx-46592118eeea9a8f img.jsx-46592118eeea9a8f{width:100%;height:140px;max-width:100%;max-height:140px;-o-object-fit:cover;object-fit:cover}.rgc-preview.jsx-46592118eeea9a8f .table-preview.empty.jsx-46592118eeea9a8f{height:140px;font-size:14px}.table-preview.empty.jsx-46592118eeea9a8f{padding:8px;text-align:center}.table-preview.empty.jsx-46592118eeea9a8f span.jsx-46592118eeea9a8f{display:block;line-height:1.1}.name-cell.jsx-46592118eeea9a8f strong.jsx-46592118eeea9a8f{display:block;font-size:15px;line-height:1.35;color:#28304d}.name-cell.jsx-46592118eeea9a8f,.inventory-table.jsx-46592118eeea9a8f tbody.jsx-46592118eeea9a8f td.jsx-46592118eeea9a8f:not(.id-cell):not(.image-cell):not(:last-child){min-width:0}.name-cell.jsx-46592118eeea9a8f span.jsx-46592118eeea9a8f,.table-muted.jsx-46592118eeea9a8f{display:block;color:#7d8399;font-size:12px;margin-top:2px}.status-pill.jsx-46592118eeea9a8f{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:6px 10px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;font-size:12px;font-weight:700}.status-pill.is-yes.jsx-46592118eeea9a8f{background:#dff5e8;color:#157347}.status-pill.is-no.jsx-46592118eeea9a8f{background:#ffe1e1;color:#b03030}.table-actions.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;-webkit-flex-wrap:nowrap;-ms-flex-wrap:nowrap;flex-wrap:nowrap;-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.empty-state.jsx-46592118eeea9a8f{border:1px dashed#cfcae8;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:18px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:12px;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;background:#fff}.form-section.jsx-46592118eeea9a8f{padding:0;scroll-margin-top:110px;position:fixed;inset:0;z-index:1000;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow-y:auto;padding:40px 20px}.form-modal-overlay.jsx-46592118eeea9a8f{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow-y:auto;padding:40px 16px}.modern-form-shell.jsx-46592118eeea9a8f{width:100%;max-width:920px;background:#f8fafc;border:1px solid#e2e8f0;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;-webkit-box-shadow:0 24px 48px rgba(0,0,0,.15);-moz-box-shadow:0 24px 48px rgba(0,0,0,.15);box-shadow:0 24px 48px rgba(0,0,0,.15)}.modern-form-topbar.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:16px 24px;background:#fff;border-bottom:1px solid#e2e8f0}.modern-form-topbar.jsx-46592118eeea9a8f h3.jsx-46592118eeea9a8f{margin:0;font-size:18px;color:#1e293b;font-weight:700}.modern-form-topbar-actions.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.modern-form-layout.jsx-46592118eeea9a8f{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start;max-height:-webkit-calc(100vh - 140px);max-height:-moz-calc(100vh - 140px);max-height:calc(100vh - 140px);overflow-y:auto}.modern-form-main.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px}.modern-form-sidebar.jsx-46592118eeea9a8f{display:none}.modern-form-card.jsx-46592118eeea9a8f,.modern-sidebar-card.jsx-46592118eeea9a8f{background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:20px}.modern-card-title.jsx-46592118eeea9a8f{margin:0 0 16px;font-size:16px;font-weight:800;color:#0f172a;padding-bottom:12px;border-bottom:2px solid#e2e8f0}.modern-fields.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:16px}.modern-fields.specs-grid.jsx-46592118eeea9a8f{display:grid;grid-template-columns:1fr 1fr;gap:14px}.spec-filterable-tag.jsx-46592118eeea9a8f{display:inline-block;margin-left:8px;padding:2px 8px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:#eef2ff;color:#4338ca;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;vertical-align:middle}.spec-filter-picker.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px;margin-top:8px;padding:10px;border:1px dashed#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff}.spec-filter-sublabel.jsx-46592118eeea9a8f{font-size:11px;font-weight:700;color:#4338ca;text-transform:uppercase;letter-spacing:.04em}.spec-filter-hint.jsx-46592118eeea9a8f{font-size:11px;color:#94a3b8;line-height:1.4}.modern-card-subtitle.jsx-46592118eeea9a8f{margin:-8px 0 14px;font-size:12px;color:#94a3b8}.modern-field.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f,.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f,.modern-field.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f{width:100%;border:1.5px solid#cbd5e1;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f8fafc;color:#0f172a;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;transition:border-color.15s ease,box-shadow.15s ease,background.15s ease}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f,.modern-field.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f{height:46px;padding:0 14px}.modern-field.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f{cursor:pointer;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f{min-height:110px;padding:12px 14px;resize:vertical;line-height:1.6}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f::-webkit-input-placeholder,.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f::-webkit-input-placeholder{color:#94a3b8}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f:-moz-placeholder,.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f:-moz-placeholder{color:#94a3b8}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f::-moz-placeholder,.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f::-moz-placeholder{color:#94a3b8}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f:-ms-input-placeholder,.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f:-ms-input-placeholder{color:#94a3b8}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f::-ms-input-placeholder,.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f::-ms-input-placeholder{color:#94a3b8}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f::placeholder,.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f::placeholder{color:#94a3b8}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f:focus,.modern-field.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f:focus,.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.12);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.12);box-shadow:0 0 0 3px rgba(99,102,241,.12)}.modern-field.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f:hover:not(:focus),.modern-field.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f:hover:not(:focus),.modern-field.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f:hover:not(:focus){border-color:#94a3b8}.modern-field-label.jsx-46592118eeea9a8f{font-size:13px;font-weight:700;color:#1e293b;letter-spacing:.01em}.modern-field-hint.jsx-46592118eeea9a8f{font-size:11px;color:#64748b;font-style:italic}.form-input-styled.jsx-46592118eeea9a8f{width:100%;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff;color:#0f172a;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;transition:border-color.15s ease,box-shadow.15s ease,background.15s ease}input.form-input-styled.jsx-46592118eeea9a8f,select.form-input-styled.jsx-46592118eeea9a8f{height:48px;padding:0 14px}select.form-input-styled.jsx-46592118eeea9a8f{cursor:pointer}textarea.form-input-styled.jsx-46592118eeea9a8f{min-height:110px;padding:12px 14px;resize:vertical;line-height:1.6}.form-input-styled.jsx-46592118eeea9a8f::-webkit-input-placeholder{color:#94a3b8}.form-input-styled.jsx-46592118eeea9a8f:-moz-placeholder{color:#94a3b8}.form-input-styled.jsx-46592118eeea9a8f::-moz-placeholder{color:#94a3b8}.form-input-styled.jsx-46592118eeea9a8f:-ms-input-placeholder{color:#94a3b8}.form-input-styled.jsx-46592118eeea9a8f::-ms-input-placeholder{color:#94a3b8}.form-input-styled.jsx-46592118eeea9a8f::placeholder{color:#94a3b8}.form-input-styled.jsx-46592118eeea9a8f:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 4px rgba(99,102,241,.12);-moz-box-shadow:0 0 0 4px rgba(99,102,241,.12);box-shadow:0 0 0 4px rgba(99,102,241,.12)}.form-input-styled.jsx-46592118eeea9a8f:hover:not(:focus){border-color:#a5b4fc}.searchable-select.jsx-46592118eeea9a8f{position:relative;width:100%}.ss-display.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;height:44px;padding:0 14px;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;cursor:pointer;font-size:14px;color:#1d2939}.ss-display.jsx-46592118eeea9a8f:hover{border-color:#9ca3af}.ss-placeholder.jsx-46592118eeea9a8f{color:#9ca3af}.ss-arrow.jsx-46592118eeea9a8f{color:#6b7280;font-size:12px}.ss-dropdown.jsx-46592118eeea9a8f{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#fff;border:1px solid#e5e7eb;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-webkit-box-shadow:0 8px 24px rgba(0,0,0,.12);-moz-box-shadow:0 8px 24px rgba(0,0,0,.12);box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;overflow:hidden;max-height:280px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.ss-search.jsx-46592118eeea9a8f{width:100%;border:none;border-bottom:1px solid#f3f4f6;padding:10px 14px;font-size:13px;outline:none;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.ss-options.jsx-46592118eeea9a8f{max-height:220px;overflow-y:auto;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.ss-option.jsx-46592118eeea9a8f{padding:8px 14px;font-size:13px;cursor:pointer;color:#374151}.ss-option.jsx-46592118eeea9a8f:hover{background:#f3f4f6}.ss-option.is-selected.jsx-46592118eeea9a8f{background:#eff6ff;color:#1d4ed8;font-weight:600}.ss-no-results.jsx-46592118eeea9a8f{padding:12px 14px;font-size:13px;color:#9ca3af;text-align:center}.modern-media-card.jsx-46592118eeea9a8f{border:2px solid#c7d2fe;background:-webkit-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:-moz-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:-o-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:linear-gradient(135deg,#faf5ff 0%,#eef2ff 100%)}.media-card-title.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;border-bottom-color:#c7d2fe}.modern-media-fields.jsx-46592118eeea9a8f{display:grid;grid-template-columns:1fr;gap:14px}.modern-media-item.full-width.jsx-46592118eeea9a8f{grid-column:auto}.media-field-box.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:10px;padding:16px;border:2px solid#c7d2fe;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff}.media-preview-fixed.jsx-46592118eeea9a8f{position:relative;width:100%;height:140px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:2px solid#e0e7ff;background:#f1f5f9;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-preview-fixed.jsx-46592118eeea9a8f img.jsx-46592118eeea9a8f{width:100%;height:140px;-o-object-fit:contain;object-fit:contain;-o-object-position:center;object-position:center;display:block;background:#f8fafc}.media-preview-video.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#eef2ff}.media-preview-remove.jsx-46592118eeea9a8f{position:absolute;top:6px;right:6px;width:24px;height:24px;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:16px;line-height:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.media-preview-remove.jsx-46592118eeea9a8f:hover{background:rgba(220,38,38,.85)}.media-file-name-row.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:8px}.modern-thumbnail-preview.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;min-height:160px;border:1px dashed#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;overflow:hidden}.modern-thumb-img.jsx-46592118eeea9a8f{width:100%;max-height:200px;-o-object-fit:contain;object-fit:contain;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px}.modern-thumb-placeholder.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:24px;color:#9ca3af;font-size:12px;text-align:center}@media(max-width:900px){.modern-form-layout.jsx-46592118eeea9a8f{grid-template-columns:1fr}.modern-form-sidebar.jsx-46592118eeea9a8f{position:static}.modern-media-fields.jsx-46592118eeea9a8f{grid-template-columns:1fr}.modern-media-item.full-width.jsx-46592118eeea9a8f{grid-column:auto}}.block-head.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid#f1f3f9}.block-number.jsx-46592118eeea9a8f{width:32px;height:32px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#eef1ff;color:#4252a6;font-size:12px;font-weight:800;-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto}.block-head.jsx-46592118eeea9a8f h4.jsx-46592118eeea9a8f{margin:0;font-size:15px;color:#1f2638;letter-spacing:-.01em;font-weight:700}.block-head.jsx-46592118eeea9a8f p.jsx-46592118eeea9a8f{margin:3px 0 0;color:#74809a;font-size:12.5px;line-height:1.45}.field-grid.jsx-46592118eeea9a8f{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px 18px}.field-group.jsx-46592118eeea9a8f{grid-column:span 4;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px;min-width:0}.field-group.span-3.jsx-46592118eeea9a8f{grid-column:span 3}.field-group.span-4.jsx-46592118eeea9a8f{grid-column:span 4}.field-group.span-6.jsx-46592118eeea9a8f{grid-column:span 6}.field-group.span-12.jsx-46592118eeea9a8f{grid-column:span 12}.field-group.status-field.jsx-46592118eeea9a8f{max-width:260px}.field-label.jsx-46592118eeea9a8f{display:block;color:#344054;font-size:13px;line-height:1.3;font-weight:600;margin-bottom:2px}.field-group.jsx-46592118eeea9a8f>span.jsx-46592118eeea9a8f{color:#475467;font-size:12.5px;line-height:1.2;font-weight:600}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f,.field-group.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f,.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f{width:100%;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#1d2939;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease;transition:border-color.15s ease,box-shadow.15s ease}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f,.field-group.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f{height:44px;padding:0 14px}.field-group.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f{cursor:pointer}.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f{min-height:110px;padding:10px 14px;resize:vertical;line-height:1.6}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f::-webkit-input-placeholder,.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f::-webkit-input-placeholder{color:#98a2b3}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f:-moz-placeholder,.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f:-moz-placeholder{color:#98a2b3}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f::-moz-placeholder,.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f::-moz-placeholder{color:#98a2b3}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f:-ms-input-placeholder,.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f:-ms-input-placeholder{color:#98a2b3}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f::-ms-input-placeholder,.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f::-ms-input-placeholder{color:#98a2b3}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f::placeholder,.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f::placeholder{color:#98a2b3}.field-group.jsx-46592118eeea9a8f input.jsx-46592118eeea9a8f:focus,.field-group.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f:focus,.field-group.jsx-46592118eeea9a8f textarea.jsx-46592118eeea9a8f:focus{outline:none;border-color:#5b6abf;-webkit-box-shadow:0 0 0 3px rgba(91,106,191,.12);-moz-box-shadow:0 0 0 3px rgba(91,106,191,.12);box-shadow:0 0 0 3px rgba(91,106,191,.12)}.rich-editor-wrap.jsx-46592118eeea9a8f{width:100%;min-height:300px}.rich-editor-wrap.jsx-46592118eeea9a8f .ql-container{min-height:250px;font-size:14px;-webkit-border-radius:0 0 8px 8px;-moz-border-radius:0 0 8px 8px;border-radius:0 0 8px 8px}.rich-editor-wrap.jsx-46592118eeea9a8f .ql-toolbar{-webkit-border-radius:8px 8px 0 0;-moz-border-radius:8px 8px 0 0;border-radius:8px 8px 0 0;background:#f9fafb}.rich-editor-wrap.jsx-46592118eeea9a8f .ql-editor{min-height:250px}.media-section-grid.jsx-46592118eeea9a8f{display:grid;grid-template-columns:1fr;gap:16px}.media-section-item.jsx-46592118eeea9a8f{min-width:0}.media-full-width.jsx-46592118eeea9a8f{grid-column:auto}.media-field-label-row.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.media-field-label.jsx-46592118eeea9a8f{margin:0;font-size:13px;font-weight:700;color:#1e293b}.media-badge.jsx-46592118eeea9a8f{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:#eef2ff;color:#4f46e5;font-size:11px;font-weight:700}.media-status-dot.jsx-46592118eeea9a8f{width:8px;height:8px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#22c55e;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-drop-box.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:12px;padding:28px 20px;border:2px dashed#818cf8;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;cursor:pointer;-webkit-transition:border-color.2s,background.2s,box-shadow.2s;-moz-transition:border-color.2s,background.2s,box-shadow.2s;-o-transition:border-color.2s,background.2s,box-shadow.2s;transition:border-color.2s,background.2s,box-shadow.2s;-webkit-box-shadow:0 2px 8px rgba(79,70,229,.06);-moz-box-shadow:0 2px 8px rgba(79,70,229,.06);box-shadow:0 2px 8px rgba(79,70,229,.06)}.media-drop-box.jsx-46592118eeea9a8f:hover,.media-drop-box.drag-over.jsx-46592118eeea9a8f{border-color:#4f46e5;background:#eef2ff;-webkit-box-shadow:0 4px 16px rgba(79,70,229,.15);-moz-box-shadow:0 4px 16px rgba(79,70,229,.15);box-shadow:0 4px 16px rgba(79,70,229,.15)}.media-drop-icon.jsx-46592118eeea9a8f{width:48px;height:48px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.media-drop-text.jsx-46592118eeea9a8f{margin:0;font-size:14px;color:#475569;text-align:center;line-height:1.5}.media-drop-or.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;width:100%;max-width:180px}.media-drop-or.jsx-46592118eeea9a8f::before,.media-drop-or.jsx-46592118eeea9a8f::after{content:\"\";-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:1px;background:#e2e8f0}.media-drop-or.jsx-46592118eeea9a8f span.jsx-46592118eeea9a8f{font-size:12px;color:#94a3b8;font-weight:600;letter-spacing:.05em}.media-browse-btn.jsx-46592118eeea9a8f{padding:10px 24px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#4f46e5;color:#fff;font-size:14px;font-weight:600;cursor:pointer;-webkit-transition:background.15s,-webkit-transform.1s;-moz-transition:background.15s,-moz-transform.1s;-o-transition:background.15s,-o-transform.1s;transition:background.15s,-webkit-transform.1s;transition:background.15s,-moz-transform.1s;transition:background.15s,-o-transform.1s;transition:background.15s,transform.1s}.media-browse-btn.jsx-46592118eeea9a8f:hover{background:#4338ca;-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);-o-transform:translateY(-1px);transform:translateY(-1px)}.media-thumb-row.jsx-46592118eeea9a8f{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,80px));gap:10px}.media-thumb.jsx-46592118eeea9a8f{position:relative;width:80px;height:80px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:2px solid#c7d2fe;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;background:#f8fafc}.media-thumb.jsx-46592118eeea9a8f img.jsx-46592118eeea9a8f{width:80px;height:80px;-o-object-fit:cover;object-fit:cover;display:block}.media-thumb-remove.jsx-46592118eeea9a8f{position:absolute;top:4px;right:4px;width:20px;height:20px;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:14px;line-height:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;opacity:0;-webkit-transition:opacity.15s;-moz-transition:opacity.15s;-o-transition:opacity.15s;transition:opacity.15s}.media-thumb.jsx-46592118eeea9a8f:hover .media-thumb-remove.jsx-46592118eeea9a8f{opacity:1}.media-current-name.jsx-46592118eeea9a8f{font-size:12px;color:#475569;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.media-remove-file.jsx-46592118eeea9a8f{border:none;background:none;color:#ef4444;font-size:12px;font-weight:600;cursor:pointer;padding:2px 6px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-remove-file.jsx-46592118eeea9a8f:hover{background:#fef2f2}.media-field-card.jsx-46592118eeea9a8f{display:none}.media-field-header.jsx-46592118eeea9a8f,.media-field-title-row.jsx-46592118eeea9a8f,.media-title-icon.jsx-46592118eeea9a8f,.media-field-title.jsx-46592118eeea9a8f,.media-status-active.jsx-46592118eeea9a8f,.media-field-body.jsx-46592118eeea9a8f,.media-upload-area.jsx-46592118eeea9a8f,.media-dropzone.jsx-46592118eeea9a8f,.media-dropzone-icon.jsx-46592118eeea9a8f,.media-dropzone-text.jsx-46592118eeea9a8f,.media-dropzone-compact.jsx-46592118eeea9a8f,.media-inline-preview.jsx-46592118eeea9a8f,.media-preview-overlay.jsx-46592118eeea9a8f,.media-file-info.jsx-46592118eeea9a8f,.media-file-name.jsx-46592118eeea9a8f,.media-clear-btn.jsx-46592118eeea9a8f{}.media-input-group.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px}.media-input-label.jsx-46592118eeea9a8f{font-size:12px;font-weight:600;color:#667085}.media-url-input.jsx-46592118eeea9a8f,.media-textarea.jsx-46592118eeea9a8f{width:100%;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;color:#0f172a;font:inherit;font-size:13px;-webkit-transition:border-color.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease;transition:border-color.15s ease,box-shadow.15s ease}.media-textarea.jsx-46592118eeea9a8f{min-height:64px;padding:10px 14px;resize:vertical;line-height:1.6}.media-textarea.jsx-46592118eeea9a8f::-webkit-input-placeholder{color:#94a3b8}.media-textarea.jsx-46592118eeea9a8f:-moz-placeholder{color:#94a3b8}.media-textarea.jsx-46592118eeea9a8f::-moz-placeholder{color:#94a3b8}.media-textarea.jsx-46592118eeea9a8f:-ms-input-placeholder{color:#94a3b8}.media-textarea.jsx-46592118eeea9a8f::-ms-input-placeholder{color:#94a3b8}.media-textarea.jsx-46592118eeea9a8f::placeholder{color:#94a3b8}.media-textarea.jsx-46592118eeea9a8f:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1)}.media-or-divider.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.media-or-divider.jsx-46592118eeea9a8f::before,.media-or-divider.jsx-46592118eeea9a8f::after{content:\"\";-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:1px;background:#e4e7ec}.media-or-divider.jsx-46592118eeea9a8f span.jsx-46592118eeea9a8f{font-size:12px;color:#98a2b3;font-weight:500;text-transform:uppercase;letter-spacing:.04em}.media-upload-btn.jsx-46592118eeea9a8f{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:8px;height:42px;padding:0 18px;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#344054;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;-webkit-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;transition:border-color.15s ease,background.15s ease,box-shadow.15s ease}.media-upload-btn.jsx-46592118eeea9a8f:hover{border-color:#98a2b3;background:#f9fafb;-webkit-box-shadow:0 1px 3px rgba(16,24,40,.06);-moz-box-shadow:0 1px 3px rgba(16,24,40,.06);box-shadow:0 1px 3px rgba(16,24,40,.06)}.media-upload-btn.jsx-46592118eeea9a8f:disabled{opacity:.6;cursor:wait}.media-preview-grid.jsx-46592118eeea9a8f{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px}.media-preview-item.jsx-46592118eeea9a8f{position:relative;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:1px solid#e5e7eb;background:#f9fafb;aspect-ratio:1}.media-preview-item.jsx-46592118eeea9a8f img.jsx-46592118eeea9a8f{display:block;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.media-remove-btn.jsx-46592118eeea9a8f{position:absolute;top:4px;right:4px;width:24px;height:24px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;opacity:0;-webkit-transition:opacity.15s ease;-moz-transition:opacity.15s ease;-o-transition:opacity.15s ease;transition:opacity.15s ease}.media-preview-item.jsx-46592118eeea9a8f:hover .media-remove-btn.jsx-46592118eeea9a8f{opacity:1}.hidden-file-input.jsx-46592118eeea9a8f{display:none!important;width:0!important;height:0!important;opacity:0!important;pointer-events:none!important;position:absolute!important}.form-actions.jsx-46592118eeea9a8f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding-top:22px;border-top:1px solid#edf1f7}.cancel-btn.jsx-46592118eeea9a8f,.submit-btn.jsx-46592118eeea9a8f{height:44px;padding-left:20px;padding-right:20px}.submit-btn.jsx-46592118eeea9a8f{-webkit-box-shadow:0 1px 3px rgba(47,61,122,.15);-moz-box-shadow:0 1px 3px rgba(47,61,122,.15);box-shadow:0 1px 3px rgba(47,61,122,.15)}.submit-btn.jsx-46592118eeea9a8f:hover,.create-btn.jsx-46592118eeea9a8f:hover,.refresh-btn.jsx-46592118eeea9a8f:hover{-webkit-filter:brightness(1.04);filter:brightness(1.04)}.cancel-btn.jsx-46592118eeea9a8f:hover,.close-form-btn.jsx-46592118eeea9a8f:hover,.ghost-btn.jsx-46592118eeea9a8f:hover{border-color:#bfc7dd;background:#f9fafb}.action-btn.jsx-46592118eeea9a8f:not(.danger):hover{background:#2f3d7a;color:#fff;border-color:#2f3d7a}.action-btn.danger.jsx-46592118eeea9a8f:hover{background:#c0344f;color:#fff;border-color:#c0344f}.product-form-card.jsx-46592118eeea9a8f .field-group.jsx-46592118eeea9a8f select.jsx-46592118eeea9a8f{-ms-appearance:none!important;appearance:none!important;-webkit-appearance:none!important;-moz-appearance:none!important;padding-right:40px!important;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")!important;background-repeat:no-repeat!important;background-position:right 14px center!important;cursor:pointer!important}@media(max-width:1080px){.field-group.jsx-46592118eeea9a8f,.field-group.span-3.jsx-46592118eeea9a8f{grid-column:span 4}.field-group.span-6.jsx-46592118eeea9a8f{grid-column:span 6}.field-group.span-12.jsx-46592118eeea9a8f{grid-column:span 12}.field-group.status-field.jsx-46592118eeea9a8f{max-width:none}}@media(max-width:840px){.inventory-toolbar.jsx-46592118eeea9a8f,.empty-state.jsx-46592118eeea9a8f{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.inventory-filters.jsx-46592118eeea9a8f{width:100%}.search-field.jsx-46592118eeea9a8f{width:100%;min-width:0}.table-actions.jsx-46592118eeea9a8f{-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.inventory-table.jsx-46592118eeea9a8f thead.jsx-46592118eeea9a8f th.jsx-46592118eeea9a8f:nth-child(n+5):not(:last-child),.inventory-table.jsx-46592118eeea9a8f tbody.jsx-46592118eeea9a8f td.jsx-46592118eeea9a8f:nth-child(n+5):not(:last-child){display:none}.product-form-header.jsx-46592118eeea9a8f{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-entry-form.jsx-46592118eeea9a8f,.product-form-header.jsx-46592118eeea9a8f{padding-left:20px;padding-right:20px}.form-block.jsx-46592118eeea9a8f{padding:18px}.field-group.jsx-46592118eeea9a8f,.field-group.span-3.jsx-46592118eeea9a8f,.field-group.span-4.jsx-46592118eeea9a8f,.field-group.span-6.jsx-46592118eeea9a8f,.field-group.span-12.jsx-46592118eeea9a8f{grid-column:span 12}.media-section-grid.jsx-46592118eeea9a8f{grid-template-columns:1fr}.media-full-width.jsx-46592118eeea9a8f{grid-column:auto}}@media(max-width:560px){.inventory-card.jsx-46592118eeea9a8f,.admin-content.jsx-46592118eeea9a8f{padding-left:12px;padding-right:12px}.inventory-table.jsx-46592118eeea9a8f thead.jsx-46592118eeea9a8f th.jsx-46592118eeea9a8f:nth-child(3),.inventory-table.jsx-46592118eeea9a8f tbody.jsx-46592118eeea9a8f td.jsx-46592118eeea9a8f:nth-child(3){width:auto}.inventory-table.jsx-46592118eeea9a8f thead.jsx-46592118eeea9a8f th.jsx-46592118eeea9a8f:nth-child(n+4):not(:last-child),.inventory-table.jsx-46592118eeea9a8f tbody.jsx-46592118eeea9a8f td.jsx-46592118eeea9a8f:nth-child(n+4):not(:last-child){display:none}.product-form-card.jsx-46592118eeea9a8f{-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px}.product-entry-form.jsx-46592118eeea9a8f,.product-form-header.jsx-46592118eeea9a8f{padding:16px}.product-form-header.jsx-46592118eeea9a8f h3.jsx-46592118eeea9a8f{font-size:20px}.block-head.jsx-46592118eeea9a8f{gap:10px}.form-actions.jsx-46592118eeea9a8f{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-webkit-flex-direction:column-reverse;-moz-box-orient:vertical;-moz-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-box-align:stretch;-webkit-align-items:stretch;-moz-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.cancel-btn.jsx-46592118eeea9a8f,.submit-btn.jsx-46592118eeea9a8f,.close-form-btn.jsx-46592118eeea9a8f{width:100%}}"
+                id: "67dcb872b111ec8",
+                children: ".manager-shell.jsx-67dcb872b111ec8{display:grid;gap:18px;max-width:100%;overflow-x:hidden}.manager-head.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:14px;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.kicker.jsx-67dcb872b111ec8,.form-kicker.jsx-67dcb872b111ec8{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7f7f95;font-weight:800}h2.jsx-67dcb872b111ec8{margin:6px 0 4px;font-size:30px;color:#2e2d3f}.subline.jsx-67dcb872b111ec8{margin:0;color:#73728f}.head-actions.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.refresh-btn.jsx-67dcb872b111ec8,.create-btn.jsx-67dcb872b111ec8,.primary-btn.jsx-67dcb872b111ec8,.ghost-btn.jsx-67dcb872b111ec8,.cancel-btn.jsx-67dcb872b111ec8,.submit-btn.jsx-67dcb872b111ec8,.close-form-btn.jsx-67dcb872b111ec8,.upload-trigger.jsx-67dcb872b111ec8,.mini-btn.jsx-67dcb872b111ec8{border:0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700;font:inherit}.refresh-btn.jsx-67dcb872b111ec8{background:#8a5dff;color:#fff}.create-btn.jsx-67dcb872b111ec8,.primary-btn.jsx-67dcb872b111ec8,.submit-btn.jsx-67dcb872b111ec8{background:#2f3d7a;color:#fff}.ghost-btn.jsx-67dcb872b111ec8,.cancel-btn.jsx-67dcb872b111ec8,.close-form-btn.jsx-67dcb872b111ec8{background:#fff;color:#393657;border:1px solid#d8d3ef}.action-btn.jsx-67dcb872b111ec8{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:5px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:600;line-height:1.2;white-space:nowrap;cursor:pointer;font-family:inherit;border:1px solid transparent;-webkit-transition:background-color.15s ease,border-color.15s ease,color.15s ease;-moz-transition:background-color.15s ease,border-color.15s ease,color.15s ease;-o-transition:background-color.15s ease,border-color.15s ease,color.15s ease;transition:background-color.15s ease,border-color.15s ease,color.15s ease}.action-btn.jsx-67dcb872b111ec8 svg.jsx-67dcb872b111ec8{width:14px;height:14px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.action-btn.jsx-67dcb872b111ec8:not(.danger){background:#eef2ff;color:#2f3d7a;border-color:#c7d2fe}.action-btn.danger.jsx-67dcb872b111ec8{background:#fef2f2;color:#c0344f;border-color:#f7c4cf}.refresh-btn.jsx-67dcb872b111ec8:disabled,.primary-btn.jsx-67dcb872b111ec8:disabled,.submit-btn.jsx-67dcb872b111ec8:disabled,.upload-trigger.jsx-67dcb872b111ec8:disabled{opacity:.7;cursor:wait}.alert.jsx-67dcb872b111ec8{-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:12px 14px;font-weight:600}.alert.error.jsx-67dcb872b111ec8{background:#ffe3e7;color:#ab2d44}.alert.success.jsx-67dcb872b111ec8{background:#dbffe8;color:#1f8a52}.card.jsx-67dcb872b111ec8{-webkit-border-radius:18px;-moz-border-radius:18px;border-radius:18px;background:#fff;border:1px solid#e6e3f5;-webkit-box-shadow:0 10px 30px rgba(34,27,72,.06);-moz-box-shadow:0 10px 30px rgba(34,27,72,.06);box-shadow:0 10px 30px rgba(34,27,72,.06)}.inventory-card.jsx-67dcb872b111ec8{padding:18px}.inventory-toolbar.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:12px;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:14px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.inventory-toolbar.jsx-67dcb872b111ec8 h3.jsx-67dcb872b111ec8{margin:0;color:#2e2d3f}.inventory-toolbar.jsx-67dcb872b111ec8 p.jsx-67dcb872b111ec8{margin:0;color:#747391}.inventory-filters.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end}.search-field.jsx-67dcb872b111ec8{display:grid;gap:6px;min-width:180px;-webkit-box-flex:1;-webkit-flex:1 1 220px;-moz-box-flex:1;-ms-flex:1 1 220px;flex:1 1 220px}.search-field.jsx-67dcb872b111ec8 span.jsx-67dcb872b111ec8{font-size:12px;font-weight:700;color:#666283;text-transform:uppercase;letter-spacing:.05em}.search-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8,.search-field.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8{width:100%;border:1px solid#d6d2eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:11px 12px;background:#fbfaff;color:#29293d;font:inherit}.table-shell.jsx-67dcb872b111ec8{width:100%;overflow-x:auto}.view-toggle-group.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;border:1px solid#d6d2eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden}.view-toggle-btn.jsx-67dcb872b111ec8{border:none;background:#fff;padding:9px 12px;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#6b7280;-webkit-transition:all.15s;-moz-transition:all.15s;-o-transition:all.15s;transition:all.15s}.view-toggle-btn.is-active.jsx-67dcb872b111ec8{background:#7c3aed;color:#fff}.view-toggle-btn.jsx-67dcb872b111ec8:not(.is-active):hover{background:#f5f3ff}.filter-bar.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:16px;padding:12px 14px;background:#faf9ff;border:1px solid#ede9fe;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px}.filter-select.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;min-width:140px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;max-width:200px}.filter-select.jsx-67dcb872b111ec8 span.jsx-67dcb872b111ec8{font-size:11px;font-weight:700;color:#6b21a8;text-transform:uppercase;letter-spacing:.05em}.filter-select.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8{width:100%;border:1px solid#d6d2eb;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 10px;background:#fff;color:#29293d;font:inherit;font-size:13px;cursor:pointer}.filter-select.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8:focus{outline:none;border-color:#7c3aed;-webkit-box-shadow:0 0 0 2px rgba(124,58,237,.12);-moz-box-shadow:0 0 0 2px rgba(124,58,237,.12);box-shadow:0 0 0 2px rgba(124,58,237,.12)}.records-grid.jsx-67dcb872b111ec8{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}.record-grid-card.jsx-67dcb872b111ec8{border:1px solid#e6e3f5;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;overflow:hidden;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.record-grid-card.jsx-67dcb872b111ec8:hover{-webkit-box-shadow:0 8px 24px rgba(0,0,0,.08);-moz-box-shadow:0 8px 24px rgba(0,0,0,.08);box-shadow:0 8px 24px rgba(0,0,0,.08);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.rgc-preview.jsx-67dcb872b111ec8{height:140px;background:#f4f1ff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow:hidden}.rgc-body.jsx-67dcb872b111ec8{padding:14px 16px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.rgc-title.jsx-67dcb872b111ec8{font-size:14px;font-weight:700;color:#1e1b4b;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rgc-id.jsx-67dcb872b111ec8{font-size:11px;color:#7c3aed;font-weight:600}.rgc-meta.jsx-67dcb872b111ec8{font-size:12px;color:#6b7280;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.rgc-actions.jsx-67dcb872b111ec8{padding:10px 16px;border-top:1px solid#f1eef8;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.inventory-table.jsx-67dcb872b111ec8{width:100%;min-width:0;table-layout:auto;border-collapse:collapse;overflow:hidden;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;border:1px solid#e6e3f5}.inventory-table.jsx-67dcb872b111ec8 thead.jsx-67dcb872b111ec8 th.jsx-67dcb872b111ec8{text-align:left;padding:14px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5e6480;background:#eef4f8;border-bottom:1px solid#dde4ef;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.inventory-table.jsx-67dcb872b111ec8 tbody.jsx-67dcb872b111ec8 td.jsx-67dcb872b111ec8{padding:14px 16px;border-bottom:1px solid#edf0f7;color:#2f3146;vertical-align:middle;overflow-wrap:anywhere;word-break:break-word}.inventory-table.jsx-67dcb872b111ec8 tbody.jsx-67dcb872b111ec8 tr.jsx-67dcb872b111ec8:hover{background:#fafbff}.inventory-table.jsx-67dcb872b111ec8 thead.jsx-67dcb872b111ec8 th.jsx-67dcb872b111ec8:nth-child(1){width:80px}.inventory-table.jsx-67dcb872b111ec8 thead.jsx-67dcb872b111ec8 th.jsx-67dcb872b111ec8:nth-child(2),.inventory-table.jsx-67dcb872b111ec8 tbody.jsx-67dcb872b111ec8 td.image-cell.jsx-67dcb872b111ec8{width:84px!important;min-width:84px!important;max-width:84px!important;-webkit-box-sizing:border-box!important;-moz-box-sizing:border-box!important;box-sizing:border-box!important;padding-left:12px;padding-right:12px}.inventory-table.jsx-67dcb872b111ec8 thead.jsx-67dcb872b111ec8 th.jsx-67dcb872b111ec8:last-child{width:180px}.id-cell.jsx-67dcb872b111ec8{white-space:nowrap;font-weight:700;color:#2d3a60;width:84px}.table-preview.jsx-67dcb872b111ec8{width:54px;height:54px;min-width:54px;max-width:54px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;overflow:hidden;background:#f2f5fb;border:1px solid#e0e6f1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#7d8399;font-size:11px;font-weight:700;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.table-preview.jsx-67dcb872b111ec8 img.jsx-67dcb872b111ec8{width:54px;height:54px;max-width:54px;max-height:54px;-o-object-fit:contain;object-fit:contain;display:block}.rgc-preview.jsx-67dcb872b111ec8 .table-preview.jsx-67dcb872b111ec8{width:100%;height:140px;max-width:100%;min-width:100%;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;border:none}.rgc-preview.jsx-67dcb872b111ec8 .table-preview.jsx-67dcb872b111ec8 img.jsx-67dcb872b111ec8{width:100%;height:140px;max-width:100%;max-height:140px;-o-object-fit:cover;object-fit:cover}.rgc-preview.jsx-67dcb872b111ec8 .table-preview.empty.jsx-67dcb872b111ec8{height:140px;font-size:14px}.table-preview.empty.jsx-67dcb872b111ec8{padding:8px;text-align:center}.table-preview.empty.jsx-67dcb872b111ec8 span.jsx-67dcb872b111ec8{display:block;line-height:1.1}.name-cell.jsx-67dcb872b111ec8 strong.jsx-67dcb872b111ec8{display:block;font-size:15px;line-height:1.35;color:#28304d}.name-cell.jsx-67dcb872b111ec8,.inventory-table.jsx-67dcb872b111ec8 tbody.jsx-67dcb872b111ec8 td.jsx-67dcb872b111ec8:not(.id-cell):not(.image-cell):not(:last-child){min-width:0}.name-cell.jsx-67dcb872b111ec8 span.jsx-67dcb872b111ec8,.table-muted.jsx-67dcb872b111ec8{display:block;color:#7d8399;font-size:12px;margin-top:2px}.status-pill.jsx-67dcb872b111ec8{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:6px 10px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;font-size:12px;font-weight:700}.status-pill.is-yes.jsx-67dcb872b111ec8{background:#dff5e8;color:#157347}.status-pill.is-no.jsx-67dcb872b111ec8{background:#ffe1e1;color:#b03030}.table-actions.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;-webkit-flex-wrap:nowrap;-ms-flex-wrap:nowrap;flex-wrap:nowrap;-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.empty-state.jsx-67dcb872b111ec8{border:1px dashed#cfcae8;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;padding:18px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:12px;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;background:#fff}.form-section.jsx-67dcb872b111ec8{padding:0;scroll-margin-top:110px;position:fixed;inset:0;z-index:1000;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow-y:auto;padding:40px 20px}.form-modal-overlay.jsx-67dcb872b111ec8{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;overflow-y:auto;padding:40px 16px}.modern-form-shell.jsx-67dcb872b111ec8{width:100%;max-width:920px;background:#f8fafc;border:1px solid#e2e8f0;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;-webkit-box-shadow:0 24px 48px rgba(0,0,0,.15);-moz-box-shadow:0 24px 48px rgba(0,0,0,.15);box-shadow:0 24px 48px rgba(0,0,0,.15)}.modern-form-topbar.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:16px 24px;background:#fff;border-bottom:1px solid#e2e8f0}.modern-form-topbar.jsx-67dcb872b111ec8 h3.jsx-67dcb872b111ec8{margin:0;font-size:18px;color:#1e293b;font-weight:700}.modern-form-topbar-actions.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.modern-form-layout.jsx-67dcb872b111ec8{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start;max-height:-webkit-calc(100vh - 140px);max-height:-moz-calc(100vh - 140px);max-height:calc(100vh - 140px);overflow-y:auto}.modern-form-main.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px}.modern-form-sidebar.jsx-67dcb872b111ec8{display:none}.modern-form-card.jsx-67dcb872b111ec8,.modern-sidebar-card.jsx-67dcb872b111ec8{background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:20px}.modern-card-title.jsx-67dcb872b111ec8{margin:0 0 16px;font-size:16px;font-weight:800;color:#0f172a;padding-bottom:12px;border-bottom:2px solid#e2e8f0}.modern-fields.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:16px}.modern-fields.specs-grid.jsx-67dcb872b111ec8{display:grid;grid-template-columns:1fr 1fr;gap:14px}.spec-filterable-tag.jsx-67dcb872b111ec8{display:inline-block;margin-left:8px;padding:2px 8px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:#eef2ff;color:#4338ca;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;vertical-align:middle}.spec-filter-picker.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px;margin-top:8px;padding:10px;border:1px dashed#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff}.spec-filter-sublabel.jsx-67dcb872b111ec8{font-size:11px;font-weight:700;color:#4338ca;text-transform:uppercase;letter-spacing:.04em}.spec-filter-hint.jsx-67dcb872b111ec8{font-size:11px;color:#94a3b8;line-height:1.4}.modern-card-subtitle.jsx-67dcb872b111ec8{margin:-8px 0 14px;font-size:12px;color:#94a3b8}.modern-field.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:5px}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8,.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8,.modern-field.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8{width:100%;border:1.5px solid#cbd5e1;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f8fafc;color:#0f172a;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;transition:border-color.15s ease,box-shadow.15s ease,background.15s ease}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8,.modern-field.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8{height:46px;padding:0 14px}.modern-field.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8{cursor:pointer;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8{min-height:110px;padding:12px 14px;resize:vertical;line-height:1.6}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8::-webkit-input-placeholder,.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8::-webkit-input-placeholder{color:#94a3b8}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8:-moz-placeholder,.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8:-moz-placeholder{color:#94a3b8}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8::-moz-placeholder,.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8::-moz-placeholder{color:#94a3b8}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8:-ms-input-placeholder,.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8:-ms-input-placeholder{color:#94a3b8}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8::-ms-input-placeholder,.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8::-ms-input-placeholder{color:#94a3b8}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8::placeholder,.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8::placeholder{color:#94a3b8}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8:focus,.modern-field.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8:focus,.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.12);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.12);box-shadow:0 0 0 3px rgba(99,102,241,.12)}.modern-field.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8:hover:not(:focus),.modern-field.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8:hover:not(:focus),.modern-field.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8:hover:not(:focus){border-color:#94a3b8}.modern-field-label.jsx-67dcb872b111ec8{font-size:13px;font-weight:700;color:#1e293b;letter-spacing:.01em}.modern-field-hint.jsx-67dcb872b111ec8{font-size:11px;color:#64748b;font-style:italic}.form-input-styled.jsx-67dcb872b111ec8{width:100%;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff;color:#0f172a;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease,background.15s ease;transition:border-color.15s ease,box-shadow.15s ease,background.15s ease}input.form-input-styled.jsx-67dcb872b111ec8,select.form-input-styled.jsx-67dcb872b111ec8{height:48px;padding:0 14px}select.form-input-styled.jsx-67dcb872b111ec8{cursor:pointer}textarea.form-input-styled.jsx-67dcb872b111ec8{min-height:110px;padding:12px 14px;resize:vertical;line-height:1.6}.form-input-styled.jsx-67dcb872b111ec8::-webkit-input-placeholder{color:#94a3b8}.form-input-styled.jsx-67dcb872b111ec8:-moz-placeholder{color:#94a3b8}.form-input-styled.jsx-67dcb872b111ec8::-moz-placeholder{color:#94a3b8}.form-input-styled.jsx-67dcb872b111ec8:-ms-input-placeholder{color:#94a3b8}.form-input-styled.jsx-67dcb872b111ec8::-ms-input-placeholder{color:#94a3b8}.form-input-styled.jsx-67dcb872b111ec8::placeholder{color:#94a3b8}.form-input-styled.jsx-67dcb872b111ec8:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 4px rgba(99,102,241,.12);-moz-box-shadow:0 0 0 4px rgba(99,102,241,.12);box-shadow:0 0 0 4px rgba(99,102,241,.12)}.form-input-styled.jsx-67dcb872b111ec8:hover:not(:focus){border-color:#a5b4fc}.searchable-select.jsx-67dcb872b111ec8{position:relative;width:100%}.ss-display.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;height:44px;padding:0 14px;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;cursor:pointer;font-size:14px;color:#1d2939}.ss-display.jsx-67dcb872b111ec8:hover{border-color:#9ca3af}.ss-placeholder.jsx-67dcb872b111ec8{color:#9ca3af}.ss-arrow.jsx-67dcb872b111ec8{color:#6b7280;font-size:12px}.ss-dropdown.jsx-67dcb872b111ec8{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#fff;border:1px solid#e5e7eb;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-webkit-box-shadow:0 8px 24px rgba(0,0,0,.12);-moz-box-shadow:0 8px 24px rgba(0,0,0,.12);box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:50;overflow:hidden;max-height:280px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.ss-search.jsx-67dcb872b111ec8{width:100%;border:none;border-bottom:1px solid#f3f4f6;padding:10px 14px;font-size:13px;outline:none;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.ss-options.jsx-67dcb872b111ec8{max-height:220px;overflow-y:auto;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.ss-option.jsx-67dcb872b111ec8{padding:8px 14px;font-size:13px;cursor:pointer;color:#374151}.ss-option.jsx-67dcb872b111ec8:hover{background:#f3f4f6}.ss-option.is-selected.jsx-67dcb872b111ec8{background:#eff6ff;color:#1d4ed8;font-weight:600}.ss-no-results.jsx-67dcb872b111ec8{padding:12px 14px;font-size:13px;color:#9ca3af;text-align:center}.modern-media-card.jsx-67dcb872b111ec8{border:2px solid#c7d2fe;background:-webkit-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:-moz-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:-o-linear-gradient(315deg,#faf5ff 0%,#eef2ff 100%);background:linear-gradient(135deg,#faf5ff 0%,#eef2ff 100%)}.media-card-title.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;border-bottom-color:#c7d2fe}.modern-media-fields.jsx-67dcb872b111ec8{display:grid;grid-template-columns:1fr;gap:14px}.modern-media-item.full-width.jsx-67dcb872b111ec8{grid-column:auto}.media-field-box.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:10px;padding:16px;border:2px solid#c7d2fe;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff}.media-preview-fixed.jsx-67dcb872b111ec8{position:relative;width:100%;height:140px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:2px solid#e0e7ff;background:#f1f5f9;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-preview-fixed.jsx-67dcb872b111ec8 img.jsx-67dcb872b111ec8{width:100%;height:140px;-o-object-fit:contain;object-fit:contain;-o-object-position:center;object-position:center;display:block;background:#f8fafc}.media-preview-video.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#eef2ff}.media-preview-remove.jsx-67dcb872b111ec8{position:absolute;top:6px;right:6px;width:24px;height:24px;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:16px;line-height:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.media-preview-remove.jsx-67dcb872b111ec8:hover{background:rgba(220,38,38,.85)}.media-file-name-row.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:8px}.modern-thumbnail-preview.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;min-height:160px;border:1px dashed#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;overflow:hidden}.modern-thumb-img.jsx-67dcb872b111ec8{width:100%;max-height:200px;-o-object-fit:contain;object-fit:contain;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px}.modern-thumb-placeholder.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:24px;color:#9ca3af;font-size:12px;text-align:center}@media(max-width:900px){.modern-form-layout.jsx-67dcb872b111ec8{grid-template-columns:1fr}.modern-form-sidebar.jsx-67dcb872b111ec8{position:static}.modern-media-fields.jsx-67dcb872b111ec8{grid-template-columns:1fr}.modern-media-item.full-width.jsx-67dcb872b111ec8{grid-column:auto}}.block-head.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid#f1f3f9}.block-number.jsx-67dcb872b111ec8{width:32px;height:32px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#eef1ff;color:#4252a6;font-size:12px;font-weight:800;-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto}.block-head.jsx-67dcb872b111ec8 h4.jsx-67dcb872b111ec8{margin:0;font-size:15px;color:#1f2638;letter-spacing:-.01em;font-weight:700}.block-head.jsx-67dcb872b111ec8 p.jsx-67dcb872b111ec8{margin:3px 0 0;color:#74809a;font-size:12.5px;line-height:1.45}.field-grid.jsx-67dcb872b111ec8{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px 18px}.field-group.jsx-67dcb872b111ec8{grid-column:span 4;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px;min-width:0}.field-group.span-3.jsx-67dcb872b111ec8{grid-column:span 3}.field-group.span-4.jsx-67dcb872b111ec8{grid-column:span 4}.field-group.span-6.jsx-67dcb872b111ec8{grid-column:span 6}.field-group.span-12.jsx-67dcb872b111ec8{grid-column:span 12}.field-group.status-field.jsx-67dcb872b111ec8{max-width:260px}.field-label.jsx-67dcb872b111ec8{display:block;color:#344054;font-size:13px;line-height:1.3;font-weight:600;margin-bottom:2px}.field-group.jsx-67dcb872b111ec8>span.jsx-67dcb872b111ec8{color:#475467;font-size:12.5px;line-height:1.2;font-weight:600}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8,.field-group.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8,.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8{width:100%;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#1d2939;font:inherit;font-size:14px;-webkit-transition:border-color.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease;transition:border-color.15s ease,box-shadow.15s ease}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8,.field-group.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8{height:44px;padding:0 14px}.field-group.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8{cursor:pointer}.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8{min-height:110px;padding:10px 14px;resize:vertical;line-height:1.6}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8::-webkit-input-placeholder,.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8::-webkit-input-placeholder{color:#98a2b3}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8:-moz-placeholder,.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8:-moz-placeholder{color:#98a2b3}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8::-moz-placeholder,.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8::-moz-placeholder{color:#98a2b3}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8:-ms-input-placeholder,.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8:-ms-input-placeholder{color:#98a2b3}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8::-ms-input-placeholder,.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8::-ms-input-placeholder{color:#98a2b3}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8::placeholder,.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8::placeholder{color:#98a2b3}.field-group.jsx-67dcb872b111ec8 input.jsx-67dcb872b111ec8:focus,.field-group.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8:focus,.field-group.jsx-67dcb872b111ec8 textarea.jsx-67dcb872b111ec8:focus{outline:none;border-color:#5b6abf;-webkit-box-shadow:0 0 0 3px rgba(91,106,191,.12);-moz-box-shadow:0 0 0 3px rgba(91,106,191,.12);box-shadow:0 0 0 3px rgba(91,106,191,.12)}.rich-editor-wrap.jsx-67dcb872b111ec8{width:100%;min-height:300px}.rich-editor-wrap.jsx-67dcb872b111ec8 .ql-container{min-height:250px;font-size:14px;-webkit-border-radius:0 0 8px 8px;-moz-border-radius:0 0 8px 8px;border-radius:0 0 8px 8px}.rich-editor-wrap.jsx-67dcb872b111ec8 .ql-toolbar{-webkit-border-radius:8px 8px 0 0;-moz-border-radius:8px 8px 0 0;border-radius:8px 8px 0 0;background:#f9fafb}.rich-editor-wrap.jsx-67dcb872b111ec8 .ql-editor{min-height:250px}.media-section-grid.jsx-67dcb872b111ec8{display:grid;grid-template-columns:1fr;gap:16px}.media-section-item.jsx-67dcb872b111ec8{min-width:0}.media-full-width.jsx-67dcb872b111ec8{grid-column:auto}.media-field-label-row.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.media-field-label.jsx-67dcb872b111ec8{margin:0;font-size:13px;font-weight:700;color:#1e293b}.media-badge.jsx-67dcb872b111ec8{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:#eef2ff;color:#4f46e5;font-size:11px;font-weight:700}.media-status-dot.jsx-67dcb872b111ec8{width:8px;height:8px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#22c55e;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-drop-box.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:12px;padding:28px 20px;border:2px dashed#818cf8;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;cursor:pointer;-webkit-transition:border-color.2s,background.2s,box-shadow.2s;-moz-transition:border-color.2s,background.2s,box-shadow.2s;-o-transition:border-color.2s,background.2s,box-shadow.2s;transition:border-color.2s,background.2s,box-shadow.2s;-webkit-box-shadow:0 2px 8px rgba(79,70,229,.06);-moz-box-shadow:0 2px 8px rgba(79,70,229,.06);box-shadow:0 2px 8px rgba(79,70,229,.06)}.media-drop-box.jsx-67dcb872b111ec8:hover,.media-drop-box.drag-over.jsx-67dcb872b111ec8{border-color:#4f46e5;background:#eef2ff;-webkit-box-shadow:0 4px 16px rgba(79,70,229,.15);-moz-box-shadow:0 4px 16px rgba(79,70,229,.15);box-shadow:0 4px 16px rgba(79,70,229,.15)}.media-drop-icon.jsx-67dcb872b111ec8{width:48px;height:48px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.media-drop-text.jsx-67dcb872b111ec8{margin:0;font-size:14px;color:#475569;text-align:center;line-height:1.5}.media-drop-or.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;width:100%;max-width:180px}.media-drop-or.jsx-67dcb872b111ec8::before,.media-drop-or.jsx-67dcb872b111ec8::after{content:\"\";-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:1px;background:#e2e8f0}.media-drop-or.jsx-67dcb872b111ec8 span.jsx-67dcb872b111ec8{font-size:12px;color:#94a3b8;font-weight:600;letter-spacing:.05em}.media-browse-btn.jsx-67dcb872b111ec8{padding:10px 24px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#4f46e5;color:#fff;font-size:14px;font-weight:600;cursor:pointer;-webkit-transition:background.15s,-webkit-transform.1s;-moz-transition:background.15s,-moz-transform.1s;-o-transition:background.15s,-o-transform.1s;transition:background.15s,-webkit-transform.1s;transition:background.15s,-moz-transform.1s;transition:background.15s,-o-transform.1s;transition:background.15s,transform.1s}.media-browse-btn.jsx-67dcb872b111ec8:hover{background:#4338ca;-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);-o-transform:translateY(-1px);transform:translateY(-1px)}.media-thumb-row.jsx-67dcb872b111ec8{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,80px));gap:10px}.media-thumb.jsx-67dcb872b111ec8{position:relative;width:80px;height:80px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:2px solid#c7d2fe;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;background:#f8fafc}.media-thumb.jsx-67dcb872b111ec8 img.jsx-67dcb872b111ec8{width:80px;height:80px;-o-object-fit:cover;object-fit:cover;display:block}.media-thumb-remove.jsx-67dcb872b111ec8{position:absolute;top:4px;right:4px;width:20px;height:20px;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:14px;line-height:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;opacity:0;-webkit-transition:opacity.15s;-moz-transition:opacity.15s;-o-transition:opacity.15s;transition:opacity.15s}.media-thumb.jsx-67dcb872b111ec8:hover .media-thumb-remove.jsx-67dcb872b111ec8{opacity:1}.media-current-name.jsx-67dcb872b111ec8{font-size:12px;color:#475569;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.media-remove-file.jsx-67dcb872b111ec8{border:none;background:none;color:#ef4444;font-size:12px;font-weight:600;cursor:pointer;padding:2px 6px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.media-remove-file.jsx-67dcb872b111ec8:hover{background:#fef2f2}.media-field-card.jsx-67dcb872b111ec8{display:none}.media-field-header.jsx-67dcb872b111ec8,.media-field-title-row.jsx-67dcb872b111ec8,.media-title-icon.jsx-67dcb872b111ec8,.media-field-title.jsx-67dcb872b111ec8,.media-status-active.jsx-67dcb872b111ec8,.media-field-body.jsx-67dcb872b111ec8,.media-upload-area.jsx-67dcb872b111ec8,.media-dropzone.jsx-67dcb872b111ec8,.media-dropzone-icon.jsx-67dcb872b111ec8,.media-dropzone-text.jsx-67dcb872b111ec8,.media-dropzone-compact.jsx-67dcb872b111ec8,.media-inline-preview.jsx-67dcb872b111ec8,.media-preview-overlay.jsx-67dcb872b111ec8,.media-file-info.jsx-67dcb872b111ec8,.media-file-name.jsx-67dcb872b111ec8,.media-clear-btn.jsx-67dcb872b111ec8{}.media-input-group.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:6px}.media-input-label.jsx-67dcb872b111ec8{font-size:12px;font-weight:600;color:#667085}.media-url-input.jsx-67dcb872b111ec8,.media-textarea.jsx-67dcb872b111ec8{width:100%;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;color:#0f172a;font:inherit;font-size:13px;-webkit-transition:border-color.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,box-shadow.15s ease;transition:border-color.15s ease,box-shadow.15s ease}.media-textarea.jsx-67dcb872b111ec8{min-height:64px;padding:10px 14px;resize:vertical;line-height:1.6}.media-textarea.jsx-67dcb872b111ec8::-webkit-input-placeholder{color:#94a3b8}.media-textarea.jsx-67dcb872b111ec8:-moz-placeholder{color:#94a3b8}.media-textarea.jsx-67dcb872b111ec8::-moz-placeholder{color:#94a3b8}.media-textarea.jsx-67dcb872b111ec8:-ms-input-placeholder{color:#94a3b8}.media-textarea.jsx-67dcb872b111ec8::-ms-input-placeholder{color:#94a3b8}.media-textarea.jsx-67dcb872b111ec8::placeholder{color:#94a3b8}.media-textarea.jsx-67dcb872b111ec8:focus{outline:none;border-color:#6366f1;background:#fff;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1)}.media-or-divider.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.media-or-divider.jsx-67dcb872b111ec8::before,.media-or-divider.jsx-67dcb872b111ec8::after{content:\"\";-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:1px;background:#e4e7ec}.media-or-divider.jsx-67dcb872b111ec8 span.jsx-67dcb872b111ec8{font-size:12px;color:#98a2b3;font-weight:500;text-transform:uppercase;letter-spacing:.04em}.media-upload-btn.jsx-67dcb872b111ec8{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:8px;height:42px;padding:0 18px;border:1px solid#d0d5dd;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#344054;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;-webkit-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;-moz-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;-o-transition:border-color.15s ease,background.15s ease,box-shadow.15s ease;transition:border-color.15s ease,background.15s ease,box-shadow.15s ease}.media-upload-btn.jsx-67dcb872b111ec8:hover{border-color:#98a2b3;background:#f9fafb;-webkit-box-shadow:0 1px 3px rgba(16,24,40,.06);-moz-box-shadow:0 1px 3px rgba(16,24,40,.06);box-shadow:0 1px 3px rgba(16,24,40,.06)}.media-upload-btn.jsx-67dcb872b111ec8:disabled{opacity:.6;cursor:wait}.media-preview-grid.jsx-67dcb872b111ec8{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px}.media-preview-item.jsx-67dcb872b111ec8{position:relative;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;border:1px solid#e5e7eb;background:#f9fafb;aspect-ratio:1}.media-preview-item.jsx-67dcb872b111ec8 img.jsx-67dcb872b111ec8{display:block;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.media-remove-btn.jsx-67dcb872b111ec8{position:absolute;top:4px;right:4px;width:24px;height:24px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;border:none;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;opacity:0;-webkit-transition:opacity.15s ease;-moz-transition:opacity.15s ease;-o-transition:opacity.15s ease;transition:opacity.15s ease}.media-preview-item.jsx-67dcb872b111ec8:hover .media-remove-btn.jsx-67dcb872b111ec8{opacity:1}.hidden-file-input.jsx-67dcb872b111ec8{display:none!important;width:0!important;height:0!important;opacity:0!important;pointer-events:none!important;position:absolute!important}.form-actions.jsx-67dcb872b111ec8{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding-top:22px;border-top:1px solid#edf1f7}.cancel-btn.jsx-67dcb872b111ec8,.submit-btn.jsx-67dcb872b111ec8{height:44px;padding-left:20px;padding-right:20px}.submit-btn.jsx-67dcb872b111ec8{-webkit-box-shadow:0 1px 3px rgba(47,61,122,.15);-moz-box-shadow:0 1px 3px rgba(47,61,122,.15);box-shadow:0 1px 3px rgba(47,61,122,.15)}.submit-btn.jsx-67dcb872b111ec8:hover,.create-btn.jsx-67dcb872b111ec8:hover,.refresh-btn.jsx-67dcb872b111ec8:hover{-webkit-filter:brightness(1.04);filter:brightness(1.04)}.cancel-btn.jsx-67dcb872b111ec8:hover,.close-form-btn.jsx-67dcb872b111ec8:hover,.ghost-btn.jsx-67dcb872b111ec8:hover{border-color:#bfc7dd;background:#f9fafb}.action-btn.jsx-67dcb872b111ec8:not(.danger):hover{background:#2f3d7a;color:#fff;border-color:#2f3d7a}.action-btn.danger.jsx-67dcb872b111ec8:hover{background:#c0344f;color:#fff;border-color:#c0344f}.product-form-card.jsx-67dcb872b111ec8 .field-group.jsx-67dcb872b111ec8 select.jsx-67dcb872b111ec8{-ms-appearance:none!important;appearance:none!important;-webkit-appearance:none!important;-moz-appearance:none!important;padding-right:40px!important;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")!important;background-repeat:no-repeat!important;background-position:right 14px center!important;cursor:pointer!important}@media(max-width:1080px){.field-group.jsx-67dcb872b111ec8,.field-group.span-3.jsx-67dcb872b111ec8{grid-column:span 4}.field-group.span-6.jsx-67dcb872b111ec8{grid-column:span 6}.field-group.span-12.jsx-67dcb872b111ec8{grid-column:span 12}.field-group.status-field.jsx-67dcb872b111ec8{max-width:none}}@media(max-width:840px){.inventory-toolbar.jsx-67dcb872b111ec8,.empty-state.jsx-67dcb872b111ec8{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.inventory-filters.jsx-67dcb872b111ec8{width:100%}.search-field.jsx-67dcb872b111ec8{width:100%;min-width:0}.table-actions.jsx-67dcb872b111ec8{-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.inventory-table.jsx-67dcb872b111ec8 thead.jsx-67dcb872b111ec8 th.jsx-67dcb872b111ec8:nth-child(n+5):not(:last-child),.inventory-table.jsx-67dcb872b111ec8 tbody.jsx-67dcb872b111ec8 td.jsx-67dcb872b111ec8:nth-child(n+5):not(:last-child){display:none}.product-form-header.jsx-67dcb872b111ec8{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-entry-form.jsx-67dcb872b111ec8,.product-form-header.jsx-67dcb872b111ec8{padding-left:20px;padding-right:20px}.form-block.jsx-67dcb872b111ec8{padding:18px}.field-group.jsx-67dcb872b111ec8,.field-group.span-3.jsx-67dcb872b111ec8,.field-group.span-4.jsx-67dcb872b111ec8,.field-group.span-6.jsx-67dcb872b111ec8,.field-group.span-12.jsx-67dcb872b111ec8{grid-column:span 12}.media-section-grid.jsx-67dcb872b111ec8{grid-template-columns:1fr}.media-full-width.jsx-67dcb872b111ec8{grid-column:auto}}@media(max-width:560px){.inventory-card.jsx-67dcb872b111ec8,.admin-content.jsx-67dcb872b111ec8{padding-left:12px;padding-right:12px}.inventory-table.jsx-67dcb872b111ec8 thead.jsx-67dcb872b111ec8 th.jsx-67dcb872b111ec8:nth-child(3),.inventory-table.jsx-67dcb872b111ec8 tbody.jsx-67dcb872b111ec8 td.jsx-67dcb872b111ec8:nth-child(3){width:auto}.inventory-table.jsx-67dcb872b111ec8 thead.jsx-67dcb872b111ec8 th.jsx-67dcb872b111ec8:nth-child(n+4):not(:last-child),.inventory-table.jsx-67dcb872b111ec8 tbody.jsx-67dcb872b111ec8 td.jsx-67dcb872b111ec8:nth-child(n+4):not(:last-child){display:none}.product-form-card.jsx-67dcb872b111ec8{-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px}.product-entry-form.jsx-67dcb872b111ec8,.product-form-header.jsx-67dcb872b111ec8{padding:16px}.product-form-header.jsx-67dcb872b111ec8 h3.jsx-67dcb872b111ec8{font-size:20px}.block-head.jsx-67dcb872b111ec8{gap:10px}.form-actions.jsx-67dcb872b111ec8{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-webkit-flex-direction:column-reverse;-moz-box-orient:vertical;-moz-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-box-align:stretch;-webkit-align-items:stretch;-moz-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.cancel-btn.jsx-67dcb872b111ec8,.submit-btn.jsx-67dcb872b111ec8,.close-form-btn.jsx-67dcb872b111ec8{width:100%}}"
             })
         ]
     });

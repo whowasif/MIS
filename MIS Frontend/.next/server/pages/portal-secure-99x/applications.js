@@ -150,25 +150,25 @@ const ApplicationsPage = ({ applications =[]  })=>{
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                    className: "jsx-f375c0bcc1973966",
+                    className: "jsx-b56ebd7fcb10d262",
                     children: "Applications | Admin"
                 })
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-f375c0bcc1973966" + " " + "apps-page",
+                className: "jsx-b56ebd7fcb10d262" + " " + "apps-page",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                        className: "jsx-f375c0bcc1973966" + " " + "page-header",
+                        className: "jsx-b56ebd7fcb10d262" + " " + "page-header",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-f375c0bcc1973966",
+                                className: "jsx-b56ebd7fcb10d262",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                        className: "jsx-f375c0bcc1973966",
+                                        className: "jsx-b56ebd7fcb10d262",
                                         children: "Career Applications"
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                        className: "jsx-f375c0bcc1973966",
+                                        className: "jsx-b56ebd7fcb10d262",
                                         children: [
                                             filteredItems.length,
                                             " of ",
@@ -182,31 +182,31 @@ const ApplicationsPage = ({ applications =[]  })=>{
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                 value: statusFilter,
                                 onChange: (e)=>setStatusFilter(e.target.value),
-                                className: "jsx-f375c0bcc1973966" + " " + "status-filter",
+                                className: "jsx-b56ebd7fcb10d262" + " " + "status-filter",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                         value: "",
-                                        className: "jsx-f375c0bcc1973966",
+                                        className: "jsx-b56ebd7fcb10d262",
                                         children: "All Status"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                         value: "new",
-                                        className: "jsx-f375c0bcc1973966",
+                                        className: "jsx-b56ebd7fcb10d262",
                                         children: "New"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                         value: "reviewed",
-                                        className: "jsx-f375c0bcc1973966",
+                                        className: "jsx-b56ebd7fcb10d262",
                                         children: "Reviewed"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                         value: "shortlisted",
-                                        className: "jsx-f375c0bcc1973966",
+                                        className: "jsx-b56ebd7fcb10d262",
                                         children: "Shortlisted"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                         value: "rejected",
-                                        className: "jsx-f375c0bcc1973966",
+                                        className: "jsx-b56ebd7fcb10d262",
                                         children: "Rejected"
                                     })
                                 ]
@@ -214,24 +214,24 @@ const ApplicationsPage = ({ applications =[]  })=>{
                         ]
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-f375c0bcc1973966" + " " + "apps-layout",
+                        className: "jsx-b56ebd7fcb10d262" + " " + "apps-layout",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-f375c0bcc1973966" + " " + "apps-list-panel",
+                                className: "jsx-b56ebd7fcb10d262" + " " + "apps-list-panel",
                                 children: [
                                     filteredItems.length === 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-f375c0bcc1973966" + " " + "empty-msg",
+                                        className: "jsx-b56ebd7fcb10d262" + " " + "empty-msg",
                                         children: "No applications match this filter."
                                     }),
                                     filteredItems.map((app)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                             onClick: ()=>setViewApp(app),
-                                            className: "jsx-f375c0bcc1973966" + " " + `app-card ${viewApp?.id === app.id ? "is-active" : ""}`,
+                                            className: "jsx-b56ebd7fcb10d262" + " " + `app-card ${viewApp?.id === app.id ? "is-active" : ""}`,
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f375c0bcc1973966" + " " + "app-card-top",
+                                                    className: "jsx-b56ebd7fcb10d262" + " " + "app-card-top",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-f375c0bcc1973966",
+                                                            className: "jsx-b56ebd7fcb10d262",
                                                             children: app.applicant_name
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
@@ -239,17 +239,17 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                                                 background: statusColors[app.status]?.bg,
                                                                 color: statusColors[app.status]?.color
                                                             },
-                                                            className: "jsx-f375c0bcc1973966" + " " + "status-badge",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "status-badge",
                                                             children: app.status.charAt(0).toUpperCase() + app.status.slice(1)
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-f375c0bcc1973966" + " " + "app-card-position",
+                                                    className: "jsx-b56ebd7fcb10d262" + " " + "app-card-position",
                                                     children: app.job_title || "General"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-f375c0bcc1973966" + " " + "app-card-date",
+                                                    className: "jsx-b56ebd7fcb10d262" + " " + "app-card-date",
                                                     children: formatDate(app.created_at)
                                                 })
                                             ]
@@ -257,86 +257,86 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-f375c0bcc1973966" + " " + "apps-detail-panel",
+                                className: "jsx-b56ebd7fcb10d262" + " " + "apps-detail-panel",
                                 children: viewApp ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f375c0bcc1973966" + " " + "detail-header",
+                                            className: "jsx-b56ebd7fcb10d262" + " " + "detail-header",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-f375c0bcc1973966",
+                                                    className: "jsx-b56ebd7fcb10d262",
                                                     children: viewApp.applicant_name
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                     onClick: ()=>setViewApp(null),
-                                                    className: "jsx-f375c0bcc1973966" + " " + "close-x",
+                                                    className: "jsx-b56ebd7fcb10d262" + " " + "close-x",
                                                     children: "✕"
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f375c0bcc1973966" + " " + "detail-content",
+                                            className: "jsx-b56ebd7fcb10d262" + " " + "detail-content",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f375c0bcc1973966" + " " + "info-grid",
+                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-grid",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-f375c0bcc1973966" + " " + "info-item",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "info-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-label",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-label",
                                                                     children: "Position Applied"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-value",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-value",
                                                                     children: viewApp.job_title || "—"
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-f375c0bcc1973966" + " " + "info-item",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "info-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-label",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-label",
                                                                     children: "Email"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-value",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-value",
                                                                     children: viewApp.email
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-f375c0bcc1973966" + " " + "info-item",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "info-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-label",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-label",
                                                                     children: "Phone"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-value",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-value",
                                                                     children: viewApp.phone || "Not provided"
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-f375c0bcc1973966" + " " + "info-item",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "info-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-label",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-label",
                                                                     children: "Applied On"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-value",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-value",
                                                                     children: formatDate(viewApp.created_at)
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-f375c0bcc1973966" + " " + "info-item",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "info-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "info-label",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "info-label",
                                                                     children: "Status"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("select", {
@@ -347,10 +347,10 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                                                         background: statusColors[viewApp.status]?.bg,
                                                                         color: statusColors[viewApp.status]?.color
                                                                     },
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "status-select",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "status-select",
                                                                     children: STATUS_OPTIONS.map((s)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: s,
-                                                                            className: "jsx-f375c0bcc1973966",
+                                                                            className: "jsx-b56ebd7fcb10d262",
                                                                             children: s.charAt(0).toUpperCase() + s.slice(1)
                                                                         }, s))
                                                                 })
@@ -359,36 +359,36 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                                     ]
                                                 }),
                                                 viewApp.cover_letter && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f375c0bcc1973966" + " " + "detail-section",
+                                                    className: "jsx-b56ebd7fcb10d262" + " " + "detail-section",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                            className: "jsx-f375c0bcc1973966",
+                                                            className: "jsx-b56ebd7fcb10d262",
                                                             children: "Cover Letter"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-f375c0bcc1973966" + " " + "text-box",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "text-box",
                                                             children: viewApp.cover_letter
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f375c0bcc1973966" + " " + "detail-section",
+                                                    className: "jsx-b56ebd7fcb10d262" + " " + "detail-section",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                            className: "jsx-f375c0bcc1973966",
+                                                            className: "jsx-b56ebd7fcb10d262",
                                                             children: "Resume / CV"
                                                         }),
                                                         viewApp.resume_path ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-f375c0bcc1973966" + " " + "resume-viewer",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "resume-viewer",
                                                             children: [
                                                                 viewApp.resume_path.toLowerCase().endsWith(".pdf") ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("iframe", {
                                                                     src: viewApp.resume_path,
                                                                     title: "Resume",
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "resume-iframe"
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "resume-iframe"
                                                                 }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "resume-download",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "resume-download",
                                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                                        className: "jsx-f375c0bcc1973966",
+                                                                        className: "jsx-b56ebd7fcb10d262",
                                                                         children: [
                                                                             "Document format: ",
                                                                             viewApp.resume_path.split(".").pop().toUpperCase()
@@ -399,7 +399,7 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                                                     href: viewApp.resume_path,
                                                                     target: "_blank",
                                                                     rel: "noopener noreferrer",
-                                                                    className: "jsx-f375c0bcc1973966" + " " + "download-btn",
+                                                                    className: "jsx-b56ebd7fcb10d262" + " " + "download-btn",
                                                                     children: [
                                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                                                             width: "16",
@@ -410,22 +410,22 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                                                             strokeWidth: "2",
                                                                             strokeLinecap: "round",
                                                                             strokeLinejoin: "round",
-                                                                            className: "jsx-f375c0bcc1973966",
+                                                                            className: "jsx-b56ebd7fcb10d262",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                     d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4",
-                                                                                    className: "jsx-f375c0bcc1973966"
+                                                                                    className: "jsx-b56ebd7fcb10d262"
                                                                                 }),
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
                                                                                     points: "7 10 12 15 17 10",
-                                                                                    className: "jsx-f375c0bcc1973966"
+                                                                                    className: "jsx-b56ebd7fcb10d262"
                                                                                 }),
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                                                     x1: "12",
                                                                                     y1: "15",
                                                                                     x2: "12",
                                                                                     y2: "3",
-                                                                                    className: "jsx-f375c0bcc1973966"
+                                                                                    className: "jsx-b56ebd7fcb10d262"
                                                                                 })
                                                                             ]
                                                                         }),
@@ -434,22 +434,22 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                                                 })
                                                             ]
                                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-f375c0bcc1973966" + " " + "no-resume",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "no-resume",
                                                             children: "No resume uploaded."
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f375c0bcc1973966" + " " + "detail-actions",
+                                                    className: "jsx-b56ebd7fcb10d262" + " " + "detail-actions",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                             href: `mailto:${viewApp.email}?subject=Regarding your application for ${viewApp.job_title || "the position"}`,
-                                                            className: "jsx-f375c0bcc1973966" + " " + "action-btn email-btn",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "action-btn email-btn",
                                                             children: "Email Applicant"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                             onClick: ()=>deleteApp(viewApp.id),
-                                                            className: "jsx-f375c0bcc1973966" + " " + "action-btn delete-btn",
+                                                            className: "jsx-b56ebd7fcb10d262" + " " + "action-btn delete-btn",
                                                             children: "Delete Application"
                                                         })
                                                     ]
@@ -458,7 +458,7 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                         })
                                     ]
                                 }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f375c0bcc1973966" + " " + "empty-detail",
+                                    className: "jsx-b56ebd7fcb10d262" + " " + "empty-detail",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                             width: "48",
@@ -469,36 +469,36 @@ const ApplicationsPage = ({ applications =[]  })=>{
                                             strokeWidth: "1.5",
                                             strokeLinecap: "round",
                                             strokeLinejoin: "round",
-                                            className: "jsx-f375c0bcc1973966",
+                                            className: "jsx-b56ebd7fcb10d262",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                     d: "M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2",
-                                                    className: "jsx-f375c0bcc1973966"
+                                                    className: "jsx-b56ebd7fcb10d262"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                     cx: "8.5",
                                                     cy: "7",
                                                     r: "4",
-                                                    className: "jsx-f375c0bcc1973966"
+                                                    className: "jsx-b56ebd7fcb10d262"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                     x1: "20",
                                                     y1: "8",
                                                     x2: "20",
                                                     y2: "14",
-                                                    className: "jsx-f375c0bcc1973966"
+                                                    className: "jsx-b56ebd7fcb10d262"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                     x1: "23",
                                                     y1: "11",
                                                     x2: "17",
                                                     y2: "11",
-                                                    className: "jsx-f375c0bcc1973966"
+                                                    className: "jsx-b56ebd7fcb10d262"
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-f375c0bcc1973966",
+                                            className: "jsx-b56ebd7fcb10d262",
                                             children: "Select an application to view details"
                                         })
                                     ]
@@ -509,8 +509,8 @@ const ApplicationsPage = ({ applications =[]  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "f375c0bcc1973966",
-                children: ".apps-page.jsx-f375c0bcc1973966{display:grid;gap:16px}.page-header.jsx-f375c0bcc1973966{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.page-header.jsx-f375c0bcc1973966 h1.jsx-f375c0bcc1973966{margin:0;font-size:24px;color:#1f2937}.page-header.jsx-f375c0bcc1973966 p.jsx-f375c0bcc1973966{margin:4px 0 0;color:#6b7280;font-size:14px}.status-filter.jsx-f375c0bcc1973966{padding:9px 14px;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff;font:inherit;font-size:14px;cursor:pointer}.status-filter.jsx-f375c0bcc1973966:focus{outline:none;border-color:#6366f1}.apps-layout.jsx-f375c0bcc1973966{display:grid;grid-template-columns:340px 1fr;gap:16px;height:-webkit-calc(100vh - 200px);height:-moz-calc(100vh - 200px);height:calc(100vh - 200px);overflow:hidden}.apps-list-panel.jsx-f375c0bcc1973966{overflow-y:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;padding-right:4px}.empty-msg.jsx-f375c0bcc1973966{color:#9ca3af;text-align:center;padding:40px 16px}.app-card.jsx-f375c0bcc1973966{border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:14px 16px;background:#fff;cursor:pointer;-webkit-transition:border-color.15s,box-shadow.15s;-moz-transition:border-color.15s,box-shadow.15s;-o-transition:border-color.15s,box-shadow.15s;transition:border-color.15s,box-shadow.15s}.app-card.jsx-f375c0bcc1973966:hover{border-color:#a5b4fc;-webkit-box-shadow:0 2px 8px rgba(99,102,241,.06);-moz-box-shadow:0 2px 8px rgba(99,102,241,.06);box-shadow:0 2px 8px rgba(99,102,241,.06)}.app-card.is-active.jsx-f375c0bcc1973966{border-color:#6366f1;background:#f5f3ff}.app-card-top.jsx-f375c0bcc1973966{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.app-card-top.jsx-f375c0bcc1973966 strong.jsx-f375c0bcc1973966{font-size:14px;color:#111827}.status-badge.jsx-f375c0bcc1973966{font-size:11px;font-weight:700;padding:3px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.app-card-position.jsx-f375c0bcc1973966{margin:4px 0 0;font-size:13px;color:#6b7280}.app-card-date.jsx-f375c0bcc1973966{display:block;margin-top:4px;font-size:11px;color:#9ca3af}.apps-detail-panel.jsx-f375c0bcc1973966{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;overflow-y:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.detail-header.jsx-f375c0bcc1973966{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:20px 24px;border-bottom:1px solid#f3f4f6}.detail-header.jsx-f375c0bcc1973966 h2.jsx-f375c0bcc1973966{margin:0;font-size:20px;color:#111827}.close-x.jsx-f375c0bcc1973966{border:none;background:transparent;font-size:22px;cursor:pointer;color:#9ca3af}.detail-content.jsx-f375c0bcc1973966{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:24px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.info-grid.jsx-f375c0bcc1973966{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;padding:18px;background:#f9fafb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;border:1px solid#f3f4f6}.info-item.jsx-f375c0bcc1973966{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:3px}.info-label.jsx-f375c0bcc1973966{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:600}.info-value.jsx-f375c0bcc1973966{font-size:14px;color:#111827;font-weight:600}.status-select.jsx-f375c0bcc1973966{border:none;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:4px 10px;font-weight:700;font-size:12px;cursor:pointer}.detail-section.jsx-f375c0bcc1973966 h4.jsx-f375c0bcc1973966{margin:0 0 10px;font-size:13px;color:#374151;text-transform:uppercase;letter-spacing:.04em;font-weight:700}.text-box.jsx-f375c0bcc1973966{padding:14px 16px;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;font-size:14px;color:#374151;line-height:1.7;white-space:pre-wrap}.resume-viewer.jsx-f375c0bcc1973966{display:grid;gap:12px}.resume-iframe.jsx-f375c0bcc1973966{width:100%;height:400px;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}.resume-download.jsx-f375c0bcc1973966{padding:24px;border:1px dashed#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;text-align:center;color:#6b7280}.download-btn.jsx-f375c0bcc1973966{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:10px 18px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#374151;font-size:14px;font-weight:600;text-decoration:none}.download-btn.jsx-f375c0bcc1973966:hover{background:#f3f4f6}.no-resume.jsx-f375c0bcc1973966{color:#9ca3af;font-size:14px}.detail-actions.jsx-f375c0bcc1973966{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;padding-top:16px;border-top:1px solid#f3f4f6;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.action-btn.jsx-f375c0bcc1973966{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;padding:9px 16px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none}.email-btn.jsx-f375c0bcc1973966{border:1px solid#d1d5db;background:#fff;color:#374151}.email-btn.jsx-f375c0bcc1973966:hover{background:#f3f4f6}.delete-btn.jsx-f375c0bcc1973966{border:1px solid#fecaca;background:#fff;color:#dc2626}.delete-btn.jsx-f375c0bcc1973966:hover{background:#fef2f2}.empty-detail.jsx-f375c0bcc1973966{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;height:100%;gap:12px;color:#9ca3af;font-size:14px}@media(max-width:900px){.apps-layout.jsx-f375c0bcc1973966{grid-template-columns:1fr;grid-template-rows:280px 1fr}}"
+                id: "b56ebd7fcb10d262",
+                children: ".apps-page.jsx-b56ebd7fcb10d262{display:grid;gap:16px}.page-header.jsx-b56ebd7fcb10d262{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.page-header.jsx-b56ebd7fcb10d262 h1.jsx-b56ebd7fcb10d262{margin:0;font-size:24px;color:#1f2937}.page-header.jsx-b56ebd7fcb10d262 p.jsx-b56ebd7fcb10d262{margin:4px 0 0;color:#6b7280;font-size:14px}.status-filter.jsx-b56ebd7fcb10d262{padding:9px 14px;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff;font:inherit;font-size:14px;cursor:pointer}.status-filter.jsx-b56ebd7fcb10d262:focus{outline:none;border-color:#6366f1}.apps-layout.jsx-b56ebd7fcb10d262{display:grid;grid-template-columns:340px 1fr;gap:16px;height:-webkit-calc(100vh - 200px);height:-moz-calc(100vh - 200px);height:calc(100vh - 200px);overflow:hidden}.apps-list-panel.jsx-b56ebd7fcb10d262{overflow-y:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;padding-right:4px}.empty-msg.jsx-b56ebd7fcb10d262{color:#9ca3af;text-align:center;padding:40px 16px}.app-card.jsx-b56ebd7fcb10d262{border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:14px 16px;background:#fff;cursor:pointer;-webkit-transition:border-color.15s,box-shadow.15s;-moz-transition:border-color.15s,box-shadow.15s;-o-transition:border-color.15s,box-shadow.15s;transition:border-color.15s,box-shadow.15s}.app-card.jsx-b56ebd7fcb10d262:hover{border-color:#a5b4fc;-webkit-box-shadow:0 2px 8px rgba(99,102,241,.06);-moz-box-shadow:0 2px 8px rgba(99,102,241,.06);box-shadow:0 2px 8px rgba(99,102,241,.06)}.app-card.is-active.jsx-b56ebd7fcb10d262{border-color:#6366f1;background:#f5f3ff}.app-card-top.jsx-b56ebd7fcb10d262{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.app-card-top.jsx-b56ebd7fcb10d262 strong.jsx-b56ebd7fcb10d262{font-size:14px;color:#111827}.status-badge.jsx-b56ebd7fcb10d262{font-size:11px;font-weight:700;padding:3px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.app-card-position.jsx-b56ebd7fcb10d262{margin:4px 0 0;font-size:13px;color:#6b7280}.app-card-date.jsx-b56ebd7fcb10d262{display:block;margin-top:4px;font-size:11px;color:#9ca3af}.apps-detail-panel.jsx-b56ebd7fcb10d262{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;overflow-y:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.detail-header.jsx-b56ebd7fcb10d262{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:20px 24px;border-bottom:1px solid#f3f4f6}.detail-header.jsx-b56ebd7fcb10d262 h2.jsx-b56ebd7fcb10d262{margin:0;font-size:20px;color:#111827}.close-x.jsx-b56ebd7fcb10d262{border:none;background:transparent;font-size:22px;cursor:pointer;color:#9ca3af}.detail-content.jsx-b56ebd7fcb10d262{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:24px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.info-grid.jsx-b56ebd7fcb10d262{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;padding:18px;background:#f9fafb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;border:1px solid#f3f4f6}.info-item.jsx-b56ebd7fcb10d262{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:3px}.info-label.jsx-b56ebd7fcb10d262{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:600}.info-value.jsx-b56ebd7fcb10d262{font-size:14px;color:#111827;font-weight:600}.status-select.jsx-b56ebd7fcb10d262{border:none;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:4px 10px;font-weight:700;font-size:12px;cursor:pointer}.detail-section.jsx-b56ebd7fcb10d262 h4.jsx-b56ebd7fcb10d262{margin:0 0 10px;font-size:13px;color:#374151;text-transform:uppercase;letter-spacing:.04em;font-weight:700}.text-box.jsx-b56ebd7fcb10d262{padding:14px 16px;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb;font-size:14px;color:#374151;line-height:1.7;white-space:pre-wrap}.resume-viewer.jsx-b56ebd7fcb10d262{display:grid;gap:12px}.resume-iframe.jsx-b56ebd7fcb10d262{width:100%;height:400px;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}.resume-download.jsx-b56ebd7fcb10d262{padding:24px;border:1px dashed#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;text-align:center;color:#6b7280}.download-btn.jsx-b56ebd7fcb10d262{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:10px 18px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;color:#374151;font-size:14px;font-weight:600;text-decoration:none}.download-btn.jsx-b56ebd7fcb10d262:hover{background:#f3f4f6}.no-resume.jsx-b56ebd7fcb10d262{color:#9ca3af;font-size:14px}.detail-actions.jsx-b56ebd7fcb10d262{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;padding-top:16px;border-top:1px solid#f3f4f6;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.action-btn.jsx-b56ebd7fcb10d262{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;padding:9px 16px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none}.email-btn.jsx-b56ebd7fcb10d262{border:1px solid#d1d5db;background:#fff;color:#374151}.email-btn.jsx-b56ebd7fcb10d262:hover{background:#f3f4f6}.delete-btn.jsx-b56ebd7fcb10d262{border:1px solid#fecaca;background:#fff;color:#dc2626}.delete-btn.jsx-b56ebd7fcb10d262:hover{background:#fef2f2}.empty-detail.jsx-b56ebd7fcb10d262{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;height:100%;gap:12px;color:#9ca3af;font-size:14px}@media(max-width:900px){.apps-layout.jsx-b56ebd7fcb10d262{grid-template-columns:1fr;grid-template-rows:280px 1fr}}"
             })
         ]
     });

@@ -67,96 +67,96 @@ const Contact = (props)=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-eb3a3d97fa39dc02" + " " + "contact-container1",
+                className: "jsx-528c56c61e0a9a8b" + " " + "contact-container1",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                                className: "jsx-eb3a3d97fa39dc02",
+                                className: "jsx-528c56c61e0a9a8b",
                                 children: "Contact - Ideal Real Porpoise"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 property: "og:title",
                                 content: "Contact - Ideal Real Porpoise",
-                                className: "jsx-eb3a3d97fa39dc02"
+                                className: "jsx-528c56c61e0a9a8b"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                                 rel: "canonical",
                                 href: "https://ideal-real-porpoise-ox0ksz.teleporthq.app/contact",
-                                className: "jsx-eb3a3d97fa39dc02"
+                                className: "jsx-528c56c61e0a9a8b"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 property: "og:url",
                                 content: "https://ideal-real-porpoise-ox0ksz.teleporthq.app/contact",
-                                className: "jsx-eb3a3d97fa39dc02"
+                                className: "jsx-528c56c61e0a9a8b"
                             })
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-hero",
+                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-hero",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-eb3a3d97fa39dc02" + " " + "contact-hero-media",
+                                className: "jsx-528c56c61e0a9a8b" + " " + "contact-hero-media",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: "https://images.pexels.com/photos/8867261/pexels-photo-8867261.jpeg?auto=compress&cs=tinysrgb&w=1500",
                                         alt: "MIS Solution Support Center",
-                                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-hero-image"
+                                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-hero-image"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-hero-overlay"
+                                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-hero-overlay"
                                     })
                                 ]
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-eb3a3d97fa39dc02" + " " + "contact-hero-container",
+                                className: "jsx-528c56c61e0a9a8b" + " " + "contact-hero-container",
                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-eb3a3d97fa39dc02" + " " + "contact-hero-content",
+                                    className: "jsx-528c56c61e0a9a8b" + " " + "contact-hero-content",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                            className: "jsx-eb3a3d97fa39dc02" + " " + "hero-title",
+                                            className: "jsx-528c56c61e0a9a8b" + " " + "hero-title",
                                             children: "Get in Touch with MIS Solution"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-eb3a3d97fa39dc02" + " " + "hero-subtitle",
+                                            className: "jsx-528c56c61e0a9a8b" + " " + "hero-subtitle",
                                             children: "Your premier destination for comprehensive e-commerce and corporate IT services. We are here to support your journey towards technological excellence with expert solutions and dedicated support."
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-eb3a3d97fa39dc02" + " " + "contact-hero-badge",
+                                            className: "jsx-528c56c61e0a9a8b" + " " + "contact-hero-badge",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "badge-icon",
+                                                    className: "jsx-528c56c61e0a9a8b" + " " + "badge-icon",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                         xmlns: "http://www.w3.org/2000/svg",
                                                         width: "24",
                                                         height: "24",
                                                         viewBox: "0 0 24 24",
-                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                        className: "jsx-528c56c61e0a9a8b",
                                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                             fill: "none",
                                                             stroke: "currentColor",
                                                             strokeLinecap: "round",
                                                             strokeLinejoin: "round",
                                                             strokeWidth: "2",
-                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                            className: "jsx-528c56c61e0a9a8b",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                                     cx: "12",
                                                                     cy: "12",
                                                                     r: "10",
-                                                                    className: "jsx-eb3a3d97fa39dc02"
+                                                                    className: "jsx-528c56c61e0a9a8b"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                     d: "M12 6v6l4 2",
-                                                                    className: "jsx-eb3a3d97fa39dc02"
+                                                                    className: "jsx-528c56c61e0a9a8b"
                                                                 })
                                                             ]
                                                         })
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                    className: "jsx-528c56c61e0a9a8b",
                                                     children: "Available 24/7 for you"
                                                 })
                                             ]
@@ -167,71 +167,71 @@ const Contact = (props)=>{
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-details",
+                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-details",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-eb3a3d97fa39dc02" + " " + "contact-details-inner",
+                            className: "jsx-528c56c61e0a9a8b" + " " + "contact-details-inner",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-eb3a3d97fa39dc02" + " " + "contact-info-panel",
+                                    className: "jsx-528c56c61e0a9a8b" + " " + "contact-info-panel",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-eb3a3d97fa39dc02" + " " + "section-title",
+                                            className: "jsx-528c56c61e0a9a8b" + " " + "section-title",
                                             children: "Visit Our Headquarters"
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                            className: "jsx-eb3a3d97fa39dc02" + " " + "section-content",
+                                            className: "jsx-528c56c61e0a9a8b" + " " + "section-content",
                                             children: [
                                                 companyContact.branchName,
                                                 " is available for immediate assistance and inquiries. Our team is ready to handle your corporate networking, security, and digital service needs."
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-eb3a3d97fa39dc02" + " " + "info-grid",
+                                            className: "jsx-528c56c61e0a9a8b" + " " + "info-grid",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "info-card",
+                                                    className: "jsx-528c56c61e0a9a8b" + " " + "info-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-eb3a3d97fa39dc02" + " " + "info-card-icon",
+                                                            className: "jsx-528c56c61e0a9a8b" + " " + "info-card-icon",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                 xmlns: "http://www.w3.org/2000/svg",
                                                                 width: "24",
                                                                 height: "24",
                                                                 viewBox: "0 0 24 24",
-                                                                className: "jsx-eb3a3d97fa39dc02",
+                                                                className: "jsx-528c56c61e0a9a8b",
                                                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                                     fill: "none",
                                                                     stroke: "currentColor",
                                                                     strokeLinecap: "round",
                                                                     strokeLinejoin: "round",
                                                                     strokeWidth: "2",
-                                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                                    className: "jsx-528c56c61e0a9a8b",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                             d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
-                                                                            className: "jsx-eb3a3d97fa39dc02"
+                                                                            className: "jsx-528c56c61e0a9a8b"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                                             cx: "12",
                                                                             cy: "10",
                                                                             r: "3",
-                                                                            className: "jsx-eb3a3d97fa39dc02"
+                                                                            className: "jsx-528c56c61e0a9a8b"
                                                                         })
                                                                     ]
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-eb3a3d97fa39dc02" + " " + "info-card-text",
+                                                            className: "jsx-528c56c61e0a9a8b" + " " + "info-card-text",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "info-label",
+                                                                    className: "jsx-528c56c61e0a9a8b" + " " + "info-label",
                                                                     children: "Our Address"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("address", {
-                                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "info-value",
+                                                                    className: "jsx-528c56c61e0a9a8b" + " " + "info-value",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        className: "jsx-528c56c61e0a9a8b",
                                                                         children: companyContact.fullAddress
                                                                     })
                                                                 })
@@ -240,16 +240,16 @@ const Contact = (props)=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "info-card hotline-highlight",
+                                                    className: "jsx-528c56c61e0a9a8b" + " " + "info-card hotline-highlight",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-eb3a3d97fa39dc02" + " " + "info-card-icon",
+                                                            className: "jsx-528c56c61e0a9a8b" + " " + "info-card-icon",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                 xmlns: "http://www.w3.org/2000/svg",
                                                                 width: "24",
                                                                 height: "24",
                                                                 viewBox: "0 0 24 24",
-                                                                className: "jsx-eb3a3d97fa39dc02",
+                                                                className: "jsx-528c56c61e0a9a8b",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                     fill: "none",
                                                                     stroke: "currentColor",
@@ -257,24 +257,24 @@ const Contact = (props)=>{
                                                                     strokeLinejoin: "round",
                                                                     strokeWidth: "2",
                                                                     d: "M13 2a9 9 0 0 1 9 9m-9-5a5 5 0 0 1 5 5m-4.168 5.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384",
-                                                                    className: "jsx-eb3a3d97fa39dc02"
+                                                                    className: "jsx-528c56c61e0a9a8b"
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-eb3a3d97fa39dc02" + " " + "info-card-text",
+                                                            className: "jsx-528c56c61e0a9a8b" + " " + "info-card-text",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "info-label",
+                                                                    className: "jsx-528c56c61e0a9a8b" + " " + "info-label",
                                                                     children: "24/7 Hotline"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                     href: hotlineTel ? `tel:${hotlineTel}` : "#",
-                                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                                    className: "jsx-528c56c61e0a9a8b",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "info-value hotline-number",
+                                                                        className: "jsx-528c56c61e0a9a8b" + " " + "info-value hotline-number",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                                            className: "jsx-528c56c61e0a9a8b",
                                                                             children: companyContact.hotlinePhone
                                                                         })
                                                                     })
@@ -284,27 +284,27 @@ const Contact = (props)=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "info-card",
+                                                    className: "jsx-528c56c61e0a9a8b" + " " + "info-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-eb3a3d97fa39dc02" + " " + "info-card-icon",
+                                                            className: "jsx-528c56c61e0a9a8b" + " " + "info-card-icon",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                 xmlns: "http://www.w3.org/2000/svg",
                                                                 width: "24",
                                                                 height: "24",
                                                                 viewBox: "0 0 24 24",
-                                                                className: "jsx-eb3a3d97fa39dc02",
+                                                                className: "jsx-528c56c61e0a9a8b",
                                                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                                     fill: "none",
                                                                     stroke: "currentColor",
                                                                     strokeLinecap: "round",
                                                                     strokeLinejoin: "round",
                                                                     strokeWidth: "2",
-                                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                                    className: "jsx-528c56c61e0a9a8b",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                             d: "m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7",
-                                                                            className: "jsx-eb3a3d97fa39dc02"
+                                                                            className: "jsx-528c56c61e0a9a8b"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
                                                                             width: "20",
@@ -312,26 +312,26 @@ const Contact = (props)=>{
                                                                             x: "2",
                                                                             y: "4",
                                                                             rx: "2",
-                                                                            className: "jsx-eb3a3d97fa39dc02"
+                                                                            className: "jsx-528c56c61e0a9a8b"
                                                                         })
                                                                     ]
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-eb3a3d97fa39dc02" + " " + "info-card-text",
+                                                            className: "jsx-528c56c61e0a9a8b" + " " + "info-card-text",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "info-label",
+                                                                    className: "jsx-528c56c61e0a9a8b" + " " + "info-label",
                                                                     children: "Email Support"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                     href: `mailto:${supportEmail}?subject=`,
-                                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                                    className: "jsx-528c56c61e0a9a8b",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "info-value",
+                                                                        className: "jsx-528c56c61e0a9a8b" + " " + "info-value",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                                            className: "jsx-528c56c61e0a9a8b",
                                                                             children: supportEmail
                                                                         })
                                                                     })
@@ -342,11 +342,11 @@ const Contact = (props)=>{
                                                                         marginTop: "4px",
                                                                         display: "block"
                                                                     },
-                                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                                    className: "jsx-528c56c61e0a9a8b",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "info-value",
+                                                                        className: "jsx-528c56c61e0a9a8b" + " " + "info-value",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                                            className: "jsx-528c56c61e0a9a8b",
                                                                             children: "missolution2007@gmail.com"
                                                                         })
                                                                     })
@@ -357,11 +357,11 @@ const Contact = (props)=>{
                                                                         marginTop: "4px",
                                                                         display: "block"
                                                                     },
-                                                                    className: "jsx-eb3a3d97fa39dc02",
+                                                                    className: "jsx-528c56c61e0a9a8b",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "info-value",
+                                                                        className: "jsx-528c56c61e0a9a8b" + " " + "info-value",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                                            className: "jsx-528c56c61e0a9a8b",
                                                                             children: "sales@missolution.com.bd"
                                                                         })
                                                                     })
@@ -375,9 +375,9 @@ const Contact = (props)=>{
                                     ]
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-eb3a3d97fa39dc02" + " " + "contact-map-panel",
+                                    className: "jsx-528c56c61e0a9a8b" + " " + "contact-map-panel",
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-eb3a3d97fa39dc02" + " " + "map-placeholder",
+                                        className: "jsx-528c56c61e0a9a8b" + " " + "map-placeholder",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("iframe", {
                                             src: mapEmbedUrl,
                                             width: "100%",
@@ -385,7 +385,7 @@ const Contact = (props)=>{
                                             allowFullScreen: "true",
                                             loading: "lazy",
                                             title: "MIS Solution Office Location",
-                                            className: "jsx-eb3a3d97fa39dc02" + " " + "contact-iframe"
+                                            className: "jsx-528c56c61e0a9a8b" + " " + "contact-iframe"
                                         })
                                     })
                                 })
@@ -393,21 +393,21 @@ const Contact = (props)=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-eb3a3d97fa39dc02" + " " + "inquiry-section",
+                        className: "jsx-528c56c61e0a9a8b" + " " + "inquiry-section",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-eb3a3d97fa39dc02" + " " + "inquiry-container",
+                            className: "jsx-528c56c61e0a9a8b" + " " + "inquiry-container",
                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-eb3a3d97fa39dc02" + " " + "inquiry-card",
+                                className: "jsx-528c56c61e0a9a8b" + " " + "inquiry-card",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-eb3a3d97fa39dc02" + " " + "inquiry-header",
+                                        className: "jsx-528c56c61e0a9a8b" + " " + "inquiry-header",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                className: "jsx-eb3a3d97fa39dc02" + " " + "section-title",
+                                                className: "jsx-528c56c61e0a9a8b" + " " + "section-title",
                                                 children: "Send Us an Inquiry"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-eb3a3d97fa39dc02" + " " + "section-content",
+                                                className: "jsx-528c56c61e0a9a8b" + " " + "section-content",
                                                 children: "Whether you need a custom quote for enterprise networking or have questions about our IT hardware catalog, we're here to help."
                                             })
                                         ]
@@ -416,17 +416,17 @@ const Contact = (props)=>{
                                         action: "/submit-inquiry",
                                         method: "POST",
                                         "data-form-id": "95ce9567-92c6-45e0-bc16-f038f4fce187",
-                                        className: "jsx-eb3a3d97fa39dc02" + " " + "inquiry-form",
+                                        className: "jsx-528c56c61e0a9a8b" + " " + "inquiry-form",
                                         children: [
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-eb3a3d97fa39dc02" + " " + "form-row",
+                                                className: "jsx-528c56c61e0a9a8b" + " " + "form-row",
                                                 children: [
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-group",
+                                                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-form-group",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
                                                                 htmlFor: "full-name",
-                                                                className: "jsx-eb3a3d97fa39dc02" + " " + "form-label",
+                                                                className: "jsx-528c56c61e0a9a8b" + " " + "form-label",
                                                                 children: "Full Name"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -436,16 +436,16 @@ const Contact = (props)=>{
                                                                 placeholder: "John Doe",
                                                                 required: "true",
                                                                 "data-form-field-id": "full-name",
-                                                                className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-input"
+                                                                className: "jsx-528c56c61e0a9a8b" + " " + "contact-form-input"
                                                             })
                                                         ]
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-group",
+                                                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-form-group",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
                                                                 htmlFor: "email-address",
-                                                                className: "jsx-eb3a3d97fa39dc02" + " " + "form-label",
+                                                                className: "jsx-528c56c61e0a9a8b" + " " + "form-label",
                                                                 children: "Email Address"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -455,18 +455,18 @@ const Contact = (props)=>{
                                                                 placeholder: "john@example.com",
                                                                 required: "true",
                                                                 "data-form-field-id": "email-address",
-                                                                className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-input"
+                                                                className: "jsx-528c56c61e0a9a8b" + " " + "contact-form-input"
                                                             })
                                                         ]
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-group",
+                                                className: "jsx-528c56c61e0a9a8b" + " " + "contact-form-group",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
                                                         htmlFor: "service-type",
-                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "form-label",
+                                                        className: "jsx-528c56c61e0a9a8b" + " " + "form-label",
                                                         children: "Service Interest"
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
@@ -474,13 +474,13 @@ const Contact = (props)=>{
                                                         name: "service",
                                                         required: "true",
                                                         "data-form-field-id": "service-type",
-                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-input",
+                                                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-form-input",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                 value: "",
                                                                 disabled: true,
                                                                 selected: true,
-                                                                className: "jsx-eb3a3d97fa39dc02",
+                                                                className: "jsx-528c56c61e0a9a8b",
                                                                 children: "Select a service"
                                                             }),
                                                             serviceOptions.length > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -488,10 +488,10 @@ const Contact = (props)=>{
                                                                     ...new Set(serviceOptions.map((s)=>s.group))
                                                                 ].map((group)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("optgroup", {
                                                                         label: group,
-                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        className: "jsx-528c56c61e0a9a8b",
                                                                         children: serviceOptions.filter((s)=>s.group === group).map((s)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                                 value: s.name,
-                                                                                className: "jsx-eb3a3d97fa39dc02",
+                                                                                className: "jsx-528c56c61e0a9a8b",
                                                                                 children: s.name
                                                                             }, s.name))
                                                                     }, group))
@@ -499,27 +499,27 @@ const Contact = (props)=>{
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                         value: "E-commerce Hardware",
-                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        className: "jsx-528c56c61e0a9a8b",
                                                                         children: "E-commerce Hardware"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                         value: "Corporate IT Solutions",
-                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        className: "jsx-528c56c61e0a9a8b",
                                                                         children: "Corporate IT Solutions"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                         value: "Security Systems",
-                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        className: "jsx-528c56c61e0a9a8b",
                                                                         children: "Security Systems (CCTV/Fire)"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                         value: "Digital Services",
-                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        className: "jsx-528c56c61e0a9a8b",
                                                                         children: "Digital Services (Web/App)"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                         value: "Maintenance Contracts",
-                                                                        className: "jsx-eb3a3d97fa39dc02",
+                                                                        className: "jsx-528c56c61e0a9a8b",
                                                                         children: "Maintenance Contracts"
                                                                     })
                                                                 ]
@@ -529,11 +529,11 @@ const Contact = (props)=>{
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-group",
+                                                className: "jsx-528c56c61e0a9a8b" + " " + "contact-form-group",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
                                                         htmlFor: "message",
-                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "form-label",
+                                                        className: "jsx-528c56c61e0a9a8b" + " " + "form-label",
                                                         children: "Your Inquiry"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("textarea", {
@@ -543,21 +543,21 @@ const Contact = (props)=>{
                                                         required: "true",
                                                         minlength: "20",
                                                         "data-form-field-id": "message",
-                                                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-form-input form-textarea"
+                                                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-form-input form-textarea"
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "jsx-eb3a3d97fa39dc02" + " " + "form-footer",
+                                                className: "jsx-528c56c61e0a9a8b" + " " + "form-footer",
                                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                                                     type: "submit",
                                                     id: "thq_button_75rR",
                                                     name: "button",
                                                     "data-form-field-id": "thq_button_75rR",
-                                                    className: "jsx-eb3a3d97fa39dc02" + " " + "btn btn-primary btn-lg",
+                                                    className: "jsx-528c56c61e0a9a8b" + " " + "btn btn-primary btn-lg",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                            className: "jsx-528c56c61e0a9a8b",
                                                             children: "Send Inquiry"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
@@ -565,7 +565,7 @@ const Contact = (props)=>{
                                                             width: "20",
                                                             height: "20",
                                                             viewBox: "0 0 24 24",
-                                                            className: "jsx-eb3a3d97fa39dc02",
+                                                            className: "jsx-528c56c61e0a9a8b",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 fill: "none",
                                                                 stroke: "currentColor",
@@ -573,7 +573,7 @@ const Contact = (props)=>{
                                                                 strokeLinejoin: "round",
                                                                 strokeWidth: "2",
                                                                 d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11zm7.318-19.539l-10.94 10.939",
-                                                                className: "jsx-eb3a3d97fa39dc02"
+                                                                className: "jsx-528c56c61e0a9a8b"
                                                             })
                                                         })
                                                     ]
@@ -586,9 +586,9 @@ const Contact = (props)=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-eb3a3d97fa39dc02" + " " + "contact-container2",
+                        className: "jsx-528c56c61e0a9a8b" + " " + "contact-container2",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-eb3a3d97fa39dc02" + " " + "contact-container3",
+                            className: "jsx-528c56c61e0a9a8b" + " " + "contact-container3",
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
                                 html: `<script defer data-name="contact-form-handler">
 (function(){
@@ -628,8 +628,8 @@ const Contact = (props)=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "eb3a3d97fa39dc02",
-                children: ".contact-container1.jsx-eb3a3d97fa39dc02{width:100%;min-height:100vh;background:#f3f5f9}.contact-hero.jsx-eb3a3d97fa39dc02{position:relative;min-height:72vh;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.contact-hero-media.jsx-eb3a3d97fa39dc02{position:absolute;inset:0}.contact-hero-image.jsx-eb3a3d97fa39dc02{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.contact-hero-overlay.jsx-eb3a3d97fa39dc02{position:absolute;inset:0;background:-webkit-linear-gradient(left,rgba(8,14,24,.78)0%,rgba(8,14,24,.44)45%,rgba(8,14,24,.24)100%);background:-moz-linear-gradient(left,rgba(8,14,24,.78)0%,rgba(8,14,24,.44)45%,rgba(8,14,24,.24)100%);background:-o-linear-gradient(left,rgba(8,14,24,.78)0%,rgba(8,14,24,.44)45%,rgba(8,14,24,.24)100%);background:linear-gradient(90deg,rgba(8,14,24,.78)0%,rgba(8,14,24,.44)45%,rgba(8,14,24,.24)100%)}.contact-hero-container.jsx-eb3a3d97fa39dc02{width:100%;margin:0 auto;z-index:1;position:relative;max-width:76rem;padding:7rem 1.5rem 4rem}.contact-hero-content.jsx-eb3a3d97fa39dc02{max-width:40rem}.contact-hero-content.jsx-eb3a3d97fa39dc02 .hero-title{color:#fff;margin:0;font-size:clamp(2rem,2.2vw,3.4rem);line-height:1.15}.contact-hero-content.jsx-eb3a3d97fa39dc02 .hero-subtitle{color:rgba(255,255,255,.9);margin-top:1rem;margin-bottom:0}.contact-hero-badge.jsx-eb3a3d97fa39dc02{margin-top:1.5rem;color:#fff;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:.5rem;padding:.6rem .9rem;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35)}.badge-icon.jsx-eb3a3d97fa39dc02{width:1.25rem;height:1.25rem;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.badge-icon.jsx-eb3a3d97fa39dc02 svg{width:100%;height:100%}.contact-details.jsx-eb3a3d97fa39dc02{padding:4rem 1.5rem}.contact-details-inner.jsx-eb3a3d97fa39dc02{width:100%;margin:0 auto;max-width:76rem;display:grid;gap:1.5rem;grid-template-columns:minmax(0,1.15fr)minmax(0,1fr)}.contact-info-panel.jsx-eb3a3d97fa39dc02,.contact-map-panel.jsx-eb3a3d97fa39dc02,.inquiry-card.jsx-eb3a3d97fa39dc02{background:#fff;border:1px solid#d8dfea;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;-webkit-box-shadow:0 8px 30px rgba(7,16,35,.08);-moz-box-shadow:0 8px 30px rgba(7,16,35,.08);box-shadow:0 8px 30px rgba(7,16,35,.08)}.contact-info-panel.jsx-eb3a3d97fa39dc02{padding:1.5rem}.contact-map-panel.jsx-eb3a3d97fa39dc02{min-height:100%;overflow:hidden}.map-placeholder.jsx-eb3a3d97fa39dc02{width:100%;height:100%;min-height:460px}.contact-iframe.jsx-eb3a3d97fa39dc02{border:0}.info-grid.jsx-eb3a3d97fa39dc02{margin-top:1.25rem;display:grid;gap:1rem}.info-card.jsx-eb3a3d97fa39dc02{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:.9rem;padding:.9rem;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;border:1px solid#d8dfea;background:#f8faff}.info-card-icon.jsx-eb3a3d97fa39dc02{width:2.5rem;height:2.5rem;color:#0a7ad4;-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:rgba(10,122,212,.12)}.info-card-icon.jsx-eb3a3d97fa39dc02 svg{width:1.2rem;height:1.2rem}.info-card-text.jsx-eb3a3d97fa39dc02{display:grid;gap:.25rem}.info-label.jsx-eb3a3d97fa39dc02{font-weight:700;color:#0f172a}.info-value.jsx-eb3a3d97fa39dc02{margin:0;font-style:normal;color:#425066}.hotline-number.jsx-eb3a3d97fa39dc02{color:#0f172a;font-weight:700}.inquiry-section.jsx-eb3a3d97fa39dc02{padding:0 1.5rem 4rem}.inquiry-container.jsx-eb3a3d97fa39dc02{width:100%;max-width:76rem;margin:0 auto}.inquiry-card.jsx-eb3a3d97fa39dc02{padding:1.5rem}.inquiry-header.jsx-eb3a3d97fa39dc02{margin-bottom:1.2rem}.inquiry-form.jsx-eb3a3d97fa39dc02{display:grid;gap:1rem}.form-row.jsx-eb3a3d97fa39dc02{display:grid;gap:1rem;grid-template-columns:repeat(2,minmax(0,1fr))}.contact-form-group.jsx-eb3a3d97fa39dc02{display:grid;gap:.45rem}.form-label.jsx-eb3a3d97fa39dc02{color:#172033;font-weight:600}.contact-form-input.jsx-eb3a3d97fa39dc02{width:100%;border:1px solid#ccd6e4;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:.72rem .85rem;font:inherit;background:#fff}.contact-form-input.jsx-eb3a3d97fa39dc02:focus{outline:none;border-color:#2586d9;-webkit-box-shadow:0 0 0 3px rgba(37,134,217,.18);-moz-box-shadow:0 0 0 3px rgba(37,134,217,.18);box-shadow:0 0 0 3px rgba(37,134,217,.18)}.form-textarea.jsx-eb3a3d97fa39dc02{min-height:140px;resize:vertical}.form-footer.jsx-eb3a3d97fa39dc02{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.contact-container2.jsx-eb3a3d97fa39dc02{display:none}.contact-container3.jsx-eb3a3d97fa39dc02{display:contents}.contact-container4.jsx-eb3a3d97fa39dc02{right:50px;border:1px solid#ffffff5c;bottom:30px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;z-index:22;position:fixed;-webkit-box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);-moz-box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);min-height:auto;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding-top:8px;padding-left:12px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding-right:12px;padding-bottom:8px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);background-color:rgba(41,41,41,.41)}.contact-icon26.jsx-eb3a3d97fa39dc02{width:24px;margin-right:4px}.contact-text6.jsx-eb3a3d97fa39dc02{color:white;font-size:13px;font-style:normal;font-weight:500;line-height:24px}@media(max-width:991px){.contact-details-inner.jsx-eb3a3d97fa39dc02{grid-template-columns:1fr}.map-placeholder.jsx-eb3a3d97fa39dc02{min-height:320px}}@media(max-width:767px){.contact-hero-container.jsx-eb3a3d97fa39dc02{padding-top:6rem}.form-row.jsx-eb3a3d97fa39dc02{grid-template-columns:1fr}.contact-container4.jsx-eb3a3d97fa39dc02{right:14px;bottom:14px}}"
+                id: "528c56c61e0a9a8b",
+                children: ".contact-container1.jsx-528c56c61e0a9a8b{width:100%;min-height:100vh;background:#f3f5f9}.contact-hero.jsx-528c56c61e0a9a8b{position:relative;min-height:72vh;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.contact-hero-media.jsx-528c56c61e0a9a8b{position:absolute;inset:0}.contact-hero-image.jsx-528c56c61e0a9a8b{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.contact-hero-overlay.jsx-528c56c61e0a9a8b{position:absolute;inset:0;background:-webkit-linear-gradient(left,rgba(8,14,24,.78)0%,rgba(8,14,24,.44)45%,rgba(8,14,24,.24)100%);background:-moz-linear-gradient(left,rgba(8,14,24,.78)0%,rgba(8,14,24,.44)45%,rgba(8,14,24,.24)100%);background:-o-linear-gradient(left,rgba(8,14,24,.78)0%,rgba(8,14,24,.44)45%,rgba(8,14,24,.24)100%);background:linear-gradient(90deg,rgba(8,14,24,.78)0%,rgba(8,14,24,.44)45%,rgba(8,14,24,.24)100%)}.contact-hero-container.jsx-528c56c61e0a9a8b{width:100%;margin:0 auto;z-index:1;position:relative;max-width:76rem;padding:7rem 1.5rem 4rem}.contact-hero-content.jsx-528c56c61e0a9a8b{max-width:40rem}.contact-hero-content.jsx-528c56c61e0a9a8b .hero-title{color:#fff;margin:0;font-size:clamp(2rem,2.2vw,3.4rem);line-height:1.15}.contact-hero-content.jsx-528c56c61e0a9a8b .hero-subtitle{color:rgba(255,255,255,.9);margin-top:1rem;margin-bottom:0}.contact-hero-badge.jsx-528c56c61e0a9a8b{margin-top:1.5rem;color:#fff;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:.5rem;padding:.6rem .9rem;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35)}.badge-icon.jsx-528c56c61e0a9a8b{width:1.25rem;height:1.25rem;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.badge-icon.jsx-528c56c61e0a9a8b svg{width:100%;height:100%}.contact-details.jsx-528c56c61e0a9a8b{padding:4rem 1.5rem}.contact-details-inner.jsx-528c56c61e0a9a8b{width:100%;margin:0 auto;max-width:76rem;display:grid;gap:1.5rem;grid-template-columns:minmax(0,1.15fr)minmax(0,1fr)}.contact-info-panel.jsx-528c56c61e0a9a8b,.contact-map-panel.jsx-528c56c61e0a9a8b,.inquiry-card.jsx-528c56c61e0a9a8b{background:#fff;border:1px solid#d8dfea;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;-webkit-box-shadow:0 8px 30px rgba(7,16,35,.08);-moz-box-shadow:0 8px 30px rgba(7,16,35,.08);box-shadow:0 8px 30px rgba(7,16,35,.08)}.contact-info-panel.jsx-528c56c61e0a9a8b{padding:1.5rem}.contact-map-panel.jsx-528c56c61e0a9a8b{min-height:100%;overflow:hidden}.map-placeholder.jsx-528c56c61e0a9a8b{width:100%;height:100%;min-height:460px}.contact-iframe.jsx-528c56c61e0a9a8b{border:0}.info-grid.jsx-528c56c61e0a9a8b{margin-top:1.25rem;display:grid;gap:1rem}.info-card.jsx-528c56c61e0a9a8b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:.9rem;padding:.9rem;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;border:1px solid#d8dfea;background:#f8faff}.info-card-icon.jsx-528c56c61e0a9a8b{width:2.5rem;height:2.5rem;color:#0a7ad4;-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:rgba(10,122,212,.12)}.info-card-icon.jsx-528c56c61e0a9a8b svg{width:1.2rem;height:1.2rem}.info-card-text.jsx-528c56c61e0a9a8b{display:grid;gap:.25rem}.info-label.jsx-528c56c61e0a9a8b{font-weight:700;color:#0f172a}.info-value.jsx-528c56c61e0a9a8b{margin:0;font-style:normal;color:#425066}.hotline-number.jsx-528c56c61e0a9a8b{color:#0f172a;font-weight:700}.inquiry-section.jsx-528c56c61e0a9a8b{padding:0 1.5rem 4rem}.inquiry-container.jsx-528c56c61e0a9a8b{width:100%;max-width:76rem;margin:0 auto}.inquiry-card.jsx-528c56c61e0a9a8b{padding:1.5rem}.inquiry-header.jsx-528c56c61e0a9a8b{margin-bottom:1.2rem}.inquiry-form.jsx-528c56c61e0a9a8b{display:grid;gap:1rem}.form-row.jsx-528c56c61e0a9a8b{display:grid;gap:1rem;grid-template-columns:repeat(2,minmax(0,1fr))}.contact-form-group.jsx-528c56c61e0a9a8b{display:grid;gap:.45rem}.form-label.jsx-528c56c61e0a9a8b{color:#172033;font-weight:600}.contact-form-input.jsx-528c56c61e0a9a8b{width:100%;border:1px solid#ccd6e4;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:.72rem .85rem;font:inherit;background:#fff}.contact-form-input.jsx-528c56c61e0a9a8b:focus{outline:none;border-color:#2586d9;-webkit-box-shadow:0 0 0 3px rgba(37,134,217,.18);-moz-box-shadow:0 0 0 3px rgba(37,134,217,.18);box-shadow:0 0 0 3px rgba(37,134,217,.18)}.form-textarea.jsx-528c56c61e0a9a8b{min-height:140px;resize:vertical}.form-footer.jsx-528c56c61e0a9a8b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.contact-container2.jsx-528c56c61e0a9a8b{display:none}.contact-container3.jsx-528c56c61e0a9a8b{display:contents}.contact-container4.jsx-528c56c61e0a9a8b{right:50px;border:1px solid#ffffff5c;bottom:30px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;z-index:22;position:fixed;-webkit-box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);-moz-box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);min-height:auto;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding-top:8px;padding-left:12px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding-right:12px;padding-bottom:8px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);background-color:rgba(41,41,41,.41)}.contact-icon26.jsx-528c56c61e0a9a8b{width:24px;margin-right:4px}.contact-text6.jsx-528c56c61e0a9a8b{color:white;font-size:13px;font-style:normal;font-weight:500;line-height:24px}@media(max-width:991px){.contact-details-inner.jsx-528c56c61e0a9a8b{grid-template-columns:1fr}.map-placeholder.jsx-528c56c61e0a9a8b{min-height:320px}}@media(max-width:767px){.contact-hero-container.jsx-528c56c61e0a9a8b{padding-top:6rem}.form-row.jsx-528c56c61e0a9a8b{grid-template-columns:1fr}.contact-container4.jsx-528c56c61e0a9a8b{right:14px;bottom:14px}}"
             })
         ]
     });

@@ -205,25 +205,25 @@ const CategoryManager = ({ categories =[]  })=>{
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                    className: "jsx-8570823f06d53f28",
+                    className: "jsx-5bcba35a1beb0aba",
                     children: "Category Manager | Admin"
                 })
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-8570823f06d53f28" + " " + "cat-mgr",
+                className: "jsx-5bcba35a1beb0aba" + " " + "cat-mgr",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-8570823f06d53f28" + " " + "mgr-header",
+                        className: "jsx-5bcba35a1beb0aba" + " " + "mgr-header",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-8570823f06d53f28",
+                                className: "jsx-5bcba35a1beb0aba",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                        className: "jsx-8570823f06d53f28",
+                                        className: "jsx-5bcba35a1beb0aba",
                                         children: "Category Manager"
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                        className: "jsx-8570823f06d53f28",
+                                        className: "jsx-5bcba35a1beb0aba",
                                         children: [
                                             parents.length,
                                             " main categories, ",
@@ -235,26 +235,26 @@ const CategoryManager = ({ categories =[]  })=>{
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                 onClick: ()=>startAdd(null),
-                                className: "jsx-8570823f06d53f28" + " " + "add-main-btn",
+                                className: "jsx-5bcba35a1beb0aba" + " " + "add-main-btn",
                                 children: "+ Add Main Category"
                             })
                         ]
                     }),
                     (adding || editing) && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-8570823f06d53f28" + " " + "form-card",
+                        className: "jsx-5bcba35a1beb0aba" + " " + "form-card",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                className: "jsx-8570823f06d53f28",
+                                className: "jsx-5bcba35a1beb0aba",
                                 children: editing ? "Edit Category" : adding?.parentId ? `Add Subcategory under "${parents.find((p)=>p.id === adding.parentId)?.name || "Parent"}"` : "Add Main Category"
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-8570823f06d53f28" + " " + "form-row",
+                                className: "jsx-5bcba35a1beb0aba" + " " + "form-row",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-8570823f06d53f28" + " " + "form-field",
+                                        className: "jsx-5bcba35a1beb0aba" + " " + "form-field",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                className: "jsx-8570823f06d53f28",
+                                                className: "jsx-5bcba35a1beb0aba",
                                                 children: "Name"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -267,15 +267,15 @@ const CategoryManager = ({ categories =[]  })=>{
                                                         }));
                                                 },
                                                 placeholder: "Category name",
-                                                className: "jsx-8570823f06d53f28"
+                                                className: "jsx-5bcba35a1beb0aba"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-8570823f06d53f28" + " " + "form-field",
+                                        className: "jsx-5bcba35a1beb0aba" + " " + "form-field",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                className: "jsx-8570823f06d53f28",
+                                                className: "jsx-5bcba35a1beb0aba",
                                                 children: "Slug"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -285,15 +285,15 @@ const CategoryManager = ({ categories =[]  })=>{
                                                             slug: e.target.value
                                                         })),
                                                 placeholder: "url-slug",
-                                                className: "jsx-8570823f06d53f28"
+                                                className: "jsx-5bcba35a1beb0aba"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-8570823f06d53f28" + " " + "form-field",
+                                        className: "jsx-5bcba35a1beb0aba" + " " + "form-field",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                className: "jsx-8570823f06d53f28",
+                                                className: "jsx-5bcba35a1beb0aba",
                                                 children: "Status"
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
@@ -302,16 +302,16 @@ const CategoryManager = ({ categories =[]  })=>{
                                                             ...p,
                                                             status: e.target.value
                                                         })),
-                                                className: "jsx-8570823f06d53f28",
+                                                className: "jsx-5bcba35a1beb0aba",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                         value: "active",
-                                                        className: "jsx-8570823f06d53f28",
+                                                        className: "jsx-5bcba35a1beb0aba",
                                                         children: "Active"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                         value: "inactive",
-                                                        className: "jsx-8570823f06d53f28",
+                                                        className: "jsx-5bcba35a1beb0aba",
                                                         children: "Inactive"
                                                     })
                                                 ]
@@ -321,19 +321,19 @@ const CategoryManager = ({ categories =[]  })=>{
                                 ]
                             }),
                             !adding?.parentId && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-8570823f06d53f28" + " " + "logo-field",
+                                className: "jsx-5bcba35a1beb0aba" + " " + "logo-field",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                        className: "jsx-8570823f06d53f28",
+                                        className: "jsx-5bcba35a1beb0aba",
                                         children: "Category Logo / Icon"
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-8570823f06d53f28" + " " + "logo-row",
+                                        className: "jsx-5bcba35a1beb0aba" + " " + "logo-row",
                                         children: [
                                             formData.icon_url && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                 src: formData.icon_url,
                                                 alt: "Logo",
-                                                className: "jsx-8570823f06d53f28" + " " + "logo-preview"
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "logo-preview"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                 type: "text",
@@ -343,10 +343,10 @@ const CategoryManager = ({ categories =[]  })=>{
                                                             icon_url: e.target.value
                                                         })),
                                                 placeholder: "Paste image URL or upload",
-                                                className: "jsx-8570823f06d53f28" + " " + "logo-url-input"
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "logo-url-input"
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                className: "jsx-8570823f06d53f28" + " " + "upload-label",
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "upload-label",
                                                 children: [
                                                     "Upload",
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -354,7 +354,7 @@ const CategoryManager = ({ categories =[]  })=>{
                                                         accept: "image/*",
                                                         onChange: handleLogoUpload,
                                                         hidden: true,
-                                                        className: "jsx-8570823f06d53f28"
+                                                        className: "jsx-5bcba35a1beb0aba"
                                                     })
                                                 ]
                                             }),
@@ -364,7 +364,7 @@ const CategoryManager = ({ categories =[]  })=>{
                                                             ...p,
                                                             icon_url: ""
                                                         })),
-                                                className: "jsx-8570823f06d53f28" + " " + "remove-logo",
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "remove-logo",
                                                 children: "✕"
                                             })
                                         ]
@@ -372,17 +372,17 @@ const CategoryManager = ({ categories =[]  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-8570823f06d53f28" + " " + "form-actions",
+                                className: "jsx-5bcba35a1beb0aba" + " " + "form-actions",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                         onClick: saveCategory,
                                         disabled: saving || !formData.name,
-                                        className: "jsx-8570823f06d53f28" + " " + "save-btn",
+                                        className: "jsx-5bcba35a1beb0aba" + " " + "save-btn",
                                         children: saving ? "Saving..." : editing ? "Update" : "Create"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                         onClick: cancelForm,
-                                        className: "jsx-8570823f06d53f28" + " " + "cancel-btn",
+                                        className: "jsx-5bcba35a1beb0aba" + " " + "cancel-btn",
                                         children: "Cancel"
                                     })
                                 ]
@@ -390,63 +390,63 @@ const CategoryManager = ({ categories =[]  })=>{
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-8570823f06d53f28" + " " + "cat-tree",
+                        className: "jsx-5bcba35a1beb0aba" + " " + "cat-tree",
                         children: parents.sort((a, b)=>a.display_order - b.display_order).map((parent)=>{
                             const children = getChildren(parent.id);
                             const isOpen = expanded[parent.id];
                             return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-8570823f06d53f28" + " " + "tree-parent",
+                                className: "jsx-5bcba35a1beb0aba" + " " + "tree-parent",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-8570823f06d53f28" + " " + "tree-row parent-row",
+                                        className: "jsx-5bcba35a1beb0aba" + " " + "tree-row parent-row",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                 onClick: ()=>toggleExpand(parent.id),
-                                                className: "jsx-8570823f06d53f28" + " " + "expand-btn",
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "expand-btn",
                                                 children: children.length > 0 ? isOpen ? "▼" : "▶" : "•"
                                             }),
                                             parent.icon_url && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                 src: parent.icon_url,
                                                 alt: "",
-                                                className: "jsx-8570823f06d53f28" + " " + "tree-icon"
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "tree-icon"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-8570823f06d53f28" + " " + "cat-name",
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "cat-name",
                                                 children: parent.name
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                className: "jsx-8570823f06d53f28" + " " + "cat-slug",
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "cat-slug",
                                                 children: [
                                                     "/",
                                                     parent.slug
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                className: "jsx-8570823f06d53f28" + " " + "cat-count",
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "cat-count",
                                                 children: [
                                                     children.length,
                                                     " sub"
                                                 ]
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-8570823f06d53f28" + " " + `status-dot ${parent.status === "active" ? "active" : "inactive"}`
+                                                className: "jsx-5bcba35a1beb0aba" + " " + `status-dot ${parent.status === "active" ? "active" : "inactive"}`
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-8570823f06d53f28" + " " + "row-actions",
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "row-actions",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                         onClick: ()=>startAdd(parent.id),
-                                                        className: "jsx-8570823f06d53f28" + " " + "action-sm",
+                                                        className: "jsx-5bcba35a1beb0aba" + " " + "action-sm",
                                                         children: "+ Sub"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                         onClick: ()=>startEdit(parent),
-                                                        className: "jsx-8570823f06d53f28" + " " + "action-sm",
+                                                        className: "jsx-5bcba35a1beb0aba" + " " + "action-sm",
                                                         children: "Edit"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                         onClick: ()=>deleteCategory(parent.id),
-                                                        className: "jsx-8570823f06d53f28" + " " + "action-sm danger",
+                                                        className: "jsx-5bcba35a1beb0aba" + " " + "action-sm danger",
                                                         children: "Delete"
                                                     })
                                                 ]
@@ -454,39 +454,39 @@ const CategoryManager = ({ categories =[]  })=>{
                                         ]
                                     }),
                                     isOpen && children.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-8570823f06d53f28" + " " + "tree-children",
+                                        className: "jsx-5bcba35a1beb0aba" + " " + "tree-children",
                                         children: children.map((child)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-8570823f06d53f28" + " " + "tree-row child-row",
+                                                className: "jsx-5bcba35a1beb0aba" + " " + "tree-row child-row",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-8570823f06d53f28" + " " + "child-indent",
+                                                        className: "jsx-5bcba35a1beb0aba" + " " + "child-indent",
                                                         children: "└"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-8570823f06d53f28" + " " + "cat-name",
+                                                        className: "jsx-5bcba35a1beb0aba" + " " + "cat-name",
                                                         children: child.name
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                        className: "jsx-8570823f06d53f28" + " " + "cat-slug",
+                                                        className: "jsx-5bcba35a1beb0aba" + " " + "cat-slug",
                                                         children: [
                                                             "/",
                                                             child.slug
                                                         ]
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-8570823f06d53f28" + " " + `status-dot ${child.status === "active" ? "active" : "inactive"}`
+                                                        className: "jsx-5bcba35a1beb0aba" + " " + `status-dot ${child.status === "active" ? "active" : "inactive"}`
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-8570823f06d53f28" + " " + "row-actions",
+                                                        className: "jsx-5bcba35a1beb0aba" + " " + "row-actions",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                 onClick: ()=>startEdit(child),
-                                                                className: "jsx-8570823f06d53f28" + " " + "action-sm",
+                                                                className: "jsx-5bcba35a1beb0aba" + " " + "action-sm",
                                                                 children: "Edit"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                 onClick: ()=>deleteCategory(child.id),
-                                                                className: "jsx-8570823f06d53f28" + " " + "action-sm danger",
+                                                                className: "jsx-5bcba35a1beb0aba" + " " + "action-sm danger",
                                                                 children: "Delete"
                                                             })
                                                         ]
@@ -501,8 +501,8 @@ const CategoryManager = ({ categories =[]  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "8570823f06d53f28",
-                children: ".cat-mgr.jsx-8570823f06d53f28{display:grid;gap:20px}.mgr-header.jsx-8570823f06d53f28{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:12px}.mgr-header.jsx-8570823f06d53f28 h1.jsx-8570823f06d53f28{margin:0;font-size:24px;color:#1f2937}.mgr-header.jsx-8570823f06d53f28 p.jsx-8570823f06d53f28{margin:4px 0 0;color:#6b7280;font-size:14px}.add-main-btn.jsx-8570823f06d53f28{border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:10px 18px;background:#4f46e5;color:#fff;font-size:14px;font-weight:700;cursor:pointer}.add-main-btn.jsx-8570823f06d53f28:hover{background:#4338ca}.form-card.jsx-8570823f06d53f28{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;padding:20px}.form-card.jsx-8570823f06d53f28 h3.jsx-8570823f06d53f28{margin:0 0 14px;font-size:16px;color:#111827}.form-row.jsx-8570823f06d53f28{display:grid;grid-template-columns:1fr 1fr auto;gap:12px}.form-field.jsx-8570823f06d53f28{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px}.form-field.jsx-8570823f06d53f28 label.jsx-8570823f06d53f28{font-size:12px;font-weight:600;color:#374151}.form-field.jsx-8570823f06d53f28 input.jsx-8570823f06d53f28,.form-field.jsx-8570823f06d53f28 select.jsx-8570823f06d53f28{height:38px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:0 12px;font:inherit;font-size:14px}.form-field.jsx-8570823f06d53f28 input.jsx-8570823f06d53f28:focus,.form-field.jsx-8570823f06d53f28 select.jsx-8570823f06d53f28:focus{outline:none;border-color:#4f46e5}.form-actions.jsx-8570823f06d53f28{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-top:14px}.logo-field.jsx-8570823f06d53f28{margin-top:12px}.logo-field.jsx-8570823f06d53f28>label.jsx-8570823f06d53f28{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:6px}.logo-row.jsx-8570823f06d53f28{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.logo-preview.jsx-8570823f06d53f28{width:40px;height:40px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-o-object-fit:contain;object-fit:contain;border:1px solid#e5e7eb;background:#f9fafb}.logo-url-input.jsx-8570823f06d53f28{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:38px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:0 12px;font-size:13px}.logo-url-input.jsx-8570823f06d53f28:focus{outline:none;border-color:#4f46e5}.upload-label.jsx-8570823f06d53f28{padding:8px 14px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}.upload-label.jsx-8570823f06d53f28:hover{background:#f3f4f6}.remove-logo.jsx-8570823f06d53f28{border:none;background:transparent;color:#dc2626;font-size:16px;cursor:pointer;padding:4px}.tree-icon.jsx-8570823f06d53f28{width:28px;height:28px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-o-object-fit:contain;object-fit:contain;border:1px solid#e5e7eb;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.save-btn.jsx-8570823f06d53f28{border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 18px;background:#4f46e5;color:#fff;font-weight:700;font-size:13px;cursor:pointer}.save-btn.jsx-8570823f06d53f28:disabled{opacity:.5}.cancel-btn.jsx-8570823f06d53f28{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 18px;background:#fff;color:#374151;font-weight:600;font-size:13px;cursor:pointer}.cat-tree.jsx-8570823f06d53f28{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;overflow:hidden}.tree-parent.jsx-8570823f06d53f28{border-bottom:1px solid#f3f4f6}.tree-parent.jsx-8570823f06d53f28:last-child{border-bottom:none}.tree-row.jsx-8570823f06d53f28{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px;padding:12px 16px}.parent-row.jsx-8570823f06d53f28{background:#f9fafb}.parent-row.jsx-8570823f06d53f28:hover{background:#f3f4f6}.child-row.jsx-8570823f06d53f28{padding-left:40px}.child-row.jsx-8570823f06d53f28:hover{background:#fafbfe}.expand-btn.jsx-8570823f06d53f28{border:none;background:transparent;cursor:pointer;font-size:12px;color:#6b7280;width:20px}.child-indent.jsx-8570823f06d53f28{color:#d1d5db;font-size:14px;width:20px}.cat-name.jsx-8570823f06d53f28{font-size:14px;font-weight:600;color:#111827}.cat-slug.jsx-8570823f06d53f28{font-size:12px;color:#9ca3af}.cat-count.jsx-8570823f06d53f28{font-size:11px;color:#6b7280;background:#f3f4f6;padding:2px 8px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}.status-dot.jsx-8570823f06d53f28{width:8px;height:8px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%}.status-dot.active.jsx-8570823f06d53f28{background:#10b981}.status-dot.inactive.jsx-8570823f06d53f28{background:#ef4444}.row-actions.jsx-8570823f06d53f28{margin-left:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px}.action-sm.jsx-8570823f06d53f28{border:1px solid#e5e7eb;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:4px 10px;background:#fff;font-size:11px;font-weight:600;cursor:pointer;color:#374151}.action-sm.jsx-8570823f06d53f28:hover{background:#f3f4f6}.action-sm.danger.jsx-8570823f06d53f28{color:#dc2626;border-color:#fecaca}.action-sm.danger.jsx-8570823f06d53f28:hover{background:#fef2f2}@media(max-width:768px){.form-row.jsx-8570823f06d53f28{grid-template-columns:1fr}.tree-row.jsx-8570823f06d53f28{-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.row-actions.jsx-8570823f06d53f28{width:100%;margin-top:6px;margin-left:30px}}"
+                id: "5bcba35a1beb0aba",
+                children: ".cat-mgr.jsx-5bcba35a1beb0aba{display:grid;gap:20px}.mgr-header.jsx-5bcba35a1beb0aba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:12px}.mgr-header.jsx-5bcba35a1beb0aba h1.jsx-5bcba35a1beb0aba{margin:0;font-size:24px;color:#1f2937}.mgr-header.jsx-5bcba35a1beb0aba p.jsx-5bcba35a1beb0aba{margin:4px 0 0;color:#6b7280;font-size:14px}.add-main-btn.jsx-5bcba35a1beb0aba{border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:10px 18px;background:#4f46e5;color:#fff;font-size:14px;font-weight:700;cursor:pointer}.add-main-btn.jsx-5bcba35a1beb0aba:hover{background:#4338ca}.form-card.jsx-5bcba35a1beb0aba{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;padding:20px}.form-card.jsx-5bcba35a1beb0aba h3.jsx-5bcba35a1beb0aba{margin:0 0 14px;font-size:16px;color:#111827}.form-row.jsx-5bcba35a1beb0aba{display:grid;grid-template-columns:1fr 1fr auto;gap:12px}.form-field.jsx-5bcba35a1beb0aba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px}.form-field.jsx-5bcba35a1beb0aba label.jsx-5bcba35a1beb0aba{font-size:12px;font-weight:600;color:#374151}.form-field.jsx-5bcba35a1beb0aba input.jsx-5bcba35a1beb0aba,.form-field.jsx-5bcba35a1beb0aba select.jsx-5bcba35a1beb0aba{height:38px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:0 12px;font:inherit;font-size:14px}.form-field.jsx-5bcba35a1beb0aba input.jsx-5bcba35a1beb0aba:focus,.form-field.jsx-5bcba35a1beb0aba select.jsx-5bcba35a1beb0aba:focus{outline:none;border-color:#4f46e5}.form-actions.jsx-5bcba35a1beb0aba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-top:14px}.logo-field.jsx-5bcba35a1beb0aba{margin-top:12px}.logo-field.jsx-5bcba35a1beb0aba>label.jsx-5bcba35a1beb0aba{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:6px}.logo-row.jsx-5bcba35a1beb0aba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.logo-preview.jsx-5bcba35a1beb0aba{width:40px;height:40px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-o-object-fit:contain;object-fit:contain;border:1px solid#e5e7eb;background:#f9fafb}.logo-url-input.jsx-5bcba35a1beb0aba{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:38px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:0 12px;font-size:13px}.logo-url-input.jsx-5bcba35a1beb0aba:focus{outline:none;border-color:#4f46e5}.upload-label.jsx-5bcba35a1beb0aba{padding:8px 14px;border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}.upload-label.jsx-5bcba35a1beb0aba:hover{background:#f3f4f6}.remove-logo.jsx-5bcba35a1beb0aba{border:none;background:transparent;color:#dc2626;font-size:16px;cursor:pointer;padding:4px}.tree-icon.jsx-5bcba35a1beb0aba{width:28px;height:28px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-o-object-fit:contain;object-fit:contain;border:1px solid#e5e7eb;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.save-btn.jsx-5bcba35a1beb0aba{border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 18px;background:#4f46e5;color:#fff;font-weight:700;font-size:13px;cursor:pointer}.save-btn.jsx-5bcba35a1beb0aba:disabled{opacity:.5}.cancel-btn.jsx-5bcba35a1beb0aba{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 18px;background:#fff;color:#374151;font-weight:600;font-size:13px;cursor:pointer}.cat-tree.jsx-5bcba35a1beb0aba{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;overflow:hidden}.tree-parent.jsx-5bcba35a1beb0aba{border-bottom:1px solid#f3f4f6}.tree-parent.jsx-5bcba35a1beb0aba:last-child{border-bottom:none}.tree-row.jsx-5bcba35a1beb0aba{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px;padding:12px 16px}.parent-row.jsx-5bcba35a1beb0aba{background:#f9fafb}.parent-row.jsx-5bcba35a1beb0aba:hover{background:#f3f4f6}.child-row.jsx-5bcba35a1beb0aba{padding-left:40px}.child-row.jsx-5bcba35a1beb0aba:hover{background:#fafbfe}.expand-btn.jsx-5bcba35a1beb0aba{border:none;background:transparent;cursor:pointer;font-size:12px;color:#6b7280;width:20px}.child-indent.jsx-5bcba35a1beb0aba{color:#d1d5db;font-size:14px;width:20px}.cat-name.jsx-5bcba35a1beb0aba{font-size:14px;font-weight:600;color:#111827}.cat-slug.jsx-5bcba35a1beb0aba{font-size:12px;color:#9ca3af}.cat-count.jsx-5bcba35a1beb0aba{font-size:11px;color:#6b7280;background:#f3f4f6;padding:2px 8px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px}.status-dot.jsx-5bcba35a1beb0aba{width:8px;height:8px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%}.status-dot.active.jsx-5bcba35a1beb0aba{background:#10b981}.status-dot.inactive.jsx-5bcba35a1beb0aba{background:#ef4444}.row-actions.jsx-5bcba35a1beb0aba{margin-left:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px}.action-sm.jsx-5bcba35a1beb0aba{border:1px solid#e5e7eb;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:4px 10px;background:#fff;font-size:11px;font-weight:600;cursor:pointer;color:#374151}.action-sm.jsx-5bcba35a1beb0aba:hover{background:#f3f4f6}.action-sm.danger.jsx-5bcba35a1beb0aba{color:#dc2626;border-color:#fecaca}.action-sm.danger.jsx-5bcba35a1beb0aba:hover{background:#fef2f2}@media(max-width:768px){.form-row.jsx-5bcba35a1beb0aba{grid-template-columns:1fr}.tree-row.jsx-5bcba35a1beb0aba{-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.row-actions.jsx-5bcba35a1beb0aba{width:100%;margin-top:6px;margin-left:30px}}"
             })
         ]
     });

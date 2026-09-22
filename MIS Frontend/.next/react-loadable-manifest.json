@@ -1,5 +1,5 @@
 {
-  "..\\components\\admin\\TableManagerModern.jsx -> react-quill": {
+  "../components/admin/TableManagerModern.jsx -> react-quill": {
     "id": 1167,
     "files": [
       "static/chunks/eabe11fc.f5134b1ad71d269f.js",

@@ -74,56 +74,56 @@ const Footer = (props)=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-ec708c719622d5bf" + " " + "footer-container1",
+                className: "jsx-65823db792a277" + " " + "footer-container1",
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("footer", {
-                        className: "jsx-ec708c719622d5bf" + " " + "footer-mega",
+                        className: "jsx-65823db792a277" + " " + "footer-mega",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-ec708c719622d5bf" + " " + "footer-container",
+                            className: "jsx-65823db792a277" + " " + "footer-container",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ec708c719622d5bf" + " " + "footer-top-grid",
+                                    className: "jsx-65823db792a277" + " " + "footer-top-grid",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ec708c719622d5bf" + " " + "footer-brand-column",
+                                            className: "jsx-65823db792a277" + " " + "footer-brand-column",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
                                                     href: "/",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                         "aria-label": "MIS Solution Home",
-                                                        className: "jsx-ec708c719622d5bf" + " " + "footer-brand-mark",
+                                                        className: "jsx-65823db792a277" + " " + "footer-brand-mark",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                             src: "/footer%20logo.png",
                                                             alt: "MIS Solution",
-                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-brand-logo"
+                                                            className: "jsx-65823db792a277" + " " + "footer-brand-logo"
                                                         })
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-brand-tagline",
+                                                    className: "jsx-65823db792a277" + " " + "footer-brand-tagline",
                                                     children: "commited to service..."
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-brand-description section-content",
+                                                    className: "jsx-65823db792a277" + " " + "footer-brand-description section-content",
                                                     children: "Your premier destination for comprehensive e-commerce and corporate IT services. Empowering businesses through innovative technology solutions and unparalleled support."
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-social-group",
+                                                    className: "jsx-65823db792a277" + " " + "footer-social-group",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                             href: companyContact.facebookUrl || "#",
                                                             target: "_blank",
                                                             rel: "noreferrer",
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 "aria-label": "Facebook",
-                                                                className: "jsx-ec708c719622d5bf" + " " + "footer-social-link",
+                                                                className: "jsx-65823db792a277" + " " + "footer-social-link",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                     xmlns: "http://www.w3.org/2000/svg",
                                                                     width: "24",
                                                                     height: "24",
                                                                     viewBox: "0 0 24 24",
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                         fill: "none",
                                                                         stroke: "currentColor",
@@ -131,7 +131,7 @@ const Footer = (props)=>{
                                                                         strokeLinejoin: "round",
                                                                         strokeWidth: "2",
                                                                         d: "M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2z",
-                                                                        className: "jsx-ec708c719622d5bf"
+                                                                        className: "jsx-65823db792a277"
                                                                     })
                                                                 })
                                                             })
@@ -140,31 +140,31 @@ const Footer = (props)=>{
                                                             href: companyContact.linkedinUrl || "#",
                                                             target: "_blank",
                                                             rel: "noreferrer",
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 "aria-label": "LinkedIn",
-                                                                className: "jsx-ec708c719622d5bf" + " " + "footer-social-link",
+                                                                className: "jsx-65823db792a277" + " " + "footer-social-link",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                     xmlns: "http://www.w3.org/2000/svg",
                                                                     width: "24",
                                                                     height: "24",
                                                                     viewBox: "0 0 24 24",
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                                         fill: "none",
                                                                         stroke: "currentColor",
                                                                         strokeLinecap: "round",
                                                                         strokeLinejoin: "round",
                                                                         strokeWidth: "2",
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: [
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                 d: "M8 11v5m0-8v.01M12 16v-5m4 5v-3a2 2 0 1 0-4 0",
-                                                                                className: "jsx-ec708c719622d5bf"
+                                                                                className: "jsx-65823db792a277"
                                                                             }),
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                 d: "M3 7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z",
-                                                                                className: "jsx-ec708c719622d5bf"
+                                                                                className: "jsx-65823db792a277"
                                                                             })
                                                                         ]
                                                                     })
@@ -173,16 +173,16 @@ const Footer = (props)=>{
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                             href: "#",
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 "aria-label": "Twitter",
-                                                                className: "jsx-ec708c719622d5bf" + " " + "footer-social-link",
+                                                                className: "jsx-65823db792a277" + " " + "footer-social-link",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                     xmlns: "http://www.w3.org/2000/svg",
                                                                     width: "24",
                                                                     height: "24",
                                                                     viewBox: "0 0 24 24",
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                         fill: "none",
                                                                         stroke: "currentColor",
@@ -190,38 +190,38 @@ const Footer = (props)=>{
                                                                         strokeLinejoin: "round",
                                                                         strokeWidth: "2",
                                                                         d: "M22 4.01c-1 .49-1.98.689-3 .99c-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4c0 0-4.182 7.433 4 11c-1.872 1.247-3.739 2.088-6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58-1.04 6.522-3.723 7.651-7.742a13.8 13.8 0 0 0 .497-3.753c0-.249 1.51-2.772 1.818-4.013z",
-                                                                        className: "jsx-ec708c719622d5bf"
+                                                                        className: "jsx-65823db792a277"
                                                                     })
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                             href: "#",
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 "aria-label": "Instagram",
-                                                                className: "jsx-ec708c719622d5bf" + " " + "footer-social-link",
+                                                                className: "jsx-65823db792a277" + " " + "footer-social-link",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                     xmlns: "http://www.w3.org/2000/svg",
                                                                     width: "24",
                                                                     height: "24",
                                                                     viewBox: "0 0 24 24",
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                                         fill: "none",
                                                                         stroke: "currentColor",
                                                                         strokeLinecap: "round",
                                                                         strokeLinejoin: "round",
                                                                         strokeWidth: "2",
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: [
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                 d: "M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z",
-                                                                                className: "jsx-ec708c719622d5bf"
+                                                                                className: "jsx-65823db792a277"
                                                                             }),
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                 d: "M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0m7.5-4.5v.01",
-                                                                                className: "jsx-ec708c719622d5bf"
+                                                                                className: "jsx-65823db792a277"
                                                                             })
                                                                         ]
                                                                     })
@@ -234,81 +234,81 @@ const Footer = (props)=>{
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("nav", {
                                             "aria-labelledby": "footer-hardware-title",
-                                            className: "jsx-ec708c719622d5bf" + " " + "footer-nav-column",
+                                            className: "jsx-65823db792a277" + " " + "footer-nav-column",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
                                                     id: "footer-hardware-title",
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-column-title",
+                                                    className: "jsx-65823db792a277" + " " + "footer-column-title",
                                                     children: "Hardware Essentials"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-link-list",
+                                                    className: "jsx-65823db792a277" + " " + "footer-link-list",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                 href: "#",
-                                                                className: "jsx-ec708c719622d5bf",
+                                                                className: "jsx-65823db792a277",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: "Laptops & Desktops"
                                                                     })
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                 href: "#",
-                                                                className: "jsx-ec708c719622d5bf",
+                                                                className: "jsx-65823db792a277",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: "Servers & Storage"
                                                                     })
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                 href: "#",
-                                                                className: "jsx-ec708c719622d5bf",
+                                                                className: "jsx-65823db792a277",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: "Motherboards & CPUs"
                                                                     })
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                 href: "#",
-                                                                className: "jsx-ec708c719622d5bf",
+                                                                className: "jsx-65823db792a277",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: "Graphics Cards"
                                                                     })
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                 href: "#",
-                                                                className: "jsx-ec708c719622d5bf",
+                                                                className: "jsx-65823db792a277",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: "Printers & Scanners"
                                                                     })
                                                                 })
@@ -320,26 +320,26 @@ const Footer = (props)=>{
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("nav", {
                                             "aria-labelledby": "footer-services-title",
-                                            className: "jsx-ec708c719622d5bf" + " " + "footer-nav-column",
+                                            className: "jsx-65823db792a277" + " " + "footer-nav-column",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
                                                     id: "footer-services-title",
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-column-title",
+                                                    className: "jsx-65823db792a277" + " " + "footer-column-title",
                                                     children: "Core IT Solutions"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-link-list",
+                                                    className: "jsx-65823db792a277" + " " + "footer-link-list",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
                                                                 href: "/core-it-solutions",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                        className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            className: "jsx-65823db792a277",
                                                                             children: "All IT Solutions"
                                                                         })
                                                                     })
@@ -347,15 +347,15 @@ const Footer = (props)=>{
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
                                                                 href: "/digital-services",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                        className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            className: "jsx-65823db792a277",
                                                                             children: "Digital Services"
                                                                         })
                                                                     })
@@ -363,15 +363,15 @@ const Footer = (props)=>{
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
                                                                 href: "/enterprise-solutions",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                        className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            className: "jsx-65823db792a277",
                                                                             children: "Business & Corporate"
                                                                         })
                                                                     })
@@ -379,15 +379,15 @@ const Footer = (props)=>{
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
                                                                 href: "/maintenance-support",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                        className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            className: "jsx-65823db792a277",
                                                                             children: "Maintenance & Support"
                                                                         })
                                                                     })
@@ -395,15 +395,15 @@ const Footer = (props)=>{
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
                                                                 href: "/request-custom-quote",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                        className: "jsx-65823db792a277" + " " + "footer-link section-content",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            className: "jsx-65823db792a277",
                                                                             children: "Request a Quote"
                                                                         })
                                                                     })
@@ -415,65 +415,65 @@ const Footer = (props)=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ec708c719622d5bf" + " " + "footer-nav-column",
+                                            className: "jsx-65823db792a277" + " " + "footer-nav-column",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-column-title",
+                                                    className: "jsx-65823db792a277" + " " + "footer-column-title",
                                                     children: "Contact & Support"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-contact-info",
+                                                    className: "jsx-65823db792a277" + " " + "footer-contact-info",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-contact-item",
+                                                            className: "jsx-65823db792a277" + " " + "footer-contact-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-contact-icon-wrapper",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-contact-icon-wrapper",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                         xmlns: "http://www.w3.org/2000/svg",
                                                                         width: "18",
                                                                         height: "18",
                                                                         viewBox: "0 0 24 24",
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                                             fill: "none",
                                                                             stroke: "currentColor",
                                                                             strokeLinecap: "round",
                                                                             strokeLinejoin: "round",
                                                                             strokeWidth: "2",
-                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            className: "jsx-65823db792a277",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                     d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
-                                                                                    className: "jsx-ec708c719622d5bf"
+                                                                                    className: "jsx-65823db792a277"
                                                                                 }),
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                                                     cx: "12",
                                                                                     cy: "10",
                                                                                     r: "3",
-                                                                                    className: "jsx-ec708c719622d5bf"
+                                                                                    className: "jsx-65823db792a277"
                                                                                 })
                                                                             ]
                                                                         })
                                                                     })
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "section-content",
+                                                                    className: "jsx-65823db792a277" + " " + "section-content",
                                                                     children: companyContact.fullAddress
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-contact-item",
+                                                            className: "jsx-65823db792a277" + " " + "footer-contact-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-contact-icon-wrapper",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-contact-icon-wrapper",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                         xmlns: "http://www.w3.org/2000/svg",
                                                                         width: "18",
                                                                         height: "18",
                                                                         viewBox: "0 0 24 24",
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                             fill: "none",
                                                                             stroke: "currentColor",
@@ -481,15 +481,15 @@ const Footer = (props)=>{
                                                                             strokeLinejoin: "round",
                                                                             strokeWidth: "2",
                                                                             d: "M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384",
-                                                                            className: "jsx-ec708c719622d5bf"
+                                                                            className: "jsx-65823db792a277"
                                                                         })
                                                                     })
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                     href: hotlineTel ? `tel:${hotlineTel}` : "#",
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                        className: "jsx-ec708c719622d5bf" + " " + "section-content",
+                                                                        className: "jsx-65823db792a277" + " " + "section-content",
                                                                         children: [
                                                                             "24/7 Hotline: ",
                                                                             companyContact.hotlinePhone
@@ -499,27 +499,27 @@ const Footer = (props)=>{
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-contact-item",
+                                                            className: "jsx-65823db792a277" + " " + "footer-contact-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-contact-icon-wrapper",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-contact-icon-wrapper",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                         xmlns: "http://www.w3.org/2000/svg",
                                                                         width: "18",
                                                                         height: "18",
                                                                         viewBox: "0 0 24 24",
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                                             fill: "none",
                                                                             stroke: "currentColor",
                                                                             strokeLinecap: "round",
                                                                             strokeLinejoin: "round",
                                                                             strokeWidth: "2",
-                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            className: "jsx-65823db792a277",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                     d: "m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7",
-                                                                                    className: "jsx-ec708c719622d5bf"
+                                                                                    className: "jsx-65823db792a277"
                                                                                 }),
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
                                                                                     width: "20",
@@ -527,7 +527,7 @@ const Footer = (props)=>{
                                                                                     x: "2",
                                                                                     y: "4",
                                                                                     rx: "2",
-                                                                                    className: "jsx-ec708c719622d5bf"
+                                                                                    className: "jsx-65823db792a277"
                                                                                 })
                                                                             ]
                                                                         })
@@ -535,36 +535,36 @@ const Footer = (props)=>{
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                     href: `mailto:${supportEmail}`,
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-ec708c719622d5bf" + " " + "section-content",
+                                                                        className: "jsx-65823db792a277" + " " + "section-content",
                                                                         children: supportEmail
                                                                     })
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-contact-item",
+                                                            className: "jsx-65823db792a277" + " " + "footer-contact-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-contact-icon-wrapper",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-contact-icon-wrapper",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                         xmlns: "http://www.w3.org/2000/svg",
                                                                         width: "18",
                                                                         height: "18",
                                                                         viewBox: "0 0 24 24",
-                                                                        className: "jsx-ec708c719622d5bf",
+                                                                        className: "jsx-65823db792a277",
                                                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                                             fill: "none",
                                                                             stroke: "currentColor",
                                                                             strokeLinecap: "round",
                                                                             strokeLinejoin: "round",
                                                                             strokeWidth: "2",
-                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            className: "jsx-65823db792a277",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                     d: "m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7",
-                                                                                    className: "jsx-ec708c719622d5bf"
+                                                                                    className: "jsx-65823db792a277"
                                                                                 }),
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
                                                                                     width: "20",
@@ -572,7 +572,7 @@ const Footer = (props)=>{
                                                                                     x: "2",
                                                                                     y: "4",
                                                                                     rx: "2",
-                                                                                    className: "jsx-ec708c719622d5bf"
+                                                                                    className: "jsx-65823db792a277"
                                                                                 })
                                                                             ]
                                                                         })
@@ -580,9 +580,9 @@ const Footer = (props)=>{
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                     href: "mailto:missolution2007@gmail.com",
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-ec708c719622d5bf" + " " + "section-content",
+                                                                        className: "jsx-65823db792a277" + " " + "section-content",
                                                                         children: "missolution2007@gmail.com"
                                                                     })
                                                                 })
@@ -591,10 +591,10 @@ const Footer = (props)=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-newsletter",
+                                                    className: "jsx-65823db792a277" + " " + "footer-newsletter",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-newsletter-title section-subtitle",
+                                                            className: "jsx-65823db792a277" + " " + "footer-newsletter-title section-subtitle",
                                                             children: "Stay Updated"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
@@ -630,10 +630,10 @@ const Footer = (props)=>{
                                                                     setNewsletterMsg("");
                                                                 }, 4000);
                                                             },
-                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-newsletter-form",
+                                                            className: "jsx-65823db792a277" + " " + "footer-newsletter-form",
                                                             children: [
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-input-wrapper",
+                                                                    className: "jsx-65823db792a277" + " " + "footer-input-wrapper",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                             type: "email",
@@ -643,7 +643,7 @@ const Footer = (props)=>{
                                                                             value: newsletterEmail,
                                                                             onChange: (e)=>setNewsletterEmail(e.target.value),
                                                                             disabled: newsletterStatus === "loading" || newsletterStatus === "success",
-                                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-newsletter-input"
+                                                                            className: "jsx-65823db792a277" + " " + "footer-newsletter-input"
                                                                         }),
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                             type: "submit",
@@ -653,13 +653,13 @@ const Footer = (props)=>{
                                                                                 backgroundColor: "#2ecc71",
                                                                                 color: "#fff"
                                                                             } : {},
-                                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-newsletter-btn",
+                                                                            className: "jsx-65823db792a277" + " " + "footer-newsletter-btn",
                                                                             children: newsletterStatus === "success" ? "✓" : newsletterStatus === "loading" ? "..." : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                                 xmlns: "http://www.w3.org/2000/svg",
                                                                                 width: "20",
                                                                                 height: "20",
                                                                                 viewBox: "0 0 24 24",
-                                                                                className: "jsx-ec708c719622d5bf",
+                                                                                className: "jsx-65823db792a277",
                                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                     fill: "none",
                                                                                     stroke: "currentColor",
@@ -667,7 +667,7 @@ const Footer = (props)=>{
                                                                                     strokeLinejoin: "round",
                                                                                     strokeWidth: "2",
                                                                                     d: "M5 12h14m-7-7l7 7l-7 7",
-                                                                                    className: "jsx-ec708c719622d5bf"
+                                                                                    className: "jsx-65823db792a277"
                                                                                 })
                                                                             })
                                                                         })
@@ -679,7 +679,7 @@ const Footer = (props)=>{
                                                                         marginTop: "6px",
                                                                         color: newsletterStatus === "error" ? "#ef4444" : "#2ecc71"
                                                                     },
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: newsletterMsg
                                                                 })
                                                             ]
@@ -691,47 +691,47 @@ const Footer = (props)=>{
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ec708c719622d5bf" + " " + "footer-bottom-bar",
+                                    className: "jsx-65823db792a277" + " " + "footer-bottom-bar",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ec708c719622d5bf" + " " + "footer-legal-group",
+                                            className: "jsx-65823db792a277" + " " + "footer-legal-group",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-copyright section-content",
+                                                    className: "jsx-65823db792a277" + " " + "footer-copyright section-content",
                                                     children: "&copy; 2026 MIS Solution. All rights reserved."
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-legal-links",
+                                                    className: "jsx-65823db792a277" + " " + "footer-legal-links",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                             href: "#",
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-ec708c719622d5bf" + " " + "footer-legal-link section-content",
+                                                                className: "jsx-65823db792a277" + " " + "footer-legal-link section-content",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: "Privacy Policy"
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                             href: "#",
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-ec708c719622d5bf" + " " + "footer-legal-link section-content",
+                                                                className: "jsx-65823db792a277" + " " + "footer-legal-link section-content",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: "Terms of Service"
                                                                 })
                                                             })
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                             href: "#",
-                                                            className: "jsx-ec708c719622d5bf",
+                                                            className: "jsx-65823db792a277",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-ec708c719622d5bf" + " " + "footer-legal-link section-content",
+                                                                className: "jsx-65823db792a277" + " " + "footer-legal-link section-content",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    className: "jsx-65823db792a277",
                                                                     children: "Warranty Info"
                                                                 })
                                                             })
@@ -741,21 +741,21 @@ const Footer = (props)=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ec708c719622d5bf" + " " + "footer-payment-badges",
+                                            className: "jsx-65823db792a277" + " " + "footer-payment-badges",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                     title: "EMI Options Available",
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-payment-badge",
+                                                    className: "jsx-65823db792a277" + " " + "footer-payment-badge",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-ec708c719622d5bf",
+                                                        className: "jsx-65823db792a277",
                                                         children: "EMI Available"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                     title: "Secure Payment",
-                                                    className: "jsx-ec708c719622d5bf" + " " + "footer-payment-badge",
+                                                    className: "jsx-65823db792a277" + " " + "footer-payment-badge",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-ec708c719622d5bf",
+                                                        className: "jsx-65823db792a277",
                                                         children: "100% Secure"
                                                     })
                                                 })
@@ -767,9 +767,9 @@ const Footer = (props)=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-ec708c719622d5bf" + " " + "footer-container2",
+                        className: "jsx-65823db792a277" + " " + "footer-container2",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-ec708c719622d5bf" + " " + "footer-container3",
+                            className: "jsx-65823db792a277" + " " + "footer-container3",
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
                                 html: `<script defer data-name="footer-logic">
 (function(){
@@ -782,8 +782,8 @@ const Footer = (props)=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "ec708c719622d5bf",
-                children: ".footer-container1.jsx-ec708c719622d5bf{display:contents}.footer-container2.jsx-ec708c719622d5bf{display:none}.footer-container3.jsx-ec708c719622d5bf{display:contents}"
+                id: "65823db792a277",
+                children: ".footer-container1.jsx-65823db792a277{display:contents}.footer-container2.jsx-65823db792a277{display:none}.footer-container3.jsx-65823db792a277{display:contents}"
             })
         ]
     });
