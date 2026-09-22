@@ -439,7 +439,7 @@ const normalizeSubmitValues = (table, columns, formValues) => {
     const control = resolveFieldControl(table, column)
     let value = formValues[column.columnName]
 
-    if (control.kind === 'textarea' && column.columnName === 'photos') {
+    if ((control.kind === 'textarea' || control.kind === 'gallery-upload') && column.columnName === 'photos') {
       normalized[column.columnName] = JSON.stringify(parseMediaUrls(value))
       return
     }
