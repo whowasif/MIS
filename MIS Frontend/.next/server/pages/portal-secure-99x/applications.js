@@ -536,7 +536,7 @@ const getServerSideProps = async ({ req  })=>{
         }
         const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_5__.getDbPool)();
         const [rows] = await db.query(`
-      SELECT ca.*, cp.title AS job_title
+      SELECT ca.*, cp.name AS job_title
       FROM career_applications ca
       LEFT JOIN career_posts cp ON cp.id = ca.career_post_id
       ORDER BY
