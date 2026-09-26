@@ -174,6 +174,12 @@ const CareerPage = ({ jobs = [] }) => {
                         {job.description && (
                           <p className="job-desc">{job.description.substring(0, 120)}{job.description.length > 120 ? '...' : ''}</p>
                         )}
+                        {job.deadline && (
+                          <div className="job-deadline">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            Deadline: {new Date(job.deadline).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+                          </div>
+                        )}
                         <div className="job-card-actions">
                           <button className="btn-ghost-sm" onClick={() => setViewJob(job)}>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -227,6 +233,12 @@ const CareerPage = ({ jobs = [] }) => {
                 <div className="modal-body">
                   <span className="job-status-badge">{viewJob.status || 'Open'}</span>
                   <h2 className="modal-title">{viewJob.name}</h2>
+                  {viewJob.deadline && (
+                    <div className="modal-deadline">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                      Application Deadline: <strong>{new Date(viewJob.deadline).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</strong>
+                    </div>
+                  )}
                   {viewJob.description && <div className="modal-section"><h4>About this Role</h4><p>{viewJob.description}</p></div>}
                   {viewJob.full_description && (
                     <div className="modal-section"><h4>Full Details</h4><div className="modal-html" dangerouslySetInnerHTML={{ __html: viewJob.full_description }} /></div>
@@ -358,7 +370,10 @@ const CareerPage = ({ jobs = [] }) => {
         .job-card-top { margin-bottom: 10px; }
         .job-status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(247,229,0,0.15); border: 1px solid rgba(180,160,0,0.3); color: #856c00; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
         .job-title { margin: 0 0 10px; font-size: 18px; font-weight: 700; color: #111827; line-height: 1.3; }
-        .job-desc { margin: 0 0 18px; font-size: 14px; color: #6b7280; line-height: 1.6; }
+        .job-desc { margin: 0 0 10px; font-size: 14px; color: #6b7280; line-height: 1.6; }
+        .job-deadline { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #dc2626; margin: 0 0 14px; }
+        .modal-deadline { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #dc2626; margin: 8px 0 16px; padding: 8px 12px; background: #fef2f2; border-radius: 8px; border: 1px solid #fecaca; }
+        .modal-deadline strong { font-weight: 700; }
         .job-card-actions { display: flex; gap: 10px; }
         .btn-ghost-sm { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border: 1px solid #d1d5db; border-radius: 8px; background: #fff; color: #374151; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
         .btn-ghost-sm:hover { background: #f3f4f6; border-color: #9ca3af; }
