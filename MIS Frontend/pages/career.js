@@ -80,18 +80,11 @@ const CareerPage = ({ jobs = [] }) => {
                 {jobs.map((job) => (
                   <div key={job.id} className="job-card">
                     <div className="job-card-left">
-                      <h3>{job.title}</h3>
+                      <h3>{job.name}</h3>
                       <div className="job-tags">
-                        <span className="tag type-tag">{job.job_type}</span>
-                        {job.department && <span className="tag">{job.department}</span>}
-                        <span className="tag">{job.location || 'Dhaka'}</span>
+                        <span className="tag type-tag">{job.status || 'Open'}</span>
                       </div>
                       {job.description && <p className="job-summary">{job.description.substring(0, 150)}{job.description.length > 150 ? '...' : ''}</p>}
-                      <div className="job-bottom-meta">
-                        {job.experience && <span>Experience: {job.experience}</span>}
-                        {job.salary_range && <span>Salary: {job.salary_range}</span>}
-                        {job.deadline && <span>Deadline: {formatDate(job.deadline)}</span>}
-                      </div>
                     </div>
                     <div className="job-card-right">
                       <button className="btn-outline-sm" onClick={() => setViewJob(job)}>View Details</button>
@@ -111,22 +104,11 @@ const CareerPage = ({ jobs = [] }) => {
               <button className="modal-close" onClick={() => setViewJob(null)}>✕</button>
               <div className="modal-scroll">
                 <div className="detail-top">
-                  <h2>{viewJob.title}</h2>
-                  <span className="tag type-tag">{viewJob.job_type}</span>
-                </div>
-
-                <div className="detail-grid">
-                  {viewJob.department && <div><span>Department</span><strong>{viewJob.department}</strong></div>}
-                  <div><span>Location</span><strong>{viewJob.location || 'Dhaka, Bangladesh'}</strong></div>
-                  {viewJob.experience && <div><span>Experience</span><strong>{viewJob.experience}</strong></div>}
-                  {viewJob.salary_range && <div><span>Salary</span><strong>{viewJob.salary_range}</strong></div>}
-                  {viewJob.deadline && <div><span>Deadline</span><strong>{formatDate(viewJob.deadline)}</strong></div>}
+                  <h2>{viewJob.name}</h2>
+                  <span className="tag type-tag">{viewJob.status || 'Open'}</span>
                 </div>
 
                 {viewJob.description && <div className="detail-section"><h4>About this Role</h4><p>{viewJob.description}</p></div>}
-                {viewJob.requirements && <div className="detail-section"><h4>Requirements</h4><p>{viewJob.requirements}</p></div>}
-                {viewJob.responsibilities && <div className="detail-section"><h4>Responsibilities</h4><p>{viewJob.responsibilities}</p></div>}
-                {viewJob.benefits && <div className="detail-section"><h4>Benefits</h4><p>{viewJob.benefits}</p></div>}
                 {viewJob.full_description && <div className="detail-section"><h4>Full Details</h4><div dangerouslySetInnerHTML={{ __html: viewJob.full_description }} /></div>}
 
                 <button className="btn-primary-full" onClick={openApplyFromDetail}>Apply for this Position</button>
@@ -144,12 +126,12 @@ const CareerPage = ({ jobs = [] }) => {
                 {submitted ? (
                   <div className="success-msg">
                     <h2>Application Submitted!</h2>
-                    <p>Thank you for applying to <strong>{applyJob.title}</strong>. We'll be in touch.</p>
+                    <p>Thank you for applying to <strong>{applyJob.name}</strong>. We'll be in touch.</p>
                     <button className="btn-primary-full" onClick={closeApply}>Close</button>
                   </div>
                 ) : (
                   <>
-                    <h2 className="apply-title">Apply: {applyJob.title}</h2>
+                    <h2 className="apply-title">Apply: {applyJob.name}</h2>
                     <form onSubmit={handleApply} className="apply-form">
                       <div className="form-field"><label>Full Name *</label><input type="text" value={form.name} onChange={(e) => setForm(p => ({ ...p, name: e.target.value }))} required /></div>
                       <div className="form-row">
@@ -266,8 +248,8 @@ export const getServerSideProps = async () => {
     const db = getDbPool()
     const [rows] = await db.query(`
       SELECT * FROM career_posts
-      WHERE is_active = 1 AND (deadline IS NULL OR deadline >= CURDATE())
-      ORDER BY created_at DESC
+      WHERE is_active = 1 AND deleted_at IS NULL
+      ORDER BY display_order ASC, created_at DESC
     `)
     return { props: { jobs: JSON.parse(JSON.stringify(rows)) } }
   } catch (e) {

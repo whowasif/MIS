@@ -283,56 +283,20 @@ const CareerPage = ({ jobs =[]  })=>{
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
                                                             className: "jsx-9a70eb86e7425283",
-                                                            children: job.title
+                                                            children: job.name
                                                         }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                             className: "jsx-9a70eb86e7425283" + " " + "job-tags",
-                                                            children: [
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-9a70eb86e7425283" + " " + "tag type-tag",
-                                                                    children: job.job_type
-                                                                }),
-                                                                job.department && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-9a70eb86e7425283" + " " + "tag",
-                                                                    children: job.department
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-9a70eb86e7425283" + " " + "tag",
-                                                                    children: job.location || "Dhaka"
-                                                                })
-                                                            ]
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                className: "jsx-9a70eb86e7425283" + " " + "tag type-tag",
+                                                                children: job.status || "Open"
+                                                            })
                                                         }),
                                                         job.description && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
                                                             className: "jsx-9a70eb86e7425283" + " " + "job-summary",
                                                             children: [
                                                                 job.description.substring(0, 150),
                                                                 job.description.length > 150 ? "..." : ""
-                                                            ]
-                                                        }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-9a70eb86e7425283" + " " + "job-bottom-meta",
-                                                            children: [
-                                                                job.experience && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-9a70eb86e7425283",
-                                                                    children: [
-                                                                        "Experience: ",
-                                                                        job.experience
-                                                                    ]
-                                                                }),
-                                                                job.salary_range && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-9a70eb86e7425283",
-                                                                    children: [
-                                                                        "Salary: ",
-                                                                        job.salary_range
-                                                                    ]
-                                                                }),
-                                                                job.deadline && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                    className: "jsx-9a70eb86e7425283",
-                                                                    children: [
-                                                                        "Deadline: ",
-                                                                        formatDate(job.deadline)
-                                                                    ]
-                                                                })
                                                             ]
                                                         })
                                                     ]
@@ -378,81 +342,11 @@ const CareerPage = ({ jobs =[]  })=>{
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
                                                     className: "jsx-9a70eb86e7425283",
-                                                    children: viewJob.title
+                                                    children: viewJob.name
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                     className: "jsx-9a70eb86e7425283" + " " + "tag type-tag",
-                                                    children: viewJob.job_type
-                                                })
-                                            ]
-                                        }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-9a70eb86e7425283" + " " + "detail-grid",
-                                            children: [
-                                                viewJob.department && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: [
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: "Department"
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: viewJob.department
-                                                        })
-                                                    ]
-                                                }),
-                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: [
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: "Location"
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: viewJob.location || "Dhaka, Bangladesh"
-                                                        })
-                                                    ]
-                                                }),
-                                                viewJob.experience && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: [
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: "Experience"
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: viewJob.experience
-                                                        })
-                                                    ]
-                                                }),
-                                                viewJob.salary_range && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: [
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: "Salary"
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: viewJob.salary_range
-                                                        })
-                                                    ]
-                                                }),
-                                                viewJob.deadline && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: [
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: "Deadline"
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-9a70eb86e7425283",
-                                                            children: formatDate(viewJob.deadline)
-                                                        })
-                                                    ]
+                                                    children: viewJob.status || "Open"
                                                 })
                                             ]
                                         }),
@@ -466,45 +360,6 @@ const CareerPage = ({ jobs =[]  })=>{
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                                     className: "jsx-9a70eb86e7425283",
                                                     children: viewJob.description
-                                                })
-                                            ]
-                                        }),
-                                        viewJob.requirements && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-9a70eb86e7425283" + " " + "detail-section",
-                                            children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: "Requirements"
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: viewJob.requirements
-                                                })
-                                            ]
-                                        }),
-                                        viewJob.responsibilities && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-9a70eb86e7425283" + " " + "detail-section",
-                                            children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: "Responsibilities"
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: viewJob.responsibilities
-                                                })
-                                            ]
-                                        }),
-                                        viewJob.benefits && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-9a70eb86e7425283" + " " + "detail-section",
-                                            children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: "Benefits"
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-9a70eb86e7425283",
-                                                    children: viewJob.benefits
                                                 })
                                             ]
                                         }),
@@ -560,7 +415,7 @@ const CareerPage = ({ jobs =[]  })=>{
                                                     "Thank you for applying to ",
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
                                                         className: "jsx-9a70eb86e7425283",
-                                                        children: applyJob.title
+                                                        children: applyJob.name
                                                     }),
                                                     ". We'll be in touch."
                                                 ]
@@ -577,7 +432,7 @@ const CareerPage = ({ jobs =[]  })=>{
                                                 className: "jsx-9a70eb86e7425283" + " " + "apply-title",
                                                 children: [
                                                     "Apply: ",
-                                                    applyJob.title
+                                                    applyJob.name
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
@@ -713,8 +568,8 @@ const getServerSideProps = async ()=>{
         const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_6__.getDbPool)();
         const [rows] = await db.query(`
       SELECT * FROM career_posts
-      WHERE is_active = 1 AND (deadline IS NULL OR deadline >= CURDATE())
-      ORDER BY created_at DESC
+      WHERE is_active = 1 AND deleted_at IS NULL
+      ORDER BY display_order ASC, created_at DESC
     `);
         return {
             props: {
