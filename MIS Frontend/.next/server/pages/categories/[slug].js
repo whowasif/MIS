@@ -1,0 +1,1529 @@
+"use strict";
+(() => {
+var exports = {};
+exports.id = 9591;
+exports.ids = [9591,7174,2984];
+exports.modules = {
+
+/***/ 2984:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getDbPool": () => (/* binding */ getDbPool)
+/* harmony export */ });
+/* harmony import */ var mysql2_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2418);
+/* harmony import */ var mysql2_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mysql2_promise__WEBPACK_IMPORTED_MODULE_0__);
+
+const requiredEnvVars = [
+    "DB_HOST",
+    "DB_USER",
+    "DB_PASSWORD",
+    "DB_NAME"
+];
+const getMissingEnvVars = ()=>requiredEnvVars.filter((envKey)=>!process.env[envKey] || !String(process.env[envKey]).trim());
+const getDbPool = ()=>{
+    if (globalThis.__misDbPool) return globalThis.__misDbPool;
+    const missingEnvVars = getMissingEnvVars();
+    if (missingEnvVars.length > 0) {
+        throw new Error(`Missing database environment variables: ${missingEnvVars.join(", ")}`);
+    }
+    const pool = mysql2_promise__WEBPACK_IMPORTED_MODULE_0___default().createPool({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        waitForConnections: true,
+        connectionLimit: 5,
+        queueLimit: 0,
+        namedPlaceholders: true,
+        timezone: "Z"
+    });
+    globalThis.__misDbPool = pool;
+    return pool;
+};
+
+
+/***/ }),
+
+/***/ 8808:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "getServerSideProps": () => (/* binding */ getServerSideProps)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9816);
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(968);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2097);
+/* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6151);
+/* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2984);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_7__]);
+_components_footer__WEBPACK_IMPORTED_MODULE_7__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+
+
+
+
+
+
+const formatCurrency = (v)=>`৳${Number(v || 0).toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    })}`;
+// --- Filter-only spec normalization -------------------------------------
+// Collapses a free-text spec value down to its "base" so the filter sidebar
+// shows a small set of buckets instead of one checkbox per product.
+// This ONLY affects the filter UI/matching. Product cards and the product
+// detail page still show the full, original value.
+const clean = (s)=>String(s || "").replace(/\s+/g, " ").trim();
+// Processor: "Intel Core i7-12500H" / "Core i7 12500-6C" -> "Intel Core i7"
+//            "AMD Ryzen 5 9600X" / "Ryzen 5 7535HS" -> "AMD Ryzen 5"
+const normProcessor = (raw)=>{
+    const v = clean(raw);
+    const lower = v.toLowerCase();
+    // Intel Core iX
+    let m = lower.match(/core\s*i([3579])/);
+    if (m) return `Intel Core i${m[1]}`;
+    // Intel Core Ultra X
+    m = lower.match(/core\s*ultra\s*([3579])/);
+    if (m) return `Intel Core Ultra ${m[1]}`;
+    // Intel Core X (new naming: "Core 5 210H", "Core 3-N355")
+    m = lower.match(/core\s*([3579])\b/);
+    if (m) return `Intel Core ${m[1]}`;
+    // AMD Ryzen X
+    m = lower.match(/ryzen\s*([3579])/);
+    if (m) return `AMD Ryzen ${m[1]}`;
+    // Ryzen Threadripper / EPYC / Athlon
+    if (lower.includes("threadripper")) return "AMD Ryzen Threadripper";
+    if (lower.includes("epyc")) return "AMD EPYC";
+    if (lower.includes("athlon")) return "AMD Athlon";
+    // Intel families without a tier number
+    if (lower.includes("xeon")) return "Intel Xeon";
+    if (lower.includes("pentium")) return "Intel Pentium";
+    if (lower.includes("celeron")) return "Intel Celeron";
+    if (lower.includes("atom")) return "Intel Atom";
+    // Apple silicon
+    m = v.match(/\bM([1234])\b/);
+    if (m) return `Apple M${m[1]}`;
+    return v // fallback: keep as typed
+    ;
+};
+// Extract "<number><unit>" for a given unit list (GB, TB, MB) -> capacity base.
+const capacity = (raw)=>{
+    const v = clean(raw);
+    const m = v.match(/(\d+(?:\.\d+)?)\s*(tb|gb|mb)\b/i);
+    if (!m) return null;
+    const num = m[1].replace(/\.0$/, "");
+    return `${num}${m[2].toUpperCase()}`;
+};
+// RAM: "8GB 3200Mhz DDR4 Laptop RAM" -> "8GB"
+const normRam = (raw)=>capacity(raw) || clean(raw);
+// Storage: "512GB NVMe SSD" -> "512GB" ; "1TB HDD" -> "1TB"
+const normStorage = (raw)=>capacity(raw) || clean(raw);
+// Graphics: "NVIDIA RTX 4070 8GB" -> "NVIDIA RTX 4070"
+//           "Intel® UHD Graphics" -> "Intel UHD" ; "Integrated Radeon Graphics" -> "AMD Radeon"
+const normGraphics = (raw)=>{
+    const v = clean(raw).replace(/®|™/g, "");
+    const lower = v.toLowerCase();
+    let m = lower.match(/rtx\s*(\d{3,4})/);
+    if (m) return `NVIDIA RTX ${m[1]}`;
+    m = lower.match(/gtx\s*(\d{3,4})/);
+    if (m) return `NVIDIA GTX ${m[1]}`;
+    if (lower.includes("iris xe")) return "Intel Iris Xe";
+    if (lower.includes("uhd")) return "Intel UHD";
+    if (lower.includes("radeon")) return "AMD Radeon";
+    if (lower.includes("arc")) return "Intel Arc";
+    if (lower.includes("integrated")) return "Integrated";
+    return v;
+};
+// Memory type: "8GB 3200Mhz DDR4 Laptop RAM" / "DDR5 Support" -> "DDR5"
+//              GPU memory "GDDR6X" -> "GDDR6X"
+const normMemType = (raw)=>{
+    const v = clean(raw);
+    let m = v.match(/\b(GDDR\d[X]?)\b/i);
+    if (m) return m[1].toUpperCase();
+    m = v.match(/\b(DDR\d[L]?)\b/i);
+    if (m) return m[1].toUpperCase();
+    if (/lpddr/i.test(v)) {
+        m = v.match(/\b(LPDDR\d[X]?)\b/i);
+        if (m) return m[1].toUpperCase();
+    }
+    return v;
+};
+// Storage type / drive medium: "512GB NVMe SSD" -> "SSD" ; "1TB HDD" -> "HDD"
+const normStorageType = (raw)=>{
+    const lower = clean(raw).toLowerCase();
+    if (lower.includes("nvme")) return "NVMe SSD";
+    if (lower.includes("ssd")) return "SSD";
+    if (lower.includes("hdd") || lower.includes("hard disk")) return "HDD";
+    if (lower.includes("emmc")) return "eMMC";
+    return clean(raw);
+};
+// Display size: "15.6 inch" / "27 inch" / "1.47 inch AMOLED" / "46mm" -> "15.6 inch"
+const normDisplaySize = (raw)=>{
+    const v = clean(raw);
+    let m = v.match(/(\d+(?:\.\d+)?)\s*("|inch|inches|in\b)/i);
+    if (m) return `${m[1]} inch`;
+    m = v.match(/(\d+(?:\.\d+)?)\s*mm\b/i);
+    if (m) return `${m[1]}mm`;
+    return v;
+};
+// Resolution: cameras -> megapixels ("2MP (1080p)" -> "2MP"); displays/GPU ->
+// standard label if present ("FHD 1920x1080 144Hz" -> "FHD"), else the WxH.
+const normResolution = (raw)=>{
+    const v = clean(raw);
+    let m = v.match(/(\d+(?:\.\d+)?)\s*MP\b/i);
+    if (m) return `${m[1]}MP`;
+    m = v.match(/\b(8K|4K|QHD\+?|WQHD|WQXGA|QHD|FHD\+?|FHD|HD\+?|HD|UHD|WUXGA|WXGA|SXGA|UXGA)\b/i);
+    if (m) return m[1].toUpperCase();
+    m = v.match(/(\d{3,4})\s*[x×]\s*(\d{3,4})/);
+    if (m) return `${m[1]}x${m[2]}`;
+    return v;
+};
+// Video resolution: "4K@60fps" / "1080p" / "2.7K" -> "4K" / "1080p" / "2.7K"
+const normVideoRes = (raw)=>{
+    const v = clean(raw);
+    let m = v.match(/\b(8K|5K|4K|2\.7K|2K|1440p|1080p|720p)\b/i);
+    if (m) return m[1].toUpperCase().replace("P", "p");
+    return normResolution(v);
+};
+// Battery: "57H Battery" / "5000mAh" / "24H Total Playback" -> "5000mAh" / "57H"
+const normBattery = (raw)=>{
+    const v = clean(raw);
+    let m = v.match(/(\d+(?:,\d+)?)\s*mah\b/i);
+    if (m) return `${m[1].replace(/,/g, "")}mAh`;
+    m = v.match(/(\d+(?:\.\d+)?)\s*wh\b/i);
+    if (m) return `${m[1]}Wh`;
+    m = v.match(/(\d+(?:\.\d+)?)\s*(?:h|hr|hrs|hours?)\b/i);
+    if (m) return `${m[1]}H`;
+    return v;
+};
+// Socket: "AM5" / "LGA1700" / "AM4 Micro ATX Motherboard AM4" -> "AM5" / "LGA1700"
+const normSocket = (raw)=>{
+    const v = clean(raw);
+    let m = v.match(/\b(LGA\s*\d{3,4})\b/i);
+    if (m) return m[1].toUpperCase().replace(/\s+/g, "");
+    m = v.match(/\b(AM\d\+?|sTRX\d|sWRX\d|TR\d)\b/i);
+    if (m) return m[1].toUpperCase();
+    m = v.match(/\b(FM\d\+?)\b/i);
+    if (m) return m[1].toUpperCase();
+    return v;
+};
+// Speed / frequency: "4.7GHz - 5.4GHz" -> "4.7GHz" (base clock) ; "2610 MHz Boost" -> "2610MHz"
+//                    "3000Mbps (2402+574)" -> "3000Mbps"
+const normSpeed = (raw)=>{
+    const v = clean(raw);
+    let m = v.match(/(\d+(?:\.\d+)?)\s*ghz\b/i);
+    if (m) return `${m[1]}GHz`;
+    m = v.match(/(\d+(?:\.\d+)?)\s*mbps\b/i);
+    if (m) return `${m[1]}Mbps`;
+    m = v.match(/(\d+(?:\.\d+)?)\s*gbps\b/i);
+    if (m) return `${m[1]}Gbps`;
+    m = v.match(/(\d+(?:\.\d+)?)\s*mhz\b/i);
+    if (m) return `${m[1]}MHz`;
+    return v;
+};
+// Power / wattage: "65W" / "1100VA / 660W" / "550 Watt 80+ Gold" -> "660W" / "550W" / "1100VA"
+const normPower = (raw)=>{
+    const v = clean(raw);
+    let m = v.match(/(\d+(?:\.\d+)?)\s*(?:w|watt|watts)\b/i);
+    if (m) return `${m[1]}W`;
+    m = v.match(/(\d+(?:\.\d+)?)\s*va\b/i);
+    if (m) return `${m[1]}VA`;
+    return v;
+};
+// Generic base for any other spec: take the leading brand/keyword-ish part
+// (first 2 words, stripped of trailing model codes / units) so long sentences
+// collapse. Falls back to the raw value if nothing sensible remains.
+const normGeneric = (raw)=>{
+    const v = clean(raw);
+    if (v.length <= 24) return v;
+    // keep text up to first comma / colon / parenthesis / dash-with-space
+    const cut = v.split(/[,:(]| - /)[0].trim();
+    return cut.length >= 3 ? cut : v;
+};
+const specNormalizers = {
+    // Processor
+    processor: normProcessor,
+    "processor-brand": normProcessor,
+    "processor-model": normProcessor,
+    cpu: normProcessor,
+    // Memory capacity
+    ram: normRam,
+    memory: normRam,
+    // Memory type
+    "ram-type": normMemType,
+    "memory-type": normMemType,
+    // Storage capacity
+    storage: normStorage,
+    ssd: normStorage,
+    hdd: normStorage,
+    "storage-capacity": normStorage,
+    // Storage type
+    "storage-type": normStorageType,
+    "drive-type": normStorageType,
+    // Graphics
+    "graphics-card": normGraphics,
+    graphics: normGraphics,
+    gpu: normGraphics,
+    // Display
+    "display-size": normDisplaySize,
+    "screen-size": normDisplaySize,
+    "display-resolution": normResolution,
+    "screen-resolution": normResolution,
+    resolution: normResolution,
+    "refresh-rate": normSpeed,
+    // Camera
+    megapixels: normResolution,
+    megapixel: normResolution,
+    "video-resolution": normVideoRes,
+    "video-quality": normVideoRes,
+    // Battery
+    battery: normBattery,
+    "battery-life": normBattery,
+    "battery-capacity": normBattery,
+    "battery-backup": normBattery,
+    // Socket
+    socket: normSocket,
+    "cpu-socket": normSocket,
+    // Speed / frequency
+    speed: normSpeed,
+    frequency: normSpeed,
+    "clock-speed": normSpeed,
+    "frequency-band": normSpeed,
+    // Power / wattage
+    power: normPower,
+    wattage: normPower,
+    "power-supply": normPower,
+    capacity: normPower
+};
+const normalizeSpecValue = (specName, rawValue)=>{
+    const key = String(specName || "").toLowerCase();
+    const fn = specNormalizers[key];
+    const out = fn ? fn(rawValue) : normGeneric(rawValue);
+    return clean(out) || clean(rawValue);
+};
+const CategoryPage = ({ category , subcategories , products , specs , filterOptions ={} , brands , maxPrice  })=>{
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();
+    const { 0: priceRange , 1: setPriceRange  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([
+        0,
+        maxPrice || 500000
+    ]);
+    const { 0: selectedBrand , 1: setSelectedBrand  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
+    const { 0: selectedSpecs , 1: setSelectedSpecs  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({});
+    const { 0: availability , 1: setAvailability  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("all");
+    const { 0: sortBy , 1: setSortBy  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("default");
+    const { 0: filterOpen , 1: setFilterOpen  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+    // Reset filters when category changes (client-side navigation)
+    react__WEBPACK_IMPORTED_MODULE_2___default().useEffect(()=>{
+        setPriceRange([
+            0,
+            maxPrice || 500000
+        ]);
+        setSelectedBrand("");
+        setSelectedSpecs({});
+        setAvailability("all");
+        setSortBy("default");
+        setFilterOpen(false);
+    }, [
+        category?.id,
+        maxPrice
+    ]);
+    const filteredProducts = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>{
+        let filtered = [
+            ...products
+        ];
+        // Price filter
+        filtered = filtered.filter((p)=>p.price >= priceRange[0] && p.price <= priceRange[1]);
+        // Brand filter
+        if (selectedBrand) {
+            filtered = filtered.filter((p)=>p.brand === selectedBrand);
+        }
+        // Availability
+        if (availability === "in-stock") {
+            filtered = filtered.filter((p)=>p.stock_qty > 0);
+        } else if (availability === "upcoming") {
+            filtered = filtered.filter((p)=>p.stock_qty === 0);
+        }
+        // Spec filters (multi-select). selectedSpecs[specName] holds curated option
+        // values. A product matches when its manually-assigned filter value
+        // (stored as "<spec>__filter") equals a selected option (case-insensitive).
+        // Falls back to the raw spec value contains/equals when no filter value set.
+        Object.entries(selectedSpecs).forEach(([specName, specValues])=>{
+            if (!specValues || !Array.isArray(specValues) || specValues.length === 0) return;
+            filtered = filtered.filter((p)=>{
+                const allSpecs = p.filterSpecs || p.specs;
+                const pFilter = allSpecs?.find((s)=>s.spec_name === `${specName}__filter`);
+                const filterVal = pFilter?.spec_value ? String(pFilter.spec_value).toLowerCase() : "";
+                if (filterVal) {
+                    return specValues.some((opt)=>String(opt).toLowerCase() === filterVal);
+                }
+                const pSpec = allSpecs?.find((s)=>s.spec_name === specName);
+                if (!pSpec?.spec_value) return false;
+                const raw = String(pSpec.spec_value).toLowerCase();
+                return specValues.some((opt)=>{
+                    const o = String(opt).toLowerCase();
+                    return raw === o || raw.includes(o);
+                });
+            });
+        });
+        // Sort
+        if (sortBy === "price-low") filtered.sort((a, b)=>a.price - b.price);
+        else if (sortBy === "price-high") filtered.sort((a, b)=>b.price - a.price);
+        else if (sortBy === "newest") filtered.sort((a, b)=>new Date(b.created_at) - new Date(a.created_at));
+        return filtered;
+    }, [
+        products,
+        priceRange,
+        selectedBrand,
+        selectedSpecs,
+        availability,
+        sortBy
+    ]);
+    // Build filter facets from the MANUALLY-CURATED option list (set in admin).
+    // Only show a spec if it is filterable AND has at least one curated option.
+    const specOptions = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>{
+        const options = {};
+        specs.forEach((spec)=>{
+            const curated = filterOptions[spec.spec_name] || [];
+            if (curated.length > 0) {
+                options[spec.spec_name] = {
+                    label: spec.spec_label,
+                    values: [
+                        ...curated
+                    ].sort((a, b)=>a.localeCompare(b, undefined, {
+                            numeric: true,
+                            sensitivity: "base"
+                        }))
+                };
+            }
+        });
+        return options;
+    }, [
+        specs,
+        filterOptions
+    ]);
+    if (!category) {
+        return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {}),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("main", {
+                    style: {
+                        minHeight: "60vh",
+                        display: "grid",
+                        placeItems: "center"
+                    },
+                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        style: {
+                            textAlign: "center"
+                        },
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+                                children: "Category Not Found"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                href: "/product-catalog",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                    children: "Browse All Products"
+                                })
+                            })
+                        ]
+                    })
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {})
+            ]
+        });
+    }
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
+                children: [
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("title", {
+                        className: "jsx-2a76d0bd1be6546d",
+                        children: [
+                            category.meta_title || `${category.name} Price in Bangladesh`,
+                            " | MIS Solution"
+                        ]
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                        name: "description",
+                        content: category.meta_description || category.description || `Buy ${category.name} from MIS Solution at best price in Bangladesh.`,
+                        className: "jsx-2a76d0bd1be6546d"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                        rel: "icon",
+                        href: "/footer%20logo.png",
+                        className: "jsx-2a76d0bd1be6546d"
+                    })
+                ]
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {}),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
+                className: "jsx-2a76d0bd1be6546d" + " " + "cat-page",
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "jsx-2a76d0bd1be6546d" + " " + "cat-breadcrumb",
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "jsx-2a76d0bd1be6546d" + " " + "cat-container",
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                    href: "/",
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                        className: "jsx-2a76d0bd1be6546d",
+                                        children: "Home"
+                                    })
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "jsx-2a76d0bd1be6546d",
+                                    children: "/"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "jsx-2a76d0bd1be6546d",
+                                    children: category.name
+                                })
+                            ]
+                        })
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "jsx-2a76d0bd1be6546d" + " " + "cat-header",
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "jsx-2a76d0bd1be6546d" + " " + "cat-container",
+                            children: [
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
+                                    className: "jsx-2a76d0bd1be6546d",
+                                    children: [
+                                        category.name,
+                                        " Price in Bangladesh"
+                                    ]
+                                }),
+                                category.description && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                    className: "jsx-2a76d0bd1be6546d",
+                                    children: category.description
+                                })
+                            ]
+                        })
+                    }),
+                    brands.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "jsx-2a76d0bd1be6546d" + " " + "brands-row",
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "jsx-2a76d0bd1be6546d" + " " + "cat-container",
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                    onClick: ()=>setSelectedBrand(""),
+                                    className: "jsx-2a76d0bd1be6546d" + " " + `brand-chip ${!selectedBrand ? "active" : ""}`,
+                                    children: "All"
+                                }),
+                                brands.map((b)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                        onClick: ()=>setSelectedBrand(selectedBrand === b ? "" : b),
+                                        className: "jsx-2a76d0bd1be6546d" + " " + `brand-chip ${selectedBrand === b ? "active" : ""}`,
+                                        children: b
+                                    }, b))
+                            ]
+                        })
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "jsx-2a76d0bd1be6546d" + " " + "cat-main",
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "jsx-2a76d0bd1be6546d" + " " + "cat-container cat-grid",
+                            children: [
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("aside", {
+                                    className: "jsx-2a76d0bd1be6546d" + " " + "cat-sidebar",
+                                    children: [
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-block",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                    className: "jsx-2a76d0bd1be6546d",
+                                                    children: "Price Range"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                    type: "range",
+                                                    min: "0",
+                                                    max: maxPrice || 500000,
+                                                    step: "1000",
+                                                    value: priceRange[1],
+                                                    onChange: (e)=>setPriceRange([
+                                                            priceRange[0],
+                                                            Number(e.target.value)
+                                                        ]),
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "price-slider"
+                                                }),
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "price-inputs",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                            type: "number",
+                                                            value: priceRange[0],
+                                                            onChange: (e)=>setPriceRange([
+                                                                    Number(e.target.value),
+                                                                    priceRange[1]
+                                                                ]),
+                                                            className: "jsx-2a76d0bd1be6546d"
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                            type: "number",
+                                                            value: priceRange[1],
+                                                            onChange: (e)=>setPriceRange([
+                                                                    priceRange[0],
+                                                                    Number(e.target.value)
+                                                                ]),
+                                                            className: "jsx-2a76d0bd1be6546d"
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-block",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                    className: "jsx-2a76d0bd1be6546d",
+                                                    children: "Availability"
+                                                }),
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                            type: "radio",
+                                                            name: "avail",
+                                                            checked: availability === "all",
+                                                            onChange: ()=>setAvailability("all"),
+                                                            className: "jsx-2a76d0bd1be6546d"
+                                                        }),
+                                                        " All"
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                            type: "radio",
+                                                            name: "avail",
+                                                            checked: availability === "in-stock",
+                                                            onChange: ()=>setAvailability("in-stock"),
+                                                            className: "jsx-2a76d0bd1be6546d"
+                                                        }),
+                                                        " In Stock"
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                            type: "radio",
+                                                            name: "avail",
+                                                            checked: availability === "upcoming",
+                                                            onChange: ()=>setAvailability("upcoming"),
+                                                            className: "jsx-2a76d0bd1be6546d"
+                                                        }),
+                                                        " Upcoming"
+                                                    ]
+                                                })
+                                            ]
+                                        }),
+                                        Object.entries(specOptions).map(([specName, { label , values  }])=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "jsx-2a76d0bd1be6546d" + " " + "filter-block",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                        className: "jsx-2a76d0bd1be6546d",
+                                                        children: label
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                        className: "jsx-2a76d0bd1be6546d" + " " + "filter-options-list",
+                                                        children: values.map((val)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                                                className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                                                children: [
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                                        type: "checkbox",
+                                                                        checked: (selectedSpecs[specName] || []).includes(val),
+                                                                        onChange: (e)=>{
+                                                                            setSelectedSpecs((p)=>{
+                                                                                const current = p[specName] || [];
+                                                                                const updated = e.target.checked ? [
+                                                                                    ...current,
+                                                                                    val
+                                                                                ] : current.filter((v)=>v !== val);
+                                                                                return {
+                                                                                    ...p,
+                                                                                    [specName]: updated
+                                                                                };
+                                                                            });
+                                                                        },
+                                                                        className: "jsx-2a76d0bd1be6546d"
+                                                                    }),
+                                                                    val
+                                                                ]
+                                                            }, val))
+                                                    })
+                                                ]
+                                            }, specName))
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+                                    className: "jsx-2a76d0bd1be6546d" + " " + "cat-products",
+                                    children: [
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "cat-toolbar",
+                                            children: [
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                                    onClick: ()=>setFilterOpen(true),
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-toggle-btn",
+                                                    children: [
+                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                            width: "16",
+                                                            height: "16",
+                                                            viewBox: "0 0 24 24",
+                                                            fill: "none",
+                                                            stroke: "currentColor",
+                                                            strokeWidth: "2",
+                                                            strokeLinecap: "round",
+                                                            strokeLinejoin: "round",
+                                                            className: "jsx-2a76d0bd1be6546d",
+                                                            children: [
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                                    x1: "4",
+                                                                    y1: "21",
+                                                                    x2: "4",
+                                                                    y2: "14",
+                                                                    className: "jsx-2a76d0bd1be6546d"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                                    x1: "4",
+                                                                    y1: "10",
+                                                                    x2: "4",
+                                                                    y2: "3",
+                                                                    className: "jsx-2a76d0bd1be6546d"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                                    x1: "12",
+                                                                    y1: "21",
+                                                                    x2: "12",
+                                                                    y2: "12",
+                                                                    className: "jsx-2a76d0bd1be6546d"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                                    x1: "12",
+                                                                    y1: "8",
+                                                                    x2: "12",
+                                                                    y2: "3",
+                                                                    className: "jsx-2a76d0bd1be6546d"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                                    x1: "20",
+                                                                    y1: "21",
+                                                                    x2: "20",
+                                                                    y2: "16",
+                                                                    className: "jsx-2a76d0bd1be6546d"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
+                                                                    x1: "20",
+                                                                    y1: "12",
+                                                                    x2: "20",
+                                                                    y2: "3",
+                                                                    className: "jsx-2a76d0bd1be6546d"
+                                                                })
+                                                            ]
+                                                        }),
+                                                        "Filter"
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "toolbar-title",
+                                                    children: category.name
+                                                }),
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "toolbar-controls",
+                                                    children: [
+                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                                            className: "jsx-2a76d0bd1be6546d" + " " + "product-count",
+                                                            children: [
+                                                                "Show: ",
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
+                                                                    className: "jsx-2a76d0bd1be6546d",
+                                                                    children: filteredProducts.length
+                                                                })
+                                                            ]
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "jsx-2a76d0bd1be6546d" + " " + "sort-label",
+                                                            children: "Sort By:"
+                                                        }),
+                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
+                                                            value: sortBy,
+                                                            onChange: (e)=>setSortBy(e.target.value),
+                                                            className: "jsx-2a76d0bd1be6546d" + " " + "sort-select",
+                                                            children: [
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                    value: "default",
+                                                                    className: "jsx-2a76d0bd1be6546d",
+                                                                    children: "Default"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                    value: "price-low",
+                                                                    className: "jsx-2a76d0bd1be6546d",
+                                                                    children: "Price: Low to High"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                    value: "price-high",
+                                                                    className: "jsx-2a76d0bd1be6546d",
+                                                                    children: "Price: High to Low"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
+                                                                    value: "newest",
+                                                                    className: "jsx-2a76d0bd1be6546d",
+                                                                    children: "Newest First"
+                                                                })
+                                                            ]
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        }),
+                                        filteredProducts.length === 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "no-products",
+                                            children: "No products match your filters."
+                                        }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "products-grid",
+                                            children: filteredProducts.map((product)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "product-card-item",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                                                            href: `/products/${product.slug || product.id}`,
+                                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                                                className: "jsx-2a76d0bd1be6546d" + " " + "product-card-link",
+                                                                children: [
+                                                                    product.regular_price && product.regular_price > product.price && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                                                        className: "jsx-2a76d0bd1be6546d" + " " + "save-badge",
+                                                                        children: [
+                                                                            "Save: ",
+                                                                            formatCurrency(product.regular_price - product.price)
+                                                                        ]
+                                                                    }),
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                        className: "jsx-2a76d0bd1be6546d" + " " + "product-card-img",
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                                            src: product.thumbnail_1 || "/footer%20logo.png",
+                                                                            alt: product.name,
+                                                                            className: "jsx-2a76d0bd1be6546d"
+                                                                        })
+                                                                    }),
+                                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                                        className: "jsx-2a76d0bd1be6546d" + " " + "product-card-body",
+                                                                        children: [
+                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
+                                                                                className: "jsx-2a76d0bd1be6546d",
+                                                                                children: product.name
+                                                                            }),
+                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
+                                                                                className: "jsx-2a76d0bd1be6546d" + " " + "spec-list",
+                                                                                children: product.specs?.slice(0, 4).map((spec)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                                                                        className: "jsx-2a76d0bd1be6546d",
+                                                                                        children: spec.spec_value
+                                                                                    }, spec.spec_name))
+                                                                            }),
+                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                                className: "jsx-2a76d0bd1be6546d" + " " + "product-card-price",
+                                                                                children: product.price > 0 ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                                                                                    children: [
+                                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
+                                                                                            className: "jsx-2a76d0bd1be6546d",
+                                                                                            children: formatCurrency(product.price)
+                                                                                        }),
+                                                                                        product.regular_price > product.price && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                                            className: "jsx-2a76d0bd1be6546d" + " " + "old-price",
+                                                                                            children: formatCurrency(product.regular_price)
+                                                                                        })
+                                                                                    ]
+                                                                                }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
+                                                                                    className: "jsx-2a76d0bd1be6546d" + " " + "contact-price",
+                                                                                    children: "Contact for Price"
+                                                                                })
+                                                                            })
+                                                                        ]
+                                                                    })
+                                                                ]
+                                                            })
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                            className: "jsx-2a76d0bd1be6546d" + " " + "product-card-actions",
+                                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                                                onClick: ()=>{
+                                                                    try {
+                                                                        const cart = JSON.parse(window.localStorage.getItem("misCart") || "[]");
+                                                                        const id = product.slug || String(product.id);
+                                                                        const existing = cart.find((item)=>item.id === id);
+                                                                        if (existing) {
+                                                                            existing.quantity += 1;
+                                                                        } else {
+                                                                            cart.push({
+                                                                                id,
+                                                                                productId: product.id,
+                                                                                name: product.name,
+                                                                                price: Number(product.price || 0),
+                                                                                image: product.thumbnail_1 || "",
+                                                                                quantity: 1
+                                                                            });
+                                                                        }
+                                                                        window.localStorage.setItem("misCart", JSON.stringify(cart));
+                                                                        window.dispatchEvent(new Event("mis-cart-updated"));
+                                                                    } catch (err) {}
+                                                                },
+                                                                className: "jsx-2a76d0bd1be6546d" + " " + "add-cart-btn",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                                        width: "16",
+                                                                        height: "16",
+                                                                        viewBox: "0 0 24 24",
+                                                                        fill: "none",
+                                                                        stroke: "currentColor",
+                                                                        strokeWidth: "2",
+                                                                        strokeLinecap: "round",
+                                                                        strokeLinejoin: "round",
+                                                                        className: "jsx-2a76d0bd1be6546d",
+                                                                        children: [
+                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                                                                cx: "9",
+                                                                                cy: "21",
+                                                                                r: "1",
+                                                                                className: "jsx-2a76d0bd1be6546d"
+                                                                            }),
+                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                                                                cx: "20",
+                                                                                cy: "21",
+                                                                                r: "1",
+                                                                                className: "jsx-2a76d0bd1be6546d"
+                                                                            }),
+                                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                                d: "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6",
+                                                                                className: "jsx-2a76d0bd1be6546d"
+                                                                            })
+                                                                        ]
+                                                                    }),
+                                                                    "Add to Cart"
+                                                                ]
+                                                            })
+                                                        })
+                                                    ]
+                                                }, product.id))
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                    })
+                ]
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {}),
+            filterOpen && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                onClick: ()=>setFilterOpen(false),
+                className: "jsx-2a76d0bd1be6546d" + " " + "filter-overlay",
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("aside", {
+                    onClick: (e)=>e.stopPropagation(),
+                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-drawer",
+                    children: [
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-drawer-head",
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "jsx-2a76d0bd1be6546d",
+                                    children: "Filters"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                    onClick: ()=>setFilterOpen(false),
+                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-drawer-close",
+                                    children: "✕"
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-drawer-body",
+                            children: [
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-block",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                            className: "jsx-2a76d0bd1be6546d",
+                                            children: "Price Range"
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                            type: "range",
+                                            min: "0",
+                                            max: maxPrice || 500000,
+                                            step: "1000",
+                                            value: priceRange[1],
+                                            onChange: (e)=>setPriceRange([
+                                                    priceRange[0],
+                                                    Number(e.target.value)
+                                                ]),
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "price-slider"
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "price-inputs",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                    type: "number",
+                                                    value: priceRange[0],
+                                                    onChange: (e)=>setPriceRange([
+                                                            Number(e.target.value),
+                                                            priceRange[1]
+                                                        ]),
+                                                    className: "jsx-2a76d0bd1be6546d"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                    type: "number",
+                                                    value: priceRange[1],
+                                                    onChange: (e)=>setPriceRange([
+                                                            priceRange[0],
+                                                            Number(e.target.value)
+                                                        ]),
+                                                    className: "jsx-2a76d0bd1be6546d"
+                                                })
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-block",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                            className: "jsx-2a76d0bd1be6546d",
+                                            children: "Availability"
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                    type: "radio",
+                                                    name: "avail-m",
+                                                    checked: availability === "all",
+                                                    onChange: ()=>setAvailability("all"),
+                                                    className: "jsx-2a76d0bd1be6546d"
+                                                }),
+                                                " All"
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                    type: "radio",
+                                                    name: "avail-m",
+                                                    checked: availability === "in-stock",
+                                                    onChange: ()=>setAvailability("in-stock"),
+                                                    className: "jsx-2a76d0bd1be6546d"
+                                                }),
+                                                " In Stock"
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                    type: "radio",
+                                                    name: "avail-m",
+                                                    checked: availability === "upcoming",
+                                                    onChange: ()=>setAvailability("upcoming"),
+                                                    className: "jsx-2a76d0bd1be6546d"
+                                                }),
+                                                " Upcoming"
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                brands.length > 0 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-block",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                            className: "jsx-2a76d0bd1be6546d",
+                                            children: "Brand"
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-options-list",
+                                            children: [
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                                    className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                            type: "radio",
+                                                            name: "brand-m",
+                                                            checked: !selectedBrand,
+                                                            onChange: ()=>setSelectedBrand(""),
+                                                            className: "jsx-2a76d0bd1be6546d"
+                                                        }),
+                                                        " All"
+                                                    ]
+                                                }),
+                                                brands.map((b)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                                        className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                                type: "radio",
+                                                                name: "brand-m",
+                                                                checked: selectedBrand === b,
+                                                                onChange: ()=>setSelectedBrand(b),
+                                                                className: "jsx-2a76d0bd1be6546d"
+                                                            }),
+                                                            b
+                                                        ]
+                                                    }, b))
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                Object.entries(specOptions).map(([specName, { label , values  }])=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "jsx-2a76d0bd1be6546d" + " " + "filter-block",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                className: "jsx-2a76d0bd1be6546d",
+                                                children: label
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                className: "jsx-2a76d0bd1be6546d" + " " + "filter-options-list",
+                                                children: values.map((val)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+                                                        className: "jsx-2a76d0bd1be6546d" + " " + "filter-option",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                                type: "checkbox",
+                                                                checked: (selectedSpecs[specName] || []).includes(val),
+                                                                onChange: (e)=>{
+                                                                    setSelectedSpecs((p)=>{
+                                                                        const current = p[specName] || [];
+                                                                        const updated = e.target.checked ? [
+                                                                            ...current,
+                                                                            val
+                                                                        ] : current.filter((v)=>v !== val);
+                                                                        return {
+                                                                            ...p,
+                                                                            [specName]: updated
+                                                                        };
+                                                                    });
+                                                                },
+                                                                className: "jsx-2a76d0bd1be6546d"
+                                                            }),
+                                                            val
+                                                        ]
+                                                    }, val))
+                                            })
+                                        ]
+                                    }, specName))
+                            ]
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "jsx-2a76d0bd1be6546d" + " " + "filter-drawer-footer",
+                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                onClick: ()=>setFilterOpen(false),
+                                className: "jsx-2a76d0bd1be6546d" + " " + "filter-apply-btn",
+                                children: [
+                                    "Show ",
+                                    filteredProducts.length,
+                                    " Products"
+                                ]
+                            })
+                        })
+                    ]
+                })
+            }),
+            react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
+                id: "2a76d0bd1be6546d",
+                children: '.cat-page.jsx-2a76d0bd1be6546d{min-height:100vh;background:#f0f3f8;font-family:"Inter","Segoe UI",Arial,sans-serif}.cat-container.jsx-2a76d0bd1be6546d{max-width:1320px;margin:0 auto;padding:0 16px}.cat-breadcrumb.jsx-2a76d0bd1be6546d{padding:12px 0;background:#fff;border-bottom:1px solid#e8ecf1}.cat-breadcrumb.jsx-2a76d0bd1be6546d .cat-container.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;font-size:13px;color:#6b7280;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.cat-breadcrumb.jsx-2a76d0bd1be6546d a{color:#3b82f6;text-decoration:none;font-weight:500}.cat-breadcrumb.jsx-2a76d0bd1be6546d a:hover{text-decoration:underline}.cat-header.jsx-2a76d0bd1be6546d{padding:20px 0 12px;background:#fff;border-bottom:1px solid#e8ecf1}.cat-header.jsx-2a76d0bd1be6546d h1.jsx-2a76d0bd1be6546d{margin:0;font-size:20px;color:#1e3a5f;font-weight:700}.cat-header.jsx-2a76d0bd1be6546d p.jsx-2a76d0bd1be6546d{margin:6px 0 0;color:#64748b;font-size:13px;line-height:1.6;max-width:800px}.brands-row.jsx-2a76d0bd1be6546d{padding:12px 0;background:#fff;border-bottom:1px solid#e8ecf1}.brands-row.jsx-2a76d0bd1be6546d .cat-container.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.brand-chip.jsx-2a76d0bd1be6546d{border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 14px;background:#fff;font-size:12px;font-weight:500;cursor:pointer;color:#374151;-webkit-transition:all.12s;-moz-transition:all.12s;-o-transition:all.12s;transition:all.12s}.brand-chip.jsx-2a76d0bd1be6546d:hover{border-color:#3b82f6;color:#3b82f6}.brand-chip.active.jsx-2a76d0bd1be6546d{background:#3b82f6;color:#fff;border-color:#3b82f6}.subcats-row.jsx-2a76d0bd1be6546d{padding:10px 0;background:#fff;border-bottom:1px solid#e8ecf1}.subcats-row.jsx-2a76d0bd1be6546d .cat-container.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.subcat-chip.jsx-2a76d0bd1be6546d{padding:4px 12px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;border:1px solid#d4dae3;background:#fff;color:#374151;font-size:12px;font-weight:500;text-decoration:none;-webkit-transition:all.12s;-moz-transition:all.12s;-o-transition:all.12s;transition:all.12s}.subcat-chip.jsx-2a76d0bd1be6546d:hover{border-color:#3b82f6;color:#3b82f6}.cat-main.jsx-2a76d0bd1be6546d{padding:20px 0 48px}.cat-grid.jsx-2a76d0bd1be6546d{display:grid;grid-template-columns:260px 1fr;gap:20px;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start}.cat-sidebar.jsx-2a76d0bd1be6546d{position:-webkit-sticky;position:sticky;top:80px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:0;background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;overflow:hidden}.filter-block.jsx-2a76d0bd1be6546d{padding:14px 16px;border-bottom:1px solid#f1f5f9}.filter-block.jsx-2a76d0bd1be6546d:last-child{border-bottom:none}.filter-block.jsx-2a76d0bd1be6546d h3.jsx-2a76d0bd1be6546d{margin:0 0 10px;font-size:13px;color:#1e293b;font-weight:700}.price-slider.jsx-2a76d0bd1be6546d{width:100%;accent-color:#ef4444;margin-bottom:8px;height:4px}.price-inputs.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.price-inputs.jsx-2a76d0bd1be6546d input.jsx-2a76d0bd1be6546d{width:50%;border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 6px;font-size:12px;text-align:center}.filter-options-list.jsx-2a76d0bd1be6546d{max-height:180px;overflow-y:auto}.filter-option.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:3px 0;font-size:12.5px;color:#374151;cursor:pointer}.filter-option.jsx-2a76d0bd1be6546d input.jsx-2a76d0bd1be6546d{accent-color:#3b82f6;width:14px;height:14px}.cat-products.jsx-2a76d0bd1be6546d{min-width:0}.cat-toolbar.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:12px 16px;background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;margin-bottom:16px}.toolbar-title.jsx-2a76d0bd1be6546d{margin:0;font-size:16px;color:#1e293b;font-weight:700}.toolbar-controls.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.product-count.jsx-2a76d0bd1be6546d{font-size:12px;color:#64748b}.product-count.jsx-2a76d0bd1be6546d strong.jsx-2a76d0bd1be6546d{color:#1e293b}.sort-label.jsx-2a76d0bd1be6546d{font-size:12px;color:#64748b}.sort-select.jsx-2a76d0bd1be6546d{border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:6px 10px;font-size:12px;color:#374151}.products-grid.jsx-2a76d0bd1be6546d{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}.product-card-item.jsx-2a76d0bd1be6546d{position:relative;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;overflow:hidden;-webkit-transition:box-shadow.2s,border-color.2s;-moz-transition:box-shadow.2s,border-color.2s;-o-transition:box-shadow.2s,border-color.2s;transition:box-shadow.2s,border-color.2s;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-card-item.jsx-2a76d0bd1be6546d:hover{-webkit-box-shadow:0 6px 20px rgba(0,0,0,.08);-moz-box-shadow:0 6px 20px rgba(0,0,0,.08);box-shadow:0 6px 20px rgba(0,0,0,.08);border-color:#cbd5e1}.product-card-link.jsx-2a76d0bd1be6546d{text-decoration:none;color:inherit;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.save-badge.jsx-2a76d0bd1be6546d{position:absolute;top:8px;left:8px;padding:2px 8px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background:#7c3aed;color:#fff;font-size:10px;font-weight:700;z-index:1}.product-card-img.jsx-2a76d0bd1be6546d{height:170px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:12px;background:#fff;border-bottom:1px solid#f1f5f9}.product-card-img.jsx-2a76d0bd1be6546d img.jsx-2a76d0bd1be6546d{max-width:100%;max-height:100%;-o-object-fit:contain;object-fit:contain;mix-blend-mode:multiply}.product-card-body.jsx-2a76d0bd1be6546d{padding:12px 14px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-card-body.jsx-2a76d0bd1be6546d h4.jsx-2a76d0bd1be6546d{margin:0 0 8px;font-size:13px;color:#1e293b;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.spec-list.jsx-2a76d0bd1be6546d{margin:0 0 8px;padding:0;list-style:none}.spec-list.jsx-2a76d0bd1be6546d li.jsx-2a76d0bd1be6546d{position:relative;font-size:11px;color:#64748b;margin-bottom:2px;padding-left:12px;line-height:1.5}.spec-list.jsx-2a76d0bd1be6546d li.jsx-2a76d0bd1be6546d::before{content:"•";position:absolute;left:0;color:#94a3b8}.product-card-price.jsx-2a76d0bd1be6546d{margin-top:auto;padding-top:10px;border-top:1px solid#f1f5f9;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:baseline;-webkit-align-items:baseline;-moz-box-align:baseline;-ms-flex-align:baseline;align-items:baseline;gap:8px}.product-card-price.jsx-2a76d0bd1be6546d strong.jsx-2a76d0bd1be6546d{font-size:15px;color:#ef4444;font-weight:700}.old-price.jsx-2a76d0bd1be6546d{font-size:12px;color:#9ca3af;text-decoration:line-through}.contact-price.jsx-2a76d0bd1be6546d{color:#64748b;font-size:13px;font-weight:600}.product-card-actions.jsx-2a76d0bd1be6546d{margin-top:10px}.add-cart-btn.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:6px;width:100%;padding:8px;border:none;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:#3b82f6;color:#fff;font-size:12px;font-weight:700;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.add-cart-btn.jsx-2a76d0bd1be6546d:hover{background:#2563eb}.product-card-item.jsx-2a76d0bd1be6546d:hover .add-cart-btn.jsx-2a76d0bd1be6546d{background:#2563eb}.no-products.jsx-2a76d0bd1be6546d{padding:48px;text-align:center;color:#94a3b8;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;font-size:14px}@media(max-width:960px){.cat-grid.jsx-2a76d0bd1be6546d{grid-template-columns:220px 1fr}.products-grid.jsx-2a76d0bd1be6546d{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}}@media(max-width:768px){.cat-grid.jsx-2a76d0bd1be6546d{grid-template-columns:1fr}.cat-sidebar.jsx-2a76d0bd1be6546d{position:static;display:none}.products-grid.jsx-2a76d0bd1be6546d{grid-template-columns:repeat(2,1fr);gap:10px}.product-card-img.jsx-2a76d0bd1be6546d{height:140px}.toolbar-title.jsx-2a76d0bd1be6546d{display:none}}.filter-toggle-btn.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;border:1px solid#d4dae3;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:8px 14px;background:#fff;font-size:13px;font-weight:600;color:#374151;cursor:pointer;-webkit-transition:border-color.12s;-moz-transition:border-color.12s;-o-transition:border-color.12s;transition:border-color.12s}.filter-toggle-btn.jsx-2a76d0bd1be6546d:hover{border-color:#3b82f6;color:#3b82f6}.filter-overlay.jsx-2a76d0bd1be6546d{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2000;-webkit-animation:fadeIn.15s;-moz-animation:fadeIn.15s;-o-animation:fadeIn.15s;animation:fadeIn.15s}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@-moz-keyframes fadeIn{from{opacity:0}to{opacity:1}}@-o-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.filter-drawer.jsx-2a76d0bd1be6546d{position:fixed;top:0;right:0;width:min(360px,85vw);height:100vh;background:#fff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-shadow:-8px 0 24px rgba(0,0,0,.15);-moz-box-shadow:-8px 0 24px rgba(0,0,0,.15);box-shadow:-8px 0 24px rgba(0,0,0,.15);-webkit-animation:slideIn.2s ease-out;-moz-animation:slideIn.2s ease-out;-o-animation:slideIn.2s ease-out;animation:slideIn.2s ease-out}@-webkit-keyframes slideIn{from{-webkit-transform:translateX(100%);transform:translateX(100%)}to{-webkit-transform:translateX(0);transform:translateX(0)}}@-moz-keyframes slideIn{from{-moz-transform:translateX(100%);transform:translateX(100%)}to{-moz-transform:translateX(0);transform:translateX(0)}}@-o-keyframes slideIn{from{-o-transform:translateX(100%);transform:translateX(100%)}to{-o-transform:translateX(0);transform:translateX(0)}}@keyframes slideIn{from{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-o-transform:translateX(100%);transform:translateX(100%)}to{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}}.filter-drawer-head.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:18px 20px;border-bottom:1px solid#e5e7eb}.filter-drawer-head.jsx-2a76d0bd1be6546d span.jsx-2a76d0bd1be6546d{font-size:18px;font-weight:700;color:#111827}.filter-drawer-close.jsx-2a76d0bd1be6546d{border:none;background:transparent;font-size:22px;cursor:pointer;color:#6b7280;width:32px;height:32px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.filter-drawer-close.jsx-2a76d0bd1be6546d:hover{background:#f3f4f6}.filter-drawer-body.jsx-2a76d0bd1be6546d{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;overflow-y:auto;padding:0}.filter-drawer-body.jsx-2a76d0bd1be6546d .filter-block.jsx-2a76d0bd1be6546d{padding:16px 20px;border-bottom:1px solid#f1f5f9}.filter-drawer-body.jsx-2a76d0bd1be6546d .filter-block.jsx-2a76d0bd1be6546d h3.jsx-2a76d0bd1be6546d{margin:0 0 12px;font-size:14px;color:#1e293b;font-weight:700}.filter-drawer-body.jsx-2a76d0bd1be6546d .filter-option.jsx-2a76d0bd1be6546d{padding:5px 0;font-size:13px}.filter-drawer-body.jsx-2a76d0bd1be6546d .price-slider.jsx-2a76d0bd1be6546d{width:100%;accent-color:#ef4444}.filter-drawer-body.jsx-2a76d0bd1be6546d .price-inputs.jsx-2a76d0bd1be6546d{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;margin-top:8px}.filter-drawer-body.jsx-2a76d0bd1be6546d .price-inputs.jsx-2a76d0bd1be6546d input.jsx-2a76d0bd1be6546d{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;border:1px solid#d4dae3;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:8px 10px;font-size:13px;text-align:center}.filter-drawer-body.jsx-2a76d0bd1be6546d .filter-options-list.jsx-2a76d0bd1be6546d{max-height:200px;overflow-y:auto}.filter-drawer-footer.jsx-2a76d0bd1be6546d{padding:16px 20px;border-top:1px solid#e5e7eb}.filter-apply-btn.jsx-2a76d0bd1be6546d{width:100%;padding:12px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#1e293b;color:#fff;font-size:14px;font-weight:700;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.filter-apply-btn.jsx-2a76d0bd1be6546d:hover{background:#334155}'
+            })
+        ]
+    });
+};
+const getServerSideProps = async ({ params  })=>{
+    const slug = String(params?.slug || "").trim().toLowerCase();
+    if (!slug) return {
+        notFound: true
+    };
+    try {
+        const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_8__.getDbPool)();
+        // Get category
+        const [cats] = await db.execute("SELECT * FROM categories WHERE LOWER(slug) = ? AND deleted_at IS NULL AND status = 'active' LIMIT 1", [
+            slug
+        ]);
+        if (!cats.length) return {
+            notFound: true
+        };
+        const category = cats[0];
+        // Get subcategories
+        const [subcats] = await db.execute("SELECT id, name, slug FROM categories WHERE parent_id = ? AND deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC", [
+            category.id
+        ]);
+        // Build the set of related category ids: the viewed category, its parent,
+        // and its subcategories. Specs may be defined on the parent and filter
+        // options may be stored under a subcategory (that's where products live),
+        // so we look across all of them to surface every relevant filter.
+        const relatedIds = [
+            category.id,
+            ...subcats.map((s)=>s.id),
+            ...category.parent_id ? [
+                category.parent_id
+            ] : [], 
+        ];
+        const relatedPlaceholders = relatedIds.map(()=>"?").join(",");
+        // Get filterable category specs across the related categories, deduped by
+        // spec_name (prefer the one on the viewed category, else parent/sub).
+        const [specRows] = await db.execute(`SELECT spec_name, spec_label, display_order, category_id FROM category_specs
+       WHERE category_id IN (${relatedPlaceholders}) AND is_filterable = 1
+       ORDER BY (category_id = ?) DESC, display_order ASC`, [
+            ...relatedIds,
+            category.id
+        ]);
+        const specsByName = {};
+        specRows.forEach((r)=>{
+            if (!specsByName[r.spec_name]) {
+                specsByName[r.spec_name] = {
+                    spec_name: r.spec_name,
+                    spec_label: r.spec_label,
+                    display_order: r.display_order
+                };
+            }
+        });
+        const specs = Object.values(specsByName).sort((a, b)=>(a.display_order || 0) - (b.display_order || 0));
+        // Get the manually-curated filter option values across related categories.
+        let filterOptions = {};
+        try {
+            const [optRows] = await db.execute(`SELECT spec_name, option_value FROM spec_filter_options
+         WHERE category_id IN (${relatedPlaceholders})
+         ORDER BY spec_name ASC, display_order ASC, option_value ASC`, relatedIds);
+            optRows.forEach((r)=>{
+                if (!filterOptions[r.spec_name]) filterOptions[r.spec_name] = [];
+                if (!filterOptions[r.spec_name].some((v)=>v.toLowerCase() === String(r.option_value).toLowerCase())) {
+                    filterOptions[r.spec_name].push(r.option_value);
+                }
+            });
+        } catch (e) {
+            filterOptions = {};
+        }
+        // Get products in this category (and subcategories)
+        const categoryIds = [
+            category.id,
+            ...subcats.map((s)=>s.id)
+        ];
+        const placeholders = categoryIds.map(()=>"?").join(",");
+        const [products] = await db.execute(`SELECT p.* FROM products p
+       WHERE p.category_id IN (${placeholders})
+         AND p.deleted_at IS NULL AND p.is_active = 1
+       ORDER BY p.created_at DESC
+       LIMIT 200`, categoryIds);
+        // Parse specs from JSON column
+        const productsWithSpecs = products.map((p)=>{
+            let specs = [];
+            try {
+                const parsed = p.specifications ? JSON.parse(p.specifications) : {};
+                specs = Object.entries(parsed).map(([key, val])=>({
+                        spec_name: key,
+                        spec_value: val
+                    }));
+            } catch (e) {}
+            // Keep the "__filter" companion values available for filtering, but the
+            // display list (product cards/detail) should not show them as bullets.
+            const displaySpecs = specs.filter((s)=>!String(s.spec_name).endsWith("__filter"));
+            return {
+                ...p,
+                specs: displaySpecs,
+                filterSpecs: specs
+            };
+        });
+        // Get unique brands
+        const brands = [
+            ...new Set(products.map((p)=>p.brand).filter(Boolean))
+        ].sort();
+        // Max price
+        const maxPrice = Math.max(...products.map((p)=>Number(p.price || 0)), 10000);
+        return {
+            props: {
+                category: JSON.parse(JSON.stringify(category)),
+                subcategories: JSON.parse(JSON.stringify(subcats)),
+                products: JSON.parse(JSON.stringify(productsWithSpecs)),
+                specs: JSON.parse(JSON.stringify(specs)),
+                filterOptions: JSON.parse(JSON.stringify(filterOptions)),
+                brands,
+                maxPrice
+            }
+        };
+    } catch (e1) {
+        console.error("Category page error:", e1);
+        return {
+            notFound: true
+        };
+    }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CategoryPage);
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 2418:
+/***/ ((module) => {
+
+module.exports = require("mysql2/promise");
+
+/***/ }),
+
+/***/ 1649:
+/***/ ((module) => {
+
+module.exports = require("next-auth/react");
+
+/***/ }),
+
+/***/ 503:
+/***/ ((module) => {
+
+module.exports = require("next-intl");
+
+/***/ }),
+
+/***/ 3280:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/app-router-context.js");
+
+/***/ }),
+
+/***/ 2796:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/head-manager-context.js");
+
+/***/ }),
+
+/***/ 3539:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/i18n/detect-domain-locale.js");
+
+/***/ }),
+
+/***/ 4014:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/i18n/normalize-locale-path.js");
+
+/***/ }),
+
+/***/ 8524:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/is-plain-object.js");
+
+/***/ }),
+
+/***/ 8020:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/mitt.js");
+
+/***/ }),
+
+/***/ 4406:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/page-path/denormalize-page-path.js");
+
+/***/ }),
+
+/***/ 4964:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router-context.js");
+
+/***/ }),
+
+/***/ 3431:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/add-locale.js");
+
+/***/ }),
+
+/***/ 1751:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js");
+
+/***/ }),
+
+/***/ 6220:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/compare-states.js");
+
+/***/ }),
+
+/***/ 299:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/format-next-pathname-info.js");
+
+/***/ }),
+
+/***/ 3938:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/format-url.js");
+
+/***/ }),
+
+/***/ 9565:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/get-asset-path-from-route.js");
+
+/***/ }),
+
+/***/ 5789:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/get-next-pathname-info.js");
+
+/***/ }),
+
+/***/ 1897:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/is-bot.js");
+
+/***/ }),
+
+/***/ 1428:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/is-dynamic.js");
+
+/***/ }),
+
+/***/ 8854:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
+
+/***/ }),
+
+/***/ 1292:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/parse-relative-url.js");
+
+/***/ }),
+
+/***/ 4567:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/path-has-prefix.js");
+
+/***/ }),
+
+/***/ 979:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/querystring.js");
+
+/***/ }),
+
+/***/ 3297:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slash.js");
+
+/***/ }),
+
+/***/ 6052:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/resolve-rewrites.js");
+
+/***/ }),
+
+/***/ 4226:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/route-matcher.js");
+
+/***/ }),
+
+/***/ 5052:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/route-regex.js");
+
+/***/ }),
+
+/***/ 9232:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/utils.js");
+
+/***/ }),
+
+/***/ 968:
+/***/ ((module) => {
+
+module.exports = require("next/head");
+
+/***/ }),
+
+/***/ 1853:
+/***/ ((module) => {
+
+module.exports = require("next/router");
+
+/***/ }),
+
+/***/ 6689:
+/***/ ((module) => {
+
+module.exports = require("react");
+
+/***/ }),
+
+/***/ 997:
+/***/ ((module) => {
+
+module.exports = require("react/jsx-runtime");
+
+/***/ }),
+
+/***/ 9816:
+/***/ ((module) => {
+
+module.exports = require("styled-jsx/style");
+
+/***/ }),
+
+/***/ 7027:
+/***/ ((module) => {
+
+module.exports = import("dangerous-html/react");;
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../../webpack-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, [676,1664,2097,6151], () => (__webpack_exec__(8808)));
+module.exports = __webpack_exports__;
+
+})();

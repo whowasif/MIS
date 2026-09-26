@@ -3,8 +3,8 @@ node_modules/
 **/node_modules/
 
 # Next.js build output
-.next/
-**/.next/
+# .next/ - built locally and pushed to repo for deployment
+# **/.next/
 out/
 
 # Logs
