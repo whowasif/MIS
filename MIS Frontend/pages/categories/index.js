@@ -166,7 +166,7 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
                             <span className="save-badge">Save: {formatCurrency(product.regular_price - product.price)}</span>
                           )}
                           <div className="product-card-img">
-                            <img src={product.thumbnail_1 || '/footer%20logo.png'} alt={product.name} />
+                            <img src={product.thumbnail_1 || '/footer%20logo.png'} alt={product.name} loading="lazy" decoding="async" />
                           </div>
                           <div className="product-card-body">
                             <h4>{product.name}</h4>
@@ -380,7 +380,9 @@ export const getServerSideProps = async () => {
 
     // Get all active products
     const [products] = await db.query(
-      `SELECT p.*, c.name AS category_name, c.slug AS category_slug
+      `SELECT p.id, p.slug, p.name, p.price, p.regular_price, p.thumbnail_1,
+              p.brand, p.stock_qty, p.created_at,
+              c.name AS category_name, c.slug AS category_slug
        FROM products p
        LEFT JOIN categories c ON c.id = p.category_id
        WHERE p.deleted_at IS NULL AND p.is_active = 1

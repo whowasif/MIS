@@ -5,6 +5,7 @@ import path from 'path'
 import { IncomingForm } from 'formidable'
 
 import { requireAdminApiAuth } from '../../../lib/auth/require-admin'
+import { optimizeUploadedFile } from '../../../lib/server/optimize-media'
 
 export const config = {
   api: {
@@ -33,7 +34,7 @@ const parseForm = (request) =>
     const form = new IncomingForm({
       multiples: false,
       keepExtensions: true,
-      maxFileSize: 250 * 1024 * 1024,
+      maxFileSize: 20 * 1024 * 1024,
     })
 
     form.parse(request, (error, fields, files) => {
@@ -84,6 +85,15 @@ export default async function handler(req, res) {
 
     await moveUploadedFile(uploadFile.filepath, destination)
 
+    const optimized = await optimizeUploadedFile(destination, mimeType)
+    if (!optimized.ok) {
+      await fs.unlink(destination).catch(() => {})
+      return res.status(400).json({
+        success: false,
+        error: optimized.error || 'File is too large to store.',
+      })
+    }
+
     return res.status(200).json({
       success: true,
       url: `/uploads/admin/${fileName}`,
@@ -92,9 +102,10 @@ export default async function handler(req, res) {
       mimeType,
     })
   } catch (error) {
-    return res.status(500).json({
+    const tooLarge = error && (error.httpCode === 413 || error.code === 1009 || /maxFileSize|max total file size/i.test(String(error.message || '')))
+    return res.status(tooLarge ? 400 : 500).json({
       success: false,
-      error: 'Unable to upload file.',
+      error: tooLarge ? 'File is larger than 20 MB. Choose a smaller image or video.' : 'Unable to upload file.',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
     })
   }

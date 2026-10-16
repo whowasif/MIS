@@ -471,7 +471,7 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
                             <span className="save-badge">Save: {formatCurrency(product.regular_price - product.price)}</span>
                           )}
                           <div className="product-card-img">
-                            <img src={product.thumbnail_1 || '/footer%20logo.png'} alt={product.name} />
+                            <img src={product.thumbnail_1 || '/footer%20logo.png'} alt={product.name} loading="lazy" decoding="async" />
                           </div>
                           <div className="product-card-body">
                             <h4>{product.name}</h4>
@@ -768,7 +768,9 @@ export const getServerSideProps = async ({ params }) => {
     const placeholders = categoryIds.map(() => '?').join(',')
 
     const [products] = await db.execute(
-      `SELECT p.* FROM products p
+      `SELECT p.id, p.slug, p.name, p.price, p.regular_price, p.thumbnail_1,
+              p.brand, p.stock_qty, p.specifications, p.created_at
+       FROM products p
        WHERE p.category_id IN (${placeholders})
          AND p.deleted_at IS NULL AND p.is_active = 1
        ORDER BY p.created_at DESC
@@ -776,17 +778,33 @@ export const getServerSideProps = async ({ params }) => {
       categoryIds
     )
 
-    // Parse specs from JSON column
+    // Parse specs from JSON column. The raw specifications blob is not sent
+    // to the browser; the card only reads specs and filterSpecs.
     const productsWithSpecs = products.map((p) => {
       let specs = []
       try {
-        const parsed = p.specifications ? JSON.parse(p.specifications) : {}
+        const rawSpecs = p.specifications
+        const parsed = rawSpecs
+          ? (typeof rawSpecs === 'string' ? JSON.parse(rawSpecs) : rawSpecs)
+          : {}
         specs = Object.entries(parsed).map(([key, val]) => ({ spec_name: key, spec_value: val }))
       } catch (e) {}
       // Keep the "__filter" companion values available for filtering, but the
       // display list (product cards/detail) should not show them as bullets.
       const displaySpecs = specs.filter((s) => !String(s.spec_name).endsWith('__filter'))
-      return { ...p, specs: displaySpecs, filterSpecs: specs }
+      return {
+        id: p.id,
+        slug: p.slug,
+        name: p.name,
+        price: p.price,
+        regular_price: p.regular_price,
+        thumbnail_1: p.thumbnail_1,
+        brand: p.brand,
+        stock_qty: p.stock_qty,
+        created_at: p.created_at,
+        specs: displaySpecs,
+        filterSpecs: specs,
+      }
     })
 
     // Get unique brands

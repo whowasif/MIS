@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 
 import SecureAdminLayout from '../../pages/portal-secure-99x/SecureAdminLayout'
 import { managedTableConfig } from '../../lib/admin/managed-tables'
+import 'react-quill/dist/quill.snow.css'
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 

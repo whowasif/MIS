@@ -1,6 +1,6 @@
 (self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([[826],{
 
-/***/ 526:
+/***/ 784:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1543,7 +1543,7 @@ exports.URLPattern = serverExports.URLPattern
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__(526));
+/******/ var __webpack_exports__ = (__webpack_exec__(784));
 /******/ (_ENTRIES = typeof _ENTRIES === "undefined" ? {} : _ENTRIES).middleware_middleware = __webpack_exports__;
 /******/ }
 ]);

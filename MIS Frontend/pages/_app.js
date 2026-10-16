@@ -1,5 +1,4 @@
 import './style.css'
-import 'react-quill/dist/quill.snow.css'
 
 import Head from 'next/head'
 import { useEffect } from 'react'

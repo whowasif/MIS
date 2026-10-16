@@ -132,7 +132,7 @@ const ALERT_RECIPIENTS = {
     orders: process.env.ALERT_EMAIL_ORDERS || `sales@${DOMAIN}`,
     fallback: process.env.ALERT_EMAIL_FALLBACK || `info@${DOMAIN}`
 };
-const SITE_URL = "http://localhost:3000" || 0;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || `https://${DOMAIN}`;
 const escapeHtml = (value)=>String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 // Company logo referenced via the inline CID attachment added in sendEmail().
 const LOGO_SRC = `cid:${LOGO_CID}`;

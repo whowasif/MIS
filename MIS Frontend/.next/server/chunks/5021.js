@@ -374,7 +374,9 @@ const listFeaturedProducts = async (limit = 10)=>{
     const db = (0,_db__WEBPACK_IMPORTED_MODULE_0__.getDbPool)();
     const safeLimit = Number.isFinite(limit) ? Math.max(1, Math.min(50, Number(limit))) : 10;
     const [rows] = await db.query(`SELECT
-      p.*,
+      p.id, p.slug, p.name, p.short_desc, p.brand, p.model,
+      p.regular_price, p.price, p.type, p.stock_qty,
+      p.thumbnail_1, p.thumbnail_2, p.photos, p.video_url,
       c.name AS category_name,
       c.slug AS category_slug
     FROM products p

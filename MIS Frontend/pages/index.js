@@ -207,7 +207,7 @@ const Home = (props) => {
                 <Link key={cat.id} href={`/categories/${cat.slug}`}>
                   <a className="home-cat-item">
                     <div className="home-cat-icon-wrap">
-                      {cat.icon_url ? <img src={cat.icon_url} alt={cat.name} /> : <span className="home-cat-letter">{cat.name.charAt(0)}</span>}
+                      {cat.icon_url ? <img src={cat.icon_url} alt={cat.name} loading="lazy" decoding="async" /> : <span className="home-cat-letter">{cat.name.charAt(0)}</span>}
                     </div>
                     <span className="home-cat-name">{cat.name}</span>
                   </a>
@@ -224,7 +224,11 @@ const Home = (props) => {
                 {advertisements.map((ad, idx) => (
                   <Link key={ad.id} href={ad.product_slug ? `/products/${ad.product_slug}` : (ad.link_url || '#')}>
                     <a style={{ position: 'absolute', inset: 0, opacity: idx === adIndex ? 1 : 0, transition: 'opacity 0.5s', zIndex: idx === adIndex ? 1 : 0, display: 'block', textDecoration: 'none' }}>
-                      <img src={ad.image_url} alt={ad.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      {idx === adIndex || idx === (adIndex + 1) % advertisements.length ? (
+                        <img src={ad.image_url} alt={ad.title} loading={idx === adIndex ? 'eager' : 'lazy'} decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      ) : (
+                        <div style={{ width: '100%', height: '100%', background: '#0a101b' }} />
+                      )}
                       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)', zIndex: 1 }} />
                       <div style={{ position: 'absolute', bottom: '28px', left: '28px', right: '28px', zIndex: 2, textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>
                         <span style={{ background: '#f7e500', color: '#0a101b', padding: '4px 12px', borderRadius: '999px', fontSize: '12px', fontWeight: 700, display: 'inline-block' }}>Special Offer</span>
@@ -258,7 +262,7 @@ const Home = (props) => {
                 [...featuredProducts, ...featuredProducts].map((product, idx) => (
                   <Link key={`${product.id}-${idx}`} href={`/products/${encodeURIComponent(product.slug || product.id)}`}>
                     <a className="product-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <div className="product-image-box"><img src={product.image || fallbackProductImage} alt={product.name} /></div>
+                      <div className="product-image-box"><img src={product.image || fallbackProductImage} alt={product.name} loading="lazy" decoding="async" /></div>
                       <div className="product-info">
                         <span className="product-category">{product.categoryName}</span>
                         <h3 className="product-name">{product.name}</h3>
@@ -305,7 +309,7 @@ const Home = (props) => {
                 [...clientProjects, ...clientProjects].map((project, idx) => (
                   <Link key={`${project.id}-${idx}`} href={`/projects/${encodeURIComponent(project.slug || project.id)}`}>
                     <a className="case-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <div className="case-image"><img src={project.icon_url || fallbackProductImage} alt={project.name} /></div>
+                      <div className="case-image"><img src={project.icon_url || fallbackProductImage} alt={project.name} loading="lazy" decoding="async" /></div>
                       <div className="case-content">
                         <h3 className="case-title">{project.name}</h3>
                         <div className="btn-link"><span>View Full Story</span></div>
@@ -380,16 +384,18 @@ export const getServerSideProps = async () => {
   try {
     const { listFeaturedProducts } = await import('../lib/server/products')
     const { getDbPool } = await import('../lib/server/db')
-    const featuredProducts = await listFeaturedProducts(10)
     const db = getDbPool()
 
-    const [ads] = await db.query(`SELECT a.id, a.title, a.ad_details, a.image_url, a.link_url, a.product_id, p.slug AS product_slug FROM advertisements a LEFT JOIN products p ON p.id = a.product_id WHERE a.is_active = 1 ORDER BY a.display_order ASC, a.created_at DESC LIMIT 10`)
-    const [cats] = await db.query(`SELECT id, name, slug, icon_url FROM categories WHERE parent_id IS NULL AND deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC LIMIT 15`)
-    const [featDigi] = await db.query(`SELECT name, slug, description, icon_url, 'digi_services' as type FROM digi_services WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`)
-    const [featBiz] = await db.query(`SELECT name, slug, description, icon_url, 'bus_corp_sol' as type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`)
-    const [featMaint] = await db.query(`SELECT name, slug, description, icon_url, 'service_maintenance' as type FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`)
+    const [featuredProducts, [ads], [cats], [featDigi], [featBiz], [featMaint], [clientProjectRows]] = await Promise.all([
+      listFeaturedProducts(10),
+      db.query(`SELECT a.id, a.title, a.ad_details, a.image_url, a.link_url, a.product_id, p.slug AS product_slug FROM advertisements a LEFT JOIN products p ON p.id = a.product_id WHERE a.is_active = 1 ORDER BY a.display_order ASC, a.created_at DESC LIMIT 10`),
+      db.query(`SELECT id, name, slug, icon_url FROM categories WHERE parent_id IS NULL AND deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC LIMIT 15`),
+      db.query(`SELECT name, slug, description, icon_url, 'digi_services' as type FROM digi_services WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`),
+      db.query(`SELECT name, slug, description, icon_url, 'bus_corp_sol' as type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`),
+      db.query(`SELECT name, slug, description, icon_url, 'service_maintenance' as type FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`),
+      db.query(`SELECT id, name, slug, description, icon_url, client_name FROM client_projects WHERE deleted_at IS NULL AND status = 'active' ORDER BY is_featured DESC, display_order ASC, created_at DESC LIMIT 10`),
+    ])
     const featuredServices = [...featDigi, ...featBiz, ...featMaint]
-    const [clientProjectRows] = await db.query(`SELECT id, name, slug, description, icon_url, client_name FROM client_projects WHERE deleted_at IS NULL AND status = 'active' ORDER BY is_featured DESC, display_order ASC, created_at DESC LIMIT 10`)
 
     return {
       props: {
