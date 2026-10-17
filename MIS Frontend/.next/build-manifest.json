@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/znYbOEGyMq0nSJGzD0tqJ/_buildManifest.js",
-    "static/znYbOEGyMq0nSJGzD0tqJ/_ssgManifest.js"
+    "static/AU4IDNPEsk2dcdGY0Xt3h/_buildManifest.js",
+    "static/AU4IDNPEsk2dcdGY0Xt3h/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -88,7 +88,7 @@
       "static/chunks/1400-c42a9435081c98a1.js",
       "static/chunks/2097-0cf1d3744bc001a7.js",
       "static/chunks/6151-c93a11c69dfa7fa2.js",
-      "static/chunks/pages/categories-e771d226a68ccb69.js"
+      "static/chunks/pages/categories-3cea1674ec98d781.js"
     ],
     "/categories/[slug]": [
       "static/chunks/webpack-726b67db5db2aebd.js",
@@ -97,7 +97,7 @@
       "static/chunks/1400-c42a9435081c98a1.js",
       "static/chunks/2097-0cf1d3744bc001a7.js",
       "static/chunks/6151-c93a11c69dfa7fa2.js",
-      "static/chunks/pages/categories/[slug]-96f9af73c368d271.js"
+      "static/chunks/pages/categories/[slug]-fbbb4821006cfa77.js"
     ],
     "/company-information-policies": [
       "static/chunks/webpack-726b67db5db2aebd.js",
@@ -297,7 +297,7 @@
       "static/chunks/1400-c42a9435081c98a1.js",
       "static/chunks/2097-0cf1d3744bc001a7.js",
       "static/chunks/6151-c93a11c69dfa7fa2.js",
-      "static/chunks/pages/products/[slug]-77164987c98db4f7.js"
+      "static/chunks/pages/products/[slug]-a2572bad490cad58.js"
     ],
     "/profile": [
       "static/chunks/webpack-726b67db5db2aebd.js",

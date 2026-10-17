@@ -535,12 +535,13 @@ const AllProductsPage = ({ categories , products , brands , maxPrice  })=>{
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                         className: "jsx-c95d0c644423cd05" + " " + "product-card-img",
-                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_8__.DisplayImage, {
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                                             src: product.thumbnail_1 || "/footer%20logo.png",
-                                                                            priority: index === 0,
                                                                             alt: product.name,
                                                                             loading: index < 4 ? "eager" : "lazy",
-                                                                            decoding: "async"
+                                                                            decoding: "async",
+                                                                            ref: index === 0 ? _lib_display_image__WEBPACK_IMPORTED_MODULE_8__.markHighPriority : undefined,
+                                                                            className: "jsx-c95d0c644423cd05"
                                                                         })
                                                                     }),
                                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {

@@ -342,9 +342,10 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
                                                         type: "button",
                                                         "aria-label": "Switch product image",
                                                         className: "jsx-c9bfa0ca4f031e9f" + " " + `thumb-btn ${activeImage === img ? "is-active" : ""}`,
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_7__.DisplayImage, {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                             src: img,
-                                                            alt: `${product.name} preview`
+                                                            alt: `${product.name} preview`,
+                                                            className: "jsx-c9bfa0ca4f031e9f"
                                                         })
                                                     }, img))
                                             }),
@@ -688,11 +689,10 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
                             className: "jsx-c9bfa0ca4f031e9f" + " " + "lightbox-nav lightbox-prev",
                             children: "‹"
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_7__.DisplayImage, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                             src: galleryImages[lightboxIndex],
-                            kind: "detail",
                             alt: product.name,
-                            className: "lightbox-img"
+                            className: "jsx-c9bfa0ca4f031e9f" + " " + "lightbox-img"
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                             onClick: ()=>setLightboxIndex((p)=>(p + 1) % galleryImages.length),

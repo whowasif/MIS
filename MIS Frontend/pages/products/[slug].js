@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import Navigation from '../../components/navigation'
 import Footer from '../../components/footer'
-import { DisplayImage, markHighPriority, useDisplaySrc } from '../../lib/display-image'
+import { markHighPriority, useDisplaySrc } from '../../lib/display-image'
 
 const detailFallbacks = [
   'https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500',
@@ -248,7 +248,7 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
                       type="button"
                       aria-label="Switch product image"
                     >
-                      <DisplayImage src={img} alt={`${product.name} preview`} />
+                      <img src={img} alt={`${product.name} preview`} />
                     </button>
                   ))}
                 </div>
@@ -976,7 +976,7 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             <button className="lightbox-close" onClick={() => setLightboxOpen(false)}>✕</button>
             <button className="lightbox-nav lightbox-prev" onClick={() => setLightboxIndex((p) => (p - 1 + galleryImages.length) % galleryImages.length)}>‹</button>
-            <DisplayImage src={galleryImages[lightboxIndex]} kind="detail" alt={product.name} className="lightbox-img" />
+            <img src={galleryImages[lightboxIndex]} alt={product.name} className="lightbox-img" />
             <button className="lightbox-nav lightbox-next" onClick={() => setLightboxIndex((p) => (p + 1) % galleryImages.length)}>›</button>
             <div className="lightbox-counter">{lightboxIndex + 1} / {galleryImages.length}</div>
           </div>

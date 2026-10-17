@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Navigation from '../../components/navigation'
 import Footer from '../../components/footer'
 import { getDbPool } from '../../lib/server/db'
-import { DisplayImage } from '../../lib/display-image'
+import { markHighPriority } from '../../lib/display-image'
 
 const formatCurrency = (v) => `৳${Number(v || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
 
@@ -472,12 +472,12 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
                             <span className="save-badge">Save: {formatCurrency(product.regular_price - product.price)}</span>
                           )}
                           <div className="product-card-img">
-                            <DisplayImage
+                            <img
                               src={product.thumbnail_1 || '/footer%20logo.png'}
-                              priority={index === 0}
                               alt={product.name}
                               loading={index < 4 ? 'eager' : 'lazy'}
                               decoding="async"
+                              ref={index === 0 ? markHighPriority : undefined}
                             />
                           </div>
                           <div className="product-card-body">
