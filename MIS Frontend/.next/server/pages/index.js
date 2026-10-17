@@ -758,19 +758,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1853);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7027);
-/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(503);
-/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_intl__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2097);
-/* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6151);
-/* harmony import */ var _components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(8966);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(459);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__, _components_footer__WEBPACK_IMPORTED_MODULE_9__]);
-([dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__, _components_footer__WEBPACK_IMPORTED_MODULE_9__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-
+/* harmony import */ var dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7027);
+/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(503);
+/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_intl__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2097);
+/* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6151);
+/* harmony import */ var _components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8966);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__]);
+([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -837,7 +834,7 @@ const StatCounter = ({ end , suffix ="" , label , decimals =0  })=>{
 // Turns a horizontally-scrollable rail into an auto-scrolling (right-to-left)
 // carousel that the user can grab with mouse or finger and drag both ways.
 // Content is expected to be duplicated (rendered twice) so the loop is seamless.
-const setupDraggableAutoScroll = (rail, onNavigate)=>{
+const setupDraggableAutoScroll = (rail)=>{
     if (!rail) return null;
     let rafId = null;
     let isDragging = false;
@@ -867,17 +864,16 @@ const setupDraggableAutoScroll = (rail, onNavigate)=>{
         hasMoved = false;
         startX = e.clientX;
         startScrollLeft = rail.scrollLeft;
-        try {
-            rail.setPointerCapture(e.pointerId);
-        } catch (_) {}
     };
     const onPointerMove = (e)=>{
         if (!isDragging) return;
         const dx = e.clientX - startX;
-        if (Math.abs(dx) > 5) {
-            hasMoved = true;
-            if (e.cancelable) e.preventDefault();
-        }
+        if (Math.abs(dx) <= 12) return;
+        hasMoved = true;
+        try {
+            rail.setPointerCapture(e.pointerId);
+        } catch (_) {}
+        if (e.cancelable) e.preventDefault();
         let next = startScrollLeft - dx;
         const h = half();
         if (h > 0) {
@@ -896,27 +892,13 @@ const setupDraggableAutoScroll = (rail, onNavigate)=>{
         ;
     };
     const onPointerUp = (e)=>{
-        const wasDragging = isDragging;
-        const moved = hasMoved;
         endDrag(e);
-        // A clean release (no meaningful drag) should navigate to the card's page.
-        // We do this manually because pointer capture on the rail can swallow the
-        // anchor's native click on desktop, so the <Link> would never fire.
-        if (wasDragging && !moved && typeof onNavigate === "function") {
-            const anchor = e.target && e.target.closest && e.target.closest("a[href]");
-            if (anchor) {
-                const href = anchor.getAttribute("href");
-                if (href) onNavigate(href);
-            }
-        }
     };
     const onClick = (e)=>{
-        // Always prevent the native anchor navigation; we handle it in onPointerUp.
-        // (Prevents double navigation and blocks clicks that ended a drag.)
+        // A short press is a normal link click. A drag must not open the page.
+        if (!hasMoved) return;
         e.preventDefault();
-        if (hasMoved) {
-            e.stopPropagation();
-        }
+        e.stopPropagation();
     };
     // On desktop, mouse-dragging over an <img>/<a> starts the browser's native
     // drag-and-drop, which steals the pointer and breaks our drag. Suppress it.
@@ -925,9 +907,8 @@ const setupDraggableAutoScroll = (rail, onNavigate)=>{
     };
     rail.addEventListener("pointerdown", onPointerDown);
     rail.addEventListener("pointermove", onPointerMove);
-    rail.addEventListener("pointerup", onPointerUp);
-    rail.addEventListener("pointercancel", endDrag);
-    rail.addEventListener("pointerleave", endDrag);
+    document.addEventListener("pointerup", onPointerUp);
+    document.addEventListener("pointercancel", endDrag);
     rail.addEventListener("click", onClick, true);
     rail.addEventListener("dragstart", onDragStart);
     pos = rail.scrollLeft || 0;
@@ -936,16 +917,14 @@ const setupDraggableAutoScroll = (rail, onNavigate)=>{
         if (rafId) cancelAnimationFrame(rafId);
         rail.removeEventListener("pointerdown", onPointerDown);
         rail.removeEventListener("pointermove", onPointerMove);
-        rail.removeEventListener("pointerup", onPointerUp);
-        rail.removeEventListener("pointercancel", endDrag);
-        rail.removeEventListener("pointerleave", endDrag);
+        document.removeEventListener("pointerup", onPointerUp);
+        document.removeEventListener("pointercancel", endDrag);
         rail.removeEventListener("click", onClick, true);
         rail.removeEventListener("dragstart", onDragStart);
     };
 };
 const Home = (props)=>{
     const { featuredProducts =[] , advertisements =[] , homeCategories =[] , featuredServices =[] , clientProjects =[]  } = props;
-    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();
     const caseRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const productsRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const { 0: adIndex , 1: setAdIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
@@ -961,14 +940,13 @@ const Home = (props)=>{
     // Auto-scroll (right-to-left) + drag/swipe control for all three card rails.
     // Wait until the visible product photos have decoded so the row does not slide in blank.
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        const navigate = (href)=>router.push(href);
         let started = false;
         const stops = [];
         const start = ()=>{
             if (started) return;
             started = true;
-            stops.push(setupDraggableAutoScroll(productsRailRef.current, navigate));
-            stops.push(setupDraggableAutoScroll(caseRailRef.current, navigate));
+            stops.push(setupDraggableAutoScroll(productsRailRef.current));
+            stops.push(setupDraggableAutoScroll(caseRailRef.current));
         };
         const rail = productsRailRef.current;
         const images = rail ? Array.from(rail.querySelectorAll("img")).filter((img)=>img.getAttribute("loading") !== "lazy") : [];
@@ -1022,7 +1000,7 @@ const Home = (props)=>{
                                 }, product.id) : null)
                         ]
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {}),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
                         className: "jsx-838b1a87f6f26fd3" + " " + "hero-section",
                         children: [
@@ -1109,7 +1087,7 @@ const Home = (props)=>{
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "jsx-838b1a87f6f26fd3" + " " + "home-cat-icon-wrap",
-                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
+                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__.DisplayImage, {
                                                     src: cat.icon_url,
                                                     alt: cat.name,
                                                     loading: "eager",
@@ -1161,7 +1139,7 @@ const Home = (props)=>{
                                                 },
                                                 className: "jsx-838b1a87f6f26fd3",
                                                 children: [
-                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
+                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__.DisplayImage, {
                                                         src: ad.image_url,
                                                         kind: "detail",
                                                         priority: idx === adIndex,
@@ -1396,7 +1374,7 @@ const Home = (props)=>{
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-838b1a87f6f26fd3" + " " + "product-image-box",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__.DisplayImage, {
                                                             src: product.image || fallbackProductImage,
                                                             priority: idx % featuredProducts.length === 0,
                                                             alt: product.name,
@@ -1472,7 +1450,7 @@ const Home = (props)=>{
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         id: "core-services",
                         className: "jsx-838b1a87f6f26fd3" + " " + "core-solutions-section",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z, {})
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {})
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         className: "jsx-838b1a87f6f26fd3" + " " + "stats-section",
@@ -1542,7 +1520,7 @@ const Home = (props)=>{
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-838b1a87f6f26fd3" + " " + "case-image",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__.DisplayImage, {
                                                             src: project.icon_url || fallbackProductImage,
                                                             alt: project.name,
                                                             loading: "lazy",
@@ -1885,7 +1863,7 @@ const Home = (props)=>{
                         className: "jsx-838b1a87f6f26fd3" + " " + "home-container2",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "jsx-838b1a87f6f26fd3" + " " + "home-container3",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
                                 html: `<style>@keyframes fadeIn {from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);}}</style>`
                             })
                         })
@@ -1894,12 +1872,12 @@ const Home = (props)=>{
                         className: "jsx-838b1a87f6f26fd3" + " " + "home-container4",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "jsx-838b1a87f6f26fd3" + " " + "home-container5",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
                                 html: `<script defer data-name="mis-solution-logic">(function(){ const testimonials = document.querySelectorAll(".testimonial-item"); const dots = document.querySelectorAll(".carousel-dot"); let currentTestimonial = 0; function showTestimonial(index) { testimonials.forEach((item, i) => { item.classList.toggle("active", i === index) }); dots.forEach((dot, i) => { dot.classList.toggle("active", i === index) }); currentTestimonial = index; } dots.forEach((dot, index) => { dot.addEventListener("click", () => { showTestimonial(index) }) }); setInterval(() => { let next = (currentTestimonial + 1) % testimonials.length; showTestimonial(next) }, 5000) })()</script>`
                             })
                         })
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {})
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {})
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {

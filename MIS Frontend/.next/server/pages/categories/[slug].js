@@ -471,7 +471,7 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("title", {
-                        className: "jsx-f4cca1e1315e122b",
+                        className: "jsx-bc2bc18435d5443a",
                         children: [
                             category.meta_title || `${category.name} Price in Bangladesh`,
                             " | MIS Solution"
@@ -480,92 +480,92 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                         name: "description",
                         content: category.meta_description || category.description || `Buy ${category.name} from MIS Solution at best price in Bangladesh.`,
-                        className: "jsx-f4cca1e1315e122b"
+                        className: "jsx-bc2bc18435d5443a"
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                         rel: "icon",
                         href: "/footer%20logo.png",
-                        className: "jsx-f4cca1e1315e122b"
+                        className: "jsx-bc2bc18435d5443a"
                     })
                 ]
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {}),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
-                className: "jsx-f4cca1e1315e122b" + " " + "cat-page",
+                className: "jsx-bc2bc18435d5443a" + " " + "cat-page",
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-f4cca1e1315e122b" + " " + "cat-breadcrumb",
+                        className: "jsx-bc2bc18435d5443a" + " " + "cat-breadcrumb",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f4cca1e1315e122b" + " " + "cat-container",
+                            className: "jsx-bc2bc18435d5443a" + " " + "cat-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                     href: "/",
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                        className: "jsx-f4cca1e1315e122b",
+                                        className: "jsx-bc2bc18435d5443a",
                                         children: "Home"
                                     })
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "jsx-f4cca1e1315e122b",
+                                    className: "jsx-bc2bc18435d5443a",
                                     children: "/"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "jsx-f4cca1e1315e122b",
+                                    className: "jsx-bc2bc18435d5443a",
                                     children: category.name
                                 })
                             ]
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-f4cca1e1315e122b" + " " + "cat-header",
+                        className: "jsx-bc2bc18435d5443a" + " " + "cat-header",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f4cca1e1315e122b" + " " + "cat-container",
+                            className: "jsx-bc2bc18435d5443a" + " " + "cat-container",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
-                                    className: "jsx-f4cca1e1315e122b",
+                                    className: "jsx-bc2bc18435d5443a",
                                     children: [
                                         category.name,
                                         " Price in Bangladesh"
                                     ]
                                 }),
                                 category.description && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                    className: "jsx-f4cca1e1315e122b",
+                                    className: "jsx-bc2bc18435d5443a",
                                     children: category.description
                                 })
                             ]
                         })
                     }),
                     brands.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-f4cca1e1315e122b" + " " + "brands-row",
+                        className: "jsx-bc2bc18435d5443a" + " " + "brands-row",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f4cca1e1315e122b" + " " + "cat-container",
+                            className: "jsx-bc2bc18435d5443a" + " " + "cat-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                     onClick: ()=>setSelectedBrand(""),
-                                    className: "jsx-f4cca1e1315e122b" + " " + `brand-chip ${!selectedBrand ? "active" : ""}`,
+                                    className: "jsx-bc2bc18435d5443a" + " " + `brand-chip ${!selectedBrand ? "active" : ""}`,
                                     children: "All"
                                 }),
                                 brands.map((b)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                         onClick: ()=>setSelectedBrand(selectedBrand === b ? "" : b),
-                                        className: "jsx-f4cca1e1315e122b" + " " + `brand-chip ${selectedBrand === b ? "active" : ""}`,
+                                        className: "jsx-bc2bc18435d5443a" + " " + `brand-chip ${selectedBrand === b ? "active" : ""}`,
                                         children: b
                                     }, b))
                             ]
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-f4cca1e1315e122b" + " " + "cat-main",
+                        className: "jsx-bc2bc18435d5443a" + " " + "cat-main",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f4cca1e1315e122b" + " " + "cat-container cat-grid",
+                            className: "jsx-bc2bc18435d5443a" + " " + "cat-container cat-grid",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("aside", {
-                                    className: "jsx-f4cca1e1315e122b" + " " + "cat-sidebar",
+                                    className: "jsx-bc2bc18435d5443a" + " " + "cat-sidebar",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "filter-block",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "filter-block",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    className: "jsx-f4cca1e1315e122b",
+                                                    className: "jsx-bc2bc18435d5443a",
                                                     children: "Price Range"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -578,10 +578,10 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                             priceRange[0],
                                                             Number(e.target.value)
                                                         ]),
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "price-slider"
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "price-slider"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "price-inputs",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "price-inputs",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                             type: "number",
@@ -590,7 +590,7 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                                     Number(e.target.value),
                                                                     priceRange[1]
                                                                 ]),
-                                                            className: "jsx-f4cca1e1315e122b"
+                                                            className: "jsx-bc2bc18435d5443a"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                             type: "number",
@@ -599,54 +599,54 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                                     priceRange[0],
                                                                     Number(e.target.value)
                                                                 ]),
-                                                            className: "jsx-f4cca1e1315e122b"
+                                                            className: "jsx-bc2bc18435d5443a"
                                                         })
                                                     ]
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "filter-block",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "filter-block",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    className: "jsx-f4cca1e1315e122b",
+                                                    className: "jsx-bc2bc18435d5443a",
                                                     children: "Availability"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                             type: "radio",
                                                             name: "avail",
                                                             checked: availability === "all",
                                                             onChange: ()=>setAvailability("all"),
-                                                            className: "jsx-f4cca1e1315e122b"
+                                                            className: "jsx-bc2bc18435d5443a"
                                                         }),
                                                         " All"
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                             type: "radio",
                                                             name: "avail",
                                                             checked: availability === "in-stock",
                                                             onChange: ()=>setAvailability("in-stock"),
-                                                            className: "jsx-f4cca1e1315e122b"
+                                                            className: "jsx-bc2bc18435d5443a"
                                                         }),
                                                         " In Stock"
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                             type: "radio",
                                                             name: "avail",
                                                             checked: availability === "upcoming",
                                                             onChange: ()=>setAvailability("upcoming"),
-                                                            className: "jsx-f4cca1e1315e122b"
+                                                            className: "jsx-bc2bc18435d5443a"
                                                         }),
                                                         " Upcoming"
                                                     ]
@@ -654,16 +654,16 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                             ]
                                         }),
                                         Object.entries(specOptions).map(([specName, { label , values  }])=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-f4cca1e1315e122b" + " " + "filter-block",
+                                                className: "jsx-bc2bc18435d5443a" + " " + "filter-block",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                        className: "jsx-f4cca1e1315e122b",
+                                                        className: "jsx-bc2bc18435d5443a",
                                                         children: label
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-f4cca1e1315e122b" + " " + "filter-options-list",
+                                                        className: "jsx-bc2bc18435d5443a" + " " + "filter-options-list",
                                                         children: values.map((val)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                                className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                                                className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                         type: "checkbox",
@@ -681,7 +681,7 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                                                 };
                                                                             });
                                                                         },
-                                                                        className: "jsx-f4cca1e1315e122b"
+                                                                        className: "jsx-bc2bc18435d5443a"
                                                                     }),
                                                                     val
                                                                 ]
@@ -692,14 +692,14 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                                    className: "jsx-f4cca1e1315e122b" + " " + "cat-products",
+                                    className: "jsx-bc2bc18435d5443a" + " " + "cat-products",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "cat-toolbar",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "cat-toolbar",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                                                     onClick: ()=>setFilterOpen(true),
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-toggle-btn",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-toggle-btn",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                                             width: "16",
@@ -710,49 +710,49 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                             strokeWidth: "2",
                                                             strokeLinecap: "round",
                                                             strokeLinejoin: "round",
-                                                            className: "jsx-f4cca1e1315e122b",
+                                                            className: "jsx-bc2bc18435d5443a",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                                     x1: "4",
                                                                     y1: "21",
                                                                     x2: "4",
                                                                     y2: "14",
-                                                                    className: "jsx-f4cca1e1315e122b"
+                                                                    className: "jsx-bc2bc18435d5443a"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                                     x1: "4",
                                                                     y1: "10",
                                                                     x2: "4",
                                                                     y2: "3",
-                                                                    className: "jsx-f4cca1e1315e122b"
+                                                                    className: "jsx-bc2bc18435d5443a"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                                     x1: "12",
                                                                     y1: "21",
                                                                     x2: "12",
                                                                     y2: "12",
-                                                                    className: "jsx-f4cca1e1315e122b"
+                                                                    className: "jsx-bc2bc18435d5443a"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                                     x1: "12",
                                                                     y1: "8",
                                                                     x2: "12",
                                                                     y2: "3",
-                                                                    className: "jsx-f4cca1e1315e122b"
+                                                                    className: "jsx-bc2bc18435d5443a"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                                     x1: "20",
                                                                     y1: "21",
                                                                     x2: "20",
                                                                     y2: "16",
-                                                                    className: "jsx-f4cca1e1315e122b"
+                                                                    className: "jsx-bc2bc18435d5443a"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                                     x1: "20",
                                                                     y1: "12",
                                                                     x2: "20",
                                                                     y2: "3",
-                                                                    className: "jsx-f4cca1e1315e122b"
+                                                                    className: "jsx-bc2bc18435d5443a"
                                                                 })
                                                             ]
                                                         }),
@@ -760,49 +760,49 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "toolbar-title",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "toolbar-title",
                                                     children: category.name
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "toolbar-controls",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "toolbar-controls",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                            className: "jsx-f4cca1e1315e122b" + " " + "product-count",
+                                                            className: "jsx-bc2bc18435d5443a" + " " + "product-count",
                                                             children: [
                                                                 "Show: ",
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                    className: "jsx-f4cca1e1315e122b",
+                                                                    className: "jsx-bc2bc18435d5443a",
                                                                     children: filteredProducts.length
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-f4cca1e1315e122b" + " " + "sort-label",
+                                                            className: "jsx-bc2bc18435d5443a" + " " + "sort-label",
                                                             children: "Sort By:"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                                             value: sortBy,
                                                             onChange: (e)=>setSortBy(e.target.value),
-                                                            className: "jsx-f4cca1e1315e122b" + " " + "sort-select",
+                                                            className: "jsx-bc2bc18435d5443a" + " " + "sort-select",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                     value: "default",
-                                                                    className: "jsx-f4cca1e1315e122b",
+                                                                    className: "jsx-bc2bc18435d5443a",
                                                                     children: "Default"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                     value: "price-low",
-                                                                    className: "jsx-f4cca1e1315e122b",
+                                                                    className: "jsx-bc2bc18435d5443a",
                                                                     children: "Price: Low to High"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                     value: "price-high",
-                                                                    className: "jsx-f4cca1e1315e122b",
+                                                                    className: "jsx-bc2bc18435d5443a",
                                                                     children: "Price: High to Low"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                     value: "newest",
-                                                                    className: "jsx-f4cca1e1315e122b",
+                                                                    className: "jsx-bc2bc18435d5443a",
                                                                     children: "Newest First"
                                                                 })
                                                             ]
@@ -812,67 +812,67 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                             ]
                                         }),
                                         filteredProducts.length === 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "no-products",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "no-products",
                                             children: "No products match your filters."
                                         }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "products-grid",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "products-grid",
                                                     children: pagedProducts.map((product, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-f4cca1e1315e122b" + " " + "product-card-item",
+                                                            className: "jsx-bc2bc18435d5443a" + " " + "product-card-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                                     href: `/products/${product.slug || product.id}`,
                                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                                        className: "jsx-f4cca1e1315e122b" + " " + "product-card-link",
+                                                                        className: "jsx-bc2bc18435d5443a" + " " + "product-card-link",
                                                                         children: [
                                                                             product.regular_price && product.regular_price > product.price && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                                className: "jsx-f4cca1e1315e122b" + " " + "save-badge",
+                                                                                className: "jsx-bc2bc18435d5443a" + " " + "save-badge",
                                                                                 children: [
                                                                                     "Save: ",
                                                                                     formatCurrency(product.regular_price - product.price)
                                                                                 ]
                                                                             }),
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                                className: "jsx-f4cca1e1315e122b" + " " + "product-card-img",
+                                                                                className: "jsx-bc2bc18435d5443a" + " " + "product-card-img",
                                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                                                     src: product.thumbnail_1 || "/footer%20logo.png",
                                                                                     alt: product.name,
                                                                                     loading: index < 4 ? "eager" : "lazy",
                                                                                     decoding: "async",
                                                                                     ref: index === 0 ? _lib_display_image__WEBPACK_IMPORTED_MODULE_9__.markHighPriority : undefined,
-                                                                                    className: "jsx-f4cca1e1315e122b"
+                                                                                    className: "jsx-bc2bc18435d5443a"
                                                                                 })
                                                                             }),
                                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                                className: "jsx-f4cca1e1315e122b" + " " + "product-card-body",
+                                                                                className: "jsx-bc2bc18435d5443a" + " " + "product-card-body",
                                                                                 children: [
                                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                                                        className: "jsx-f4cca1e1315e122b",
+                                                                                        className: "jsx-bc2bc18435d5443a",
                                                                                         children: product.name
                                                                                     }),
                                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
-                                                                                        className: "jsx-f4cca1e1315e122b" + " " + "spec-list",
+                                                                                        className: "jsx-bc2bc18435d5443a" + " " + "spec-list",
                                                                                         children: product.specs?.slice(0, 4).map((spec)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                                                className: "jsx-f4cca1e1315e122b",
+                                                                                                className: "jsx-bc2bc18435d5443a",
                                                                                                 children: spec.spec_value
                                                                                             }, spec.spec_name))
                                                                                     }),
                                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                                        className: "jsx-f4cca1e1315e122b" + " " + "product-card-price",
+                                                                                        className: "jsx-bc2bc18435d5443a" + " " + "product-card-price",
                                                                                         children: product.price > 0 ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                                                                                             children: [
                                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                                                    className: "jsx-f4cca1e1315e122b",
+                                                                                                    className: "jsx-bc2bc18435d5443a",
                                                                                                     children: formatCurrency(product.price)
                                                                                                 }),
                                                                                                 product.regular_price > product.price && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                                                    className: "jsx-f4cca1e1315e122b" + " " + "old-price",
+                                                                                                    className: "jsx-bc2bc18435d5443a" + " " + "old-price",
                                                                                                     children: formatCurrency(product.regular_price)
                                                                                                 })
                                                                                             ]
                                                                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                                            className: "jsx-f4cca1e1315e122b" + " " + "contact-price",
+                                                                                            className: "jsx-bc2bc18435d5443a" + " " + "contact-price",
                                                                                             children: "Contact for Price"
                                                                                         })
                                                                                     })
@@ -882,7 +882,7 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                                     })
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-f4cca1e1315e122b" + " " + "product-card-actions",
+                                                                    className: "jsx-bc2bc18435d5443a" + " " + "product-card-actions",
                                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                                                                         onClick: ()=>{
                                                                             try {
@@ -905,7 +905,7 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                                                 window.dispatchEvent(new Event("mis-cart-updated"));
                                                                             } catch (err) {}
                                                                         },
-                                                                        className: "jsx-f4cca1e1315e122b" + " " + "add-cart-btn",
+                                                                        className: "jsx-bc2bc18435d5443a" + " " + "add-cart-btn",
                                                                         children: [
                                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                                                                 width: "16",
@@ -916,23 +916,23 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                                                 strokeWidth: "2",
                                                                                 strokeLinecap: "round",
                                                                                 strokeLinejoin: "round",
-                                                                                className: "jsx-f4cca1e1315e122b",
+                                                                                className: "jsx-bc2bc18435d5443a",
                                                                                 children: [
                                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                                                         cx: "9",
                                                                                         cy: "21",
                                                                                         r: "1",
-                                                                                        className: "jsx-f4cca1e1315e122b"
+                                                                                        className: "jsx-bc2bc18435d5443a"
                                                                                     }),
                                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                                                         cx: "20",
                                                                                         cy: "21",
                                                                                         r: "1",
-                                                                                        className: "jsx-f4cca1e1315e122b"
+                                                                                        className: "jsx-bc2bc18435d5443a"
                                                                                     }),
                                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                         d: "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6",
-                                                                                        className: "jsx-f4cca1e1315e122b"
+                                                                                        className: "jsx-bc2bc18435d5443a"
                                                                                     })
                                                                                 ]
                                                                             }),
@@ -944,13 +944,13 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                         }, product.id))
                                                 }),
                                                 pageCount > 1 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "page-bar",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "page-bar",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                             type: "button",
                                                             disabled: safePage <= 1,
                                                             onClick: ()=>setPage(safePage - 1),
-                                                            className: "jsx-f4cca1e1315e122b" + " " + "page-btn",
+                                                            className: "jsx-bc2bc18435d5443a" + " " + "page-btn",
                                                             children: "Prev"
                                                         }),
                                                         Array.from({
@@ -958,14 +958,14 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                         }, (_, i)=>i + 1).map((n)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                 type: "button",
                                                                 onClick: ()=>setPage(n),
-                                                                className: "jsx-f4cca1e1315e122b" + " " + `page-btn${n === safePage ? " is-active" : ""}`,
+                                                                className: "jsx-bc2bc18435d5443a" + " " + `page-btn${n === safePage ? " is-active" : ""}`,
                                                                 children: n
                                                             }, n)),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                             type: "button",
                                                             disabled: safePage >= pageCount,
                                                             onClick: ()=>setPage(safePage + 1),
-                                                            className: "jsx-f4cca1e1315e122b" + " " + "page-btn",
+                                                            className: "jsx-bc2bc18435d5443a" + " " + "page-btn",
                                                             children: "Next"
                                                         })
                                                     ]
@@ -982,33 +982,33 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {}),
             filterOpen && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                 onClick: ()=>setFilterOpen(false),
-                className: "jsx-f4cca1e1315e122b" + " " + "filter-overlay",
+                className: "jsx-bc2bc18435d5443a" + " " + "filter-overlay",
                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("aside", {
                     onClick: (e)=>e.stopPropagation(),
-                    className: "jsx-f4cca1e1315e122b" + " " + "filter-drawer",
+                    className: "jsx-bc2bc18435d5443a" + " " + "filter-drawer",
                     children: [
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f4cca1e1315e122b" + " " + "filter-drawer-head",
+                            className: "jsx-bc2bc18435d5443a" + " " + "filter-drawer-head",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "jsx-f4cca1e1315e122b",
+                                    className: "jsx-bc2bc18435d5443a",
                                     children: "Filters"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                     onClick: ()=>setFilterOpen(false),
-                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-drawer-close",
+                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-drawer-close",
                                     children: "✕"
                                 })
                             ]
                         }),
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f4cca1e1315e122b" + " " + "filter-drawer-body",
+                            className: "jsx-bc2bc18435d5443a" + " " + "filter-drawer-body",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-block",
+                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-block",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                            className: "jsx-f4cca1e1315e122b",
+                                            className: "jsx-bc2bc18435d5443a",
                                             children: "Price Range"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -1021,10 +1021,10 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                     priceRange[0],
                                                     Number(e.target.value)
                                                 ]),
-                                            className: "jsx-f4cca1e1315e122b" + " " + "price-slider"
+                                            className: "jsx-bc2bc18435d5443a" + " " + "price-slider"
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "price-inputs",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "price-inputs",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                     type: "number",
@@ -1033,7 +1033,7 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                             Number(e.target.value),
                                                             priceRange[1]
                                                         ]),
-                                                    className: "jsx-f4cca1e1315e122b"
+                                                    className: "jsx-bc2bc18435d5443a"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                     type: "number",
@@ -1042,54 +1042,54 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                             priceRange[0],
                                                             Number(e.target.value)
                                                         ]),
-                                                    className: "jsx-f4cca1e1315e122b"
+                                                    className: "jsx-bc2bc18435d5443a"
                                                 })
                                             ]
                                         })
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-block",
+                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-block",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                            className: "jsx-f4cca1e1315e122b",
+                                            className: "jsx-bc2bc18435d5443a",
                                             children: "Availability"
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                     type: "radio",
                                                     name: "avail-m",
                                                     checked: availability === "all",
                                                     onChange: ()=>setAvailability("all"),
-                                                    className: "jsx-f4cca1e1315e122b"
+                                                    className: "jsx-bc2bc18435d5443a"
                                                 }),
                                                 " All"
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                     type: "radio",
                                                     name: "avail-m",
                                                     checked: availability === "in-stock",
                                                     onChange: ()=>setAvailability("in-stock"),
-                                                    className: "jsx-f4cca1e1315e122b"
+                                                    className: "jsx-bc2bc18435d5443a"
                                                 }),
                                                 " In Stock"
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                     type: "radio",
                                                     name: "avail-m",
                                                     checked: availability === "upcoming",
                                                     onChange: ()=>setAvailability("upcoming"),
-                                                    className: "jsx-f4cca1e1315e122b"
+                                                    className: "jsx-bc2bc18435d5443a"
                                                 }),
                                                 " Upcoming"
                                             ]
@@ -1097,37 +1097,37 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                     ]
                                 }),
                                 brands.length > 0 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-block",
+                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-block",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                            className: "jsx-f4cca1e1315e122b",
+                                            className: "jsx-bc2bc18435d5443a",
                                             children: "Brand"
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f4cca1e1315e122b" + " " + "filter-options-list",
+                                            className: "jsx-bc2bc18435d5443a" + " " + "filter-options-list",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                    className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                                    className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                             type: "radio",
                                                             name: "brand-m",
                                                             checked: !selectedBrand,
                                                             onChange: ()=>setSelectedBrand(""),
-                                                            className: "jsx-f4cca1e1315e122b"
+                                                            className: "jsx-bc2bc18435d5443a"
                                                         }),
                                                         " All"
                                                     ]
                                                 }),
                                                 brands.map((b)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                        className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                                        className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                 type: "radio",
                                                                 name: "brand-m",
                                                                 checked: selectedBrand === b,
                                                                 onChange: ()=>setSelectedBrand(b),
-                                                                className: "jsx-f4cca1e1315e122b"
+                                                                className: "jsx-bc2bc18435d5443a"
                                                             }),
                                                             b
                                                         ]
@@ -1137,16 +1137,16 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                     ]
                                 }),
                                 Object.entries(specOptions).map(([specName, { label , values  }])=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-f4cca1e1315e122b" + " " + "filter-block",
+                                        className: "jsx-bc2bc18435d5443a" + " " + "filter-block",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                className: "jsx-f4cca1e1315e122b",
+                                                className: "jsx-bc2bc18435d5443a",
                                                 children: label
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "jsx-f4cca1e1315e122b" + " " + "filter-options-list",
+                                                className: "jsx-bc2bc18435d5443a" + " " + "filter-options-list",
                                                 children: values.map((val)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-                                                        className: "jsx-f4cca1e1315e122b" + " " + "filter-option",
+                                                        className: "jsx-bc2bc18435d5443a" + " " + "filter-option",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                 type: "checkbox",
@@ -1164,7 +1164,7 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                                         };
                                                                     });
                                                                 },
-                                                                className: "jsx-f4cca1e1315e122b"
+                                                                className: "jsx-bc2bc18435d5443a"
                                                             }),
                                                             val
                                                         ]
@@ -1175,10 +1175,10 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                             ]
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-f4cca1e1315e122b" + " " + "filter-drawer-footer",
+                            className: "jsx-bc2bc18435d5443a" + " " + "filter-drawer-footer",
                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                                 onClick: ()=>setFilterOpen(false),
-                                className: "jsx-f4cca1e1315e122b" + " " + "filter-apply-btn",
+                                className: "jsx-bc2bc18435d5443a" + " " + "filter-apply-btn",
                                 children: [
                                     "Show ",
                                     filteredProducts.length,
@@ -1190,8 +1190,8 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                 })
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "f4cca1e1315e122b",
-                children: '.cat-page.jsx-f4cca1e1315e122b{min-height:100vh;background:#f0f3f8;font-family:"Inter","Segoe UI",Arial,sans-serif}.cat-container.jsx-f4cca1e1315e122b{max-width:1320px;margin:0 auto;padding:0 16px}.cat-breadcrumb.jsx-f4cca1e1315e122b{padding:12px 0;background:#fff;border-bottom:1px solid#e8ecf1}.cat-breadcrumb.jsx-f4cca1e1315e122b .cat-container.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;font-size:13px;color:#6b7280;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.cat-breadcrumb.jsx-f4cca1e1315e122b a{color:#3b82f6;text-decoration:none;font-weight:500}.cat-breadcrumb.jsx-f4cca1e1315e122b a:hover{text-decoration:underline}.cat-header.jsx-f4cca1e1315e122b{padding:20px 0 12px;background:#fff;border-bottom:1px solid#e8ecf1}.cat-header.jsx-f4cca1e1315e122b h1.jsx-f4cca1e1315e122b{margin:0;font-size:20px;color:#1e3a5f;font-weight:700}.cat-header.jsx-f4cca1e1315e122b p.jsx-f4cca1e1315e122b{margin:6px 0 0;color:#64748b;font-size:13px;line-height:1.6;max-width:800px}.brands-row.jsx-f4cca1e1315e122b{padding:12px 0;background:#fff;border-bottom:1px solid#e8ecf1}.brands-row.jsx-f4cca1e1315e122b .cat-container.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.brand-chip.jsx-f4cca1e1315e122b{border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 14px;background:#fff;font-size:12px;font-weight:500;cursor:pointer;color:#374151;-webkit-transition:all.12s;-moz-transition:all.12s;-o-transition:all.12s;transition:all.12s}.brand-chip.jsx-f4cca1e1315e122b:hover{border-color:#3b82f6;color:#3b82f6}.brand-chip.active.jsx-f4cca1e1315e122b{background:#3b82f6;color:#fff;border-color:#3b82f6}.subcats-row.jsx-f4cca1e1315e122b{padding:10px 0;background:#fff;border-bottom:1px solid#e8ecf1}.subcats-row.jsx-f4cca1e1315e122b .cat-container.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.subcat-chip.jsx-f4cca1e1315e122b{padding:4px 12px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;border:1px solid#d4dae3;background:#fff;color:#374151;font-size:12px;font-weight:500;text-decoration:none;-webkit-transition:all.12s;-moz-transition:all.12s;-o-transition:all.12s;transition:all.12s}.subcat-chip.jsx-f4cca1e1315e122b:hover{border-color:#3b82f6;color:#3b82f6}.cat-main.jsx-f4cca1e1315e122b{padding:20px 0 48px}.cat-grid.jsx-f4cca1e1315e122b{display:grid;grid-template-columns:260px 1fr;gap:20px;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start}.cat-sidebar.jsx-f4cca1e1315e122b{position:-webkit-sticky;position:sticky;top:80px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:0;background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;overflow:hidden}.filter-block.jsx-f4cca1e1315e122b{padding:14px 16px;border-bottom:1px solid#f1f5f9}.filter-block.jsx-f4cca1e1315e122b:last-child{border-bottom:none}.filter-block.jsx-f4cca1e1315e122b h3.jsx-f4cca1e1315e122b{margin:0 0 10px;font-size:13px;color:#1e293b;font-weight:700}.price-slider.jsx-f4cca1e1315e122b{width:100%;accent-color:#ef4444;margin-bottom:8px;height:4px}.price-inputs.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.price-inputs.jsx-f4cca1e1315e122b input.jsx-f4cca1e1315e122b{width:50%;border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 6px;font-size:12px;text-align:center}.filter-options-list.jsx-f4cca1e1315e122b{max-height:180px;overflow-y:auto}.filter-option.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:3px 0;font-size:12.5px;color:#374151;cursor:pointer}.filter-option.jsx-f4cca1e1315e122b input.jsx-f4cca1e1315e122b{accent-color:#3b82f6;width:14px;height:14px}.cat-products.jsx-f4cca1e1315e122b{min-width:0}.cat-toolbar.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:12px 16px;background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;margin-bottom:16px}.toolbar-title.jsx-f4cca1e1315e122b{margin:0;font-size:16px;color:#1e293b;font-weight:700}.toolbar-controls.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.product-count.jsx-f4cca1e1315e122b{font-size:12px;color:#64748b}.product-count.jsx-f4cca1e1315e122b strong.jsx-f4cca1e1315e122b{color:#1e293b}.sort-label.jsx-f4cca1e1315e122b{font-size:12px;color:#64748b}.sort-select.jsx-f4cca1e1315e122b{border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:6px 10px;font-size:12px;color:#374151}.products-grid.jsx-f4cca1e1315e122b{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}.product-card-item.jsx-f4cca1e1315e122b{position:relative;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;overflow:hidden;-webkit-transition:box-shadow.2s,border-color.2s;-moz-transition:box-shadow.2s,border-color.2s;-o-transition:box-shadow.2s,border-color.2s;transition:box-shadow.2s,border-color.2s;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-card-item.jsx-f4cca1e1315e122b:hover{-webkit-box-shadow:0 6px 20px rgba(0,0,0,.08);-moz-box-shadow:0 6px 20px rgba(0,0,0,.08);box-shadow:0 6px 20px rgba(0,0,0,.08);border-color:#cbd5e1}.product-card-link.jsx-f4cca1e1315e122b{text-decoration:none;color:inherit;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.save-badge.jsx-f4cca1e1315e122b{position:absolute;top:8px;left:8px;padding:2px 8px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background:#7c3aed;color:#fff;font-size:10px;font-weight:700;z-index:1}.product-card-img.jsx-f4cca1e1315e122b{height:170px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:12px;background:#fff;border-bottom:1px solid#f1f5f9}.product-card-img.jsx-f4cca1e1315e122b img.jsx-f4cca1e1315e122b{max-width:100%;max-height:100%;-o-object-fit:contain;object-fit:contain;mix-blend-mode:multiply}.product-card-body.jsx-f4cca1e1315e122b{padding:12px 14px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-card-body.jsx-f4cca1e1315e122b h4.jsx-f4cca1e1315e122b{margin:0 0 8px;font-size:13px;color:#1e293b;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.spec-list.jsx-f4cca1e1315e122b{margin:0 0 8px;padding:0;list-style:none}.spec-list.jsx-f4cca1e1315e122b li.jsx-f4cca1e1315e122b{position:relative;font-size:11px;color:#64748b;margin-bottom:2px;padding-left:12px;line-height:1.5}.spec-list.jsx-f4cca1e1315e122b li.jsx-f4cca1e1315e122b::before{content:"•";position:absolute;left:0;color:#94a3b8}.product-card-price.jsx-f4cca1e1315e122b{margin-top:auto;padding-top:10px;border-top:1px solid#f1f5f9;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:baseline;-webkit-align-items:baseline;-moz-box-align:baseline;-ms-flex-align:baseline;align-items:baseline;gap:8px}.product-card-price.jsx-f4cca1e1315e122b strong.jsx-f4cca1e1315e122b{font-size:15px;color:#ef4444;font-weight:700}.old-price.jsx-f4cca1e1315e122b{font-size:12px;color:#9ca3af;text-decoration:line-through}.contact-price.jsx-f4cca1e1315e122b{color:#64748b;font-size:13px;font-weight:600}.product-card-actions.jsx-f4cca1e1315e122b{margin-top:10px}.add-cart-btn.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:6px;width:100%;padding:8px;border:none;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:#3b82f6;color:#fff;font-size:12px;font-weight:700;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.add-cart-btn.jsx-f4cca1e1315e122b:hover{background:#2563eb}.product-card-item.jsx-f4cca1e1315e122b:hover .add-cart-btn.jsx-f4cca1e1315e122b{background:#2563eb}.no-products.jsx-f4cca1e1315e122b{padding:48px;text-align:center;color:#94a3b8;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;font-size:14px}.page-bar.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;margin:18px 0 4px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.page-btn.jsx-f4cca1e1315e122b{border:1px solid#d4dae3;background:#fff;color:#1e293b;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;min-width:34px;height:34px;padding:0 10px;font-size:13px;font-weight:600;cursor:pointer}.page-btn.is-active.jsx-f4cca1e1315e122b{background:#1e293b;color:#f7e500;border-color:#1e293b}.page-btn.jsx-f4cca1e1315e122b:disabled{opacity:.45;cursor:default}@media(max-width:960px){.cat-grid.jsx-f4cca1e1315e122b{grid-template-columns:220px 1fr}.products-grid.jsx-f4cca1e1315e122b{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}}@media(max-width:768px){.cat-grid.jsx-f4cca1e1315e122b{grid-template-columns:1fr}.cat-sidebar.jsx-f4cca1e1315e122b{position:static;display:none}.products-grid.jsx-f4cca1e1315e122b{grid-template-columns:repeat(2,1fr);gap:10px}.product-card-img.jsx-f4cca1e1315e122b{height:140px}.toolbar-title.jsx-f4cca1e1315e122b{display:none}}.filter-toggle-btn.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;border:1px solid#d4dae3;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:8px 14px;background:#fff;font-size:13px;font-weight:600;color:#374151;cursor:pointer;-webkit-transition:border-color.12s;-moz-transition:border-color.12s;-o-transition:border-color.12s;transition:border-color.12s}.filter-toggle-btn.jsx-f4cca1e1315e122b:hover{border-color:#3b82f6;color:#3b82f6}.filter-overlay.jsx-f4cca1e1315e122b{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2000;-webkit-animation:fadeIn.15s;-moz-animation:fadeIn.15s;-o-animation:fadeIn.15s;animation:fadeIn.15s}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@-moz-keyframes fadeIn{from{opacity:0}to{opacity:1}}@-o-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.filter-drawer.jsx-f4cca1e1315e122b{position:fixed;top:0;right:0;width:min(360px,85vw);height:100vh;background:#fff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-shadow:-8px 0 24px rgba(0,0,0,.15);-moz-box-shadow:-8px 0 24px rgba(0,0,0,.15);box-shadow:-8px 0 24px rgba(0,0,0,.15);-webkit-animation:slideIn.2s ease-out;-moz-animation:slideIn.2s ease-out;-o-animation:slideIn.2s ease-out;animation:slideIn.2s ease-out}@-webkit-keyframes slideIn{from{-webkit-transform:translateX(100%);transform:translateX(100%)}to{-webkit-transform:translateX(0);transform:translateX(0)}}@-moz-keyframes slideIn{from{-moz-transform:translateX(100%);transform:translateX(100%)}to{-moz-transform:translateX(0);transform:translateX(0)}}@-o-keyframes slideIn{from{-o-transform:translateX(100%);transform:translateX(100%)}to{-o-transform:translateX(0);transform:translateX(0)}}@keyframes slideIn{from{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-o-transform:translateX(100%);transform:translateX(100%)}to{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}}.filter-drawer-head.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:18px 20px;border-bottom:1px solid#e5e7eb}.filter-drawer-head.jsx-f4cca1e1315e122b span.jsx-f4cca1e1315e122b{font-size:18px;font-weight:700;color:#111827}.filter-drawer-close.jsx-f4cca1e1315e122b{border:none;background:transparent;font-size:22px;cursor:pointer;color:#6b7280;width:32px;height:32px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.filter-drawer-close.jsx-f4cca1e1315e122b:hover{background:#f3f4f6}.filter-drawer-body.jsx-f4cca1e1315e122b{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;overflow-y:auto;padding:0}.filter-drawer-body.jsx-f4cca1e1315e122b .filter-block.jsx-f4cca1e1315e122b{padding:16px 20px;border-bottom:1px solid#f1f5f9}.filter-drawer-body.jsx-f4cca1e1315e122b .filter-block.jsx-f4cca1e1315e122b h3.jsx-f4cca1e1315e122b{margin:0 0 12px;font-size:14px;color:#1e293b;font-weight:700}.filter-drawer-body.jsx-f4cca1e1315e122b .filter-option.jsx-f4cca1e1315e122b{padding:5px 0;font-size:13px}.filter-drawer-body.jsx-f4cca1e1315e122b .price-slider.jsx-f4cca1e1315e122b{width:100%;accent-color:#ef4444}.filter-drawer-body.jsx-f4cca1e1315e122b .price-inputs.jsx-f4cca1e1315e122b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;margin-top:8px}.filter-drawer-body.jsx-f4cca1e1315e122b .price-inputs.jsx-f4cca1e1315e122b input.jsx-f4cca1e1315e122b{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;border:1px solid#d4dae3;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:8px 10px;font-size:13px;text-align:center}.filter-drawer-body.jsx-f4cca1e1315e122b .filter-options-list.jsx-f4cca1e1315e122b{max-height:200px;overflow-y:auto}.filter-drawer-footer.jsx-f4cca1e1315e122b{padding:16px 20px;border-top:1px solid#e5e7eb}.filter-apply-btn.jsx-f4cca1e1315e122b{width:100%;padding:12px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#1e293b;color:#fff;font-size:14px;font-weight:700;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.filter-apply-btn.jsx-f4cca1e1315e122b:hover{background:#334155}'
+                id: "bc2bc18435d5443a",
+                children: '.cat-page.jsx-bc2bc18435d5443a{min-height:100vh;background:#f0f3f8;font-family:"Inter","Segoe UI",Arial,sans-serif}.cat-container.jsx-bc2bc18435d5443a{max-width:1320px;margin:0 auto;padding:0 16px}.cat-breadcrumb.jsx-bc2bc18435d5443a{padding:12px 0;background:#fff;border-bottom:1px solid#e8ecf1}.cat-breadcrumb.jsx-bc2bc18435d5443a .cat-container.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;font-size:13px;color:#6b7280;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.cat-breadcrumb.jsx-bc2bc18435d5443a a{color:#3b82f6;text-decoration:none;font-weight:500}.cat-breadcrumb.jsx-bc2bc18435d5443a a:hover{text-decoration:underline}.cat-header.jsx-bc2bc18435d5443a{padding:20px 0 12px;background:#fff;border-bottom:1px solid#e8ecf1}.cat-header.jsx-bc2bc18435d5443a h1.jsx-bc2bc18435d5443a{margin:0;font-size:20px;color:#1e3a5f;font-weight:700}.cat-header.jsx-bc2bc18435d5443a p.jsx-bc2bc18435d5443a{margin:6px 0 0;color:#64748b;font-size:13px;line-height:1.6;max-width:800px}.brands-row.jsx-bc2bc18435d5443a{padding:12px 0;background:#fff;border-bottom:1px solid#e8ecf1}.brands-row.jsx-bc2bc18435d5443a .cat-container.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.brand-chip.jsx-bc2bc18435d5443a{border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 14px;background:#fff;font-size:12px;font-weight:500;cursor:pointer;color:#374151;-webkit-transition:all.12s;-moz-transition:all.12s;-o-transition:all.12s;transition:all.12s}.brand-chip.jsx-bc2bc18435d5443a:hover{border-color:#3b82f6;color:#3b82f6}.brand-chip.active.jsx-bc2bc18435d5443a{background:#3b82f6;color:#fff;border-color:#3b82f6}.subcats-row.jsx-bc2bc18435d5443a{padding:10px 0;background:#fff;border-bottom:1px solid#e8ecf1}.subcats-row.jsx-bc2bc18435d5443a .cat-container.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.subcat-chip.jsx-bc2bc18435d5443a{padding:4px 12px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;border:1px solid#d4dae3;background:#fff;color:#374151;font-size:12px;font-weight:500;text-decoration:none;-webkit-transition:all.12s;-moz-transition:all.12s;-o-transition:all.12s;transition:all.12s}.subcat-chip.jsx-bc2bc18435d5443a:hover{border-color:#3b82f6;color:#3b82f6}.cat-main.jsx-bc2bc18435d5443a{padding:20px 0 48px}.cat-grid.jsx-bc2bc18435d5443a{display:grid;grid-template-columns:260px 1fr;gap:20px;-webkit-box-align:start;-webkit-align-items:start;-moz-box-align:start;-ms-flex-align:start;align-items:start}.cat-sidebar.jsx-bc2bc18435d5443a{position:-webkit-sticky;position:sticky;top:80px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:0;background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;overflow:hidden}.filter-block.jsx-bc2bc18435d5443a{padding:14px 16px;border-bottom:1px solid#f1f5f9}.filter-block.jsx-bc2bc18435d5443a:last-child{border-bottom:none}.filter-block.jsx-bc2bc18435d5443a h3.jsx-bc2bc18435d5443a{margin:0 0 10px;font-size:13px;color:#1e293b;font-weight:700}.price-slider.jsx-bc2bc18435d5443a{width:100%;accent-color:#ef4444;margin-bottom:8px;height:4px}.price-inputs.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px}.price-inputs.jsx-bc2bc18435d5443a input.jsx-bc2bc18435d5443a{width:50%;border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 6px;font-size:12px;text-align:center}.filter-options-list.jsx-bc2bc18435d5443a{max-height:180px;overflow-y:auto}.filter-option.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;padding:3px 0;font-size:12.5px;color:#374151;cursor:pointer}.filter-option.jsx-bc2bc18435d5443a input.jsx-bc2bc18435d5443a{accent-color:#3b82f6;width:14px;height:14px}.cat-products.jsx-bc2bc18435d5443a{min-width:0}.cat-toolbar.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:12px 16px;background:#fff;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;margin-bottom:16px}.toolbar-title.jsx-bc2bc18435d5443a{margin:0;font-size:16px;color:#1e293b;font-weight:700}.toolbar-controls.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.product-count.jsx-bc2bc18435d5443a{font-size:12px;color:#64748b}.product-count.jsx-bc2bc18435d5443a strong.jsx-bc2bc18435d5443a{color:#1e293b}.sort-label.jsx-bc2bc18435d5443a{font-size:12px;color:#64748b}.sort-select.jsx-bc2bc18435d5443a{border:1px solid#d4dae3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:6px 10px;font-size:12px;color:#374151}.products-grid.jsx-bc2bc18435d5443a{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}.product-card-item.jsx-bc2bc18435d5443a{position:relative;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;overflow:hidden;-webkit-transition:box-shadow.2s,border-color.2s;-moz-transition:box-shadow.2s,border-color.2s;-o-transition:box-shadow.2s,border-color.2s;transition:box-shadow.2s,border-color.2s;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-card-item.jsx-bc2bc18435d5443a:hover{-webkit-box-shadow:0 6px 20px rgba(0,0,0,.08);-moz-box-shadow:0 6px 20px rgba(0,0,0,.08);box-shadow:0 6px 20px rgba(0,0,0,.08);border-color:#cbd5e1}.product-card-link.jsx-bc2bc18435d5443a{text-decoration:none;color:inherit;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.save-badge.jsx-bc2bc18435d5443a{position:absolute;top:8px;left:8px;padding:2px 8px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background:#7c3aed;color:#fff;font-size:10px;font-weight:700;z-index:1}.product-card-img.jsx-bc2bc18435d5443a{height:170px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:12px;background:#fff;border-bottom:1px solid#f1f5f9}.product-card-img.jsx-bc2bc18435d5443a img.jsx-bc2bc18435d5443a{max-width:100%;max-height:100%;-o-object-fit:contain;object-fit:contain;mix-blend-mode:multiply}.product-card-body.jsx-bc2bc18435d5443a{padding:12px 14px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.product-card-body.jsx-bc2bc18435d5443a h4.jsx-bc2bc18435d5443a{margin:0 0 8px;font-size:13px;color:#1e293b;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.spec-list.jsx-bc2bc18435d5443a{margin:0 0 8px;padding:0;list-style:none}.spec-list.jsx-bc2bc18435d5443a li.jsx-bc2bc18435d5443a{position:relative;font-size:11px;color:#64748b;margin-bottom:2px;padding-left:12px;line-height:1.5}.spec-list.jsx-bc2bc18435d5443a li.jsx-bc2bc18435d5443a::before{content:"•";position:absolute;left:0;color:#94a3b8}.product-card-price.jsx-bc2bc18435d5443a{margin-top:auto;padding-top:10px;border-top:1px solid#f1f5f9;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:baseline;-webkit-align-items:baseline;-moz-box-align:baseline;-ms-flex-align:baseline;align-items:baseline;gap:8px}.product-card-price.jsx-bc2bc18435d5443a strong.jsx-bc2bc18435d5443a{font-size:15px;color:#ef4444;font-weight:700}.old-price.jsx-bc2bc18435d5443a{font-size:12px;color:#9ca3af;text-decoration:line-through}.contact-price.jsx-bc2bc18435d5443a{color:#64748b;font-size:13px;font-weight:600}.product-card-actions.jsx-bc2bc18435d5443a{margin-top:10px}.no-products.jsx-bc2bc18435d5443a{padding:48px;text-align:center;color:#94a3b8;border:1px solid#e2e8f0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#fff;font-size:14px}.page-bar.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;margin:18px 0 4px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.page-btn.jsx-bc2bc18435d5443a{border:1px solid#d4dae3;background:#fff;color:#1e293b;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;min-width:34px;height:34px;padding:0 10px;font-size:13px;font-weight:600;cursor:pointer}.page-btn.is-active.jsx-bc2bc18435d5443a{background:#1e293b;color:#f7e500;border-color:#1e293b}.page-btn.jsx-bc2bc18435d5443a:disabled{opacity:.45;cursor:default}@media(max-width:960px){.cat-grid.jsx-bc2bc18435d5443a{grid-template-columns:220px 1fr}.products-grid.jsx-bc2bc18435d5443a{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}}@media(max-width:768px){.cat-grid.jsx-bc2bc18435d5443a{grid-template-columns:1fr}.cat-sidebar.jsx-bc2bc18435d5443a{position:static;display:none}.products-grid.jsx-bc2bc18435d5443a{grid-template-columns:repeat(2,1fr);gap:10px}.product-card-img.jsx-bc2bc18435d5443a{height:140px}.toolbar-title.jsx-bc2bc18435d5443a{display:none}}.filter-toggle-btn.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;border:1px solid#d4dae3;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:8px 14px;background:#fff;font-size:13px;font-weight:600;color:#374151;cursor:pointer;-webkit-transition:border-color.12s;-moz-transition:border-color.12s;-o-transition:border-color.12s;transition:border-color.12s}.filter-toggle-btn.jsx-bc2bc18435d5443a:hover{border-color:#3b82f6;color:#3b82f6}.filter-overlay.jsx-bc2bc18435d5443a{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2000;-webkit-animation:fadeIn.15s;-moz-animation:fadeIn.15s;-o-animation:fadeIn.15s;animation:fadeIn.15s}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@-moz-keyframes fadeIn{from{opacity:0}to{opacity:1}}@-o-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.filter-drawer.jsx-bc2bc18435d5443a{position:fixed;top:0;right:0;width:min(360px,85vw);height:100vh;background:#fff;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-shadow:-8px 0 24px rgba(0,0,0,.15);-moz-box-shadow:-8px 0 24px rgba(0,0,0,.15);box-shadow:-8px 0 24px rgba(0,0,0,.15);-webkit-animation:slideIn.2s ease-out;-moz-animation:slideIn.2s ease-out;-o-animation:slideIn.2s ease-out;animation:slideIn.2s ease-out}@-webkit-keyframes slideIn{from{-webkit-transform:translateX(100%);transform:translateX(100%)}to{-webkit-transform:translateX(0);transform:translateX(0)}}@-moz-keyframes slideIn{from{-moz-transform:translateX(100%);transform:translateX(100%)}to{-moz-transform:translateX(0);transform:translateX(0)}}@-o-keyframes slideIn{from{-o-transform:translateX(100%);transform:translateX(100%)}to{-o-transform:translateX(0);transform:translateX(0)}}@keyframes slideIn{from{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-o-transform:translateX(100%);transform:translateX(100%)}to{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}}.filter-drawer-head.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:18px 20px;border-bottom:1px solid#e5e7eb}.filter-drawer-head.jsx-bc2bc18435d5443a span.jsx-bc2bc18435d5443a{font-size:18px;font-weight:700;color:#111827}.filter-drawer-close.jsx-bc2bc18435d5443a{border:none;background:transparent;font-size:22px;cursor:pointer;color:#6b7280;width:32px;height:32px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.filter-drawer-close.jsx-bc2bc18435d5443a:hover{background:#f3f4f6}.filter-drawer-body.jsx-bc2bc18435d5443a{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;overflow-y:auto;padding:0}.filter-drawer-body.jsx-bc2bc18435d5443a .filter-block.jsx-bc2bc18435d5443a{padding:16px 20px;border-bottom:1px solid#f1f5f9}.filter-drawer-body.jsx-bc2bc18435d5443a .filter-block.jsx-bc2bc18435d5443a h3.jsx-bc2bc18435d5443a{margin:0 0 12px;font-size:14px;color:#1e293b;font-weight:700}.filter-drawer-body.jsx-bc2bc18435d5443a .filter-option.jsx-bc2bc18435d5443a{padding:5px 0;font-size:13px}.filter-drawer-body.jsx-bc2bc18435d5443a .price-slider.jsx-bc2bc18435d5443a{width:100%;accent-color:#ef4444}.filter-drawer-body.jsx-bc2bc18435d5443a .price-inputs.jsx-bc2bc18435d5443a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:10px;margin-top:8px}.filter-drawer-body.jsx-bc2bc18435d5443a .price-inputs.jsx-bc2bc18435d5443a input.jsx-bc2bc18435d5443a{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;border:1px solid#d4dae3;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:8px 10px;font-size:13px;text-align:center}.filter-drawer-body.jsx-bc2bc18435d5443a .filter-options-list.jsx-bc2bc18435d5443a{max-height:200px;overflow-y:auto}.filter-drawer-footer.jsx-bc2bc18435d5443a{padding:16px 20px;border-top:1px solid#e5e7eb}.filter-apply-btn.jsx-bc2bc18435d5443a{width:100%;padding:12px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background:#1e293b;color:#fff;font-size:14px;font-weight:700;cursor:pointer;-webkit-transition:background.15s;-moz-transition:background.15s;-o-transition:background.15s;transition:background.15s}.filter-apply-btn.jsx-bc2bc18435d5443a:hover{background:#334155}'
             })
         ]
     });

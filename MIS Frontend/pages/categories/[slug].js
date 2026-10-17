@@ -677,9 +677,6 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
         .contact-price { color: #64748b; font-size: 13px; font-weight: 600; }
 
         .product-card-actions { margin-top: 10px; }
-        .add-cart-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 8px; border: none; border-radius: 4px; background: #3b82f6; color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
-        .add-cart-btn:hover { background: #2563eb; }
-        .product-card-item:hover .add-cart-btn { background: #2563eb; }
 
         .no-products { padding: 48px; text-align: center; color: #94a3b8; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; font-size: 14px; }
         .page-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 18px 0 4px; flex-wrap: wrap; }

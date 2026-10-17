@@ -1021,7 +1021,7 @@ const Navigation = () => {
         .cat-nav-inner {
           display: flex;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: center;
           width: max-content;
           min-width: 100%;
           margin: 0 auto;
