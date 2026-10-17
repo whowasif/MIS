@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession, signIn, signOut } from 'next-auth/react'
-import { DisplayImage } from '../lib/display-image'
 
 const menuItems = [
   { href: '/', label: 'Home' },
@@ -329,7 +328,7 @@ const Navigation = () => {
 
         <Link href="/">
           <a className="menu-nav-logo" onClick={closeMenu}>
-            <DisplayImage
+            <img
               src="/mis_logo_cut-w.png"
               alt="MIS Solution logo"
               className="menu-nav-logo-image"
@@ -746,6 +745,11 @@ const Navigation = () => {
           display: inline-flex;
           align-items: center;
           gap: 10px;
+          height: 42px;
+          max-height: 42px;
+          min-width: 0;
+          min-height: 0;
+          overflow: hidden;
           justify-self: center;
           text-decoration: none;
           color: #111111;
@@ -756,6 +760,7 @@ const Navigation = () => {
         .menu-nav-logo-image {
           height: 42px;
           width: auto;
+          max-width: 180px;
           display: block;
           object-fit: contain;
         }
@@ -1086,8 +1091,10 @@ const Navigation = () => {
             padding: 0 14px;
           }
 
+          .menu-nav-logo,
           .menu-nav-logo-image {
             height: 34px;
+            max-height: 34px;
           }
 
           .menu-nav-logo-text {
