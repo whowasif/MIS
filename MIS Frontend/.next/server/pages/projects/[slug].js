@@ -300,7 +300,7 @@ const ProjectDetailPage = ({ project  })=>{
         ]
     });
 };
-const getServerSideProps = async ({ params  })=>{
+async function loadPublicProps(params) {
     const slug = String(params?.slug || "").trim().toLowerCase();
     if (!slug) return {
         notFound: true
@@ -330,10 +330,18 @@ const getServerSideProps = async ({ params  })=>{
         };
     } catch (e) {
         console.error("Project detail error:", e);
-        return {
-            notFound: true
-        };
+        throw e;
     }
+}
+const getServerSideProps = async ({ res , params  })=>{
+    const slug = String(params?.slug || "").trim().toLowerCase();
+    if (!slug) return {
+        notFound: true
+    };
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, `project:${encodeURIComponent(slug)}`, ()=>loadPublicProps(params), ()=>({
+            notFound: true
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProjectDetailPage);
 

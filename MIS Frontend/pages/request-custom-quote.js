@@ -430,7 +430,7 @@ const RequestCustomQuote = ({ serviceOptions = [] }) => {
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
     const { getDbPool } = await import('../lib/server/db')
     const db = getDbPool()
@@ -447,8 +447,15 @@ export const getServerSideProps = async () => {
 
     return { props: { serviceOptions } }
   } catch (e) {
-    return { props: { serviceOptions: [] } }
+    throw e
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:quote-form', loadPublicProps, () => ({
+    props: { serviceOptions: [] },
+  }))
 }
 
 export default RequestCustomQuote

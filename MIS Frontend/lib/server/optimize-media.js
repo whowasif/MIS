@@ -5,6 +5,13 @@ const path = require('path')
 const MAX_EDGE = 1600
 const MAX_IMAGE_BYTES = Math.floor(1.5 * 1024 * 1024)
 const MAX_VIDEO_BYTES = 12 * 1024 * 1024
+const CARD_EDGE = 800
+const CARD_QUALITY = 85
+const DETAIL_EDGE = 1600
+const DETAIL_QUALITY = 88
+const LOGO_EDGE = 1600
+const LOGO_QUALITY = 95
+const LOGO_NAMES = new Set(['footer logo.png', 'mis_logo_cut-w.png'])
 
 const commandExists = (name) => {
   const checker = process.platform === 'win32' ? 'where' : 'which'
@@ -35,7 +42,27 @@ const execFileAsync = (command, args, timeout = 180000) =>
     })
   })
 
-const imageTool = () => resolveBinary(['magick', '/usr/bin/magick', 'convert', '/usr/bin/convert'])
+const isImageMagick = (binary) => {
+  const result = spawnSync(binary, ['-version'], { encoding: 'utf8', windowsHide: true })
+  const text = `${result.stdout || ''}\n${result.stderr || ''}`
+  return result.status === 0 && /ImageMagick/i.test(text)
+}
+
+let cachedImageTool
+let imageToolChecked = false
+const imageTool = () => {
+  if (imageToolChecked) return cachedImageTool
+  imageToolChecked = true
+  for (const name of ['magick', '/usr/bin/magick', 'convert', '/usr/bin/convert']) {
+    const binary = resolveBinary([name])
+    if (binary && isImageMagick(binary)) {
+      cachedImageTool = binary
+      return cachedImageTool
+    }
+  }
+  cachedImageTool = null
+  return null
+}
 
 const videoTool = () => resolveBinary(['ffmpeg', '/usr/bin/ffmpeg', '/usr/local/bin/ffmpeg'])
 
@@ -139,9 +166,118 @@ const optimizeVideoFile = async (filePath) => {
   }
 }
 
+const derivativePath = (filePath, kind) => {
+  const extension = path.extname(filePath)
+  return `${filePath.slice(0, filePath.length - extension.length)}.${kind}.webp`
+}
+
+const isDerivativeName = (filePath) => /\.(card|detail)\.webp$/i.test(path.basename(filePath))
+
+const needsWrite = async (sourcePath, targetPath) => {
+  try {
+    const [sourceStat, targetStat] = await Promise.all([
+      fs.promises.stat(sourcePath),
+      fs.promises.stat(targetPath),
+    ])
+    return targetStat.size <= 0 || targetStat.mtimeMs < sourceStat.mtimeMs
+  } catch (error) {
+    return true
+  }
+}
+
+const writeOneDerivative = async (binary, filePath, targetPath, edge, quality) => {
+  if (!(await needsWrite(filePath, targetPath))) return { ok: true, skipped: true }
+  const temporaryPath = targetPath.replace(/\.webp$/i, '.tmp.webp')
+  const args = [
+    filePath,
+    '-auto-orient',
+    '-resize',
+    `${edge}x${edge}>`,
+    '-strip',
+    '-quality',
+    String(quality),
+    temporaryPath,
+  ]
+  try {
+    await execFileAsync(binary, args)
+    const nextStat = await fs.promises.stat(temporaryPath)
+    if (nextStat.size <= 0) {
+      await fs.promises.unlink(temporaryPath).catch(() => {})
+      return { ok: false, error: 'The display image was empty.' }
+    }
+    await fs.promises.rename(temporaryPath, targetPath)
+    return { ok: true, bytes: nextStat.size }
+  } catch (error) {
+    await fs.promises.unlink(temporaryPath).catch(() => {})
+    const detail = String(error.stderr || error.message || '')
+      .split('\n')
+      .map((line) => line.trim())
+      .find(Boolean)
+    return { ok: false, error: (detail || 'The display image could not be written.').slice(0, 240) }
+  }
+}
+
+const writeDisplayDerivatives = async (filePath) => {
+  if (isDerivativeName(filePath) || !/\.(png|jpe?g|webp)$/i.test(filePath)) {
+    return { ok: true, skipped: true }
+  }
+  const binary = imageTool()
+  if (!binary) return { ok: true, skipped: true, reason: 'no-image-tool' }
+
+  const logo = LOGO_NAMES.has(path.basename(filePath).toLowerCase())
+  const card = await writeOneDerivative(
+    binary,
+    filePath,
+    derivativePath(filePath, 'card'),
+    logo ? LOGO_EDGE : CARD_EDGE,
+    logo ? LOGO_QUALITY : CARD_QUALITY
+  )
+  const detail = await writeOneDerivative(
+    binary,
+    filePath,
+    derivativePath(filePath, 'detail'),
+    logo ? LOGO_EDGE : DETAIL_EDGE,
+    logo ? LOGO_QUALITY : DETAIL_QUALITY
+  )
+  if (!card.ok && !detail.ok) return { ok: false, error: card.error || detail.error }
+  return { ok: true, card, detail }
+}
+
+const writeVideoPoster = async (videoPath, posterPath) => {
+  if (!fs.existsSync(videoPath)) return { ok: true, skipped: true }
+  const binary = videoTool()
+  if (!binary) return { ok: false, error: 'ffmpeg is not installed, so the hero poster was not created.' }
+  const temporaryPath = `${posterPath}.tmp.jpg`
+  try {
+    await execFileAsync(binary, [
+      '-y',
+      '-ss', '0',
+      '-i', videoPath,
+      '-frames:v', '1',
+      '-q:v', '3',
+      temporaryPath,
+    ], 60000)
+    const nextStat = await fs.promises.stat(temporaryPath)
+    if (nextStat.size <= 0) {
+      await fs.promises.unlink(temporaryPath).catch(() => {})
+      return { ok: false, error: 'The hero poster was empty.' }
+    }
+    await fs.promises.rename(temporaryPath, posterPath)
+    return { ok: true, bytes: nextStat.size }
+  } catch (error) {
+    await fs.promises.unlink(temporaryPath).catch(() => {})
+    return { ok: false, error: 'The hero poster could not be created.' }
+  }
+}
+
 const optimizeUploadedFile = async (filePath, mimeType) => {
   const type = String(mimeType || '').toLowerCase()
-  if (type.startsWith('image/')) return optimizeImageFile(filePath)
+  if (type.startsWith('image/')) {
+    const result = await optimizeImageFile(filePath)
+    if (!result.ok) return result
+    await writeDisplayDerivatives(filePath).catch(() => {})
+    return result
+  }
   if (type.startsWith('video/')) return optimizeVideoFile(filePath)
   return { ok: true, skipped: true }
 }
@@ -150,7 +286,11 @@ module.exports = {
   MAX_EDGE,
   MAX_IMAGE_BYTES,
   MAX_VIDEO_BYTES,
+  CARD_EDGE,
+  DETAIL_EDGE,
   optimizeImageFile,
   optimizeVideoFile,
   optimizeUploadedFile,
+  writeDisplayDerivatives,
+  writeVideoPoster,
 }

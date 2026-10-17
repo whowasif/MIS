@@ -660,7 +660,7 @@ const Contact = (props) => {
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
     const { getPrimaryCompanyContact } = await import('../lib/server/company-contacts')
     const { getDbPool } = await import('../lib/server/db')
@@ -684,13 +684,18 @@ export const getServerSideProps = async () => {
       },
     }
   } catch (error) {
-    return {
-      props: {
-        companyContact: fallbackCompanyContact,
-        serviceOptions: [],
-      },
-    }
+    throw error
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:contact', loadPublicProps, () => ({
+    props: {
+      companyContact: fallbackCompanyContact,
+      serviceOptions: [],
+    },
+  }))
 }
 
 export default Contact

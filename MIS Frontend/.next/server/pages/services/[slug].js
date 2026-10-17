@@ -371,7 +371,7 @@ const ContentDetailPage = ({ content , contentType  })=>{
         ]
     });
 };
-const getServerSideProps = async ({ params , query  })=>{
+async function loadPublicProps(params, query) {
     const slug = String(params?.slug || "").trim().toLowerCase();
     if (!slug) return {
         notFound: true
@@ -423,10 +423,25 @@ const getServerSideProps = async ({ params , query  })=>{
         };
     } catch (e) {
         console.error("Content detail error:", e);
-        return {
-            notFound: true
-        };
+        throw e;
     }
+}
+const getServerSideProps = async ({ res , params , query  })=>{
+    const slug = String(params?.slug || "").trim().toLowerCase();
+    if (!slug) return {
+        notFound: true
+    };
+    const allowedTypes = [
+        "digi_services",
+        "bus_corp_sol",
+        "service_maintenance",
+        "career_posts"
+    ];
+    const contentType = allowedTypes.includes(String(query?.type || "")) ? String(query.type) : "";
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, `service:${encodeURIComponent(slug)}:${contentType}`, ()=>loadPublicProps(params, query), ()=>({
+            notFound: true
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContentDetailPage);
 

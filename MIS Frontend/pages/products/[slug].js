@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import Navigation from '../../components/navigation'
 import Footer from '../../components/footer'
+import { DisplayImage, markHighPriority, useDisplaySrc } from '../../lib/display-image'
 
 const detailFallbacks = [
   'https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500',
@@ -81,6 +82,7 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
   }, [product])
 
   const [activeImage, setActiveImage] = useState(galleryImages[0])
+  const heroDisplay = useDisplaySrc(activeImage, 'detail')
   const [quantity, setQuantity] = useState(1)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
@@ -211,11 +213,17 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
                 onMouseLeave={handleZoomLeave}
                 onClick={() => { setLightboxIndex(galleryImages.indexOf(activeImage)); setLightboxOpen(true) }}
               >
-                <img src={activeImage} alt={product.name} className="hero-img" />
+                <img
+                  src={heroDisplay.displaySrc}
+                  alt={product.name}
+                  className="hero-img"
+                  ref={markHighPriority}
+                  onError={heroDisplay.onError}
+                />
                 <div
                   className="zoom-overlay"
                   style={{
-                    backgroundImage: `url(${activeImage})`,
+                    backgroundImage: heroDisplay.displaySrc ? `url(${heroDisplay.displaySrc})` : undefined,
                     backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
                   }}
                 />
@@ -240,7 +248,7 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
                       type="button"
                       aria-label="Switch product image"
                     >
-                      <img src={img} alt={`${product.name} preview`} />
+                      <DisplayImage src={img} alt={`${product.name} preview`} />
                     </button>
                   ))}
                 </div>
@@ -968,7 +976,7 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             <button className="lightbox-close" onClick={() => setLightboxOpen(false)}>✕</button>
             <button className="lightbox-nav lightbox-prev" onClick={() => setLightboxIndex((p) => (p - 1 + galleryImages.length) % galleryImages.length)}>‹</button>
-            <img src={galleryImages[lightboxIndex]} alt={product.name} className="lightbox-img" />
+            <DisplayImage src={galleryImages[lightboxIndex]} kind="detail" alt={product.name} className="lightbox-img" />
             <button className="lightbox-nav lightbox-next" onClick={() => setLightboxIndex((p) => (p + 1) % galleryImages.length)}>›</button>
             <div className="lightbox-counter">{lightboxIndex + 1} / {galleryImages.length}</div>
           </div>
@@ -978,7 +986,7 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
   )
 }
 
-export const getServerSideProps = async (context) => {
+async function loadPublicProps(context) {
   const { slug } = context.params || {}
 
   try {
@@ -1008,10 +1016,35 @@ export const getServerSideProps = async (context) => {
       }
     }
 
-    return { props: { product, categorySpecs } }
+    const { resolveDisplayUrl } = await import('../../lib/server/display-url')
+    const images = Array.isArray(product.images)
+      ? product.images.map((url) => resolveDisplayUrl(url, 'detail'))
+      : []
+    return {
+      props: {
+        product: {
+          ...product,
+          image: resolveDisplayUrl(product.image, 'detail'),
+          images,
+        },
+        categorySpecs,
+      },
+    }
   } catch (error) {
-    return { notFound: true }
+    throw error
   }
+}
+
+export const getServerSideProps = async (context) => {
+  const slug = String(context.params?.slug || '').trim().toLowerCase()
+  if (!slug) return { notFound: true }
+  const { servePublicCache } = await import('../../lib/server/ttl-cache')
+  return servePublicCache(
+    context.res,
+    `product:${encodeURIComponent(slug)}`,
+    () => loadPublicProps(context),
+    () => ({ notFound: true })
+  )
 }
 
 export default ProductDetailPage

@@ -453,7 +453,7 @@ const CareerPage = ({ jobs = [] }) => {
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
     const db = getDbPool()
     const [rows] = await db.query(`
@@ -463,8 +463,13 @@ export const getServerSideProps = async () => {
     `)
     return { props: { jobs: JSON.parse(JSON.stringify(rows)) } }
   } catch (e) {
-    return { props: { jobs: [] } }
+    throw e
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:career', loadPublicProps, () => ({ props: { jobs: [] } }))
 }
 
 export default CareerPage

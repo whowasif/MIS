@@ -1188,7 +1188,7 @@ const CareerPage = ({ jobs =[]  })=>{
         ]
     });
 };
-const getServerSideProps = async ()=>{
+async function loadPublicProps() {
     try {
         const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_6__.getDbPool)();
         const [rows] = await db.query(`
@@ -1202,12 +1202,16 @@ const getServerSideProps = async ()=>{
             }
         };
     } catch (e) {
-        return {
+        throw e;
+    }
+}
+const getServerSideProps = async ({ res  })=>{
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, "page:career", loadPublicProps, ()=>({
             props: {
                 jobs: []
             }
-        };
-    }
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CareerPage);
 

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Navigation from '../../components/navigation'
 import Footer from '../../components/footer'
 import { getDbPool } from '../../lib/server/db'
+import { DisplayImage } from '../../lib/display-image'
 
 const formatCurrency = (v) => `৳${Number(v || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
 
@@ -158,7 +159,7 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
                 <div className="no-products">No products match your filters.</div>
               ) : (
                 <div className="products-grid">
-                  {filteredProducts.map((product) => (
+                  {filteredProducts.map((product, index) => (
                     <div key={product.id} className="product-card-item">
                       <Link href={`/products/${product.slug || product.id}`}>
                         <a className="product-card-link">
@@ -166,7 +167,13 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
                             <span className="save-badge">Save: {formatCurrency(product.regular_price - product.price)}</span>
                           )}
                           <div className="product-card-img">
-                            <img src={product.thumbnail_1 || '/footer%20logo.png'} alt={product.name} loading="lazy" decoding="async" />
+                            <DisplayImage
+                              src={product.thumbnail_1 || '/footer%20logo.png'}
+                              priority={index === 0}
+                              alt={product.name}
+                              loading={index < 4 ? 'eager' : 'lazy'}
+                              decoding="async"
+                            />
                           </div>
                           <div className="product-card-body">
                             <h4>{product.name}</h4>
@@ -369,8 +376,9 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
+    const { resolveDisplayUrl } = await import('../../lib/server/display-url')
     const db = getDbPool()
 
     // Get all active categories
@@ -399,15 +407,25 @@ export const getServerSideProps = async () => {
     return {
       props: {
         categories: JSON.parse(JSON.stringify(cats)),
-        products: JSON.parse(JSON.stringify(products)),
+        products: JSON.parse(JSON.stringify(products)).map((product) => ({
+          ...product,
+          thumbnail_1: resolveDisplayUrl(product.thumbnail_1, 'card'),
+        })),
         brands,
         maxPrice,
       },
     }
   } catch (e) {
     console.error('All products page error:', e)
-    return { props: { categories: [], products: [], brands: [], maxPrice: 500000 } }
+    throw e
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:categories', loadPublicProps, () => ({
+    props: { categories: [], products: [], brands: [], maxPrice: 500000 },
+  }))
 }
 
 export default AllProductsPage

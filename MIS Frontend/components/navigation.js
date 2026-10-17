@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import { DisplayImage } from '../lib/display-image'
 
 const menuItems = [
   { href: '/', label: 'Home' },
@@ -200,6 +201,7 @@ const Navigation = () => {
   }, [])
 
   const closeMenu = () => {
+    document.body.style.overflow = ''
     setIsMenuOpen(false)
     setOpenSubmenu(null)
   }
@@ -258,6 +260,7 @@ const Navigation = () => {
             className="menu-nav-toggle"
             onClick={() => {
               setIsSearchOpen(false)
+              document.body.style.overflow = 'hidden'
               setIsMenuOpen(true)
             }}
           >
@@ -326,7 +329,7 @@ const Navigation = () => {
 
         <Link href="/">
           <a className="menu-nav-logo" onClick={closeMenu}>
-            <img
+            <DisplayImage
               src="/mis_logo_cut-w.png"
               alt="MIS Solution logo"
               className="menu-nav-logo-image"
@@ -428,10 +431,9 @@ const Navigation = () => {
       <div
         className={`menu-nav-overlay ${isMenuOpen ? 'is-active' : ''}`}
         onClick={closeMenu}
-      >
+      />
         <aside
           className={`menu-nav-drawer ${isMenuOpen ? 'is-active' : ''}`}
-          onClick={(e) => e.stopPropagation()}
         >
           <div className="menu-nav-drawer-head">
             <button
@@ -543,7 +545,6 @@ const Navigation = () => {
             </Link>
           </div>
         </aside>
-      </div>
 
       {/* Cart Sidebar Drawer */}
       {cartOpen && (
@@ -590,6 +591,10 @@ const Navigation = () => {
       )}
 
       <style jsx>{`
+        :global(html) {
+          scrollbar-gutter: stable;
+        }
+
         .menu-nav-header {
           top: 0;
           left: 0;
@@ -801,14 +806,15 @@ const Navigation = () => {
           height: 100%;
           color: #f7f7f7;
           display: flex;
-          position: absolute;
+          z-index: 1401;
+          position: fixed;
+          pointer-events: none;
           flex-direction: column;
-          transform: translateX(-100%);
+          transform: translate3d(-100%, 0, 0);
           transition: transform 0.25s ease;
-          background: rgba(10, 16, 27, 0.72);
+          will-change: transform;
+          background: #161d28;
           border-right: 1px solid rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
           padding: 16px 16px 24px;
           overflow-y: auto;
           scrollbar-width: thin;
@@ -821,7 +827,12 @@ const Navigation = () => {
         .menu-nav-drawer::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
 
         .menu-nav-drawer.is-active {
-          transform: translateX(0);
+          pointer-events: auto;
+          transform: translate3d(0, 0, 0);
+          background: rgba(10, 16, 27, 0.72);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          transition: transform 0.25s ease, background 0s linear 0.25s, backdrop-filter 0s linear 0.25s, -webkit-backdrop-filter 0s linear 0.25s;
         }
 
         .menu-nav-drawer-head {

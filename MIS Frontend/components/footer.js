@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import Script from 'dangerous-html/react'
 import { useTranslations } from 'next-intl'
+import { DisplayImage } from '../lib/display-image'
 
 const defaultCompanyContact = {
   fullAddress: 'Address not available',
@@ -66,7 +67,7 @@ const Footer = (props) => {
               <div className="footer-brand-column">
                 <Link href="/">
                   <a className="footer-brand-mark" aria-label="MIS Solution Home">
-                    <img
+                    <DisplayImage
                       src="/footer%20logo.png"
                       alt="MIS Solution"
                       className="footer-brand-logo"

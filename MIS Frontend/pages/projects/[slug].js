@@ -127,7 +127,7 @@ const ProjectDetailPage = ({ project }) => {
   )
 }
 
-export const getServerSideProps = async ({ params }) => {
+async function loadPublicProps(params) {
   const slug = String(params?.slug || '').trim().toLowerCase()
   if (!slug) return { notFound: true }
 
@@ -150,8 +150,20 @@ export const getServerSideProps = async ({ params }) => {
     return { props: { project: JSON.parse(JSON.stringify(rows[0])) } }
   } catch (e) {
     console.error('Project detail error:', e)
-    return { notFound: true }
+    throw e
   }
+}
+
+export const getServerSideProps = async ({ res, params }) => {
+  const slug = String(params?.slug || '').trim().toLowerCase()
+  if (!slug) return { notFound: true }
+  const { servePublicCache } = await import('../../lib/server/ttl-cache')
+  return servePublicCache(
+    res,
+    `project:${encodeURIComponent(slug)}`,
+    () => loadPublicProps(params),
+    () => ({ notFound: true })
+  )
 }
 
 export default ProjectDetailPage

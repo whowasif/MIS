@@ -297,6 +297,8 @@ const ConfirmOrder = ({ deliveryZones = [], defaultDeliveryCharge = 100, custome
 }
 
 export const getServerSideProps = async (context) => {
+  const { setPrivateNoStore } = await import('../lib/server/ttl-cache')
+  setPrivateNoStore(context.res)
   try {
     const { getToken } = await import('next-auth/jwt')
     const { getDbPool } = await import('../lib/server/db')

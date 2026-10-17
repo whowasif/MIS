@@ -70,8 +70,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2097);
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6151);
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2984);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_9__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_7__]);
 _components_footer__WEBPACK_IMPORTED_MODULE_7__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -799,7 +802,7 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                             children: "No products match your filters."
                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                             className: "jsx-e6fe61e1de45f503" + " " + "products-grid",
-                                            children: filteredProducts.map((product)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            children: filteredProducts.map((product, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                     className: "jsx-e6fe61e1de45f503" + " " + "product-card-item",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
@@ -816,12 +819,12 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                         className: "jsx-e6fe61e1de45f503" + " " + "product-card-img",
-                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_9__.DisplayImage, {
                                                                             src: product.thumbnail_1 || "/footer%20logo.png",
+                                                                            priority: index === 0,
                                                                             alt: product.name,
-                                                                            loading: "lazy",
-                                                                            decoding: "async",
-                                                                            className: "jsx-e6fe61e1de45f503"
+                                                                            loading: index < 4 ? "eager" : "lazy",
+                                                                            decoding: "async"
                                                                         })
                                                                     }),
                                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -1147,12 +1150,13 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
         ]
     });
 };
-const getServerSideProps = async ({ params  })=>{
+async function loadPublicProps(params) {
     const slug = String(params?.slug || "").trim().toLowerCase();
     if (!slug) return {
         notFound: true
     };
     try {
+        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.t.bind(__webpack_require__, 3268, 23));
         const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_8__.getDbPool)();
         // Get category
         const [cats] = await db.execute("SELECT * FROM categories WHERE LOWER(slug) = ? AND deleted_at IS NULL AND status = 'active' LIMIT 1", [
@@ -1246,7 +1250,7 @@ const getServerSideProps = async ({ params  })=>{
                 name: p.name,
                 price: p.price,
                 regular_price: p.regular_price,
-                thumbnail_1: p.thumbnail_1,
+                thumbnail_1: resolveDisplayUrl(p.thumbnail_1, "card"),
                 brand: p.brand,
                 stock_qty: p.stock_qty,
                 created_at: p.created_at,
@@ -1273,10 +1277,18 @@ const getServerSideProps = async ({ params  })=>{
         };
     } catch (e1) {
         console.error("Category page error:", e1);
-        return {
-            notFound: true
-        };
+        throw e1;
     }
+}
+const getServerSideProps = async ({ res , params  })=>{
+    const slug = String(params?.slug || "").trim().toLowerCase();
+    if (!slug) return {
+        notFound: true
+    };
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, `category:${encodeURIComponent(slug)}`, ()=>loadPublicProps(params), ()=>({
+            notFound: true
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CategoryPage);
 
@@ -1527,6 +1539,20 @@ module.exports = require("styled-jsx/style");
 /***/ ((module) => {
 
 module.exports = import("dangerous-html/react");;
+
+/***/ }),
+
+/***/ 7147:
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 1017:
+/***/ ((module) => {
+
+module.exports = require("path");
 
 /***/ })
 

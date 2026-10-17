@@ -264,14 +264,19 @@ const DigitalServices = ({ services = [] }) => {
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
     const { listDigitalServiceEntries } = await import('../lib/server/products')
     const services = await listDigitalServiceEntries(50)
     return { props: { services } }
   } catch (error) {
-    return { props: { services: [] } }
+    throw error
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:digital-services', loadPublicProps, () => ({ props: { services: [] } }))
 }
 
 export default DigitalServices

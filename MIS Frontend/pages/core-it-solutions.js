@@ -476,7 +476,7 @@ const CoreITSolutions = ({ digitalServices = [], businessSolutions = [], mainten
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
     const { listDigitalServiceEntries, listBusinessSolutionEntries, listMaintenanceSupportEntries } = await import('../lib/server/products')
     const [digitalServices, businessSolutions, maintenanceServices] = await Promise.all([
@@ -484,8 +484,15 @@ export const getServerSideProps = async () => {
     ])
     return { props: { digitalServices, businessSolutions, maintenanceServices } }
   } catch (error) {
-    return { props: { digitalServices: [], businessSolutions: [], maintenanceServices: [] } }
+    throw error
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:core-it', loadPublicProps, () => ({
+    props: { digitalServices: [], businessSolutions: [], maintenanceServices: [] },
+  }))
 }
 
 export default CoreITSolutions

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Navigation from '../../components/navigation'
 import Footer from '../../components/footer'
 import { getDbPool } from '../../lib/server/db'
+import { DisplayImage } from '../../lib/display-image'
 
 const formatCurrency = (v) => `৳${Number(v || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
 
@@ -463,7 +464,7 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
                 <div className="no-products">No products match your filters.</div>
               ) : (
                 <div className="products-grid">
-                  {filteredProducts.map((product) => (
+                  {filteredProducts.map((product, index) => (
                     <div key={product.id} className="product-card-item">
                       <Link href={`/products/${product.slug || product.id}`}>
                         <a className="product-card-link">
@@ -471,7 +472,13 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
                             <span className="save-badge">Save: {formatCurrency(product.regular_price - product.price)}</span>
                           )}
                           <div className="product-card-img">
-                            <img src={product.thumbnail_1 || '/footer%20logo.png'} alt={product.name} loading="lazy" decoding="async" />
+                            <DisplayImage
+                              src={product.thumbnail_1 || '/footer%20logo.png'}
+                              priority={index === 0}
+                              alt={product.name}
+                              loading={index < 4 ? 'eager' : 'lazy'}
+                              decoding="async"
+                            />
                           </div>
                           <div className="product-card-body">
                             <h4>{product.name}</h4>
@@ -696,11 +703,12 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
   )
 }
 
-export const getServerSideProps = async ({ params }) => {
+async function loadPublicProps(params) {
   const slug = String(params?.slug || '').trim().toLowerCase()
   if (!slug) return { notFound: true }
 
   try {
+    const { resolveDisplayUrl } = await import('../../lib/server/display-url')
     const db = getDbPool()
 
     // Get category
@@ -798,7 +806,7 @@ export const getServerSideProps = async ({ params }) => {
         name: p.name,
         price: p.price,
         regular_price: p.regular_price,
-        thumbnail_1: p.thumbnail_1,
+        thumbnail_1: resolveDisplayUrl(p.thumbnail_1, 'card'),
         brand: p.brand,
         stock_qty: p.stock_qty,
         created_at: p.created_at,
@@ -826,8 +834,20 @@ export const getServerSideProps = async ({ params }) => {
     }
   } catch (e) {
     console.error('Category page error:', e)
-    return { notFound: true }
+    throw e
   }
+}
+
+export const getServerSideProps = async ({ res, params }) => {
+  const slug = String(params?.slug || '').trim().toLowerCase()
+  if (!slug) return { notFound: true }
+  const { servePublicCache } = await import('../../lib/server/ttl-cache')
+  return servePublicCache(
+    res,
+    `category:${encodeURIComponent(slug)}`,
+    () => loadPublicProps(params),
+    () => ({ notFound: true })
+  )
 }
 
 export default CategoryPage

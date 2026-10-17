@@ -632,6 +632,8 @@ const Profile = ({ customer =null , orders =[]  })=>{
     });
 };
 const getServerSideProps = async (context)=>{
+    const { setPrivateNoStore  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    setPrivateNoStore(context.res);
     try {
         const { getSession  } = await Promise.resolve(/* import() */).then(__webpack_require__.t.bind(__webpack_require__, 1649, 23));
         const session = await getSession({

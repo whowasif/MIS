@@ -534,7 +534,7 @@ const MaintenanceSupport = ({ services =[]  })=>{
         ]
     });
 };
-const getServerSideProps = async ()=>{
+async function loadPublicProps() {
     try {
         const { listMaintenanceSupportEntries  } = await __webpack_require__.e(/* import() */ 5021).then(__webpack_require__.bind(__webpack_require__, 5021));
         const services = await listMaintenanceSupportEntries(60);
@@ -544,12 +544,16 @@ const getServerSideProps = async ()=>{
             }
         };
     } catch (error) {
-        return {
+        throw error;
+    }
+}
+const getServerSideProps = async ({ res  })=>{
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, "page:maintenance", loadPublicProps, ()=>({
             props: {
                 services: []
             }
-        };
-    }
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MaintenanceSupport);
 

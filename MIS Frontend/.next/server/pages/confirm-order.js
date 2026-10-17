@@ -726,6 +726,8 @@ const ConfirmOrder = ({ deliveryZones =[] , defaultDeliveryCharge =100 , custome
     });
 };
 const getServerSideProps = async (context)=>{
+    const { setPrivateNoStore  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    setPrivateNoStore(context.res);
     try {
         const { getToken  } = await Promise.resolve(/* import() */).then(__webpack_require__.t.bind(__webpack_require__, 614, 23));
         const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));

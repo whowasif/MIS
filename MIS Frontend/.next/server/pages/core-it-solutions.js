@@ -1455,7 +1455,7 @@ const CoreITSolutions = ({ digitalServices =[] , businessSolutions =[] , mainten
         ]
     });
 };
-const getServerSideProps = async ()=>{
+async function loadPublicProps() {
     try {
         const { listDigitalServiceEntries , listBusinessSolutionEntries , listMaintenanceSupportEntries  } = await __webpack_require__.e(/* import() */ 5021).then(__webpack_require__.bind(__webpack_require__, 5021));
         const [digitalServices, businessSolutions, maintenanceServices] = await Promise.all([
@@ -1471,14 +1471,18 @@ const getServerSideProps = async ()=>{
             }
         };
     } catch (error) {
-        return {
+        throw error;
+    }
+}
+const getServerSideProps = async ({ res  })=>{
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, "page:core-it", loadPublicProps, ()=>({
             props: {
                 digitalServices: [],
                 businessSolutions: [],
                 maintenanceServices: []
             }
-        };
-    }
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoreITSolutions);
 

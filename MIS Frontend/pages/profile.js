@@ -245,6 +245,8 @@ const Profile = ({ customer = null, orders = [] }) => {
 }
 
 export const getServerSideProps = async (context) => {
+  const { setPrivateNoStore } = await import('../lib/server/ttl-cache')
+  setPrivateNoStore(context.res)
   try {
     const { getSession } = await import('next-auth/react')
     const session = await getSession({ req: context.req })

@@ -610,7 +610,7 @@ const ProductCatalog = (props) => {
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
     const { listCatalogProducts } = await import('../lib/server/products')
     const products = await listCatalogProducts(100)
@@ -647,13 +647,15 @@ export const getServerSideProps = async () => {
       },
     }
   } catch (error) {
-    return {
-      props: {
-        products: [],
-        categories: [],
-      },
-    }
+    throw error
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:product-catalog', loadPublicProps, () => ({
+    props: { products: [], categories: [] },
+  }))
 }
 
 export default ProductCatalog

@@ -215,15 +215,22 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
     const { getDbPool } = await import('../lib/server/db')
     const db = getDbPool()
     const [rows] = await db.query(`SELECT id, name, slug, description, icon_url, client_name FROM client_projects WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC, created_at DESC LIMIT 20`)
     return { props: { clientProjects: JSON.parse(JSON.stringify(rows)) } }
   } catch (e) {
-    return { props: { clientProjects: [] } }
+    throw e
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:company-info', loadPublicProps, () => ({
+    props: { clientProjects: [] },
+  }))
 }
 
 export default CompanyInformationPolicies

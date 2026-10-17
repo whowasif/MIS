@@ -271,7 +271,7 @@ const ContentDetailPage = ({ content, contentType }) => {
   )
 }
 
-export const getServerSideProps = async ({ params, query }) => {
+async function loadPublicProps(params, query) {
   const slug = String(params?.slug || '').trim().toLowerCase()
   if (!slug) return { notFound: true }
 
@@ -318,8 +318,22 @@ export const getServerSideProps = async ({ params, query }) => {
     return { notFound: true }
   } catch (e) {
     console.error('Content detail error:', e)
-    return { notFound: true }
+    throw e
   }
+}
+
+export const getServerSideProps = async ({ res, params, query }) => {
+  const slug = String(params?.slug || '').trim().toLowerCase()
+  if (!slug) return { notFound: true }
+  const allowedTypes = ['digi_services', 'bus_corp_sol', 'service_maintenance', 'career_posts']
+  const contentType = allowedTypes.includes(String(query?.type || '')) ? String(query.type) : ''
+  const { servePublicCache } = await import('../../lib/server/ttl-cache')
+  return servePublicCache(
+    res,
+    `service:${encodeURIComponent(slug)}:${contentType}`,
+    () => loadPublicProps(params, query),
+    () => ({ notFound: true })
+  )
 }
 
 export default ContentDetailPage

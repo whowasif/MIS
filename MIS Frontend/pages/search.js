@@ -125,14 +125,7 @@ const SearchPage = ({ query, products = [], services = [] }) => {
   )
 }
 
-export const getServerSideProps = async ({ query: params }) => {
-  const q = String(params.q || '').trim()
-
-  if (!q || q.length < 2) {
-    return { props: { query: q, products: [], services: [] } }
-  }
-
-  try {
+async function loadPublicProps(q) {
     const { getDbPool } = await import('../lib/server/db')
     const db = getDbPool()
     const searchPattern = `%${q}%`
@@ -168,9 +161,30 @@ export const getServerSideProps = async ({ query: params }) => {
         services: JSON.parse(JSON.stringify([...digiServices, ...bizServices, ...maintServices])),
       },
     }
-  } catch (e) {
-    return { props: { query: q, products: [], services: [] } }
+}
+
+export const getServerSideProps = async ({ res, query: params }) => {
+  const q = String(params.q || '').trim()
+  const empty = { props: { query: q, products: [], services: [] } }
+  if (!q || q.length < 2) {
+    const { setPublicPageCache } = await import('../lib/server/ttl-cache')
+    setPublicPageCache(res)
+    return empty
   }
+
+  const { servePublicCache, setPublicPageCache, setPrivateNoStore } = await import('../lib/server/ttl-cache')
+  if (q.length > 200) {
+    try {
+      const result = await loadPublicProps(q)
+      setPublicPageCache(res)
+      return result
+    } catch (e) {
+      setPrivateNoStore(res)
+      return empty
+    }
+  }
+
+  return servePublicCache(res, `search:${encodeURIComponent(q)}`, () => loadPublicProps(q), () => empty)
 }
 
 export default SearchPage

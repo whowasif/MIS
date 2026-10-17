@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl'
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import CoreSolutionsSignposts from '../components/CoreSolutionsTree'
+import { DisplayImage } from '../lib/display-image'
 
 const fallbackProductImage = 'https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500'
 
@@ -163,14 +164,40 @@ const Home = (props) => {
     return () => clearInterval(timer)
   }, [advertisements.length])
 
-  // Auto-scroll (right-to-left) + drag/swipe control for all three card rails
+  // Auto-scroll (right-to-left) + drag/swipe control for all three card rails.
+  // Wait until the visible product photos have decoded so the row does not slide in blank.
   useEffect(() => {
     const navigate = (href) => router.push(href)
-    const cleanups = [
-      setupDraggableAutoScroll(productsRailRef.current, navigate),
-      setupDraggableAutoScroll(caseRailRef.current, navigate),
-    ]
-    return () => cleanups.forEach((fn) => fn && fn())
+    let started = false
+    const stops = []
+    const start = () => {
+      if (started) return
+      started = true
+      stops.push(setupDraggableAutoScroll(productsRailRef.current, navigate))
+      stops.push(setupDraggableAutoScroll(caseRailRef.current, navigate))
+    }
+    const rail = productsRailRef.current
+    const images = rail
+      ? Array.from(rail.querySelectorAll('img')).filter((img) => img.getAttribute('loading') !== 'lazy')
+      : []
+    let pending = images.length
+    const mark = () => {
+      pending -= 1
+      if (pending <= 0) start()
+    }
+    images.forEach((img) => {
+      if (img.complete && img.naturalWidth > 0) mark()
+      else {
+        img.addEventListener('load', mark, { once: true })
+        img.addEventListener('error', mark, { once: true })
+      }
+    })
+    const timer = setTimeout(start, 1500)
+    if (!images.length) start()
+    return () => {
+      clearTimeout(timer)
+      stops.forEach((fn) => fn && fn())
+    }
   }, [featuredProducts.length, clientProjects.length])
 
   return (
@@ -179,11 +206,14 @@ const Home = (props) => {
         <Head>
           <title>MIS Solution - IT Products & Enterprise Services</title>
           <meta property="og:title" content="MIS Solution - IT Products & Enterprise Services" />
+          {featuredProducts.slice(0, 4).map((product) => (
+            product.image ? <link key={product.id} rel="preload" as="image" href={product.image} /> : null
+          ))}
         </Head>
         <Navigation />
         <section className="hero-section">
           <div className="hero-media-container">
-            <video className="hero-bg-video" autoPlay controls={false} loop muted preload="metadata" playsInline disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noplaybackrate noremoteplayback" tabIndex="-1" aria-hidden="true">
+            <video className="hero-bg-video" poster="/home-video-poster.jpg" autoPlay controls={false} loop muted preload="metadata" playsInline disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noplaybackrate noremoteplayback" tabIndex="-1" aria-hidden="true">
               <source src="/home%20video.mp4" type="video/mp4" />
             </video>
             <div className="hero-overlay"></div>
@@ -203,11 +233,13 @@ const Home = (props) => {
         {homeCategories.length > 0 && (
           <section className="home-categories-section">
             <div className="home-categories-grid">
-              {homeCategories.map((cat) => (
+              {homeCategories.map((cat, index) => (
                 <Link key={cat.id} href={`/categories/${cat.slug}`}>
                   <a className="home-cat-item">
                     <div className="home-cat-icon-wrap">
-                      {cat.icon_url ? <img src={cat.icon_url} alt={cat.name} loading="lazy" decoding="async" /> : <span className="home-cat-letter">{cat.name.charAt(0)}</span>}
+                      {cat.icon_url ? (
+                        <DisplayImage src={cat.icon_url} alt={cat.name} loading="eager" decoding="async" />
+                      ) : <span className="home-cat-letter">{cat.name.charAt(0)}</span>}
                     </div>
                     <span className="home-cat-name">{cat.name}</span>
                   </a>
@@ -225,7 +257,15 @@ const Home = (props) => {
                   <Link key={ad.id} href={ad.product_slug ? `/products/${ad.product_slug}` : (ad.link_url || '#')}>
                     <a style={{ position: 'absolute', inset: 0, opacity: idx === adIndex ? 1 : 0, transition: 'opacity 0.5s', zIndex: idx === adIndex ? 1 : 0, display: 'block', textDecoration: 'none' }}>
                       {idx === adIndex || idx === (adIndex + 1) % advertisements.length ? (
-                        <img src={ad.image_url} alt={ad.title} loading={idx === adIndex ? 'eager' : 'lazy'} decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        <DisplayImage
+                          src={ad.image_url}
+                          kind="detail"
+                          priority={idx === adIndex}
+                          alt={ad.title}
+                          loading={idx === adIndex ? 'eager' : 'lazy'}
+                          decoding="async"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        />
                       ) : (
                         <div style={{ width: '100%', height: '100%', background: '#0a101b' }} />
                       )}
@@ -262,7 +302,15 @@ const Home = (props) => {
                 [...featuredProducts, ...featuredProducts].map((product, idx) => (
                   <Link key={`${product.id}-${idx}`} href={`/products/${encodeURIComponent(product.slug || product.id)}`}>
                     <a className="product-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <div className="product-image-box"><img src={product.image || fallbackProductImage} alt={product.name} loading="lazy" decoding="async" /></div>
+                      <div className="product-image-box">
+                        <DisplayImage
+                          src={product.image || fallbackProductImage}
+                          priority={idx % featuredProducts.length === 0}
+                          alt={product.name}
+                          loading={String(product.image || '').includes('.card.webp') || idx % featuredProducts.length < 4 ? 'eager' : 'lazy'}
+                          decoding="async"
+                        />
+                      </div>
                       <div className="product-info">
                         <span className="product-category">{product.categoryName}</span>
                         <h3 className="product-name">{product.name}</h3>
@@ -309,7 +357,9 @@ const Home = (props) => {
                 [...clientProjects, ...clientProjects].map((project, idx) => (
                   <Link key={`${project.id}-${idx}`} href={`/projects/${encodeURIComponent(project.slug || project.id)}`}>
                     <a className="case-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <div className="case-image"><img src={project.icon_url || fallbackProductImage} alt={project.name} loading="lazy" decoding="async" /></div>
+                      <div className="case-image">
+                        <DisplayImage src={project.icon_url || fallbackProductImage} alt={project.name} loading="lazy" decoding="async" />
+                      </div>
                       <div className="case-content">
                         <h3 className="case-title">{project.name}</h3>
                         <div className="btn-link"><span>View Full Story</span></div>
@@ -380,7 +430,7 @@ const Home = (props) => {
   )
 }
 
-export const getServerSideProps = async () => {
+async function loadPublicProps() {
   try {
     const { listFeaturedProducts } = await import('../lib/server/products')
     const { getDbPool } = await import('../lib/server/db')
@@ -396,29 +446,37 @@ export const getServerSideProps = async () => {
       db.query(`SELECT id, name, slug, description, icon_url, client_name FROM client_projects WHERE deleted_at IS NULL AND status = 'active' ORDER BY is_featured DESC, display_order ASC, created_at DESC LIMIT 10`),
     ])
     const featuredServices = [...featDigi, ...featBiz, ...featMaint]
+    const { resolveDisplayUrl } = await import('../lib/server/display-url')
+    const withCard = (url) => resolveDisplayUrl(url, 'card')
+    const withDetail = (url) => resolveDisplayUrl(url, 'detail')
 
     return {
       props: {
-        featuredProducts,
-        advertisements: JSON.parse(JSON.stringify(ads)),
-        homeCategories: JSON.parse(JSON.stringify(cats)),
-        featuredServices: JSON.parse(JSON.stringify(featuredServices)),
-        clientProjects: JSON.parse(JSON.stringify(clientProjectRows)),
+        featuredProducts: featuredProducts.map((product) => ({ ...product, image: withCard(product.image) })),
+        advertisements: JSON.parse(JSON.stringify(ads)).map((ad) => ({ ...ad, image_url: withDetail(ad.image_url) })),
+        homeCategories: JSON.parse(JSON.stringify(cats)).map((cat) => ({ ...cat, icon_url: withCard(cat.icon_url) })),
+        featuredServices: JSON.parse(JSON.stringify(featuredServices)).map((service) => ({ ...service, icon_url: withCard(service.icon_url) })),
+        clientProjects: JSON.parse(JSON.stringify(clientProjectRows)).map((project) => ({ ...project, icon_url: withCard(project.icon_url) })),
         messages: (await import('../locales/en.json')).default,
       },
     }
   } catch (error) {
-    return {
-      props: {
-        featuredProducts: [],
-        advertisements: [],
-        homeCategories: [],
-        featuredServices: [],
-        clientProjects: [],
-        messages: (await import('../locales/en.json')).default,
-      },
-    }
+    throw error
   }
+}
+
+export const getServerSideProps = async ({ res }) => {
+  const { servePublicCache } = await import('../lib/server/ttl-cache')
+  return servePublicCache(res, 'page:home', loadPublicProps, async () => ({
+    props: {
+      featuredProducts: [],
+      advertisements: [],
+      homeCategories: [],
+      featuredServices: [],
+      clientProjects: [],
+      messages: (await import('../locales/en.json')).default,
+    },
+  }))
 }
 
 export default Home

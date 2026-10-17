@@ -766,8 +766,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2097);
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6151);
 /* harmony import */ var _components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(8966);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__, _components_footer__WEBPACK_IMPORTED_MODULE_9__]);
 ([dangerous_html_react__WEBPACK_IMPORTED_MODULE_6__, _components_footer__WEBPACK_IMPORTED_MODULE_9__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -955,14 +958,42 @@ const Home = (props)=>{
     }, [
         advertisements.length
     ]);
-    // Auto-scroll (right-to-left) + drag/swipe control for all three card rails
+    // Auto-scroll (right-to-left) + drag/swipe control for all three card rails.
+    // Wait until the visible product photos have decoded so the row does not slide in blank.
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
         const navigate = (href)=>router.push(href);
-        const cleanups = [
-            setupDraggableAutoScroll(productsRailRef.current, navigate),
-            setupDraggableAutoScroll(caseRailRef.current, navigate), 
-        ];
-        return ()=>cleanups.forEach((fn)=>fn && fn());
+        let started = false;
+        const stops = [];
+        const start = ()=>{
+            if (started) return;
+            started = true;
+            stops.push(setupDraggableAutoScroll(productsRailRef.current, navigate));
+            stops.push(setupDraggableAutoScroll(caseRailRef.current, navigate));
+        };
+        const rail = productsRailRef.current;
+        const images = rail ? Array.from(rail.querySelectorAll("img")).filter((img)=>img.getAttribute("loading") !== "lazy") : [];
+        let pending = images.length;
+        const mark = ()=>{
+            pending -= 1;
+            if (pending <= 0) start();
+        };
+        images.forEach((img)=>{
+            if (img.complete && img.naturalWidth > 0) mark();
+            else {
+                img.addEventListener("load", mark, {
+                    once: true
+                });
+                img.addEventListener("error", mark, {
+                    once: true
+                });
+            }
+        });
+        const timer = setTimeout(start, 1500);
+        if (!images.length) start();
+        return ()=>{
+            clearTimeout(timer);
+            stops.forEach((fn)=>fn && fn());
+        };
     }, [
         featuredProducts.length,
         clientProjects.length
@@ -982,7 +1013,13 @@ const Home = (props)=>{
                                 property: "og:title",
                                 content: "MIS Solution - IT Products & Enterprise Services",
                                 className: "jsx-838b1a87f6f26fd3"
-                            })
+                            }),
+                            featuredProducts.slice(0, 4).map((product)=>product.image ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                                    rel: "preload",
+                                    as: "image",
+                                    href: product.image,
+                                    className: "jsx-838b1a87f6f26fd3"
+                                }, product.id) : null)
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {}),
@@ -993,6 +1030,7 @@ const Home = (props)=>{
                                 className: "jsx-838b1a87f6f26fd3" + " " + "hero-media-container",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("video", {
+                                        poster: "/home-video-poster.jpg",
                                         autoPlay: true,
                                         controls: false,
                                         loop: true,
@@ -1065,19 +1103,18 @@ const Home = (props)=>{
                         className: "jsx-838b1a87f6f26fd3" + " " + "home-categories-section",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "jsx-838b1a87f6f26fd3" + " " + "home-categories-grid",
-                            children: homeCategories.map((cat)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
+                            children: homeCategories.map((cat, index)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                     href: `/categories/${cat.slug}`,
                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                                         className: "jsx-838b1a87f6f26fd3" + " " + "home-cat-item",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "jsx-838b1a87f6f26fd3" + " " + "home-cat-icon-wrap",
-                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
                                                     src: cat.icon_url,
                                                     alt: cat.name,
-                                                    loading: "lazy",
-                                                    decoding: "async",
-                                                    className: "jsx-838b1a87f6f26fd3"
+                                                    loading: "eager",
+                                                    decoding: "async"
                                                 }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                     className: "jsx-838b1a87f6f26fd3" + " " + "home-cat-letter",
                                                     children: cat.name.charAt(0)
@@ -1125,8 +1162,10 @@ const Home = (props)=>{
                                                 },
                                                 className: "jsx-838b1a87f6f26fd3",
                                                 children: [
-                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
                                                         src: ad.image_url,
+                                                        kind: "detail",
+                                                        priority: idx === adIndex,
                                                         alt: ad.title,
                                                         loading: idx === adIndex ? "eager" : "lazy",
                                                         decoding: "async",
@@ -1135,8 +1174,7 @@ const Home = (props)=>{
                                                             height: "100%",
                                                             objectFit: "cover",
                                                             display: "block"
-                                                        },
-                                                        className: "jsx-838b1a87f6f26fd3"
+                                                        }
                                                     }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         style: {
                                                             width: "100%",
@@ -1359,12 +1397,12 @@ const Home = (props)=>{
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-838b1a87f6f26fd3" + " " + "product-image-box",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
                                                             src: product.image || fallbackProductImage,
+                                                            priority: idx % featuredProducts.length === 0,
                                                             alt: product.name,
-                                                            loading: "lazy",
-                                                            decoding: "async",
-                                                            className: "jsx-838b1a87f6f26fd3"
+                                                            loading: String(product.image || "").includes(".card.webp") || idx % featuredProducts.length < 4 ? "eager" : "lazy",
+                                                            decoding: "async"
                                                         })
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -1505,12 +1543,11 @@ const Home = (props)=>{
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-838b1a87f6f26fd3" + " " + "case-image",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
                                                             src: project.icon_url || fallbackProductImage,
                                                             alt: project.name,
                                                             loading: "lazy",
-                                                            decoding: "async",
-                                                            className: "jsx-838b1a87f6f26fd3"
+                                                            decoding: "async"
                                                         })
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -1873,7 +1910,7 @@ const Home = (props)=>{
         ]
     });
 };
-const getServerSideProps = async ()=>{
+async function loadPublicProps() {
     try {
         const { listFeaturedProducts  } = await __webpack_require__.e(/* import() */ 5021).then(__webpack_require__.bind(__webpack_require__, 5021));
         const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));
@@ -1892,18 +1929,41 @@ const getServerSideProps = async ()=>{
             ...featBiz,
             ...featMaint
         ];
+        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.t.bind(__webpack_require__, 3268, 23));
+        const withCard = (url)=>resolveDisplayUrl(url, "card");
+        const withDetail = (url)=>resolveDisplayUrl(url, "detail");
         return {
             props: {
-                featuredProducts,
-                advertisements: JSON.parse(JSON.stringify(ads)),
-                homeCategories: JSON.parse(JSON.stringify(cats)),
-                featuredServices: JSON.parse(JSON.stringify(featuredServices)),
-                clientProjects: JSON.parse(JSON.stringify(clientProjectRows)),
+                featuredProducts: featuredProducts.map((product)=>({
+                        ...product,
+                        image: withCard(product.image)
+                    })),
+                advertisements: JSON.parse(JSON.stringify(ads)).map((ad)=>({
+                        ...ad,
+                        image_url: withDetail(ad.image_url)
+                    })),
+                homeCategories: JSON.parse(JSON.stringify(cats)).map((cat)=>({
+                        ...cat,
+                        icon_url: withCard(cat.icon_url)
+                    })),
+                featuredServices: JSON.parse(JSON.stringify(featuredServices)).map((service)=>({
+                        ...service,
+                        icon_url: withCard(service.icon_url)
+                    })),
+                clientProjects: JSON.parse(JSON.stringify(clientProjectRows)).map((project)=>({
+                        ...project,
+                        icon_url: withCard(project.icon_url)
+                    })),
                 messages: (await __webpack_require__.e(/* import() */ 9748).then(__webpack_require__.t.bind(__webpack_require__, 9748, 19))).default
             }
         };
     } catch (error) {
-        return {
+        throw error;
+    }
+}
+const getServerSideProps = async ({ res  })=>{
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, "page:home", loadPublicProps, async ()=>({
             props: {
                 featuredProducts: [],
                 advertisements: [],
@@ -1912,8 +1972,7 @@ const getServerSideProps = async ()=>{
                 clientProjects: [],
                 messages: (await __webpack_require__.e(/* import() */ 9748).then(__webpack_require__.t.bind(__webpack_require__, 9748, 19))).default
             }
-        };
-    }
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
@@ -2164,6 +2223,20 @@ module.exports = require("styled-jsx/style");
 /***/ ((module) => {
 
 module.exports = import("dangerous-html/react");;
+
+/***/ }),
+
+/***/ 7147:
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 1017:
+/***/ ((module) => {
+
+module.exports = require("path");
 
 /***/ })
 

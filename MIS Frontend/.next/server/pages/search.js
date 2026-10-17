@@ -211,66 +211,73 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
         ]
     });
 };
-const getServerSideProps = async ({ query: params  })=>{
-    const q = String(params.q || "").trim();
-    if (!q || q.length < 2) {
-        return {
-            props: {
-                query: q,
-                products: [],
-                services: []
-            }
-        };
-    }
-    try {
-        const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));
-        const db = getDbPool();
-        const searchPattern = `%${q}%`;
-        const [products] = await db.execute(`SELECT p.id, p.name, p.slug, p.short_desc, p.price, p.type, p.thumbnail_1, p.brand, p.model,
+async function loadPublicProps(q) {
+    const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));
+    const db = getDbPool();
+    const searchPattern = `%${q}%`;
+    const [products] = await db.execute(`SELECT p.id, p.name, p.slug, p.short_desc, p.price, p.type, p.thumbnail_1, p.brand, p.model,
               c.name AS category_name
        FROM products p
        LEFT JOIN categories c ON c.id = p.category_id
        WHERE p.deleted_at IS NULL AND p.is_active = 1
          AND (p.name LIKE ? OR p.short_desc LIKE ? OR p.type LIKE ? OR p.brand LIKE ? OR p.model LIKE ?)
        ORDER BY p.name ASC LIMIT 20`, [
-            searchPattern,
-            searchPattern,
-            searchPattern,
-            searchPattern,
-            searchPattern
-        ]);
-        const [digiServices] = await db.execute(`SELECT id, name, slug, description, 'digital-services' AS page_type FROM digi_services WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
-            searchPattern,
-            searchPattern
-        ]);
-        const [bizServices] = await db.execute(`SELECT id, name, slug, description, 'enterprise-solutions' AS page_type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
-            searchPattern,
-            searchPattern
-        ]);
-        const [maintServices] = await db.execute(`SELECT id, name, slug, description, 'maintenance-support' AS page_type FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
-            searchPattern,
-            searchPattern
-        ]);
-        return {
-            props: {
-                query: q,
-                products: JSON.parse(JSON.stringify(products)),
-                services: JSON.parse(JSON.stringify([
-                    ...digiServices,
-                    ...bizServices,
-                    ...maintServices
-                ]))
-            }
-        };
-    } catch (e) {
-        return {
-            props: {
-                query: q,
-                products: [],
-                services: []
-            }
-        };
+        searchPattern,
+        searchPattern,
+        searchPattern,
+        searchPattern,
+        searchPattern
+    ]);
+    const [digiServices] = await db.execute(`SELECT id, name, slug, description, 'digital-services' AS page_type FROM digi_services WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
+        searchPattern,
+        searchPattern
+    ]);
+    const [bizServices] = await db.execute(`SELECT id, name, slug, description, 'enterprise-solutions' AS page_type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
+        searchPattern,
+        searchPattern
+    ]);
+    const [maintServices] = await db.execute(`SELECT id, name, slug, description, 'maintenance-support' AS page_type FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
+        searchPattern,
+        searchPattern
+    ]);
+    return {
+        props: {
+            query: q,
+            products: JSON.parse(JSON.stringify(products)),
+            services: JSON.parse(JSON.stringify([
+                ...digiServices,
+                ...bizServices,
+                ...maintServices
+            ]))
+        }
+    };
+}
+const getServerSideProps = async ({ res , query: params  })=>{
+    const q = String(params.q || "").trim();
+    const empty = {
+        props: {
+            query: q,
+            products: [],
+            services: []
+        }
+    };
+    if (!q || q.length < 2) {
+        const { setPublicPageCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+        setPublicPageCache(res);
+        return empty;
     }
+    const { servePublicCache , setPublicPageCache: setPublicPageCache1 , setPrivateNoStore  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    if (q.length > 200) {
+        try {
+            const result = await loadPublicProps(q);
+            setPublicPageCache1(res);
+            return result;
+        } catch (e) {
+            setPrivateNoStore(res);
+            return empty;
+        }
+    }
+    return servePublicCache(res, `search:${encodeURIComponent(q)}`, ()=>loadPublicProps(q), ()=>empty);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchPage);
 

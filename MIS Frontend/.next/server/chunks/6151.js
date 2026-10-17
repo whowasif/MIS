@@ -21,8 +21,11 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var dangerous_html_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7027);
 /* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(503);
 /* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_intl__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_6__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_4__]);
 dangerous_html_react__WEBPACK_IMPORTED_MODULE_4__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -92,10 +95,10 @@ const Footer = (props)=>{
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                         "aria-label": "MIS Solution Home",
                                                         className: "jsx-ec708c719622d5bf" + " " + "footer-brand-mark",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_6__.DisplayImage, {
                                                             src: "/footer%20logo.png",
                                                             alt: "MIS Solution",
-                                                            className: "jsx-ec708c719622d5bf" + " " + "footer-brand-logo"
+                                                            className: "footer-brand-logo"
                                                         })
                                                     })
                                                 }),

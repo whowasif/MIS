@@ -12,6 +12,40 @@ const port = parseInt(process.env.PORT, 10) || 3000
 
 const app = next({ dev, hostname, port })
 const handle = app.getRequestHandler()
+const LONG_MEDIA_CACHE = 'public, max-age=31536000, immutable'
+
+const isLongCachedMedia = (url) => {
+  const pathOnly = String(url || '').split('?')[0]
+  if (pathOnly.startsWith('/uploads/')) return true
+  return /\.(png|jpe?g|webp|gif|svg|ico|mp4)$/i.test(pathOnly)
+}
+
+const lockMediaCache = (res) => {
+  const originalSetHeader = res.setHeader
+  const originalWriteHead = res.writeHead
+  res.setHeader = function setHeader(name, value) {
+    if (String(name).toLowerCase() === 'cache-control') {
+      return originalSetHeader.call(this, 'Cache-Control', LONG_MEDIA_CACHE)
+    }
+    return originalSetHeader.call(this, name, value)
+  }
+  res.writeHead = function writeHead(statusCode, statusMessage, headers) {
+    let phrase = statusMessage
+    let headerBag = headers
+    if (typeof phrase === 'object' && phrase) {
+      headerBag = phrase
+      phrase = undefined
+    }
+    if (headerBag) {
+      if (Object.prototype.hasOwnProperty.call(headerBag, 'Cache-Control')) headerBag['Cache-Control'] = LONG_MEDIA_CACHE
+      if (Object.prototype.hasOwnProperty.call(headerBag, 'cache-control')) headerBag['cache-control'] = LONG_MEDIA_CACHE
+    }
+    originalSetHeader.call(this, 'Cache-Control', LONG_MEDIA_CACHE)
+    if (phrase === undefined) return originalWriteHead.call(this, statusCode, headerBag)
+    return originalWriteHead.call(this, statusCode, phrase, headerBag)
+  }
+  originalSetHeader.call(res, 'Cache-Control', LONG_MEDIA_CACHE)
+}
 
 app.prepare().then(() => {
   // Public site host, used so middleware redirects don't leak the internal
@@ -31,6 +65,7 @@ app.prepare().then(() => {
     } else if (!req.headers.host) {
       req.headers.host = `${hostname}:${port}`
     }
+    if (isLongCachedMedia(req.url)) lockMediaCache(res)
     const parsedUrl = parse(req.url, true)
     handle(req, res, parsedUrl)
   }).listen(port, '0.0.0.0', () => {

@@ -68,8 +68,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2097);
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6151);
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2984);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_8__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_6__]);
 _components_footer__WEBPACK_IMPORTED_MODULE_6__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -515,7 +518,7 @@ const AllProductsPage = ({ categories , products , brands , maxPrice  })=>{
                                             children: "No products match your filters."
                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                             className: "jsx-c95d0c644423cd05" + " " + "products-grid",
-                                            children: filteredProducts.map((product)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            children: filteredProducts.map((product, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                     className: "jsx-c95d0c644423cd05" + " " + "product-card-item",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
@@ -532,12 +535,12 @@ const AllProductsPage = ({ categories , products , brands , maxPrice  })=>{
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                         className: "jsx-c95d0c644423cd05" + " " + "product-card-img",
-                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_8__.DisplayImage, {
                                                                             src: product.thumbnail_1 || "/footer%20logo.png",
+                                                                            priority: index === 0,
                                                                             alt: product.name,
-                                                                            loading: "lazy",
-                                                                            decoding: "async",
-                                                                            className: "jsx-c95d0c644423cd05"
+                                                                            loading: index < 4 ? "eager" : "lazy",
+                                                                            decoding: "async"
                                                                         })
                                                                     }),
                                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -864,8 +867,9 @@ const AllProductsPage = ({ categories , products , brands , maxPrice  })=>{
         ]
     });
 };
-const getServerSideProps = async ()=>{
+async function loadPublicProps() {
     try {
+        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.t.bind(__webpack_require__, 3268, 23));
         const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_7__.getDbPool)();
         // Get all active categories
         const [cats] = await db.query("SELECT id, name, slug FROM categories WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC, name ASC");
@@ -887,22 +891,29 @@ const getServerSideProps = async ()=>{
         return {
             props: {
                 categories: JSON.parse(JSON.stringify(cats)),
-                products: JSON.parse(JSON.stringify(products)),
+                products: JSON.parse(JSON.stringify(products)).map((product)=>({
+                        ...product,
+                        thumbnail_1: resolveDisplayUrl(product.thumbnail_1, "card")
+                    })),
                 brands,
                 maxPrice
             }
         };
     } catch (e) {
         console.error("All products page error:", e);
-        return {
+        throw e;
+    }
+}
+const getServerSideProps = async ({ res  })=>{
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, "page:categories", loadPublicProps, ()=>({
             props: {
                 categories: [],
                 products: [],
                 brands: [],
                 maxPrice: 500000
             }
-        };
-    }
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllProductsPage);
 
@@ -1153,6 +1164,20 @@ module.exports = require("styled-jsx/style");
 /***/ ((module) => {
 
 module.exports = import("dangerous-html/react");;
+
+/***/ }),
+
+/***/ 7147:
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 1017:
+/***/ ((module) => {
+
+module.exports = require("path");
 
 /***/ })
 

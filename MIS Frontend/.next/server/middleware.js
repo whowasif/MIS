@@ -1,6 +1,6 @@
 (self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([[826],{
 
-/***/ 784:
+/***/ 538:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -83,9 +83,16 @@ const buildRedirectUrl = (request, pathname, params = {})=>{
 };
 async function middleware(request) {
     const { pathname , search  } = request.nextUrl;
+    if (pathname.startsWith("/api/")) {
+        const response = next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.next();
+        response.headers.set("Cache-Control", "private, no-store");
+        return response;
+    }
     // Allow access to these pages without auth
     if (pathname === ACCESS_ROUTE || pathname === "/portal-secure-99x/forgot-password" || pathname === "/portal-secure-99x/reset-password") {
-        return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.next();
+        const response1 = next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.next();
+        response1.headers.set("Cache-Control", "private, no-store");
+        return response1;
     }
     const sessionToken = getCookieValue(request, ADMIN_SESSION_COOKIE);
     const roleCookie = getCookieValue(request, ADMIN_ROLE_COOKIE);
@@ -94,20 +101,33 @@ async function middleware(request) {
             next: `${pathname}${search || ""}`,
             reason: "session"
         });
-        return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.redirect(redirectUrl);
+        const redirect = next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.redirect(redirectUrl);
+        redirect.headers.set("Cache-Control", "private, no-store");
+        return redirect;
     }
     const resolvedRole = roleCookie;
     if (!VALID_ADMIN_ROLES.includes(resolvedRole)) {
         const redirectUrl1 = buildRedirectUrl(request, ACCESS_ROUTE, {
             reason: "role"
         });
-        return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.redirect(redirectUrl1);
+        const redirect1 = next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.redirect(redirectUrl1);
+        redirect1.headers.set("Cache-Control", "private, no-store");
+        return redirect1;
     }
-    return next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.next();
+    const response2 = next_server__WEBPACK_IMPORTED_MODULE_0__.NextResponse.next();
+    response2.headers.set("Cache-Control", "private, no-store");
+    return response2;
 }
 const config = {
     matcher: [
-        "/portal-secure-99x/:path*"
+        "/portal-secure-99x/:path*",
+        "/api/admin/:path*",
+        "/api/auth/:path*",
+        "/api/cart",
+        "/api/cart/:path*",
+        "/api/orders",
+        "/api/orders/:path*",
+        "/api/track", 
     ]
 };
 
@@ -1543,7 +1563,7 @@ exports.URLPattern = serverExports.URLPattern
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__(784));
+/******/ var __webpack_exports__ = (__webpack_exec__(538));
 /******/ (_ENTRIES = typeof _ENTRIES === "undefined" ? {} : _ENTRIES).middleware_middleware = __webpack_exports__;
 /******/ }
 ]);

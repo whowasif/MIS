@@ -634,7 +634,7 @@ const Contact = (props)=>{
         ]
     });
 };
-const getServerSideProps = async ()=>{
+async function loadPublicProps() {
     try {
         const { getPrimaryCompanyContact  } = await __webpack_require__.e(/* import() */ 6058).then(__webpack_require__.bind(__webpack_require__, 6058));
         const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));
@@ -664,13 +664,17 @@ const getServerSideProps = async ()=>{
             }
         };
     } catch (error) {
-        return {
+        throw error;
+    }
+}
+const getServerSideProps = async ({ res  })=>{
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, "page:contact", loadPublicProps, ()=>({
             props: {
                 companyContact: fallbackCompanyContact,
                 serviceOptions: []
             }
-        };
-    }
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Contact);
 

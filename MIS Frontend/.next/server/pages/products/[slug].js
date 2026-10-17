@@ -26,8 +26,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2097);
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6151);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_7__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_6__]);
 _components_footer__WEBPACK_IMPORTED_MODULE_6__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -110,6 +113,7 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
         product
     ]);
     const { 0: activeImage , 1: setActiveImage  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(galleryImages[0]);
+    const heroDisplay = (0,_lib_display_image__WEBPACK_IMPORTED_MODULE_7__.useDisplaySrc)(activeImage, "detail");
     const { 0: quantity , 1: setQuantity  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1);
     const { 0: lightboxOpen , 1: setLightboxOpen  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
     const { 0: lightboxIndex , 1: setLightboxIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
@@ -266,13 +270,15 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
                                                 className: "jsx-c9bfa0ca4f031e9f" + " " + `hero-image-wrap ${isZooming ? "is-zooming" : ""}`,
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                        src: activeImage,
+                                                        src: heroDisplay.displaySrc,
                                                         alt: product.name,
+                                                        ref: _lib_display_image__WEBPACK_IMPORTED_MODULE_7__.markHighPriority,
+                                                        onError: heroDisplay.onError,
                                                         className: "jsx-c9bfa0ca4f031e9f" + " " + "hero-img"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         style: {
-                                                            backgroundImage: `url(${activeImage})`,
+                                                            backgroundImage: heroDisplay.displaySrc ? `url(${heroDisplay.displaySrc})` : undefined,
                                                             backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`
                                                         },
                                                         className: "jsx-c9bfa0ca4f031e9f" + " " + "zoom-overlay"
@@ -336,10 +342,9 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
                                                         type: "button",
                                                         "aria-label": "Switch product image",
                                                         className: "jsx-c9bfa0ca4f031e9f" + " " + `thumb-btn ${activeImage === img ? "is-active" : ""}`,
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_7__.DisplayImage, {
                                                             src: img,
-                                                            alt: `${product.name} preview`,
-                                                            className: "jsx-c9bfa0ca4f031e9f"
+                                                            alt: `${product.name} preview`
                                                         })
                                                     }, img))
                                             }),
@@ -683,10 +688,11 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
                             className: "jsx-c9bfa0ca4f031e9f" + " " + "lightbox-nav lightbox-prev",
                             children: "‹"
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_7__.DisplayImage, {
                             src: galleryImages[lightboxIndex],
+                            kind: "detail",
                             alt: product.name,
-                            className: "jsx-c9bfa0ca4f031e9f" + " " + "lightbox-img"
+                            className: "lightbox-img"
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                             onClick: ()=>setLightboxIndex((p)=>(p + 1) % galleryImages.length),
@@ -707,7 +713,7 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
         ]
     });
 };
-const getServerSideProps = async (context)=>{
+async function loadPublicProps(context) {
     const { slug  } = context.params || {};
     try {
         const { getCatalogProductBySlug  } = await __webpack_require__.e(/* import() */ 5021).then(__webpack_require__.bind(__webpack_require__, 5021));
@@ -743,17 +749,31 @@ const getServerSideProps = async (context)=>{
                 categorySpecs = JSON.parse(JSON.stringify(specs));
             }
         }
+        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.t.bind(__webpack_require__, 3268, 23));
+        const images = Array.isArray(product.images) ? product.images.map((url)=>resolveDisplayUrl(url, "detail")) : [];
         return {
             props: {
-                product,
+                product: {
+                    ...product,
+                    image: resolveDisplayUrl(product.image, "detail"),
+                    images
+                },
                 categorySpecs
             }
         };
     } catch (error) {
-        return {
-            notFound: true
-        };
+        throw error;
     }
+}
+const getServerSideProps = async (context)=>{
+    const slug = String(context.params?.slug || "").trim().toLowerCase();
+    if (!slug) return {
+        notFound: true
+    };
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(context.res, `product:${encodeURIComponent(slug)}`, ()=>loadPublicProps(context), ()=>({
+            notFound: true
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductDetailPage);
 
@@ -1004,6 +1024,20 @@ module.exports = require("styled-jsx/style");
 /***/ ((module) => {
 
 module.exports = import("dangerous-html/react");;
+
+/***/ }),
+
+/***/ 7147:
+/***/ ((module) => {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 1017:
+/***/ ((module) => {
+
+module.exports = require("path");
 
 /***/ })
 

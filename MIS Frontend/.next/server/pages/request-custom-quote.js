@@ -370,7 +370,7 @@ const RequestCustomQuote = ({ serviceOptions =[]  })=>{
         ]
     });
 };
-const getServerSideProps = async ()=>{
+async function loadPublicProps() {
     try {
         const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));
         const db = getDbPool();
@@ -397,12 +397,16 @@ const getServerSideProps = async ()=>{
             }
         };
     } catch (e) {
-        return {
+        throw e;
+    }
+}
+const getServerSideProps = async ({ res  })=>{
+    const { servePublicCache  } = await __webpack_require__.e(/* import() */ 3868).then(__webpack_require__.t.bind(__webpack_require__, 3868, 23));
+    return servePublicCache(res, "page:quote-form", loadPublicProps, ()=>({
             props: {
                 serviceOptions: []
             }
-        };
-    }
+        }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RequestCustomQuote);
 

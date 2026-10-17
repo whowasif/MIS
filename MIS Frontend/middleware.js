@@ -45,9 +45,17 @@ const buildRedirectUrl = (request, pathname, params = {}) => {
 export async function middleware(request) {
   const { pathname, search } = request.nextUrl
 
+  if (pathname.startsWith('/api/')) {
+    const response = NextResponse.next()
+    response.headers.set('Cache-Control', 'private, no-store')
+    return response
+  }
+
   // Allow access to these pages without auth
   if (pathname === ACCESS_ROUTE || pathname === '/portal-secure-99x/forgot-password' || pathname === '/portal-secure-99x/reset-password') {
-    return NextResponse.next()
+    const response = NextResponse.next()
+    response.headers.set('Cache-Control', 'private, no-store')
+    return response
   }
 
   const sessionToken = getCookieValue(request, ADMIN_SESSION_COOKIE)
@@ -58,19 +66,34 @@ export async function middleware(request) {
       next: `${pathname}${search || ''}`,
       reason: 'session',
     })
-    return NextResponse.redirect(redirectUrl)
+    const redirect = NextResponse.redirect(redirectUrl)
+    redirect.headers.set('Cache-Control', 'private, no-store')
+    return redirect
   }
 
   const resolvedRole = roleCookie
 
   if (!VALID_ADMIN_ROLES.includes(resolvedRole)) {
     const redirectUrl = buildRedirectUrl(request, ACCESS_ROUTE, { reason: 'role' })
-    return NextResponse.redirect(redirectUrl)
+    const redirect = NextResponse.redirect(redirectUrl)
+    redirect.headers.set('Cache-Control', 'private, no-store')
+    return redirect
   }
 
-  return NextResponse.next()
+  const response = NextResponse.next()
+  response.headers.set('Cache-Control', 'private, no-store')
+  return response
 }
 
 export const config = {
-  matcher: ['/portal-secure-99x/:path*'],
+  matcher: [
+    '/portal-secure-99x/:path*',
+    '/api/admin/:path*',
+    '/api/auth/:path*',
+    '/api/cart',
+    '/api/cart/:path*',
+    '/api/orders',
+    '/api/orders/:path*',
+    '/api/track',
+  ],
 }
