@@ -155,11 +155,26 @@ const CoreSolutions = () => {
           width: 100%;
           overflow: hidden;
           padding: clamp(56px, 7vw, 96px) 0;
-          background-image: url('/core-it-black.jpg');
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
+          background-color: #f4f5f7;
           color: #111318;
+        }
+        .cs::before {
+          content: "";
+          position: absolute;
+          right: -6%;
+          bottom: -18%;
+          width: min(760px, 68vw);
+          height: 130%;
+          pointer-events: none;
+          z-index: 1;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='42' viewBox='0 0 48 42'%3E%3Cg stroke='%23f4f5f7' stroke-width='1.3' stroke-linejoin='round'%3E%3Cpolygon points='12,2 24,9 24,23 12,30 0,23 0,9' fill='%23111111'/%3E%3Cpolygon points='36,2 48,9 48,23 36,30 24,23 24,9' fill='%233c3c3c'/%3E%3Cpolygon points='24,23 36,30 36,44 24,51 12,44 12,30' fill='%231a1a1a'/%3E%3Cpolygon points='24,-19 36,-12 36,2 24,9 12,2 12,-12' fill='%23666666'/%3E%3Cpolygon points='0,23 12,30 12,44 0,51 -12,44 -12,30' fill='%232a2a2a'/%3E%3Cpolygon points='48,23 60,30 60,44 48,51 36,44 36,30' fill='%234a4a4a'/%3E%3Cpolygon points='0,-19 12,-12 12,2 0,9 -12,2 -12,-12' fill='%23888888'/%3E%3Cpolygon points='48,-19 60,-12 60,2 48,9 36,2 36,-12' fill='%23222222'/%3E%3C/g%3E%3C/svg%3E");
+          background-repeat: repeat;
+          background-size: 48px 42px;
+          background-position: right bottom;
+          -webkit-mask-image: linear-gradient(to top, #000 22%, transparent 78%), linear-gradient(to left, #000 30%, transparent 92%);
+          -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to top, #000 22%, transparent 78%), linear-gradient(to left, #000 30%, transparent 92%);
+          mask-composite: intersect;
         }
 
         .cs-inner {
