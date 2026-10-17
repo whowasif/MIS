@@ -213,7 +213,7 @@ const Home = (props) => {
         <Navigation />
         <section className="hero-section">
           <div className="hero-media-container">
-            <video className="hero-bg-video" poster="/home-video-poster.jpg" autoPlay controls={false} loop muted preload="metadata" playsInline disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noplaybackrate noremoteplayback" tabIndex="-1" aria-hidden="true">
+            <video className="hero-bg-video" autoPlay controls={false} loop muted preload="metadata" playsInline disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noplaybackrate noremoteplayback" tabIndex="-1" aria-hidden="true">
               <source src="/home%20video.mp4" type="video/mp4" />
             </video>
             <div className="hero-overlay"></div>

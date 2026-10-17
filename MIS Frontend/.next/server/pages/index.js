@@ -1030,7 +1030,6 @@ const Home = (props)=>{
                                 className: "jsx-838b1a87f6f26fd3" + " " + "hero-media-container",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("video", {
-                                        poster: "/home-video-poster.jpg",
                                         autoPlay: true,
                                         controls: false,
                                         loop: true,
