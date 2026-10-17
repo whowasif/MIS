@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Navigation from '../../components/navigation'
@@ -7,6 +7,7 @@ import { getDbPool } from '../../lib/server/db'
 import { markHighPriority } from '../../lib/display-image'
 
 const formatCurrency = (v) => `৳${Number(v || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
+const PAGE_SIZE = 20
 
 const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
   const [priceRange, setPriceRange] = useState([0, maxPrice || 500000])
@@ -15,6 +16,7 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
   const [availability, setAvailability] = useState('all')
   const [sortBy, setSortBy] = useState('default')
   const [filterOpen, setFilterOpen] = useState(false)
+  const [page, setPage] = useState(1)
 
   const filteredProducts = useMemo(() => {
     let filtered = [...products]
@@ -46,6 +48,14 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
 
     return filtered
   }, [products, priceRange, selectedBrand, selectedCategory, availability, sortBy])
+
+  useEffect(() => {
+    setPage(1)
+  }, [priceRange, selectedBrand, selectedCategory, availability])
+
+  const pageCount = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE))
+  const safePage = Math.min(page, pageCount)
+  const pagedProducts = filteredProducts.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE)
 
   return (
     <>
@@ -158,8 +168,9 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
               {filteredProducts.length === 0 ? (
                 <div className="no-products">No products match your filters.</div>
               ) : (
+                <>
                 <div className="products-grid">
-                  {filteredProducts.map((product, index) => (
+                  {pagedProducts.map((product, index) => (
                     <div key={product.id} className="product-card-item">
                       <Link href={`/products/${product.slug || product.id}`}>
                         <a className="product-card-link">
@@ -213,6 +224,16 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
                     </div>
                   ))}
                 </div>
+                {pageCount > 1 && (
+                  <div className="page-bar">
+                    <button type="button" className="page-btn" disabled={safePage <= 1} onClick={() => setPage(safePage - 1)}>Prev</button>
+                    {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
+                      <button key={n} type="button" className={`page-btn${n === safePage ? ' is-active' : ''}`} onClick={() => setPage(n)}>{n}</button>
+                    ))}
+                    <button type="button" className="page-btn" disabled={safePage >= pageCount} onClick={() => setPage(safePage + 1)}>Next</button>
+                  </div>
+                )}
+                </>
               )}
             </section>
           </div>
@@ -335,6 +356,10 @@ const AllProductsPage = ({ categories, products, brands, maxPrice }) => {
         .add-cart-btn:hover { background: #2563eb; }
 
         .no-products { padding: 48px; text-align: center; color: #94a3b8; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; font-size: 14px; }
+        .page-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 18px 0 4px; flex-wrap: wrap; }
+        .page-btn { border: 1px solid #d4dae3; background: #fff; color: #1e293b; border-radius: 4px; min-width: 34px; height: 34px; padding: 0 10px; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .page-btn.is-active { background: #1e293b; color: #f7e500; border-color: #1e293b; }
+        .page-btn:disabled { opacity: 0.45; cursor: default; }
 
         .filter-toggle-btn { display: flex; align-items: center; gap: 6px; border: 1px solid #d4dae3; border-radius: 6px; padding: 8px 14px; background: #fff; font-size: 13px; font-weight: 600; color: #374151; cursor: pointer; transition: border-color 0.12s; }
         .filter-toggle-btn:hover { border-color: #3b82f6; color: #3b82f6; }
@@ -394,8 +419,7 @@ async function loadPublicProps() {
        FROM products p
        LEFT JOIN categories c ON c.id = p.category_id
        WHERE p.deleted_at IS NULL AND p.is_active = 1
-       ORDER BY p.created_at DESC
-       LIMIT 500`
+       ORDER BY p.created_at DESC`
     )
 
     // Get unique brands

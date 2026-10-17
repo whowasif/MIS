@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import { getDbPool } from '../lib/server/db'
+import { isJobClosed } from '../lib/career-deadline'
 
 const useInView = (threshold = 0.1) => {
   const ref = useRef(null)
@@ -60,7 +61,10 @@ const CareerPage = ({ jobs = [] }) => {
   }
 
   const openApplyFromDetail = () => {
-    const job = viewJob; setViewJob(null); setApplyJob(job)
+    if (!viewJob || isJobClosed(viewJob)) return
+    const job = viewJob
+    setViewJob(null)
+    setApplyJob(job)
   }
 
   return (
@@ -168,7 +172,7 @@ const CareerPage = ({ jobs = [] }) => {
                       )}
                       <div className="job-card-body">
                         <div className="job-card-top">
-                          <span className="job-status-badge">{job.status || 'Open'}</span>
+                          <span className={`job-status-badge${isJobClosed(job) ? ' is-closed' : ''}`}>{isJobClosed(job) ? 'Closed' : (job.status || 'Open')}</span>
                         </div>
                         <h3 className="job-title">{job.name}</h3>
                         {job.description && (
@@ -185,7 +189,7 @@ const CareerPage = ({ jobs = [] }) => {
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                             View Details
                           </button>
-                          <button className="btn-primary-sm" onClick={() => setApplyJob(job)}>
+                          <button className="btn-primary-sm" disabled={isJobClosed(job)} onClick={() => { if (!isJobClosed(job)) setApplyJob(job) }}>
                             Apply Now
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                           </button>
@@ -231,7 +235,7 @@ const CareerPage = ({ jobs = [] }) => {
                   </div>
                 )}
                 <div className="modal-body">
-                  <span className="job-status-badge">{viewJob.status || 'Open'}</span>
+                  <span className={`job-status-badge${isJobClosed(viewJob) ? ' is-closed' : ''}`}>{isJobClosed(viewJob) ? 'Closed' : (viewJob.status || 'Open')}</span>
                   <h2 className="modal-title">{viewJob.name}</h2>
                   {viewJob.deadline && (
                     <div className="modal-deadline">
@@ -243,7 +247,7 @@ const CareerPage = ({ jobs = [] }) => {
                   {viewJob.full_description && (
                     <div className="modal-section"><h4>Full Details</h4><div className="modal-html" dangerouslySetInnerHTML={{ __html: viewJob.full_description }} /></div>
                   )}
-                  <button className="btn-primary-full" onClick={openApplyFromDetail}>
+                  <button className={`btn-primary-full${isJobClosed(viewJob) ? ' is-closed' : ''}`} disabled={isJobClosed(viewJob)} onClick={openApplyFromDetail}>
                     Apply for this Position
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </button>
@@ -369,6 +373,7 @@ const CareerPage = ({ jobs = [] }) => {
         .job-card-body { padding: 22px; }
         .job-card-top { margin-bottom: 10px; }
         .job-status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(247,229,0,0.15); border: 1px solid rgba(180,160,0,0.3); color: #856c00; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+        .job-status-badge.is-closed { background: #f1f5f9; border-color: #cbd5e1; color: #64748b; }
         .job-title { margin: 0 0 10px; font-size: 18px; font-weight: 700; color: #111827; line-height: 1.3; }
         .job-desc { margin: 0 0 10px; font-size: 14px; color: #6b7280; line-height: 1.6; }
         .job-deadline { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #dc2626; margin: 0 0 14px; }
@@ -378,7 +383,8 @@ const CareerPage = ({ jobs = [] }) => {
         .btn-ghost-sm { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border: 1px solid #d1d5db; border-radius: 8px; background: #fff; color: #374151; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
         .btn-ghost-sm:hover { background: #f3f4f6; border-color: #9ca3af; }
         .btn-primary-sm { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: none; border-radius: 8px; background: #1e293b; color: #f7e500; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.15s; margin-left: auto; }
-        .btn-primary-sm:hover { background: #0f172a; }
+        .btn-primary-sm:hover:not(:disabled) { background: #0f172a; }
+        .btn-primary-sm:disabled { background: #94a3b8; color: #e2e8f0; cursor: not-allowed; }
 
         /* EMPTY STATE */
         .empty-jobs { text-align: center; padding: 64px 24px; border: 2px dashed #e5e7eb; border-radius: 20px; }
@@ -416,6 +422,7 @@ const CareerPage = ({ jobs = [] }) => {
         .btn-primary-full { width: 100%; height: 50px; border: none; border-radius: 12px; background: #1e293b; color: var(--accent); font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
         .btn-primary-full:hover:not(:disabled) { background: #0f172a; }
         .btn-primary-full:disabled { opacity: 0.6; cursor: wait; }
+        .btn-primary-full.is-closed:disabled { background: #94a3b8; color: #e2e8f0; cursor: not-allowed; opacity: 1; }
 
         /* APPLY FORM */
         .apply-form { display: grid; gap: 16px; margin-top: 20px; }

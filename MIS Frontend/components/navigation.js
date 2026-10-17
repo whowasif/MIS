@@ -1010,28 +1010,24 @@ const Navigation = () => {
           border-bottom: 1px solid #334155;
           overflow-x: auto;
           overflow-y: visible;
-          scrollbar-width: none;
+          scrollbar-width: thin;
+          scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
           -webkit-overflow-scrolling: touch;
         }
-        .cat-nav-bar::-webkit-scrollbar { display: none; }
+        .cat-nav-bar::-webkit-scrollbar { height: 4px; }
+        .cat-nav-bar::-webkit-scrollbar-track { background: transparent; }
+        .cat-nav-bar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.35); border-radius: 4px; }
 
         .cat-nav-inner {
           display: flex;
           align-items: center;
-          justify-content: center;
-          max-width: 1320px;
+          justify-content: flex-start;
+          width: max-content;
+          min-width: 100%;
           margin: 0 auto;
           padding: 0 16px;
           gap: 0;
           white-space: nowrap;
-        }
-
-        .cat-nav-inner::-webkit-scrollbar { display: none; }
-
-        @media (max-width: 1100px) {
-          .cat-nav-inner {
-            justify-content: flex-start;
-          }
         }
 
         .cat-nav-item {

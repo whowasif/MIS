@@ -128,11 +128,14 @@ export const getTableRows = async ({ table, limit = 50, offset = 0 }) => {
   const db = getDbPool()
   const columns = await getTableColumns(safeTable)
   const primaryKeyColumn = getPrimaryKeyColumn(columns)
-  const safeLimit = Math.max(1, Math.min(200, Number(limit) || 50))
+  const isProducts = safeTable === 'products'
+  const maxLimit = isProducts ? 5000 : 200
+  const safeLimit = Math.max(1, Math.min(maxLimit, Number(limit) || 50))
   const safeOffset = Math.max(0, Number(offset) || 0)
+  const whereSql = isProducts ? 'WHERE deleted_at IS NULL' : ''
 
   const [rows] = await db.query(
-    `SELECT * FROM ${escapeIdentifier(safeTable)} ORDER BY ${escapeIdentifier(primaryKeyColumn)} DESC LIMIT ${safeLimit} OFFSET ${safeOffset}`
+    `SELECT * FROM ${escapeIdentifier(safeTable)} ${whereSql} ORDER BY ${escapeIdentifier(primaryKeyColumn)} DESC LIMIT ${safeLimit} OFFSET ${safeOffset}`
   )
 
   return rows

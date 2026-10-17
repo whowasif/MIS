@@ -781,12 +781,13 @@ const ModernTableManager = ()=>{
         }
         // Category filter (filter by parent category - includes all its subcategories)
         if (filterCategory) {
-            const childCatIds = allCategories.filter((c)=>String(c.parent_id) === filterCategory).map((c)=>c.id);
-            const matchIds = [
-                Number(filterCategory),
+            const selectedId = String(filterCategory);
+            const childCatIds = allCategories.filter((c)=>String(c.parent_id) === selectedId).map((c)=>String(c.id));
+            const matchIds = new Set([
+                selectedId,
                 ...childCatIds
-            ];
-            result = result.filter((row)=>matchIds.includes(row.category_id));
+            ]);
+            result = result.filter((row)=>matchIds.has(String(row.category_id)));
         }
         // Brand filter
         if (filterBrand) {
@@ -816,11 +817,11 @@ const ModernTableManager = ()=>{
         const cats = new Map();
         rows.forEach((row)=>{
             if (row.category_id) {
-                const catMatch = allCategories.find((c)=>c.id === row.category_id);
+                const catMatch = allCategories.find((c)=>String(c.id) === String(row.category_id));
                 if (catMatch) {
                     // If it's a subcategory, show the parent category name
                     if (catMatch.parent_id) {
-                        const parentCat = allCategories.find((c)=>c.id === catMatch.parent_id);
+                        const parentCat = allCategories.find((c)=>String(c.id) === String(catMatch.parent_id));
                         if (parentCat) {
                             cats.set(String(parentCat.id), parentCat.name);
                         } else {
@@ -865,7 +866,7 @@ const ModernTableManager = ()=>{
         setLoading(true);
         setError("");
         try {
-            const response = await fetch(`/api/admin/tables/${table}`);
+            const response = await fetch(`/api/admin/tables/${table}${table === "products" ? "?limit=5000" : ""}`);
             const payload = await response.json();
             if (!response.ok || !payload?.success) {
                 throw new Error(payload?.details || payload?.error || "Unable to load table data.");

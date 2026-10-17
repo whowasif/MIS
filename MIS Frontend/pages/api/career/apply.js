@@ -4,6 +4,7 @@ import path from 'path'
 import { getDbPool } from '../../../lib/server/db'
 import { createNotification, VISIBILITY } from '../../../lib/server/notifications'
 import { safeSend, sendApplicationReceivedEmail, sendApplicationAlertToAdmin } from '../../../lib/server/mailer'
+import { isJobClosed } from '../../../lib/career-deadline'
 
 export const config = { api: { bodyParser: false } }
 
@@ -54,6 +55,17 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Name, email, and job position are required.' })
     }
 
+    const db = getDbPool()
+    const [jobs] = await db.execute(
+      'SELECT id, deadline, is_active, deleted_at FROM career_posts WHERE id = ? LIMIT 1',
+      [careerPostId]
+    )
+    const job = jobs[0]
+    if (!job || job.deleted_at || !job.is_active || isJobClosed(job)) {
+      if (resumeFile?.filepath && fs.existsSync(resumeFile.filepath)) fs.unlinkSync(resumeFile.filepath)
+      return res.status(400).json({ error: 'This position is no longer accepting applications.' })
+    }
+
     // Rename file to unique name
     const ext = path.extname(resumeFile.originalFilename || resumeFile.newFilename || '.pdf')
     const uniqueName = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}${ext}`
@@ -64,7 +76,6 @@ export default async function handler(req, res) {
     const resumeUrl = `/uploads/resumes/${uniqueName}`
 
     // Save to database
-    const db = getDbPool()
     const [applyResult] = await db.execute(
       `INSERT INTO career_applications (career_post_id, applicant_name, email, phone, cover_letter, resume_path)
        VALUES (?, ?, ?, ?, ?, ?)`,

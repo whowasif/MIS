@@ -40,6 +40,37 @@ module.exports = require("path");
 
 /***/ }),
 
+/***/ 1333:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "W": () => (/* binding */ isJobClosed)
+/* harmony export */ });
+const DHAKA = "Asia/Dhaka";
+const dhakaDateKey = (value)=>{
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) return "";
+    return new Intl.DateTimeFormat("en-CA", {
+        timeZone: DHAKA,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    }).format(date);
+};
+// A date-only deadline stays open through 23:59:59 in Dhaka.
+// Comparing calendar dates avoids treating UTC midnight as 6:00 in the morning.
+const isJobClosed = (job, now = new Date())=>{
+    if (!job?.deadline) return false;
+    const raw = String(job.deadline).trim();
+    const dateOnly = raw.slice(0, 10);
+    const deadlineKey = /^\d{4}-\d{2}-\d{2}$/.test(dateOnly) && raw.length <= 10 ? dateOnly : dhakaDateKey(job.deadline);
+    if (!deadlineKey) return false;
+    return dhakaDateKey(now) > deadlineKey;
+};
+
+
+/***/ }),
+
 /***/ 1774:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -57,8 +88,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6548);
 /* harmony import */ var _lib_server_notifications__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7942);
 /* harmony import */ var _lib_server_mailer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5333);
+/* harmony import */ var _lib_career_deadline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1333);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([formidable__WEBPACK_IMPORTED_MODULE_0__]);
 formidable__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -121,6 +154,17 @@ async function handler(req, res) {
                 error: "Name, email, and job position are required."
             });
         }
+        const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_3__/* .getDbPool */ .z)();
+        const [jobs] = await db.execute("SELECT id, deadline, is_active, deleted_at FROM career_posts WHERE id = ? LIMIT 1", [
+            careerPostId
+        ]);
+        const job = jobs[0];
+        if (!job || job.deleted_at || !job.is_active || (0,_lib_career_deadline__WEBPACK_IMPORTED_MODULE_6__/* .isJobClosed */ .W)(job)) {
+            if (resumeFile?.filepath && fs__WEBPACK_IMPORTED_MODULE_1___default().existsSync(resumeFile.filepath)) fs__WEBPACK_IMPORTED_MODULE_1___default().unlinkSync(resumeFile.filepath);
+            return res.status(400).json({
+                error: "This position is no longer accepting applications."
+            });
+        }
         // Rename file to unique name
         const ext = path__WEBPACK_IMPORTED_MODULE_2___default().extname(resumeFile.originalFilename || resumeFile.newFilename || ".pdf");
         const uniqueName = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}${ext}`;
@@ -128,7 +172,6 @@ async function handler(req, res) {
         fs__WEBPACK_IMPORTED_MODULE_1___default().renameSync(resumeFile.filepath, finalPath);
         const resumeUrl = `/uploads/resumes/${uniqueName}`;
         // Save to database
-        const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_3__/* .getDbPool */ .z)();
         const [applyResult] = await db.execute(`INSERT INTO career_applications (career_post_id, applicant_name, email, phone, cover_letter, resume_path)
        VALUES (?, ?, ?, ?, ?, ?)`, [
             careerPostId,

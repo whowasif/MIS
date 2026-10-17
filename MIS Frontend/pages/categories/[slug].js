@@ -8,6 +8,7 @@ import { getDbPool } from '../../lib/server/db'
 import { markHighPriority } from '../../lib/display-image'
 
 const formatCurrency = (v) => `৳${Number(v || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
+const PAGE_SIZE = 20
 
 // --- Filter-only spec normalization -------------------------------------
 // Collapses a free-text spec value down to its "base" so the filter sidebar
@@ -265,6 +266,7 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
   const [availability, setAvailability] = useState('all')
   const [sortBy, setSortBy] = useState('default')
   const [filterOpen, setFilterOpen] = useState(false)
+  const [page, setPage] = useState(1)
 
   // Reset filters when category changes (client-side navigation)
   React.useEffect(() => {
@@ -274,6 +276,7 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
     setAvailability('all')
     setSortBy('default')
     setFilterOpen(false)
+    setPage(1)
   }, [category?.id, maxPrice])
 
   const filteredProducts = useMemo(() => {
@@ -324,6 +327,14 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
 
     return filtered
   }, [products, priceRange, selectedBrand, selectedSpecs, availability, sortBy])
+
+  React.useEffect(() => {
+    setPage(1)
+  }, [priceRange, selectedBrand, selectedSpecs, availability])
+
+  const pageCount = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE))
+  const safePage = Math.min(page, pageCount)
+  const pagedProducts = filteredProducts.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE)
 
   // Build filter facets from the MANUALLY-CURATED option list (set in admin).
   // Only show a spec if it is filterable AND has at least one curated option.
@@ -463,8 +474,9 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
               {filteredProducts.length === 0 ? (
                 <div className="no-products">No products match your filters.</div>
               ) : (
+                <>
                 <div className="products-grid">
-                  {filteredProducts.map((product, index) => (
+                  {pagedProducts.map((product, index) => (
                     <div key={product.id} className="product-card-item">
                       <Link href={`/products/${product.slug || product.id}`}>
                         <a className="product-card-link">
@@ -522,6 +534,16 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
                     </div>
                   ))}
                 </div>
+                {pageCount > 1 && (
+                  <div className="page-bar">
+                    <button type="button" className="page-btn" disabled={safePage <= 1} onClick={() => setPage(safePage - 1)}>Prev</button>
+                    {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
+                      <button key={n} type="button" className={`page-btn${n === safePage ? ' is-active' : ''}`} onClick={() => setPage(n)}>{n}</button>
+                    ))}
+                    <button type="button" className="page-btn" disabled={safePage >= pageCount} onClick={() => setPage(safePage + 1)}>Next</button>
+                  </div>
+                )}
+                </>
               )}
             </section>
           </div>
@@ -660,6 +682,10 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
         .product-card-item:hover .add-cart-btn { background: #2563eb; }
 
         .no-products { padding: 48px; text-align: center; color: #94a3b8; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; font-size: 14px; }
+        .page-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 18px 0 4px; flex-wrap: wrap; }
+        .page-btn { border: 1px solid #d4dae3; background: #fff; color: #1e293b; border-radius: 4px; min-width: 34px; height: 34px; padding: 0 10px; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .page-btn.is-active { background: #1e293b; color: #f7e500; border-color: #1e293b; }
+        .page-btn:disabled { opacity: 0.45; cursor: default; }
 
         @media (max-width: 960px) {
           .cat-grid { grid-template-columns: 220px 1fr; }
@@ -781,8 +807,7 @@ async function loadPublicProps(params) {
        FROM products p
        WHERE p.category_id IN (${placeholders})
          AND p.deleted_at IS NULL AND p.is_active = 1
-       ORDER BY p.created_at DESC
-       LIMIT 200`,
+       ORDER BY p.created_at DESC`,
       categoryIds
     )
 
