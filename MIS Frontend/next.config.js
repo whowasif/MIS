@@ -1,4 +1,6 @@
-module.exports = {
+const withTM = require('next-transpile-modules')(['motion', 'framer-motion'])
+
+module.exports = withTM({
   i18n: {
     locales: ['en'],
     defaultLocale: "en",
@@ -20,4 +22,4 @@ module.exports = {
       ...extensions.map((extension) => ({ source: `/:path*.${extension}`, headers: cache })),
     ]
   },
-}
+})
