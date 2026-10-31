@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useInView, useReducedMotion } from 'motion/react'
 
-const PAPER = '#ffffff'
-const INK = '#111111'
+const INK = '#f3f4f6'
 const GLITCH_YELLOW = '#f7e500'
 const GLITCH_CYAN = '#00c2e0'
 const GLITCH_MAGENTA = '#e11d74'
@@ -139,8 +138,7 @@ const paintFrame = (canvas, model, glitch, now) => {
   const { cells, compact, cssW, cssH, dpr } = model
   const ctx = canvas.getContext('2d')
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-  ctx.fillStyle = PAPER
-  ctx.fillRect(0, 0, cssW, cssH)
+  ctx.clearRect(0, 0, cssW, cssH)
   ctx.font = `700 ${compact ? 7.4 : 8.2}px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
@@ -183,8 +181,8 @@ const HeroWorldMap = () => {
 
     const sizeCanvas = () => {
       const cssW = node.clientWidth || 640
-      const cssH = Math.round(cssW * 0.5)
-      if (cssW < 40) return null
+      const cssH = node.clientHeight || Math.round(cssW * 0.5)
+      if (cssW < 40 || cssH < 40) return null
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       node.width = Math.round(cssW * dpr)
       node.height = Math.round(cssH * dpr)
@@ -242,6 +240,7 @@ const HeroWorldMap = () => {
       }, 60)
     })
     ro.observe(node)
+    if (wrap.current) ro.observe(wrap.current)
 
     return () => {
       dead = true

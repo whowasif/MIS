@@ -13,6 +13,142 @@ import { DisplayImage } from '../lib/display-image'
 
 const fallbackProductImage = 'https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500'
 
+const HERO_SUBTITLE = 'Enterprise IT, hardware supply, and on-call support for teams that need technology that just works.'
+
+const HeroTypewriter = ({ text }) => {
+  const [shown, setShown] = useState('')
+  const [reduceMotion, setReduceMotion] = useState(false)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setReduceMotion(true)
+      setShown(text)
+      return undefined
+    }
+
+    let index = 0
+    let deleting = false
+    let timer
+
+    const tick = () => {
+      if (!deleting) {
+        index += 1
+        setShown(text.slice(0, index))
+        if (index >= text.length) {
+          deleting = true
+          timer = setTimeout(tick, 2200)
+          return
+        }
+        timer = setTimeout(tick, 36)
+        return
+      }
+
+      index -= 1
+      setShown(text.slice(0, index))
+      if (index <= 0) {
+        deleting = false
+        timer = setTimeout(tick, 480)
+        return
+      }
+      timer = setTimeout(tick, 20)
+    }
+
+    timer = setTimeout(tick, 520)
+    return () => clearTimeout(timer)
+  }, [text])
+
+  if (reduceMotion) {
+    return <p className="home-hero-subtitle">{text}</p>
+  }
+
+  return (
+    <p className="home-hero-subtitle home-hero-subtitle-typed" aria-label={text}>
+      <span className="home-hero-subtitle-ghost" aria-hidden="true">{text}</span>
+      <span className="home-hero-subtitle-live" aria-hidden="true">
+        {shown}
+        <span className="home-hero-caret" />
+      </span>
+    </p>
+  )
+}
+
+const HighlighterMark = ({ id, path, wash }) => (
+  <svg className="home-hero-highlight" viewBox="0 0 220 48" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id={`${id}-ink`} x1="0" y1="0" x2="1" y2="0.22">
+        <stop offset="0%" stopColor="#fff8c4" stopOpacity="0.38" />
+        <stop offset="12%" stopColor="#ffe56a" stopOpacity="0.7" />
+        <stop offset="27%" stopColor="#fff4b0" stopOpacity="0.34" />
+        <stop offset="44%" stopColor="#ffd84a" stopOpacity="0.78" />
+        <stop offset="61%" stopColor="#fff1a0" stopOpacity="0.42" />
+        <stop offset="78%" stopColor="#ffe27c" stopOpacity="0.66" />
+        <stop offset="100%" stopColor="#fff7d2" stopOpacity="0.36" />
+      </linearGradient>
+      <linearGradient id={`${id}-wash`} x1="0.15" y1="1" x2="0.85" y2="0">
+        <stop offset="0%" stopColor="#fffce8" stopOpacity="0.18" />
+        <stop offset="38%" stopColor="#ffe98a" stopOpacity="0.4" />
+        <stop offset="72%" stopColor="#fff8c8" stopOpacity="0.16" />
+        <stop offset="100%" stopColor="#ffe56a" stopOpacity="0.32" />
+      </linearGradient>
+    </defs>
+    <path fill={`url(#${id}-ink)`} d={path} />
+    <path fill={`url(#${id}-wash)`} d={wash} />
+  </svg>
+)
+
+const HeroMotto = () => {
+  const ref = useRef(null)
+  const [highlighted, setHighlighted] = useState(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return undefined
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (reduceMotion) {
+            setHighlighted(true)
+            return
+          }
+          setHighlighted(false)
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => setHighlighted(true))
+          })
+          return
+        }
+        setHighlighted(false)
+      },
+      { threshold: 0.5 }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <h1 className={`home-hero-title home-hero-motto${highlighted ? ' is-highlighted' : ''}`} ref={ref}>
+      <span className="home-hero-motto-line">
+        <HighlighterMark
+          id="hero-hl-1"
+          path="M3 5 C 42 1, 86 9, 128 3 S 188 10, 217 4 L 217 44 C 176 48, 132 40, 90 46 S 32 39, 3 43 Z"
+          wash="M8 8 C 50 4, 92 13, 136 7 S 186 14, 210 8 L 208 40 C 166 44, 124 36, 82 42 S 24 35, 8 39 Z"
+        />
+        Commited to
+      </span>
+      <span className="home-hero-motto-line">
+        <HighlighterMark
+          id="hero-hl-2"
+          path="M4 6 C 48 2, 90 10, 134 4 S 190 11, 216 5 L 216 43 C 174 47, 128 39, 86 45 S 28 38, 4 42 Z"
+          wash="M10 9 C 54 5, 98 14, 140 8 S 188 15, 208 9 L 206 39 C 164 43, 118 35, 78 41 S 22 34, 10 38 Z"
+        />
+        Service...
+      </span>
+    </h1>
+  )
+}
+
 const StatCounter = ({ end, suffix = '', label, decimals = 0 }) => {
   const [count, setCount] = useState(0)
   const [hasAnimated, setHasAnimated] = useState(false)
@@ -198,31 +334,34 @@ const Home = (props) => {
         </Head>
         <Navigation />
         <section className="hero-section">
+          <div className="hero-media-container" aria-hidden="true">
+            <img className="hero-bg-image" src="/hero-skyline.jpg" alt="" />
+            <div className="home-hero-scrim" />
+          </div>
           <div className="hero-content-wrapper">
-            <div className="hero-text-block">
-              <h1 className="home-hero-title home-hero-motto">
-                <span className="home-hero-motto-lead">Commited to</span>
-                <span className="home-hero-motto-accent">Service...</span>
-              </h1>
-              <p className="home-hero-subtitle">Enterprise IT, hardware supply, and on-call support for teams that need technology that just works.</p>
+            <div className="hero-copy">
+              <div className="hero-text-block">
+                <HeroMotto />
+                <HeroTypewriter text={HERO_SUBTITLE} />
+              </div>
+              <div className="hero-cta-group">
+                <a className="hero-feature-link" href="/core-it-solutions">
+                  <span className="hero-feature-index">01</span>
+                  <span className="hero-feature-label">Explore Services</span>
+                  <span className="hero-feature-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </span>
+                </a>
+                <a className="hero-feature-link" href="/categories/desktop">
+                  <span className="hero-feature-index">02</span>
+                  <span className="hero-feature-label">Shop Hardware</span>
+                  <span className="hero-feature-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </span>
+                </a>
+              </div>
             </div>
             <HeroWorldMap />
-            <div className="hero-cta-group">
-              <a className="hero-feature-link" href="/core-it-solutions">
-                <span className="hero-feature-index">01</span>
-                <span className="hero-feature-label">Explore Services</span>
-                <span className="hero-feature-arrow" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </span>
-              </a>
-              <a className="hero-feature-link" href="/categories/desktop">
-                <span className="hero-feature-index">02</span>
-                <span className="hero-feature-label">Shop Hardware</span>
-                <span className="hero-feature-arrow" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </span>
-              </a>
-            </div>
           </div>
         </section>
 

@@ -70,6 +70,7 @@ const CatNavItem = ({ cat, subs }) => {
 const Navigation = () => {
   const router = useRouter()
   const { data: session } = useSession()
+  const isHome = router.pathname === '/'
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
@@ -77,8 +78,47 @@ const Navigation = () => {
   const [socialLinks, setSocialLinks] = useState(defaultSocialLinks)
   const [categories, setCategories] = useState([])
   const [openSubmenu, setOpenSubmenu] = useState(null)
+  const [headerTone, setHeaderTone] = useState(isHome ? 'top' : 'solid')
 
   const toggleSubmenu = (key) => setOpenSubmenu((prev) => (prev === key ? null : key))
+
+  useEffect(() => {
+    if (!isHome) {
+      setHeaderTone('solid')
+      return undefined
+    }
+
+    const hero = document.querySelector('.hero-section')
+    if (!hero) {
+      setHeaderTone('solid')
+      return undefined
+    }
+
+    const syncHeaderTone = () => {
+      const headerH = window.matchMedia('(max-width: 767px)').matches ? 64 : 72
+      const heroBottom = hero.getBoundingClientRect().bottom
+      if (heroBottom <= headerH) {
+        setHeaderTone('solid')
+        return
+      }
+      setHeaderTone(window.scrollY > 8 ? 'blur' : 'top')
+    }
+
+    syncHeaderTone()
+    window.addEventListener('scroll', syncHeaderTone, { passive: true })
+    window.addEventListener('resize', syncHeaderTone)
+
+    const observer = new IntersectionObserver(() => syncHeaderTone(), {
+      threshold: [0, 0.01, 1],
+    })
+    observer.observe(hero)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', syncHeaderTone)
+      window.removeEventListener('resize', syncHeaderTone)
+    }
+  }, [isHome])
 
   // Load categories for the nav bar
   useEffect(() => {
@@ -250,7 +290,7 @@ const Navigation = () => {
 
   return (
     <>
-      <header className="menu-nav-header">
+      <header className={`menu-nav-header${headerTone === 'top' ? ' is-over-hero' : ''}${headerTone === 'blur' ? ' is-over-hero is-hero-blur' : ''}`}>
         <div className="menu-nav-left">
           <button
             type="button"
@@ -424,7 +464,7 @@ const Navigation = () => {
         </nav>
       )}
 
-      <div className="menu-nav-spacer"></div>
+      {!isHome && <div className="menu-nav-spacer"></div>}
       {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products') || router.pathname === '/product-catalog') && <div className="cat-nav-spacer"></div>}
 
       <div
@@ -608,6 +648,54 @@ const Navigation = () => {
           color: #111111;
           border-bottom: 1px solid rgba(0, 0, 0, 0.14);
           background: var(--color-primary);
+          transition: background-color 0.28s ease, border-color 0.28s ease, color 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease;
+        }
+
+        .menu-nav-header.is-over-hero {
+          color: #f8fafc;
+          background: transparent;
+          border-bottom-color: transparent;
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+
+        .menu-nav-header.is-hero-blur {
+          background: rgba(11, 16, 24, 0.28);
+          border-bottom-color: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(14px) saturate(1.15);
+          -webkit-backdrop-filter: blur(14px) saturate(1.15);
+        }
+
+        .menu-nav-header.is-over-hero .menu-nav-icon-btn,
+        .menu-nav-header.is-over-hero .menu-nav-icon-link,
+        .menu-nav-header.is-over-hero .menu-nav-toggle,
+        .menu-nav-header.is-over-hero .menu-nav-close {
+          color: #f8fafc;
+          background: rgba(255, 255, 255, 0.12);
+        }
+
+        .menu-nav-header.is-over-hero .menu-nav-icon-btn:hover,
+        .menu-nav-header.is-over-hero .menu-nav-icon-link:hover,
+        .menu-nav-header.is-over-hero .menu-nav-toggle:hover {
+          background: rgba(255, 255, 255, 0.22);
+        }
+
+        .menu-nav-header.is-over-hero .menu-nav-icon-btn.is-active {
+          background: #f7e500;
+          color: #111111;
+        }
+
+        .menu-nav-header.is-over-hero .menu-nav-social-link {
+          color: #f8fafc;
+        }
+
+        .menu-nav-header.is-over-hero .menu-nav-social-link:hover {
+          color: #f7e500;
+        }
+
+        .menu-nav-header.is-over-hero .menu-nav-cart-count {
+          color: #111111;
+          background: #f7e500;
         }
 
         .menu-nav-left,
