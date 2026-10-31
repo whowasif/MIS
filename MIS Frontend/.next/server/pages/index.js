@@ -739,6 +739,334 @@ const CoreSolutions = ()=>{
 
 /***/ }),
 
+/***/ 8632:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7421);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6383);
+
+
+
+const PAPER = "#ffffff";
+const INK = "#111111";
+const GLITCH_YELLOW = "#f7e500";
+const GLITCH_CYAN = "#00c2e0";
+const GLITCH_MAGENTA = "#e11d74";
+const ROB_X = [
+    1,
+    0.9986,
+    0.9954,
+    0.99,
+    0.9822,
+    0.973,
+    0.96,
+    0.9427,
+    0.9216,
+    0.8962,
+    0.8679,
+    0.835,
+    0.7986,
+    0.7597,
+    0.7186,
+    0.6732,
+    0.6213,
+    0.5722,
+    0.5322
+];
+const ROB_Y = [
+    0,
+    0.062,
+    0.124,
+    0.186,
+    0.248,
+    0.31,
+    0.372,
+    0.434,
+    0.4958,
+    0.5571,
+    0.6176,
+    0.6769,
+    0.7346,
+    0.7903,
+    0.8435,
+    0.8936,
+    0.9394,
+    0.9761,
+    1
+];
+let landCache = null;
+const decodeArc = (raw, transform, reverse)=>{
+    const { scale , translate  } = transform;
+    let x = 0;
+    let y = 0;
+    const pts = raw.map(([dx, dy])=>{
+        x += dx;
+        y += dy;
+        return [
+            x * scale[0] + translate[0],
+            y * scale[1] + translate[1]
+        ];
+    });
+    return reverse ? pts.slice().reverse() : pts;
+};
+const ringFromArcs = (topology, indexes)=>{
+    const pts = [];
+    indexes.forEach((index, i)=>{
+        const reverse = index < 0;
+        const decoded = decodeArc(topology.arcs[reverse ? ~index : index], topology.transform, reverse);
+        pts.push(...i ? decoded.slice(1) : decoded);
+    });
+    return pts;
+};
+const robinson = (lon, lat)=>{
+    const alat = Math.min(90, Math.abs(lat));
+    const i = Math.min(17, Math.floor(alat / 5));
+    const f = alat / 5 - i;
+    const xk = ROB_X[i] + f * (ROB_X[i + 1] - ROB_X[i]);
+    const yk = ROB_Y[i] + f * (ROB_Y[i + 1] - ROB_Y[i]);
+    return [
+        0.8487 * xk * (lon * Math.PI / 180),
+        1.3523 * yk * (lat < 0 ? -1 : 1)
+    ];
+};
+const loadLand = async ()=>{
+    if (landCache) return landCache;
+    const topology = await (await fetch("/land-110m.json")).json();
+    const multi = topology.objects.land.geometries[0].arcs;
+    landCache = multi.map((polygon)=>polygon.map((ring)=>ringFromArcs(topology, ring)));
+    return landCache;
+};
+const toScreen = (polygons, w, h)=>{
+    let minX = Infinity;
+    let maxX = -Infinity;
+    let minY = Infinity;
+    let maxY = -Infinity;
+    const projected = [];
+    polygons.forEach((rings)=>{
+        const next = rings.map((ring)=>{
+            const pts = [];
+            ring.forEach(([lon, lat])=>{
+                if (lat < -58) return;
+                const [x, y] = robinson(lon, lat);
+                pts.push([
+                    x,
+                    y
+                ]);
+                if (x < minX) minX = x;
+                if (x > maxX) maxX = x;
+                if (y < minY) minY = y;
+                if (y > maxY) maxY = y;
+            });
+            return pts;
+        }).filter((ring)=>ring.length > 3);
+        if (next.length) projected.push(next);
+    });
+    const s = Math.min(w / (maxX - minX), h / (maxY - minY)) * 0.96;
+    const ox = (w - (maxX - minX) * s) / 2 - minX * s;
+    const oy = (h - (maxY - minY) * s) / 2 + maxY * s;
+    return projected.map((rings)=>rings.map((ring)=>ring.map(([x, y])=>[
+                    x * s + ox,
+                    oy - y * s
+                ])));
+};
+const paintMask = (polygons, w, h)=>{
+    const screen = toScreen(polygons, w, h);
+    const mask = document.createElement("canvas");
+    mask.width = w;
+    mask.height = h;
+    const ctx = mask.getContext("2d");
+    ctx.fillStyle = "#000";
+    screen.forEach((rings)=>{
+        ctx.beginPath();
+        rings.forEach((ring)=>{
+            let lastX = null;
+            let wrapped = false;
+            ring.forEach(([x, y], i)=>{
+                if (i === 0 || lastX !== null && Math.abs(x - lastX) > w * 0.35) {
+                    if (i) wrapped = true;
+                    ctx.moveTo(x, y);
+                } else ctx.lineTo(x, y);
+                lastX = x;
+            });
+            if (!wrapped) ctx.closePath();
+        });
+        ctx.fill(rings.length > 1 ? "evenodd" : "nonzero");
+    });
+    return ctx.getImageData(0, 0, w, h).data;
+};
+const landAt = (data, w, h, x, y)=>{
+    const px = Math.min(w - 1, Math.max(0, Math.round(x)));
+    const py = Math.min(h - 1, Math.max(0, Math.round(y)));
+    return data[(py * w + px) * 4 + 3] >= 40;
+};
+const buildCells = (polygons, cssW, cssH)=>{
+    const mw = Math.round(cssW);
+    const mh = Math.round(cssH);
+    const data = paintMask(polygons, mw, mh);
+    const compact = cssW < 420;
+    const colW = compact ? 4.05 : 4.35;
+    const rowH = compact ? 4.85 : 5.15;
+    const cols = Math.floor(cssW / colW);
+    const rows = Math.floor(cssH / rowH);
+    const cells = [];
+    for(let r = 0; r < rows; r += 1){
+        for(let c = 0; c < cols; c += 1){
+            const x = (c + 0.5) * colW;
+            const y = (r + 0.5) * rowH;
+            if (!landAt(data, mw, mh, x, y) && !landAt(data, mw, mh, x + 1.1, y) && !landAt(data, mw, mh, x, y + 1.1)) continue;
+            const i = cells.length;
+            cells.push({
+                x,
+                y,
+                bit: (i * 7 + 3) % 2,
+                hot: 0
+            });
+        }
+    }
+    return {
+        cells,
+        compact
+    };
+};
+const paintFrame = (canvas, model, glitch, now)=>{
+    const { cells , compact , cssW , cssH , dpr  } = model;
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = PAPER;
+    ctx.fillRect(0, 0, cssW, cssH);
+    ctx.font = `700 ${compact ? 7.4 : 8.2}px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    for(let i = 0; i < cells.length; i += 1){
+        const cell = cells[i];
+        let x = cell.x;
+        let color = INK;
+        if (glitch && cell.y >= glitch.y && cell.y <= glitch.y + glitch.h) {
+            x += glitch.dx;
+            color = i % 5 === 0 ? GLITCH_CYAN : GLITCH_YELLOW;
+        } else if (glitch && glitch.tear && Math.abs(cell.y - glitch.tearY) < 4) {
+            x -= glitch.dx;
+            color = GLITCH_MAGENTA;
+        } else if (cell.hot > now) {
+            color = GLITCH_YELLOW;
+        }
+        ctx.fillStyle = color;
+        ctx.fillText(cell.bit ? "1" : "0", x, cell.y);
+    }
+};
+const HeroWorldMap = ()=>{
+    const wrap = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const canvas = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const model = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const inView = (0,motion_react__WEBPACK_IMPORTED_MODULE_2__/* .useInView */ .Y)(wrap, {
+        amount: 0.2
+    });
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_3__/* .useReducedMotion */ .J)();
+    const live = Boolean(inView && reduce === false);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        const node = canvas.current;
+        if (!node) return undefined;
+        let dead = false;
+        let raf = 0;
+        let resizeTimer = 0;
+        let lastFlip = 0;
+        let nextGlitch = 900;
+        let glitch = null;
+        const sizeCanvas = ()=>{
+            const cssW = node.clientWidth || 640;
+            const cssH = Math.round(cssW * 0.5);
+            if (cssW < 40) return null;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            node.width = Math.round(cssW * dpr);
+            node.height = Math.round(cssH * dpr);
+            return {
+                cssW,
+                cssH,
+                dpr
+            };
+        };
+        const rebuild = ()=>{
+            const sized = sizeCanvas();
+            if (!sized) return Promise.resolve();
+            return loadLand().then((polygons)=>{
+                if (dead) return;
+                model.current = {
+                    ...buildCells(polygons, sized.cssW, sized.cssH),
+                    ...sized
+                };
+                paintFrame(node, model.current, null, 0);
+            });
+        };
+        const tick = (now)=>{
+            if (dead) return;
+            const current = model.current;
+            if (current && live) {
+                if (now - lastFlip > 70) {
+                    lastFlip = now;
+                    const flips = Math.max(10, Math.round(current.cells.length * 0.03));
+                    for(let n = 0; n < flips; n += 1){
+                        const i = Math.floor(Math.random() * current.cells.length);
+                        current.cells[i].bit ^= 1;
+                        if (n < 9) current.cells[i].hot = now + 180;
+                    }
+                }
+                if (!glitch && now > nextGlitch) {
+                    glitch = {
+                        y: 18 + Math.random() * (current.cssH - 48),
+                        h: 10 + Math.random() * 16,
+                        dx: (Math.random() < 0.5 ? -1 : 1) * (5 + Math.random() * 9),
+                        tear: Math.random() > 0.4,
+                        tearY: 18 + Math.random() * (current.cssH - 36),
+                        until: now + 90 + Math.random() * 70
+                    };
+                    nextGlitch = now + 1100 + Math.random() * 1600;
+                }
+                if (glitch && now > glitch.until) glitch = null;
+                paintFrame(node, current, glitch, now);
+            }
+            raf = window.requestAnimationFrame(tick);
+        };
+        rebuild().then(()=>{
+            if (!dead && live) raf = window.requestAnimationFrame(tick);
+        }).catch(()=>{});
+        const ro = new ResizeObserver(()=>{
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(()=>{
+                rebuild().catch(()=>{});
+            }, 60);
+        });
+        ro.observe(node);
+        return ()=>{
+            dead = true;
+            window.clearTimeout(resizeTimer);
+            window.cancelAnimationFrame(raf);
+            ro.disconnect();
+        };
+    }, [
+        live
+    ]);
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+        className: "hero-world",
+        "aria-hidden": "true",
+        ref: wrap,
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("canvas", {
+            className: "hero-world-canvas",
+            ref: canvas
+        })
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HeroWorldMap);
+
+
+/***/ }),
+
 /***/ 3678:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -764,10 +1092,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2097);
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6151);
 /* harmony import */ var _components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8966);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(459);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_HeroWorldMap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(8632);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__]);
 ([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -1001,71 +1331,94 @@ const Home = (props)=>{
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {}),
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         className: "jsx-838b1a87f6f26fd3" + " " + "hero-section",
-                        children: [
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-838b1a87f6f26fd3" + " " + "hero-media-container",
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("video", {
-                                        autoPlay: true,
-                                        controls: false,
-                                        loop: true,
-                                        muted: true,
-                                        preload: "metadata",
-                                        playsInline: true,
-                                        disablePictureInPicture: true,
-                                        disableRemotePlayback: true,
-                                        controlsList: "nodownload nofullscreen noplaybackrate noremoteplayback",
-                                        tabIndex: "-1",
-                                        "aria-hidden": "true",
-                                        className: "jsx-838b1a87f6f26fd3" + " " + "hero-bg-video",
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("source", {
-                                            src: "/home%20video.mp4",
-                                            type: "video/mp4",
-                                            className: "jsx-838b1a87f6f26fd3"
-                                        })
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-838b1a87f6f26fd3" + " " + "hero-overlay"
-                                    })
-                                ]
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-838b1a87f6f26fd3" + " " + "hero-content-wrapper",
-                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "jsx-838b1a87f6f26fd3" + " " + "hero-content-wrapper",
+                            children: [
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                     className: "jsx-838b1a87f6f26fd3" + " " + "hero-text-block",
                                     children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "home-hero-title hero-title",
-                                            children: "Empowering Your Business Through Innovative Technology"
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
+                                            className: "jsx-838b1a87f6f26fd3" + " " + "home-hero-title home-hero-motto",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-838b1a87f6f26fd3" + " " + "home-hero-motto-lead",
+                                                    children: "Commited to"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-838b1a87f6f26fd3" + " " + "home-hero-motto-accent",
+                                                    children: "Service..."
+                                                })
+                                            ]
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "home-hero-subtitle hero-subtitle",
-                                            children: "Your premier destination for comprehensive e-commerce, corporate IT services, and enterprise solutions tailored for technological excellence."
-                                        }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-838b1a87f6f26fd3" + " " + "hero-cta-group",
+                                            className: "jsx-838b1a87f6f26fd3" + " " + "home-hero-subtitle",
+                                            children: "Enterprise IT, hardware supply, and on-call support for teams that need technology that just works."
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_HeroWorldMap__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z, {}),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "jsx-838b1a87f6f26fd3" + " " + "hero-cta-group",
+                                    children: [
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                            href: "/core-it-solutions",
+                                            className: "jsx-838b1a87f6f26fd3" + " " + "hero-feature-link",
                                             children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    href: "/core-it-solutions",
-                                                    className: "jsx-838b1a87f6f26fd3",
-                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-838b1a87f6f26fd3" + " " + "btn btn-primary btn-lg",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-838b1a87f6f26fd3",
-                                                            children: "Explore Services"
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-838b1a87f6f26fd3" + " " + "hero-feature-index",
+                                                    children: "01"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-838b1a87f6f26fd3" + " " + "hero-feature-label",
+                                                    children: "Explore Services"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    "aria-hidden": "true",
+                                                    className: "jsx-838b1a87f6f26fd3" + " " + "hero-feature-arrow",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                        viewBox: "0 0 24 24",
+                                                        className: "jsx-838b1a87f6f26fd3",
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                            d: "M5 12h12M13 6l6 6-6 6",
+                                                            fill: "none",
+                                                            stroke: "currentColor",
+                                                            strokeWidth: "1.8",
+                                                            strokeLinecap: "round",
+                                                            strokeLinejoin: "round",
+                                                            className: "jsx-838b1a87f6f26fd3"
                                                         })
                                                     })
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                            href: "/categories/desktop",
+                                            className: "jsx-838b1a87f6f26fd3" + " " + "hero-feature-link",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-838b1a87f6f26fd3" + " " + "hero-feature-index",
+                                                    children: "02"
                                                 }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    href: "/categories/desktop",
-                                                    className: "jsx-838b1a87f6f26fd3",
-                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-838b1a87f6f26fd3" + " " + "btn btn-lg btn-outline hero-shop-btn",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-838b1a87f6f26fd3",
-                                                            children: "Shop Hardware"
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "jsx-838b1a87f6f26fd3" + " " + "hero-feature-label",
+                                                    children: "Shop Hardware"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    "aria-hidden": "true",
+                                                    className: "jsx-838b1a87f6f26fd3" + " " + "hero-feature-arrow",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                        viewBox: "0 0 24 24",
+                                                        className: "jsx-838b1a87f6f26fd3",
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                            d: "M5 12h12M13 6l6 6-6 6",
+                                                            fill: "none",
+                                                            stroke: "currentColor",
+                                                            strokeWidth: "1.8",
+                                                            strokeLinecap: "round",
+                                                            strokeLinejoin: "round",
+                                                            className: "jsx-838b1a87f6f26fd3"
                                                         })
                                                     })
                                                 })
@@ -1073,8 +1426,8 @@ const Home = (props)=>{
                                         })
                                     ]
                                 })
-                            })
-                        ]
+                            ]
+                        })
                     }),
                     homeCategories.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
                         className: "jsx-838b1a87f6f26fd3" + " " + "home-categories-section",
@@ -1087,7 +1440,7 @@ const Home = (props)=>{
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "jsx-838b1a87f6f26fd3" + " " + "home-cat-icon-wrap",
-                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__.DisplayImage, {
+                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
                                                     src: cat.icon_url,
                                                     alt: cat.name,
                                                     loading: "eager",
@@ -1139,7 +1492,7 @@ const Home = (props)=>{
                                                 },
                                                 className: "jsx-838b1a87f6f26fd3",
                                                 children: [
-                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__.DisplayImage, {
+                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
                                                         src: ad.image_url,
                                                         kind: "detail",
                                                         priority: idx === adIndex,
@@ -1374,7 +1727,7 @@ const Home = (props)=>{
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-838b1a87f6f26fd3" + " " + "product-image-box",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__.DisplayImage, {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
                                                             src: product.image || fallbackProductImage,
                                                             priority: idx % featuredProducts.length === 0,
                                                             alt: product.name,
@@ -1520,7 +1873,7 @@ const Home = (props)=>{
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-838b1a87f6f26fd3" + " " + "case-image",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_10__.DisplayImage, {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
                                                             src: project.icon_url || fallbackProductImage,
                                                             alt: project.name,
                                                             loading: "lazy",
@@ -2224,7 +2577,7 @@ module.exports = require("path");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,1664,2097,6151], () => (__webpack_exec__(3678)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,1664,3213,2097,6151], () => (__webpack_exec__(3678)));
 module.exports = __webpack_exports__;
 
 })();
