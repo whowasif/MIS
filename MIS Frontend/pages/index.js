@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import CoreSolutionsSignposts from '../components/CoreSolutionsTree'
+import HeroWorldMap from '../components/HeroWorldMap'
 import { DisplayImage } from '../lib/display-image'
 
 const fallbackProductImage = 'https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500'
@@ -197,18 +198,30 @@ const Home = (props) => {
         </Head>
         <Navigation />
         <section className="hero-section">
-          <div className="hero-media-container" aria-hidden="true">
-            <img className="hero-bg-image" src="/hero-bg.jpg" alt="" />
-            <div className="home-hero-scrim" />
-          </div>
           <div className="hero-content-wrapper">
             <div className="hero-text-block">
-              <h1 className="home-hero-title hero-title">Empowering Your Business Through Innovative Technology</h1>
-              <p className="home-hero-subtitle hero-subtitle">Your premier destination for comprehensive e-commerce, corporate IT services, and enterprise solutions tailored for technological excellence.</p>
-              <div className="hero-cta-group">
-                <a href="/core-it-solutions"><div className="btn btn-primary btn-lg"><span>Explore Services</span></div></a>
-                <a href="/categories/desktop"><div className="btn btn-lg btn-outline hero-shop-btn"><span>Shop Hardware</span></div></a>
-              </div>
+              <h1 className="home-hero-title home-hero-motto">
+                <span className="home-hero-motto-lead">Commited to</span>
+                <span className="home-hero-motto-accent">Service...</span>
+              </h1>
+              <p className="home-hero-subtitle">Enterprise IT, hardware supply, and on-call support for teams that need technology that just works.</p>
+            </div>
+            <HeroWorldMap />
+            <div className="hero-cta-group">
+              <a className="hero-feature-link" href="/core-it-solutions">
+                <span className="hero-feature-index">01</span>
+                <span className="hero-feature-label">Explore Services</span>
+                <span className="hero-feature-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </span>
+              </a>
+              <a className="hero-feature-link" href="/categories/desktop">
+                <span className="hero-feature-index">02</span>
+                <span className="hero-feature-label">Shop Hardware</span>
+                <span className="hero-feature-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </span>
+              </a>
             </div>
           </div>
         </section>
