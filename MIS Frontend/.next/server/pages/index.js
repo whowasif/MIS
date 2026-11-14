@@ -1536,6 +1536,14 @@ const Home = (props)=>{
                                 content: "MIS Solution - IT Products & Enterprise Services",
                                 className: "jsx-78fd8a5633951551"
                             }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                                rel: "preload",
+                                as: "image",
+                                href: "/hero-skyline-1920.jpg",
+                                imageSrcSet: "/hero-skyline-1280.jpg 1280w, /hero-skyline-1920.jpg 1920w",
+                                imageSizes: "100vw",
+                                className: "jsx-78fd8a5633951551"
+                            }),
                             featuredProducts.slice(0, 4).map((product)=>product.image ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                                     rel: "preload",
                                     as: "image",
@@ -1553,8 +1561,12 @@ const Home = (props)=>{
                                 className: "jsx-78fd8a5633951551" + " " + "hero-media-container",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                        src: "/hero-skyline.jpg",
+                                        src: "/hero-skyline-1920.jpg",
+                                        srcSet: "/hero-skyline-1280.jpg 1280w, /hero-skyline-1920.jpg 1920w",
+                                        sizes: "100vw",
                                         alt: "",
+                                        decoding: "async",
+                                        fetchPriority: "high",
                                         className: "jsx-78fd8a5633951551" + " " + "hero-bg-image"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {

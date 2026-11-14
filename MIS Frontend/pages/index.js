@@ -328,6 +328,13 @@ const Home = (props) => {
         <Head>
           <title>MIS Solution - IT Products & Enterprise Services</title>
           <meta property="og:title" content="MIS Solution - IT Products & Enterprise Services" />
+          <link
+            rel="preload"
+            as="image"
+            href="/hero-skyline-1920.jpg"
+            imageSrcSet="/hero-skyline-1280.jpg 1280w, /hero-skyline-1920.jpg 1920w"
+            imageSizes="100vw"
+          />
           {featuredProducts.slice(0, 4).map((product) => (
             product.image ? <link key={product.id} rel="preload" as="image" href={product.image} /> : null
           ))}
@@ -335,7 +342,15 @@ const Home = (props) => {
         <Navigation />
         <section className="hero-section">
           <div className="hero-media-container" aria-hidden="true">
-            <img className="hero-bg-image" src="/hero-skyline.jpg" alt="" />
+            <img
+              className="hero-bg-image"
+              src="/hero-skyline-1920.jpg"
+              srcSet="/hero-skyline-1280.jpg 1280w, /hero-skyline-1920.jpg 1920w"
+              sizes="100vw"
+              alt=""
+              decoding="async"
+              fetchPriority="high"
+            />
             <div className="home-hero-scrim" />
           </div>
           <div className="hero-content-wrapper">
