@@ -1,0 +1,30 @@
+---
+description: Route UI work to Taste, UI UX Pro Max, or Impeccable one at a time
+alwaysApply: true
+---
+
+# UI skill routing (MIS)
+
+Three design skills are installed globally under `~/.agents/skills/`. They are **manual-only** (`disable-model-invocation: true`). Do not load more than one in the same turn.
+
+## Which to use
+
+| Need | Skill | How to invoke |
+|------|--------|----------------|
+| New marketing/landing page (e.g. Solar) with distinctive art direction | `design-taste-frontend` | User types `/design-taste-frontend` or asks for Taste Skill |
+| Design system first: style, palette, fonts, UX checklist | `ui-ux-pro-max` | User types `/ui-ux-pro-max` |
+| Critique / audit / polish an existing page | `impeccable` | User types `/impeccable` |
+
+## Sequence for a new section (recommended)
+
+1. `/ui-ux-pro-max` — pick system (optional but good for Solar energy look)
+2. `/design-taste-frontend` — build the page
+3. `/impeccable` — audit and polish
+
+## If the user does not name a skill
+
+Ask which of the three to use, using the table above. Do not invent a parallel design brief that conflicts with an already-chosen skill.
+
+## Stack note
+
+This project is Next.js (pages router) with existing Motion/`motion` usage. Prefer that stack; do not switch to GSAP/Three.js unless the user asks.

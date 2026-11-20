@@ -14,6 +14,7 @@ const menuItems = [
       { href: '/digital-services', label: 'Digital Services' },
       { href: '/enterprise-solutions', label: 'Business & Corporate Solutions' },
       { href: '/maintenance-support', label: 'Maintenance & Support' },
+      { href: '/solar', label: 'Solar & Renewable Energy' },
     ],
   },
   { href: '/career', label: 'Career' },

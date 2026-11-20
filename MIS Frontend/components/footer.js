@@ -245,6 +245,13 @@ const Footer = (props) => {
                     </Link>
                   </li>
                   <li>
+                    <Link href="/solar">
+                      <a><div className="footer-link section-content">
+                        <span>Solar &amp; Renewable Energy</span>
+                      </div></a>
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/request-custom-quote">
                       <a><div className="footer-link section-content">
                         <span>Request a Quote</span>
