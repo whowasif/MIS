@@ -46,7 +46,7 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("title", {
-                        className: "jsx-7072b846802ac650",
+                        className: "jsx-b3259cedcb35c9db",
                         children: [
                             query ? `Search: ${query}` : "Search",
                             " | MIS Solution"
@@ -55,25 +55,25 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                         rel: "icon",
                         href: "/footer%20logo.png",
-                        className: "jsx-7072b846802ac650"
+                        className: "jsx-b3259cedcb35c9db"
                     })
                 ]
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("main", {
-                className: "jsx-7072b846802ac650" + " " + "search-page",
+                className: "jsx-b3259cedcb35c9db" + " " + "search-page",
                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                    className: "jsx-7072b846802ac650" + " " + "search-shell",
+                    className: "jsx-b3259cedcb35c9db" + " " + "search-shell",
                     children: [
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                            className: "jsx-7072b846802ac650" + " " + "search-header",
+                            className: "jsx-b3259cedcb35c9db" + " " + "search-header",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                    className: "jsx-7072b846802ac650",
+                                    className: "jsx-b3259cedcb35c9db",
                                     children: "Search Results"
                                 }),
                                 query && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                    className: "jsx-7072b846802ac650",
+                                    className: "jsx-b3259cedcb35c9db",
                                     children: [
                                         "Showing ",
                                         totalResults,
@@ -81,7 +81,7 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
                                         totalResults !== 1 ? "s" : "",
                                         ' for "',
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                            className: "jsx-7072b846802ac650",
+                                            className: "jsx-b3259cedcb35c9db",
                                             children: query
                                         }),
                                         '"'
@@ -90,26 +90,26 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
                             ]
                         }),
                         totalResults === 0 && query && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-7072b846802ac650" + " " + "empty-state",
+                            className: "jsx-b3259cedcb35c9db" + " " + "empty-state",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                    className: "jsx-7072b846802ac650",
+                                    className: "jsx-b3259cedcb35c9db",
                                     children: "No products or services found matching your search."
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                     href: "/product-catalog",
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                        className: "jsx-7072b846802ac650" + " " + "browse-link",
+                                        className: "jsx-b3259cedcb35c9db" + " " + "browse-link",
                                         children: "Browse All Products"
                                     })
                                 })
                             ]
                         }),
                         products.length > 0 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                            className: "jsx-7072b846802ac650" + " " + "results-section",
+                            className: "jsx-b3259cedcb35c9db" + " " + "results-section",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
-                                    className: "jsx-7072b846802ac650",
+                                    className: "jsx-b3259cedcb35c9db",
                                     children: [
                                         "Products (",
                                         products.length,
@@ -117,40 +117,40 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
                                     ]
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-7072b846802ac650" + " " + "results-grid",
+                                    className: "jsx-b3259cedcb35c9db" + " " + "results-grid",
                                     children: products.map((product)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: `/products/${encodeURIComponent(product.slug || product.id)}`,
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                className: "jsx-7072b846802ac650" + " " + "result-card",
+                                                className: "jsx-b3259cedcb35c9db" + " " + "result-card",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-7072b846802ac650" + " " + "result-image",
+                                                        className: "jsx-b3259cedcb35c9db" + " " + "result-image",
                                                         children: product.thumbnail_1 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                             src: product.thumbnail_1,
                                                             alt: product.name,
-                                                            className: "jsx-7072b846802ac650"
+                                                            className: "jsx-b3259cedcb35c9db"
                                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-7072b846802ac650" + " " + "no-img",
+                                                            className: "jsx-b3259cedcb35c9db" + " " + "no-img",
                                                             children: "No Image"
                                                         })
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-7072b846802ac650" + " " + "result-info",
+                                                        className: "jsx-b3259cedcb35c9db" + " " + "result-info",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                className: "jsx-7072b846802ac650",
+                                                                className: "jsx-b3259cedcb35c9db",
                                                                 children: product.name
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-7072b846802ac650" + " " + "result-meta",
+                                                                className: "jsx-b3259cedcb35c9db" + " " + "result-meta",
                                                                 children: product.category_name || product.type
                                                             }),
                                                             product.short_desc && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-7072b846802ac650" + " " + "result-desc",
+                                                                className: "jsx-b3259cedcb35c9db" + " " + "result-desc",
                                                                 children: product.short_desc.substring(0, 100)
                                                             }),
                                                             Number(product.price) > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                className: "jsx-7072b846802ac650" + " " + "result-price",
+                                                                className: "jsx-b3259cedcb35c9db" + " " + "result-price",
                                                                 children: formatCurrency(product.price)
                                                             })
                                                         ]
@@ -162,10 +162,10 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
                             ]
                         }),
                         services.length > 0 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                            className: "jsx-7072b846802ac650" + " " + "results-section",
+                            className: "jsx-b3259cedcb35c9db" + " " + "results-section",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
-                                    className: "jsx-7072b846802ac650",
+                                    className: "jsx-b3259cedcb35c9db",
                                     children: [
                                         "Services (",
                                         services.length,
@@ -173,24 +173,24 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
                                     ]
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-7072b846802ac650" + " " + "results-grid",
+                                    className: "jsx-b3259cedcb35c9db" + " " + "results-grid",
                                     children: services.map((service)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: `/services/${encodeURIComponent(service.slug || service.id)}?type=${service.page_type === "digital-services" ? "digi_services" : service.page_type === "enterprise-solutions" ? "bus_corp_sol" : "service_maintenance"}`,
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-7072b846802ac650" + " " + "result-card",
+                                                className: "jsx-b3259cedcb35c9db" + " " + "result-card",
                                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-7072b846802ac650" + " " + "result-info",
+                                                    className: "jsx-b3259cedcb35c9db" + " " + "result-info",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-7072b846802ac650" + " " + "result-badge",
+                                                            className: "jsx-b3259cedcb35c9db" + " " + "result-badge",
                                                             children: service.page_type === "digital-services" ? "Digital Service" : service.page_type === "enterprise-solutions" ? "Enterprise Solution" : "Maintenance"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-7072b846802ac650",
+                                                            className: "jsx-b3259cedcb35c9db",
                                                             children: service.name
                                                         }),
                                                         service.description && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-7072b846802ac650" + " " + "result-desc",
+                                                            className: "jsx-b3259cedcb35c9db" + " " + "result-desc",
                                                             children: service.description.substring(0, 120)
                                                         })
                                                     ]
@@ -205,8 +205,8 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {}),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "7072b846802ac650",
-                children: ".search-page.jsx-7072b846802ac650{min-height:100vh;background:#f8fafe}.search-shell.jsx-7072b846802ac650{max-width:1e3px;margin:0 auto;padding:36px 20px 60px}.search-header.jsx-7072b846802ac650{margin-bottom:28px}.search-header.jsx-7072b846802ac650 h1.jsx-7072b846802ac650{margin:0;font-size:28px;color:#111827}.search-header.jsx-7072b846802ac650 p.jsx-7072b846802ac650{margin:8px 0 0;color:#6b7280;font-size:15px}.search-header.jsx-7072b846802ac650 strong.jsx-7072b846802ac650{color:#111827}.empty-state.jsx-7072b846802ac650{text-align:center;padding:48px 20px;border:1px dashed#d1d5db;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff}.empty-state.jsx-7072b846802ac650 p.jsx-7072b846802ac650{margin:0 0 16px;color:#6b7280}.browse-link.jsx-7072b846802ac650{color:#4f46e5;font-weight:700;text-decoration:none}.results-section.jsx-7072b846802ac650{margin-bottom:32px}.results-section.jsx-7072b846802ac650 h2.jsx-7072b846802ac650{margin:0 0 16px;font-size:18px;color:#111827;font-weight:700}.results-grid.jsx-7072b846802ac650{display:grid;gap:12px}.result-card.jsx-7072b846802ac650{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:16px;border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;padding:16px;text-decoration:none;color:inherit;-webkit-transition:box-shadow.15s,border-color.15s;-moz-transition:box-shadow.15s,border-color.15s;-o-transition:box-shadow.15s,border-color.15s;transition:box-shadow.15s,border-color.15s}.result-card.jsx-7072b846802ac650:hover{border-color:#a5b4fc;-webkit-box-shadow:0 4px 16px rgba(0,0,0,.06);-moz-box-shadow:0 4px 16px rgba(0,0,0,.06);box-shadow:0 4px 16px rgba(0,0,0,.06)}.result-image.jsx-7072b846802ac650{width:80px;height:80px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;background:#f3f4f6}.result-image.jsx-7072b846802ac650 img.jsx-7072b846802ac650{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.no-img.jsx-7072b846802ac650{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:11px;color:#9ca3af}.result-info.jsx-7072b846802ac650{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;min-width:0}.result-info.jsx-7072b846802ac650 h3.jsx-7072b846802ac650{margin:0 0 4px;font-size:16px;color:#111827}.result-meta.jsx-7072b846802ac650{font-size:12px;color:#6b7280}.result-badge.jsx-7072b846802ac650{display:inline-block;padding:2px 8px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:#eff6ff;color:#1d4ed8;font-size:11px;font-weight:700;margin-bottom:4px}.result-desc.jsx-7072b846802ac650{margin:6px 0 0;font-size:13px;color:#4b5563;line-height:1.5}.result-price.jsx-7072b846802ac650{display:block;margin-top:6px;font-size:15px;color:#111827}@media(max-width:600px){.result-card.jsx-7072b846802ac650{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.result-image.jsx-7072b846802ac650{width:100%;height:160px}}"
+                id: "b3259cedcb35c9db",
+                children: ".search-page.jsx-b3259cedcb35c9db{min-height:100vh;background:#f8fafe}.search-shell.jsx-b3259cedcb35c9db{max-width:1e3px;margin:0 auto;padding:36px 20px 60px}.search-header.jsx-b3259cedcb35c9db{margin-bottom:28px}.search-header.jsx-b3259cedcb35c9db h1.jsx-b3259cedcb35c9db{margin:0;font-size:28px;color:#111827}.search-header.jsx-b3259cedcb35c9db p.jsx-b3259cedcb35c9db{margin:8px 0 0;color:#6b7280;font-size:15px}.search-header.jsx-b3259cedcb35c9db strong.jsx-b3259cedcb35c9db{color:#111827}.empty-state.jsx-b3259cedcb35c9db{text-align:center;padding:48px 20px;border:1px dashed#d1d5db;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff}.empty-state.jsx-b3259cedcb35c9db p.jsx-b3259cedcb35c9db{margin:0 0 16px;color:#6b7280}.browse-link.jsx-b3259cedcb35c9db{color:#4f46e5;font-weight:700;text-decoration:none}.results-section.jsx-b3259cedcb35c9db{margin-bottom:32px}.results-section.jsx-b3259cedcb35c9db h2.jsx-b3259cedcb35c9db{margin:0 0 16px;font-size:18px;color:#111827;font-weight:700}.results-grid.jsx-b3259cedcb35c9db{display:grid;gap:12px}.result-card.jsx-b3259cedcb35c9db{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:16px;border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;padding:16px;text-decoration:none;color:inherit;-webkit-transition:box-shadow.15s,border-color.15s;-moz-transition:box-shadow.15s,border-color.15s;-o-transition:box-shadow.15s,border-color.15s;transition:box-shadow.15s,border-color.15s}.result-card.jsx-b3259cedcb35c9db:hover{border-color:#a5b4fc;-webkit-box-shadow:0 4px 16px rgba(0,0,0,.06);-moz-box-shadow:0 4px 16px rgba(0,0,0,.06);box-shadow:0 4px 16px rgba(0,0,0,.06)}.result-image.jsx-b3259cedcb35c9db{width:80px;height:80px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;overflow:hidden;background:#f3f4f6}.result-image.jsx-b3259cedcb35c9db img.jsx-b3259cedcb35c9db{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.no-img.jsx-b3259cedcb35c9db{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:11px;color:#9ca3af}.result-info.jsx-b3259cedcb35c9db{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;min-width:0}.result-info.jsx-b3259cedcb35c9db h3.jsx-b3259cedcb35c9db{margin:0 0 4px;font-size:16px;color:#111827}.result-meta.jsx-b3259cedcb35c9db{font-size:12px;color:#6b7280}.result-badge.jsx-b3259cedcb35c9db{display:inline-block;padding:2px 8px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background:#eff6ff;color:#1d4ed8;font-size:11px;font-weight:700;margin-bottom:4px}.result-desc.jsx-b3259cedcb35c9db{margin:6px 0 0;font-size:13px;color:#4b5563;line-height:1.5}.result-price.jsx-b3259cedcb35c9db{display:block;margin-top:6px;font-size:15px;color:#111827}@media(max-width:600px){.result-card.jsx-b3259cedcb35c9db{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.result-image.jsx-b3259cedcb35c9db{width:100%;height:160px}}"
             })
         ]
     });

@@ -1,14 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { motion, useReducedMotion } from 'motion/react'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
+
+/*
+  Plan: service · MIS brand yellow on warm stone · Albert Sans · soft
+  Deal: moments pinned-chapters + picture-develops · close-type · dark-band · block
+  Keep: existing hero composition + site footer
+*/
 
 const PRIMARY_CTA = { href: '/request-custom-quote', label: 'Request Solar Project Consultation' }
 const SECONDARY_CTA = { href: '/contact', label: 'Contact our solar team' }
 
 const HEADLINE = 'Solar power projects for organisations in Bangladesh'
+const HERO_LEAD =
+  'Rooftop, ground-mount and hybrid solar systems for corporate, government, semi-government and NGO sites in Bangladesh — engineered, installed and sourced by one team.'
 
 const segments = [
   {
@@ -54,18 +63,22 @@ const steps = [
   {
     title: 'Survey the site',
     body: 'We inspect the roof or land, check shading and structure, and study 12 months of your electricity bills.',
+    image: '/solar-pro-rooftop.jpg',
   },
   {
     title: 'Design the system and proposal',
     body: 'You receive a panel layout, a priced BOQ, a yield estimate and the expected payback period for approval.',
+    image: '/solar-pro-farm.jpg',
   },
   {
     title: 'Source and install',
     body: 'We procure the approved components and install them under our own site supervision and safety checks.',
+    image: '/solar-pro-install.jpg',
   },
   {
     title: 'Commission and hand over',
     body: 'We test and connect the system, train your staff, and hand over drawings, test reports and warranties.',
+    image: '/solar-pro-array.jpg',
   },
 ]
 
@@ -96,449 +109,25 @@ const consultationChecklist = [
   'Your target date for commissioning',
 ]
 
-const BEATS = [
-  'Sunlight reaches the array.',
-  'The inverter converts it.',
-  'The battery stores the surplus.',
-  'The lamp comes on.',
-]
-
-const SCENE_LABEL = 'Sunlight reaches a rooftop array, passes through an inverter into a battery, and lights a lamp.'
-
-const smooth = (t) => {
-  const x = Math.max(0, Math.min(1, t))
-  return x * x * (3 - 2 * x)
-}
-
-const BAYER8 = [
-  [0, 32, 8, 40, 2, 34, 10, 42],
-  [48, 16, 56, 24, 50, 18, 58, 26],
-  [12, 44, 4, 36, 14, 46, 6, 38],
-  [60, 28, 52, 20, 62, 30, 54, 22],
-  [3, 35, 11, 43, 1, 33, 9, 41],
-  [51, 19, 59, 27, 49, 17, 57, 25],
-  [15, 47, 7, 39, 13, 45, 5, 37],
-  [63, 31, 55, 23, 61, 29, 53, 21],
-]
-
-const PAPER = [236, 234, 228]
-const INK = [10, 16, 27]
-const SUN = [247, 229, 0]
-const WARM = [255, 246, 196]
-
-let softCanvas = null
-let softCtx = null
-let lightCanvas = null
-let lightCtx = null
-let outImage = null
-
-const ensureBuffers = (w, h) => {
-  if (!softCanvas) softCanvas = document.createElement('canvas')
-  if (!lightCanvas) lightCanvas = document.createElement('canvas')
-  if (softCanvas.width !== w || softCanvas.height !== h) {
-    softCanvas.width = w
-    softCanvas.height = h
-    lightCanvas.width = w
-    lightCanvas.height = h
-    softCtx = softCanvas.getContext('2d', { willReadFrequently: true })
-    lightCtx = lightCanvas.getContext('2d', { willReadFrequently: true })
-    outImage = null
-  }
-  if (!softCtx) softCtx = softCanvas.getContext('2d', { willReadFrequently: true })
-  if (!lightCtx) lightCtx = lightCanvas.getContext('2d', { willReadFrequently: true })
-  return softCtx
-}
-
-const fillSoft = (ctx, x, y, w, h, value) => {
-  const v = Math.max(0, Math.min(255, value | 0))
-  ctx.fillStyle = `rgb(${v},${v},${v})`
-  ctx.fillRect(x, y, w, h)
-}
-
-const radialSoft = (ctx, cx, cy, r0, r1, a, b) => {
-  const g = ctx.createRadialGradient(cx, cy, r0, cx, cy, r1)
-  g.addColorStop(0, `rgb(${a},${a},${a})`)
-  g.addColorStop(1, `rgb(${b},${b},${b})`)
-  ctx.fillStyle = g
-  ctx.beginPath()
-  ctx.arc(cx, cy, r1, 0, Math.PI * 2)
-  ctx.fill()
-}
-
-const ellipseSoft = (ctx, cx, cy, rx, ry, value, alpha = 1) => {
-  ctx.save()
-  ctx.globalAlpha = alpha
-  ctx.fillStyle = `rgb(${value},${value},${value})`
-  ctx.beginPath()
-  ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2)
-  ctx.fill()
-  ctx.restore()
-}
-
-const roundSoft = (ctx, x, y, w, h, r, value) => {
-  const radius = Math.max(0, Math.min(r, w / 2, h / 2))
-  ctx.beginPath()
-  ctx.moveTo(x + radius, y)
-  ctx.arcTo(x + w, y, x + w, y + h, radius)
-  ctx.arcTo(x + w, y + h, x, y + h, radius)
-  ctx.arcTo(x, y + h, x, y, radius)
-  ctx.arcTo(x, y, x + w, y, radius)
-  ctx.closePath()
-  ctx.fillStyle = `rgb(${value},${value},${value})`
-  ctx.fill()
-}
-
-const paintLight = (cx, cy, r, amount) => {
-  if (!lightCtx || amount < 0.02) return
-  const strength = amount * (softCtx ? softCtx.globalAlpha : 1)
-  if (strength < 0.02) return
-  const g = lightCtx.createRadialGradient(cx, cy, r * 0.05, cx, cy, r)
-  g.addColorStop(0, `rgba(255,255,255,${Math.min(1, strength)})`)
-  g.addColorStop(0.45, `rgba(255,255,255,${0.45 * strength})`)
-  g.addColorStop(1, 'rgba(255,255,255,0)')
-  lightCtx.fillStyle = g
-  lightCtx.beginPath()
-  lightCtx.arc(cx, cy, r, 0, Math.PI * 2)
-  lightCtx.fill()
-}
-
-const drawSun = (ctx, cx, cy, s, lit) => {
-  const r = s * 0.3
-  ellipseSoft(ctx, cx, cy + s * 0.4, s * 0.36, s * 0.08, 28, 0.4)
-  radialSoft(ctx, cx, cy, r * 0.08, r * 1.35, 210, 235)
-  radialSoft(ctx, cx, cy, r * 0.05, r, 40, 210)
-  radialSoft(ctx, cx - r * 0.28, cy - r * 0.3, 0, r * 0.5, 30, 120)
-  paintLight(cx, cy, r * 1.15, 0.55 + lit * 0.45)
-}
-
-const drawArray = (ctx, cx, cy, s, lit) => {
-  const w = s * 0.72
-  const h = s * 0.34
-  ellipseSoft(ctx, cx, cy + s * 0.38, s * 0.36, s * 0.07, 35, 0.32)
-  ctx.beginPath()
-  ctx.moveTo(cx - w * 0.48, cy + h * 0.35)
-  ctx.lineTo(cx + w * 0.52, cy + h * 0.18)
-  ctx.lineTo(cx + w * 0.42, cy - h * 0.55)
-  ctx.lineTo(cx - w * 0.55, cy - h * 0.32)
-  ctx.closePath()
-  const tone = 55 + lit * 120
-  ctx.fillStyle = `rgb(${tone},${tone},${tone})`
-  ctx.fill()
-  ctx.save()
-  ctx.clip()
-  ctx.strokeStyle = `rgb(${20},${20},${20})`
-  ctx.lineWidth = Math.max(1, s * 0.01)
-  for (let i = 1; i < 7; i += 1) {
-    const t = i / 7
-    ctx.beginPath()
-    ctx.moveTo(cx - w * 0.5 + w * t, cy + h * 0.32)
-    ctx.lineTo(cx - w * 0.52 + w * t * 0.95, cy - h * 0.5)
-    ctx.stroke()
-  }
-  for (let j = 1; j < 4; j += 1) {
-    const t = j / 4
-    ctx.beginPath()
-    ctx.moveTo(cx - w * 0.52, cy - h * 0.3 + h * t)
-    ctx.lineTo(cx + w * 0.48, cy - h * 0.48 + h * t)
-    ctx.stroke()
-  }
-  ctx.restore()
-  ctx.strokeStyle = `rgb(${210},${210},${210})`
-  ctx.lineWidth = Math.max(1, s * 0.012)
-  ctx.beginPath()
-  ctx.moveTo(cx - w * 0.48, cy + h * 0.35)
-  ctx.lineTo(cx + w * 0.52, cy + h * 0.18)
-  ctx.lineTo(cx + w * 0.42, cy - h * 0.55)
-  ctx.lineTo(cx - w * 0.55, cy - h * 0.32)
-  ctx.closePath()
-  ctx.stroke()
-}
-
-const drawInverter = (ctx, cx, cy, s, lit) => {
-  const w = s * 0.34
-  const h = s * 0.58
-  const x = cx - w * 0.5
-  const y = cy - h * 0.45
-  ellipseSoft(ctx, cx, cy + s * 0.38, s * 0.28, s * 0.06, 30, 0.3)
-  roundSoft(ctx, x, y, w, h, s * 0.04, 170)
-  roundSoft(ctx, x + w * 0.08, y + h * 0.08, w * 0.84, h * 0.22, s * 0.02, 30 + lit * 180)
-  for (let i = 0; i < 5; i += 1) {
-    fillSoft(ctx, x + w * 0.16, y + h * (0.42 + i * 0.09), w * 0.68, Math.max(2, s * 0.012), 70)
-  }
-  fillSoft(ctx, x + w * 0.72, y + h * 0.14, w * 0.1, h * 0.08, 230)
-}
-
-const drawBattery = (ctx, cx, cy, s, charge) => {
-  const w = s * 0.28
-  const h = s * 0.62
-  const x = cx - w * 0.5
-  const y = cy - h * 0.48
-  ellipseSoft(ctx, cx, cy + s * 0.38, s * 0.24, s * 0.055, 28, 0.3)
-  roundSoft(ctx, x, y, w, h, s * 0.035, 55)
-  fillSoft(ctx, x + w * 0.22, y - s * 0.035, w * 0.18, s * 0.04, 160)
-  fillSoft(ctx, x + w * 0.6, y - s * 0.035, w * 0.18, s * 0.04, 160)
-  const fillH = h * 0.86 * charge
-  const fy = y + h * 0.07 + (h * 0.86 - fillH)
-  roundSoft(ctx, x + w * 0.1, fy, w * 0.8, fillH, s * 0.02, 210 + charge * 30)
-  if (charge > 0.08) {
-    radialSoft(ctx, cx, fy + fillH * 0.2, 0, w * 0.55, 245, 120)
-    paintLight(cx, fy + fillH * 0.35, w * 0.9, charge * 0.7)
-  }
-}
-
-const drawLamp = (ctx, cx, cy, s, lit) => {
-  ellipseSoft(ctx, cx, cy + s * 0.4, s * 0.34, s * 0.075, 22, 0.35)
-  if (lit > 0.04) {
-    radialSoft(ctx, cx, cy - s * 0.02, 0, s * (0.22 + lit * 0.2), 70, 230)
-    ellipseSoft(ctx, cx, cy + s * 0.38, s * (0.2 + lit * 0.18), s * (0.055 + lit * 0.03), 80, 0.25 * lit)
-    paintLight(cx, cy - s * 0.02, s * (0.28 + lit * 0.2), lit)
-    paintLight(cx, cy + s * 0.36, s * 0.22, lit * 0.55)
-  }
-  ctx.strokeStyle = `rgb(45,45,45)`
-  ctx.lineWidth = Math.max(3, s * 0.04)
-  ctx.lineCap = 'round'
-  ctx.beginPath()
-  ctx.moveTo(cx - s * 0.1, cy + s * 0.38)
-  ctx.lineTo(cx - s * 0.1, cy - s * 0.02)
-  ctx.quadraticCurveTo(cx - s * 0.02, cy - s * 0.18, cx + s * 0.08, cy - s * 0.12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(cx - s * 0.02, cy - s * 0.2)
-  ctx.lineTo(cx + s * 0.2, cy - s * 0.24)
-  ctx.lineTo(cx + s * 0.14, cy - s * 0.02)
-  ctx.lineTo(cx + s * 0.02, cy)
-  ctx.closePath()
-  ctx.fillStyle = `rgb(${55 + lit * 40},${55 + lit * 40},${55 + lit * 40})`
-  ctx.fill()
-  radialSoft(ctx, cx + s * 0.08, cy + s * 0.02, 0, s * 0.09, 40, 160)
-}
-
-const FORMS = [drawSun, drawArray, drawInverter, drawBattery, drawLamp]
-
-const stageFromProgress = (progress) => {
-  const stops = [0, 0.2, 0.42, 0.64, 0.86, 1]
-  let i = 0
-  while (i < stops.length - 2 && progress >= stops[i + 1]) i += 1
-  const local = smooth((progress - stops[i]) / Math.max(0.001, stops[i + 1] - stops[i]))
-  return { from: i, to: Math.min(FORMS.length - 1, i + 1), blend: local }
-}
-
-const paintScatter = (ctx, w, h, amount, seed) => {
-  if (amount < 0.02) return
-  const count = Math.floor(40 + amount * 90)
-  for (let i = 0; i < count; i += 1) {
-    const n = Math.sin(seed * 12.9898 + i * 78.233) * 43758.5453
-    const r = n - Math.floor(n)
-    const n2 = Math.sin(seed * 4.1 + i * 19.19) * 23421.1
-    const r2 = n2 - Math.floor(n2)
-    const x = w * (0.18 + r * 0.64)
-    const y = h * (0.12 + r2 * 0.7)
-    const tone = 20 + ((i * 37) % 180)
-    ctx.fillStyle = `rgb(${tone},${tone},${tone})`
-    ctx.fillRect(x, y, 1.2 + (i % 3), 1.2 + (i % 2))
-  }
-}
-
-const ditherTo = (target, soft, light, width, height) => {
-  const src = soft.getImageData(0, 0, width, height)
-  const glow = light.getImageData(0, 0, width, height)
-  if (!outImage || outImage.width !== width || outImage.height !== height) {
-    outImage = target.createImageData(width, height)
-  }
-  const out = outImage.data
-  const data = src.data
-  const heat = glow.data
-  for (let y = 0; y < height; y += 1) {
-    for (let x = 0; x < width; x += 1) {
-      const i = (y * width + x) * 4
-      const lum = data[i]
-      const energy = heat[i] / 255
-      const threshold = (BAYER8[y & 7][x & 7] / 64) * 255
-      const on = lum > threshold
-      let rgb = INK
-      if (on) {
-        if (energy > 0.12) {
-          const t = Math.min(1, energy * 1.15)
-          rgb = [
-            Math.round(PAPER[0] + (SUN[0] - PAPER[0]) * t),
-            Math.round(PAPER[1] + (SUN[1] - PAPER[1]) * t),
-            Math.round(PAPER[2] + (SUN[2] - PAPER[2]) * t),
-          ]
-          if (energy > 0.78) rgb = WARM
-        } else {
-          rgb = PAPER
-        }
-      } else if (energy > 0.55) {
-        rgb = [
-          Math.round(INK[0] + (SUN[0] - INK[0]) * 0.35),
-          Math.round(INK[1] + (SUN[1] - INK[1]) * 0.35),
-          Math.round(INK[2] + (SUN[2] - INK[2]) * 0.2),
-        ]
+/* Opacity-only reveals — no transform/clip on ancestors (keeps knock-out fixed bg intact) */
+const reveal = (reduce, delay = 0) =>
+  reduce
+    ? {}
+    : {
+        initial: { opacity: 0 },
+        whileInView: { opacity: 1 },
+        viewport: { once: true, amount: 0.3 },
+        transition: { duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] },
       }
-      out[i] = rgb[0]
-      out[i + 1] = rgb[1]
-      out[i + 2] = rgb[2]
-      out[i + 3] = 255
-    }
-  }
-  target.putImageData(outImage, 0, 0)
-}
-
-const paintScene = (ctx, width, height, progress) => {
-  const scale = width > 900 ? 2.4 : width > 500 ? 2.1 : 1.7
-  const sw = Math.max(2, Math.round(width / scale))
-  const sh = Math.max(2, Math.round(height / scale))
-  const soft = ensureBuffers(sw, sh)
-
-  soft.fillStyle = '#eceae4'
-  soft.fillRect(0, 0, sw, sh)
-  const field = soft.createLinearGradient(0, 0, 0, sh)
-  field.addColorStop(0, '#f3f1ea')
-  field.addColorStop(0.6, '#e7e4db')
-  field.addColorStop(1, '#d8d4c9')
-  soft.fillStyle = field
-  soft.fillRect(0, 0, sw, sh)
-
-  lightCtx.clearRect(0, 0, sw, sh)
-  lightCtx.fillStyle = '#000'
-  lightCtx.fillRect(0, 0, sw, sh)
-
-  const { from, to, blend } = stageFromProgress(progress)
-  const cx = sw * 0.5
-  const cy = sh * 0.46
-  const size = Math.min(sw, sh) * 0.82
-  const morph = blend * (1 - blend) * 4
-  const lit =
-    from === 0
-      ? 1 - blend * 0.35
-      : from === 1
-        ? 0.55
-        : from === 2
-          ? 0.45 + blend * 0.4
-          : from === 3
-            ? 0.7 + blend * 0.3
-            : 1
-
-  soft.save()
-  soft.globalAlpha = 1 - blend * 0.92
-  FORMS[from](soft, cx, cy, size, from === 3 ? 1 - blend * 0.2 : from === 4 ? 1 : lit)
-  soft.restore()
-
-  soft.save()
-  soft.globalAlpha = blend
-  FORMS[to](soft, cx, cy, size, to === 3 ? blend : to === 4 ? blend : lit)
-  soft.restore()
-
-  paintScatter(soft, sw, sh, morph, progress * 17.3)
-
-  ditherTo(soft, soft, lightCtx, sw, sh)
-  ctx.imageSmoothingEnabled = false
-  ctx.fillStyle = '#eceae4'
-  ctx.fillRect(0, 0, width, height)
-  ctx.drawImage(softCanvas, 0, 0, sw, sh, 0, 0, width, height)
-  ctx.imageSmoothingEnabled = true
-}
-
-const LightScene = () => {
-  const canvasRef = useRef(null)
-  const [beat, setBeat] = useState(0)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return undefined
-    const ctx = canvas.getContext('2d', { alpha: false })
-    if (!ctx) {
-      setBeat(3)
-      return undefined
-    }
-
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let alive = true
-    let running = true
-    let raf = 0
-    let acc = 0
-    let last = 0
-    const duration = 8200
-
-    const drawAt = (progress) => {
-      const rect = canvas.getBoundingClientRect()
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      const nextW = Math.max(2, Math.round(rect.width * dpr))
-      const nextH = Math.max(2, Math.round(rect.height * dpr))
-      if (canvas.width !== nextW || canvas.height !== nextH) {
-        canvas.width = nextW
-        canvas.height = nextH
-      }
-      if (nextW < 4 || nextH < 4) return
-      paintScene(ctx, canvas.width, canvas.height, progress)
-      const nextBeat = progress >= 0.64 ? 3 : progress >= 0.42 ? 2 : progress >= 0.2 ? 1 : 0
-      setBeat((prev) => (prev === nextBeat ? prev : nextBeat))
-    }
-
-    const loop = (now) => {
-      if (!alive) return
-      if (!last) last = now
-      if (running) acc += Math.min(48, now - last)
-      last = now
-      const progress = Math.min(1, acc / duration)
-      drawAt(progress)
-      raf = progress < 1 && running ? requestAnimationFrame(loop) : 0
-    }
-
-    const start = () => {
-      if (raf || !alive || reduce || acc >= duration) return
-      last = 0
-      raf = requestAnimationFrame(loop)
-    }
-
-    if (reduce) {
-      setBeat(3)
-      drawAt(1)
-    } else {
-      drawAt(0)
-      start()
-    }
-
-    const resize = new ResizeObserver(() => {
-      drawAt(reduce ? 1 : Math.min(1, acc / duration))
-    })
-    resize.observe(canvas)
-
-    const visibility = new IntersectionObserver(([entry]) => {
-      running = entry.isIntersecting
-      if (running) start()
-    })
-    visibility.observe(canvas)
-
-    return () => {
-      alive = false
-      cancelAnimationFrame(raf)
-      resize.disconnect()
-      visibility.disconnect()
-    }
-  }, [])
-
-  return (
-    <div className="sol-stage">
-      <div className="sol-stage-picture">
-        <canvas ref={canvasRef} role="img" aria-label={SCENE_LABEL} />
-      </div>
-      <ol className="sol-beats">
-        {BEATS.map((line, index) => (
-          <li key={line} className={index === beat ? 'is-active' : index < beat ? 'is-done' : ''} aria-current={index === beat ? 'step' : undefined}>
-            <span className="sol-beat-mark" aria-hidden="true" />
-            <p>{line}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  )
-}
 
 const CtaPair = ({ onDark = false }) => (
   <div className="sol-actions">
     <Link href={PRIMARY_CTA.href}>
-      <a className="sol-btn">{PRIMARY_CTA.label}</a>
+      <a className="sol-btn">
+        <span className="sol-btn-fill" aria-hidden="true" />
+        <span className="sol-btn-sheen" aria-hidden="true" />
+        <span className="sol-btn-label">{PRIMARY_CTA.label}</span>
+      </a>
     </Link>
     <Link href={SECONDARY_CTA.href}>
       <a className={`sol-link${onDark ? ' sol-link--dark' : ''}`}>{SECONDARY_CTA.label}</a>
@@ -546,138 +135,252 @@ const CtaPair = ({ onDark = false }) => (
   </div>
 )
 
-const HowItWorks = () => (
-  <section className="sol-section sol-how" id="how-it-works" aria-labelledby="sol-how-h">
-    <div className="sol-wrap">
-      <h2 id="sol-how-h">Four steps from site survey to handover</h2>
-      <p className="sol-lead">One project manager stays with you from the first site visit to the final handover.</p>
-      <ol className="sol-steps-list">
-        {steps.map((s, i) => (
-          <li key={s.title} className="sol-step">
-            <span className="sol-step-num">{i + 1}</span>
-            <div>
-              <h3>{s.title}</h3>
-              <p>{s.body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-)
+const HowItWorks = ({ reduce }) => {
+  const [active, setActive] = useState(0)
+
+  return (
+    <section className="sol-section sol-how" id="how-it-works" aria-labelledby="sol-how-h">
+      <div className="sol-wrap sol-how-grid">
+        <div className="sol-how-copy">
+          <h2 id="sol-how-h">Four steps from site survey to handover</h2>
+          <p className="sol-lead">One project manager stays with you from the first site visit to the final handover.</p>
+          <ol className="sol-steps-rail">
+            {steps.map((s, i) => (
+              <li key={s.title} className="sol-step-item">
+                <button
+                  type="button"
+                  className={`sol-step-btn${active === i ? ' is-active' : ''}`}
+                  onClick={() => setActive(i)}
+                  onMouseEnter={() => setActive(i)}
+                  aria-current={active === i ? 'step' : undefined}
+                >
+                  <span className="sol-step-num">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="sol-step-text">
+                    <strong>{s.title}</strong>
+                    <span>{s.body}</span>
+                  </span>
+                </button>
+                {active === i && !reduce ? (
+                  <motion.span
+                    className="sol-step-active-glow"
+                    layoutId="sol-step-active"
+                    transition={{ type: 'spring', stiffness: 380, damping: 34 }}
+                    aria-hidden="true"
+                  />
+                ) : active === i ? (
+                  <span className="sol-step-active-glow" aria-hidden="true" />
+                ) : null}
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className="sol-how-frame" aria-hidden="true">
+          {steps.map((s, i) => (
+            <motion.img
+              key={s.image}
+              src={s.image}
+              alt=""
+              className={`sol-how-photo${active === i ? ' is-active' : ''}`}
+              initial={false}
+              animate={{ opacity: active === i ? 1 : 0 }}
+              transition={reduce ? { duration: 0 } : { duration: 0.45 }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 const SolarPage = () => {
-  const words = HEADLINE.split(' ')
+  const [heroReady, setHeroReady] = useState(false)
+  const reduce = useReducedMotion()
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setHeroReady(true)
+      return undefined
+    }
+    const id = window.requestAnimationFrame(() => setHeroReady(true))
+    return () => window.cancelAnimationFrame(id)
+  }, [])
 
   return (
     <div className="sol-page">
       <Head>
         <title>Solar Integrated Projects - MIS Solution</title>
-        <meta name="description" content="MIS Solution designs, delivers and sources solar power projects for corporate, government, semi-government and NGO clients in Bangladesh." />
+        <meta
+          name="description"
+          content="MIS Solution designs, delivers and sources solar power projects for corporate, government, semi-government and NGO clients in Bangladesh."
+        />
+        <meta name="page-type" content="service" />
+        <meta name="site-kind" content="other" />
         <meta property="og:title" content="Solar Integrated Projects - MIS Solution" />
-        <meta property="og:description" content="Solar project development and component sourcing for organisations in Bangladesh." />
+        <meta
+          property="og:description"
+          content="Solar project development and component sourcing for organisations in Bangladesh."
+        />
+        <link rel="preload" as="image" href="/solar-hero-walker.avif" type="image/avif" />
+        <link rel="preload" as="image" href="/solar-hero-walker.webp" type="image/webp" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500&family=Source+Serif+4:wght@400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
         />
       </Head>
+
+      {/* Fixed to the viewport — panels/letters scroll over this */}
+      <div className="sol-fixed-bg" aria-hidden="true">
+        <picture>
+          <source srcSet="/solar-hero-walker.avif" type="image/avif" />
+          <source srcSet="/solar-hero-walker.webp" type="image/webp" />
+          <img
+            className="sol-fixed-photo"
+            src="/solar-hero-walker.jpg"
+            alt=""
+            decoding="async"
+            fetchPriority="high"
+          />
+        </picture>
+      </div>
 
       <Navigation />
 
       <main>
-        <section className="sol-hero" aria-labelledby="sol-hero-h">
-          <div className="sol-wrap sol-hero-inner">
-            <LightScene />
+        <section
+          className={`sol-hero hero-section${heroReady ? ' is-ready' : ''}`}
+          aria-labelledby="sol-hero-h"
+        >
+          <div className="sol-hero-frost">
             <div className="sol-hero-copy">
-              <h1 id="sol-hero-h" aria-label={HEADLINE}>
-                {words.map((w, i) => (
-                  <React.Fragment key={`${w}-${i}`}>
-                    <span className="sol-w" aria-hidden="true">
-                      <span style={{ '--wd': `${Math.min(i * 0.035, 0.24)}s` }}>{w}</span>
-                    </span>
-                    {i < words.length - 1 ? ' ' : null}
-                  </React.Fragment>
-                ))}
+              <p className="sol-hero-eyebrow">Solar Integrated Projects</p>
+              <h1 id="sol-hero-h" className="sol-hero-title" aria-label={HEADLINE}>
+                <span className="sol-hero-title-stroke" aria-hidden="true">
+                  {HEADLINE}
+                </span>
+                <span className="sol-hero-title-fill" aria-hidden="true">
+                  {HEADLINE}
+                </span>
               </h1>
-              <p className="sol-hero-lead sol-rise" style={{ '--d': 1 }}>
-                Solar Integrated Projects plans, engineers and installs rooftop, ground-mount and hybrid solar systems for corporate, government, semi-government and NGO sites, and sources every component the project needs.
-              </p>
-              <div className="sol-rise" style={{ '--d': 2 }}>
-                <CtaPair />
-              </div>
+              <p className="sol-hero-lead">{HERO_LEAD}</p>
+            </div>
+            <div className="sol-hero-cta">
+              <CtaPair />
             </div>
           </div>
         </section>
 
-        <section className="sol-section sol-ground-white" id="who-we-serve" aria-labelledby="sol-who-h">
+        <section className="sol-section sol-clients" id="who-we-serve" aria-labelledby="sol-who-h">
           <div className="sol-wrap">
-            <h2 id="sol-who-h">Solar projects for corporate, public and NGO clients</h2>
-            <p className="sol-lead">Each client group buys differently. We shape the proposal, paperwork and payment schedule to the way your organisation procures.</p>
-            <ul className="sol-cards">
-              {segments.map((s) => (
-                <li key={s.label} className="sol-card">
-                  <h3>{s.label}</h3>
-                  <p>{s.title}. {s.body}</p>
-                </li>
+            <motion.div className="sol-section-head" {...reveal(reduce)}>
+              <p className="sol-kicker">Who we serve</p>
+              <h2 id="sol-who-h">Solar projects for corporate, public and NGO clients</h2>
+              <p className="sol-lead">
+                Each client group buys differently. We shape the proposal, paperwork and payment schedule to
+                the way your organisation procures.
+              </p>
+            </motion.div>
+            <ul className="sol-segment-rail">
+              {segments.map((s, i) => (
+                <motion.li key={s.label} {...reveal(reduce, reduce ? 0 : i * 0.05)}>
+                  <div className="sol-segment-meta">
+                    <span className="sol-segment-index">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="sol-segment-label">{s.label}</span>
+                  </div>
+                  <h3>{s.title}</h3>
+                  <p className="sol-segment-body">{s.body}</p>
+                </motion.li>
               ))}
             </ul>
           </div>
         </section>
 
-        <section className="sol-section" id="services" aria-labelledby="sol-what-h">
-          <div className="sol-wrap">
-            <h2 id="sol-what-h">Project development and component sourcing</h2>
-            <p className="sol-lead">Hire us for the whole project or only the parts you need. Both services run from one team under one contract.</p>
-            <div className="sol-split-cards">
-              <div className="sol-panel-card">
+        <section className="sol-section sol-services" id="services" aria-labelledby="sol-what-h">
+          <div className="sol-wrap sol-services-grid">
+            <motion.div className="sol-services-intro" {...reveal(reduce)}>
+              <p className="sol-kicker">What we do</p>
+              <h2 id="sol-what-h">Project development and component sourcing</h2>
+              <p className="sol-lead">
+                Hire us for the whole project or only the parts you need. Both services run from one team under
+                one contract.
+              </p>
+            </motion.div>
+            <div className="sol-services-cols">
+              <motion.div className="sol-service-col" {...reveal(reduce, reduce ? 0 : 0.08)}>
                 <h3>Project development</h3>
                 <ul className="sol-list">
-                  {development.map((d) => <li key={d}>{d}</li>)}
+                  {development.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
                 </ul>
-              </div>
-              <div className="sol-panel-card">
+              </motion.div>
+              <motion.div className="sol-service-col" {...reveal(reduce, reduce ? 0 : 0.14)}>
                 <h3>Component sourcing</h3>
                 <ul className="sol-list">
-                  {sourcing.map((d) => <li key={d}>{d}</li>)}
+                  {sourcing.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
                 </ul>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        <HowItWorks />
+        <HowItWorks reduce={reduce} />
 
-        <section className="sol-section sol-ground-white" id="why-mis" aria-labelledby="sol-why-h">
-          <div className="sol-wrap sol-why-grid">
-            <div>
-              <h2 id="sol-why-h">What MIS Solution brings to your project</h2>
-              <p className="sol-lead">MIS Solution already delivers data centres, structured cabling and security systems for corporate clients. Solar projects run on the same delivery process.</p>
+        <section className="sol-section sol-develop" id="why-mis" aria-labelledby="sol-why-h">
+          <div className="sol-wrap sol-develop-grid">
+            <motion.div
+              className="sol-develop-photo"
+              aria-hidden="true"
+              initial={reduce ? false : { opacity: 0.35, scale: 1.04, filter: 'grayscale(1)' }}
+              whileInView={reduce ? undefined : { opacity: 1, scale: 1, filter: 'grayscale(0)' }}
+              viewport={{ once: true, amount: 0.45 }}
+              transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <img src="/solar-pro-field.jpg" alt="" />
+            </motion.div>
+            <div className="sol-develop-copy">
+              <motion.div {...reveal(reduce)}>
+                <p className="sol-kicker">Why MIS</p>
+                <h2 id="sol-why-h">What MIS Solution brings to your project</h2>
+                <p className="sol-lead">
+                  MIS Solution already delivers data centres, structured cabling and security systems for
+                  corporate clients. Solar projects run on the same delivery process.
+                </p>
+              </motion.div>
+              <ul className="sol-reason-stack">
+                {reasons.map((r, i) => (
+                  <motion.li key={r.title} {...reveal(reduce, reduce ? 0 : i * 0.05)}>
+                    <h3>{r.title}</h3>
+                    <p>{r.body}</p>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
-            <ul className="sol-reasons">
-              {reasons.map((r) => (
-                <li key={r.title}>
-                  <h3>{r.title}</h3>
-                  <p>{r.body}</p>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
         <section className="sol-section sol-close" id="consultation" aria-labelledby="sol-close-h">
           <div className="sol-wrap sol-close-grid">
-            <div className="sol-close-main">
+            <motion.div className="sol-close-main" {...reveal(reduce)}>
+              <p className="sol-kicker sol-kicker--on-dark">Next step</p>
               <h2 id="sol-close-h">Plan your solar project with MIS Solution</h2>
-              <p className="sol-lead">Share your site details with our solar team. We arrange a site survey and walk you through the next steps.</p>
-              <CtaPair />
-            </div>
-            <div className="sol-close-list">
+              <p className="sol-lead">
+                Share your site details with our solar team. We arrange a site survey and walk you through the
+                next steps.
+              </p>
+              <CtaPair onDark />
+            </motion.div>
+            <motion.div className="sol-close-list" {...reveal(reduce, reduce ? 0 : 0.1)}>
               <h3>What to send for a first estimate</h3>
-              <ul className="sol-list">
-                {consultationChecklist.map((c) => <li key={c}>{c}</li>)}
+              <ul className="sol-list sol-list--dark">
+                {consultationChecklist.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
@@ -685,32 +388,101 @@ const SolarPage = () => {
       <Footer />
 
       <style jsx global>{`
+        /* Keep site footer above fixed page photo; do not restyle it */
+        .sol-page .footer-container1,
+        .sol-page .footer-mega {
+          position: relative;
+          z-index: 1;
+        }
+
         .sol-page {
-          --sol-bg: #f6f7f4;
+          --sol-bg: #f2f1ec;
           --sol-surface: #ffffff;
-          --sol-ink: #0f1622;
-          --sol-muted: #3d4a5c;
-          --sol-line: #d9dde3;
+          --sol-ink: #12110e;
+          --sol-muted: #5c5b55;
+          --sol-line: rgba(18, 17, 14, 0.12);
           --sol-sun: #f7e500;
-          --sol-sun-step: #d6c704;
-          --sol-sun-ink: #0a101b;
-          --sol-night: #0a101b;
-          --sol-night-2: #141c2b;
-          --sol-pv: #2d6a9f;
-          --sol-pv-light: #8fb4d6;
-          --sol-on-night: #f2f4f7;
-          --sol-on-night-muted: #a9b4c4;
+          --sol-sun-step: #e6d600;
+          --sol-sun-ink: #111111;
+          --sol-night: #000000;
+          --sol-night-2: #0a0a0a;
+          --sol-on-night: #f2f1ec;
+          --sol-on-night-muted: #94928e;
           --sol-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-          --sol-text: 'Libre Franklin', system-ui, -apple-system, 'Segoe UI', sans-serif;
+          --sol-sans: 'Albert Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+          --sol-text: var(--sol-sans);
           --sol-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
           --sol-ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
           --sol-gut: 80px;
           --sol-nav: 72px;
           --sol-radius: 12px;
-          background: var(--sol-bg);
+          --sol-knock-img: url('/solar-hero-walker.webp');
+          --sol-split: 50%;
+          background: transparent;
           color: var(--sol-ink);
-          font-family: var(--sol-text);
+          font-family: var(--sol-sans);
           letter-spacing: 0;
+        }
+
+        /* Screen-fixed photo; content layers scroll over it */
+        .sol-fixed-bg {
+          position: fixed;
+          inset: 0;
+          z-index: 0;
+          pointer-events: none;
+          overflow: hidden;
+        }
+        .sol-fixed-bg picture {
+          display: block;
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+        /* Desktop: scale to viewport width (see full scene width, crop top/bottom) */
+        .sol-fixed-photo {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          width: 100%;
+          height: auto;
+          min-height: 100%;
+          transform: translateY(-50%);
+          object-fit: cover;
+          object-position: center center;
+        }
+        .sol-page main {
+          position: relative;
+          z-index: 1;
+        }
+        /* Seams: fixed farm photo peeks between scrolling bands */
+        .sol-page main > section + section {
+          margin-top: 16px;
+        }
+
+        /*
+          Knock-out on section headers + hero headline.
+          attachment:fixed = same locked bg as .sol-fixed-bg; letters scroll over it.
+        */
+        .sol-page main > section:not(.sol-hero) h2 {
+          color: transparent !important;
+          -webkit-text-fill-color: transparent !important;
+          font-weight: 700 !important;
+          background-image:
+            linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06)),
+            var(--sol-knock-img);
+          background-size: 100vw auto, 100vw auto;
+          background-position: center center, center center;
+          background-repeat: no-repeat, no-repeat;
+          background-attachment: fixed, fixed;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-stroke: 1.15px rgba(255, 255, 255, 0.88);
+        }
+        .sol-page main .sol-btn {
+          background-image: none;
+          -webkit-background-clip: border-box;
+          background-clip: border-box;
+          -webkit-text-stroke: 0;
         }
 
         .sol-page ::selection {
@@ -718,31 +490,42 @@ const SolarPage = () => {
           color: var(--sol-sun-ink);
         }
         .sol-hero,
-        .sol-section { scroll-margin-top: var(--sol-nav); }
+        .sol-section {
+          scroll-margin-top: var(--sol-nav);
+        }
 
         .sol-page main h1,
         .sol-page main h2,
         .sol-page main h3 {
           margin: 0;
-          font-family: var(--sol-display);
           font-weight: 400;
           color: inherit;
           text-wrap: balance;
         }
         .sol-page main h2 {
-          font-size: clamp(30px, 3.4vw, 48px);
-          line-height: 1.1;
-          letter-spacing: -0.02em;
-          max-width: 22ch;
+          font-family: var(--sol-sans);
+          font-size: clamp(32px, 4vw, 56px);
+          line-height: 1.05;
+          letter-spacing: -0.035em;
+          max-width: 18ch;
+          font-weight: 700;
         }
         .sol-page main h3 {
-          font-size: clamp(19px, 1.5vw, 22px);
+          font-family: var(--sol-sans);
+          font-size: clamp(18px, 1.4vw, 22px);
           line-height: 1.25;
-          letter-spacing: -0.01em;
+          letter-spacing: -0.02em;
+          font-weight: 600;
         }
-        .sol-page main p { margin: 0; }
+        .sol-page main p {
+          margin: 0;
+        }
         .sol-page main ul,
-        .sol-page main ol { list-style: none; margin: 0; padding: 0; }
+        .sol-page main ol {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
 
         .sol-wrap {
           width: min(100% - 2 * var(--sol-gut), 1280px);
@@ -750,402 +533,781 @@ const SolarPage = () => {
         }
 
         .sol-section {
-          padding: 88px 0 80px;
-          background: var(--sol-bg);
+          position: relative;
+          z-index: 1;
+          padding: min(18vh, 120px) 0 min(14vh, 96px);
+          background: #ffffff;
         }
-        .sol-ground-white { background: var(--sol-surface); }
+
+        .sol-kicker {
+          margin: 0 0 16px !important;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--sol-muted);
+        }
+        .sol-kicker--on-dark {
+          color: var(--sol-on-night-muted);
+        }
 
         .sol-lead {
           margin-top: 20px !important;
-          max-width: 68ch;
-          font-size: 18px;
-          line-height: 1.6;
+          max-width: 42ch;
+          font-size: 17px;
+          line-height: 1.55;
           color: var(--sol-muted);
         }
 
-        /* Buttons and links */
+        .sol-section-head {
+          max-width: 52rem;
+          margin-bottom: 56px;
+        }
+
         .sol-actions {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          gap: 16px 32px;
+          gap: 16px 28px;
         }
         .sol-btn {
+          position: relative;
+          isolation: isolate;
+          overflow: hidden;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          min-height: 52px;
-          padding: 14px 26px;
+          min-height: 54px;
+          padding: 16px 28px;
+          border: 0;
           border-radius: 8px;
           background: var(--sol-sun);
-          color: var(--sol-sun-ink);
-          font-family: var(--sol-text);
-          font-size: 16px;
-          font-weight: 500;
-          line-height: 1.2;
+          color: #111111 !important;
+          -webkit-text-fill-color: #111111 !important;
+          font-family: var(--sol-sans);
+          font-size: 15px;
+          font-weight: 700;
+          line-height: 1.15;
+          letter-spacing: -0.01em;
           text-decoration: none;
-          box-shadow: inset 0 0 0 1px rgba(10, 16, 27, 0.16);
-          transition: background-color 120ms var(--sol-ease), transform 120ms var(--sol-ease);
+          box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+          transition: transform 180ms var(--sol-ease), box-shadow 180ms var(--sol-ease),
+            filter 180ms var(--sol-ease);
+        }
+        .sol-btn-fill {
+          display: none;
+        }
+        .sol-btn-sheen {
+          position: absolute;
+          z-index: 1;
+          top: 0;
+          left: -60%;
+          width: 48%;
+          height: 100%;
+          background: linear-gradient(
+            100deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.55) 50%,
+            transparent 80%
+          );
+          pointer-events: none;
+          animation: sol-btn-sheen 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        .sol-btn-label {
+          position: relative;
+          z-index: 2;
+        }
+        @keyframes sol-btn-sheen {
+          0%,
+          35% {
+            transform: translateX(0) skewX(-18deg);
+            opacity: 0;
+          }
+          45% {
+            opacity: 1;
+          }
+          75%,
+          100% {
+            transform: translateX(320%) skewX(-18deg);
+            opacity: 0;
+          }
         }
         .sol-link {
           display: inline-flex;
           align-items: center;
           min-height: 44px;
           color: var(--sol-ink);
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 500;
-          text-decoration: underline;
-          text-decoration-thickness: 1px;
-          text-underline-offset: 0.28em;
-          transition: color 150ms var(--sol-ease);
+          text-decoration: none;
+          background-image: linear-gradient(currentColor, currentColor);
+          background-position: 0 100%;
+          background-repeat: no-repeat;
+          background-size: 0 1px;
+          transition: background-size 220ms var(--sol-ease), color 150ms var(--sol-ease);
         }
-        .sol-link--dark { color: var(--sol-on-night); }
+        .sol-link--dark {
+          color: var(--sol-on-night);
+        }
         @media (hover: hover) and (pointer: fine) {
           .sol-btn:hover {
-            background: var(--sol-sun-step);
+            filter: brightness(1.04);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
             transform: translateY(-1px);
-            transition-duration: 150ms;
           }
-          .sol-link:hover { color: var(--sol-pv); }
-          .sol-link--dark:hover { color: var(--sol-sun); }
+          .sol-link:hover {
+            background-size: 100% 1px;
+          }
         }
         .sol-btn:active {
-          transform: translateY(1px) scale(0.985);
-          transition-duration: 90ms;
+          transform: scale(0.98);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+          filter: brightness(0.98);
         }
-        .sol-link:active { transform: scale(0.985); }
         .sol-page a:focus-visible {
-          outline: 2px solid var(--sol-pv);
+          outline: 2px solid var(--sol-sun);
           outline-offset: 3px;
           border-radius: 4px;
         }
 
-        /* Hero */
+        /* Hero overlays only — photo is .sol-fixed-bg */
         .sol-hero {
-          height: calc(100svh - var(--sol-nav));
+          position: relative;
+          z-index: 1;
+          min-height: 100vh;
+          min-height: 100svh;
+          min-height: 100dvh;
           box-sizing: border-box;
-          padding: 12px 0 18px;
-          background: var(--sol-bg);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          overflow: hidden;
-        }
-        .sol-hero-inner {
-          flex: 1;
-          min-height: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-        .sol-stage {
-          flex: 1 1 auto;
-          min-height: 0;
-          display: grid;
-          grid-template-columns: minmax(0, 1.55fr) minmax(210px, 0.72fr);
-          gap: 28px;
-          align-items: stretch;
-        }
-        .sol-stage-picture {
-          min-height: 0;
-          border-radius: 0;
-          overflow: hidden;
-          background: #eceae4;
-          -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-        }
-        .sol-stage-picture canvas {
-          display: block;
-          width: 100%;
-          height: 100%;
-          image-rendering: pixelated;
-        }
-        .sol-beats {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          gap: 18px;
-          margin: 0;
-          padding: 4px 0 16%;
-        }
-        .sol-beats li {
-          display: grid;
-          grid-template-columns: 14px 1fr;
-          gap: 12px;
-          align-items: start;
-          color: var(--sol-muted);
-          opacity: 0.28;
-          filter: blur(3px);
-          transform: translateY(4px);
-          transition:
-            opacity 320ms var(--sol-ease),
-            color 320ms var(--sol-ease),
-            filter 320ms var(--sol-ease),
-            transform 320ms var(--sol-ease);
-        }
-        .sol-beats li.is-done {
-          opacity: 0.7;
-          filter: none;
-          transform: none;
-        }
-        .sol-beats li.is-active {
-          opacity: 1;
+          padding: 0;
+          background: transparent;
           color: var(--sol-ink);
-          filter: none;
-          transform: none;
+          overflow: hidden;
         }
-        .sol-beat-mark {
-          width: 8px;
-          height: 8px;
-          margin-top: 7px;
-          border-radius: 50%;
-          background: var(--sol-line);
+
+        .sol-page .sol-hero-lead {
+          position: relative;
+          z-index: 1;
+          width: auto;
+          max-width: 42ch;
+          margin: 0 !important;
+          padding: 0;
+          border-radius: 0;
+          background: transparent;
+          font-size: 15px;
+          line-height: 1.6;
+          color: var(--sol-muted) !important;
+          -webkit-text-fill-color: var(--sol-muted) !important;
+          background-image: none;
+          opacity: 0;
+          transition: opacity 480ms var(--sol-ease-enter) 220ms;
         }
-        .sol-beats li.is-done .sol-beat-mark,
-        .sol-beats li.is-active .sol-beat-mark {
-          background: var(--sol-sun);
-          box-shadow: 0 0 0 1px rgba(10, 16, 27, 0.18);
+        .sol-hero.is-ready .sol-hero-lead {
+          opacity: 1;
         }
-        .sol-beats p { margin: 0; font-size: 16px; line-height: 1.4; letter-spacing: -0.01em; }
-        .sol-hero-copy { flex: none; }
-        .sol-hero h1 {
-          font-size: clamp(28px, 3.2vw, 46px);
+
+        .sol-hero-frost {
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: var(--sol-split);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          gap: 20px;
+          box-sizing: border-box;
+          padding: calc(var(--sol-nav) + 24px) clamp(28px, 4vw, 56px) clamp(56px, 10vh, 96px);
+          background: #ffffff !important;
+          border: 0;
+          box-shadow: none;
+          opacity: 0;
+          transition: opacity 520ms var(--sol-ease-enter);
+        }
+        .sol-hero.is-ready .sol-hero-frost {
+          opacity: 1;
+        }
+        .sol-hero-copy {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .sol-page .sol-hero-eyebrow {
+          margin: 0 !important;
+          font-family: var(--sol-sans);
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #111111 !important;
+          -webkit-text-fill-color: #111111 !important;
+          background: none !important;
+          -webkit-text-stroke: 0 !important;
+        }
+        .sol-page .sol-hero-title {
+          position: relative;
+          margin: 0;
+          max-width: 14ch;
+          font-family: var(--sol-display);
+          font-size: clamp(32px, 3.4vw, 52px);
+          font-weight: 700 !important;
           line-height: 1.05;
-          letter-spacing: -0.026em;
-          max-width: 18ch;
+          letter-spacing: -0.03em;
+          text-wrap: balance;
         }
-        .sol-w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
-        .sol-w > span {
-          display: inline-block;
-          animation: sol-word 700ms var(--sol-ease-enter) both;
-          animation-delay: var(--wd);
+        .sol-page .sol-hero-title-stroke,
+        .sol-page .sol-hero-title-fill {
+          display: block;
+          font: inherit;
+          letter-spacing: inherit;
+          line-height: inherit;
+          text-wrap: inherit;
         }
-        .sol-hero-lead {
-          margin-top: 10px !important;
-          max-width: 68ch;
-          font-size: 17px;
-          line-height: 1.45;
-          color: var(--sol-muted);
+        .sol-page .sol-hero-title-stroke {
+          position: absolute;
+          inset: 0;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+          -webkit-text-stroke: 2px #ffffff;
+          pointer-events: none;
+          user-select: none;
+          opacity: 0;
+          transition: opacity 420ms var(--sol-ease-enter) 40ms;
         }
-        .sol-hero .sol-actions { margin-top: 14px; }
-        .sol-rise {
-          animation: sol-rise 520ms var(--sol-ease-enter) both;
-          animation-delay: calc(0.42s + var(--d, 0) * 0.06s);
+        .sol-page .sol-hero-title-fill {
+          position: relative;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+          font-weight: 700 !important;
+          background-image: url('/solar-hero-walker.webp');
+          background-size: 100vw auto;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          -webkit-background-clip: text;
+          background-clip: text;
+          opacity: 0;
+          transition: opacity 560ms var(--sol-ease-enter) 180ms;
+        }
+        .sol-hero.is-ready .sol-hero-title-stroke,
+        .sol-hero.is-ready .sol-hero-title-fill {
+          opacity: 1;
+        }
+        @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+          .sol-page .sol-hero-title-stroke {
+            display: none;
+          }
+          .sol-page .sol-hero-title-fill {
+            color: #111111;
+            -webkit-text-fill-color: #111111;
+            background: none;
+          }
+        }
+        .sol-hero-cta {
+          margin-top: 4px;
+        }
+        .sol-hero .sol-actions {
+          margin-top: 0;
+        }
+        .sol-hero .sol-link {
+          color: #111111;
+          font-family: var(--sol-sans);
         }
 
-        @keyframes sol-word { from { transform: translateY(105%); } to { transform: none; } }
-        @keyframes sol-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-
-        /* Who we serve */
-        .sol-cards {
-          margin-top: 48px !important;
+        /* Clients — editorial rail, no cards */
+        .sol-clients {
+          background: #ffffff;
+        }
+        .sol-segment-rail {
           display: grid;
           grid-template-columns: repeat(4, minmax(0, 1fr));
-          gap: 24px;
+          gap: 0;
+          border-top: 1px solid var(--sol-line);
         }
-        .sol-card {
+        .sol-segment-rail > li {
           display: flex;
           flex-direction: column;
-          gap: 14px;
-          padding: 28px 24px 32px;
-          border-radius: var(--sol-radius);
-          background: var(--sol-bg);
-          border: 1px solid var(--sol-line);
+          gap: 12px;
+          padding: 32px 28px 28px 0;
+          border-right: 1px solid var(--sol-line);
         }
-        .sol-card p { font-size: 16px; line-height: 1.6; color: var(--sol-muted); }
+        .sol-segment-rail > li:not(:first-child) {
+          padding-left: 28px;
+        }
+        .sol-segment-rail > li:last-child {
+          border-right: 0;
+          padding-right: 0;
+        }
+        .sol-segment-meta {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          min-height: 24px;
+        }
+        .sol-segment-index {
+          flex: 0 0 auto;
+          margin: 0 !important;
+          font-size: 12px;
+          font-weight: 700;
+          font-variant-numeric: tabular-nums;
+          letter-spacing: 0.06em;
+          color: var(--sol-sun-ink);
+          background: var(--sol-sun);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 2.25rem;
+          padding: 4px 7px;
+          border-radius: 2px;
+          line-height: 1;
+        }
+        .sol-segment-label {
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--sol-muted);
+        }
+        .sol-page main .sol-segment-rail h3 {
+          font-size: clamp(17px, 1.35vw, 20px);
+          font-weight: 600;
+          line-height: 1.3;
+          letter-spacing: -0.02em;
+          max-width: 16ch;
+        }
+        .sol-segment-body {
+          margin: 0 !important;
+          font-size: 14px;
+          line-height: 1.55;
+          color: var(--sol-muted);
+          max-width: 28ch;
+        }
 
-        /* What we do */
-        .sol-split-cards {
-          margin-top: 48px;
+        /* Services */
+        .sol-services {
+          background: #ffffff;
+        }
+        .sol-services-grid {
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 24px;
+          grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+          gap: 48px 72px;
+          align-items: start;
         }
-        .sol-panel-card {
-          padding: 40px 48px 44px;
-          border-radius: var(--sol-radius);
-          background: var(--sol-surface);
-          border: 1px solid var(--sol-line);
+        .sol-services-cols {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 32px 36px;
         }
-        .sol-list { margin-top: 20px !important; }
+        .sol-service-col h3 {
+          padding-bottom: 16px;
+          border-bottom: 2px solid var(--sol-sun);
+        }
+        .sol-list {
+          margin-top: 8px !important;
+        }
         .sol-list li {
           position: relative;
-          padding: 14px 0 14px 28px;
-          font-size: 16px;
+          padding: 16px 0 16px 22px;
+          font-size: 15px;
           line-height: 1.5;
           border-bottom: 1px solid var(--sol-line);
         }
-        .sol-list li:last-child { border-bottom: 0; }
+        .sol-list li:last-child {
+          border-bottom: 0;
+        }
         .sol-list li::before {
           content: '';
           position: absolute;
           left: 0;
-          top: 21px;
-          width: 12px;
+          top: 22px;
+          width: 8px;
           height: 8px;
-          border-radius: 1px;
-          background: var(--sol-pv);
-          transform: skewX(-18deg);
-        }
-
-        /* How it works */
-        .sol-how {
-          background: var(--sol-night);
-          color: var(--sol-on-night);
-        }
-        .sol-how .sol-lead { color: var(--sol-on-night-muted); }
-        .sol-steps-list {
-          margin-top: 40px;
-          display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-          gap: 28px 24px;
-        }
-        .sol-step {
-          display: grid;
-          grid-template-columns: 40px 1fr;
-          gap: 12px;
-          align-items: start;
-        }
-        .sol-step-num {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-          font-weight: 500;
-          font-variant-numeric: tabular-nums;
-          color: var(--sol-sun-ink);
           background: var(--sol-sun);
         }
-        .sol-step p {
-          margin-top: 8px !important;
-          font-size: 16px;
-          line-height: 1.6;
+
+        /* How — pinned-chapters style */
+        .sol-how {
+          background: #000000;
+          color: var(--sol-on-night);
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+        }
+        .sol-how .sol-lead {
           color: var(--sol-on-night-muted);
         }
+        .sol-how-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+          gap: 48px;
+          align-items: center;
+          width: min(100% - 2 * var(--sol-gut), 1280px);
+          margin: 0 auto;
+        }
+        .sol-steps-rail {
+          margin-top: 36px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .sol-step-item {
+          position: relative;
+        }
+        .sol-step-active-glow {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          border-radius: 8px;
+          background: #0a0a0a;
+          border: 1px solid rgba(247, 229, 0, 0.28);
+          pointer-events: none;
+        }
+        .sol-step-btn {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          display: grid;
+          grid-template-columns: 48px 1fr;
+          gap: 14px;
+          align-items: start;
+          padding: 16px 14px;
+          border: 0;
+          border-radius: 8px;
+          background: transparent;
+          color: inherit;
+          text-align: left;
+          cursor: pointer;
+          transition: color 160ms var(--sol-ease);
+        }
+        .sol-step-btn.is-active .sol-step-num {
+          color: var(--sol-sun);
+        }
+        .sol-step-num {
+          font-size: 13px;
+          font-weight: 600;
+          font-variant-numeric: tabular-nums;
+          padding-top: 2px;
+          color: var(--sol-on-night-muted);
+          transition: color 160ms var(--sol-ease);
+        }
+        .sol-step-text {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .sol-step-text strong {
+          font-size: 17px;
+          font-weight: 600;
+          letter-spacing: -0.02em;
+        }
+        .sol-step-text span {
+          font-size: 14px;
+          line-height: 1.5;
+          color: var(--sol-on-night-muted);
+        }
+        .sol-how-frame {
+          position: relative;
+          aspect-ratio: 4 / 5;
+          max-height: min(72vh, 640px);
+          overflow: hidden;
+          border-radius: var(--sol-radius);
+          background: #000000;
+        }
+        .sol-how-photo {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          pointer-events: none;
+        }
 
-        /* Why MIS */
-        .sol-why-grid {
-          display: grid;
-          grid-template-columns: repeat(12, minmax(0, 1fr));
-          gap: 24px;
+        /* Why — picture develops */
+        .sol-develop {
+          background: #ffffff;
         }
-        .sol-why-grid > div { grid-column: 1 / span 5; }
-        .sol-reasons {
-          grid-column: 7 / span 6;
+        .sol-develop-grid {
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 0 32px;
-          align-content: start;
+          grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+          gap: 56px;
+          align-items: center;
         }
-        .sol-reasons li { padding: 12px 0 32px; }
-        .sol-reasons li:nth-child(n + 3) {
-          padding-top: 32px;
+        .sol-develop-photo {
+          overflow: hidden;
+          border-radius: var(--sol-radius);
+          aspect-ratio: 5 / 6;
+          background: #ddd;
+        }
+        .sol-develop-photo img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: 50% 40%;
+        }
+        .sol-reason-stack {
+          margin-top: 40px;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+        .sol-reason-stack li {
+          padding: 22px 0;
           border-top: 1px solid var(--sol-line);
         }
-        .sol-reasons p {
-          margin-top: 10px !important;
-          font-size: 16px;
-          line-height: 1.6;
+        .sol-reason-stack p {
+          margin-top: 8px !important;
+          font-size: 15px;
+          line-height: 1.55;
           color: var(--sol-muted);
         }
 
-        /* Close */
+        /* Close — type-led dark band */
+        .sol-close {
+          background: #000000;
+          color: var(--sol-on-night);
+        }
+        .sol-close .sol-lead {
+          color: var(--sol-on-night-muted);
+          max-width: 36ch;
+        }
         .sol-close-grid {
           display: grid;
-          grid-template-columns: repeat(12, minmax(0, 1fr));
-          gap: 24px;
-        }
-        .sol-close-main { grid-column: 1 / span 7; }
-        .sol-close-list {
-          grid-column: 9 / span 4;
-          align-self: end;
-          padding: 32px 32px 20px;
-          border-radius: var(--sol-radius);
-          background: var(--sol-surface);
-          border: 1px solid var(--sol-line);
+          grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+          gap: 48px;
+          align-items: end;
         }
         .sol-page main .sol-close h2 {
-          font-size: clamp(40px, 6.2vw, 92px);
-          line-height: 1.02;
-          letter-spacing: -0.03em;
-          max-width: 14ch;
+          font-size: clamp(40px, 6vw, 88px);
+          max-width: 11ch;
+          letter-spacing: -0.04em;
         }
-        .sol-close .sol-actions { margin-top: 40px; }
+        .sol-close .sol-actions {
+          margin-top: 36px;
+        }
+        .sol-close-list {
+          padding: 28px 28px 18px;
+          border-radius: var(--sol-radius);
+          background: #0a0a0a;
+          border: 1px solid rgba(242, 241, 236, 0.14);
+        }
+        .sol-close-list h3 {
+          margin-bottom: 4px;
+        }
+        .sol-list--dark li {
+          border-bottom-color: rgba(242, 241, 236, 0.12);
+          color: var(--sol-on-night);
+        }
 
-        /* Tablet */
         @media (max-width: 1279px) {
-          .sol-page { --sol-gut: 48px; }
-          .sol-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        }
-        @media (max-width: 1023px) {
-          .sol-stage { flex: 0 1 auto; align-content: start; grid-template-columns: minmax(0, 1fr); gap: 8px; }
-          .sol-stage-picture { height: 30vh; min-height: 150px; }
-          .sol-beats { flex-direction: row; flex-wrap: wrap; gap: 8px 18px; padding: 0; }
-          .sol-beats p { font-size: 14px; }
-          .sol-why-grid,
-          .sol-close-grid { grid-template-columns: minmax(0, 1fr); }
-          .sol-why-grid > div,
-          .sol-reasons { grid-column: 1 / -1; }
-          .sol-close-grid > * { grid-column: 1 / -1 !important; }
-          .sol-close-list { margin-top: 48px; }
-          .sol-split-cards,
-          .sol-steps-list { grid-template-columns: 1fr 1fr; }
-          .sol-section { padding: 80px 0 72px; }
-          .sol-reasons { margin-top: 24px; }
+          .sol-page {
+            --sol-gut: 48px;
+          }
+          .sol-segment-rail {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+          .sol-segment-rail > li {
+            padding: 36px 0 32px;
+          }
+          .sol-segment-rail > li:nth-child(odd) {
+            padding-left: 0;
+            padding-right: 32px;
+            border-right: 1px solid var(--sol-line);
+          }
+          .sol-segment-rail > li:nth-child(even) {
+            padding-left: 32px;
+            padding-right: 0;
+            border-right: 0;
+          }
+          .sol-segment-rail > li:nth-child(n + 3) {
+            border-top: 1px solid var(--sol-line);
+            padding-top: 36px;
+          }
         }
 
-        /* Phone */
-        @media (max-width: 767px) {
-          .sol-page { --sol-gut: 24px; --sol-nav: 64px; }
-          .sol-hero { height: auto; padding: 8px 0 28px; }
-          .sol-hero-inner { gap: 8px; }
-          .sol-hero h1 { font-size: 26px; }
-          .sol-stage-picture { height: 196px; min-height: 0; }
-          .sol-beats { display: flex; flex-direction: column; gap: 6px; }
-          .sol-beats p { font-size: 14px; line-height: 1.3; }
-          .sol-hero-lead {
-            font-size: 14px;
-            margin-top: 6px !important;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+        /* Tablet + phone: full-bleed photo hero (no white panel) */
+        @media (max-width: 1023px) {
+          .sol-page {
+            --sol-gut: 32px;
+            --sol-split: 100%;
+          }
+          .sol-hero {
+            min-height: 100svh;
+            min-height: 100dvh;
+            height: 100svh;
+            height: 100dvh;
             overflow: hidden;
           }
-          .sol-hero .sol-actions { margin-top: 8px; }
-          .sol-steps-list { grid-template-columns: 1fr; }
-          .sol-lead { font-size: 17px; }
-          .sol-actions { flex-direction: column; align-items: stretch; gap: 8px; }
-          .sol-btn { width: 100%; text-align: center; }
-          .sol-link { align-self: center; }
-          .sol-cards { grid-template-columns: 1fr; gap: 16px; }
-          .sol-panel-card { padding: 28px 24px 24px; }
-          .sol-reasons { grid-template-columns: 1fr; }
-          .sol-reasons li:nth-child(n + 2) { padding-top: 28px; border-top: 1px solid var(--sol-line); }
-          .sol-close-list { padding: 24px 24px 12px; }
-          .sol-section { padding: 64px 0 56px; }
+          .sol-page .sol-hero-frost {
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            justify-content: space-between;
+            gap: 20px;
+            padding: calc(var(--sol-nav) + 18px) var(--sol-gut)
+              max(24px, env(safe-area-inset-bottom, 0px) + 20px);
+            border: 0;
+            background: linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.58) 0%,
+              rgba(0, 0, 0, 0.14) 34%,
+              rgba(0, 0, 0, 0.1) 58%,
+              rgba(0, 0, 0, 0.66) 100%
+            ) !important;
+          }
+          .sol-hero-copy {
+            gap: 12px;
+          }
+          .sol-hero-cta {
+            margin-top: auto;
+            width: 100%;
+          }
+          .sol-page .sol-hero-eyebrow {
+            color: rgba(255, 255, 255, 0.85) !important;
+            -webkit-text-fill-color: rgba(255, 255, 255, 0.85) !important;
+          }
+          .sol-page .sol-hero-title {
+            font-size: clamp(28px, 6vw, 40px);
+            max-width: 14ch;
+            line-height: 1.08;
+          }
+          .sol-page .sol-hero-title-stroke {
+            display: none !important;
+          }
+          .sol-page .sol-hero-title-fill {
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            background: none !important;
+            -webkit-background-clip: border-box !important;
+            background-clip: border-box !important;
+            text-shadow: 0 1px 18px rgba(0, 0, 0, 0.4);
+          }
+          .sol-page .sol-hero-lead {
+            max-width: 36ch;
+            margin-top: 10px !important;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9) !important;
+            -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+          }
+          .sol-fixed-photo {
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-width: 0 !important;
+            min-height: 0 !important;
+            transform: none !important;
+            object-fit: cover !important;
+            object-position: 16% 58% !important;
+          }
+          .sol-page main > section:not(.sol-hero) h2 {
+            background-attachment: scroll, scroll;
+            background-size: cover, cover;
+            background-position: 16% 58%, 16% 58%;
+          }
+          .sol-hero .sol-actions {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            width: 100%;
+          }
+          .sol-hero .sol-btn {
+            width: 100%;
+            min-height: 56px;
+          }
+          .sol-hero .sol-link {
+            align-self: center;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+          }
+          .sol-services-grid,
+          .sol-how-grid,
+          .sol-develop-grid,
+          .sol-close-grid {
+            grid-template-columns: 1fr;
+          }
+          .sol-how {
+            min-height: 0;
+            padding-top: 88px;
+            padding-bottom: 88px;
+          }
+          .sol-how-frame {
+            max-height: 420px;
+            aspect-ratio: 16 / 10;
+          }
+          .sol-develop-photo {
+            aspect-ratio: 16 / 11;
+            order: -1;
+          }
+          .sol-services-cols {
+            gap: 28px;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .sol-page {
+            --sol-gut: 24px;
+            --sol-nav: 64px;
+          }
+          .sol-page .sol-hero-title {
+            font-size: clamp(28px, 8vw, 36px);
+          }
+          .sol-page .sol-hero-lead {
+            font-size: 14px;
+            max-width: 34ch;
+          }
+          .sol-segment-rail,
+          .sol-services-cols {
+            grid-template-columns: 1fr;
+          }
+          .sol-segment-rail > li {
+            border-right: 0;
+            border-bottom: 1px solid var(--sol-line);
+            padding: 24px 0;
+          }
+          .sol-segment-rail > li:last-child {
+            border-bottom: 0;
+          }
+          .sol-actions {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+          }
+          .sol-btn {
+            width: 100%;
+            text-align: center;
+          }
+          .sol-link {
+            align-self: center;
+          }
+          .sol-section {
+            padding: 72px 0 64px;
+          }
+          .sol-page main > section + section {
+            margin-top: 10px;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .sol-page *,
-          .sol-page *::before,
-          .sol-page *::after {
-            animation: none !important;
-          }
-          .sol-w > span,
-          .sol-rise {
+          .sol-hero-frost,
+          .sol-hero-lead,
+          .sol-hero-title-stroke,
+          .sol-hero-title-fill {
+            transition: none !important;
             opacity: 1 !important;
             transform: none !important;
           }
-          .sol-beats li {
-            opacity: 1;
-            color: var(--sol-ink);
-            filter: none;
-            transform: none;
+          .sol-btn-sheen {
+            animation: none !important;
+            opacity: 0 !important;
           }
-          .sol-beat-mark { background: var(--sol-sun) !important; }
+          .sol-btn-fill {
+            transition: none !important;
+          }
         }
       `}</style>
     </div>

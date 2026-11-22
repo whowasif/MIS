@@ -121,83 +121,83 @@ const ProductCatalog = (props)=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-b4786e31254478ce" + " " + "product-catalog-container1",
+                className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-container1",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                                className: "jsx-b4786e31254478ce",
+                                className: "jsx-5d89cb2c533ff5bd",
                                 children: "Product-Catalog - Ideal Real Porpoise"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 property: "og:title",
                                 content: "Product-Catalog - Ideal Real Porpoise",
-                                className: "jsx-b4786e31254478ce"
+                                className: "jsx-5d89cb2c533ff5bd"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                                 rel: "canonical",
                                 href: "https://ideal-real-porpoise-ox0ksz.teleporthq.app/product-catalog",
-                                className: "jsx-b4786e31254478ce"
+                                className: "jsx-5d89cb2c533ff5bd"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 property: "og:url",
                                 content: "https://ideal-real-porpoise-ox0ksz.teleporthq.app/product-catalog",
-                                className: "jsx-b4786e31254478ce"
+                                className: "jsx-5d89cb2c533ff5bd"
                             })
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-b4786e31254478ce" + " " + "catalog-section",
+                        className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-b4786e31254478ce" + " " + "catalog-container",
+                            className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-container",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                                    className: "jsx-b4786e31254478ce" + " " + "catalog-header",
+                                    className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-header",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-b4786e31254478ce" + " " + "catalog-title-group",
+                                            className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-title-group",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-b4786e31254478ce" + " " + "section-title",
+                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "section-title",
                                                     children: "MIS Solution Product Catalog"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-b4786e31254478ce" + " " + "section-content",
+                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "section-content",
                                                     children: "Shop retail IT products by hardware, software, components, accessories, office equipment, and power solutions."
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "jsx-b4786e31254478ce" + " " + "catalog-search-bar",
+                                            className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-search-bar",
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-b4786e31254478ce" + " " + "search-input-wrapper",
+                                                className: "jsx-5d89cb2c533ff5bd" + " " + "search-input-wrapper",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-b4786e31254478ce" + " " + "search-icon-box",
+                                                        className: "jsx-5d89cb2c533ff5bd" + " " + "search-icon-box",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                             xmlns: "http://www.w3.org/2000/svg",
                                                             width: "24",
                                                             height: "24",
                                                             viewBox: "0 0 24 24",
-                                                            className: "jsx-b4786e31254478ce",
+                                                            className: "jsx-5d89cb2c533ff5bd",
                                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
                                                                 fill: "none",
                                                                 stroke: "currentColor",
                                                                 strokeLinecap: "round",
                                                                 strokeLinejoin: "round",
                                                                 strokeWidth: "2",
-                                                                className: "jsx-b4786e31254478ce",
+                                                                className: "jsx-5d89cb2c533ff5bd",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                         d: "m21 21l-4.34-4.34",
-                                                                        className: "jsx-b4786e31254478ce"
+                                                                        className: "jsx-5d89cb2c533ff5bd"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                                         cx: "11",
                                                                         cy: "11",
                                                                         r: "8",
-                                                                        className: "jsx-b4786e31254478ce"
+                                                                        className: "jsx-5d89cb2c533ff5bd"
                                                                     })
                                                                 ]
                                                             })
@@ -208,7 +208,7 @@ const ProductCatalog = (props)=>{
                                                         id: "catalogSearch",
                                                         placeholder: "Search hardware, components, licenses...",
                                                         "aria-label": "Search products",
-                                                        className: "jsx-b4786e31254478ce"
+                                                        className: "jsx-5d89cb2c533ff5bd"
                                                     })
                                                 ]
                                             })
@@ -216,33 +216,33 @@ const ProductCatalog = (props)=>{
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-b4786e31254478ce" + " " + "catalog-main-layout",
+                                    className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-main-layout",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("aside", {
-                                            className: "jsx-b4786e31254478ce" + " " + "catalog-filters",
+                                            className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-filters",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-b4786e31254478ce" + " " + "product-catalog-filter-group",
+                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-filter-group",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-b4786e31254478ce" + " " + "product-catalog-filter-title",
+                                                            className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-filter-title",
                                                             children: "Categories"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-b4786e31254478ce" + " " + "category-select-wrap",
+                                                            className: "jsx-5d89cb2c533ff5bd" + " " + "category-select-wrap",
                                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                                                 id: "catalogCategory",
                                                                 "aria-label": "Filter by category",
-                                                                className: "jsx-b4786e31254478ce" + " " + "category-select",
+                                                                className: "jsx-5d89cb2c533ff5bd" + " " + "category-select",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                         value: "all",
-                                                                        className: "jsx-b4786e31254478ce",
+                                                                        className: "jsx-5d89cb2c533ff5bd",
                                                                         children: "All Products"
                                                                     }),
                                                                     categoryOptions.map((category)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: category.key,
-                                                                            className: "jsx-b4786e31254478ce",
+                                                                            className: "jsx-5d89cb2c533ff5bd",
                                                                             children: category.label
                                                                         }, category.key))
                                                                 ]
@@ -251,26 +251,26 @@ const ProductCatalog = (props)=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-b4786e31254478ce" + " " + "product-catalog-filter-group",
+                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-filter-group",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-b4786e31254478ce" + " " + "product-catalog-filter-title",
+                                                            className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-filter-title",
                                                             children: "Price Range"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-b4786e31254478ce" + " " + "price-inputs",
+                                                            className: "jsx-5d89cb2c533ff5bd" + " " + "price-inputs",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                     type: "number",
                                                                     placeholder: "Min",
                                                                     "aria-label": "Minimum Price",
-                                                                    className: "jsx-b4786e31254478ce"
+                                                                    className: "jsx-5d89cb2c533ff5bd"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                     type: "number",
                                                                     placeholder: "Max",
                                                                     "aria-label": "Maximum Price",
-                                                                    className: "jsx-b4786e31254478ce"
+                                                                    className: "jsx-5d89cb2c533ff5bd"
                                                                 })
                                                             ]
                                                         })
@@ -280,7 +280,7 @@ const ProductCatalog = (props)=>{
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                             id: "productGrid",
-                                            className: "jsx-b4786e31254478ce" + " " + "product-catalog-catalog-grid",
+                                            className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-catalog-grid",
                                             children: catalogProducts.map((product, index)=>{
                                                 const priceLabel = `$${Number(product.price || 0).toLocaleString(undefined, {
                                                     minimumFractionDigits: 2,
@@ -291,53 +291,53 @@ const ProductCatalog = (props)=>{
                                                 const buttonLabel = isSoftware ? "Buy License" : "Add to Cart";
                                                 return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
                                                     "data-category": product.filterCategory || "components",
-                                                    className: "jsx-b4786e31254478ce" + " " + "product-catalog-product-card1",
+                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-product-card1",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-b4786e31254478ce" + " " + "product-catalog-product-image-box",
+                                                            className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-product-image-box",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                                     src: imageUrl,
                                                                     alt: product.name || "Product image",
-                                                                    className: "jsx-b4786e31254478ce"
+                                                                    className: "jsx-5d89cb2c533ff5bd"
                                                                 }),
                                                                 index === 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-b4786e31254478ce" + " " + "product-badge",
+                                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "product-badge",
                                                                     children: "Featured"
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-b4786e31254478ce" + " " + "product-catalog-product-info",
+                                                            className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-product-info",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                                    className: "jsx-b4786e31254478ce" + " " + "product-catalog-product-name1",
+                                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-product-name1",
                                                                     children: product.name
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                    className: "jsx-b4786e31254478ce" + " " + "product-desc",
+                                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "product-desc",
                                                                     children: product.description
                                                                 }),
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                    className: "jsx-b4786e31254478ce" + " " + "product-footer",
+                                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "product-footer",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            className: "jsx-b4786e31254478ce" + " " + "product-price",
+                                                                            className: "jsx-5d89cb2c533ff5bd" + " " + "product-price",
                                                                             children: priceLabel
                                                                         }),
                                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                            className: "jsx-b4786e31254478ce" + " " + "product-card-actions",
+                                                                            className: "jsx-5d89cb2c533ff5bd" + " " + "product-card-actions",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                                                     href: `/products/${product.id}`,
-                                                                                    className: "jsx-b4786e31254478ce" + " " + "btn-link",
+                                                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "btn-link",
                                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                                        className: "jsx-b4786e31254478ce",
+                                                                                        className: "jsx-5d89cb2c533ff5bd",
                                                                                         children: "View Details"
                                                                                     })
                                                                                 }),
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                                                                    className: "jsx-b4786e31254478ce" + " " + "catalog-add-cart btn btn-primary btn-sm",
+                                                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-add-cart btn btn-primary btn-sm",
                                                                                     children: buttonLabel
                                                                                 })
                                                                             ]
@@ -354,32 +354,32 @@ const ProductCatalog = (props)=>{
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     id: "cartBackdrop",
-                                    className: "jsx-b4786e31254478ce" + " " + "catalog-cart-backdrop"
+                                    className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-cart-backdrop"
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("aside", {
                                     id: "catalogCartSidebar",
                                     "aria-label": "Shopping cart",
                                     "aria-hidden": "true",
-                                    className: "jsx-b4786e31254478ce" + " " + "catalog-cart-sidebar",
+                                    className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-cart-sidebar",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-b4786e31254478ce" + " " + "catalog-cart-header",
+                                            className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-cart-header",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    className: "jsx-b4786e31254478ce",
+                                                    className: "jsx-5d89cb2c533ff5bd",
                                                     children: "Your Cart"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                     id: "cartCloseBtn",
                                                     type: "button",
                                                     "aria-label": "Close cart",
-                                                    className: "jsx-b4786e31254478ce" + " " + "catalog-cart-close",
+                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-cart-close",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                         xmlns: "http://www.w3.org/2000/svg",
                                                         width: "20",
                                                         height: "20",
                                                         viewBox: "0 0 24 24",
-                                                        className: "jsx-b4786e31254478ce",
+                                                        className: "jsx-5d89cb2c533ff5bd",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                             fill: "none",
                                                             stroke: "currentColor",
@@ -387,7 +387,7 @@ const ProductCatalog = (props)=>{
                                                             strokeLinejoin: "round",
                                                             strokeWidth: "2",
                                                             d: "m18 6l-12 12M6 6l12 12",
-                                                            className: "jsx-b4786e31254478ce"
+                                                            className: "jsx-5d89cb2c533ff5bd"
                                                         })
                                                     })
                                                 })
@@ -395,26 +395,26 @@ const ProductCatalog = (props)=>{
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                             id: "cartEmptyState",
-                                            className: "jsx-b4786e31254478ce" + " " + "catalog-cart-empty",
+                                            className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-cart-empty",
                                             children: "Your cart is empty. Add products to continue."
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                             id: "cartItemsContainer",
-                                            className: "jsx-b4786e31254478ce" + " " + "catalog-cart-items"
+                                            className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-cart-items"
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-b4786e31254478ce" + " " + "catalog-cart-footer",
+                                            className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-cart-footer",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-b4786e31254478ce" + " " + "catalog-cart-total",
+                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "catalog-cart-total",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-b4786e31254478ce",
+                                                            className: "jsx-5d89cb2c533ff5bd",
                                                             children: "Subtotal"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
                                                             id: "cartSubtotalValue",
-                                                            className: "jsx-b4786e31254478ce",
+                                                            className: "jsx-5d89cb2c533ff5bd",
                                                             children: "$0.00"
                                                         })
                                                     ]
@@ -422,7 +422,7 @@ const ProductCatalog = (props)=>{
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                     id: "cartCheckoutBtn",
                                                     href: "/confirm-order",
-                                                    className: "jsx-b4786e31254478ce" + " " + "btn btn-brand-white-text btn-lg",
+                                                    className: "jsx-5d89cb2c533ff5bd" + " " + "btn btn-brand-white-text btn-lg",
                                                     children: "Confirm Order"
                                                 })
                                             ]
@@ -433,9 +433,9 @@ const ProductCatalog = (props)=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-b4786e31254478ce" + " " + "product-catalog-container2",
+                        className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-container2",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-b4786e31254478ce" + " " + "product-catalog-container3",
+                            className: "jsx-5d89cb2c533ff5bd" + " " + "product-catalog-container3",
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
                                 html: `<script defer data-name="catalog-logic">
 (function(){
@@ -687,8 +687,8 @@ const ProductCatalog = (props)=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "b4786e31254478ce",
-                children: ".product-catalog-container1.jsx-b4786e31254478ce{width:100%;min-height:100vh}.product-catalog-thq-filter-icon-wrap-elm1.jsx-b4786e31254478ce{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-thq-filter-icon-wrap-elm2.jsx-b4786e31254478ce{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-thq-filter-icon-wrap-elm3.jsx-b4786e31254478ce{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-thq-filter-icon-wrap-elm4.jsx-b4786e31254478ce{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-thq-filter-icon-wrap-elm5.jsx-b4786e31254478ce{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-container2.jsx-b4786e31254478ce{display:none}.product-card-actions.jsx-b4786e31254478ce{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.product-catalog-container3.jsx-b4786e31254478ce{display:contents}.product-catalog-container4.jsx-b4786e31254478ce{right:50px;border:1px solid#ffffff5c;bottom:30px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;z-index:22;position:fixed;-webkit-box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);-moz-box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);min-height:auto;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding-top:8px;padding-left:12px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding-right:12px;padding-bottom:8px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);background-color:rgba(41,41,41,.41)}.product-catalog-icon31.jsx-b4786e31254478ce{width:24px;margin-right:4px}.product-catalog-text6.jsx-b4786e31254478ce{color:white;font-size:13px;font-style:normal;font-weight:500;line-height:24px}"
+                id: "5d89cb2c533ff5bd",
+                children: ".product-catalog-container1.jsx-5d89cb2c533ff5bd{width:100%;min-height:100vh}.product-catalog-thq-filter-icon-wrap-elm1.jsx-5d89cb2c533ff5bd{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-thq-filter-icon-wrap-elm2.jsx-5d89cb2c533ff5bd{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-thq-filter-icon-wrap-elm3.jsx-5d89cb2c533ff5bd{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-thq-filter-icon-wrap-elm4.jsx-5d89cb2c533ff5bd{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-thq-filter-icon-wrap-elm5.jsx-5d89cb2c533ff5bd{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.product-catalog-container2.jsx-5d89cb2c533ff5bd{display:none}.product-card-actions.jsx-5d89cb2c533ff5bd{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px}.product-catalog-container3.jsx-5d89cb2c533ff5bd{display:contents}.product-catalog-container4.jsx-5d89cb2c533ff5bd{right:50px;border:1px solid#ffffff5c;bottom:30px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;z-index:22;position:fixed;-webkit-box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);-moz-box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);box-shadow:5px 5px 10px 0px rgba(31,31,31,.4);min-height:auto;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding-top:8px;padding-left:12px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding-right:12px;padding-bottom:8px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);background-color:rgba(41,41,41,.41)}.product-catalog-icon31.jsx-5d89cb2c533ff5bd{width:24px;margin-right:4px}.product-catalog-text6.jsx-5d89cb2c533ff5bd{color:white;font-size:13px;font-style:normal;font-weight:500;line-height:24px}"
             })
         ]
     });

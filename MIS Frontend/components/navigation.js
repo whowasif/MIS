@@ -14,7 +14,13 @@ const menuItems = [
       { href: '/digital-services', label: 'Digital Services' },
       { href: '/enterprise-solutions', label: 'Business & Corporate Solutions' },
       { href: '/maintenance-support', label: 'Maintenance & Support' },
-      { href: '/solar', label: 'Solar & Renewable Energy' },
+    ],
+  },
+  {
+    href: '/solar',
+    label: 'Our Initiatives',
+    children: [
+      { href: '/solar', label: 'Solar Integrated Projects' },
     ],
   },
   { href: '/career', label: 'Career' },
@@ -72,6 +78,8 @@ const Navigation = () => {
   const router = useRouter()
   const { data: session } = useSession()
   const isHome = router.pathname === '/'
+  const isSolar = router.pathname === '/solar'
+  const isHeroPage = isHome || isSolar
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
@@ -79,12 +87,12 @@ const Navigation = () => {
   const [socialLinks, setSocialLinks] = useState(defaultSocialLinks)
   const [categories, setCategories] = useState([])
   const [openSubmenu, setOpenSubmenu] = useState(null)
-  const [headerTone, setHeaderTone] = useState(isHome ? 'top' : 'solid')
+  const [headerTone, setHeaderTone] = useState(isHeroPage ? 'top' : 'solid')
 
   const toggleSubmenu = (key) => setOpenSubmenu((prev) => (prev === key ? null : key))
 
   useEffect(() => {
-    if (!isHome) {
+    if (!isHeroPage) {
       setHeaderTone('solid')
       return undefined
     }
@@ -119,7 +127,7 @@ const Navigation = () => {
       window.removeEventListener('scroll', syncHeaderTone)
       window.removeEventListener('resize', syncHeaderTone)
     }
-  }, [isHome])
+  }, [isHeroPage])
 
   // Load categories for the nav bar
   useEffect(() => {
@@ -291,7 +299,15 @@ const Navigation = () => {
 
   return (
     <>
-      <header className={`menu-nav-header${headerTone === 'top' ? ' is-over-hero' : ''}${headerTone === 'blur' ? ' is-over-hero is-hero-blur' : ''}`}>
+      <header
+        className={[
+          'menu-nav-header',
+          headerTone === 'top' || headerTone === 'blur' ? 'is-over-hero' : '',
+          headerTone === 'blur' && !isSolar ? 'is-hero-blur' : '',
+          isSolar && (headerTone === 'top' || headerTone === 'blur') ? 'is-over-solar-hero' : '',
+          isSolar && headerTone === 'blur' ? 'is-solar-hero-blur' : '',
+        ].filter(Boolean).join(' ')}
+      >
         <div className="menu-nav-left">
           <button
             type="button"
@@ -465,8 +481,8 @@ const Navigation = () => {
         </nav>
       )}
 
-      {!isHome && <div className="menu-nav-spacer"></div>}
-      {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products') || router.pathname === '/product-catalog') && <div className="cat-nav-spacer"></div>}
+      {!isHeroPage && <div className="menu-nav-spacer"></div>}
+      {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products')) && <div className="cat-nav-spacer"></div>}
 
       <div
         className={`menu-nav-overlay ${isMenuOpen ? 'is-active' : ''}`}
@@ -695,6 +711,55 @@ const Navigation = () => {
         }
 
         .menu-nav-header.is-over-hero .menu-nav-cart-count {
+          color: #111111;
+          background: #f7e500;
+        }
+
+        /* Solar hero: solid white bar flush with right panel (no seam) */
+        .menu-nav-header.is-over-hero.is-over-solar-hero,
+        .menu-nav-header.is-over-hero.is-over-solar-hero.is-solar-hero-blur {
+          color: #111111;
+          background: #ffffff;
+          border: 0 !important;
+          border-bottom: 0 !important;
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          box-shadow: none !important;
+        }
+
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-logo-image {
+          filter: none;
+        }
+
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-icon-btn,
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-icon-link,
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-toggle,
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-close {
+          color: #111111;
+          background: rgba(255, 255, 255, 0.7);
+          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-icon-btn:hover,
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-icon-link:hover,
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-toggle:hover {
+          background: rgba(255, 255, 255, 0.95);
+        }
+
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-icon-btn.is-active {
+          background: #f7e500;
+          color: #111111;
+        }
+
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-social-link {
+          color: #111111;
+        }
+
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-social-link:hover {
+          color: #050505;
+        }
+
+        .menu-nav-header.is-over-hero.is-over-solar-hero .menu-nav-cart-count {
           color: #111111;
           background: #f7e500;
         }

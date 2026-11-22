@@ -124,85 +124,85 @@ const DigitalServices = ({ services =[]  })=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-f762ff05ce38ec9e" + " " + "ds-page",
+                className: "jsx-eae4d2c5c75da6aa" + " " + "ds-page",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                                className: "jsx-f762ff05ce38ec9e",
+                                className: "jsx-eae4d2c5c75da6aa",
                                 children: "Digital Services - MIS Solution"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 property: "og:title",
                                 content: "Digital Services - MIS Solution",
-                                className: "jsx-f762ff05ce38ec9e"
+                                className: "jsx-eae4d2c5c75da6aa"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 name: "description",
                                 content: "Website design, web hosting, domain registration, digital marketing, and mobile app development services by MIS Solution.",
-                                className: "jsx-f762ff05ce38ec9e"
+                                className: "jsx-eae4d2c5c75da6aa"
                             })
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-hero",
+                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-hero",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-f762ff05ce38ec9e" + " " + "ds-hero-bg",
+                                className: "jsx-eae4d2c5c75da6aa" + " " + "ds-hero-bg",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: "/digital%20services.webp",
                                         alt: "",
                                         "aria-hidden": "true",
-                                        className: "jsx-f762ff05ce38ec9e"
+                                        className: "jsx-eae4d2c5c75da6aa"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-hero-overlay"
+                                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-hero-overlay"
                                     })
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-f762ff05ce38ec9e" + " " + "ds-hero-content",
+                                className: "jsx-eae4d2c5c75da6aa" + " " + "ds-hero-content",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("nav", {
                                         "aria-label": "Breadcrumb",
-                                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-breadcrumb",
+                                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-breadcrumb",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                 href: "/",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    className: "jsx-f762ff05ce38ec9e",
+                                                    className: "jsx-eae4d2c5c75da6aa",
                                                     children: "Home"
                                                 })
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-f762ff05ce38ec9e",
+                                                className: "jsx-eae4d2c5c75da6aa",
                                                 children: "/"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                 href: "/core-it-solutions",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    className: "jsx-f762ff05ce38ec9e",
+                                                    className: "jsx-eae4d2c5c75da6aa",
                                                     children: "Core IT Solutions"
                                                 })
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-f762ff05ce38ec9e",
+                                                className: "jsx-eae4d2c5c75da6aa",
                                                 children: "/"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-f762ff05ce38ec9e" + " " + "ds-breadcrumb-current",
+                                                className: "jsx-eae4d2c5c75da6aa" + " " + "ds-breadcrumb-current",
                                                 children: "Digital Services"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                        className: "jsx-f762ff05ce38ec9e",
+                                        className: "jsx-eae4d2c5c75da6aa",
                                         children: "Digital Services"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-f762ff05ce38ec9e",
+                                        className: "jsx-eae4d2c5c75da6aa",
                                         children: "Building your digital presence from the ground up — websites, apps, hosting, marketing, and everything in between."
                                     })
                                 ]
@@ -210,9 +210,9 @@ const DigitalServices = ({ services =[]  })=>{
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-metrics-section",
+                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-metrics-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-metrics-container",
+                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-metrics-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(MetricCounter, {
                                     end: 200,
@@ -238,57 +238,57 @@ const DigitalServices = ({ services =[]  })=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-services-section",
+                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-services-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-services-container",
+                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-services-container",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-services-header",
+                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-services-header",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-f762ff05ce38ec9e",
+                                            className: "jsx-eae4d2c5c75da6aa",
                                             children: "What We Offer"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-f762ff05ce38ec9e",
+                                            className: "jsx-eae4d2c5c75da6aa",
                                             children: "Full-spectrum digital services designed to establish, grow, and maintain your online presence."
                                         })
                                     ]
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-services-grid",
+                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-services-grid",
                                     children: digitalServices.map((service, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: `/services/${encodeURIComponent(service.slug || service.id)}?type=digi_services`,
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                className: "jsx-f762ff05ce38ec9e" + " " + `ds-service-card ${idx === 0 ? "ds-service-featured" : ""}`,
+                                                className: "jsx-eae4d2c5c75da6aa" + " " + `ds-service-card ${idx === 0 ? "ds-service-featured" : ""}`,
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-service-img",
+                                                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-service-img",
                                                         children: service.iconUrl ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                             src: service.iconUrl,
                                                             alt: service.name,
-                                                            className: "jsx-f762ff05ce38ec9e"
+                                                            className: "jsx-eae4d2c5c75da6aa"
                                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-service-placeholder",
+                                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-service-placeholder",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-f762ff05ce38ec9e",
+                                                                className: "jsx-eae4d2c5c75da6aa",
                                                                 children: service.name.charAt(0)
                                                             })
                                                         })
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-service-body",
+                                                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-service-body",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                className: "jsx-f762ff05ce38ec9e",
+                                                                className: "jsx-eae4d2c5c75da6aa",
                                                                 children: service.name
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-f762ff05ce38ec9e",
+                                                                className: "jsx-eae4d2c5c75da6aa",
                                                                 children: service.description
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-f762ff05ce38ec9e" + " " + "ds-service-link",
+                                                                className: "jsx-eae4d2c5c75da6aa" + " " + "ds-service-link",
                                                                 children: "Learn More →"
                                                             })
                                                         ]
@@ -301,45 +301,45 @@ const DigitalServices = ({ services =[]  })=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-section",
+                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-container",
+                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-container",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-header",
+                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-header",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-f762ff05ce38ec9e",
+                                            className: "jsx-eae4d2c5c75da6aa",
                                             children: "Our Digital Process"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-f762ff05ce38ec9e",
+                                            className: "jsx-eae4d2c5c75da6aa",
                                             children: "A proven methodology that transforms ideas into high-performing digital products."
                                         })
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-timeline",
+                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-timeline",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-item",
+                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-item",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-dot"
+                                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-dot"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-content",
+                                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-content",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-step",
+                                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-step",
                                                             children: "Step 01"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-f762ff05ce38ec9e",
+                                                            className: "jsx-eae4d2c5c75da6aa",
                                                             children: "Discovery & Strategy"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-f762ff05ce38ec9e",
+                                                            className: "jsx-eae4d2c5c75da6aa",
                                                             children: "Understanding your business, target audience, and goals to craft the perfect digital strategy."
                                                         })
                                                     ]
@@ -347,24 +347,24 @@ const DigitalServices = ({ services =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-item",
+                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-item",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-dot"
+                                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-dot"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-content",
+                                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-content",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-step",
+                                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-step",
                                                             children: "Step 02"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-f762ff05ce38ec9e",
+                                                            className: "jsx-eae4d2c5c75da6aa",
                                                             children: "Design & Prototype"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-f762ff05ce38ec9e",
+                                                            className: "jsx-eae4d2c5c75da6aa",
                                                             children: "Creating wireframes, mockups, and interactive prototypes for review before development begins."
                                                         })
                                                     ]
@@ -372,24 +372,24 @@ const DigitalServices = ({ services =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-item",
+                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-item",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-dot"
+                                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-dot"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-content",
+                                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-content",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-step",
+                                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-step",
                                                             children: "Step 03"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-f762ff05ce38ec9e",
+                                                            className: "jsx-eae4d2c5c75da6aa",
                                                             children: "Development & Testing"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-f762ff05ce38ec9e",
+                                                            className: "jsx-eae4d2c5c75da6aa",
                                                             children: "Building with modern technologies, rigorous testing across devices, and performance optimization."
                                                         })
                                                     ]
@@ -397,24 +397,24 @@ const DigitalServices = ({ services =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-item",
+                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-item",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-dot"
+                                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-dot"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-content",
+                                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-content",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-process-step",
+                                                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-process-step",
                                                             children: "Step 04"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-f762ff05ce38ec9e",
+                                                            className: "jsx-eae4d2c5c75da6aa",
                                                             children: "Launch & Growth"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-f762ff05ce38ec9e",
+                                                            className: "jsx-eae4d2c5c75da6aa",
                                                             children: "Deploying to production, SEO setup, analytics integration, and ongoing maintenance support."
                                                         })
                                                     ]
@@ -427,32 +427,32 @@ const DigitalServices = ({ services =[]  })=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-f762ff05ce38ec9e" + " " + "ds-cta-section",
+                        className: "jsx-eae4d2c5c75da6aa" + " " + "ds-cta-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-f762ff05ce38ec9e" + " " + "ds-cta-container",
+                            className: "jsx-eae4d2c5c75da6aa" + " " + "ds-cta-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                    className: "jsx-f762ff05ce38ec9e",
+                                    className: "jsx-eae4d2c5c75da6aa",
                                     children: "Have a Digital Project in Mind?"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                    className: "jsx-f762ff05ce38ec9e",
+                                    className: "jsx-eae4d2c5c75da6aa",
                                     children: "Let's turn your vision into a powerful digital experience."
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-f762ff05ce38ec9e" + " " + "ds-cta-buttons",
+                                    className: "jsx-eae4d2c5c75da6aa" + " " + "ds-cta-buttons",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/request-custom-quote",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f762ff05ce38ec9e" + " " + "ds-cta-btn ds-cta-primary",
+                                                className: "jsx-eae4d2c5c75da6aa" + " " + "ds-cta-btn ds-cta-primary",
                                                 children: "Get a Free Quote"
                                             })
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/contact",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-f762ff05ce38ec9e" + " " + "ds-cta-btn ds-cta-secondary",
+                                                className: "jsx-eae4d2c5c75da6aa" + " " + "ds-cta-btn ds-cta-secondary",
                                                 children: "Talk to Our Team"
                                             })
                                         })
@@ -465,8 +465,8 @@ const DigitalServices = ({ services =[]  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "f762ff05ce38ec9e",
-                children: '.ds-page.jsx-f762ff05ce38ec9e{width:100%;min-height:100vh}.ds-hero.jsx-f762ff05ce38ec9e{position:relative;min-height:420px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end}.ds-hero-bg.jsx-f762ff05ce38ec9e{position:absolute;inset:0}.ds-hero-bg.jsx-f762ff05ce38ec9e img.jsx-f762ff05ce38ec9e{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.ds-hero-overlay.jsx-f762ff05ce38ec9e{position:absolute;inset:0;background:-webkit-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:-moz-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:-o-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:linear-gradient(to top,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%)}.ds-hero-content.jsx-f762ff05ce38ec9e{position:relative;z-index:1;max-width:800px;padding:60px 32px 48px}.ds-breadcrumb.jsx-f762ff05ce38ec9e{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;font-size:13px;margin-bottom:16px}.ds-breadcrumb.jsx-f762ff05ce38ec9e a{color:rgba(255,255,255,.7);text-decoration:none;font-weight:500;-webkit-transition:color.15s;-moz-transition:color.15s;-o-transition:color.15s;transition:color.15s}.ds-breadcrumb.jsx-f762ff05ce38ec9e a:hover{color:#f7e500}.ds-breadcrumb.jsx-f762ff05ce38ec9e span.jsx-f762ff05ce38ec9e{color:rgba(255,255,255,.4)}.ds-breadcrumb-current.jsx-f762ff05ce38ec9e{color:#f7e500;font-weight:600}.ds-hero-content.jsx-f762ff05ce38ec9e h1.jsx-f762ff05ce38ec9e{margin:0;font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;line-height:1.1}.ds-hero-content.jsx-f762ff05ce38ec9e p.jsx-f762ff05ce38ec9e{margin:14px 0 0;font-size:17px;color:rgba(255,255,255,.7);line-height:1.6;max-width:600px}.ds-metrics-section.jsx-f762ff05ce38ec9e{padding:0 24px;margin-top:-1px;background:#0a101b}.ds-metrics-container.jsx-f762ff05ce38ec9e{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:36px 0;border-top:1px solid rgba(255,255,255,.08)}.ds-metric.jsx-f762ff05ce38ec9e{text-align:center}.ds-metric-value.jsx-f762ff05ce38ec9e{display:block;font-size:28px;font-weight:800;color:#f7e500;font-family:"JetBrains Mono",monospace}.ds-metric-label.jsx-f762ff05ce38ec9e{display:block;font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}.ds-services-section.jsx-f762ff05ce38ec9e{padding:72px 24px;background:#f8fafc}.ds-services-container.jsx-f762ff05ce38ec9e{max-width:1140px;margin:0 auto}.ds-services-header.jsx-f762ff05ce38ec9e{text-align:center;margin-bottom:40px}.ds-services-header.jsx-f762ff05ce38ec9e h2.jsx-f762ff05ce38ec9e{margin:0;font-size:clamp(26px,3.5vw,34px);font-weight:800;color:#111827}.ds-services-header.jsx-f762ff05ce38ec9e p.jsx-f762ff05ce38ec9e{margin:10px 0 0;font-size:16px;color:#6b7280}.ds-services-grid.jsx-f762ff05ce38ec9e{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}.ds-service-card.jsx-f762ff05ce38ec9e{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;border:1px solid#e5e7eb;background:#fff;text-decoration:none;color:inherit;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s}.ds-service-card.jsx-f762ff05ce38ec9e:hover{-webkit-box-shadow:0 16px 48px rgba(0,0,0,.08);-moz-box-shadow:0 16px 48px rgba(0,0,0,.08);box-shadow:0 16px 48px rgba(0,0,0,.08);-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px)}.ds-service-featured.jsx-f762ff05ce38ec9e{grid-column:span 2;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row}.ds-service-img.jsx-f762ff05ce38ec9e{height:180px;background:-webkit-linear-gradient(315deg,#0a101b,#1e293b);background:-moz-linear-gradient(315deg,#0a101b,#1e293b);background:-o-linear-gradient(315deg,#0a101b,#1e293b);background:linear-gradient(135deg,#0a101b,#1e293b);overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.ds-service-featured.jsx-f762ff05ce38ec9e .ds-service-img.jsx-f762ff05ce38ec9e{width:280px;height:auto;min-height:200px}.ds-service-img.jsx-f762ff05ce38ec9e img.jsx-f762ff05ce38ec9e{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.ds-service-placeholder.jsx-f762ff05ce38ec9e{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.ds-service-placeholder.jsx-f762ff05ce38ec9e span.jsx-f762ff05ce38ec9e{font-size:48px;font-weight:800;color:#f7e500;opacity:.6}.ds-service-body.jsx-f762ff05ce38ec9e{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.ds-service-body.jsx-f762ff05ce38ec9e h3.jsx-f762ff05ce38ec9e{margin:0;font-size:18px;font-weight:700;color:#111827}.ds-service-body.jsx-f762ff05ce38ec9e p.jsx-f762ff05ce38ec9e{margin:0;font-size:14px;color:#6b7280;line-height:1.7}.ds-service-link.jsx-f762ff05ce38ec9e{font-size:13px;font-weight:700;color:#0a101b;margin-top:auto;padding-top:8px}.ds-service-card.jsx-f762ff05ce38ec9e:hover .ds-service-link.jsx-f762ff05ce38ec9e{color:#f7e500}.ds-process-section.jsx-f762ff05ce38ec9e{padding:72px 24px;background:#fff}.ds-process-container.jsx-f762ff05ce38ec9e{max-width:800px;margin:0 auto}.ds-process-header.jsx-f762ff05ce38ec9e{text-align:center;margin-bottom:40px}.ds-process-header.jsx-f762ff05ce38ec9e h2.jsx-f762ff05ce38ec9e{margin:0;font-size:clamp(26px,3.5vw,34px);font-weight:800;color:#111827}.ds-process-header.jsx-f762ff05ce38ec9e p.jsx-f762ff05ce38ec9e{margin:10px 0 0;font-size:16px;color:#6b7280}.ds-process-timeline.jsx-f762ff05ce38ec9e{position:relative;padding-left:32px}.ds-process-timeline.jsx-f762ff05ce38ec9e::before{content:"";position:absolute;left:8px;top:12px;bottom:12px;width:2px;background:-webkit-linear-gradient(top,#f7e500,#e5e7eb);background:-moz-linear-gradient(top,#f7e500,#e5e7eb);background:-o-linear-gradient(top,#f7e500,#e5e7eb);background:linear-gradient(to bottom,#f7e500,#e5e7eb);-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px}.ds-process-item.jsx-f762ff05ce38ec9e{position:relative;padding:0 0 32px}.ds-process-item.jsx-f762ff05ce38ec9e:last-child{padding-bottom:0}.ds-process-dot.jsx-f762ff05ce38ec9e{position:absolute;left:-28px;top:6px;width:14px;height:14px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#f7e500;border:3px solid#fff;-webkit-box-shadow:0 0 0 2px#f7e500;-moz-box-shadow:0 0 0 2px#f7e500;box-shadow:0 0 0 2px#f7e500}.ds-process-content.jsx-f762ff05ce38ec9e{}.ds-process-step.jsx-f762ff05ce38ec9e{display:inline-block;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}.ds-process-content.jsx-f762ff05ce38ec9e h3.jsx-f762ff05ce38ec9e{margin:0 0 6px;font-size:18px;font-weight:700;color:#111827}.ds-process-content.jsx-f762ff05ce38ec9e p.jsx-f762ff05ce38ec9e{margin:0;font-size:14px;color:#6b7280;line-height:1.7}.ds-cta-section.jsx-f762ff05ce38ec9e{padding:72px 24px;background:#0a101b;text-align:center}.ds-cta-container.jsx-f762ff05ce38ec9e{max-width:600px;margin:0 auto}.ds-cta-container.jsx-f762ff05ce38ec9e h2.jsx-f762ff05ce38ec9e{margin:0;font-size:clamp(24px,3.5vw,32px);font-weight:800;color:#fff}.ds-cta-container.jsx-f762ff05ce38ec9e p.jsx-f762ff05ce38ec9e{margin:12px 0 0;font-size:16px;color:rgba(255,255,255,.6)}.ds-cta-buttons.jsx-f762ff05ce38ec9e{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-top:28px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.ds-cta-btn.jsx-f762ff05ce38ec9e{padding:14px 28px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;-webkit-transition:-webkit-transform.15s,box-shadow.15s;-moz-transition:-moz-transform.15s,box-shadow.15s;-o-transition:-o-transform.15s,box-shadow.15s;transition:-webkit-transform.15s,box-shadow.15s;transition:-moz-transform.15s,box-shadow.15s;transition:-o-transform.15s,box-shadow.15s;transition:transform.15s,box-shadow.15s}.ds-cta-primary.jsx-f762ff05ce38ec9e{background:#f7e500;color:#0a101b}.ds-cta-primary.jsx-f762ff05ce38ec9e:hover{-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px);-webkit-box-shadow:0 8px 24px rgba(247,229,0,.3);-moz-box-shadow:0 8px 24px rgba(247,229,0,.3);box-shadow:0 8px 24px rgba(247,229,0,.3)}.ds-cta-secondary.jsx-f762ff05ce38ec9e{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3)}.ds-cta-secondary.jsx-f762ff05ce38ec9e:hover{border-color:#f7e500;color:#f7e500;-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}@media(max-width:768px){.ds-hero.jsx-f762ff05ce38ec9e{min-height:360px}.ds-hero-content.jsx-f762ff05ce38ec9e{padding:100px 20px 36px}.ds-metrics-container.jsx-f762ff05ce38ec9e{grid-template-columns:repeat(2,1fr);gap:16px}.ds-services-grid.jsx-f762ff05ce38ec9e{grid-template-columns:1fr}.ds-service-featured.jsx-f762ff05ce38ec9e{grid-column:span 1;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.ds-service-featured.jsx-f762ff05ce38ec9e .ds-service-img.jsx-f762ff05ce38ec9e{width:100%;height:180px}}'
+                id: "eae4d2c5c75da6aa",
+                children: '.ds-page.jsx-eae4d2c5c75da6aa{width:100%;min-height:100vh}.ds-hero.jsx-eae4d2c5c75da6aa{position:relative;min-height:420px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end}.ds-hero-bg.jsx-eae4d2c5c75da6aa{position:absolute;inset:0}.ds-hero-bg.jsx-eae4d2c5c75da6aa img.jsx-eae4d2c5c75da6aa{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.ds-hero-overlay.jsx-eae4d2c5c75da6aa{position:absolute;inset:0;background:-webkit-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:-moz-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:-o-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:linear-gradient(to top,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%)}.ds-hero-content.jsx-eae4d2c5c75da6aa{position:relative;z-index:1;max-width:800px;padding:60px 32px 48px}.ds-breadcrumb.jsx-eae4d2c5c75da6aa{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;font-size:13px;margin-bottom:16px}.ds-breadcrumb.jsx-eae4d2c5c75da6aa a{color:rgba(255,255,255,.7);text-decoration:none;font-weight:500;-webkit-transition:color.15s;-moz-transition:color.15s;-o-transition:color.15s;transition:color.15s}.ds-breadcrumb.jsx-eae4d2c5c75da6aa a:hover{color:#f7e500}.ds-breadcrumb.jsx-eae4d2c5c75da6aa span.jsx-eae4d2c5c75da6aa{color:rgba(255,255,255,.4)}.ds-breadcrumb-current.jsx-eae4d2c5c75da6aa{color:#f7e500;font-weight:600}.ds-hero-content.jsx-eae4d2c5c75da6aa h1.jsx-eae4d2c5c75da6aa{margin:0;font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;line-height:1.1}.ds-hero-content.jsx-eae4d2c5c75da6aa p.jsx-eae4d2c5c75da6aa{margin:14px 0 0;font-size:17px;color:rgba(255,255,255,.7);line-height:1.6;max-width:600px}.ds-metrics-section.jsx-eae4d2c5c75da6aa{padding:0 24px;margin-top:-1px;background:#0a101b}.ds-metrics-container.jsx-eae4d2c5c75da6aa{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:36px 0;border-top:1px solid rgba(255,255,255,.08)}.ds-metric.jsx-eae4d2c5c75da6aa{text-align:center}.ds-metric-value.jsx-eae4d2c5c75da6aa{display:block;font-size:28px;font-weight:800;color:#f7e500;font-family:"JetBrains Mono",monospace}.ds-metric-label.jsx-eae4d2c5c75da6aa{display:block;font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}.ds-services-section.jsx-eae4d2c5c75da6aa{padding:72px 24px;background:#f8fafc}.ds-services-container.jsx-eae4d2c5c75da6aa{max-width:1140px;margin:0 auto}.ds-services-header.jsx-eae4d2c5c75da6aa{text-align:center;margin-bottom:40px}.ds-services-header.jsx-eae4d2c5c75da6aa h2.jsx-eae4d2c5c75da6aa{margin:0;font-size:clamp(26px,3.5vw,34px);font-weight:800;color:#111827}.ds-services-header.jsx-eae4d2c5c75da6aa p.jsx-eae4d2c5c75da6aa{margin:10px 0 0;font-size:16px;color:#6b7280}.ds-services-grid.jsx-eae4d2c5c75da6aa{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}.ds-service-card.jsx-eae4d2c5c75da6aa{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;border:1px solid#e5e7eb;background:#fff;text-decoration:none;color:inherit;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s}.ds-service-card.jsx-eae4d2c5c75da6aa:hover{-webkit-box-shadow:0 16px 48px rgba(0,0,0,.08);-moz-box-shadow:0 16px 48px rgba(0,0,0,.08);box-shadow:0 16px 48px rgba(0,0,0,.08);-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px)}.ds-service-featured.jsx-eae4d2c5c75da6aa{grid-column:span 2;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-direction:row;flex-direction:row}.ds-service-img.jsx-eae4d2c5c75da6aa{height:180px;background:-webkit-linear-gradient(315deg,#0a101b,#1e293b);background:-moz-linear-gradient(315deg,#0a101b,#1e293b);background:-o-linear-gradient(315deg,#0a101b,#1e293b);background:linear-gradient(135deg,#0a101b,#1e293b);overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.ds-service-featured.jsx-eae4d2c5c75da6aa .ds-service-img.jsx-eae4d2c5c75da6aa{width:280px;height:auto;min-height:200px}.ds-service-img.jsx-eae4d2c5c75da6aa img.jsx-eae4d2c5c75da6aa{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.ds-service-placeholder.jsx-eae4d2c5c75da6aa{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.ds-service-placeholder.jsx-eae4d2c5c75da6aa span.jsx-eae4d2c5c75da6aa{font-size:48px;font-weight:800;color:#f7e500;opacity:.6}.ds-service-body.jsx-eae4d2c5c75da6aa{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.ds-service-body.jsx-eae4d2c5c75da6aa h3.jsx-eae4d2c5c75da6aa{margin:0;font-size:18px;font-weight:700;color:#111827}.ds-service-body.jsx-eae4d2c5c75da6aa p.jsx-eae4d2c5c75da6aa{margin:0;font-size:14px;color:#6b7280;line-height:1.7}.ds-service-link.jsx-eae4d2c5c75da6aa{font-size:13px;font-weight:700;color:#0a101b;margin-top:auto;padding-top:8px}.ds-service-card.jsx-eae4d2c5c75da6aa:hover .ds-service-link.jsx-eae4d2c5c75da6aa{color:#f7e500}.ds-process-section.jsx-eae4d2c5c75da6aa{padding:72px 24px;background:#fff}.ds-process-container.jsx-eae4d2c5c75da6aa{max-width:800px;margin:0 auto}.ds-process-header.jsx-eae4d2c5c75da6aa{text-align:center;margin-bottom:40px}.ds-process-header.jsx-eae4d2c5c75da6aa h2.jsx-eae4d2c5c75da6aa{margin:0;font-size:clamp(26px,3.5vw,34px);font-weight:800;color:#111827}.ds-process-header.jsx-eae4d2c5c75da6aa p.jsx-eae4d2c5c75da6aa{margin:10px 0 0;font-size:16px;color:#6b7280}.ds-process-timeline.jsx-eae4d2c5c75da6aa{position:relative;padding-left:32px}.ds-process-timeline.jsx-eae4d2c5c75da6aa::before{content:"";position:absolute;left:8px;top:12px;bottom:12px;width:2px;background:-webkit-linear-gradient(top,#f7e500,#e5e7eb);background:-moz-linear-gradient(top,#f7e500,#e5e7eb);background:-o-linear-gradient(top,#f7e500,#e5e7eb);background:linear-gradient(to bottom,#f7e500,#e5e7eb);-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px}.ds-process-item.jsx-eae4d2c5c75da6aa{position:relative;padding:0 0 32px}.ds-process-item.jsx-eae4d2c5c75da6aa:last-child{padding-bottom:0}.ds-process-dot.jsx-eae4d2c5c75da6aa{position:absolute;left:-28px;top:6px;width:14px;height:14px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;background:#f7e500;border:3px solid#fff;-webkit-box-shadow:0 0 0 2px#f7e500;-moz-box-shadow:0 0 0 2px#f7e500;box-shadow:0 0 0 2px#f7e500}.ds-process-content.jsx-eae4d2c5c75da6aa{}.ds-process-step.jsx-eae4d2c5c75da6aa{display:inline-block;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}.ds-process-content.jsx-eae4d2c5c75da6aa h3.jsx-eae4d2c5c75da6aa{margin:0 0 6px;font-size:18px;font-weight:700;color:#111827}.ds-process-content.jsx-eae4d2c5c75da6aa p.jsx-eae4d2c5c75da6aa{margin:0;font-size:14px;color:#6b7280;line-height:1.7}.ds-cta-section.jsx-eae4d2c5c75da6aa{padding:72px 24px;background:#0a101b;text-align:center}.ds-cta-container.jsx-eae4d2c5c75da6aa{max-width:600px;margin:0 auto}.ds-cta-container.jsx-eae4d2c5c75da6aa h2.jsx-eae4d2c5c75da6aa{margin:0;font-size:clamp(24px,3.5vw,32px);font-weight:800;color:#fff}.ds-cta-container.jsx-eae4d2c5c75da6aa p.jsx-eae4d2c5c75da6aa{margin:12px 0 0;font-size:16px;color:rgba(255,255,255,.6)}.ds-cta-buttons.jsx-eae4d2c5c75da6aa{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-top:28px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.ds-cta-btn.jsx-eae4d2c5c75da6aa{padding:14px 28px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;-webkit-transition:-webkit-transform.15s,box-shadow.15s;-moz-transition:-moz-transform.15s,box-shadow.15s;-o-transition:-o-transform.15s,box-shadow.15s;transition:-webkit-transform.15s,box-shadow.15s;transition:-moz-transform.15s,box-shadow.15s;transition:-o-transform.15s,box-shadow.15s;transition:transform.15s,box-shadow.15s}.ds-cta-primary.jsx-eae4d2c5c75da6aa{background:#f7e500;color:#0a101b}.ds-cta-primary.jsx-eae4d2c5c75da6aa:hover{-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px);-webkit-box-shadow:0 8px 24px rgba(247,229,0,.3);-moz-box-shadow:0 8px 24px rgba(247,229,0,.3);box-shadow:0 8px 24px rgba(247,229,0,.3)}.ds-cta-secondary.jsx-eae4d2c5c75da6aa{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3)}.ds-cta-secondary.jsx-eae4d2c5c75da6aa:hover{border-color:#f7e500;color:#f7e500;-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}@media(max-width:768px){.ds-hero.jsx-eae4d2c5c75da6aa{min-height:360px}.ds-hero-content.jsx-eae4d2c5c75da6aa{padding:100px 20px 36px}.ds-metrics-container.jsx-eae4d2c5c75da6aa{grid-template-columns:repeat(2,1fr);gap:16px}.ds-services-grid.jsx-eae4d2c5c75da6aa{grid-template-columns:1fr}.ds-service-featured.jsx-eae4d2c5c75da6aa{grid-column:span 1;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.ds-service-featured.jsx-eae4d2c5c75da6aa .ds-service-img.jsx-eae4d2c5c75da6aa{width:100%;height:180px}}'
             })
         ]
     });

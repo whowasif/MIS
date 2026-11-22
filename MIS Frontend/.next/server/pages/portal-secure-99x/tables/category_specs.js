@@ -188,44 +188,44 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                    className: "jsx-afebe0078c07484c",
+                    className: "jsx-1f569f22b0281900",
                     children: "Category Specs | Admin"
                 })
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-afebe0078c07484c" + " " + "specs-page",
+                className: "jsx-1f569f22b0281900" + " " + "specs-page",
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("header", {
-                        className: "jsx-afebe0078c07484c" + " " + "specs-header",
+                        className: "jsx-1f569f22b0281900" + " " + "specs-header",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-afebe0078c07484c",
+                            className: "jsx-1f569f22b0281900",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                    className: "jsx-afebe0078c07484c",
+                                    className: "jsx-1f569f22b0281900",
                                     children: "Category Specifications"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                    className: "jsx-afebe0078c07484c",
+                                    className: "jsx-1f569f22b0281900",
                                     children: "Manage specification fields for each product category."
                                 })
                             ]
                         })
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-afebe0078c07484c" + " " + "filter-row",
+                        className: "jsx-1f569f22b0281900" + " " + "filter-row",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                className: "jsx-afebe0078c07484c" + " " + "filter-label",
+                                className: "jsx-1f569f22b0281900" + " " + "filter-label",
                                 children: "Filter by Category:"
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                 value: filterCat,
                                 onChange: (e)=>setFilterCat(e.target.value),
-                                className: "jsx-afebe0078c07484c" + " " + "filter-select",
+                                className: "jsx-1f569f22b0281900" + " " + "filter-select",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("option", {
                                         value: "",
-                                        className: "jsx-afebe0078c07484c",
+                                        className: "jsx-1f569f22b0281900",
                                         children: [
                                             "All Categories (",
                                             items.length,
@@ -234,7 +234,7 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                     }),
                                     categories.filter((c)=>!c.parent_id).map((cat)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("option", {
                                             value: cat.id,
-                                            className: "jsx-afebe0078c07484c",
+                                            className: "jsx-1f569f22b0281900",
                                             children: [
                                                 cat.name,
                                                 " (",
@@ -247,17 +247,17 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                         ]
                     }),
                     !addingTo && !editing && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-afebe0078c07484c" + " " + "add-section",
+                        className: "jsx-1f569f22b0281900" + " " + "add-section",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                className: "jsx-afebe0078c07484c",
+                                className: "jsx-1f569f22b0281900",
                                 children: "Add specs to a category:"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-afebe0078c07484c" + " " + "add-cat-grid",
+                                className: "jsx-1f569f22b0281900" + " " + "add-cat-grid",
                                 children: categories.filter((c)=>!c.parent_id).map((cat)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                                         onClick: ()=>startAdd(cat.id),
-                                        className: "jsx-afebe0078c07484c" + " " + "add-cat-btn",
+                                        className: "jsx-1f569f22b0281900" + " " + "add-cat-btn",
                                         children: [
                                             "+ ",
                                             cat.name
@@ -267,20 +267,20 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                         ]
                     }),
                     (addingTo || editing) && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-afebe0078c07484c" + " " + "form-card",
+                        className: "jsx-1f569f22b0281900" + " " + "form-card",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                className: "jsx-afebe0078c07484c",
+                                className: "jsx-1f569f22b0281900",
                                 children: editing ? "Edit Specification" : `Add Spec to "${getCategoryName(addingTo)}"`
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-afebe0078c07484c" + " " + "form-grid",
+                                className: "jsx-1f569f22b0281900" + " " + "form-grid",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-afebe0078c07484c" + " " + "form-field",
+                                        className: "jsx-1f569f22b0281900" + " " + "form-field",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: "Spec Label (Display Name)"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -290,15 +290,15 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                                             spec_name: editing ? p.spec_name : generateSpecName(e.target.value)
                                                         })),
                                                 placeholder: "e.g. Processor Brand",
-                                                className: "jsx-afebe0078c07484c"
+                                                className: "jsx-1f569f22b0281900"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-afebe0078c07484c" + " " + "form-field",
+                                        className: "jsx-1f569f22b0281900" + " " + "form-field",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: "Spec Name (Key)"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -307,15 +307,15 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                                             spec_name: e.target.value
                                                         })),
                                                 placeholder: "e.g. processor-brand",
-                                                className: "jsx-afebe0078c07484c"
+                                                className: "jsx-1f569f22b0281900"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-afebe0078c07484c" + " " + "form-field",
+                                        className: "jsx-1f569f22b0281900" + " " + "form-field",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: "Order"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
@@ -324,15 +324,15 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                                 onChange: (e)=>setForm((p)=>Object.assign({}, p, {
                                                             display_order: Number(e.target.value)
                                                         })),
-                                                className: "jsx-afebe0078c07484c"
+                                                className: "jsx-1f569f22b0281900"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-afebe0078c07484c" + " " + "form-field",
+                                        className: "jsx-1f569f22b0281900" + " " + "form-field",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: "Filterable"
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
@@ -340,16 +340,16 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                                 onChange: (e)=>setForm((p)=>Object.assign({}, p, {
                                                             is_filterable: Number(e.target.value)
                                                         })),
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                         value: 1,
-                                                        className: "jsx-afebe0078c07484c",
+                                                        className: "jsx-1f569f22b0281900",
                                                         children: "Yes"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                         value: 0,
-                                                        className: "jsx-afebe0078c07484c",
+                                                        className: "jsx-1f569f22b0281900",
                                                         children: "No"
                                                     })
                                                 ]
@@ -357,10 +357,10 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-afebe0078c07484c" + " " + "form-field",
+                                        className: "jsx-1f569f22b0281900" + " " + "form-field",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: "Highlight"
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
@@ -368,16 +368,16 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                                 onChange: (e)=>setForm((p)=>Object.assign({}, p, {
                                                             is_highlight: Number(e.target.value)
                                                         })),
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                         value: 1,
-                                                        className: "jsx-afebe0078c07484c",
+                                                        className: "jsx-1f569f22b0281900",
                                                         children: "Yes"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                         value: 0,
-                                                        className: "jsx-afebe0078c07484c",
+                                                        className: "jsx-1f569f22b0281900",
                                                         children: "No"
                                                     })
                                                 ]
@@ -387,17 +387,17 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-afebe0078c07484c" + " " + "form-actions",
+                                className: "jsx-1f569f22b0281900" + " " + "form-actions",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                         onClick: saveSpec,
                                         disabled: saving || !form.spec_label || !form.spec_name,
-                                        className: "jsx-afebe0078c07484c" + " " + "btn-save",
+                                        className: "jsx-1f569f22b0281900" + " " + "btn-save",
                                         children: saving ? "Saving..." : editing ? "Update" : "Add Spec"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                         onClick: cancelForm,
-                                        className: "jsx-afebe0078c07484c" + " " + "btn-cancel",
+                                        className: "jsx-1f569f22b0281900" + " " + "btn-cancel",
                                         children: "Cancel"
                                     })
                                 ]
@@ -405,24 +405,24 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-afebe0078c07484c" + " " + "specs-list",
+                        className: "jsx-1f569f22b0281900" + " " + "specs-list",
                         children: (filterCat ? [
                             filterCat
                         ] : catsWithSpecs).map((catId)=>{
                             const catSpecs = (groupedByCategory[catId] || []).sort((a, b)=>a.display_order - b.display_order);
                             if (catSpecs.length === 0 && !filterCat) return null;
                             return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-afebe0078c07484c" + " " + "cat-group",
+                                className: "jsx-1f569f22b0281900" + " " + "cat-group",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-afebe0078c07484c" + " " + "cat-group-header",
+                                        className: "jsx-1f569f22b0281900" + " " + "cat-group-header",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: getCategoryName(Number(catId))
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                className: "jsx-afebe0078c07484c" + " " + "spec-count",
+                                                className: "jsx-1f569f22b0281900" + " " + "spec-count",
                                                 children: [
                                                     catSpecs.length,
                                                     " spec",
@@ -431,88 +431,88 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                 onClick: ()=>startAdd(Number(catId)),
-                                                className: "jsx-afebe0078c07484c" + " " + "btn-add",
+                                                className: "jsx-1f569f22b0281900" + " " + "btn-add",
                                                 children: "+ Add Spec"
                                             })
                                         ]
                                     }),
                                     catSpecs.length > 0 ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", {
-                                        className: "jsx-afebe0078c07484c" + " " + "spec-table",
+                                        className: "jsx-1f569f22b0281900" + " " + "spec-table",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("thead", {
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
-                                                    className: "jsx-afebe0078c07484c",
+                                                    className: "jsx-1f569f22b0281900",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                                                            className: "jsx-afebe0078c07484c",
+                                                            className: "jsx-1f569f22b0281900",
                                                             children: "Label"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                                                            className: "jsx-afebe0078c07484c",
+                                                            className: "jsx-1f569f22b0281900",
                                                             children: "Key"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                                                            className: "jsx-afebe0078c07484c",
+                                                            className: "jsx-1f569f22b0281900",
                                                             children: "Order"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                                                            className: "jsx-afebe0078c07484c",
+                                                            className: "jsx-1f569f22b0281900",
                                                             children: "Filterable"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                                                            className: "jsx-afebe0078c07484c",
+                                                            className: "jsx-1f569f22b0281900",
                                                             children: "Highlight"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                                                            className: "jsx-afebe0078c07484c",
+                                                            className: "jsx-1f569f22b0281900",
                                                             children: "Actions"
                                                         })
                                                     ]
                                                 })
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("tbody", {
-                                                className: "jsx-afebe0078c07484c",
+                                                className: "jsx-1f569f22b0281900",
                                                 children: catSpecs.map((spec)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
-                                                        className: "jsx-afebe0078c07484c",
+                                                        className: "jsx-1f569f22b0281900",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                                                                className: "jsx-afebe0078c07484c" + " " + "td-label",
+                                                                className: "jsx-1f569f22b0281900" + " " + "td-label",
                                                                 children: spec.spec_label
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                                                                className: "jsx-afebe0078c07484c" + " " + "td-key",
+                                                                className: "jsx-1f569f22b0281900" + " " + "td-key",
                                                                 children: spec.spec_name
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                                                                className: "jsx-afebe0078c07484c",
+                                                                className: "jsx-1f569f22b0281900",
                                                                 children: spec.display_order
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                                                                className: "jsx-afebe0078c07484c",
+                                                                className: "jsx-1f569f22b0281900",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-afebe0078c07484c" + " " + `pill ${spec.is_filterable ? "yes" : "no"}`,
+                                                                    className: "jsx-1f569f22b0281900" + " " + `pill ${spec.is_filterable ? "yes" : "no"}`,
                                                                     children: spec.is_filterable ? "Yes" : "No"
                                                                 })
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                                                                className: "jsx-afebe0078c07484c",
+                                                                className: "jsx-1f569f22b0281900",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-afebe0078c07484c" + " " + `pill ${spec.is_highlight ? "yes" : "no"}`,
+                                                                    className: "jsx-1f569f22b0281900" + " " + `pill ${spec.is_highlight ? "yes" : "no"}`,
                                                                     children: spec.is_highlight ? "Yes" : "No"
                                                                 })
                                                             }),
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
-                                                                className: "jsx-afebe0078c07484c" + " " + "td-actions",
+                                                                className: "jsx-1f569f22b0281900" + " " + "td-actions",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                         onClick: ()=>startEdit(spec),
-                                                                        className: "jsx-afebe0078c07484c" + " " + "act-btn edit",
+                                                                        className: "jsx-1f569f22b0281900" + " " + "act-btn edit",
                                                                         children: "Edit"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                         onClick: ()=>deleteSpec(spec.id),
-                                                                        className: "jsx-afebe0078c07484c" + " " + "act-btn del",
+                                                                        className: "jsx-1f569f22b0281900" + " " + "act-btn del",
                                                                         children: "Delete"
                                                                     })
                                                                 ]
@@ -522,7 +522,7 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                                             })
                                         ]
                                     }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-afebe0078c07484c" + " " + "empty-cat",
+                                        className: "jsx-1f569f22b0281900" + " " + "empty-cat",
                                         children: "No specs yet for this category."
                                     })
                                 ]
@@ -532,8 +532,8 @@ const CategorySpecsPage = ({ categories =[] , specs =[]  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "afebe0078c07484c",
-                children: ".specs-page.jsx-afebe0078c07484c{display:grid;gap:20px}.specs-header.jsx-afebe0078c07484c h1.jsx-afebe0078c07484c{margin:0;font-size:24px;color:#1f2937}.specs-header.jsx-afebe0078c07484c p.jsx-afebe0078c07484c{margin:4px 0 0;color:#6b7280;font-size:14px}.filter-row.jsx-afebe0078c07484c{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.filter-label.jsx-afebe0078c07484c{font-size:13px;font-weight:600;color:#374151}.filter-select.jsx-afebe0078c07484c{padding:10px 14px;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff;font:inherit;font-size:14px;min-width:240px;cursor:pointer}.filter-select.jsx-afebe0078c07484c:focus{outline:none;border-color:#6366f1}.form-card.jsx-afebe0078c07484c{border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;padding:20px}.form-card.jsx-afebe0078c07484c h3.jsx-afebe0078c07484c{margin:0 0 14px;font-size:16px;color:#111827}.form-grid.jsx-afebe0078c07484c{display:grid;grid-template-columns:1fr 1fr 100px 100px 100px;gap:12px}.form-field.jsx-afebe0078c07484c{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px}.form-field.jsx-afebe0078c07484c label.jsx-afebe0078c07484c{font-size:11px;font-weight:700;color:#374151;text-transform:uppercase}.form-field.jsx-afebe0078c07484c input.jsx-afebe0078c07484c,.form-field.jsx-afebe0078c07484c select.jsx-afebe0078c07484c{height:40px;border:2px solid#c7d2fe;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:0 12px;font:inherit;font-size:14px;background:#fafbff}.form-field.jsx-afebe0078c07484c input.jsx-afebe0078c07484c:focus,.form-field.jsx-afebe0078c07484c select.jsx-afebe0078c07484c:focus{outline:none;border-color:#6366f1}.form-actions.jsx-afebe0078c07484c{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-top:14px}.btn-save.jsx-afebe0078c07484c{border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:9px 18px;background:#4f46e5;color:#fff;font-weight:700;font-size:13px;cursor:pointer}.btn-save.jsx-afebe0078c07484c:disabled{opacity:.5}.btn-cancel.jsx-afebe0078c07484c{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:9px 18px;background:#fff;color:#374151;font-weight:600;font-size:13px;cursor:pointer}.specs-list.jsx-afebe0078c07484c{display:grid;gap:16px}.cat-group.jsx-afebe0078c07484c{border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;overflow:hidden}.cat-group-header.jsx-afebe0078c07484c{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding:14px 18px;background:#f9fafb;border-bottom:1px solid#e5e7eb}.cat-group-header.jsx-afebe0078c07484c h3.jsx-afebe0078c07484c{margin:0;font-size:15px;color:#111827;font-weight:700}.spec-count.jsx-afebe0078c07484c{font-size:12px;color:#6b7280;background:#f3f4f6;padding:2px 10px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px}.btn-add.jsx-afebe0078c07484c{margin-left:auto;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:6px 14px;background:#4f46e5;color:#fff;font-size:12px;font-weight:700;cursor:pointer}.btn-add.jsx-afebe0078c07484c:hover{background:#4338ca}.spec-table.jsx-afebe0078c07484c{width:100%;border-collapse:collapse}.spec-table.jsx-afebe0078c07484c th.jsx-afebe0078c07484c{text-align:left;padding:10px 18px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:700;border-bottom:1px solid#f3f4f6}.spec-table.jsx-afebe0078c07484c td.jsx-afebe0078c07484c{padding:12px 18px;border-bottom:1px solid#f9fafb;font-size:14px;color:#374151}.spec-table.jsx-afebe0078c07484c tr.jsx-afebe0078c07484c:last-child td.jsx-afebe0078c07484c{border-bottom:none}.spec-table.jsx-afebe0078c07484c tr.jsx-afebe0078c07484c:hover{background:#fafbff}.td-label.jsx-afebe0078c07484c{font-weight:600;color:#111827}.td-key.jsx-afebe0078c07484c{font-family:monospace;font-size:13px;color:#6366f1}.td-actions.jsx-afebe0078c07484c{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px}.pill.jsx-afebe0078c07484c{padding:3px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:11px;font-weight:700}.pill.yes.jsx-afebe0078c07484c{background:#d1fae5;color:#065f46}.pill.no.jsx-afebe0078c07484c{background:#f3f4f6;color:#6b7280}.act-btn.jsx-afebe0078c07484c{-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:600;cursor:pointer}.act-btn.edit.jsx-afebe0078c07484c{border:1px solid#c7d2fe;background:#eef2ff;color:#4338ca}.act-btn.edit.jsx-afebe0078c07484c:hover{background:#e0e7ff}.act-btn.del.jsx-afebe0078c07484c{border:1px solid#fecaca;background:#fef2f2;color:#dc2626}.act-btn.del.jsx-afebe0078c07484c:hover{background:#fee2e2}.empty-cat.jsx-afebe0078c07484c{margin:0;padding:16px 18px;color:#9ca3af;font-size:14px}.empty-state.jsx-afebe0078c07484c{padding:40px;text-align:center;border:1px dashed#d1d5db;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px}.empty-state.jsx-afebe0078c07484c p.jsx-afebe0078c07484c{margin:0;color:#6b7280}.add-section.jsx-afebe0078c07484c{padding:20px;border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fafbff}.add-section.jsx-afebe0078c07484c h4.jsx-afebe0078c07484c{margin:0 0 12px;font-size:14px;color:#374151}.add-cat-grid.jsx-afebe0078c07484c{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.add-cat-btn.jsx-afebe0078c07484c{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:6px 14px;background:#fff;color:#374151;font-size:12px;font-weight:600;cursor:pointer}.add-cat-btn.jsx-afebe0078c07484c:hover{border-color:#6366f1;color:#4f46e5;background:#eef2ff}@media(max-width:768px){.form-grid.jsx-afebe0078c07484c{grid-template-columns:1fr}.filter-row.jsx-afebe0078c07484c{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}}"
+                id: "1f569f22b0281900",
+                children: ".specs-page.jsx-1f569f22b0281900{display:grid;gap:20px}.specs-header.jsx-1f569f22b0281900 h1.jsx-1f569f22b0281900{margin:0;font-size:24px;color:#1f2937}.specs-header.jsx-1f569f22b0281900 p.jsx-1f569f22b0281900{margin:4px 0 0;color:#6b7280;font-size:14px}.filter-row.jsx-1f569f22b0281900{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.filter-label.jsx-1f569f22b0281900{font-size:13px;font-weight:600;color:#374151}.filter-select.jsx-1f569f22b0281900{padding:10px 14px;border:2px solid#c7d2fe;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#fafbff;font:inherit;font-size:14px;min-width:240px;cursor:pointer}.filter-select.jsx-1f569f22b0281900:focus{outline:none;border-color:#6366f1}.form-card.jsx-1f569f22b0281900{border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;padding:20px}.form-card.jsx-1f569f22b0281900 h3.jsx-1f569f22b0281900{margin:0 0 14px;font-size:16px;color:#111827}.form-grid.jsx-1f569f22b0281900{display:grid;grid-template-columns:1fr 1fr 100px 100px 100px;gap:12px}.form-field.jsx-1f569f22b0281900{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px}.form-field.jsx-1f569f22b0281900 label.jsx-1f569f22b0281900{font-size:11px;font-weight:700;color:#374151;text-transform:uppercase}.form-field.jsx-1f569f22b0281900 input.jsx-1f569f22b0281900,.form-field.jsx-1f569f22b0281900 select.jsx-1f569f22b0281900{height:40px;border:2px solid#c7d2fe;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:0 12px;font:inherit;font-size:14px;background:#fafbff}.form-field.jsx-1f569f22b0281900 input.jsx-1f569f22b0281900:focus,.form-field.jsx-1f569f22b0281900 select.jsx-1f569f22b0281900:focus{outline:none;border-color:#6366f1}.form-actions.jsx-1f569f22b0281900{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-top:14px}.btn-save.jsx-1f569f22b0281900{border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:9px 18px;background:#4f46e5;color:#fff;font-weight:700;font-size:13px;cursor:pointer}.btn-save.jsx-1f569f22b0281900:disabled{opacity:.5}.btn-cancel.jsx-1f569f22b0281900{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:9px 18px;background:#fff;color:#374151;font-weight:600;font-size:13px;cursor:pointer}.specs-list.jsx-1f569f22b0281900{display:grid;gap:16px}.cat-group.jsx-1f569f22b0281900{border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fff;overflow:hidden}.cat-group-header.jsx-1f569f22b0281900{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:12px;padding:14px 18px;background:#f9fafb;border-bottom:1px solid#e5e7eb}.cat-group-header.jsx-1f569f22b0281900 h3.jsx-1f569f22b0281900{margin:0;font-size:15px;color:#111827;font-weight:700}.spec-count.jsx-1f569f22b0281900{font-size:12px;color:#6b7280;background:#f3f4f6;padding:2px 10px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px}.btn-add.jsx-1f569f22b0281900{margin-left:auto;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:6px 14px;background:#4f46e5;color:#fff;font-size:12px;font-weight:700;cursor:pointer}.btn-add.jsx-1f569f22b0281900:hover{background:#4338ca}.spec-table.jsx-1f569f22b0281900{width:100%;border-collapse:collapse}.spec-table.jsx-1f569f22b0281900 th.jsx-1f569f22b0281900{text-align:left;padding:10px 18px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:700;border-bottom:1px solid#f3f4f6}.spec-table.jsx-1f569f22b0281900 td.jsx-1f569f22b0281900{padding:12px 18px;border-bottom:1px solid#f9fafb;font-size:14px;color:#374151}.spec-table.jsx-1f569f22b0281900 tr.jsx-1f569f22b0281900:last-child td.jsx-1f569f22b0281900{border-bottom:none}.spec-table.jsx-1f569f22b0281900 tr.jsx-1f569f22b0281900:hover{background:#fafbff}.td-label.jsx-1f569f22b0281900{font-weight:600;color:#111827}.td-key.jsx-1f569f22b0281900{font-family:monospace;font-size:13px;color:#6366f1}.td-actions.jsx-1f569f22b0281900{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:6px}.pill.jsx-1f569f22b0281900{padding:3px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:11px;font-weight:700}.pill.yes.jsx-1f569f22b0281900{background:#d1fae5;color:#065f46}.pill.no.jsx-1f569f22b0281900{background:#f3f4f6;color:#6b7280}.act-btn.jsx-1f569f22b0281900{-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:600;cursor:pointer}.act-btn.edit.jsx-1f569f22b0281900{border:1px solid#c7d2fe;background:#eef2ff;color:#4338ca}.act-btn.edit.jsx-1f569f22b0281900:hover{background:#e0e7ff}.act-btn.del.jsx-1f569f22b0281900{border:1px solid#fecaca;background:#fef2f2;color:#dc2626}.act-btn.del.jsx-1f569f22b0281900:hover{background:#fee2e2}.empty-cat.jsx-1f569f22b0281900{margin:0;padding:16px 18px;color:#9ca3af;font-size:14px}.empty-state.jsx-1f569f22b0281900{padding:40px;text-align:center;border:1px dashed#d1d5db;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px}.empty-state.jsx-1f569f22b0281900 p.jsx-1f569f22b0281900{margin:0;color:#6b7280}.add-section.jsx-1f569f22b0281900{padding:20px;border:1px solid#e5e7eb;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;background:#fafbff}.add-section.jsx-1f569f22b0281900 h4.jsx-1f569f22b0281900{margin:0 0 12px;font-size:14px;color:#374151}.add-cat-grid.jsx-1f569f22b0281900{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.add-cat-btn.jsx-1f569f22b0281900{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:6px 14px;background:#fff;color:#374151;font-size:12px;font-weight:600;cursor:pointer}.add-cat-btn.jsx-1f569f22b0281900:hover{border-color:#6366f1;color:#4f46e5;background:#eef2ff}@media(max-width:768px){.form-grid.jsx-1f569f22b0281900{grid-template-columns:1fr}.filter-row.jsx-1f569f22b0281900{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}}"
             })
         ]
     });

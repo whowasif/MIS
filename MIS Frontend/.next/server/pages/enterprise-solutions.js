@@ -112,91 +112,91 @@ const EnterpriseSolutions = ({ services =[]  })=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-ec1fb6139075438a" + " " + "es-page",
+                className: "jsx-943cc523f5ca9a7e" + " " + "es-page",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                                className: "jsx-ec1fb6139075438a",
+                                className: "jsx-943cc523f5ca9a7e",
                                 children: "Business & Corporate Solutions - MIS Solution"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 property: "og:title",
                                 content: "Business & Corporate Solutions - MIS Solution",
-                                className: "jsx-ec1fb6139075438a"
+                                className: "jsx-943cc523f5ca9a7e"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 name: "description",
                                 content: "Enterprise-grade IT infrastructure, networking, security systems, and project-based B2B solutions by MIS Solution.",
-                                className: "jsx-ec1fb6139075438a"
+                                className: "jsx-943cc523f5ca9a7e"
                             })
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-ec1fb6139075438a" + " " + "es-hero",
+                        className: "jsx-943cc523f5ca9a7e" + " " + "es-hero",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-ec1fb6139075438a" + " " + "es-hero-bg",
+                                className: "jsx-943cc523f5ca9a7e" + " " + "es-hero-bg",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: "/business%20corporate%20sol.webp",
                                         alt: "",
                                         "aria-hidden": "true",
-                                        className: "jsx-ec1fb6139075438a"
+                                        className: "jsx-943cc523f5ca9a7e"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-ec1fb6139075438a" + " " + "es-hero-overlay"
+                                        className: "jsx-943cc523f5ca9a7e" + " " + "es-hero-overlay"
                                     })
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-ec1fb6139075438a" + " " + "es-hero-content",
+                                className: "jsx-943cc523f5ca9a7e" + " " + "es-hero-content",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("nav", {
                                         "aria-label": "Breadcrumb",
-                                        className: "jsx-ec1fb6139075438a" + " " + "es-breadcrumb",
+                                        className: "jsx-943cc523f5ca9a7e" + " " + "es-breadcrumb",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                 href: "/",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Home"
                                                 })
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-ec1fb6139075438a",
+                                                className: "jsx-943cc523f5ca9a7e",
                                                 children: "/"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                 href: "/core-it-solutions",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Core IT Solutions"
                                                 })
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-ec1fb6139075438a",
+                                                className: "jsx-943cc523f5ca9a7e",
                                                 children: "/"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-ec1fb6139075438a" + " " + "es-breadcrumb-current",
+                                                className: "jsx-943cc523f5ca9a7e" + " " + "es-breadcrumb-current",
                                                 children: "Business & Corporate Solutions"
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
-                                        className: "jsx-ec1fb6139075438a",
+                                        className: "jsx-943cc523f5ca9a7e",
                                         children: [
                                             "Business & Corporate",
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("br", {
-                                                className: "jsx-ec1fb6139075438a"
+                                                className: "jsx-943cc523f5ca9a7e"
                                             }),
                                             "Solutions"
                                         ]
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-ec1fb6139075438a",
+                                        className: "jsx-943cc523f5ca9a7e",
                                         children: "Project-based B2B solutions engineered for enterprise infrastructure, networking, physical security, and large-scale deployments."
                                     })
                                 ]
@@ -204,9 +204,9 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-ec1fb6139075438a" + " " + "es-metrics-section",
+                        className: "jsx-943cc523f5ca9a7e" + " " + "es-metrics-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-ec1fb6139075438a" + " " + "es-metrics-container",
+                            className: "jsx-943cc523f5ca9a7e" + " " + "es-metrics-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(MetricCounter, {
                                     end: 80,
@@ -232,61 +232,61 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-ec1fb6139075438a" + " " + "es-services-section",
+                        className: "jsx-943cc523f5ca9a7e" + " " + "es-services-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-ec1fb6139075438a" + " " + "es-services-container",
+                            className: "jsx-943cc523f5ca9a7e" + " " + "es-services-container",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ec1fb6139075438a" + " " + "es-services-header",
+                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-services-header",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-ec1fb6139075438a",
+                                            className: "jsx-943cc523f5ca9a7e",
                                             children: "Enterprise Solutions Portfolio"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-ec1fb6139075438a",
+                                            className: "jsx-943cc523f5ca9a7e",
                                             children: "Comprehensive infrastructure and technology solutions for organizations of all sizes."
                                         })
                                     ]
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-ec1fb6139075438a" + " " + "es-services-grid",
+                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-services-grid",
                                     children: sourceItems.map((item, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: `/services/${encodeURIComponent(item.slug || item.id)}?type=bus_corp_sol`,
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                className: "jsx-ec1fb6139075438a" + " " + "es-service-card",
+                                                className: "jsx-943cc523f5ca9a7e" + " " + "es-service-card",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-ec1fb6139075438a" + " " + "es-service-number",
+                                                        className: "jsx-943cc523f5ca9a7e" + " " + "es-service-number",
                                                         children: String(idx + 1).padStart(2, "0")
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-ec1fb6139075438a" + " " + "es-service-img",
+                                                        className: "jsx-943cc523f5ca9a7e" + " " + "es-service-img",
                                                         children: item.iconUrl ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                             src: item.iconUrl,
                                                             alt: item.name,
-                                                            className: "jsx-ec1fb6139075438a"
+                                                            className: "jsx-943cc523f5ca9a7e"
                                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-ec1fb6139075438a" + " " + "es-service-placeholder",
+                                                            className: "jsx-943cc523f5ca9a7e" + " " + "es-service-placeholder",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-ec1fb6139075438a",
+                                                                className: "jsx-943cc523f5ca9a7e",
                                                                 children: item.name.charAt(0)
                                                             })
                                                         })
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-ec1fb6139075438a" + " " + "es-service-body",
+                                                        className: "jsx-943cc523f5ca9a7e" + " " + "es-service-body",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                className: "jsx-ec1fb6139075438a",
+                                                                className: "jsx-943cc523f5ca9a7e",
                                                                 children: item.name
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-ec1fb6139075438a",
+                                                                className: "jsx-943cc523f5ca9a7e",
                                                                 children: item.description
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-ec1fb6139075438a" + " " + "es-service-link",
+                                                                className: "jsx-943cc523f5ca9a7e" + " " + "es-service-link",
                                                                 children: "View Details →"
                                                             })
                                                         ]
@@ -299,31 +299,31 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-ec1fb6139075438a" + " " + "es-process-section",
+                        className: "jsx-943cc523f5ca9a7e" + " " + "es-process-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-ec1fb6139075438a" + " " + "es-process-container",
+                            className: "jsx-943cc523f5ca9a7e" + " " + "es-process-container",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ec1fb6139075438a" + " " + "es-process-header",
+                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-process-header",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                            className: "jsx-ec1fb6139075438a",
+                                            className: "jsx-943cc523f5ca9a7e",
                                             children: "Enterprise Delivery Framework"
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-ec1fb6139075438a",
+                                            className: "jsx-943cc523f5ca9a7e",
                                             children: "A structured methodology ensuring every project is delivered on time, on spec, and within budget."
                                         })
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ec1fb6139075438a" + " " + "es-process-grid",
+                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-process-grid",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ec1fb6139075438a" + " " + "es-step",
+                                            className: "jsx-943cc523f5ca9a7e" + " " + "es-step",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-ec1fb6139075438a" + " " + "es-step-icon",
+                                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-step-icon",
                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                                         width: "24",
                                                         height: "24",
@@ -331,36 +331,36 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                                                         fill: "none",
                                                         stroke: "currentColor",
                                                         strokeWidth: "1.5",
-                                                        className: "jsx-ec1fb6139075438a",
+                                                        className: "jsx-943cc523f5ca9a7e",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                                 cx: "12",
                                                                 cy: "12",
                                                                 r: "10",
-                                                                className: "jsx-ec1fb6139075438a"
+                                                                className: "jsx-943cc523f5ca9a7e"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 d: "M12 16v-4M12 8h.01",
-                                                                className: "jsx-ec1fb6139075438a"
+                                                                className: "jsx-943cc523f5ca9a7e"
                                                             })
                                                         ]
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Site Assessment"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "On-site survey, requirements gathering, and feasibility analysis for your infrastructure needs."
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ec1fb6139075438a" + " " + "es-step",
+                                            className: "jsx-943cc523f5ca9a7e" + " " + "es-step",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-ec1fb6139075438a" + " " + "es-step-icon",
+                                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-step-icon",
                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                                         width: "24",
                                                         height: "24",
@@ -368,34 +368,34 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                                                         fill: "none",
                                                         stroke: "currentColor",
                                                         strokeWidth: "1.5",
-                                                        className: "jsx-ec1fb6139075438a",
+                                                        className: "jsx-943cc523f5ca9a7e",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 d: "M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z",
-                                                                className: "jsx-ec1fb6139075438a"
+                                                                className: "jsx-943cc523f5ca9a7e"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 d: "M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z",
-                                                                className: "jsx-ec1fb6139075438a"
+                                                                className: "jsx-943cc523f5ca9a7e"
                                                             })
                                                         ]
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Solution Design"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Technical architecture, BOQ preparation, and project plan with clear milestones."
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ec1fb6139075438a" + " " + "es-step",
+                                            className: "jsx-943cc523f5ca9a7e" + " " + "es-step",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-ec1fb6139075438a" + " " + "es-step-icon",
+                                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-step-icon",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                         width: "24",
                                                         height: "24",
@@ -403,28 +403,28 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                                                         fill: "none",
                                                         stroke: "currentColor",
                                                         strokeWidth: "1.5",
-                                                        className: "jsx-ec1fb6139075438a",
+                                                        className: "jsx-943cc523f5ca9a7e",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                             d: "M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z",
-                                                            className: "jsx-ec1fb6139075438a"
+                                                            className: "jsx-943cc523f5ca9a7e"
                                                         })
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Deployment"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Professional installation, configuration, testing, and commissioning by certified engineers."
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-ec1fb6139075438a" + " " + "es-step",
+                                            className: "jsx-943cc523f5ca9a7e" + " " + "es-step",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-ec1fb6139075438a" + " " + "es-step-icon",
+                                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-step-icon",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                         width: "24",
                                                         height: "24",
@@ -432,19 +432,19 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                                                         fill: "none",
                                                         stroke: "currentColor",
                                                         strokeWidth: "1.5",
-                                                        className: "jsx-ec1fb6139075438a",
+                                                        className: "jsx-943cc523f5ca9a7e",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                             d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
-                                                            className: "jsx-ec1fb6139075438a"
+                                                            className: "jsx-943cc523f5ca9a7e"
                                                         })
                                                     })
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Warranty & Support"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-ec1fb6139075438a",
+                                                    className: "jsx-943cc523f5ca9a7e",
                                                     children: "Comprehensive warranty coverage, SLA-based support, and proactive maintenance plans."
                                                 })
                                             ]
@@ -455,32 +455,32 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                         })
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-ec1fb6139075438a" + " " + "es-cta-section",
+                        className: "jsx-943cc523f5ca9a7e" + " " + "es-cta-section",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-ec1fb6139075438a" + " " + "es-cta-container",
+                            className: "jsx-943cc523f5ca9a7e" + " " + "es-cta-container",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                    className: "jsx-ec1fb6139075438a",
+                                    className: "jsx-943cc523f5ca9a7e",
                                     children: "Need a Corporate IT Partner?"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                    className: "jsx-ec1fb6139075438a",
+                                    className: "jsx-943cc523f5ca9a7e",
                                     children: "From data centers to security systems — let's build your enterprise infrastructure together."
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-ec1fb6139075438a" + " " + "es-cta-buttons",
+                                    className: "jsx-943cc523f5ca9a7e" + " " + "es-cta-buttons",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/request-custom-quote",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-ec1fb6139075438a" + " " + "es-cta-btn es-cta-primary",
+                                                className: "jsx-943cc523f5ca9a7e" + " " + "es-cta-btn es-cta-primary",
                                                 children: "Request a Proposal"
                                             })
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                             href: "/contact",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                className: "jsx-ec1fb6139075438a" + " " + "es-cta-btn es-cta-secondary",
+                                                className: "jsx-943cc523f5ca9a7e" + " " + "es-cta-btn es-cta-secondary",
                                                 children: "Schedule a Consultation"
                                             })
                                         })
@@ -493,8 +493,8 @@ const EnterpriseSolutions = ({ services =[]  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "ec1fb6139075438a",
-                children: '.es-page.jsx-ec1fb6139075438a{width:100%;min-height:100vh}.es-hero.jsx-ec1fb6139075438a{position:relative;min-height:420px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end}.es-hero-bg.jsx-ec1fb6139075438a{position:absolute;inset:0}.es-hero-bg.jsx-ec1fb6139075438a img.jsx-ec1fb6139075438a{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.es-hero-overlay.jsx-ec1fb6139075438a{position:absolute;inset:0;background:-webkit-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:-moz-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:-o-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:linear-gradient(to top,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%)}.es-hero-content.jsx-ec1fb6139075438a{position:relative;z-index:1;max-width:800px;padding:60px 32px 48px}.es-breadcrumb.jsx-ec1fb6139075438a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;font-size:13px;margin-bottom:16px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.es-breadcrumb.jsx-ec1fb6139075438a a{color:rgba(255,255,255,.7);text-decoration:none;font-weight:500;-webkit-transition:color.15s;-moz-transition:color.15s;-o-transition:color.15s;transition:color.15s}.es-breadcrumb.jsx-ec1fb6139075438a a:hover{color:#f7e500}.es-breadcrumb.jsx-ec1fb6139075438a span.jsx-ec1fb6139075438a{color:rgba(255,255,255,.4)}.es-breadcrumb-current.jsx-ec1fb6139075438a{color:#f7e500;font-weight:600}.es-hero-content.jsx-ec1fb6139075438a h1.jsx-ec1fb6139075438a{margin:0;font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;line-height:1.1}.es-hero-content.jsx-ec1fb6139075438a p.jsx-ec1fb6139075438a{margin:14px 0 0;font-size:17px;color:rgba(255,255,255,.7);line-height:1.6;max-width:600px}.es-metrics-section.jsx-ec1fb6139075438a{padding:0 24px;margin-top:-1px;background:#0a101b}.es-metrics-container.jsx-ec1fb6139075438a{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:36px 0;border-top:1px solid rgba(255,255,255,.08)}.es-metric.jsx-ec1fb6139075438a{text-align:center}.es-metric-value.jsx-ec1fb6139075438a{display:block;font-size:28px;font-weight:800;color:#f7e500;font-family:"JetBrains Mono",monospace}.es-metric-label.jsx-ec1fb6139075438a{display:block;font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}.es-services-section.jsx-ec1fb6139075438a{padding:72px 24px;background:#f8fafc}.es-services-container.jsx-ec1fb6139075438a{max-width:1140px;margin:0 auto}.es-services-header.jsx-ec1fb6139075438a{text-align:center;margin-bottom:40px}.es-services-header.jsx-ec1fb6139075438a h2.jsx-ec1fb6139075438a{margin:0;font-size:clamp(26px,3.5vw,34px);font-weight:800;color:#111827}.es-services-header.jsx-ec1fb6139075438a p.jsx-ec1fb6139075438a{margin:10px 0 0;font-size:16px;color:#6b7280}.es-services-grid.jsx-ec1fb6139075438a{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}.es-service-card.jsx-ec1fb6139075438a{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;border:1px solid#e5e7eb;background:#fff;text-decoration:none;color:inherit;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s}.es-service-card.jsx-ec1fb6139075438a:hover{-webkit-box-shadow:0 16px 48px rgba(0,0,0,.08);-moz-box-shadow:0 16px 48px rgba(0,0,0,.08);box-shadow:0 16px 48px rgba(0,0,0,.08);-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px)}.es-service-number.jsx-ec1fb6139075438a{position:absolute;top:16px;right:16px;font-size:42px;font-weight:900;color:rgba(10,16,27,.04);line-height:1;z-index:1;font-family:"JetBrains Mono",monospace}.es-service-img.jsx-ec1fb6139075438a{height:160px;background:-webkit-linear-gradient(315deg,#0a101b,#1e293b);background:-moz-linear-gradient(315deg,#0a101b,#1e293b);background:-o-linear-gradient(315deg,#0a101b,#1e293b);background:linear-gradient(135deg,#0a101b,#1e293b);overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.es-service-img.jsx-ec1fb6139075438a img.jsx-ec1fb6139075438a{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.es-service-placeholder.jsx-ec1fb6139075438a{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.es-service-placeholder.jsx-ec1fb6139075438a span.jsx-ec1fb6139075438a{font-size:48px;font-weight:800;color:#f7e500;opacity:.5}.es-service-body.jsx-ec1fb6139075438a{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.es-service-body.jsx-ec1fb6139075438a h3.jsx-ec1fb6139075438a{margin:0;font-size:18px;font-weight:700;color:#111827}.es-service-body.jsx-ec1fb6139075438a p.jsx-ec1fb6139075438a{margin:0;font-size:14px;color:#6b7280;line-height:1.7}.es-service-link.jsx-ec1fb6139075438a{font-size:13px;font-weight:700;color:#0a101b;margin-top:auto;padding-top:8px}.es-service-card.jsx-ec1fb6139075438a:hover .es-service-link.jsx-ec1fb6139075438a{color:#b8860b}.es-process-section.jsx-ec1fb6139075438a{padding:72px 24px;background:#fff}.es-process-container.jsx-ec1fb6139075438a{max-width:1e3px;margin:0 auto}.es-process-header.jsx-ec1fb6139075438a{text-align:center;margin-bottom:40px}.es-process-header.jsx-ec1fb6139075438a h2.jsx-ec1fb6139075438a{margin:0;font-size:clamp(26px,3.5vw,34px);font-weight:800;color:#111827}.es-process-header.jsx-ec1fb6139075438a p.jsx-ec1fb6139075438a{margin:10px 0 0;font-size:16px;color:#6b7280}.es-process-grid.jsx-ec1fb6139075438a{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}.es-step.jsx-ec1fb6139075438a{padding:28px;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fafbfc;border:1px solid#e5e7eb;-webkit-transition:border-color.2s,box-shadow.2s;-moz-transition:border-color.2s,box-shadow.2s;-o-transition:border-color.2s,box-shadow.2s;transition:border-color.2s,box-shadow.2s}.es-step.jsx-ec1fb6139075438a:hover{border-color:#f7e500;-webkit-box-shadow:0 8px 24px rgba(0,0,0,.04);-moz-box-shadow:0 8px 24px rgba(0,0,0,.04);box-shadow:0 8px 24px rgba(0,0,0,.04)}.es-step-icon.jsx-ec1fb6139075438a{width:44px;height:44px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#0a101b;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#f7e500;margin-bottom:14px}.es-step.jsx-ec1fb6139075438a h3.jsx-ec1fb6139075438a{margin:0 0 8px;font-size:16px;font-weight:700;color:#111827}.es-step.jsx-ec1fb6139075438a p.jsx-ec1fb6139075438a{margin:0;font-size:14px;color:#6b7280;line-height:1.7}.es-cta-section.jsx-ec1fb6139075438a{padding:72px 24px;background:#0a101b;text-align:center}.es-cta-container.jsx-ec1fb6139075438a{max-width:600px;margin:0 auto}.es-cta-container.jsx-ec1fb6139075438a h2.jsx-ec1fb6139075438a{margin:0;font-size:clamp(24px,3.5vw,32px);font-weight:800;color:#fff}.es-cta-container.jsx-ec1fb6139075438a p.jsx-ec1fb6139075438a{margin:12px 0 0;font-size:16px;color:rgba(255,255,255,.6)}.es-cta-buttons.jsx-ec1fb6139075438a{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-top:28px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.es-cta-btn.jsx-ec1fb6139075438a{padding:14px 28px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;-webkit-transition:-webkit-transform.15s,box-shadow.15s;-moz-transition:-moz-transform.15s,box-shadow.15s;-o-transition:-o-transform.15s,box-shadow.15s;transition:-webkit-transform.15s,box-shadow.15s;transition:-moz-transform.15s,box-shadow.15s;transition:-o-transform.15s,box-shadow.15s;transition:transform.15s,box-shadow.15s}.es-cta-primary.jsx-ec1fb6139075438a{background:#f7e500;color:#0a101b}.es-cta-primary.jsx-ec1fb6139075438a:hover{-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px);-webkit-box-shadow:0 8px 24px rgba(247,229,0,.3);-moz-box-shadow:0 8px 24px rgba(247,229,0,.3);box-shadow:0 8px 24px rgba(247,229,0,.3)}.es-cta-secondary.jsx-ec1fb6139075438a{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3)}.es-cta-secondary.jsx-ec1fb6139075438a:hover{border-color:#f7e500;color:#f7e500;-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}@media(max-width:768px){.es-hero.jsx-ec1fb6139075438a{min-height:360px}.es-hero-content.jsx-ec1fb6139075438a{padding:100px 20px 36px}.es-metrics-container.jsx-ec1fb6139075438a{grid-template-columns:repeat(2,1fr);gap:16px}.es-services-grid.jsx-ec1fb6139075438a{grid-template-columns:1fr}.es-process-grid.jsx-ec1fb6139075438a{grid-template-columns:1fr}}'
+                id: "943cc523f5ca9a7e",
+                children: '.es-page.jsx-943cc523f5ca9a7e{width:100%;min-height:100vh}.es-hero.jsx-943cc523f5ca9a7e{position:relative;min-height:420px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end}.es-hero-bg.jsx-943cc523f5ca9a7e{position:absolute;inset:0}.es-hero-bg.jsx-943cc523f5ca9a7e img.jsx-943cc523f5ca9a7e{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.es-hero-overlay.jsx-943cc523f5ca9a7e{position:absolute;inset:0;background:-webkit-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:-moz-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:-o-linear-gradient(bottom,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%);background:linear-gradient(to top,rgba(10,16,27,.95)0%,rgba(10,16,27,.6)50%,rgba(10,16,27,.3)100%)}.es-hero-content.jsx-943cc523f5ca9a7e{position:relative;z-index:1;max-width:800px;padding:60px 32px 48px}.es-breadcrumb.jsx-943cc523f5ca9a7e{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px;font-size:13px;margin-bottom:16px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.es-breadcrumb.jsx-943cc523f5ca9a7e a{color:rgba(255,255,255,.7);text-decoration:none;font-weight:500;-webkit-transition:color.15s;-moz-transition:color.15s;-o-transition:color.15s;transition:color.15s}.es-breadcrumb.jsx-943cc523f5ca9a7e a:hover{color:#f7e500}.es-breadcrumb.jsx-943cc523f5ca9a7e span.jsx-943cc523f5ca9a7e{color:rgba(255,255,255,.4)}.es-breadcrumb-current.jsx-943cc523f5ca9a7e{color:#f7e500;font-weight:600}.es-hero-content.jsx-943cc523f5ca9a7e h1.jsx-943cc523f5ca9a7e{margin:0;font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;line-height:1.1}.es-hero-content.jsx-943cc523f5ca9a7e p.jsx-943cc523f5ca9a7e{margin:14px 0 0;font-size:17px;color:rgba(255,255,255,.7);line-height:1.6;max-width:600px}.es-metrics-section.jsx-943cc523f5ca9a7e{padding:0 24px;margin-top:-1px;background:#0a101b}.es-metrics-container.jsx-943cc523f5ca9a7e{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:36px 0;border-top:1px solid rgba(255,255,255,.08)}.es-metric.jsx-943cc523f5ca9a7e{text-align:center}.es-metric-value.jsx-943cc523f5ca9a7e{display:block;font-size:28px;font-weight:800;color:#f7e500;font-family:"JetBrains Mono",monospace}.es-metric-label.jsx-943cc523f5ca9a7e{display:block;font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}.es-services-section.jsx-943cc523f5ca9a7e{padding:72px 24px;background:#f8fafc}.es-services-container.jsx-943cc523f5ca9a7e{max-width:1140px;margin:0 auto}.es-services-header.jsx-943cc523f5ca9a7e{text-align:center;margin-bottom:40px}.es-services-header.jsx-943cc523f5ca9a7e h2.jsx-943cc523f5ca9a7e{margin:0;font-size:clamp(26px,3.5vw,34px);font-weight:800;color:#111827}.es-services-header.jsx-943cc523f5ca9a7e p.jsx-943cc523f5ca9a7e{margin:10px 0 0;font-size:16px;color:#6b7280}.es-services-grid.jsx-943cc523f5ca9a7e{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}.es-service-card.jsx-943cc523f5ca9a7e{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;border:1px solid#e5e7eb;background:#fff;text-decoration:none;color:inherit;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s}.es-service-card.jsx-943cc523f5ca9a7e:hover{-webkit-box-shadow:0 16px 48px rgba(0,0,0,.08);-moz-box-shadow:0 16px 48px rgba(0,0,0,.08);box-shadow:0 16px 48px rgba(0,0,0,.08);-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px)}.es-service-number.jsx-943cc523f5ca9a7e{position:absolute;top:16px;right:16px;font-size:42px;font-weight:900;color:rgba(10,16,27,.04);line-height:1;z-index:1;font-family:"JetBrains Mono",monospace}.es-service-img.jsx-943cc523f5ca9a7e{height:160px;background:-webkit-linear-gradient(315deg,#0a101b,#1e293b);background:-moz-linear-gradient(315deg,#0a101b,#1e293b);background:-o-linear-gradient(315deg,#0a101b,#1e293b);background:linear-gradient(135deg,#0a101b,#1e293b);overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.es-service-img.jsx-943cc523f5ca9a7e img.jsx-943cc523f5ca9a7e{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.es-service-placeholder.jsx-943cc523f5ca9a7e{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center}.es-service-placeholder.jsx-943cc523f5ca9a7e span.jsx-943cc523f5ca9a7e{font-size:48px;font-weight:800;color:#f7e500;opacity:.5}.es-service-body.jsx-943cc523f5ca9a7e{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.es-service-body.jsx-943cc523f5ca9a7e h3.jsx-943cc523f5ca9a7e{margin:0;font-size:18px;font-weight:700;color:#111827}.es-service-body.jsx-943cc523f5ca9a7e p.jsx-943cc523f5ca9a7e{margin:0;font-size:14px;color:#6b7280;line-height:1.7}.es-service-link.jsx-943cc523f5ca9a7e{font-size:13px;font-weight:700;color:#0a101b;margin-top:auto;padding-top:8px}.es-service-card.jsx-943cc523f5ca9a7e:hover .es-service-link.jsx-943cc523f5ca9a7e{color:#b8860b}.es-process-section.jsx-943cc523f5ca9a7e{padding:72px 24px;background:#fff}.es-process-container.jsx-943cc523f5ca9a7e{max-width:1e3px;margin:0 auto}.es-process-header.jsx-943cc523f5ca9a7e{text-align:center;margin-bottom:40px}.es-process-header.jsx-943cc523f5ca9a7e h2.jsx-943cc523f5ca9a7e{margin:0;font-size:clamp(26px,3.5vw,34px);font-weight:800;color:#111827}.es-process-header.jsx-943cc523f5ca9a7e p.jsx-943cc523f5ca9a7e{margin:10px 0 0;font-size:16px;color:#6b7280}.es-process-grid.jsx-943cc523f5ca9a7e{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}.es-step.jsx-943cc523f5ca9a7e{padding:28px;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fafbfc;border:1px solid#e5e7eb;-webkit-transition:border-color.2s,box-shadow.2s;-moz-transition:border-color.2s,box-shadow.2s;-o-transition:border-color.2s,box-shadow.2s;transition:border-color.2s,box-shadow.2s}.es-step.jsx-943cc523f5ca9a7e:hover{border-color:#f7e500;-webkit-box-shadow:0 8px 24px rgba(0,0,0,.04);-moz-box-shadow:0 8px 24px rgba(0,0,0,.04);box-shadow:0 8px 24px rgba(0,0,0,.04)}.es-step-icon.jsx-943cc523f5ca9a7e{width:44px;height:44px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#0a101b;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#f7e500;margin-bottom:14px}.es-step.jsx-943cc523f5ca9a7e h3.jsx-943cc523f5ca9a7e{margin:0 0 8px;font-size:16px;font-weight:700;color:#111827}.es-step.jsx-943cc523f5ca9a7e p.jsx-943cc523f5ca9a7e{margin:0;font-size:14px;color:#6b7280;line-height:1.7}.es-cta-section.jsx-943cc523f5ca9a7e{padding:72px 24px;background:#0a101b;text-align:center}.es-cta-container.jsx-943cc523f5ca9a7e{max-width:600px;margin:0 auto}.es-cta-container.jsx-943cc523f5ca9a7e h2.jsx-943cc523f5ca9a7e{margin:0;font-size:clamp(24px,3.5vw,32px);font-weight:800;color:#fff}.es-cta-container.jsx-943cc523f5ca9a7e p.jsx-943cc523f5ca9a7e{margin:12px 0 0;font-size:16px;color:rgba(255,255,255,.6)}.es-cta-buttons.jsx-943cc523f5ca9a7e{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:14px;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-top:28px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.es-cta-btn.jsx-943cc523f5ca9a7e{padding:14px 28px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;-webkit-transition:-webkit-transform.15s,box-shadow.15s;-moz-transition:-moz-transform.15s,box-shadow.15s;-o-transition:-o-transform.15s,box-shadow.15s;transition:-webkit-transform.15s,box-shadow.15s;transition:-moz-transform.15s,box-shadow.15s;transition:-o-transform.15s,box-shadow.15s;transition:transform.15s,box-shadow.15s}.es-cta-primary.jsx-943cc523f5ca9a7e{background:#f7e500;color:#0a101b}.es-cta-primary.jsx-943cc523f5ca9a7e:hover{-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px);-webkit-box-shadow:0 8px 24px rgba(247,229,0,.3);-moz-box-shadow:0 8px 24px rgba(247,229,0,.3);box-shadow:0 8px 24px rgba(247,229,0,.3)}.es-cta-secondary.jsx-943cc523f5ca9a7e{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3)}.es-cta-secondary.jsx-943cc523f5ca9a7e:hover{border-color:#f7e500;color:#f7e500;-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}@media(max-width:768px){.es-hero.jsx-943cc523f5ca9a7e{min-height:360px}.es-hero-content.jsx-943cc523f5ca9a7e{padding:100px 20px 36px}.es-metrics-container.jsx-943cc523f5ca9a7e{grid-template-columns:repeat(2,1fr);gap:16px}.es-services-grid.jsx-943cc523f5ca9a7e{grid-template-columns:1fr}.es-process-grid.jsx-943cc523f5ca9a7e{grid-template-columns:1fr}}'
             })
         ]
     });

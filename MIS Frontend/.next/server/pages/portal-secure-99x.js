@@ -111,24 +111,24 @@ const Dashboard = ({ stats ={}  })=>{
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                    className: "jsx-4bd2f6499466ee73",
+                    className: "jsx-ef7ae2028741b9df",
                     children: "Dashboard | MIS Admin"
                 })
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-4bd2f6499466ee73" + " " + "dash",
+                className: "jsx-ef7ae2028741b9df" + " " + "dash",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-row",
+                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-row",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-card",
+                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-card",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                         style: {
                                             background: "#fef3c7"
                                         },
-                                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-icon",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-icon",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                             width: "22",
                                             height: "22",
@@ -137,22 +137,22 @@ const Dashboard = ({ stats ={}  })=>{
                                             stroke: "#d97706",
                                             strokeWidth: "2",
                                             strokeLinecap: "round",
-                                            className: "jsx-4bd2f6499466ee73",
+                                            className: "jsx-ef7ae2028741b9df",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                 d: "M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",
-                                                className: "jsx-4bd2f6499466ee73"
+                                                className: "jsx-ef7ae2028741b9df"
                                             })
                                         })
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-body",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-body",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-label",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-label",
                                                 children: "Total Sales"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-value",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-value",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(AnimNum, {
                                                     target: stats.totalRevenue || 0,
                                                     prefix: "৳"
@@ -163,13 +163,13 @@ const Dashboard = ({ stats ={}  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-card",
+                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-card",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                         style: {
                                             background: "#dbeafe"
                                         },
-                                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-icon",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-icon",
                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                             width: "22",
                                             height: "22",
@@ -178,7 +178,7 @@ const Dashboard = ({ stats ={}  })=>{
                                             stroke: "#2563eb",
                                             strokeWidth: "2",
                                             strokeLinecap: "round",
-                                            className: "jsx-4bd2f6499466ee73",
+                                            className: "jsx-ef7ae2028741b9df",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
                                                     x: "1",
@@ -186,24 +186,24 @@ const Dashboard = ({ stats ={}  })=>{
                                                     width: "22",
                                                     height: "16",
                                                     rx: "2",
-                                                    className: "jsx-4bd2f6499466ee73"
+                                                    className: "jsx-ef7ae2028741b9df"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                     d: "M1 10h22",
-                                                    className: "jsx-4bd2f6499466ee73"
+                                                    className: "jsx-ef7ae2028741b9df"
                                                 })
                                             ]
                                         })
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-body",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-body",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-label",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-label",
                                                 children: "Total Orders"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-value",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-value",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(AnimNum, {
                                                     target: stats.totalOrders || 0
                                                 })
@@ -213,13 +213,13 @@ const Dashboard = ({ stats ={}  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-card",
+                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-card",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                         style: {
                                             background: "#d1fae5"
                                         },
-                                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-icon",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-icon",
                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                             width: "22",
                                             height: "22",
@@ -228,30 +228,30 @@ const Dashboard = ({ stats ={}  })=>{
                                             stroke: "#059669",
                                             strokeWidth: "2",
                                             strokeLinecap: "round",
-                                            className: "jsx-4bd2f6499466ee73",
+                                            className: "jsx-ef7ae2028741b9df",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                     d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2",
-                                                    className: "jsx-4bd2f6499466ee73"
+                                                    className: "jsx-ef7ae2028741b9df"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
                                                     cx: "12",
                                                     cy: "7",
                                                     r: "4",
-                                                    className: "jsx-4bd2f6499466ee73"
+                                                    className: "jsx-ef7ae2028741b9df"
                                                 })
                                             ]
                                         })
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-body",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-body",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-label",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-label",
                                                 children: "Customers"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-value",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-value",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(AnimNum, {
                                                     target: stats.totalCustomers || 0
                                                 })
@@ -261,13 +261,13 @@ const Dashboard = ({ stats ={}  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-card",
+                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-card",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                         style: {
                                             background: "#ede9fe"
                                         },
-                                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-icon",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-icon",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                             width: "22",
                                             height: "22",
@@ -276,22 +276,22 @@ const Dashboard = ({ stats ={}  })=>{
                                             stroke: "#7c3aed",
                                             strokeWidth: "2",
                                             strokeLinecap: "round",
-                                            className: "jsx-4bd2f6499466ee73",
+                                            className: "jsx-ef7ae2028741b9df",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                 d: "M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z",
-                                                className: "jsx-4bd2f6499466ee73"
+                                                className: "jsx-ef7ae2028741b9df"
                                             })
                                         })
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "kpi-body",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "kpi-body",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-label",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-label",
                                                 children: "Products"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "kpi-value",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "kpi-value",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(AnimNum, {
                                                     target: stats.totalProducts || 0
                                                 })
@@ -303,40 +303,40 @@ const Dashboard = ({ stats ={}  })=>{
                         ]
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-4bd2f6499466ee73" + " " + "mid-row",
+                        className: "jsx-ef7ae2028741b9df" + " " + "mid-row",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "card chart-card",
+                                className: "jsx-ef7ae2028741b9df" + " " + "card chart-card",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "card-head",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "card-head",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                            className: "jsx-4bd2f6499466ee73",
+                                            className: "jsx-ef7ae2028741b9df",
                                             children: "Sales (Last 6 Months)"
                                         })
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "bar-chart",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "bar-chart",
                                         children: [
                                             (stats.monthlyRevenue || []).map((m, i)=>{
                                                 const maxVal = Math.max(...(stats.monthlyRevenue || []).map((x)=>x.revenue), 1);
                                                 const height = Math.max(m.revenue / maxVal * 100, 4);
                                                 return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-4bd2f6499466ee73" + " " + "bar-col",
+                                                    className: "jsx-ef7ae2028741b9df" + " " + "bar-col",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                             style: {
                                                                 height: `${height}%`,
                                                                 animationDelay: `${i * 0.1}s`
                                                             },
-                                                            className: "jsx-4bd2f6499466ee73" + " " + "bar-fill"
+                                                            className: "jsx-ef7ae2028741b9df" + " " + "bar-fill"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-4bd2f6499466ee73" + " " + "bar-label",
+                                                            className: "jsx-ef7ae2028741b9df" + " " + "bar-label",
                                                             children: m.month
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                            className: "jsx-4bd2f6499466ee73" + " " + "bar-val",
+                                                            className: "jsx-ef7ae2028741b9df" + " " + "bar-val",
                                                             children: [
                                                                 "৳",
                                                                 (m.revenue / 1000).toFixed(0),
@@ -347,7 +347,7 @@ const Dashboard = ({ stats ={}  })=>{
                                                 }, i);
                                             }),
                                             (!stats.monthlyRevenue || stats.monthlyRevenue.length === 0) && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "empty-text",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "empty-text",
                                                 children: "No revenue data yet."
                                             })
                                         ]
@@ -355,21 +355,21 @@ const Dashboard = ({ stats ={}  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "card donut-card",
+                                className: "jsx-ef7ae2028741b9df" + " " + "card donut-card",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "card-head",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "card-head",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                            className: "jsx-4bd2f6499466ee73",
+                                            className: "jsx-ef7ae2028741b9df",
                                             children: "Products by Category"
                                         })
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "donut-wrap",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "donut-wrap",
                                         children: [
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                                 viewBox: "0 0 120 120",
-                                                className: "jsx-4bd2f6499466ee73" + " " + "donut-svg",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "donut-svg",
                                                 children: [
                                                     (()=>{
                                                         const cats = stats.topCategories || [];
@@ -397,7 +397,7 @@ const Dashboard = ({ stats ={}  })=>{
                                                                 style: {
                                                                     animationDelay: `${i * 0.15}s`
                                                                 },
-                                                                className: "jsx-4bd2f6499466ee73" + " " + "donut-ring"
+                                                                className: "jsx-ef7ae2028741b9df" + " " + "donut-ring"
                                                             }, i);
                                                             offset += pct;
                                                             return el;
@@ -407,22 +407,22 @@ const Dashboard = ({ stats ={}  })=>{
                                                         x: "60",
                                                         y: "56",
                                                         textAnchor: "middle",
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "donut-center-num",
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "donut-center-num",
                                                         children: stats.totalProducts || 0
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("text", {
                                                         x: "60",
                                                         y: "72",
                                                         textAnchor: "middle",
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "donut-center-label",
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "donut-center-label",
                                                         children: "Products"
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "donut-legend",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "donut-legend",
                                                 children: (stats.topCategories || []).map((cat, i)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "legend-item",
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "legend-item",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                 style: {
@@ -434,14 +434,14 @@ const Dashboard = ({ stats ={}  })=>{
                                                                         "#ec4899"
                                                                     ][i % 5]
                                                                 },
-                                                                className: "jsx-4bd2f6499466ee73" + " " + "legend-dot"
+                                                                className: "jsx-ef7ae2028741b9df" + " " + "legend-dot"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-4bd2f6499466ee73" + " " + "legend-name",
+                                                                className: "jsx-ef7ae2028741b9df" + " " + "legend-name",
                                                                 children: cat.name
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                className: "jsx-4bd2f6499466ee73",
+                                                                className: "jsx-ef7ae2028741b9df",
                                                                 children: cat.count
                                                             })
                                                         ]
@@ -454,67 +454,67 @@ const Dashboard = ({ stats ={}  })=>{
                         ]
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-4bd2f6499466ee73" + " " + "mid-row",
+                        className: "jsx-ef7ae2028741b9df" + " " + "mid-row",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "card recent-orders",
+                                className: "jsx-ef7ae2028741b9df" + " " + "card recent-orders",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "card-head",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "card-head",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                className: "jsx-4bd2f6499466ee73",
+                                                className: "jsx-ef7ae2028741b9df",
                                                 children: "Recent Orders"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                 href: "/portal-secure-99x/orders",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    className: "jsx-4bd2f6499466ee73" + " " + "see-all",
+                                                    className: "jsx-ef7ae2028741b9df" + " " + "see-all",
                                                     children: "See All →"
                                                 })
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "orders-list",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "orders-list",
                                         children: [
                                             (stats.recentOrders || []).length === 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "empty-text",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "empty-text",
                                                 children: "No orders yet."
                                             }),
                                             (stats.recentOrders || []).map((o)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/portal-secure-99x/orders",
                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "order-row",
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "order-row",
                                                         children: [
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                className: "jsx-4bd2f6499466ee73",
+                                                                className: "jsx-ef7ae2028741b9df",
                                                                 children: [
                                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("strong", {
-                                                                        className: "jsx-4bd2f6499466ee73",
+                                                                        className: "jsx-ef7ae2028741b9df",
                                                                         children: [
                                                                             "#",
                                                                             o.order_no
                                                                         ]
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-4bd2f6499466ee73",
+                                                                        className: "jsx-ef7ae2028741b9df",
                                                                         children: o.customer_name || "Customer"
                                                                     })
                                                                 ]
                                                             }),
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                className: "jsx-4bd2f6499466ee73" + " " + "order-right",
+                                                                className: "jsx-ef7ae2028741b9df" + " " + "order-right",
                                                                 children: [
                                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("strong", {
-                                                                        className: "jsx-4bd2f6499466ee73",
+                                                                        className: "jsx-ef7ae2028741b9df",
                                                                         children: [
                                                                             "৳",
                                                                             Number(o.total_amount).toLocaleString()
                                                                         ]
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-4bd2f6499466ee73" + " " + `status-pill st-${o.status}`,
+                                                                        className: "jsx-ef7ae2028741b9df" + " " + `status-pill st-${o.status}`,
                                                                         children: o.status
                                                                     })
                                                                 ]
@@ -527,51 +527,51 @@ const Dashboard = ({ stats ={}  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "card recent-quotes",
+                                className: "jsx-ef7ae2028741b9df" + " " + "card recent-quotes",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "card-head",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "card-head",
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                className: "jsx-4bd2f6499466ee73",
+                                                className: "jsx-ef7ae2028741b9df",
                                                 children: "Recent Quotes"
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                 href: "/portal-secure-99x/quotes-manager",
                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                                    className: "jsx-4bd2f6499466ee73" + " " + "see-all",
+                                                    className: "jsx-ef7ae2028741b9df" + " " + "see-all",
                                                     children: "See All →"
                                                 })
                                             })
                                         ]
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "quotes-list",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "quotes-list",
                                         children: [
                                             (stats.recentQuotes || []).length === 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "empty-text",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "empty-text",
                                                 children: "No quotes yet."
                                             }),
                                             (stats.recentQuotes || []).map((q)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                     href: "/portal-secure-99x/quotes-manager",
                                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "quote-row",
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "quote-row",
                                                         children: [
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                className: "jsx-4bd2f6499466ee73",
+                                                                className: "jsx-ef7ae2028741b9df",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                        className: "jsx-4bd2f6499466ee73",
+                                                                        className: "jsx-ef7ae2028741b9df",
                                                                         children: q.client_name
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                        className: "jsx-4bd2f6499466ee73",
+                                                                        className: "jsx-ef7ae2028741b9df",
                                                                         children: q.project_type || "General"
                                                                     })
                                                                 ]
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-4bd2f6499466ee73" + " " + `status-pill st-${q.status}`,
+                                                                className: "jsx-ef7ae2028741b9df" + " " + `status-pill st-${q.status}`,
                                                                 children: q.status
                                                             })
                                                         ]
@@ -584,95 +584,95 @@ const Dashboard = ({ stats ={}  })=>{
                         ]
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-4bd2f6499466ee73" + " " + "bot-row",
+                        className: "jsx-ef7ae2028741b9df" + " " + "bot-row",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "card quick-stats",
+                                className: "jsx-ef7ae2028741b9df" + " " + "card quick-stats",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "card-head",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "card-head",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                            className: "jsx-4bd2f6499466ee73",
+                                            className: "jsx-ef7ae2028741b9df",
                                             children: "Quick Overview"
                                         })
                                     }),
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "stats-grid",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "stats-grid",
                                         children: [
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "stat-item",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "stat-item",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: "Pending Orders"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: stats.pendingOrders || 0
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "stat-item",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "stat-item",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: "Active Quotes"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: stats.activeQuotes || 0
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "stat-item",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "stat-item",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: "Digital Services"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: stats.digiCount || 0
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "stat-item",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "stat-item",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: "B2B Solutions"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: stats.bizCount || 0
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "stat-item",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "stat-item",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: "Maintenance"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: stats.maintCount || 0
                                                     })
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "stat-item",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "stat-item",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: "Client Projects"
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-4bd2f6499466ee73",
+                                                        className: "jsx-ef7ae2028741b9df",
                                                         children: stats.projectsCount || 0
                                                     })
                                                 ]
@@ -682,39 +682,39 @@ const Dashboard = ({ stats ={}  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "card",
+                                className: "jsx-ef7ae2028741b9df" + " " + "card",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "card-head",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "card-head",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                            className: "jsx-4bd2f6499466ee73",
+                                            className: "jsx-ef7ae2028741b9df",
                                             children: "Order Status"
                                         })
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "status-bars",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "status-bars",
                                         children: (stats.orderStatusBreakdown || []).map((s, i)=>{
                                             const maxCount = Math.max(...(stats.orderStatusBreakdown || []).map((x)=>x.count), 1);
                                             return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-4bd2f6499466ee73" + " " + "status-bar-row",
+                                                className: "jsx-ef7ae2028741b9df" + " " + "status-bar-row",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "sb-label",
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "sb-label",
                                                         children: s.status
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "sb-track",
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "sb-track",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                             style: {
                                                                 width: `${s.count / maxCount * 100}%`,
                                                                 background: s.status === "pending" ? "#f59e0b" : s.status === "shipped" ? "#10b981" : s.status === "paid" ? "#3b82f6" : "#ef4444",
                                                                 animationDelay: `${i * 0.1}s`
                                                             },
-                                                            className: "jsx-4bd2f6499466ee73" + " " + "sb-fill"
+                                                            className: "jsx-ef7ae2028741b9df" + " " + "sb-fill"
                                                         })
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "sb-count",
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "sb-count",
                                                         children: s.count
                                                     })
                                                 ]
@@ -726,20 +726,20 @@ const Dashboard = ({ stats ={}  })=>{
                         ]
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-4bd2f6499466ee73" + " " + "card",
+                        className: "jsx-ef7ae2028741b9df" + " " + "card",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "card-head",
+                                className: "jsx-ef7ae2028741b9df" + " " + "card-head",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                    className: "jsx-4bd2f6499466ee73",
+                                    className: "jsx-ef7ae2028741b9df",
                                     children: "Top Selling Products"
                                 })
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-4bd2f6499466ee73" + " " + "top-products-chart",
+                                className: "jsx-ef7ae2028741b9df" + " " + "top-products-chart",
                                 children: [
                                     (stats.topProducts || []).length === 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-4bd2f6499466ee73" + " " + "empty-text",
+                                        className: "jsx-ef7ae2028741b9df" + " " + "empty-text",
                                         children: "No sales data yet."
                                     }),
                                     (stats.topProducts || []).map((p, i)=>{
@@ -753,51 +753,51 @@ const Dashboard = ({ stats ={}  })=>{
                                             "#ec4899"
                                         ];
                                         return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-4bd2f6499466ee73" + " " + "tpc-row",
+                                            className: "jsx-ef7ae2028741b9df" + " " + "tpc-row",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-4bd2f6499466ee73" + " " + "tpc-label",
+                                                    className: "jsx-ef7ae2028741b9df" + " " + "tpc-label",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
                                                             style: {
                                                                 background: colors[i % 5] + "22",
                                                                 color: colors[i % 5]
                                                             },
-                                                            className: "jsx-4bd2f6499466ee73" + " " + "tpc-rank",
+                                                            className: "jsx-ef7ae2028741b9df" + " " + "tpc-rank",
                                                             children: [
                                                                 "#",
                                                                 i + 1
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-4bd2f6499466ee73" + " " + "tpc-name",
+                                                            className: "jsx-ef7ae2028741b9df" + " " + "tpc-name",
                                                             children: p.name
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-4bd2f6499466ee73" + " " + "tpc-bar-wrap",
+                                                    className: "jsx-ef7ae2028741b9df" + " " + "tpc-bar-wrap",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         style: {
                                                             width: `${Math.max(pct, 4)}%`,
                                                             background: `linear-gradient(90deg, ${colors[i % 5]}, ${colors[i % 5]}cc)`,
                                                             animationDelay: `${i * 0.12}s`
                                                         },
-                                                        className: "jsx-4bd2f6499466ee73" + " " + "tpc-bar"
+                                                        className: "jsx-ef7ae2028741b9df" + " " + "tpc-bar"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-4bd2f6499466ee73" + " " + "tpc-stats",
+                                                    className: "jsx-ef7ae2028741b9df" + " " + "tpc-stats",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("strong", {
-                                                            className: "jsx-4bd2f6499466ee73",
+                                                            className: "jsx-ef7ae2028741b9df",
                                                             children: [
                                                                 p.qty_sold,
                                                                 " sold"
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                            className: "jsx-4bd2f6499466ee73",
+                                                            className: "jsx-ef7ae2028741b9df",
                                                             children: [
                                                                 "৳",
                                                                 Number(p.total_sales).toLocaleString()
@@ -815,8 +815,8 @@ const Dashboard = ({ stats ={}  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "4bd2f6499466ee73",
-                children: ".dash.jsx-4bd2f6499466ee73{display:grid;gap:18px;-webkit-animation:fadeIn.4s ease-out;-moz-animation:fadeIn.4s ease-out;-o-animation:fadeIn.4s ease-out;animation:fadeIn.4s ease-out}@-webkit-keyframes fadeIn{from{opacity:0;-webkit-transform:translateY(10px);transform:translateY(10px)}to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@-moz-keyframes fadeIn{from{opacity:0;-moz-transform:translateY(10px);transform:translateY(10px)}to{opacity:1;-moz-transform:translateY(0);transform:translateY(0)}}@-o-keyframes fadeIn{from{opacity:0;-o-transform:translateY(10px);transform:translateY(10px)}to{opacity:1;-o-transform:translateY(0);transform:translateY(0)}}@keyframes fadeIn{from{opacity:0;-webkit-transform:translateY(10px);-moz-transform:translateY(10px);-o-transform:translateY(10px);transform:translateY(10px)}to{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}}@-webkit-keyframes slideUp{from{opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@-moz-keyframes slideUp{from{opacity:0;-moz-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-moz-transform:translateY(0);transform:translateY(0)}}@-o-keyframes slideUp{from{opacity:0;-o-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-o-transform:translateY(0);transform:translateY(0)}}@keyframes slideUp{from{opacity:0;-webkit-transform:translateY(20px);-moz-transform:translateY(20px);-o-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}}@-webkit-keyframes pulse{0%,100%{-webkit-transform:scale(1);transform:scale(1)}50%{-webkit-transform:scale(1.05);transform:scale(1.05)}}@-moz-keyframes pulse{0%,100%{-moz-transform:scale(1);transform:scale(1)}50%{-moz-transform:scale(1.05);transform:scale(1.05)}}@-o-keyframes pulse{0%,100%{-o-transform:scale(1);transform:scale(1)}50%{-o-transform:scale(1.05);transform:scale(1.05)}}@keyframes pulse{0%,100%{-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);transform:scale(1)}50%{-webkit-transform:scale(1.05);-moz-transform:scale(1.05);-o-transform:scale(1.05);transform:scale(1.05)}}.kpi-row.jsx-4bd2f6499466ee73{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.kpi-card.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px;padding:20px 22px;border:1px solid#e5e7eb;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;-webkit-animation:slideUp.5s ease-out backwards;-moz-animation:slideUp.5s ease-out backwards;-o-animation:slideUp.5s ease-out backwards;animation:slideUp.5s ease-out backwards;-webkit-transition:-webkit-transform.2s,box-shadow.2s;-moz-transition:-moz-transform.2s,box-shadow.2s;-o-transition:-o-transform.2s,box-shadow.2s;transition:-webkit-transform.2s,box-shadow.2s;transition:-moz-transform.2s,box-shadow.2s;transition:-o-transform.2s,box-shadow.2s;transition:transform.2s,box-shadow.2s}.kpi-card.jsx-4bd2f6499466ee73:nth-child(1){-webkit-animation-delay:.05s;-moz-animation-delay:.05s;-o-animation-delay:.05s;animation-delay:.05s}.kpi-card.jsx-4bd2f6499466ee73:nth-child(2){-webkit-animation-delay:.1s;-moz-animation-delay:.1s;-o-animation-delay:.1s;animation-delay:.1s}.kpi-card.jsx-4bd2f6499466ee73:nth-child(3){-webkit-animation-delay:.15s;-moz-animation-delay:.15s;-o-animation-delay:.15s;animation-delay:.15s}.kpi-card.jsx-4bd2f6499466ee73:nth-child(4){-webkit-animation-delay:.2s;-moz-animation-delay:.2s;-o-animation-delay:.2s;animation-delay:.2s}.kpi-card.jsx-4bd2f6499466ee73:hover{-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 8px 24px rgba(0,0,0,.08);-moz-box-shadow:0 8px 24px rgba(0,0,0,.08);box-shadow:0 8px 24px rgba(0,0,0,.08)}.kpi-icon.jsx-4bd2f6499466ee73{width:48px;height:48px;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-transition:-webkit-transform.3s;-moz-transition:-moz-transform.3s;-o-transition:-o-transform.3s;transition:-webkit-transform.3s;transition:-moz-transform.3s;transition:-o-transform.3s;transition:transform.3s}.kpi-card.jsx-4bd2f6499466ee73:hover .kpi-icon.jsx-4bd2f6499466ee73{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}.kpi-body.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:2px}.kpi-label.jsx-4bd2f6499466ee73{font-size:12px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.03em}.kpi-value.jsx-4bd2f6499466ee73{font-size:24px;font-weight:800;color:#111827}.mid-row.jsx-4bd2f6499466ee73{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}.bot-row.jsx-4bd2f6499466ee73{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card.jsx-4bd2f6499466ee73{border:1px solid#e5e7eb;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;padding:20px 22px;-webkit-animation:slideUp.6s ease-out backwards;-moz-animation:slideUp.6s ease-out backwards;-o-animation:slideUp.6s ease-out backwards;animation:slideUp.6s ease-out backwards;-webkit-animation-delay:.25s;-moz-animation-delay:.25s;-o-animation-delay:.25s;animation-delay:.25s;-webkit-transition:box-shadow.2s;-moz-transition:box-shadow.2s;-o-transition:box-shadow.2s;transition:box-shadow.2s}.card.jsx-4bd2f6499466ee73:hover{-webkit-box-shadow:0 4px 16px rgba(0,0,0,.05);-moz-box-shadow:0 4px 16px rgba(0,0,0,.05);box-shadow:0 4px 16px rgba(0,0,0,.05)}.card-head.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;margin-bottom:16px}.card-head.jsx-4bd2f6499466ee73 h3.jsx-4bd2f6499466ee73{margin:0;font-size:16px;color:#111827;font-weight:700}.see-all.jsx-4bd2f6499466ee73{font-size:12px;color:#7c3aed;font-weight:700;text-decoration:none;-webkit-transition:color.15s;-moz-transition:color.15s;-o-transition:color.15s;transition:color.15s}.see-all.jsx-4bd2f6499466ee73:hover{color:#5b21b6}.orders-list.jsx-4bd2f6499466ee73,.quotes-list.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto}.order-row.jsx-4bd2f6499466ee73,.quote-row.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:12px 14px;border:1px solid#f3f4f6;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;-webkit-transition:background.15s,border-color.15s;-moz-transition:background.15s,border-color.15s;-o-transition:background.15s,border-color.15s;transition:background.15s,border-color.15s;text-decoration:none;color:inherit;cursor:pointer}.order-row.jsx-4bd2f6499466ee73:hover,.quote-row.jsx-4bd2f6499466ee73:hover{background:#fafbff;border-color:#e0e7ff}.order-row.jsx-4bd2f6499466ee73 strong.jsx-4bd2f6499466ee73,.quote-row.jsx-4bd2f6499466ee73 strong.jsx-4bd2f6499466ee73{font-size:13px;color:#111827;display:block}.order-row.jsx-4bd2f6499466ee73 span.jsx-4bd2f6499466ee73,.quote-row.jsx-4bd2f6499466ee73 span.jsx-4bd2f6499466ee73{font-size:12px;color:#6b7280}.order-right.jsx-4bd2f6499466ee73{text-align:right;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;gap:4px}.status-pill.jsx-4bd2f6499466ee73{display:inline-block;padding:3px 9px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}.st-pending.jsx-4bd2f6499466ee73{background:#fef3c7;color:#92400e}.st-paid.jsx-4bd2f6499466ee73,.st-shipped.jsx-4bd2f6499466ee73{background:#d1fae5;color:#065f46}.st-cancelled.jsx-4bd2f6499466ee73{background:#fee2e2;color:#991b1b}.st-new.jsx-4bd2f6499466ee73{background:#dbeafe;color:#1e40af}.st-in_progress.jsx-4bd2f6499466ee73{background:#fef3c7;color:#92400e}.st-closed.jsx-4bd2f6499466ee73{background:#d1fae5;color:#065f46}.cats-list.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:12px}.cat-row.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px;-webkit-transition:-webkit-transform.15s;-moz-transition:-moz-transform.15s;-o-transition:-o-transform.15s;transition:-webkit-transform.15s;transition:-moz-transform.15s;transition:-o-transform.15s;transition:transform.15s}.cat-row.jsx-4bd2f6499466ee73:hover{-webkit-transform:translateX(4px);-moz-transform:translateX(4px);-ms-transform:translateX(4px);-o-transform:translateX(4px);transform:translateX(4px)}.cat-dot.jsx-4bd2f6499466ee73{width:10px;height:10px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.cat-name.jsx-4bd2f6499466ee73{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;font-size:13px;color:#374151;font-weight:500}.cat-row.jsx-4bd2f6499466ee73 strong.jsx-4bd2f6499466ee73{font-size:13px;color:#111827}.stats-grid.jsx-4bd2f6499466ee73{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat-item.jsx-4bd2f6499466ee73{padding:14px 16px;border:1px solid#f3f4f6;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;-webkit-transition:border-color.2s,background.2s;-moz-transition:border-color.2s,background.2s;-o-transition:border-color.2s,background.2s;transition:border-color.2s,background.2s}.stat-item.jsx-4bd2f6499466ee73:hover{border-color:#c7d2fe;background:#fafbff}.stat-item.jsx-4bd2f6499466ee73 span.jsx-4bd2f6499466ee73{font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase}.stat-item.jsx-4bd2f6499466ee73 strong.jsx-4bd2f6499466ee73{font-size:22px;color:#111827;font-weight:800}.empty-text.jsx-4bd2f6499466ee73{color:#9ca3af;font-size:13px;text-align:center;padding:20px}.bar-chart.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;gap:8px;height:180px;padding-top:20px}.bar-col.jsx-4bd2f6499466ee73{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;height:100%;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;gap:6px}.bar-fill.jsx-4bd2f6499466ee73{width:100%;max-width:40px;-webkit-border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;border-radius:6px 6px 0 0;background:-webkit-linear-gradient(top,#f7e500,#e6a800);background:-moz-linear-gradient(top,#f7e500,#e6a800);background:-o-linear-gradient(top,#f7e500,#e6a800);background:linear-gradient(180deg,#f7e500,#e6a800);-webkit-animation:growUp.8s ease-out backwards;-moz-animation:growUp.8s ease-out backwards;-o-animation:growUp.8s ease-out backwards;animation:growUp.8s ease-out backwards}@-webkit-keyframes growUp{from{height:0!important}}@-moz-keyframes growUp{from{height:0!important}}@-o-keyframes growUp{from{height:0!important}}@keyframes growUp{from{height:0!important}}.bar-label.jsx-4bd2f6499466ee73{font-size:10px;color:#6b7280;font-weight:600}.bar-val.jsx-4bd2f6499466ee73{font-size:10px;color:#111827;font-weight:700}.donut-wrap.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:24px}.donut-svg.jsx-4bd2f6499466ee73{width:140px;height:140px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg)}.donut-ring.jsx-4bd2f6499466ee73{-webkit-animation:ringGrow 1s ease-out backwards;-moz-animation:ringGrow 1s ease-out backwards;-o-animation:ringGrow 1s ease-out backwards;animation:ringGrow 1s ease-out backwards}@-webkit-keyframes ringGrow{from{stroke-dasharray:0 314}}@-moz-keyframes ringGrow{from{stroke-dasharray:0 314}}@-o-keyframes ringGrow{from{stroke-dasharray:0 314}}@keyframes ringGrow{from{stroke-dasharray:0 314}}.donut-center-num.jsx-4bd2f6499466ee73{font-size:22px;font-weight:800;fill:#111827;-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);transform:rotate(90deg);-webkit-transform-origin:60px 60px;-moz-transform-origin:60px 60px;-ms-transform-origin:60px 60px;-o-transform-origin:60px 60px;transform-origin:60px 60px}.donut-center-label.jsx-4bd2f6499466ee73{font-size:10px;fill:#6b7280;-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);transform:rotate(90deg);-webkit-transform-origin:60px 60px;-moz-transform-origin:60px 60px;-ms-transform-origin:60px 60px;-o-transform-origin:60px 60px;transform-origin:60px 60px}.donut-legend.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.legend-item.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.legend-dot.jsx-4bd2f6499466ee73{width:10px;height:10px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.legend-name.jsx-4bd2f6499466ee73{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;font-size:13px;color:#374151}.legend-item.jsx-4bd2f6499466ee73 strong.jsx-4bd2f6499466ee73{font-size:13px;color:#111827}.status-bars.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:12px}.status-bar-row.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.sb-label.jsx-4bd2f6499466ee73{font-size:12px;color:#6b7280;width:70px;text-transform:capitalize;font-weight:600}.sb-track.jsx-4bd2f6499466ee73{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:10px;background:#f3f4f6;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;overflow:hidden}.sb-fill.jsx-4bd2f6499466ee73{height:100%;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;-webkit-animation:barGrow.8s ease-out backwards;-moz-animation:barGrow.8s ease-out backwards;-o-animation:barGrow.8s ease-out backwards;animation:barGrow.8s ease-out backwards}@-webkit-keyframes barGrow{from{width:0!important}}@-moz-keyframes barGrow{from{width:0!important}}@-o-keyframes barGrow{from{width:0!important}}@keyframes barGrow{from{width:0!important}}.sb-count.jsx-4bd2f6499466ee73{font-size:13px;font-weight:700;color:#111827;width:30px;text-align:right}.top-products-chart.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:14px}.tpc-row.jsx-4bd2f6499466ee73{display:grid;grid-template-columns:200px 1fr 120px;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px}.tpc-label.jsx-4bd2f6499466ee73{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px;min-width:0}.tpc-rank.jsx-4bd2f6499466ee73{width:28px;height:28px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;font-size:11px;font-weight:800;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.tpc-name.jsx-4bd2f6499466ee73{font-size:13px;font-weight:600;color:#1f2937;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.tpc-bar-wrap.jsx-4bd2f6499466ee73{height:24px;background:#f3f4f6;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;overflow:hidden;position:relative}.tpc-bar.jsx-4bd2f6499466ee73{height:100%;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-webkit-animation:barGrow.8s ease-out backwards;-moz-animation:barGrow.8s ease-out backwards;-o-animation:barGrow.8s ease-out backwards;animation:barGrow.8s ease-out backwards}.tpc-stats.jsx-4bd2f6499466ee73{text-align:right}.tpc-stats.jsx-4bd2f6499466ee73 strong.jsx-4bd2f6499466ee73{display:block;font-size:13px;color:#111827}.tpc-stats.jsx-4bd2f6499466ee73 span.jsx-4bd2f6499466ee73{font-size:11px;color:#6b7280}@media(max-width:1024px){.kpi-row.jsx-4bd2f6499466ee73{grid-template-columns:repeat(2,1fr)}.mid-row.jsx-4bd2f6499466ee73,.bot-row.jsx-4bd2f6499466ee73{grid-template-columns:1fr}.tpc-row.jsx-4bd2f6499466ee73{grid-template-columns:140px 1fr 100px}}@media(max-width:640px){.kpi-row.jsx-4bd2f6499466ee73{grid-template-columns:1fr}.stats-grid.jsx-4bd2f6499466ee73{grid-template-columns:repeat(2,1fr)}.tpc-row.jsx-4bd2f6499466ee73{grid-template-columns:1fr;gap:6px}.tpc-bar-wrap.jsx-4bd2f6499466ee73{height:18px}}"
+                id: "ef7ae2028741b9df",
+                children: ".dash.jsx-ef7ae2028741b9df{display:grid;gap:18px;-webkit-animation:fadeIn.4s ease-out;-moz-animation:fadeIn.4s ease-out;-o-animation:fadeIn.4s ease-out;animation:fadeIn.4s ease-out}@-webkit-keyframes fadeIn{from{opacity:0;-webkit-transform:translateY(10px);transform:translateY(10px)}to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@-moz-keyframes fadeIn{from{opacity:0;-moz-transform:translateY(10px);transform:translateY(10px)}to{opacity:1;-moz-transform:translateY(0);transform:translateY(0)}}@-o-keyframes fadeIn{from{opacity:0;-o-transform:translateY(10px);transform:translateY(10px)}to{opacity:1;-o-transform:translateY(0);transform:translateY(0)}}@keyframes fadeIn{from{opacity:0;-webkit-transform:translateY(10px);-moz-transform:translateY(10px);-o-transform:translateY(10px);transform:translateY(10px)}to{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}}@-webkit-keyframes slideUp{from{opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@-moz-keyframes slideUp{from{opacity:0;-moz-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-moz-transform:translateY(0);transform:translateY(0)}}@-o-keyframes slideUp{from{opacity:0;-o-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-o-transform:translateY(0);transform:translateY(0)}}@keyframes slideUp{from{opacity:0;-webkit-transform:translateY(20px);-moz-transform:translateY(20px);-o-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}}@-webkit-keyframes pulse{0%,100%{-webkit-transform:scale(1);transform:scale(1)}50%{-webkit-transform:scale(1.05);transform:scale(1.05)}}@-moz-keyframes pulse{0%,100%{-moz-transform:scale(1);transform:scale(1)}50%{-moz-transform:scale(1.05);transform:scale(1.05)}}@-o-keyframes pulse{0%,100%{-o-transform:scale(1);transform:scale(1)}50%{-o-transform:scale(1.05);transform:scale(1.05)}}@keyframes pulse{0%,100%{-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);transform:scale(1)}50%{-webkit-transform:scale(1.05);-moz-transform:scale(1.05);-o-transform:scale(1.05);transform:scale(1.05)}}.kpi-row.jsx-ef7ae2028741b9df{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.kpi-card.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px;padding:20px 22px;border:1px solid#e5e7eb;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;-webkit-animation:slideUp.5s ease-out backwards;-moz-animation:slideUp.5s ease-out backwards;-o-animation:slideUp.5s ease-out backwards;animation:slideUp.5s ease-out backwards;-webkit-transition:-webkit-transform.2s,box-shadow.2s;-moz-transition:-moz-transform.2s,box-shadow.2s;-o-transition:-o-transform.2s,box-shadow.2s;transition:-webkit-transform.2s,box-shadow.2s;transition:-moz-transform.2s,box-shadow.2s;transition:-o-transform.2s,box-shadow.2s;transition:transform.2s,box-shadow.2s}.kpi-card.jsx-ef7ae2028741b9df:nth-child(1){-webkit-animation-delay:.05s;-moz-animation-delay:.05s;-o-animation-delay:.05s;animation-delay:.05s}.kpi-card.jsx-ef7ae2028741b9df:nth-child(2){-webkit-animation-delay:.1s;-moz-animation-delay:.1s;-o-animation-delay:.1s;animation-delay:.1s}.kpi-card.jsx-ef7ae2028741b9df:nth-child(3){-webkit-animation-delay:.15s;-moz-animation-delay:.15s;-o-animation-delay:.15s;animation-delay:.15s}.kpi-card.jsx-ef7ae2028741b9df:nth-child(4){-webkit-animation-delay:.2s;-moz-animation-delay:.2s;-o-animation-delay:.2s;animation-delay:.2s}.kpi-card.jsx-ef7ae2028741b9df:hover{-webkit-transform:translateY(-3px);-moz-transform:translateY(-3px);-ms-transform:translateY(-3px);-o-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 8px 24px rgba(0,0,0,.08);-moz-box-shadow:0 8px 24px rgba(0,0,0,.08);box-shadow:0 8px 24px rgba(0,0,0,.08)}.kpi-icon.jsx-ef7ae2028741b9df{width:48px;height:48px;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-transition:-webkit-transform.3s;-moz-transition:-moz-transform.3s;-o-transition:-o-transform.3s;transition:-webkit-transform.3s;transition:-moz-transform.3s;transition:-o-transform.3s;transition:transform.3s}.kpi-card.jsx-ef7ae2028741b9df:hover .kpi-icon.jsx-ef7ae2028741b9df{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}.kpi-body.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:2px}.kpi-label.jsx-ef7ae2028741b9df{font-size:12px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.03em}.kpi-value.jsx-ef7ae2028741b9df{font-size:24px;font-weight:800;color:#111827}.mid-row.jsx-ef7ae2028741b9df{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}.bot-row.jsx-ef7ae2028741b9df{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card.jsx-ef7ae2028741b9df{border:1px solid#e5e7eb;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;background:#fff;padding:20px 22px;-webkit-animation:slideUp.6s ease-out backwards;-moz-animation:slideUp.6s ease-out backwards;-o-animation:slideUp.6s ease-out backwards;animation:slideUp.6s ease-out backwards;-webkit-animation-delay:.25s;-moz-animation-delay:.25s;-o-animation-delay:.25s;animation-delay:.25s;-webkit-transition:box-shadow.2s;-moz-transition:box-shadow.2s;-o-transition:box-shadow.2s;transition:box-shadow.2s}.card.jsx-ef7ae2028741b9df:hover{-webkit-box-shadow:0 4px 16px rgba(0,0,0,.05);-moz-box-shadow:0 4px 16px rgba(0,0,0,.05);box-shadow:0 4px 16px rgba(0,0,0,.05)}.card-head.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;margin-bottom:16px}.card-head.jsx-ef7ae2028741b9df h3.jsx-ef7ae2028741b9df{margin:0;font-size:16px;color:#111827;font-weight:700}.see-all.jsx-ef7ae2028741b9df{font-size:12px;color:#7c3aed;font-weight:700;text-decoration:none;-webkit-transition:color.15s;-moz-transition:color.15s;-o-transition:color.15s;transition:color.15s}.see-all.jsx-ef7ae2028741b9df:hover{color:#5b21b6}.orders-list.jsx-ef7ae2028741b9df,.quotes-list.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto}.order-row.jsx-ef7ae2028741b9df,.quote-row.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;padding:12px 14px;border:1px solid#f3f4f6;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;-webkit-transition:background.15s,border-color.15s;-moz-transition:background.15s,border-color.15s;-o-transition:background.15s,border-color.15s;transition:background.15s,border-color.15s;text-decoration:none;color:inherit;cursor:pointer}.order-row.jsx-ef7ae2028741b9df:hover,.quote-row.jsx-ef7ae2028741b9df:hover{background:#fafbff;border-color:#e0e7ff}.order-row.jsx-ef7ae2028741b9df strong.jsx-ef7ae2028741b9df,.quote-row.jsx-ef7ae2028741b9df strong.jsx-ef7ae2028741b9df{font-size:13px;color:#111827;display:block}.order-row.jsx-ef7ae2028741b9df span.jsx-ef7ae2028741b9df,.quote-row.jsx-ef7ae2028741b9df span.jsx-ef7ae2028741b9df{font-size:12px;color:#6b7280}.order-right.jsx-ef7ae2028741b9df{text-align:right;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;gap:4px}.status-pill.jsx-ef7ae2028741b9df{display:inline-block;padding:3px 9px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}.st-pending.jsx-ef7ae2028741b9df{background:#fef3c7;color:#92400e}.st-paid.jsx-ef7ae2028741b9df,.st-shipped.jsx-ef7ae2028741b9df{background:#d1fae5;color:#065f46}.st-cancelled.jsx-ef7ae2028741b9df{background:#fee2e2;color:#991b1b}.st-new.jsx-ef7ae2028741b9df{background:#dbeafe;color:#1e40af}.st-in_progress.jsx-ef7ae2028741b9df{background:#fef3c7;color:#92400e}.st-closed.jsx-ef7ae2028741b9df{background:#d1fae5;color:#065f46}.cats-list.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:12px}.cat-row.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px;-webkit-transition:-webkit-transform.15s;-moz-transition:-moz-transform.15s;-o-transition:-o-transform.15s;transition:-webkit-transform.15s;transition:-moz-transform.15s;transition:-o-transform.15s;transition:transform.15s}.cat-row.jsx-ef7ae2028741b9df:hover{-webkit-transform:translateX(4px);-moz-transform:translateX(4px);-ms-transform:translateX(4px);-o-transform:translateX(4px);transform:translateX(4px)}.cat-dot.jsx-ef7ae2028741b9df{width:10px;height:10px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.cat-name.jsx-ef7ae2028741b9df{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;font-size:13px;color:#374151;font-weight:500}.cat-row.jsx-ef7ae2028741b9df strong.jsx-ef7ae2028741b9df{font-size:13px;color:#111827}.stats-grid.jsx-ef7ae2028741b9df{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat-item.jsx-ef7ae2028741b9df{padding:14px 16px;border:1px solid#f3f4f6;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px;-webkit-transition:border-color.2s,background.2s;-moz-transition:border-color.2s,background.2s;-o-transition:border-color.2s,background.2s;transition:border-color.2s,background.2s}.stat-item.jsx-ef7ae2028741b9df:hover{border-color:#c7d2fe;background:#fafbff}.stat-item.jsx-ef7ae2028741b9df span.jsx-ef7ae2028741b9df{font-size:11px;color:#6b7280;font-weight:600;text-transform:uppercase}.stat-item.jsx-ef7ae2028741b9df strong.jsx-ef7ae2028741b9df{font-size:22px;color:#111827;font-weight:800}.empty-text.jsx-ef7ae2028741b9df{color:#9ca3af;font-size:13px;text-align:center;padding:20px}.bar-chart.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-webkit-align-items:flex-end;-moz-box-align:end;-ms-flex-align:end;align-items:flex-end;gap:8px;height:180px;padding-top:20px}.bar-col.jsx-ef7ae2028741b9df{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;height:100%;-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;gap:6px}.bar-fill.jsx-ef7ae2028741b9df{width:100%;max-width:40px;-webkit-border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;border-radius:6px 6px 0 0;background:-webkit-linear-gradient(top,#f7e500,#e6a800);background:-moz-linear-gradient(top,#f7e500,#e6a800);background:-o-linear-gradient(top,#f7e500,#e6a800);background:linear-gradient(180deg,#f7e500,#e6a800);-webkit-animation:growUp.8s ease-out backwards;-moz-animation:growUp.8s ease-out backwards;-o-animation:growUp.8s ease-out backwards;animation:growUp.8s ease-out backwards}@-webkit-keyframes growUp{from{height:0!important}}@-moz-keyframes growUp{from{height:0!important}}@-o-keyframes growUp{from{height:0!important}}@keyframes growUp{from{height:0!important}}.bar-label.jsx-ef7ae2028741b9df{font-size:10px;color:#6b7280;font-weight:600}.bar-val.jsx-ef7ae2028741b9df{font-size:10px;color:#111827;font-weight:700}.donut-wrap.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:24px}.donut-svg.jsx-ef7ae2028741b9df{width:140px;height:140px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg)}.donut-ring.jsx-ef7ae2028741b9df{-webkit-animation:ringGrow 1s ease-out backwards;-moz-animation:ringGrow 1s ease-out backwards;-o-animation:ringGrow 1s ease-out backwards;animation:ringGrow 1s ease-out backwards}@-webkit-keyframes ringGrow{from{stroke-dasharray:0 314}}@-moz-keyframes ringGrow{from{stroke-dasharray:0 314}}@-o-keyframes ringGrow{from{stroke-dasharray:0 314}}@keyframes ringGrow{from{stroke-dasharray:0 314}}.donut-center-num.jsx-ef7ae2028741b9df{font-size:22px;font-weight:800;fill:#111827;-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);transform:rotate(90deg);-webkit-transform-origin:60px 60px;-moz-transform-origin:60px 60px;-ms-transform-origin:60px 60px;-o-transform-origin:60px 60px;transform-origin:60px 60px}.donut-center-label.jsx-ef7ae2028741b9df{font-size:10px;fill:#6b7280;-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);transform:rotate(90deg);-webkit-transform-origin:60px 60px;-moz-transform-origin:60px 60px;-ms-transform-origin:60px 60px;-o-transform-origin:60px 60px;transform-origin:60px 60px}.donut-legend.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.legend-item.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.legend-dot.jsx-ef7ae2028741b9df{width:10px;height:10px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.legend-name.jsx-ef7ae2028741b9df{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;font-size:13px;color:#374151}.legend-item.jsx-ef7ae2028741b9df strong.jsx-ef7ae2028741b9df{font-size:13px;color:#111827}.status-bars.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:12px}.status-bar-row.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px}.sb-label.jsx-ef7ae2028741b9df{font-size:12px;color:#6b7280;width:70px;text-transform:capitalize;font-weight:600}.sb-track.jsx-ef7ae2028741b9df{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1;height:10px;background:#f3f4f6;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;overflow:hidden}.sb-fill.jsx-ef7ae2028741b9df{height:100%;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;-webkit-animation:barGrow.8s ease-out backwards;-moz-animation:barGrow.8s ease-out backwards;-o-animation:barGrow.8s ease-out backwards;animation:barGrow.8s ease-out backwards}@-webkit-keyframes barGrow{from{width:0!important}}@-moz-keyframes barGrow{from{width:0!important}}@-o-keyframes barGrow{from{width:0!important}}@keyframes barGrow{from{width:0!important}}.sb-count.jsx-ef7ae2028741b9df{font-size:13px;font-weight:700;color:#111827;width:30px;text-align:right}.top-products-chart.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:14px}.tpc-row.jsx-ef7ae2028741b9df{display:grid;grid-template-columns:200px 1fr 120px;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px}.tpc-label.jsx-ef7ae2028741b9df{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:10px;min-width:0}.tpc-rank.jsx-ef7ae2028741b9df{width:28px;height:28px;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;font-size:11px;font-weight:800;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.tpc-name.jsx-ef7ae2028741b9df{font-size:13px;font-weight:600;color:#1f2937;white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.tpc-bar-wrap.jsx-ef7ae2028741b9df{height:24px;background:#f3f4f6;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;overflow:hidden;position:relative}.tpc-bar.jsx-ef7ae2028741b9df{height:100%;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;-webkit-animation:barGrow.8s ease-out backwards;-moz-animation:barGrow.8s ease-out backwards;-o-animation:barGrow.8s ease-out backwards;animation:barGrow.8s ease-out backwards}.tpc-stats.jsx-ef7ae2028741b9df{text-align:right}.tpc-stats.jsx-ef7ae2028741b9df strong.jsx-ef7ae2028741b9df{display:block;font-size:13px;color:#111827}.tpc-stats.jsx-ef7ae2028741b9df span.jsx-ef7ae2028741b9df{font-size:11px;color:#6b7280}@media(max-width:1024px){.kpi-row.jsx-ef7ae2028741b9df{grid-template-columns:repeat(2,1fr)}.mid-row.jsx-ef7ae2028741b9df,.bot-row.jsx-ef7ae2028741b9df{grid-template-columns:1fr}.tpc-row.jsx-ef7ae2028741b9df{grid-template-columns:140px 1fr 100px}}@media(max-width:640px){.kpi-row.jsx-ef7ae2028741b9df{grid-template-columns:1fr}.stats-grid.jsx-ef7ae2028741b9df{grid-template-columns:repeat(2,1fr)}.tpc-row.jsx-ef7ae2028741b9df{grid-template-columns:1fr;gap:6px}.tpc-bar-wrap.jsx-ef7ae2028741b9df{height:18px}}"
             })
         ]
     });

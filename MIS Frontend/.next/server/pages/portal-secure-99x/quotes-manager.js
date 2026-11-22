@@ -190,27 +190,27 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                    className: "jsx-778b706394c29f2b",
+                    className: "jsx-77939149c49bcb2f",
                     children: "Quotes | Admin"
                 })
             }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-778b706394c29f2b" + " " + "quotes-page",
+                className: "jsx-77939149c49bcb2f" + " " + "quotes-page",
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("header", {
-                        className: "jsx-778b706394c29f2b" + " " + "page-header",
+                        className: "jsx-77939149c49bcb2f" + " " + "page-header",
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-778b706394c29f2b" + " " + "header-top",
+                            className: "jsx-77939149c49bcb2f" + " " + "header-top",
                             children: [
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-778b706394c29f2b",
+                                    className: "jsx-77939149c49bcb2f",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                            className: "jsx-778b706394c29f2b",
+                                            className: "jsx-77939149c49bcb2f",
                                             children: "Quote Requests"
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                            className: "jsx-778b706394c29f2b",
+                                            className: "jsx-77939149c49bcb2f",
                                             children: [
                                                 filteredQuotes.length,
                                                 " of ",
@@ -221,27 +221,27 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                     ]
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-778b706394c29f2b" + " " + "filter-group",
+                                    className: "jsx-77939149c49bcb2f" + " " + "filter-group",
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
                                             htmlFor: "status-filter",
-                                            className: "jsx-778b706394c29f2b",
+                                            className: "jsx-77939149c49bcb2f",
                                             children: "Status:"
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
                                             id: "status-filter",
                                             value: statusFilter,
                                             onChange: (e)=>setStatusFilter(e.target.value),
-                                            className: "jsx-778b706394c29f2b" + " " + "filter-select",
+                                            className: "jsx-77939149c49bcb2f" + " " + "filter-select",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                     value: "all",
-                                                    className: "jsx-778b706394c29f2b",
+                                                    className: "jsx-77939149c49bcb2f",
                                                     children: "All"
                                                 }),
                                                 STATUS_OPTIONS.map((s)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                         value: s,
-                                                        className: "jsx-778b706394c29f2b",
+                                                        className: "jsx-77939149c49bcb2f",
                                                         children: statusLabels[s]
                                                     }, s))
                                             ]
@@ -252,24 +252,24 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                         })
                     }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "jsx-778b706394c29f2b" + " " + "quotes-layout",
+                        className: "jsx-77939149c49bcb2f" + " " + "quotes-layout",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-778b706394c29f2b" + " " + "list-panel",
+                                className: "jsx-77939149c49bcb2f" + " " + "list-panel",
                                 children: [
                                     filteredQuotes.length === 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-778b706394c29f2b" + " " + "empty-msg",
+                                        className: "jsx-77939149c49bcb2f" + " " + "empty-msg",
                                         children: "No quote requests found."
                                     }),
                                     filteredQuotes.map((quote)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                             onClick: ()=>openQuote(quote),
-                                            className: "jsx-778b706394c29f2b" + " " + `quote-card ${activeQuote?.id === quote.id ? "is-active" : ""}`,
+                                            className: "jsx-77939149c49bcb2f" + " " + `quote-card ${activeQuote?.id === quote.id ? "is-active" : ""}`,
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "card-top",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "card-top",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                            className: "jsx-778b706394c29f2b",
+                                                            className: "jsx-77939149c49bcb2f",
                                                             children: quote.client_name
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
@@ -277,21 +277,21 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                                                 background: statusColors[quote.status]?.bg,
                                                                 color: statusColors[quote.status]?.color
                                                             },
-                                                            className: "jsx-778b706394c29f2b" + " " + "badge",
+                                                            className: "jsx-77939149c49bcb2f" + " " + "badge",
                                                             children: statusLabels[quote.status] || quote.status
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "card-company",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "card-company",
                                                     children: quote.company_name || "—"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "card-type",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "card-type",
                                                     children: quote.project_type || "General"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "card-date",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "card-date",
                                                     children: formatDate(quote.created_at)
                                                 })
                                             ]
@@ -299,21 +299,21 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: "jsx-778b706394c29f2b" + " " + "detail-panel",
+                                className: "jsx-77939149c49bcb2f" + " " + "detail-panel",
                                 children: activeQuote ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-778b706394c29f2b" + " " + "detail-head",
+                                            className: "jsx-77939149c49bcb2f" + " " + "detail-head",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-778b706394c29f2b",
+                                                    className: "jsx-77939149c49bcb2f",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-778b706394c29f2b",
+                                                            className: "jsx-77939149c49bcb2f",
                                                             children: activeQuote.client_name
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                            className: "jsx-778b706394c29f2b" + " " + "head-sub",
+                                                            className: "jsx-77939149c49bcb2f" + " " + "head-sub",
                                                             children: [
                                                                 activeQuote.company_name || "",
                                                                 " • ",
@@ -324,35 +324,35 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                     onClick: closePanel,
-                                                    className: "jsx-778b706394c29f2b" + " " + "close-x",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "close-x",
                                                     children: "✕"
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-778b706394c29f2b" + " " + "detail-content",
+                                            className: "jsx-77939149c49bcb2f" + " " + "detail-content",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "meta-row",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "meta-row",
                                                     children: [
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-778b706394c29f2b" + " " + "meta-item",
+                                                            className: "jsx-77939149c49bcb2f" + " " + "meta-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-778b706394c29f2b" + " " + "meta-label",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "meta-label",
                                                                     children: "Project Type"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-778b706394c29f2b" + " " + "meta-val",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "meta-val",
                                                                     children: activeQuote.project_type || "—"
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-778b706394c29f2b" + " " + "meta-item",
+                                                            className: "jsx-77939149c49bcb2f" + " " + "meta-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-778b706394c29f2b" + " " + "meta-label",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "meta-label",
                                                                     children: "Status"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("select", {
@@ -362,24 +362,24 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                                                         background: statusColors[activeQuote.status]?.bg,
                                                                         color: statusColors[activeQuote.status]?.color
                                                                     },
-                                                                    className: "jsx-778b706394c29f2b" + " " + "status-select",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "status-select",
                                                                     children: STATUS_OPTIONS.map((s)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("option", {
                                                                             value: s,
-                                                                            className: "jsx-778b706394c29f2b",
+                                                                            className: "jsx-77939149c49bcb2f",
                                                                             children: statusLabels[s]
                                                                         }, s))
                                                                 })
                                                             ]
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-778b706394c29f2b" + " " + "meta-item",
+                                                            className: "jsx-77939149c49bcb2f" + " " + "meta-item",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-778b706394c29f2b" + " " + "meta-label",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "meta-label",
                                                                     children: "Received"
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-778b706394c29f2b" + " " + "meta-val",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "meta-val",
                                                                     children: formatDate(activeQuote.created_at)
                                                                 })
                                                             ]
@@ -387,26 +387,26 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "section",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "section",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                            className: "jsx-778b706394c29f2b",
+                                                            className: "jsx-77939149c49bcb2f",
                                                             children: "Client Requirements"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-778b706394c29f2b" + " " + "req-box",
+                                                            className: "jsx-77939149c49bcb2f" + " " + "req-box",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-778b706394c29f2b",
+                                                                className: "jsx-77939149c49bcb2f",
                                                                 children: activeQuote.requirements_text
                                                             })
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "section",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "section",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                            className: "jsx-778b706394c29f2b",
+                                                            className: "jsx-77939149c49bcb2f",
                                                             children: "Your Reply"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("textarea", {
@@ -414,21 +414,21 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                                             value: replyText,
                                                             onChange: (e)=>setReplyText(e.target.value),
                                                             placeholder: "Write your response — pricing, timeline, clarifications...",
-                                                            className: "jsx-778b706394c29f2b" + " " + "reply-input"
+                                                            className: "jsx-77939149c49bcb2f" + " " + "reply-input"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                            className: "jsx-778b706394c29f2b" + " " + "action-row",
+                                                            className: "jsx-77939149c49bcb2f" + " " + "action-row",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                     onClick: saveReply,
                                                                     disabled: saving || !replyText.trim(),
-                                                                    className: "jsx-778b706394c29f2b" + " " + "btn-save",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "btn-save",
                                                                     children: saving ? "Saving..." : "Save Draft"
                                                                 }),
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                                                                     onClick: sendViaEmail,
                                                                     disabled: !replyText.trim(),
-                                                                    className: "jsx-778b706394c29f2b" + " " + "btn-email",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "btn-email",
                                                                     children: [
                                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                                                             width: "15",
@@ -439,15 +439,15 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                                                             strokeWidth: "2",
                                                                             strokeLinecap: "round",
                                                                             strokeLinejoin: "round",
-                                                                            className: "jsx-778b706394c29f2b",
+                                                                            className: "jsx-77939149c49bcb2f",
                                                                             children: [
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                     d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z",
-                                                                                    className: "jsx-778b706394c29f2b"
+                                                                                    className: "jsx-77939149c49bcb2f"
                                                                                 }),
                                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
                                                                                     points: "22,6 12,13 2,6",
-                                                                                    className: "jsx-778b706394c29f2b"
+                                                                                    className: "jsx-77939149c49bcb2f"
                                                                                 })
                                                                             ]
                                                                         }),
@@ -457,17 +457,17 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                                                                     onClick: sendViaWhatsApp,
                                                                     disabled: !replyText.trim(),
-                                                                    className: "jsx-778b706394c29f2b" + " " + "btn-whatsapp",
+                                                                    className: "jsx-77939149c49bcb2f" + " " + "btn-whatsapp",
                                                                     children: [
                                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                             width: "15",
                                                                             height: "15",
                                                                             viewBox: "0 0 24 24",
                                                                             fill: "currentColor",
-                                                                            className: "jsx-778b706394c29f2b",
+                                                                            className: "jsx-77939149c49bcb2f",
                                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                                 d: "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z",
-                                                                                className: "jsx-778b706394c29f2b"
+                                                                                className: "jsx-77939149c49bcb2f"
                                                                             })
                                                                         }),
                                                                         "Send via WhatsApp"
@@ -478,26 +478,26 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                                     ]
                                                 }),
                                                 activeQuote.admin_reply && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "section",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "section",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                                                            className: "jsx-778b706394c29f2b",
+                                                            className: "jsx-77939149c49bcb2f",
                                                             children: "Saved Reply"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                            className: "jsx-778b706394c29f2b" + " " + "saved-box",
+                                                            className: "jsx-77939149c49bcb2f" + " " + "saved-box",
                                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                className: "jsx-778b706394c29f2b",
+                                                                className: "jsx-77939149c49bcb2f",
                                                                 children: activeQuote.admin_reply
                                                             })
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-778b706394c29f2b" + " " + "danger-zone",
+                                                    className: "jsx-77939149c49bcb2f" + " " + "danger-zone",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                         onClick: ()=>deleteQuote(activeQuote.id),
-                                                        className: "jsx-778b706394c29f2b" + " " + "btn-delete",
+                                                        className: "jsx-77939149c49bcb2f" + " " + "btn-delete",
                                                         children: "Delete Quote"
                                                     })
                                                 })
@@ -505,7 +505,7 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                         })
                                     ]
                                 }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-778b706394c29f2b" + " " + "empty-detail",
+                                    className: "jsx-77939149c49bcb2f" + " " + "empty-detail",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                             width: "48",
@@ -516,34 +516,34 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                                             strokeWidth: "1.5",
                                             strokeLinecap: "round",
                                             strokeLinejoin: "round",
-                                            className: "jsx-778b706394c29f2b",
+                                            className: "jsx-77939149c49bcb2f",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                     d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z",
-                                                    className: "jsx-778b706394c29f2b"
+                                                    className: "jsx-77939149c49bcb2f"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
                                                     points: "14 2 14 8 20 8",
-                                                    className: "jsx-778b706394c29f2b"
+                                                    className: "jsx-77939149c49bcb2f"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                     x1: "16",
                                                     y1: "13",
                                                     x2: "8",
                                                     y2: "13",
-                                                    className: "jsx-778b706394c29f2b"
+                                                    className: "jsx-77939149c49bcb2f"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("line", {
                                                     x1: "16",
                                                     y1: "17",
                                                     x2: "8",
                                                     y2: "17",
-                                                    className: "jsx-778b706394c29f2b"
+                                                    className: "jsx-77939149c49bcb2f"
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            className: "jsx-778b706394c29f2b",
+                                            className: "jsx-77939149c49bcb2f",
                                             children: "Select a quote from the list to view details and reply."
                                         })
                                     ]
@@ -554,8 +554,8 @@ const QuotesManagerPage = ({ initialQuotes =[]  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "778b706394c29f2b",
-                children: ".quotes-page.jsx-778b706394c29f2b{display:grid;gap:16px}.page-header.jsx-778b706394c29f2b h1.jsx-778b706394c29f2b{margin:0;font-size:24px;color:#1f2937}.page-header.jsx-778b706394c29f2b p.jsx-778b706394c29f2b{margin:4px 0 0;color:#6b7280;font-size:14px}.header-top.jsx-778b706394c29f2b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:12px}.filter-group.jsx-778b706394c29f2b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.filter-group.jsx-778b706394c29f2b label.jsx-778b706394c29f2b{font-size:13px;font-weight:600;color:#374151}.filter-select.jsx-778b706394c29f2b{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600;color:#1f2937;background:#fff;cursor:pointer;min-width:130px}.filter-select.jsx-778b706394c29f2b:focus{outline:none;border-color:#6366f1;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1)}.quotes-layout.jsx-778b706394c29f2b{display:grid;grid-template-columns:320px 1fr;gap:16px;height:-webkit-calc(100vh - 200px);height:-moz-calc(100vh - 200px);height:calc(100vh - 200px);overflow:hidden}.list-panel.jsx-778b706394c29f2b{overflow-y:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;padding-right:4px}.empty-msg.jsx-778b706394c29f2b{color:#9ca3af;text-align:center;padding:40px 16px}.quote-card.jsx-778b706394c29f2b{border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:12px 14px;background:#fff;cursor:pointer;-webkit-transition:border-color.15s,box-shadow.15s;-moz-transition:border-color.15s,box-shadow.15s;-o-transition:border-color.15s,box-shadow.15s;transition:border-color.15s,box-shadow.15s}.quote-card.jsx-778b706394c29f2b:hover{border-color:#a5b4fc;-webkit-box-shadow:0 2px 8px rgba(99,102,241,.08);-moz-box-shadow:0 2px 8px rgba(99,102,241,.08);box-shadow:0 2px 8px rgba(99,102,241,.08)}.quote-card.is-active.jsx-778b706394c29f2b{border-color:#6366f1;background:#f5f3ff}.card-top.jsx-778b706394c29f2b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.card-top.jsx-778b706394c29f2b strong.jsx-778b706394c29f2b{font-size:14px;color:#111827}.badge.jsx-778b706394c29f2b{font-size:11px;font-weight:700;padding:3px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.card-company.jsx-778b706394c29f2b{margin:4px 0 0;font-size:13px;color:#6b7280}.card-type.jsx-778b706394c29f2b{margin:2px 0 0;font-size:12px;color:#9ca3af;text-transform:capitalize}.card-date.jsx-778b706394c29f2b{display:block;margin-top:6px;font-size:11px;color:#9ca3af}.detail-panel.jsx-778b706394c29f2b{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;overflow-y:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.detail-head.jsx-778b706394c29f2b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;padding:20px 24px;border-bottom:1px solid#f3f4f6}.detail-head.jsx-778b706394c29f2b h2.jsx-778b706394c29f2b{margin:0;font-size:18px;color:#111827}.head-sub.jsx-778b706394c29f2b{margin:4px 0 0;font-size:13px;color:#6b7280}.close-x.jsx-778b706394c29f2b{border:none;background:transparent;font-size:20px;cursor:pointer;color:#9ca3af;padding:4px 8px}.detail-content.jsx-778b706394c29f2b{padding:20px 24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.meta-row.jsx-778b706394c29f2b{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.meta-item.jsx-778b706394c29f2b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px}.meta-label.jsx-778b706394c29f2b{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:600}.meta-val.jsx-778b706394c29f2b{font-size:14px;color:#111827;font-weight:600}.status-select.jsx-778b706394c29f2b{border:none;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:5px 10px;font-weight:700;font-size:12px;cursor:pointer}.section.jsx-778b706394c29f2b h4.jsx-778b706394c29f2b{margin:0 0 10px;font-size:12px;color:#374151;text-transform:uppercase;letter-spacing:.05em;font-weight:700}.req-box.jsx-778b706394c29f2b{padding:14px 16px;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb}.req-box.jsx-778b706394c29f2b p.jsx-778b706394c29f2b{margin:0;font-size:14px;color:#374151;line-height:1.7;white-space:pre-wrap}.reply-input.jsx-778b706394c29f2b{width:100%;border:1px solid#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:12px 14px;font:inherit;font-size:14px;color:#1f2937;line-height:1.6;resize:vertical;min-height:100px}.reply-input.jsx-778b706394c29f2b:focus{outline:none;border-color:#6366f1;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1)}.reply-input.jsx-778b706394c29f2b::-webkit-input-placeholder{color:#9ca3af}.reply-input.jsx-778b706394c29f2b:-moz-placeholder{color:#9ca3af}.reply-input.jsx-778b706394c29f2b::-moz-placeholder{color:#9ca3af}.reply-input.jsx-778b706394c29f2b:-ms-input-placeholder{color:#9ca3af}.reply-input.jsx-778b706394c29f2b::-ms-input-placeholder{color:#9ca3af}.reply-input.jsx-778b706394c29f2b::placeholder{color:#9ca3af}.action-row.jsx-778b706394c29f2b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-top:10px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.btn-save.jsx-778b706394c29f2b,.btn-email.jsx-778b706394c29f2b,.btn-whatsapp.jsx-778b706394c29f2b{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}.btn-save.jsx-778b706394c29f2b{background:#4f46e5;color:#fff}.btn-save.jsx-778b706394c29f2b:disabled{opacity:.5;cursor:not-allowed}.btn-save.jsx-778b706394c29f2b:hover:not(:disabled){background:#4338ca}.btn-email.jsx-778b706394c29f2b{background:#f3f4f6;color:#374151;border:1px solid#d1d5db}.btn-email.jsx-778b706394c29f2b:hover:not(:disabled){background:#e5e7eb}.btn-email.jsx-778b706394c29f2b:disabled{opacity:.5;cursor:not-allowed}.btn-whatsapp.jsx-778b706394c29f2b{background:#22c55e;color:#fff}.btn-whatsapp.jsx-778b706394c29f2b:hover:not(:disabled){background:#16a34a}.btn-whatsapp.jsx-778b706394c29f2b:disabled{opacity:.5;cursor:not-allowed}.saved-box.jsx-778b706394c29f2b{padding:14px 16px;border:1px solid#d1fae5;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#ecfdf5}.saved-box.jsx-778b706394c29f2b p.jsx-778b706394c29f2b{margin:0;font-size:14px;color:#065f46;line-height:1.7;white-space:pre-wrap}.danger-zone.jsx-778b706394c29f2b{border-top:1px solid#f3f4f6;padding-top:16px}.btn-delete.jsx-778b706394c29f2b{border:1px solid#fecaca;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 16px;background:#fff;color:#dc2626;font-size:13px;font-weight:600;cursor:pointer}.btn-delete.jsx-778b706394c29f2b:hover{background:#fef2f2}.empty-detail.jsx-778b706394c29f2b{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;height:100%;gap:12px;color:#9ca3af;font-size:14px}@media(max-width:900px){.quotes-layout.jsx-778b706394c29f2b{grid-template-columns:1fr;grid-template-rows:280px 1fr}}"
+                id: "77939149c49bcb2f",
+                children: ".quotes-page.jsx-77939149c49bcb2f{display:grid;gap:16px}.page-header.jsx-77939149c49bcb2f h1.jsx-77939149c49bcb2f{margin:0;font-size:24px;color:#1f2937}.page-header.jsx-77939149c49bcb2f p.jsx-77939149c49bcb2f{margin:4px 0 0;color:#6b7280;font-size:14px}.header-top.jsx-77939149c49bcb2f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:12px}.filter-group.jsx-77939149c49bcb2f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.filter-group.jsx-77939149c49bcb2f label.jsx-77939149c49bcb2f{font-size:13px;font-weight:600;color:#374151}.filter-select.jsx-77939149c49bcb2f{border:1px solid#d1d5db;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600;color:#1f2937;background:#fff;cursor:pointer;min-width:130px}.filter-select.jsx-77939149c49bcb2f:focus{outline:none;border-color:#6366f1;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1)}.quotes-layout.jsx-77939149c49bcb2f{display:grid;grid-template-columns:320px 1fr;gap:16px;height:-webkit-calc(100vh - 200px);height:-moz-calc(100vh - 200px);height:calc(100vh - 200px);overflow:hidden}.list-panel.jsx-77939149c49bcb2f{overflow-y:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:8px;padding-right:4px}.empty-msg.jsx-77939149c49bcb2f{color:#9ca3af;text-align:center;padding:40px 16px}.quote-card.jsx-77939149c49bcb2f{border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:12px 14px;background:#fff;cursor:pointer;-webkit-transition:border-color.15s,box-shadow.15s;-moz-transition:border-color.15s,box-shadow.15s;-o-transition:border-color.15s,box-shadow.15s;transition:border-color.15s,box-shadow.15s}.quote-card.jsx-77939149c49bcb2f:hover{border-color:#a5b4fc;-webkit-box-shadow:0 2px 8px rgba(99,102,241,.08);-moz-box-shadow:0 2px 8px rgba(99,102,241,.08);box-shadow:0 2px 8px rgba(99,102,241,.08)}.quote-card.is-active.jsx-77939149c49bcb2f{border-color:#6366f1;background:#f5f3ff}.card-top.jsx-77939149c49bcb2f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:8px}.card-top.jsx-77939149c49bcb2f strong.jsx-77939149c49bcb2f{font-size:14px;color:#111827}.badge.jsx-77939149c49bcb2f{font-size:11px;font-weight:700;padding:3px 8px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}.card-company.jsx-77939149c49bcb2f{margin:4px 0 0;font-size:13px;color:#6b7280}.card-type.jsx-77939149c49bcb2f{margin:2px 0 0;font-size:12px;color:#9ca3af;text-transform:capitalize}.card-date.jsx-77939149c49bcb2f{display:block;margin-top:6px;font-size:11px;color:#9ca3af}.detail-panel.jsx-77939149c49bcb2f{border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;background:#fff;overflow-y:auto;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.detail-head.jsx-77939149c49bcb2f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start;padding:20px 24px;border-bottom:1px solid#f3f4f6}.detail-head.jsx-77939149c49bcb2f h2.jsx-77939149c49bcb2f{margin:0;font-size:18px;color:#111827}.head-sub.jsx-77939149c49bcb2f{margin:4px 0 0;font-size:13px;color:#6b7280}.close-x.jsx-77939149c49bcb2f{border:none;background:transparent;font-size:20px;cursor:pointer;color:#9ca3af;padding:4px 8px}.detail-content.jsx-77939149c49bcb2f{padding:20px 24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px;-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-ms-flex:1;flex:1}.meta-row.jsx-77939149c49bcb2f{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.meta-item.jsx-77939149c49bcb2f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:4px}.meta-label.jsx-77939149c49bcb2f{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:600}.meta-val.jsx-77939149c49bcb2f{font-size:14px;color:#111827;font-weight:600}.status-select.jsx-77939149c49bcb2f{border:none;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;padding:5px 10px;font-weight:700;font-size:12px;cursor:pointer}.section.jsx-77939149c49bcb2f h4.jsx-77939149c49bcb2f{margin:0 0 10px;font-size:12px;color:#374151;text-transform:uppercase;letter-spacing:.05em;font-weight:700}.req-box.jsx-77939149c49bcb2f{padding:14px 16px;border:1px solid#e5e7eb;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#f9fafb}.req-box.jsx-77939149c49bcb2f p.jsx-77939149c49bcb2f{margin:0;font-size:14px;color:#374151;line-height:1.7;white-space:pre-wrap}.reply-input.jsx-77939149c49bcb2f{width:100%;border:1px solid#d1d5db;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:12px 14px;font:inherit;font-size:14px;color:#1f2937;line-height:1.6;resize:vertical;min-height:100px}.reply-input.jsx-77939149c49bcb2f:focus{outline:none;border-color:#6366f1;-webkit-box-shadow:0 0 0 3px rgba(99,102,241,.1);-moz-box-shadow:0 0 0 3px rgba(99,102,241,.1);box-shadow:0 0 0 3px rgba(99,102,241,.1)}.reply-input.jsx-77939149c49bcb2f::-webkit-input-placeholder{color:#9ca3af}.reply-input.jsx-77939149c49bcb2f:-moz-placeholder{color:#9ca3af}.reply-input.jsx-77939149c49bcb2f::-moz-placeholder{color:#9ca3af}.reply-input.jsx-77939149c49bcb2f:-ms-input-placeholder{color:#9ca3af}.reply-input.jsx-77939149c49bcb2f::-ms-input-placeholder{color:#9ca3af}.reply-input.jsx-77939149c49bcb2f::placeholder{color:#9ca3af}.action-row.jsx-77939149c49bcb2f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:8px;margin-top:10px;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.btn-save.jsx-77939149c49bcb2f,.btn-email.jsx-77939149c49bcb2f,.btn-whatsapp.jsx-77939149c49bcb2f{display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:6px;border:none;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}.btn-save.jsx-77939149c49bcb2f{background:#4f46e5;color:#fff}.btn-save.jsx-77939149c49bcb2f:disabled{opacity:.5;cursor:not-allowed}.btn-save.jsx-77939149c49bcb2f:hover:not(:disabled){background:#4338ca}.btn-email.jsx-77939149c49bcb2f{background:#f3f4f6;color:#374151;border:1px solid#d1d5db}.btn-email.jsx-77939149c49bcb2f:hover:not(:disabled){background:#e5e7eb}.btn-email.jsx-77939149c49bcb2f:disabled{opacity:.5;cursor:not-allowed}.btn-whatsapp.jsx-77939149c49bcb2f{background:#22c55e;color:#fff}.btn-whatsapp.jsx-77939149c49bcb2f:hover:not(:disabled){background:#16a34a}.btn-whatsapp.jsx-77939149c49bcb2f:disabled{opacity:.5;cursor:not-allowed}.saved-box.jsx-77939149c49bcb2f{padding:14px 16px;border:1px solid#d1fae5;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background:#ecfdf5}.saved-box.jsx-77939149c49bcb2f p.jsx-77939149c49bcb2f{margin:0;font-size:14px;color:#065f46;line-height:1.7;white-space:pre-wrap}.danger-zone.jsx-77939149c49bcb2f{border-top:1px solid#f3f4f6;padding-top:16px}.btn-delete.jsx-77939149c49bcb2f{border:1px solid#fecaca;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;padding:8px 16px;background:#fff;color:#dc2626;font-size:13px;font-weight:600;cursor:pointer}.btn-delete.jsx-77939149c49bcb2f:hover{background:#fef2f2}.empty-detail.jsx-77939149c49bcb2f{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;height:100%;gap:12px;color:#9ca3af;font-size:14px}@media(max-width:900px){.quotes-layout.jsx-77939149c49bcb2f{grid-template-columns:1fr;grid-template-rows:280px 1fr}}"
             })
         ]
     });
