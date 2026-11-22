@@ -1,5 +1,10 @@
 import { getDbPool } from '../../lib/server/db'
 import { logVisitorEvent } from '../../lib/server/activity-log'
+import {
+  expandSearchTerms,
+  buildProductSearchClause,
+  buildSimpleSearchClause,
+} from '../../lib/server/search-query'
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -11,7 +16,9 @@ export default async function handler(req, res) {
     return res.status(200).json({ products: [], services: [] })
   }
 
-  const searchPattern = `%${q}%`
+  const terms = expandSearchTerms(q)
+  const productClause = buildProductSearchClause(terms)
+  const serviceClause = buildSimpleSearchClause(terms, ['name', 'description'])
   const db = getDbPool()
 
   try {
@@ -22,9 +29,9 @@ export default async function handler(req, res) {
        FROM products p
        LEFT JOIN categories c ON c.id = p.category_id
        WHERE p.deleted_at IS NULL AND p.is_active = 1
-         AND (p.name LIKE ? OR p.short_desc LIKE ? OR p.type LIKE ? OR p.brand LIKE ? OR p.model LIKE ?)
+         AND (${productClause.sql})
        ORDER BY p.name ASC LIMIT 20`,
-      [searchPattern, searchPattern, searchPattern, searchPattern, searchPattern]
+      productClause.params
     )
 
     // Search digital services
@@ -32,9 +39,9 @@ export default async function handler(req, res) {
       `SELECT id, name, slug, description, 'digital-services' AS page_type
        FROM digi_services
        WHERE deleted_at IS NULL AND status = 'active'
-         AND (name LIKE ? OR description LIKE ?)
+         AND (${serviceClause.sql})
        LIMIT 5`,
-      [searchPattern, searchPattern]
+      serviceClause.params
     )
 
     // Search business & corporate solutions
@@ -42,9 +49,9 @@ export default async function handler(req, res) {
       `SELECT id, name, slug, description, 'enterprise-solutions' AS page_type
        FROM bus_corp_sol
        WHERE deleted_at IS NULL AND status = 'active'
-         AND (name LIKE ? OR description LIKE ?)
+         AND (${serviceClause.sql})
        LIMIT 5`,
-      [searchPattern, searchPattern]
+      serviceClause.params
     )
 
     // Search maintenance services
@@ -52,9 +59,9 @@ export default async function handler(req, res) {
       `SELECT id, name, slug, description, 'maintenance-support' AS page_type
        FROM service_maintenance
        WHERE deleted_at IS NULL AND status = 'active'
-         AND (name LIKE ? OR description LIKE ?)
+         AND (${serviceClause.sql})
        LIMIT 5`,
-      [searchPattern, searchPattern]
+      serviceClause.params
     )
 
     const services = [...digiServices, ...bizServices, ...maintServices]

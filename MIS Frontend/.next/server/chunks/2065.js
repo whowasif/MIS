@@ -1,4 +1,3 @@
-"use strict";
 exports.id = 2065;
 exports.ids = [2065,6548];
 exports.modules = {
@@ -6,6 +5,7 @@ exports.modules = {
 /***/ 6548:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "z": () => (/* binding */ getDbPool)
 /* harmony export */ });
@@ -45,7 +45,6 @@ const getDbPool = ()=>{
 
 /***/ 6248:
 /***/ ((module) => {
-
 
 const PUBLIC_CACHE_CONTROL = "public, max-age=60, stale-while-revalidate=60";
 const PRIVATE_CACHE_CONTROL = "private, no-store";

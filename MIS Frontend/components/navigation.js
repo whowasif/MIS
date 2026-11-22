@@ -451,7 +451,7 @@ const Navigation = () => {
       </header>
 
       {/* Category Navigation Bar - only on product/category pages */}
-      {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products') || router.pathname === '/product-catalog') && (
+      {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products')) && (
         <nav className="cat-nav-bar" aria-label="Product categories">
           <div className="cat-nav-inner">
             {categories.filter((c) => !c.parent_id).map((cat) => {
@@ -465,7 +465,7 @@ const Navigation = () => {
       )}
 
       {!isHome && <div className="menu-nav-spacer"></div>}
-      {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products') || router.pathname === '/product-catalog') && <div className="cat-nav-spacer"></div>}
+      {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products')) && <div className="cat-nav-spacer"></div>}
 
       <div
         className={`menu-nav-overlay ${isMenuOpen ? 'is-active' : ''}`}

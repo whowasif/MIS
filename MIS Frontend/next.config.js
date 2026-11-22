@@ -9,8 +9,8 @@ module.exports = withTM({
     return [
       {
         source: '/product-catalog',
-        destination: '/categories/desktop',
-        permanent: false,
+        destination: '/categories',
+        permanent: true,
       },
     ]
   },

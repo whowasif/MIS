@@ -49,7 +49,7 @@ var managed_tables = __webpack_require__(7500);
 const ReactQuill = dynamic_default()(null, {
     loadableGenerated: {
         modules: [
-            "..\\components\\admin\\TableManagerModern.jsx -> " + "react-quill"
+            "../components/admin/TableManagerModern.jsx -> " + "react-quill"
         ]
     },
     ssr: false

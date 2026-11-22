@@ -1,11 +1,9 @@
-"use strict";
 exports.id = 3868;
 exports.ids = [3868];
 exports.modules = {
 
 /***/ 3868:
 /***/ ((module) => {
-
 
 const PUBLIC_CACHE_CONTROL = "public, max-age=60, stale-while-revalidate=60";
 const PRIVATE_CACHE_CONTROL = "private, no-store";

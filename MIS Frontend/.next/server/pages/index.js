@@ -1093,7 +1093,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8966);
 /* harmony import */ var _components_HeroWorldMap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(8632);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(459);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__]);
 ([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
@@ -1674,7 +1673,7 @@ const Home = (props)=>{
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "jsx-78fd8a5633951551" + " " + "home-cat-icon-wrap",
-                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
+                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__/* .DisplayImage */ .QC, {
                                                     src: cat.icon_url,
                                                     alt: cat.name,
                                                     loading: "eager",
@@ -1726,7 +1725,7 @@ const Home = (props)=>{
                                                 },
                                                 className: "jsx-78fd8a5633951551",
                                                 children: [
-                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
+                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__/* .DisplayImage */ .QC, {
                                                         src: ad.image_url,
                                                         kind: "detail",
                                                         priority: idx === adIndex,
@@ -1961,7 +1960,7 @@ const Home = (props)=>{
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-78fd8a5633951551" + " " + "product-image-box",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__/* .DisplayImage */ .QC, {
                                                             src: product.image || fallbackProductImage,
                                                             priority: idx % featuredProducts.length === 0,
                                                             alt: product.name,
@@ -2107,7 +2106,7 @@ const Home = (props)=>{
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-78fd8a5633951551" + " " + "case-image",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__/* .DisplayImage */ .QC, {
                                                             src: project.icon_url || fallbackProductImage,
                                                             alt: project.name,
                                                             loading: "lazy",
@@ -2326,7 +2325,7 @@ const Home = (props)=>{
                                         children: "Instantly search our extensive catalog of hardware, software, and services."
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("form", {
-                                        action: "/product-catalog",
+                                        action: "/search",
                                         method: "GET",
                                         className: "jsx-78fd8a5633951551" + " " + "catalog-search-form",
                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -2336,7 +2335,7 @@ const Home = (props)=>{
                                                     type: "text",
                                                     placeholder: "Enter SKU, Model, or Product Name...",
                                                     required: true,
-                                                    name: "search",
+                                                    name: "q",
                                                     className: "jsx-78fd8a5633951551" + " " + "catalog-input"
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
@@ -2493,7 +2492,7 @@ async function loadPublicProps() {
             ...featBiz,
             ...featMaint
         ];
-        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.t.bind(__webpack_require__, 3268, 23));
+        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.bind(__webpack_require__, 3268));
         const withCard = (url)=>resolveDisplayUrl(url, "card");
         const withDetail = (url)=>resolveDisplayUrl(url, "detail");
         return {

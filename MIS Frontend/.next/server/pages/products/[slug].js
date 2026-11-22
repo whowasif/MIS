@@ -27,7 +27,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2097);
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6151);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(459);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_7__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_6__]);
 _components_footer__WEBPACK_IMPORTED_MODULE_6__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
@@ -113,7 +112,7 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
         product
     ]);
     const { 0: activeImage , 1: setActiveImage  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(galleryImages[0]);
-    const heroDisplay = (0,_lib_display_image__WEBPACK_IMPORTED_MODULE_7__.useDisplaySrc)(activeImage, "detail");
+    const heroDisplay = (0,_lib_display_image__WEBPACK_IMPORTED_MODULE_7__/* .useDisplaySrc */ .UF)(activeImage, "detail");
     const { 0: quantity , 1: setQuantity  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1);
     const { 0: lightboxOpen , 1: setLightboxOpen  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
     const { 0: lightboxIndex , 1: setLightboxIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
@@ -247,7 +246,7 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                 className: "jsx-c9bfa0ca4f031e9f" + " " + "product-detail-topline",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                    href: "/product-catalog",
+                                    href: "/categories",
                                     className: "jsx-c9bfa0ca4f031e9f" + " " + "catalog-back-link",
                                     children: "← Back to Catalog"
                                 })
@@ -272,7 +271,7 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                         src: heroDisplay.displaySrc,
                                                         alt: product.name,
-                                                        ref: _lib_display_image__WEBPACK_IMPORTED_MODULE_7__.markHighPriority,
+                                                        ref: _lib_display_image__WEBPACK_IMPORTED_MODULE_7__/* .markHighPriority */ .BL,
                                                         onError: heroDisplay.onError,
                                                         className: "jsx-c9bfa0ca4f031e9f" + " " + "hero-img"
                                                     }),
@@ -749,7 +748,7 @@ async function loadPublicProps(context) {
                 categorySpecs = JSON.parse(JSON.stringify(specs));
             }
         }
-        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.t.bind(__webpack_require__, 3268, 23));
+        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.bind(__webpack_require__, 3268));
         const images = Array.isArray(product.images) ? product.images.map((url)=>resolveDisplayUrl(url, "detail")) : [];
         return {
             props: {

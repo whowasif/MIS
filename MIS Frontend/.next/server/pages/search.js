@@ -97,7 +97,7 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
                                     children: "No products or services found matching your search."
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                    href: "/product-catalog",
+                                    href: "/categories",
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                         className: "jsx-7072b846802ac650" + " " + "browse-link",
                                         children: "Browse All Products"
@@ -213,33 +213,24 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
 };
 async function loadPublicProps(q) {
     const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));
+    const { expandSearchTerms , buildProductSearchClause , buildSimpleSearchClause ,  } = await __webpack_require__.e(/* import() */ 1388).then(__webpack_require__.bind(__webpack_require__, 1388));
     const db = getDbPool();
-    const searchPattern = `%${q}%`;
+    const terms = expandSearchTerms(q);
+    const productClause = buildProductSearchClause(terms);
+    const serviceClause = buildSimpleSearchClause(terms, [
+        "name",
+        "description"
+    ]);
     const [products] = await db.execute(`SELECT p.id, p.name, p.slug, p.short_desc, p.price, p.type, p.thumbnail_1, p.brand, p.model,
               c.name AS category_name
        FROM products p
        LEFT JOIN categories c ON c.id = p.category_id
        WHERE p.deleted_at IS NULL AND p.is_active = 1
-         AND (p.name LIKE ? OR p.short_desc LIKE ? OR p.type LIKE ? OR p.brand LIKE ? OR p.model LIKE ?)
-       ORDER BY p.name ASC LIMIT 20`, [
-        searchPattern,
-        searchPattern,
-        searchPattern,
-        searchPattern,
-        searchPattern
-    ]);
-    const [digiServices] = await db.execute(`SELECT id, name, slug, description, 'digital-services' AS page_type FROM digi_services WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
-        searchPattern,
-        searchPattern
-    ]);
-    const [bizServices] = await db.execute(`SELECT id, name, slug, description, 'enterprise-solutions' AS page_type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
-        searchPattern,
-        searchPattern
-    ]);
-    const [maintServices] = await db.execute(`SELECT id, name, slug, description, 'maintenance-support' AS page_type FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' AND (name LIKE ? OR description LIKE ?) LIMIT 5`, [
-        searchPattern,
-        searchPattern
-    ]);
+         AND (${productClause.sql})
+       ORDER BY p.name ASC LIMIT 20`, productClause.params);
+    const [digiServices] = await db.execute(`SELECT id, name, slug, description, 'digital-services' AS page_type FROM digi_services WHERE deleted_at IS NULL AND status = 'active' AND (${serviceClause.sql}) LIMIT 5`, serviceClause.params);
+    const [bizServices] = await db.execute(`SELECT id, name, slug, description, 'enterprise-solutions' AS page_type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND (${serviceClause.sql}) LIMIT 5`, serviceClause.params);
+    const [maintServices] = await db.execute(`SELECT id, name, slug, description, 'maintenance-support' AS page_type FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' AND (${serviceClause.sql}) LIMIT 5`, serviceClause.params);
     return {
         props: {
             query: q,

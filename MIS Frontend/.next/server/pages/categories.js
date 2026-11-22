@@ -69,7 +69,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6151);
 /* harmony import */ var _lib_server_db__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2984);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(459);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_8__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_6__]);
 _components_footer__WEBPACK_IMPORTED_MODULE_6__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
@@ -555,7 +554,7 @@ const AllProductsPage = ({ categories , products , brands , maxPrice  })=>{
                                                                                     alt: product.name,
                                                                                     loading: index < 4 ? "eager" : "lazy",
                                                                                     decoding: "async",
-                                                                                    ref: index === 0 ? _lib_display_image__WEBPACK_IMPORTED_MODULE_8__.markHighPriority : undefined,
+                                                                                    ref: index === 0 ? _lib_display_image__WEBPACK_IMPORTED_MODULE_8__/* .markHighPriority */ .BL : undefined,
                                                                                     className: "jsx-72cabbcdb36d034f"
                                                                                 })
                                                                             }),
@@ -914,7 +913,7 @@ const AllProductsPage = ({ categories , products , brands , maxPrice  })=>{
 };
 async function loadPublicProps() {
     try {
-        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.t.bind(__webpack_require__, 3268, 23));
+        const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.bind(__webpack_require__, 3268));
         const db = (0,_lib_server_db__WEBPACK_IMPORTED_MODULE_7__.getDbPool)();
         // Get all active categories
         const [cats] = await db.query("SELECT id, name, slug FROM categories WHERE deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC, name ASC");

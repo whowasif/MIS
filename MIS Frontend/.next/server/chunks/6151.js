@@ -22,7 +22,6 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(503);
 /* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_intl__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(459);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_6__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_4__]);
 dangerous_html_react__WEBPACK_IMPORTED_MODULE_4__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
@@ -95,7 +94,7 @@ const Footer = (props)=>{
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                         "aria-label": "MIS Solution Home",
                                                         className: "jsx-ec708c719622d5bf" + " " + "footer-brand-mark",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_6__.DisplayImage, {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_6__/* .DisplayImage */ .QC, {
                                                             src: "/footer%20logo.png",
                                                             alt: "MIS Solution",
                                                             className: "footer-brand-logo"
@@ -392,6 +391,22 @@ const Footer = (props)=>{
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                             className: "jsx-ec708c719622d5bf",
                                                                             children: "Maintenance & Support"
+                                                                        })
+                                                                    })
+                                                                })
+                                                            })
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                                            className: "jsx-ec708c719622d5bf",
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
+                                                                href: "/solar",
+                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                                    className: "jsx-ec708c719622d5bf",
+                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                                        className: "jsx-ec708c719622d5bf" + " " + "footer-link section-content",
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                            className: "jsx-ec708c719622d5bf",
+                                                                            children: "Solar & Renewable Energy"
                                                                         })
                                                                     })
                                                                 })
@@ -799,10 +814,19 @@ __webpack_async_result__();
 /***/ }),
 
 /***/ 459:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BL": () => (/* binding */ markHighPriority),
+/* harmony export */   "Hx": () => (/* binding */ detailImageUrl),
+/* harmony export */   "QC": () => (/* binding */ DisplayImage),
+/* harmony export */   "UF": () => (/* binding */ useDisplaySrc),
+/* harmony export */   "do": () => (/* binding */ cardImageUrl)
+/* harmony export */ });
+/* unused harmony export revealOriginalImage */
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const React = __webpack_require__(6689);
 const extensionPattern = /\.(png|jpe?g|webp)$/i;
 const localUploadsPath = (url)=>{
     if (url.startsWith("/uploads/")) return url;
@@ -853,20 +877,12 @@ const useDisplaySrc = (src)=>({
     });
 const DisplayImage = ({ src , kind ="card" , priority =false , ...rest })=>{
     const { displaySrc , onError  } = useDisplaySrc(src, kind);
-    return React.createElement("img", {
+    return /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         ...rest,
         src: displaySrc,
         ref: priority ? markHighPriority : undefined,
         onError
     });
-};
-module.exports = {
-    cardImageUrl,
-    detailImageUrl,
-    revealOriginalImage,
-    markHighPriority,
-    useDisplaySrc,
-    DisplayImage
 };
 
 
