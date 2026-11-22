@@ -451,8 +451,9 @@ if ((typeof exports.default === "function" || typeof exports.default === "object
 /***/ 8418:
 /***/ ((module, exports, __webpack_require__) => {
 
-"client";
 "use strict";
+
+"client";
 Object.defineProperty(exports, "__esModule", ({
     value: true
 }));
@@ -520,7 +521,7 @@ function linkClicked(e, router, href, as, replace, shallow, scroll, locale, isAp
     }
 }
 const Link = /*#__PURE__*/ _react.default.forwardRef(function LinkComponent(props, forwardedRef) {
-    if (false) { var createPropError; }
+    if (false) {}
     let children;
     const { href: hrefProp , as: asProp , children: childrenProp , prefetch: prefetchProp , passHref , replace , shallow , scroll , locale , onClick , onMouseEnter , onTouchStart , legacyBehavior =Boolean(false) !== true  } = props, restProps = _object_without_properties_loose(props, [
         "href",
@@ -1115,8 +1116,9 @@ if ((typeof exports.default === "function" || typeof exports.default === "object
 /***/ 699:
 /***/ ((module, exports, __webpack_require__) => {
 
-"client";
 "use strict";
+
+"client";
 Object.defineProperty(exports, "__esModule", ({
     value: true
 }));

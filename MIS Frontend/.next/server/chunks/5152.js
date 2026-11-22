@@ -5,8 +5,9 @@ exports.modules = {
 /***/ 638:
 /***/ ((module, exports, __webpack_require__) => {
 
-"client";
 "use strict";
+
+"client";
 Object.defineProperty(exports, "__esModule", ({
     value: true
 }));
