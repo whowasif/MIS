@@ -228,7 +228,7 @@ const Home = (props) => {
           <PathChooser />
           <OfferBand advertisements={advertisements} />
           <CapabilityMap featuredServices={featuredServices} />
-          <ProofStrip proof={proof} />
+          <ProofStrip />
           <WorkGallery projects={clientProjects} />
           <Quotes />
           <FeaturedCatalog products={featuredProducts} />
@@ -310,17 +310,32 @@ async function loadPublicProps() {
 
 export const getServerSideProps = async ({ res }) => {
   const { servePublicCache } = await import('../lib/server/ttl-cache')
-  return servePublicCache(res, 'page:home', loadPublicProps, async () => ({
-    props: {
+  return servePublicCache(res, 'page:home', loadPublicProps, async () => {
+    const messages = (await import('../locales/en.json')).default
+    const empty = {
       featuredProducts: [],
       advertisements: [],
       homeCategories: [],
       featuredServices: [],
       clientProjects: [],
       proof: emptyProof,
-      messages: (await import('../locales/en.json')).default,
-    },
-  }))
+      messages,
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+      return { props: empty }
+    }
+
+    const { homeDevPreview } = await import('../components/home/homeDevPreview')
+    return {
+      props: {
+        ...empty,
+        advertisements: homeDevPreview.advertisements,
+        clientProjects: homeDevPreview.clientProjects,
+        featuredProducts: homeDevPreview.featuredProducts,
+      },
+    }
+  })
 }
 
 export default Home

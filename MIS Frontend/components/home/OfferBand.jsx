@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { motion, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { DisplayImage } from '../../lib/display-image'
-import { fadeUp, homeViewport, reducedFade } from './homeMotion'
 
+/**
+ * Full-bleed offer stage (Apple / Dell homepage pattern):
+ * one immersive slide at a time, crossfade, bottom dots + progress.
+ */
 const OfferBand = ({ advertisements = [] }) => {
   const reduce = useReducedMotion()
   const [index, setIndex] = useState(0)
@@ -11,6 +14,7 @@ const OfferBand = ({ advertisements = [] }) => {
   const [progress, setProgress] = useState(0)
   const startRef = useRef(0)
   const rafRef = useRef(null)
+  const touchX = useRef(null)
 
   const total = advertisements.length
 
@@ -20,7 +24,7 @@ const OfferBand = ({ advertisements = [] }) => {
       return undefined
     }
 
-    const duration = 5500
+    const duration = 6000
     startRef.current = performance.now()
 
     const tick = (now) => {
@@ -51,65 +55,98 @@ const OfferBand = ({ advertisements = [] }) => {
     setProgress(0)
   }
 
+  const onTouchStart = (e) => {
+    touchX.current = e.changedTouches[0].clientX
+  }
+
+  const onTouchEnd = (e) => {
+    if (touchX.current == null) return
+    const dx = e.changedTouches[0].clientX - touchX.current
+    touchX.current = null
+    if (Math.abs(dx) < 48) return
+    go(dx < 0 ? 1 : -1)
+  }
+
   return (
     <section
       className="hm-offer"
-      aria-label="Current offers"
+      aria-roledescription="carousel"
+      aria-label="Featured offers"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false)
       }}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
     >
-      <motion.div
-        className="hm-offer-stage"
-        initial="hidden"
-        whileInView="show"
-        viewport={homeViewport}
-        variants={reduce ? reducedFade : fadeUp}
-      >
-        <Link href={href}>
-          <a className="hm-offer-primary">
-            <div className="hm-offer-media">
-              <DisplayImage
-                src={offer.image_url}
-                kind="detail"
-                priority
-                alt={offer.title || 'Offer'}
-                loading="eager"
-                decoding="async"
-              />
-              <span className="hm-offer-scrim" aria-hidden="true" />
-            </div>
-            <div className="hm-offer-copy">
-              <span className="hm-offer-kicker">Offer</span>
-              <h2 className="hm-offer-title">{offer.title}</h2>
-              {offer.ad_details ? <p className="hm-offer-details">{offer.ad_details}</p> : null}
-              <span className="hm-offer-cta">Shop now</span>
-            </div>
-          </a>
-        </Link>
+      <div className="hm-offer-bleed">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={offer.id || index}
+            className="hm-offer-slide"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduce ? undefined : { opacity: 0 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Link href={href}>
+              <a className="hm-offer-link">
+                <div className="hm-offer-media">
+                  <DisplayImage
+                    src={offer.image_url}
+                    kind="detail"
+                    priority
+                    alt={offer.title || 'Offer'}
+                    loading="eager"
+                    decoding="async"
+                  />
+                  <span className="hm-offer-scrim" aria-hidden="true" />
+                </div>
+                <div className="hm-offer-copy">
+                  <p className="hm-offer-kicker">Now available</p>
+                  <h2 className="hm-offer-title">{offer.title}</h2>
+                  {offer.ad_details ? <p className="hm-offer-details">{offer.ad_details}</p> : null}
+                  <span className="hm-offer-cta">Shop now</span>
+                </div>
+              </a>
+            </Link>
+          </motion.div>
+        </AnimatePresence>
 
         {total > 1 && (
-          <>
+          <div className="hm-offer-chrome">
             <div className="hm-offer-progress" aria-hidden="true">
               <span style={{ transform: `scaleX(${progress})` }} />
             </div>
-            <div className="hm-offer-frame-meta">
-              <span className="hm-offer-count">
-                {String(index + 1).padStart(2, '0')} — {String(total).padStart(2, '0')}
-              </span>
+            <div className="hm-offer-dots" role="tablist" aria-label="Offer slides">
+              {advertisements.map((ad, i) => (
+                <button
+                  key={ad.id || i}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === index}
+                  aria-label={`Offer ${i + 1}`}
+                  className={`hm-offer-dot${i === index ? ' is-active' : ''}`}
+                  onClick={() => {
+                    setIndex(i)
+                    setProgress(0)
+                  }}
+                />
+              ))}
             </div>
-            <button type="button" className="hm-offer-nav hm-offer-nav-prev" onClick={() => go(-1)} aria-label="Previous offer">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
-            </button>
-            <button type="button" className="hm-offer-nav hm-offer-nav-next" onClick={() => go(1)} aria-label="Next offer">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
-            </button>
-          </>
+            <div className="hm-offer-arrows">
+              <button type="button" className="hm-offer-nav" onClick={() => go(-1)} aria-label="Previous offer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <button type="button" className="hm-offer-nav" onClick={() => go(1)} aria-label="Next offer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+            </div>
+          </div>
         )}
-      </motion.div>
+      </div>
     </section>
   )
 }

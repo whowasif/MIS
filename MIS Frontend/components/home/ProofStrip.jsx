@@ -2,7 +2,15 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { fadeUp, homeViewport, reducedFade } from './homeMotion'
 
-const CountUp = ({ end, label, reduce }) => {
+/** Established marketing metrics (company-approved). */
+const METRICS = [
+  { end: 100, suffix: '+', label: 'Projects completed', decimals: 0 },
+  { end: 100, suffix: '+', label: 'Enterprise clients', decimals: 0 },
+  { end: 99.9, suffix: '%', label: 'Support SLA', decimals: 1 },
+  { end: 100, suffix: '%', label: 'Warranty coverage', decimals: 0 },
+]
+
+const CountUp = ({ end, suffix, label, decimals, reduce }) => {
   const [count, setCount] = useState(reduce ? end : 0)
   const [done, setDone] = useState(!!reduce)
   const ref = useRef(null)
@@ -21,12 +29,12 @@ const CountUp = ({ end, label, reduce }) => {
       ([entry]) => {
         if (!entry.isIntersecting || done) return
         setDone(true)
-        const duration = 1400
+        const duration = 1600
         const start = performance.now()
         const tick = (now) => {
           const t = Math.min((now - start) / duration, 1)
           const eased = 1 - Math.pow(1 - t, 3)
-          setCount(Math.round(eased * end))
+          setCount(eased * end)
           if (t < 1) requestAnimationFrame(tick)
         }
         requestAnimationFrame(tick)
@@ -38,33 +46,21 @@ const CountUp = ({ end, label, reduce }) => {
     return () => observer.disconnect()
   }, [end, reduce, done])
 
+  const display = decimals > 0 ? count.toFixed(decimals) : Math.floor(count).toLocaleString()
+
   return (
     <div className="hm-proof-item" ref={ref}>
-      <div className="hm-proof-number">{count.toLocaleString()}{end > 0 ? '+' : ''}</div>
+      <div className="hm-proof-number">
+        {display}
+        {suffix}
+      </div>
       <div className="hm-proof-label">{label}</div>
     </div>
   )
 }
 
-const ProofStrip = ({ proof = {} }) => {
+const ProofStrip = () => {
   const reduce = useReducedMotion()
-  const {
-    projectCount = 0,
-    categoryCount = 0,
-    serviceCount = 0,
-    productCount = 0,
-  } = proof
-
-  const metrics = [
-    { end: projectCount, label: 'Projects delivered' },
-    { end: categoryCount, label: 'Product categories' },
-    { end: serviceCount, label: 'Active service lines' },
-  ]
-  if (productCount > 0) {
-    metrics.push({ end: productCount, label: 'Catalog products' })
-  }
-
-  if (metrics.every((m) => m.end === 0)) return null
 
   return (
     <section className="hm-proof" aria-label="Company metrics">
@@ -75,9 +71,16 @@ const ProofStrip = ({ proof = {} }) => {
         viewport={homeViewport}
         variants={reduce ? reducedFade : fadeUp}
       >
-        <div className={`hm-proof-grid hm-proof-cols-${metrics.length}`}>
-          {metrics.map((m) => (
-            <CountUp key={m.label} end={m.end} label={m.label} reduce={!!reduce} />
+        <div className="hm-proof-grid hm-proof-cols-4">
+          {METRICS.map((m) => (
+            <CountUp
+              key={m.label}
+              end={m.end}
+              suffix={m.suffix}
+              label={m.label}
+              decimals={m.decimals}
+              reduce={!!reduce}
+            />
           ))}
         </div>
       </motion.div>

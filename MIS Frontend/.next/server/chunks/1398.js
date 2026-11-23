@@ -1,9 +1,159 @@
 "use strict";
-exports.id = 5816;
-exports.ids = [5816];
+exports.id = 1398;
+exports.ids = [1398];
 exports.modules = {
 
-/***/ 8023:
+/***/ 9142:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "oO": () => (/* binding */ usePresence)
+/* harmony export */ });
+/* unused harmony exports isPresent, useIsPresent */
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _context_PresenceContext_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1773);
+"use client";
+
+
+/**
+ * When a component is the child of `AnimatePresence`, it can use `usePresence`
+ * to access information about whether it's still present in the React tree.
+ *
+ * ```jsx
+ * import { usePresence } from "framer-motion"
+ *
+ * export const Component = () => {
+ *   const [isPresent, safeToRemove] = usePresence()
+ *
+ *   useEffect(() => {
+ *     !isPresent && setTimeout(safeToRemove, 1000)
+ *   }, [isPresent])
+ *
+ *   return <div />
+ * }
+ * ```
+ *
+ * If `isPresent` is `false`, it means that a component has been removed from the tree,
+ * but `AnimatePresence` won't really remove it until `safeToRemove` has been called.
+ *
+ * @public
+ */ function usePresence(subscribe = true) {
+    const context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_PresenceContext_mjs__WEBPACK_IMPORTED_MODULE_1__/* .PresenceContext */ .O);
+    if (context === null) return [
+        true,
+        null
+    ];
+    const { isPresent , onExitComplete , register  } = context;
+    // It's safe to call the following hooks conditionally (after an early return) because the context will always
+    // either be null or non-null for the lifespan of the component.
+    const id = (0,react__WEBPACK_IMPORTED_MODULE_0__.useId)();
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
+        if (subscribe) {
+            return register(id);
+        }
+    }, [
+        subscribe
+    ]);
+    const safeToRemove = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(()=>subscribe && onExitComplete && onExitComplete(id), [
+        id,
+        onExitComplete,
+        subscribe
+    ]);
+    return !isPresent && onExitComplete ? [
+        false,
+        safeToRemove
+    ] : [
+        true
+    ];
+}
+/**
+ * Similar to `usePresence`, except `useIsPresent` simply returns whether or not the component is present.
+ * There is no `safeToRemove` function.
+ *
+ * ```jsx
+ * import { useIsPresent } from "framer-motion"
+ *
+ * export const Component = () => {
+ *   const isPresent = useIsPresent()
+ *
+ *   useEffect(() => {
+ *     !isPresent && console.log("I've been removed!")
+ *   }, [isPresent])
+ *
+ *   return <div />
+ * }
+ * ```
+ *
+ * @public
+ */ function useIsPresent() {
+    return isPresent(useContext(PresenceContext));
+}
+function isPresent(context) {
+    return context === null ? true : context.isPresent;
+}
+ //# sourceMappingURL=use-presence.mjs.map
+
+
+/***/ }),
+
+/***/ 2605:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "p": () => (/* binding */ LayoutGroupContext)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+"use client";
+
+const LayoutGroupContext = /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({});
+ //# sourceMappingURL=LayoutGroupContext.mjs.map
+
+
+/***/ }),
+
+/***/ 8432:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_": () => (/* binding */ MotionConfigContext)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+"use client";
+
+/**
+ * @public
+ */ const MotionConfigContext = /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
+    transformPagePoint: (p)=>p,
+    isStatic: false,
+    reducedMotion: "never"
+});
+ //# sourceMappingURL=MotionConfigContext.mjs.map
+
+
+/***/ }),
+
+/***/ 1773:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "O": () => (/* binding */ PresenceContext)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+"use client";
+
+/**
+ * @public
+ */ const PresenceContext = /* @__PURE__ */ /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(null);
+ //# sourceMappingURL=PresenceContext.mjs.map
+
+
+/***/ }),
+
+/***/ 5873:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -3635,24 +3785,10 @@ const createDomVisualElement = (Component, options)=>{
 
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(997);
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
-"use client";
-
-const LayoutGroupContext = /*#__PURE__*/ (0,external_react_.createContext)({});
- //# sourceMappingURL=LayoutGroupContext.mjs.map
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
-"use client";
-
-/**
- * @public
- */ const MotionConfigContext = /*#__PURE__*/ (0,external_react_.createContext)({
-    transformPagePoint: (p)=>p,
-    isStatic: false,
-    reducedMotion: "never"
-});
- //# sourceMappingURL=MotionConfigContext.mjs.map
-
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
+var LayoutGroupContext = __webpack_require__(2605);
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
+var MotionConfigContext = __webpack_require__(8432);
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionContext/index.mjs
 "use client";
 
@@ -3937,32 +4073,10 @@ function useRender(Component, props, ref, { latestValues ,  }, isStatic, forward
 }
  //# sourceMappingURL=resolve-motion-value.mjs.map
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/PresenceContext.mjs
-"use client";
-
-/**
- * @public
- */ const PresenceContext_PresenceContext = /* @__PURE__ */ /*#__PURE__*/ (0,external_react_.createContext)(null);
- //# sourceMappingURL=PresenceContext.mjs.map
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-constant.mjs
-"use client";
-
-/**
- * Creates a constant value over the lifecycle of a component.
- *
- * Even if `useMemo` is provided an empty array as its final argument, it doesn't offer
- * a guarantee that it won't re-run for performance reasons later on. By using `useConstant`
- * you can ensure that initialisers don't execute twice or more.
- */ function useConstant(init) {
-    const ref = (0,external_react_.useRef)(null);
-    if (ref.current === null) {
-        ref.current = init();
-    }
-    return ref.current;
-}
- //# sourceMappingURL=use-constant.mjs.map
-
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/PresenceContext.mjs
+var PresenceContext = __webpack_require__(1773);
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/utils/use-constant.mjs
+var use_constant = __webpack_require__(3453);
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/use-visual-state.mjs
 "use client";
 
@@ -4024,9 +4138,9 @@ function makeLatestValues(props, context, presenceContext, scrapeMotionValues) {
 }
 const makeUseVisualState = (config)=>(props, isStatic)=>{
         const context = (0,external_react_.useContext)(MotionContext);
-        const presenceContext = (0,external_react_.useContext)(PresenceContext_PresenceContext);
+        const presenceContext = (0,external_react_.useContext)(PresenceContext/* PresenceContext */.O);
         const make = ()=>makeState(config, props, context, presenceContext);
-        return isStatic ? make() : useConstant(make);
+        return isStatic ? make() : (0,use_constant/* useConstant */.h)(make);
     };
  //# sourceMappingURL=use-visual-state.mjs.map
 
@@ -4233,7 +4347,7 @@ const motionComponentSymbol = Symbol.for("motionComponentSymbol");
          * separate class component in order to gain access to getSnapshotBeforeUpdate.
          */ let MeasureLayout;
         const configAndProps = {
-            ...(0,external_react_.useContext)(MotionConfigContext),
+            ...(0,external_react_.useContext)(MotionConfigContext/* MotionConfigContext */._),
             ...props,
             layoutId: useLayoutId(props)
         };
@@ -4261,7 +4375,7 @@ const motionComponentSymbol = Symbol.for("motionComponentSymbol");
     return ForwardRefMotionComponent;
 }
 function useLayoutId({ layoutId  }) {
-    const layoutGroupId = (0,external_react_.useContext)(LayoutGroupContext).id;
+    const layoutGroupId = (0,external_react_.useContext)(LayoutGroupContext/* LayoutGroupContext */.p).id;
     return layoutGroupId && layoutId !== undefined ? layoutGroupId + "-" + layoutId : layoutId;
 }
 function useStrictMode(configAndProps, preloadedFeatures) {
@@ -7121,17 +7235,15 @@ function addDomEvent(target, eventName, handler, options = {
 }
  //# sourceMappingURL=add-dom-event.mjs.map
 
-;// CONCATENATED MODULE: ./node_modules/motion-utils/dist/es/is-object.mjs
-const isObject = (value)=>typeof value === "object" && value !== null;
- //# sourceMappingURL=is-object.mjs.map
-
+// EXTERNAL MODULE: ./node_modules/motion-utils/dist/es/is-object.mjs
+var is_object = __webpack_require__(7036);
 ;// CONCATENATED MODULE: ./node_modules/motion-dom/dist/es/utils/is-svg-element.mjs
 
 /**
  * Checks if an element is an SVG element in a way
  * that works across iframes
  */ function isSVGElement(element) {
-    return isObject(element) && "ownerSVGElement" in element;
+    return (0,is_object/* isObject */.K)(element) && "ownerSVGElement" in element;
 }
  //# sourceMappingURL=is-svg-element.mjs.map
 
@@ -8336,88 +8448,8 @@ class PanGesture extends Feature {
 };
  //# sourceMappingURL=state.mjs.map
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
-"use client";
-
-
-/**
- * When a component is the child of `AnimatePresence`, it can use `usePresence`
- * to access information about whether it's still present in the React tree.
- *
- * ```jsx
- * import { usePresence } from "framer-motion"
- *
- * export const Component = () => {
- *   const [isPresent, safeToRemove] = usePresence()
- *
- *   useEffect(() => {
- *     !isPresent && setTimeout(safeToRemove, 1000)
- *   }, [isPresent])
- *
- *   return <div />
- * }
- * ```
- *
- * If `isPresent` is `false`, it means that a component has been removed from the tree,
- * but `AnimatePresence` won't really remove it until `safeToRemove` has been called.
- *
- * @public
- */ function usePresence(subscribe = true) {
-    const context = (0,external_react_.useContext)(PresenceContext_PresenceContext);
-    if (context === null) return [
-        true,
-        null
-    ];
-    const { isPresent , onExitComplete , register  } = context;
-    // It's safe to call the following hooks conditionally (after an early return) because the context will always
-    // either be null or non-null for the lifespan of the component.
-    const id = (0,external_react_.useId)();
-    (0,external_react_.useEffect)(()=>{
-        if (subscribe) {
-            return register(id);
-        }
-    }, [
-        subscribe
-    ]);
-    const safeToRemove = (0,external_react_.useCallback)(()=>subscribe && onExitComplete && onExitComplete(id), [
-        id,
-        onExitComplete,
-        subscribe
-    ]);
-    return !isPresent && onExitComplete ? [
-        false,
-        safeToRemove
-    ] : [
-        true
-    ];
-}
-/**
- * Similar to `usePresence`, except `useIsPresent` simply returns whether or not the component is present.
- * There is no `safeToRemove` function.
- *
- * ```jsx
- * import { useIsPresent } from "framer-motion"
- *
- * export const Component = () => {
- *   const isPresent = useIsPresent()
- *
- *   useEffect(() => {
- *     !isPresent && console.log("I've been removed!")
- *   }, [isPresent])
- *
- *   return <div />
- * }
- * ```
- *
- * @public
- */ function useIsPresent() {
-    return isPresent(useContext(PresenceContext));
-}
-function isPresent(context) {
-    return context === null ? true : context.isPresent;
-}
- //# sourceMappingURL=use-presence.mjs.map
-
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
+var use_presence = __webpack_require__(9142);
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs
 "use client";
 
@@ -8542,8 +8574,8 @@ class MeasureLayoutWithContext extends external_react_.Component {
     }
 }
 function MeasureLayout(props) {
-    const [isPresent, safeToRemove] = usePresence();
-    const layoutGroup = (0,external_react_.useContext)(LayoutGroupContext);
+    const [isPresent, safeToRemove] = (0,use_presence/* usePresence */.oO)();
+    const layoutGroup = (0,external_react_.useContext)(LayoutGroupContext/* LayoutGroupContext */.p);
     return (0,jsx_runtime_.jsx)(MeasureLayoutWithContext, {
         ...props,
         layoutGroup: layoutGroup,
@@ -10563,16 +10595,8 @@ class FocusGesture extends Feature {
 }
  //# sourceMappingURL=focus.mjs.map
 
-;// CONCATENATED MODULE: ./node_modules/motion-dom/dist/es/utils/is-html-element.mjs
-
-/**
- * Checks if an element is an HTML element in a way
- * that works across iframes
- */ function isHTMLElement(element) {
-    return isObject(element) && "offsetHeight" in element && !("ownerSVGElement" in element);
-}
- //# sourceMappingURL=is-html-element.mjs.map
-
+// EXTERNAL MODULE: ./node_modules/motion-dom/dist/es/utils/is-html-element.mjs
+var is_html_element = __webpack_require__(3083);
 ;// CONCATENATED MODULE: ./node_modules/motion-dom/dist/es/gestures/utils/is-node-or-child.mjs
 /**
  * Recursively traverse up the tree to check whether the provided child node
@@ -10712,7 +10736,7 @@ const claimedPointerDownEvents = new WeakSet();
     targets.forEach((target)=>{
         const pointerDownTarget = options.useGlobalTarget ? window : target;
         pointerDownTarget.addEventListener("pointerdown", startPress, eventOptions);
-        if (isHTMLElement(target)) {
+        if ((0,is_html_element/* isHTMLElement */.R)(target)) {
             target.addEventListener("focus", (event)=>enableKeyboardPress(event, eventOptions));
             if (!isElementKeyboardAccessible(target) && !target.hasAttribute("tabindex")) {
                 target.tabIndex = 0;
@@ -10989,6 +11013,34 @@ const motion = /*@__PURE__*/ createMotionProxy(featureBundle, createDomVisualEle
 
 /***/ }),
 
+/***/ 3453:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "h": () => (/* binding */ useConstant)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+"use client";
+
+/**
+ * Creates a constant value over the lifecycle of a component.
+ *
+ * Even if `useMemo` is provided an empty array as its final argument, it doesn't offer
+ * a guarantee that it won't re-run for performance reasons later on. By using `useConstant`
+ * you can ensure that initialisers don't execute twice or more.
+ */ function useConstant(init) {
+    const ref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+    if (ref.current === null) {
+        ref.current = init();
+    }
+    return ref.current;
+}
+ //# sourceMappingURL=use-constant.mjs.map
+
+
+/***/ }),
+
 /***/ 4173:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -11034,6 +11086,25 @@ const hasReducedMotionListener = {
 
 /***/ }),
 
+/***/ 3083:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "R": () => (/* binding */ isHTMLElement)
+/* harmony export */ });
+/* harmony import */ var motion_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7036);
+
+/**
+ * Checks if an element is an HTML element in a way
+ * that works across iframes
+ */ function isHTMLElement(element) {
+    return (0,motion_utils__WEBPACK_IMPORTED_MODULE_0__/* .isObject */ .K)(element) && "offsetHeight" in element && !("ownerSVGElement" in element);
+}
+ //# sourceMappingURL=is-html-element.mjs.map
+
+
+/***/ }),
+
 /***/ 1202:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -11059,6 +11130,18 @@ function resolveElements(elementOrSelector, scope, selectorCache) {
     return Array.from(elementOrSelector).filter((element)=>element != null);
 }
  //# sourceMappingURL=resolve-elements.mjs.map
+
+
+/***/ }),
+
+/***/ 7036:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "K": () => (/* binding */ isObject)
+/* harmony export */ });
+const isObject = (value)=>typeof value === "object" && value !== null;
+ //# sourceMappingURL=is-object.mjs.map
 
 
 /***/ })
