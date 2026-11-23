@@ -4,6 +4,16 @@ import Link from 'next/link'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
+import ScatteredAbout from '../components/about/ScatteredAbout'
+
+const ABOUT_IMAGES = [
+  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80',
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80',
+  'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=700&q=80',
+  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+]
 
 const clientLogos = [
   '/client%20logo/Picture1.png',
@@ -47,13 +57,19 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         <Navigation />
 
         <main className="company-main">
+          <ScatteredAbout
+            title="Who we are"
+            body="Since 2007, MIS Solution has worked side-by-side with enterprises across Bangladesh — delivering hardware, infrastructure, and support built around each client’s requirements."
+            cta={{ label: 'Talk to our team', href: '/contact' }}
+            images={ABOUT_IMAGES}
+          />
+
           <section className="about-projects-half">
             <div className="shell">
-              <header className="page-header">
+              <header className="page-header page-header-continue">
                 <p className="eyebrow">Company Information</p>
-                <h1>About Us &amp; Projects</h1>
-                <p>Since 2007, MIS Solution has been devoted to providing a broad range of technology products and services across a multitude of challenging markets. For over 18 years we have worked side-by-side with our customers to exploit new opportunities, and our dedicated team has always delivered end-to-end products and solutions built around each client&apos;s specific requirements and needs.</p>
-                <p>Our main focus is to construct a superior customer value proposition and become a successful business organization. Customers are the key concern to us. We are always devoted to providing the best services and products to our customers.</p>
+                <h2>Built around your requirements</h2>
+                <p>For over 18 years we have helped customers exploit new opportunities with end-to-end products and solutions. Our focus is a superior customer value proposition — always devoted to the best services and products.</p>
               </header>
 
               <div className="mission-grid">
@@ -162,10 +178,12 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         .company-main { background: #ffffff; }
         .shell { width: 100%; max-width: 76rem; margin: 0 auto; padding: 3.5rem 1.5rem; }
         .page-header { max-width: 54rem; margin-bottom: 2rem; }
+        .page-header-continue { max-width: 46rem; }
         .eyebrow { color: var(--color-primary); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
         h1, h2, h3 { color: #232323; margin: 0; line-height: 1.2; }
         h1 { font-size: clamp(2rem, 3.8vw, 3.2rem); margin-bottom: 1rem; }
         h2 { font-size: clamp(1.5rem, 2.2vw, 2.1rem); margin-bottom: 0.7rem; }
+        .page-header-continue h2 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); margin-bottom: 0.85rem; }
         h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
         p { color: #454545; margin: 0; line-height: 1.7; }
         .mission-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2.2rem; }

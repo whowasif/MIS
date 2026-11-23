@@ -1,0 +1,135 @@
+/* About Us — ScatteredAbout stage */
+
+.sa-section {
+  --sa-ink: #0a101b;
+  --sa-muted: rgba(10, 16, 27, 0.62);
+  --sa-line: rgba(10, 16, 27, 0.12);
+  --sa-accent: #f7e500;
+  --sa-paper: #f6f6f4;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  padding: clamp(48px, 7vw, 96px) 24px;
+}
+
+.sa-stage {
+  position: relative;
+  display: none;
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+  aspect-ratio: 1312 / 640;
+}
+
+.sa-photo {
+  position: absolute;
+  overflow: hidden;
+  background: var(--sa-paper);
+  border-radius: 12px;
+}
+
+.sa-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sa-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 36%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+}
+
+.sa-copy {
+  text-align: center;
+}
+
+.sa-title {
+  margin: 0;
+  font-family: var(--font-family-heading, "Google Sans", sans-serif);
+  font-size: clamp(36px, 4.2vw, 56px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--sa-ink);
+}
+
+.sa-body {
+  margin: 18px auto 0;
+  max-width: 42ch;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--sa-muted);
+}
+
+.sa-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 26px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--sa-line);
+  background: #fff;
+  color: var(--sa-ink);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+}
+
+.sa-cta:hover {
+  border-color: var(--sa-ink);
+  box-shadow: inset 0 -0.35em 0 var(--sa-accent);
+}
+
+.sa-mobile {
+  display: block;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.sa-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  margin: 36px -24px 0;
+  padding: 0 24px 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.sa-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.sa-strip img {
+  flex: 0 0 42vw;
+  max-width: 220px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--sa-paper);
+}
+
+@media (min-width: 768px) {
+  .sa-stage {
+    display: block;
+  }
+
+  .sa-mobile {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-photo,
+  .sa-copy {
+    transform: none !important;
+  }
+}

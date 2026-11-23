@@ -361,7 +361,7 @@ const HeroWorldMap = ()=>{
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5873);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4439);
 /* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8411);
 
 
@@ -636,7 +636,8 @@ const CapabilityMap = ({ featuredServices =[]  })=>{
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5873);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(4439);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(5984);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(459);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8411);
@@ -650,24 +651,55 @@ const formatPrice = (price)=>`৳${Number(price).toLocaleString(undefined, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     })}`;
+const splitTitle = (name)=>{
+    const parts = String(name || "").trim().split(/\s+/);
+    if (parts.length <= 1) return {
+        lead: name || "Product",
+        rest: ""
+    };
+    if (parts.length === 2) return {
+        lead: parts[0],
+        rest: parts[1]
+    };
+    const mid = Math.ceil(parts.length / 2);
+    return {
+        lead: parts.slice(0, mid).join(" "),
+        rest: parts.slice(mid).join(" ")
+    };
+};
+const blurbFor = (product)=>{
+    const cat = product.categoryName ? String(product.categoryName).toUpperCase() : "ENTERPRISE HARDWARE";
+    return `${cat} — CONFIGURED FOR TEAMS THAT NEED RELIABLE SUPPLY, WARRANTY COVERAGE, AND FAST DEPLOYMENT ACROSS BANGLADESH.`;
+};
 /**
- * Apple “Explore the lineup” pattern: horizontal snap gallery,
- * large product plates, scroll arrows, hover lift.
+ * Product Hover Showcase (21st / WRAPCODERS pattern):
+ * synced hover selection, large typography, ambient glow, mirrored reflection.
+ * Adapted for Next pages router + home-mid CSS (no Tailwind/shadcn).
  */ const FeaturedCatalog = ({ products =[]  })=>{
     const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
-    const railRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-    if (!products.length) return null;
-    const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .motionState */ .RK)(reduce);
-    const list = products.slice(0, 8);
-    const scrollBy = (dir)=>{
-        const rail = railRef.current;
-        if (!rail) return;
-        const amount = Math.min(rail.clientWidth * 0.7, 380);
-        rail.scrollBy({
-            left: dir * amount,
-            behavior: reduce ? "auto" : "smooth"
-        });
-    };
+    const list = products.slice(0, 6);
+    const { 0: active , 1: setActive  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+    const { 0: autoplay , 1: setAutoplay  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        setActive(0);
+    }, [
+        list.length
+    ]);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        if (!autoplay || reduce || list.length < 2) return undefined;
+        const id = setInterval(()=>{
+            setActive((i)=>(i + 1) % list.length);
+        }, 3800);
+        return ()=>clearInterval(id);
+    }, [
+        autoplay,
+        reduce,
+        list.length
+    ]);
+    if (!list.length) return null;
+    const product = list[active] || list[0];
+    const { lead , rest  } = splitTitle(product.name);
+    const href = `/products/${encodeURIComponent(product.slug || product.id)}`;
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
         className: "hm-catalog",
         "aria-labelledby": "hm-catalog-title",
@@ -694,57 +726,19 @@ const formatPrice = (price)=>`৳${Number(price).toLocaleString(undefined, {
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                     className: "hm-section-sub",
-                                    children: "Featured enterprise kit — scroll to browse."
+                                    children: "Featured enterprise kit — hover to browse."
                                 })
                             ]
                         }),
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             className: "hm-catalog-actions",
                             children: [
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "hm-rail-arrows",
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                            type: "button",
-                                            className: "hm-rail-nav",
-                                            onClick: ()=>scrollBy(-1),
-                                            "aria-label": "Previous products",
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                width: "18",
-                                                height: "18",
-                                                viewBox: "0 0 24 24",
-                                                fill: "none",
-                                                stroke: "currentColor",
-                                                strokeWidth: "2.2",
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round",
-                                                "aria-hidden": "true",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
-                                                    points: "15 18 9 12 15 6"
-                                                })
-                                            })
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                            type: "button",
-                                            className: "hm-rail-nav",
-                                            onClick: ()=>scrollBy(1),
-                                            "aria-label": "Next products",
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                width: "18",
-                                                height: "18",
-                                                viewBox: "0 0 24 24",
-                                                fill: "none",
-                                                stroke: "currentColor",
-                                                strokeWidth: "2.2",
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round",
-                                                "aria-hidden": "true",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
-                                                    points: "9 18 15 12 9 6"
-                                                })
-                                            })
-                                        })
-                                    ]
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                    type: "button",
+                                    className: `hm-rail-nav hm-showcase-auto${autoplay ? " is-on" : ""}`,
+                                    onClick: ()=>setAutoplay((v)=>!v),
+                                    "aria-pressed": autoplay,
+                                    children: autoplay ? "Pause" : "Autoplay"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
                                     href: "/categories",
@@ -757,61 +751,261 @@ const formatPrice = (price)=>`৳${Number(price).toLocaleString(undefined, {
                         })
                     ]
                 }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                    className: "hm-lineup",
-                    ref: railRef,
-                    variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .staggerContainer */ .Jm,
-                    initial: "hidden",
-                    whileInView: "show",
-                    viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
-                    children: list.map((product, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                            className: "hm-lineup-card",
-                            variants: item,
-                            whileHover: reduce ? undefined : {
-                                y: -6
-                            },
-                            transition: {
-                                type: "spring",
-                                stiffness: 380,
-                                damping: 28
-                            },
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                                href: `/products/${encodeURIComponent(product.slug || product.id)}`,
-                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                    className: "hm-showcase",
+                    role: "region",
+                    "aria-label": "Featured hardware showcase",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            className: "hm-showcase-glow",
+                            "aria-hidden": "true"
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "hm-showcase-top",
+                            children: [
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "hm-showcase-copy",
                                     children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                            className: "hm-showcase-kicker",
+                                            children: product.categoryName || "Enterprise kit"
+                                        }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "hm-lineup-plate",
+                                            className: "hm-showcase-title-clip",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_7__/* .AnimatePresence */ .M, {
+                                                mode: "wait",
+                                                initial: false,
+                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.h3 */ .E.h3, {
+                                                    className: "hm-showcase-title",
+                                                    initial: reduce ? false : {
+                                                        opacity: 0,
+                                                        y: 18
+                                                    },
+                                                    animate: {
+                                                        opacity: 1,
+                                                        y: 0
+                                                    },
+                                                    exit: reduce ? undefined : {
+                                                        opacity: 0,
+                                                        y: -14
+                                                    },
+                                                    transition: {
+                                                        duration: 0.35,
+                                                        ease: [
+                                                            0.22,
+                                                            1,
+                                                            0.36,
+                                                            1
+                                                        ]
+                                                    },
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "hm-showcase-title-lead",
+                                                            children: lead
+                                                        }),
+                                                        rest ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "hm-showcase-title-rest",
+                                                            children: rest
+                                                        }) : null
+                                                    ]
+                                                }, product.id)
+                                            })
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_7__/* .AnimatePresence */ .M, {
+                                            mode: "wait",
+                                            initial: false,
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.p */ .E.p, {
+                                                className: "hm-showcase-blurb",
+                                                initial: reduce ? false : {
+                                                    opacity: 0
+                                                },
+                                                animate: {
+                                                    opacity: 1
+                                                },
+                                                exit: reduce ? undefined : {
+                                                    opacity: 0
+                                                },
+                                                transition: {
+                                                    duration: 0.28
+                                                },
+                                                children: blurbFor(product)
+                                            }, `b-${product.id}`)
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "hm-showcase-buy",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_7__/* .AnimatePresence */ .M, {
+                                            mode: "wait",
+                                            initial: false,
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                                                className: "hm-showcase-price",
+                                                initial: reduce ? false : {
+                                                    opacity: 0,
+                                                    y: 10
+                                                },
+                                                animate: {
+                                                    opacity: 1,
+                                                    y: 0
+                                                },
+                                                exit: reduce ? undefined : {
+                                                    opacity: 0,
+                                                    y: -8
+                                                },
+                                                transition: {
+                                                    duration: 0.3
+                                                },
+                                                children: product.price > 0 ? formatPrice(product.price) : "Quote"
+                                            }, `p-${product.id}`)
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                            href: href,
+                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                                className: "hm-showcase-cta",
+                                                children: [
+                                                    "Shop now",
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                        width: "14",
+                                                        height: "14",
+                                                        viewBox: "0 0 24 24",
+                                                        fill: "none",
+                                                        stroke: "currentColor",
+                                                        strokeWidth: "2.2",
+                                                        strokeLinecap: "round",
+                                                        strokeLinejoin: "round",
+                                                        "aria-hidden": "true",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "M5 12h14"
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "m12 5 7 7-7 7"
+                                                            })
+                                                        ]
+                                                    })
+                                                ]
+                                            })
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "hm-showcase-stage",
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "hm-showcase-stage-shadow",
+                                    "aria-hidden": "true"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_7__/* .AnimatePresence */ .M, {
+                                    mode: "wait",
+                                    initial: false,
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                                        className: "hm-showcase-hero",
+                                        initial: reduce ? false : {
+                                            opacity: 0,
+                                            y: 16,
+                                            scale: 0.98
+                                        },
+                                        animate: {
+                                            opacity: 1,
+                                            y: 0,
+                                            scale: 1
+                                        },
+                                        exit: reduce ? undefined : {
+                                            opacity: 0,
+                                            y: -12,
+                                            scale: 0.98
+                                        },
+                                        transition: {
+                                            duration: 0.4,
+                                            ease: [
+                                                0.22,
+                                                1,
+                                                0.36,
+                                                1
+                                            ]
+                                        },
+                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                                            className: "hm-showcase-hero-inner",
+                                            animate: reduce ? undefined : {
+                                                y: [
+                                                    0,
+                                                    -6,
+                                                    0
+                                                ]
+                                            },
+                                            transition: reduce ? undefined : {
+                                                duration: 4.5,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            },
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                                    src: product.image,
+                                                    alt: product.name,
+                                                    loading: "eager",
+                                                    decoding: "async"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                    className: "hm-showcase-reflect",
+                                                    "aria-hidden": "true",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                                        src: product.image,
+                                                        alt: "",
+                                                        loading: "lazy",
+                                                        decoding: "async"
+                                                    })
+                                                })
+                                            ]
+                                        })
+                                    }, `img-${product.id}`)
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "hm-showcase-tabs",
+                            role: "tablist",
+                            "aria-label": "Featured products",
+                            children: list.map((item, idx)=>{
+                                const selected = idx === active;
+                                return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                    type: "button",
+                                    role: "tab",
+                                    "aria-selected": selected,
+                                    tabIndex: selected ? 0 : -1,
+                                    className: `hm-showcase-tab${selected ? " is-active" : ""}`,
+                                    onMouseEnter: ()=>setActive(idx),
+                                    onFocus: ()=>setActive(idx),
+                                    onClick: ()=>setActive(idx),
+                                    children: [
+                                        selected ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "hm-showcase-tab-bar",
+                                            "aria-hidden": "true"
+                                        }) : null,
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "hm-showcase-tab-media",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
-                                                src: product.image,
-                                                alt: product.name,
+                                                src: item.image,
+                                                alt: "",
                                                 loading: idx < 3 ? "eager" : "lazy",
                                                 decoding: "async"
                                             })
                                         }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "hm-lineup-copy",
-                                            children: [
-                                                product.categoryName ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "hm-product-cat",
-                                                    children: product.categoryName
-                                                }) : null,
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    children: product.name
-                                                }),
-                                                product.price > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "hm-product-price",
-                                                    children: formatPrice(product.price)
-                                                }) : null,
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "hm-lineup-more",
-                                                    children: "Learn more"
-                                                })
-                                            ]
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "hm-showcase-tab-name",
+                                            children: item.name
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "hm-showcase-tab-price",
+                                            children: item.price > 0 ? formatPrice(item.price) : "Quote"
                                         })
                                     ]
-                                })
+                                }, item.id);
                             })
-                        }, product.id))
+                        })
+                    ]
                 })
             ]
         })
@@ -836,7 +1030,7 @@ const formatPrice = (price)=>`৳${Number(price).toLocaleString(undefined, {
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5873);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4439);
 /* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8411);
 
 
@@ -986,8 +1180,8 @@ const FindAndAct = ()=>{
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3975);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5873);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5984);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(4439);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(459);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__);
 
@@ -1236,7 +1430,7 @@ const FindAndAct = ()=>{
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5873);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4439);
 /* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8411);
 
 
@@ -1342,7 +1536,7 @@ const PathChooser = ()=>{
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5873);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4439);
 /* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8411);
 
 
@@ -1468,7 +1662,7 @@ const ProofStrip = ()=>{
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5873);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4439);
 /* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8411);
 
 
@@ -1582,8 +1776,12 @@ const Quotes = ()=>{
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5873);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4439);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(388);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9468);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(5041);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(5984);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(459);
 /* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8411);
@@ -1593,34 +1791,227 @@ const Quotes = ()=>{
 
 
 
-const truncate = (text, max = 120)=>{
+const truncate = (text, max = 140)=>{
     const value = String(text || "").trim();
     if (!value) return "";
     if (value.length <= max) return value;
     return `${value.slice(0, max - 1).trim()}…`;
 };
+const TILT = [
+    -2.5,
+    3,
+    -4,
+    2
+];
+function Reel({ digit , lh  }) {
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+        className: "hm-deck-reel",
+        style: {
+            height: lh
+        },
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.span */ .E.span, {
+            className: "hm-deck-reel-col",
+            initial: false,
+            animate: {
+                y: -digit * lh
+            },
+            transition: {
+                duration: 0.9,
+                ease: [
+                    0.16,
+                    1,
+                    0.3,
+                    1
+                ]
+            },
+            children: Array.from({
+                length: 10
+            }).map((_, d)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                    className: "hm-deck-reel-digit",
+                    style: {
+                        height: lh,
+                        lineHeight: `${lh}px`
+                    },
+                    children: d
+                }, d))
+        })
+    });
+}
+function Odometer({ value , size =15 , pad =2  }) {
+    const lh = Math.round(size * 1.2);
+    const chars = String(value).padStart(pad, "0").split("");
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+        className: "hm-deck-odo",
+        style: {
+            fontSize: size,
+            height: lh
+        },
+        role: "img",
+        "aria-label": String(value),
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+            "aria-hidden": "true",
+            className: "hm-deck-odo-inner",
+            children: chars.map((c, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Reel, {
+                    digit: Number(c),
+                    lh: lh
+                }, `${chars.length}-${i}`))
+        })
+    });
+}
 /**
- * Customer-stories pattern (Stripe / Apple case studies):
- * one immersive lead story + horizontal snap gallery of the rest.
+ * Photo-deck interaction for Client projects (swipeable stacked cards).
+ * Adapted from PhotoDeck for Next pages router + home-mid CSS (no Tailwind/shadcn).
  */ const WorkGallery = ({ projects =[]  })=>{
-    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
-    const railRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-    if (!projects.length) return null;
-    const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .motionState */ .RK)(reduce);
-    const [lead, ...rest] = projects.slice(0, 7);
-    const scrollBy = (dir)=>{
-        const rail = railRef.current;
-        if (!rail) return;
-        const amount = Math.min(rail.clientWidth * 0.72, 420);
-        rail.scrollBy({
-            left: dir * amount,
-            behavior: reduce ? "auto" : "smooth"
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_6__/* .useReducedMotion */ .J)();
+    const photos = projects.slice(0, 8).map((project)=>({
+            id: project.id,
+            src: project.icon_url,
+            title: project.name,
+            place: project.client_name || "Enterprise client",
+            note: truncate(project.description, 160),
+            href: `/projects/${encodeURIComponent(project.slug || project.id)}`
+        }));
+    const { 0: order , 1: setOrder  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(()=>photos.map((_, i)=>i));
+    const { 0: index , 1: setIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+    const { 0: leaving , 1: setLeaving  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+    const x = (0,motion_react__WEBPACK_IMPORTED_MODULE_7__/* .useMotionValue */ .c)(0);
+    const rotate = (0,motion_react__WEBPACK_IMPORTED_MODULE_8__/* .useTransform */ .H)(x, [
+        -300,
+        0,
+        300
+    ], [
+        -14,
+        0,
+        14
+    ]);
+    const busy = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(false);
+    const entering = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(false);
+    // Keep deck order in sync when SSR/preview data arrives or changes length.
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        setOrder(photos.map((_, i)=>i));
+        setIndex(0);
+        x.set(0);
+        setLeaving(null);
+        busy.current = false;
+        entering.current = false;
+    }, [
+        photos.length
+    ]) // eslint-disable-line react-hooks/exhaustive-deps
+    ;
+    const next = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((dir = 1)=>{
+        if (busy.current || photos.length < 2) return;
+        if (reduce) {
+            setOrder((o)=>[
+                    ...o.slice(1),
+                    o[0]
+                ]);
+            setIndex((i)=>(i + 1) % photos.length);
+            return;
+        }
+        busy.current = true;
+        const top = order[0];
+        setLeaving({
+            id: top,
+            dir
+        });
+        (0,motion_react__WEBPACK_IMPORTED_MODULE_9__/* .animate */ .j)(x, dir * 520, {
+            duration: 0.5,
+            ease: [
+                0.42,
+                0,
+                1,
+                1
+            ]
+        }).then(()=>{
+            setOrder((o)=>[
+                    ...o.slice(1),
+                    o[0]
+                ]);
+            setIndex((i)=>(i + 1) % photos.length);
+            x.set(0);
+            setLeaving(null);
+            busy.current = false;
+        });
+    }, [
+        order,
+        photos.length,
+        reduce,
+        x
+    ]);
+    const prev = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(()=>{
+        if (busy.current || photos.length < 2) return;
+        if (reduce) {
+            setOrder((o)=>[
+                    o[o.length - 1],
+                    ...o.slice(0, -1)
+                ]);
+            setIndex((i)=>(i - 1 + photos.length) % photos.length);
+            return;
+        }
+        busy.current = true;
+        entering.current = true;
+        setLeaving({
+            id: order[order.length - 1],
+            dir: -1
+        });
+        setOrder((o)=>[
+                o[o.length - 1],
+                ...o.slice(0, -1)
+            ]);
+        setIndex((i)=>(i - 1 + photos.length) % photos.length);
+    }, [
+        order,
+        photos.length,
+        reduce
+    ]);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect)(()=>{
+        if (!entering.current) return;
+        entering.current = false;
+        x.set(-520);
+        (0,motion_react__WEBPACK_IMPORTED_MODULE_9__/* .animate */ .j)(x, 0, {
+            duration: 0.65,
+            ease: [
+                0.16,
+                1,
+                0.3,
+                1
+            ]
+        }).then(()=>{
+            setLeaving(null);
+            busy.current = false;
+        });
+    }, [
+        order,
+        x
+    ]);
+    if (!photos.length) return null;
+    const onDragEnd = (_event, info)=>{
+        const { x: dx  } = info.offset;
+        const v = info.velocity.x;
+        const flick = Math.abs(v) > 600 && Math.abs(dx) > 40 && Math.sign(v) === Math.sign(dx);
+        if (Math.abs(dx) > 120 || flick) next(dx > 0 ? 1 : -1);
+        else (0,motion_react__WEBPACK_IMPORTED_MODULE_9__/* .animate */ .j)(x, 0, {
+            type: "spring",
+            stiffness: 420,
+            damping: 32
         });
     };
+    const onKeyDown = (e)=>{
+        if (e.key === "ArrowRight") {
+            e.preventDefault();
+            next(1);
+        }
+        if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            prev();
+        }
+    };
+    const current = photos[order[0]];
+    const visible = order.slice(0, Math.min(4, order.length));
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
         className: "hm-work",
         "aria-labelledby": "hm-work-title",
-        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
             className: "hm-work-inner",
             initial: "hidden",
             whileInView: "show",
@@ -1628,163 +2019,304 @@ const truncate = (text, max = 120)=>{
             variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .fadeUp */ .pB,
             children: [
                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                    className: "hm-section-head hm-section-head-split",
+                    className: "hm-section-head hm-section-head-left",
                     children: [
-                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    className: "hm-eyebrow",
-                                    children: "Proof of work"
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                    id: "hm-work-title",
-                                    className: "hm-section-title",
-                                    children: "Client projects"
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                    className: "hm-section-sub",
-                                    children: "Deployments and integrations for enterprises across Bangladesh."
-                                })
-                            ]
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            className: "hm-eyebrow",
+                            children: "Proof of work"
                         }),
-                        rest.length > 0 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "hm-rail-arrows",
-                            children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                    type: "button",
-                                    className: "hm-rail-nav",
-                                    onClick: ()=>scrollBy(-1),
-                                    "aria-label": "Previous projects",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                        width: "18",
-                                        height: "18",
-                                        viewBox: "0 0 24 24",
-                                        fill: "none",
-                                        stroke: "currentColor",
-                                        strokeWidth: "2.2",
-                                        strokeLinecap: "round",
-                                        strokeLinejoin: "round",
-                                        "aria-hidden": "true",
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
-                                            points: "15 18 9 12 15 6"
-                                        })
-                                    })
-                                }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                    type: "button",
-                                    className: "hm-rail-nav",
-                                    onClick: ()=>scrollBy(1),
-                                    "aria-label": "Next projects",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                        width: "18",
-                                        height: "18",
-                                        viewBox: "0 0 24 24",
-                                        fill: "none",
-                                        stroke: "currentColor",
-                                        strokeWidth: "2.2",
-                                        strokeLinecap: "round",
-                                        strokeLinejoin: "round",
-                                        "aria-hidden": "true",
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
-                                            points: "9 18 15 12 9 6"
-                                        })
-                                    })
-                                })
-                            ]
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                            id: "hm-work-title",
+                            className: "hm-section-title",
+                            children: "Client projects"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                            className: "hm-section-sub",
+                            children: "Deployments and integrations for enterprises across Bangladesh."
                         })
                     ]
                 }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.article */ .E.article, {
-                    className: "hm-work-lead",
-                    variants: item,
-                    initial: "hidden",
-                    whileInView: "show",
-                    viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
-                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                        href: `/projects/${encodeURIComponent(lead.slug || lead.id)}`,
-                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                    tabIndex: 0,
+                    role: "region",
+                    "aria-roledescription": "carousel",
+                    "aria-label": "Client projects",
+                    onKeyDown: onKeyDown,
+                    className: "hm-deck",
+                    children: [
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "hm-deck-copy",
                             children: [
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "hm-work-lead-media",
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
-                                            src: lead.icon_url,
-                                            alt: lead.name,
-                                            loading: "eager",
-                                            decoding: "async"
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "hm-work-lead-scrim",
-                                            "aria-hidden": "true"
-                                        })
-                                    ]
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                    className: "hm-deck-kicker",
+                                    children: "Selected deliveries"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                    className: "hm-deck-story",
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_10__/* .AnimatePresence */ .M, {
+                                        mode: "wait",
+                                        initial: false,
+                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+                                            initial: "hidden",
+                                            animate: "show",
+                                            exit: "exit",
+                                            variants: {
+                                                hidden: {},
+                                                show: {
+                                                    transition: {
+                                                        staggerChildren: 0.06
+                                                    }
+                                                },
+                                                exit: {}
+                                            },
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                    className: "hm-deck-title-clip",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.h3 */ .E.h3, {
+                                                        className: "hm-deck-title",
+                                                        variants: {
+                                                            hidden: {
+                                                                y: "100%"
+                                                            },
+                                                            show: {
+                                                                y: "0%",
+                                                                transition: {
+                                                                    duration: 0.7,
+                                                                    ease: [
+                                                                        0.42,
+                                                                        0,
+                                                                        0,
+                                                                        1
+                                                                    ]
+                                                                }
+                                                            },
+                                                            exit: {
+                                                                y: "-100%",
+                                                                transition: {
+                                                                    duration: 0.3,
+                                                                    ease: [
+                                                                        0.42,
+                                                                        0,
+                                                                        1,
+                                                                        1
+                                                                    ]
+                                                                }
+                                                            }
+                                                        },
+                                                        children: current.title
+                                                    })
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.p */ .E.p, {
+                                                    className: "hm-deck-place",
+                                                    variants: {
+                                                        hidden: {
+                                                            opacity: 0,
+                                                            y: 12
+                                                        },
+                                                        show: {
+                                                            opacity: 1,
+                                                            y: 0,
+                                                            transition: {
+                                                                duration: 0.6,
+                                                                ease: [
+                                                                    0.42,
+                                                                    0,
+                                                                    0,
+                                                                    1
+                                                                ]
+                                                            }
+                                                        },
+                                                        exit: {
+                                                            opacity: 0,
+                                                            transition: {
+                                                                duration: 0.2
+                                                            }
+                                                        }
+                                                    },
+                                                    children: current.place
+                                                }),
+                                                current.note ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.p */ .E.p, {
+                                                    className: "hm-deck-note",
+                                                    variants: {
+                                                        hidden: {
+                                                            opacity: 0,
+                                                            y: 12
+                                                        },
+                                                        show: {
+                                                            opacity: 1,
+                                                            y: 0,
+                                                            transition: {
+                                                                duration: 0.6,
+                                                                ease: [
+                                                                    0.42,
+                                                                    0,
+                                                                    0,
+                                                                    1
+                                                                ]
+                                                            }
+                                                        },
+                                                        exit: {
+                                                            opacity: 0,
+                                                            transition: {
+                                                                duration: 0.2
+                                                            }
+                                                        }
+                                                    },
+                                                    children: current.note
+                                                }) : null,
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+                                                    variants: {
+                                                        hidden: {
+                                                            opacity: 0,
+                                                            y: 10
+                                                        },
+                                                        show: {
+                                                            opacity: 1,
+                                                            y: 0,
+                                                            transition: {
+                                                                duration: 0.5,
+                                                                ease: [
+                                                                    0.42,
+                                                                    0,
+                                                                    0,
+                                                                    1
+                                                                ]
+                                                            }
+                                                        },
+                                                        exit: {
+                                                            opacity: 0,
+                                                            transition: {
+                                                                duration: 0.2
+                                                            }
+                                                        }
+                                                    },
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                                        href: current.href,
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                            className: "hm-work-link",
+                                                            children: "View story"
+                                                        })
+                                                    })
+                                                })
+                                            ]
+                                        }, order[0])
+                                    })
                                 }),
                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "hm-work-lead-copy",
+                                    className: "hm-deck-controls",
                                     children: [
-                                        lead.client_name ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "hm-work-client",
-                                            children: lead.client_name
-                                        }) : null,
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                            children: lead.name
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "hm-deck-count",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Odometer, {
+                                                    value: index + 1
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "hm-deck-count-sep",
+                                                    children: "/"
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "hm-deck-count-total",
+                                                    children: String(photos.length).padStart(2, "0")
+                                                })
+                                            ]
                                         }),
-                                        lead.description ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                            children: truncate(lead.description, 160)
-                                        }) : null,
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            className: "hm-work-link",
-                                            children: "View story"
-                                        })
+                                        photos.length > 1 ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "hm-deck-nav",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                    type: "button",
+                                                    onClick: prev,
+                                                    "aria-label": "Previous project",
+                                                    className: "hm-deck-btn hm-deck-btn-prev",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                        width: "18",
+                                                        height: "18",
+                                                        viewBox: "0 0 24 24",
+                                                        fill: "none",
+                                                        stroke: "currentColor",
+                                                        strokeWidth: "1.8",
+                                                        strokeLinecap: "round",
+                                                        strokeLinejoin: "round",
+                                                        "aria-hidden": "true",
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
+                                                            points: "15 18 9 12 15 6"
+                                                        })
+                                                    })
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                    type: "button",
+                                                    onClick: ()=>next(1),
+                                                    "aria-label": "Next project",
+                                                    className: "hm-deck-btn hm-deck-btn-next",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                        width: "18",
+                                                        height: "18",
+                                                        viewBox: "0 0 24 24",
+                                                        fill: "none",
+                                                        stroke: "currentColor",
+                                                        strokeWidth: "1.8",
+                                                        strokeLinecap: "round",
+                                                        strokeLinejoin: "round",
+                                                        "aria-hidden": "true",
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
+                                                            points: "9 18 15 12 9 6"
+                                                        })
+                                                    })
+                                                })
+                                            ]
+                                        }) : null
                                     ]
                                 })
                             ]
-                        })
-                    })
-                }),
-                rest.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                    className: "hm-work-rail",
-                    ref: railRef,
-                    variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .staggerContainer */ .Jm,
-                    initial: "hidden",
-                    whileInView: "show",
-                    viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
-                    children: rest.map((project)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                            className: "hm-work-tile",
-                            variants: item,
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                                href: `/projects/${encodeURIComponent(project.slug || project.id)}`,
-                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "hm-work-tile-media",
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
-                                                src: project.icon_url,
-                                                alt: project.name,
-                                                loading: "lazy",
-                                                decoding: "async"
-                                            })
-                                        }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "hm-work-tile-copy",
-                                            children: [
-                                                project.client_name ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "hm-work-client",
-                                                    children: project.client_name
-                                                }) : null,
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    children: project.name
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "hm-work-link",
-                                                    children: "View story"
-                                                })
-                                            ]
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "hm-deck-stage",
+                            children: visible.slice().reverse().map((id)=>{
+                                const depth = visible.indexOf(id);
+                                const isTop = depth === 0;
+                                const p = photos[id];
+                                return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+                                    className: `hm-deck-card${isTop ? "" : " is-stack"}`,
+                                    style: {
+                                        zIndex: 10 - depth
+                                    },
+                                    initial: false,
+                                    animate: {
+                                        scale: 1 - depth * 0.045,
+                                        y: depth * -18,
+                                        rotate: isTop ? 0 : TILT[depth % TILT.length],
+                                        opacity: depth > 2 ? 0 : 1
+                                    },
+                                    transition: {
+                                        duration: 0.7,
+                                        ease: [
+                                            0.42,
+                                            0,
+                                            0,
+                                            1
+                                        ]
+                                    },
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+                                        className: `hm-deck-frame${isTop ? " is-top" : ""}`,
+                                        style: isTop && !reduce ? {
+                                            x,
+                                            rotate
+                                        } : undefined,
+                                        drag: isTop && !leaving && !reduce ? "x" : false,
+                                        dragMomentum: false,
+                                        onDragEnd: isTop && !reduce ? onDragEnd : undefined,
+                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                            src: p.src,
+                                            alt: p.title,
+                                            loading: isTop ? "eager" : "lazy",
+                                            decoding: "async"
                                         })
-                                    ]
-                                })
+                                    })
+                                }, p.id || id);
                             })
-                        }, project.id))
+                        })
+                    ]
                 })
             ]
         })
@@ -2699,7 +3231,7 @@ module.exports = require("path");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,1664,1398,3432,2097,6151], () => (__webpack_exec__(3678)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,1664,4917,9468,7324,2097,6151], () => (__webpack_exec__(3678)));
 module.exports = __webpack_exports__;
 
 })();

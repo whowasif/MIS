@@ -1,13 +1,268 @@
-"use strict";
 (() => {
 var exports = {};
 exports.id = 9234;
 exports.ids = [9234,7174];
 exports.modules = {
 
+/***/ 3490:
+/***/ ((module) => {
+
+function webpackEmptyContext(req) {
+	var e = new Error("Cannot find module '" + req + "'");
+	e.code = 'MODULE_NOT_FOUND';
+	throw e;
+}
+webpackEmptyContext.keys = () => ([]);
+webpackEmptyContext.resolve = webpackEmptyContext;
+webpackEmptyContext.id = 3490;
+module.exports = webpackEmptyContext;
+
+/***/ }),
+
+/***/ 7768:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9468);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4439);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2883);
+
+
+
+
+/**
+ * Scattered photo stage for About Us (parallax image slots + centered copy).
+ * Adapted from ScatteredAbout for Next pages router + CSS (no Tailwind/shadcn).
+ */ const SLOTS = [
+    {
+        left: 0,
+        top: 10,
+        w: 17,
+        ratio: "4 / 5",
+        speed: 60
+    },
+    {
+        left: 21,
+        top: 0,
+        w: 10,
+        ratio: "3 / 4",
+        speed: 120
+    },
+    {
+        left: 8,
+        top: 70,
+        w: 12,
+        ratio: "1",
+        speed: 30
+    },
+    {
+        left: 66,
+        top: 12,
+        w: 9,
+        ratio: "1",
+        speed: 110
+    },
+    {
+        left: 79,
+        top: 0,
+        w: 21,
+        ratio: "4 / 5",
+        speed: 50
+    },
+    {
+        left: 72,
+        top: 72,
+        w: 13,
+        ratio: "4 / 3",
+        speed: 90
+    }, 
+];
+function Photo({ src , slot , progress , index , still  }) {
+    const y = (0,motion_react__WEBPACK_IMPORTED_MODULE_3__/* .useTransform */ .H)(progress, [
+        0,
+        1
+    ], [
+        slot.speed,
+        -slot.speed
+    ]);
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_4__/* .motion.div */ .E.div, {
+        className: "sa-photo",
+        style: {
+            left: `${slot.left}%`,
+            top: `${slot.top}%`,
+            width: `${slot.w}%`,
+            aspectRatio: slot.ratio,
+            y: still ? 0 : y
+        },
+        initial: {
+            opacity: 0,
+            scale: 0.92
+        },
+        whileInView: {
+            opacity: 1,
+            scale: 1
+        },
+        viewport: {
+            once: true,
+            amount: 0.3
+        },
+        transition: {
+            duration: 1,
+            ease: [
+                0.42,
+                0,
+                0,
+                1
+            ],
+            delay: 0.08 * index
+        },
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+            src: src,
+            alt: "",
+            loading: index < 3 ? "eager" : "lazy",
+            decoding: "async"
+        })
+    });
+}
+function Copy({ title , body , cta  }) {
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_4__/* .motion.div */ .E.div, {
+        className: "sa-copy",
+        initial: {
+            opacity: 0,
+            y: 24
+        },
+        whileInView: {
+            opacity: 1,
+            y: 0
+        },
+        viewport: {
+            once: true,
+            amount: 0.6
+        },
+        transition: {
+            duration: 0.9,
+            ease: [
+                0.42,
+                0,
+                0,
+                1
+            ]
+        },
+        children: [
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+                className: "sa-title",
+                children: title
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                className: "sa-body",
+                children: body
+            }),
+            cta ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                href: cta.href,
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                    className: "sa-cta",
+                    children: [
+                        cta.label,
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                            width: "16",
+                            height: "16",
+                            viewBox: "0 0 24 24",
+                            fill: "none",
+                            stroke: "currentColor",
+                            strokeWidth: "1.8",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            "aria-hidden": "true",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
+                                points: "9 18 15 12 9 6"
+                            })
+                        })
+                    ]
+                })
+            }) : null
+        ]
+    });
+}
+const ScatteredAbout = ({ title ="Who we are" , body ="Since 2007, MIS Solution has worked side-by-side with enterprises across Bangladesh — delivering hardware, infrastructure, and support built around each client’s requirements." , cta ={
+    label: "Contact us",
+    href: "/contact"
+} , images =[] ,  })=>{
+    const ref = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
+    const { scrollYProgress  } = (0,motion_react__WEBPACK_IMPORTED_MODULE_6__/* .useScroll */ .v)({
+        target: ref,
+        offset: [
+            "start end",
+            "end start"
+        ]
+    });
+    const pics = images.slice(0, 6);
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+        ref: ref,
+        className: "sa-section",
+        "aria-label": "About MIS Solution",
+        children: [
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "sa-stage",
+                children: [
+                    pics.map((src, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Photo, {
+                            src: src,
+                            slot: SLOTS[i],
+                            progress: scrollYProgress,
+                            index: i,
+                            still: !!reduce
+                        }, `${src}-${i}`)),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "sa-center",
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Copy, {
+                            title: title,
+                            body: body,
+                            cta: cta
+                        })
+                    })
+                ]
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "sa-mobile",
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Copy, {
+                        title: title,
+                        body: body,
+                        cta: cta
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "sa-strip",
+                        children: pics.map((src, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                src: src,
+                                alt: "",
+                                loading: "lazy",
+                                decoding: "async"
+                            }, `${src}-m-${i}`))
+                    })
+                ]
+            })
+        ]
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ScatteredAbout);
+
+
+/***/ }),
+
 /***/ 582:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -26,6 +281,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2097);
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6151);
+/* harmony import */ var _components_about_ScatteredAbout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7768);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_6__]);
 _components_footer__WEBPACK_IMPORTED_MODULE_6__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
@@ -35,6 +291,15 @@ _components_footer__WEBPACK_IMPORTED_MODULE_6__ = (__webpack_async_dependencies_
 
 
 
+
+const ABOUT_IMAGES = [
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80",
+    "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=700&q=80",
+    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80", 
+];
 const clientLogos = [
     "/client%20logo/Picture1.png",
     "/client%20logo/Picture4.png",
@@ -68,76 +333,81 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-7e3c1c44c86d4203" + " " + "company-info-page",
+                className: "jsx-697a26afd4c46145" + " " + "company-info-page",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                                className: "jsx-7e3c1c44c86d4203",
+                                className: "jsx-697a26afd4c46145",
                                 children: "Company Information & Policies | MIS Solution"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 name: "description",
                                 content: "Learn about MIS Solution, our client projects, and our structured warranty, EMI, and return policies.",
-                                className: "jsx-7e3c1c44c86d4203"
+                                className: "jsx-697a26afd4c46145"
                             })
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
-                        className: "jsx-7e3c1c44c86d4203" + " " + "company-main",
+                        className: "jsx-697a26afd4c46145" + " " + "company-main",
                         children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_about_ScatteredAbout__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
+                                title: "Who we are",
+                                body: "Since 2007, MIS Solution has worked side-by-side with enterprises across Bangladesh — delivering hardware, infrastructure, and support built around each client’s requirements.",
+                                cta: {
+                                    label: "Talk to our team",
+                                    href: "/contact"
+                                },
+                                images: ABOUT_IMAGES
+                            }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                                className: "jsx-7e3c1c44c86d4203" + " " + "about-projects-half",
+                                className: "jsx-697a26afd4c46145" + " " + "about-projects-half",
                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-7e3c1c44c86d4203" + " " + "shell",
+                                    className: "jsx-697a26afd4c46145" + " " + "shell",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                                            className: "jsx-7e3c1c44c86d4203" + " " + "page-header",
+                                            className: "jsx-697a26afd4c46145" + " " + "page-header page-header-continue",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "eyebrow",
+                                                    className: "jsx-697a26afd4c46145" + " " + "eyebrow",
                                                     children: "Company Information"
                                                 }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                                    className: "jsx-7e3c1c44c86d4203",
-                                                    children: "About Us & Projects"
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                                    className: "jsx-697a26afd4c46145",
+                                                    children: "Built around your requirements"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-7e3c1c44c86d4203",
-                                                    children: "Since 2007, MIS Solution has been devoted to providing a broad range of technology products and services across a multitude of challenging markets. For over 18 years we have worked side-by-side with our customers to exploit new opportunities, and our dedicated team has always delivered end-to-end products and solutions built around each client's specific requirements and needs."
-                                                }),
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-7e3c1c44c86d4203",
-                                                    children: "Our main focus is to construct a superior customer value proposition and become a successful business organization. Customers are the key concern to us. We are always devoted to providing the best services and products to our customers."
+                                                    className: "jsx-697a26afd4c46145",
+                                                    children: "For over 18 years we have helped customers exploit new opportunities with end-to-end products and solutions. Our focus is a superior customer value proposition — always devoted to the best services and products."
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-7e3c1c44c86d4203" + " " + "mission-grid",
+                                            className: "jsx-697a26afd4c46145" + " " + "mission-grid",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "panel-card",
+                                                    className: "jsx-697a26afd4c46145" + " " + "panel-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Our Mission"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "To design, deploy, and support reliable IT systems that improve business continuity, security posture, and daily operational efficiency for organizations of every scale."
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "panel-card",
+                                                    className: "jsx-697a26afd4c46145" + " " + "panel-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Our Vision"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "To be the most trusted systems partner for enterprises that demand secure, scalable, and future-ready infrastructure across networking, hardware, and managed services."
                                                         })
                                                     ]
@@ -145,25 +415,25 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                                            className: "jsx-7e3c1c44c86d4203" + " " + "ceo-section",
+                                            className: "jsx-697a26afd4c46145" + " " + "ceo-section",
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-7e3c1c44c86d4203" + " " + "ceo-strip",
+                                                className: "jsx-697a26afd4c46145" + " " + "ceo-strip",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-7e3c1c44c86d4203" + " " + "ceo-avatar-ring",
+                                                        className: "jsx-697a26afd4c46145" + " " + "ceo-avatar-ring",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                             src: "/ceo-profile.jpeg",
                                                             alt: "Mohammad Ibrahim Sikder",
-                                                            className: "jsx-7e3c1c44c86d4203"
+                                                            className: "jsx-697a26afd4c46145"
                                                         })
                                                     }),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-7e3c1c44c86d4203" + " " + "ceo-speech-wrap",
+                                                        className: "jsx-697a26afd4c46145" + " " + "ceo-speech-wrap",
                                                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                            className: "jsx-7e3c1c44c86d4203" + " " + "ceo-speech",
+                                                            className: "jsx-697a26afd4c46145" + " " + "ceo-speech",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-7e3c1c44c86d4203" + " " + "ceo-mark",
+                                                                    className: "jsx-697a26afd4c46145" + " " + "ceo-mark",
                                                                     children: "“"
                                                                 }),
                                                                 "At MIS Solution, we believe technology should simplify, not complicate. Our commitment is to stand beside every client as a long-term partner — understanding their unique challenges and delivering services that are not just functional, but transformational. Whether it's building a company's digital presence from scratch, deploying enterprise-grade infrastructure, or ensuring systems run flawlessly year-round through our maintenance contracts — we approach every engagement with the same dedication. We don't just deliver solutions; we build lasting relationships, empower businesses to scale, and drive meaningful progress through innovation, expertise, and integrity.”"
@@ -171,17 +441,17 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                         })
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-7e3c1c44c86d4203" + " " + "ceo-sig",
+                                                        className: "jsx-697a26afd4c46145" + " " + "ceo-sig",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-7e3c1c44c86d4203" + " " + "ceo-sig-line"
+                                                                className: "jsx-697a26afd4c46145" + " " + "ceo-sig-line"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                                                className: "jsx-7e3c1c44c86d4203",
+                                                                className: "jsx-697a26afd4c46145",
                                                                 children: "Mohammad Ibrahim Sikder"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-7e3c1c44c86d4203",
+                                                                className: "jsx-697a26afd4c46145",
                                                                 children: "Founder & Managing Director"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
@@ -192,7 +462,7 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                                     marginTop: "2px",
                                                                     textDecoration: "none"
                                                                 },
-                                                                className: "jsx-7e3c1c44c86d4203",
+                                                                className: "jsx-697a26afd4c46145",
                                                                 children: "ceo@missolution.com.bd"
                                                             })
                                                         ]
@@ -201,85 +471,85 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                             })
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                                            className: "jsx-7e3c1c44c86d4203" + " " + "projects-block",
+                                            className: "jsx-697a26afd4c46145" + " " + "projects-block",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "section-head",
+                                                    className: "jsx-697a26afd4c46145" + " " + "section-head",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Client Projects & Case Studies"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Real-world implementations for leading institutions and enterprises across Bangladesh."
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "project-list",
+                                                    className: "jsx-697a26afd4c46145" + " " + "project-list",
                                                     children: clientProjects.length > 0 ? clientProjects.map((project, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
                                                             href: `/projects/${encodeURIComponent(project.slug || project.id)}`,
                                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                                className: "jsx-7e3c1c44c86d4203" + " " + `project-card-alt ${idx % 2 === 0 ? "text-first" : "img-first"}`,
+                                                                className: "jsx-697a26afd4c46145" + " " + `project-card-alt ${idx % 2 === 0 ? "text-first" : "img-first"}`,
                                                                 children: [
                                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                        className: "jsx-7e3c1c44c86d4203" + " " + "pca-text",
+                                                                        className: "jsx-697a26afd4c46145" + " " + "pca-text",
                                                                         children: [
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                                className: "jsx-7e3c1c44c86d4203",
+                                                                                className: "jsx-697a26afd4c46145",
                                                                                 children: project.name
                                                                             }),
                                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                                                className: "jsx-7e3c1c44c86d4203",
+                                                                                className: "jsx-697a26afd4c46145",
                                                                                 children: [
                                                                                     project.description?.substring(0, 140),
                                                                                     project.description?.length > 140 ? "..." : ""
                                                                                 ]
                                                                             }),
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                                className: "jsx-7e3c1c44c86d4203" + " " + "pca-client",
+                                                                                className: "jsx-697a26afd4c46145" + " " + "pca-client",
                                                                                 children: project.client_name
                                                                             }),
                                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                                className: "jsx-7e3c1c44c86d4203" + " " + "pca-link",
+                                                                                className: "jsx-697a26afd4c46145" + " " + "pca-link",
                                                                                 children: "View Full Story →"
                                                                             })
                                                                         ]
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                        className: "jsx-7e3c1c44c86d4203" + " " + "pca-img",
+                                                                        className: "jsx-697a26afd4c46145" + " " + "pca-img",
                                                                         children: project.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                                             src: project.icon_url,
                                                                             alt: project.name,
-                                                                            className: "jsx-7e3c1c44c86d4203"
+                                                                            className: "jsx-697a26afd4c46145"
                                                                         }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                            className: "jsx-7e3c1c44c86d4203" + " " + "pca-placeholder",
+                                                                            className: "jsx-697a26afd4c46145" + " " + "pca-placeholder",
                                                                             children: project.name.charAt(0)
                                                                         })
                                                                     })
                                                                 ]
                                                             })
                                                         }, project.id)) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-7e3c1c44c86d4203" + " " + "project-card-alt text-first",
+                                                        className: "jsx-697a26afd4c46145" + " " + "project-card-alt text-first",
                                                         children: [
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                                className: "jsx-7e3c1c44c86d4203" + " " + "pca-text",
+                                                                className: "jsx-697a26afd4c46145" + " " + "pca-text",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                        className: "jsx-7e3c1c44c86d4203",
+                                                                        className: "jsx-697a26afd4c46145",
                                                                         children: "Enterprise Project"
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                        className: "jsx-7e3c1c44c86d4203",
+                                                                        className: "jsx-697a26afd4c46145",
                                                                         children: "Details coming soon."
                                                                     })
                                                                 ]
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-7e3c1c44c86d4203" + " " + "pca-img",
+                                                                className: "jsx-697a26afd4c46145" + " " + "pca-img",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                    className: "jsx-7e3c1c44c86d4203" + " " + "pca-placeholder",
+                                                                    className: "jsx-697a26afd4c46145" + " " + "pca-placeholder",
                                                                     children: "E"
                                                                 })
                                                             })
@@ -289,34 +559,34 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                                            className: "jsx-7e3c1c44c86d4203" + " " + "logo-block",
+                                            className: "jsx-697a26afd4c46145" + " " + "logo-block",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "section-head",
+                                                    className: "jsx-697a26afd4c46145" + " " + "section-head",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Trusted by Clients"
                                                         }),
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Proudly serving organizations across industries — from banking and healthcare to manufacturing and education."
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "logo-marquee",
+                                                    className: "jsx-697a26afd4c46145" + " " + "logo-marquee",
                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-7e3c1c44c86d4203" + " " + "logo-track",
+                                                        className: "jsx-697a26afd4c46145" + " " + "logo-track",
                                                         children: [
                                                             ...clientLogos,
                                                             ...clientLogos
                                                         ].map((src, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-7e3c1c44c86d4203" + " " + "logo-item",
+                                                                className: "jsx-697a26afd4c46145" + " " + "logo-item",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                                                     src: src,
                                                                     alt: `Client ${idx % clientLogos.length + 1}`,
-                                                                    className: "jsx-7e3c1c44c86d4203"
+                                                                    className: "jsx-697a26afd4c46145"
                                                                 })
                                                             }, idx))
                                                     })
@@ -327,50 +597,50 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                 })
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                                className: "jsx-7e3c1c44c86d4203" + " " + "policies-half",
+                                className: "jsx-697a26afd4c46145" + " " + "policies-half",
                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-7e3c1c44c86d4203" + " " + "shell",
+                                    className: "jsx-697a26afd4c46145" + " " + "shell",
                                     children: [
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                                            className: "jsx-7e3c1c44c86d4203" + " " + "section-head",
+                                            className: "jsx-697a26afd4c46145" + " " + "section-head",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                    className: "jsx-7e3c1c44c86d4203",
+                                                    className: "jsx-697a26afd4c46145",
                                                     children: "Warranty & EMI Policy"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-7e3c1c44c86d4203",
+                                                    className: "jsx-697a26afd4c46145",
                                                     children: "A structured overview of warranty coverage, claims process, installment options, and return terms."
                                                 })
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-7e3c1c44c86d4203" + " " + "policy-grid",
+                                            className: "jsx-697a26afd4c46145" + " " + "policy-grid",
                                             children: [
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "policy-card",
+                                                    className: "jsx-697a26afd4c46145" + " " + "policy-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Product Warranty Conditions"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Standard warranty applies from the invoice date unless a product-specific period is stated."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Coverage includes manufacturing defects under normal, intended use."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Exclusions: physical damage, liquid damage, unauthorized modifications."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Original purchase documents are required for validation."
                                                                 })
                                                             ]
@@ -378,29 +648,29 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "policy-card",
+                                                    className: "jsx-697a26afd4c46145" + " " + "policy-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Warranty Claim Process"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ol", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Register the issue with invoice number and serial ID."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Remote triage is completed by the MIS support team."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Device inspection and diagnostics are scheduled."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Repair, replacement, or OEM escalation is initiated."
                                                                 })
                                                             ]
@@ -408,29 +678,29 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "policy-card",
+                                                    className: "jsx-697a26afd4c46145" + " " + "policy-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "EMI Payment Options"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Flexible tenures: 3, 6, 9, 12, and 24 months."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Eligible cards and approved finance partners supported."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Zero-interest campaigns may apply to selected products."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Early closure terms follow finance-provider policies."
                                                                 })
                                                             ]
@@ -438,29 +708,29 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "policy-card",
+                                                    className: "jsx-697a26afd4c46145" + " " + "policy-card",
                                                     children: [
                                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: "Return Policy"
                                                         }),
                                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-                                                            className: "jsx-7e3c1c44c86d4203",
+                                                            className: "jsx-697a26afd4c46145",
                                                             children: [
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Return requests must be raised within the approved return window."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Products must be returned with original accessories and packaging."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Open-box software and custom-built solutions are non-returnable."
                                                                 }),
                                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                                    className: "jsx-7e3c1c44c86d4203",
+                                                                    className: "jsx-697a26afd4c46145",
                                                                     children: "Refund or replacement confirmed after technical verification."
                                                                 })
                                                             ]
@@ -470,15 +740,15 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                             ]
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-7e3c1c44c86d4203" + " " + "policy-note",
+                                            className: "jsx-697a26afd4c46145" + " " + "policy-note",
                                             children: [
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                    className: "jsx-7e3c1c44c86d4203",
+                                                    className: "jsx-697a26afd4c46145",
                                                     children: "Need policy clarification for a specific product or project?"
                                                 }),
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                                     href: "/contact",
-                                                    className: "jsx-7e3c1c44c86d4203" + " " + "btn btn-primary btn-lg",
+                                                    className: "jsx-697a26afd4c46145" + " " + "btn btn-primary btn-lg",
                                                     children: "Contact Policy Desk"
                                                 })
                                             ]
@@ -492,8 +762,8 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "7e3c1c44c86d4203",
-                children: ".company-info-page.jsx-7e3c1c44c86d4203{background:#fff;color:#2f2f2f;min-height:100vh}.company-main.jsx-7e3c1c44c86d4203{background:#fff}.shell.jsx-7e3c1c44c86d4203{width:100%;max-width:76rem;margin:0 auto;padding:3.5rem 1.5rem}.page-header.jsx-7e3c1c44c86d4203{max-width:54rem;margin-bottom:2rem}.eyebrow.jsx-7e3c1c44c86d4203{color:var(--color-primary);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}h1.jsx-7e3c1c44c86d4203,h2.jsx-7e3c1c44c86d4203,h3.jsx-7e3c1c44c86d4203{color:#232323;margin:0;line-height:1.2}h1.jsx-7e3c1c44c86d4203{font-size:clamp(2rem,3.8vw,3.2rem);margin-bottom:1rem}h2.jsx-7e3c1c44c86d4203{font-size:clamp(1.5rem,2.2vw,2.1rem);margin-bottom:.7rem}h3.jsx-7e3c1c44c86d4203{font-size:1.2rem;margin-bottom:.6rem}p.jsx-7e3c1c44c86d4203{color:#454545;margin:0;line-height:1.7}.mission-grid.jsx-7e3c1c44c86d4203{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-bottom:2.2rem}.panel-card.jsx-7e3c1c44c86d4203{border:1px solid#d9d9d9;border-top:4px solid var(--color-primary);-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:1.2rem;background:#fff}.ceo-section.jsx-7e3c1c44c86d4203{margin:3rem 0}.ceo-strip.jsx-7e3c1c44c86d4203{background:#f0f4f8;-webkit-border-radius:24px;-moz-border-radius:24px;border-radius:24px;padding:48px 40px 40px;text-align:center;border:1px solid#e2e8f0}.ceo-avatar-ring.jsx-7e3c1c44c86d4203{width:160px;height:160px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;padding:4px;background:#f7e500;margin:0 auto 28px}.ceo-avatar-ring.jsx-7e3c1c44c86d4203 img.jsx-7e3c1c44c86d4203{width:100%;height:100%;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;-o-object-fit:cover;object-fit:cover;-o-object-position:center 20%;object-position:center 20%;display:block;border:3px solid#f0f4f8}.ceo-speech-wrap.jsx-7e3c1c44c86d4203{max-width:680px;margin:0 auto}.ceo-speech.jsx-7e3c1c44c86d4203{margin:0;font-size:15px;font-style:italic;color:#374151;line-height:1.9;text-align:left}.ceo-mark.jsx-7e3c1c44c86d4203{font-size:52px;font-weight:900;color:#f7e500;font-family:Georgia,serif;line-height:.5;vertical-align:-.15em;margin-right:4px;font-style:normal}.ceo-sig.jsx-7e3c1c44c86d4203{margin-top:28px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:4px}.ceo-sig-line.jsx-7e3c1c44c86d4203{width:40px;height:3px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;background:#f7e500;margin-bottom:8px}.ceo-sig.jsx-7e3c1c44c86d4203 strong.jsx-7e3c1c44c86d4203{font-size:16px;font-weight:700;color:#111827}.ceo-sig.jsx-7e3c1c44c86d4203 span.jsx-7e3c1c44c86d4203{font-size:12px;color:#6b7280}.section-head.jsx-7e3c1c44c86d4203{margin-bottom:1rem}.projects-block.jsx-7e3c1c44c86d4203,.logo-block.jsx-7e3c1c44c86d4203{margin-top:2.2rem}.project-list.jsx-7e3c1c44c86d4203{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:16px}.project-card-alt.jsx-7e3c1c44c86d4203{display:grid;grid-template-columns:1fr 1fr;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;border:1px solid#e2e8f0;background:#fff;text-decoration:none;color:inherit;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s;height:220px}.project-card-alt.jsx-7e3c1c44c86d4203:hover{-webkit-box-shadow:0 12px 32px rgba(0,0,0,.08);-moz-box-shadow:0 12px 32px rgba(0,0,0,.08);box-shadow:0 12px 32px rgba(0,0,0,.08);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.project-card-alt.img-first.jsx-7e3c1c44c86d4203{direction:rtl}.project-card-alt.img-first.jsx-7e3c1c44c86d4203>*.jsx-7e3c1c44c86d4203{direction:ltr}.pca-text.jsx-7e3c1c44c86d4203{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:8px}.pca-text.jsx-7e3c1c44c86d4203 h3.jsx-7e3c1c44c86d4203{margin:0;font-size:17px;color:#111827;font-weight:700}.pca-text.jsx-7e3c1c44c86d4203 p.jsx-7e3c1c44c86d4203{margin:0;font-size:13px;color:#4b5563;line-height:1.7}.pca-client.jsx-7e3c1c44c86d4203{font-size:12px;font-weight:600;color:#6366f1}.pca-link.jsx-7e3c1c44c86d4203{font-size:13px;font-weight:700;color:#4f46e5}.pca-img.jsx-7e3c1c44c86d4203{background:#f1f5f9;overflow:hidden;height:100%}.pca-img.jsx-7e3c1c44c86d4203 img.jsx-7e3c1c44c86d4203{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;display:block}.pca-placeholder.jsx-7e3c1c44c86d4203{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:48px;font-weight:800;color:#cbd5e1;background:-webkit-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:-moz-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:-o-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%)}.logo-marquee.jsx-7e3c1c44c86d4203{overflow:hidden;padding:1rem 0}.logo-track.jsx-7e3c1c44c86d4203{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:2rem;width:-webkit-max-content;width:-moz-max-content;width:max-content;-webkit-animation:scroll-logos 40s linear infinite;-moz-animation:scroll-logos 40s linear infinite;-o-animation:scroll-logos 40s linear infinite;animation:scroll-logos 40s linear infinite}.logo-track.jsx-7e3c1c44c86d4203:hover{-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-o-animation-play-state:paused;animation-play-state:paused}@-webkit-keyframes scroll-logos{0%{-webkit-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);transform:translateX(-50%)}}@-moz-keyframes scroll-logos{0%{-moz-transform:translateX(0);transform:translateX(0)}100%{-moz-transform:translateX(-50%);transform:translateX(-50%)}}@-o-keyframes scroll-logos{0%{-o-transform:translateX(0);transform:translateX(0)}100%{-o-transform:translateX(-50%);transform:translateX(-50%)}}@keyframes scroll-logos{0%{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)}}.logo-item.jsx-7e3c1c44c86d4203{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;width:160px;height:100px;border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:16px;background:#fff;-webkit-transition:box-shadow.2s,-webkit-transform.2s;-moz-transition:box-shadow.2s,-moz-transform.2s;-o-transition:box-shadow.2s,-o-transform.2s;transition:box-shadow.2s,-webkit-transform.2s;transition:box-shadow.2s,-moz-transform.2s;transition:box-shadow.2s,-o-transform.2s;transition:box-shadow.2s,transform.2s}.logo-item.jsx-7e3c1c44c86d4203:hover{-webkit-box-shadow:0 4px 16px rgba(0,0,0,.08);-moz-box-shadow:0 4px 16px rgba(0,0,0,.08);box-shadow:0 4px 16px rgba(0,0,0,.08);-webkit-transform:scale(1.05);-moz-transform:scale(1.05);-ms-transform:scale(1.05);-o-transform:scale(1.05);transform:scale(1.05)}.logo-item.jsx-7e3c1c44c86d4203 img.jsx-7e3c1c44c86d4203{max-width:100%;max-height:100%;-o-object-fit:contain;object-fit:contain}.policies-half.jsx-7e3c1c44c86d4203{background:#fff}.policy-grid.jsx-7e3c1c44c86d4203{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.policy-card.jsx-7e3c1c44c86d4203{border:1px solid#d6d6d6;border-left:5px solid#1f2329;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:1.1rem;background:#fff}.policy-card.jsx-7e3c1c44c86d4203 ul.jsx-7e3c1c44c86d4203,.policy-card.jsx-7e3c1c44c86d4203 ol.jsx-7e3c1c44c86d4203{margin:0;padding-left:1.1rem;color:#444;line-height:1.7;display:grid;gap:.5rem}.policy-note.jsx-7e3c1c44c86d4203{margin-top:1.6rem;border-top:2px solid#1f2329;padding-top:1.2rem;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:1rem}@media(max-width:991px){.mission-grid.jsx-7e3c1c44c86d4203,.policy-grid.jsx-7e3c1c44c86d4203{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:767px){.shell.jsx-7e3c1c44c86d4203{padding-top:2.4rem;padding-bottom:2.4rem}.mission-grid.jsx-7e3c1c44c86d4203,.policy-grid.jsx-7e3c1c44c86d4203{grid-template-columns:1fr}.policy-note.jsx-7e3c1c44c86d4203{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.project-card-alt.jsx-7e3c1c44c86d4203{grid-template-columns:3fr 2fr;height:auto;min-height:180px}.project-card-alt.img-first.jsx-7e3c1c44c86d4203{direction:rtl}.project-card-alt.img-first.jsx-7e3c1c44c86d4203>*.jsx-7e3c1c44c86d4203{direction:ltr}.pca-img.jsx-7e3c1c44c86d4203{height:100%;min-height:180px}.pca-text.jsx-7e3c1c44c86d4203{padding:14px}.pca-text.jsx-7e3c1c44c86d4203 h3.jsx-7e3c1c44c86d4203{font-size:14px}.pca-text.jsx-7e3c1c44c86d4203 p.jsx-7e3c1c44c86d4203{font-size:12px;-webkit-line-clamp:3;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}.ceo-strip.jsx-7e3c1c44c86d4203{padding:36px 20px 32px}.ceo-avatar-ring.jsx-7e3c1c44c86d4203{width:140px;height:140px}.ceo-mark.jsx-7e3c1c44c86d4203{font-size:40px}}"
+                id: "697a26afd4c46145",
+                children: ".company-info-page.jsx-697a26afd4c46145{background:#fff;color:#2f2f2f;min-height:100vh}.company-main.jsx-697a26afd4c46145{background:#fff}.shell.jsx-697a26afd4c46145{width:100%;max-width:76rem;margin:0 auto;padding:3.5rem 1.5rem}.page-header.jsx-697a26afd4c46145{max-width:54rem;margin-bottom:2rem}.page-header-continue.jsx-697a26afd4c46145{max-width:46rem}.eyebrow.jsx-697a26afd4c46145{color:var(--color-primary);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}h1.jsx-697a26afd4c46145,h2.jsx-697a26afd4c46145,h3.jsx-697a26afd4c46145{color:#232323;margin:0;line-height:1.2}h1.jsx-697a26afd4c46145{font-size:clamp(2rem,3.8vw,3.2rem);margin-bottom:1rem}h2.jsx-697a26afd4c46145{font-size:clamp(1.5rem,2.2vw,2.1rem);margin-bottom:.7rem}.page-header-continue.jsx-697a26afd4c46145 h2.jsx-697a26afd4c46145{font-size:clamp(1.6rem,2.6vw,2.4rem);margin-bottom:.85rem}h3.jsx-697a26afd4c46145{font-size:1.2rem;margin-bottom:.6rem}p.jsx-697a26afd4c46145{color:#454545;margin:0;line-height:1.7}.mission-grid.jsx-697a26afd4c46145{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-bottom:2.2rem}.panel-card.jsx-697a26afd4c46145{border:1px solid#d9d9d9;border-top:4px solid var(--color-primary);-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:1.2rem;background:#fff}.ceo-section.jsx-697a26afd4c46145{margin:3rem 0}.ceo-strip.jsx-697a26afd4c46145{background:#f0f4f8;-webkit-border-radius:24px;-moz-border-radius:24px;border-radius:24px;padding:48px 40px 40px;text-align:center;border:1px solid#e2e8f0}.ceo-avatar-ring.jsx-697a26afd4c46145{width:160px;height:160px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;padding:4px;background:#f7e500;margin:0 auto 28px}.ceo-avatar-ring.jsx-697a26afd4c46145 img.jsx-697a26afd4c46145{width:100%;height:100%;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;-o-object-fit:cover;object-fit:cover;-o-object-position:center 20%;object-position:center 20%;display:block;border:3px solid#f0f4f8}.ceo-speech-wrap.jsx-697a26afd4c46145{max-width:680px;margin:0 auto}.ceo-speech.jsx-697a26afd4c46145{margin:0;font-size:15px;font-style:italic;color:#374151;line-height:1.9;text-align:left}.ceo-mark.jsx-697a26afd4c46145{font-size:52px;font-weight:900;color:#f7e500;font-family:Georgia,serif;line-height:.5;vertical-align:-.15em;margin-right:4px;font-style:normal}.ceo-sig.jsx-697a26afd4c46145{margin-top:28px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:4px}.ceo-sig-line.jsx-697a26afd4c46145{width:40px;height:3px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;background:#f7e500;margin-bottom:8px}.ceo-sig.jsx-697a26afd4c46145 strong.jsx-697a26afd4c46145{font-size:16px;font-weight:700;color:#111827}.ceo-sig.jsx-697a26afd4c46145 span.jsx-697a26afd4c46145{font-size:12px;color:#6b7280}.section-head.jsx-697a26afd4c46145{margin-bottom:1rem}.projects-block.jsx-697a26afd4c46145,.logo-block.jsx-697a26afd4c46145{margin-top:2.2rem}.project-list.jsx-697a26afd4c46145{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:16px}.project-card-alt.jsx-697a26afd4c46145{display:grid;grid-template-columns:1fr 1fr;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;overflow:hidden;border:1px solid#e2e8f0;background:#fff;text-decoration:none;color:inherit;-webkit-transition:box-shadow.2s,-webkit-transform.15s;-moz-transition:box-shadow.2s,-moz-transform.15s;-o-transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,-webkit-transform.15s;transition:box-shadow.2s,-moz-transform.15s;transition:box-shadow.2s,-o-transform.15s;transition:box-shadow.2s,transform.15s;height:220px}.project-card-alt.jsx-697a26afd4c46145:hover{-webkit-box-shadow:0 12px 32px rgba(0,0,0,.08);-moz-box-shadow:0 12px 32px rgba(0,0,0,.08);box-shadow:0 12px 32px rgba(0,0,0,.08);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-ms-transform:translateY(-2px);-o-transform:translateY(-2px);transform:translateY(-2px)}.project-card-alt.img-first.jsx-697a26afd4c46145{direction:rtl}.project-card-alt.img-first.jsx-697a26afd4c46145>*.jsx-697a26afd4c46145{direction:ltr}.pca-text.jsx-697a26afd4c46145{padding:24px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:8px}.pca-text.jsx-697a26afd4c46145 h3.jsx-697a26afd4c46145{margin:0;font-size:17px;color:#111827;font-weight:700}.pca-text.jsx-697a26afd4c46145 p.jsx-697a26afd4c46145{margin:0;font-size:13px;color:#4b5563;line-height:1.7}.pca-client.jsx-697a26afd4c46145{font-size:12px;font-weight:600;color:#6366f1}.pca-link.jsx-697a26afd4c46145{font-size:13px;font-weight:700;color:#4f46e5}.pca-img.jsx-697a26afd4c46145{background:#f1f5f9;overflow:hidden;height:100%}.pca-img.jsx-697a26afd4c46145 img.jsx-697a26afd4c46145{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;display:block}.pca-placeholder.jsx-697a26afd4c46145{width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:48px;font-weight:800;color:#cbd5e1;background:-webkit-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:-moz-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:-o-linear-gradient(315deg,#f8fafc 0%,#e2e8f0 100%);background:linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%)}.logo-marquee.jsx-697a26afd4c46145{overflow:hidden;padding:1rem 0}.logo-track.jsx-697a26afd4c46145{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;gap:2rem;width:-webkit-max-content;width:-moz-max-content;width:max-content;-webkit-animation:scroll-logos 40s linear infinite;-moz-animation:scroll-logos 40s linear infinite;-o-animation:scroll-logos 40s linear infinite;animation:scroll-logos 40s linear infinite}.logo-track.jsx-697a26afd4c46145:hover{-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-o-animation-play-state:paused;animation-play-state:paused}@-webkit-keyframes scroll-logos{0%{-webkit-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);transform:translateX(-50%)}}@-moz-keyframes scroll-logos{0%{-moz-transform:translateX(0);transform:translateX(0)}100%{-moz-transform:translateX(-50%);transform:translateX(-50%)}}@-o-keyframes scroll-logos{0%{-o-transform:translateX(0);transform:translateX(0)}100%{-o-transform:translateX(-50%);transform:translateX(-50%)}}@keyframes scroll-logos{0%{-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)}}.logo-item.jsx-697a26afd4c46145{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;width:160px;height:100px;border:1px solid#e5e7eb;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:16px;background:#fff;-webkit-transition:box-shadow.2s,-webkit-transform.2s;-moz-transition:box-shadow.2s,-moz-transform.2s;-o-transition:box-shadow.2s,-o-transform.2s;transition:box-shadow.2s,-webkit-transform.2s;transition:box-shadow.2s,-moz-transform.2s;transition:box-shadow.2s,-o-transform.2s;transition:box-shadow.2s,transform.2s}.logo-item.jsx-697a26afd4c46145:hover{-webkit-box-shadow:0 4px 16px rgba(0,0,0,.08);-moz-box-shadow:0 4px 16px rgba(0,0,0,.08);box-shadow:0 4px 16px rgba(0,0,0,.08);-webkit-transform:scale(1.05);-moz-transform:scale(1.05);-ms-transform:scale(1.05);-o-transform:scale(1.05);transform:scale(1.05)}.logo-item.jsx-697a26afd4c46145 img.jsx-697a26afd4c46145{max-width:100%;max-height:100%;-o-object-fit:contain;object-fit:contain}.policies-half.jsx-697a26afd4c46145{background:#fff}.policy-grid.jsx-697a26afd4c46145{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.policy-card.jsx-697a26afd4c46145{border:1px solid#d6d6d6;border-left:5px solid#1f2329;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;padding:1.1rem;background:#fff}.policy-card.jsx-697a26afd4c46145 ul.jsx-697a26afd4c46145,.policy-card.jsx-697a26afd4c46145 ol.jsx-697a26afd4c46145{margin:0;padding-left:1.1rem;color:#444;line-height:1.7;display:grid;gap:.5rem}.policy-note.jsx-697a26afd4c46145{margin-top:1.6rem;border-top:2px solid#1f2329;padding-top:1.2rem;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:1rem}@media(max-width:991px){.mission-grid.jsx-697a26afd4c46145,.policy-grid.jsx-697a26afd4c46145{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:767px){.shell.jsx-697a26afd4c46145{padding-top:2.4rem;padding-bottom:2.4rem}.mission-grid.jsx-697a26afd4c46145,.policy-grid.jsx-697a26afd4c46145{grid-template-columns:1fr}.policy-note.jsx-697a26afd4c46145{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.project-card-alt.jsx-697a26afd4c46145{grid-template-columns:3fr 2fr;height:auto;min-height:180px}.project-card-alt.img-first.jsx-697a26afd4c46145{direction:rtl}.project-card-alt.img-first.jsx-697a26afd4c46145>*.jsx-697a26afd4c46145{direction:ltr}.pca-img.jsx-697a26afd4c46145{height:100%;min-height:180px}.pca-text.jsx-697a26afd4c46145{padding:14px}.pca-text.jsx-697a26afd4c46145 h3.jsx-697a26afd4c46145{font-size:14px}.pca-text.jsx-697a26afd4c46145 p.jsx-697a26afd4c46145{font-size:12px;-webkit-line-clamp:3;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}.ceo-strip.jsx-697a26afd4c46145{padding:36px 20px 32px}.ceo-avatar-ring.jsx-697a26afd4c46145{width:140px;height:140px}.ceo-mark.jsx-697a26afd4c46145{font-size:40px}}"
             })
         ]
     });
@@ -530,6 +800,7 @@ __webpack_async_result__();
 /***/ 2418:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("mysql2/promise");
 
 /***/ }),
@@ -537,6 +808,7 @@ module.exports = require("mysql2/promise");
 /***/ 1649:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next-auth/react");
 
 /***/ }),
@@ -544,6 +816,7 @@ module.exports = require("next-auth/react");
 /***/ 503:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next-intl");
 
 /***/ }),
@@ -551,6 +824,7 @@ module.exports = require("next-intl");
 /***/ 3280:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/app-router-context.js");
 
 /***/ }),
@@ -558,6 +832,7 @@ module.exports = require("next/dist/shared/lib/app-router-context.js");
 /***/ 2796:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/head-manager-context.js");
 
 /***/ }),
@@ -565,6 +840,7 @@ module.exports = require("next/dist/shared/lib/head-manager-context.js");
 /***/ 3539:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/i18n/detect-domain-locale.js");
 
 /***/ }),
@@ -572,6 +848,7 @@ module.exports = require("next/dist/shared/lib/i18n/detect-domain-locale.js");
 /***/ 4014:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/i18n/normalize-locale-path.js");
 
 /***/ }),
@@ -579,6 +856,7 @@ module.exports = require("next/dist/shared/lib/i18n/normalize-locale-path.js");
 /***/ 8524:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/is-plain-object.js");
 
 /***/ }),
@@ -586,6 +864,7 @@ module.exports = require("next/dist/shared/lib/is-plain-object.js");
 /***/ 8020:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/mitt.js");
 
 /***/ }),
@@ -593,6 +872,7 @@ module.exports = require("next/dist/shared/lib/mitt.js");
 /***/ 4406:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/page-path/denormalize-page-path.js");
 
 /***/ }),
@@ -600,6 +880,7 @@ module.exports = require("next/dist/shared/lib/page-path/denormalize-page-path.j
 /***/ 4964:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router-context.js");
 
 /***/ }),
@@ -607,6 +888,7 @@ module.exports = require("next/dist/shared/lib/router-context.js");
 /***/ 3431:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/add-locale.js");
 
 /***/ }),
@@ -614,6 +896,7 @@ module.exports = require("next/dist/shared/lib/router/utils/add-locale.js");
 /***/ 1751:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js");
 
 /***/ }),
@@ -621,6 +904,7 @@ module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js")
 /***/ 6220:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/compare-states.js");
 
 /***/ }),
@@ -628,6 +912,7 @@ module.exports = require("next/dist/shared/lib/router/utils/compare-states.js");
 /***/ 299:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/format-next-pathname-info.js");
 
 /***/ }),
@@ -635,6 +920,7 @@ module.exports = require("next/dist/shared/lib/router/utils/format-next-pathname
 /***/ 3938:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/format-url.js");
 
 /***/ }),
@@ -642,6 +928,7 @@ module.exports = require("next/dist/shared/lib/router/utils/format-url.js");
 /***/ 9565:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/get-asset-path-from-route.js");
 
 /***/ }),
@@ -649,6 +936,7 @@ module.exports = require("next/dist/shared/lib/router/utils/get-asset-path-from-
 /***/ 5789:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/get-next-pathname-info.js");
 
 /***/ }),
@@ -656,6 +944,7 @@ module.exports = require("next/dist/shared/lib/router/utils/get-next-pathname-in
 /***/ 1897:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/is-bot.js");
 
 /***/ }),
@@ -663,6 +952,7 @@ module.exports = require("next/dist/shared/lib/router/utils/is-bot.js");
 /***/ 1428:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/is-dynamic.js");
 
 /***/ }),
@@ -670,6 +960,7 @@ module.exports = require("next/dist/shared/lib/router/utils/is-dynamic.js");
 /***/ 8854:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
 
 /***/ }),
@@ -677,6 +968,7 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
 /***/ 1292:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/parse-relative-url.js");
 
 /***/ }),
@@ -684,6 +976,7 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-relative-url.j
 /***/ 4567:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/path-has-prefix.js");
 
 /***/ }),
@@ -691,6 +984,7 @@ module.exports = require("next/dist/shared/lib/router/utils/path-has-prefix.js")
 /***/ 979:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/querystring.js");
 
 /***/ }),
@@ -698,6 +992,7 @@ module.exports = require("next/dist/shared/lib/router/utils/querystring.js");
 /***/ 3297:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slash.js");
 
 /***/ }),
@@ -705,6 +1000,7 @@ module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slas
 /***/ 6052:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/resolve-rewrites.js");
 
 /***/ }),
@@ -712,6 +1008,7 @@ module.exports = require("next/dist/shared/lib/router/utils/resolve-rewrites.js"
 /***/ 4226:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/route-matcher.js");
 
 /***/ }),
@@ -719,6 +1016,7 @@ module.exports = require("next/dist/shared/lib/router/utils/route-matcher.js");
 /***/ 5052:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/route-regex.js");
 
 /***/ }),
@@ -726,6 +1024,7 @@ module.exports = require("next/dist/shared/lib/router/utils/route-regex.js");
 /***/ 9232:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/utils.js");
 
 /***/ }),
@@ -733,6 +1032,7 @@ module.exports = require("next/dist/shared/lib/utils.js");
 /***/ 968:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/head");
 
 /***/ }),
@@ -740,6 +1040,7 @@ module.exports = require("next/head");
 /***/ 1853:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/router");
 
 /***/ }),
@@ -747,6 +1048,7 @@ module.exports = require("next/router");
 /***/ 6689:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("react");
 
 /***/ }),
@@ -754,6 +1056,7 @@ module.exports = require("react");
 /***/ 997:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("react/jsx-runtime");
 
 /***/ }),
@@ -761,6 +1064,7 @@ module.exports = require("react/jsx-runtime");
 /***/ 9816:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("styled-jsx/style");
 
 /***/ }),
@@ -768,6 +1072,7 @@ module.exports = require("styled-jsx/style");
 /***/ 7027:
 /***/ ((module) => {
 
+"use strict";
 module.exports = import("dangerous-html/react");;
 
 /***/ })
@@ -779,7 +1084,7 @@ module.exports = import("dangerous-html/react");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,1664,2097,6151], () => (__webpack_exec__(582)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,1664,4917,9468,2883,2097,6151], () => (__webpack_exec__(582)));
 module.exports = __webpack_exports__;
 
 })();

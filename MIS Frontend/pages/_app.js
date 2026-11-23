@@ -1,5 +1,6 @@
 import './style.css'
 import '../components/home/home-mid.css'
+import '../components/about/scattered-about.css'
 
 import Head from 'next/head'
 import { useEffect } from 'react'

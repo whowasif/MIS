@@ -44,50 +44,50 @@ __webpack_require__.r(__webpack_exports__);
         {
             id: "dev-p1",
             slug: "dhaka-ahsania-mission",
-            name: "Multi-Phase IT & Office Equipment Supply – Dhaka Ahsania Mission",
+            name: "Multi-Phase IT & Office Equipment Supply",
             client_name: "Dhaka Ahsania Mission",
             description: "Sustained IT and office equipment support — laptops, printers, scanners, and document systems.",
-            icon_url: "/client logo/Picture1.jpg"
+            icon_url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80"
         },
         {
             id: "dev-p2",
             slug: "foodpanda-bangladesh",
-            name: "600 Units Tab Supply – foodpanda Bangladesh",
+            name: "600 Units Tab Supply",
             client_name: "foodpanda Bangladesh",
             description: "Commercial-grade tablets for delivery fleet and operations.",
-            icon_url: "/client logo/Picture10.png"
+            icon_url: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80"
         },
         {
             id: "dev-p3",
             slug: "begum-rokeya-university",
-            name: "Online Radio & Internet TV Studio Setup – Begum Rokeya University",
+            name: "Online Radio & Internet TV Studio Setup",
             client_name: "Begum Rokeya University, Rangpur",
             description: "Complete studio setup for online radio and internet TV broadcasting.",
-            icon_url: "/client logo/Picture12.png"
+            icon_url: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=900&q=80"
         },
         {
             id: "dev-p4",
             slug: "university-of-dhaka",
-            name: "Multi-Year IT & Infrastructure Service – University of Dhaka",
+            name: "Multi-Year IT & Infrastructure Service",
             client_name: "University of Dhaka",
             description: "Multi-year technology partnership across faculties and offices.",
-            icon_url: "/client logo/Picture14.jpg"
+            icon_url: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=80"
         },
         {
             id: "dev-p5",
             slug: "aarong",
-            name: "Laptop Supply – Aarong",
+            name: "Laptop Supply",
             client_name: "Aarong",
             description: "Business-grade HP ProBook laptops for retail operations.",
-            icon_url: "/client logo/Picture16.png"
+            icon_url: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80"
         },
         {
             id: "dev-p6",
             slug: "bangladesh-air-force",
-            name: "Computer Accessories Supply – Bangladesh Air Force",
+            name: "Computer Accessories Supply",
             client_name: "Bangladesh Air Force",
             description: "Certified accessories and peripherals for administrative systems.",
-            icon_url: "/client logo/Picture18.png"
+            icon_url: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=900&q=80"
         }, 
     ],
     featuredProducts: [
