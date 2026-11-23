@@ -1049,110 +1049,133 @@ const FindAndAct = ()=>{
             viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .homeViewport */ .lX,
             variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .fadeUp */ .pB,
             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "hm-act-panels",
+                className: "hm-act-card",
                 children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                        className: "hm-act-bg",
+                        src: "/home/cta-bg.jpg",
+                        alt: "",
+                        "aria-hidden": "true"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: "hm-act-scrim",
+                        "aria-hidden": "true"
+                    }),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "hm-act-panel hm-act-panel-search",
+                        className: "hm-act-grid",
                         children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                className: "hm-eyebrow hm-eyebrow-on-dark",
-                                children: "Catalog"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                id: "hm-act-title",
-                                className: "hm-act-panel-title",
-                                children: "Find hardware"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                className: "hm-act-panel-sub",
-                                children: "Search by SKU, model, or product name across the live catalog."
-                            }),
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
-                                action: "/search",
-                                method: "GET",
-                                className: "hm-act-search",
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                className: "hm-act-copy",
                                 children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                        htmlFor: "hm-catalog-search",
-                                        className: "hm-sr-only",
-                                        children: "Search catalog"
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                        id: "hm-act-title",
+                                        className: "hm-act-title",
+                                        children: "Let's build from here"
                                     }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
-                                        id: "hm-catalog-search",
-                                        type: "text",
-                                        name: "q",
-                                        required: true,
-                                        minLength: 2,
-                                        placeholder: "SKU, model, or product name…",
-                                        className: "hm-act-input"
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                        className: "hm-act-sub",
+                                        children: "Search the live catalog by SKU, model, or product name — or talk to the same team that scopes enterprise supply, install, and support."
                                     }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
-                                        type: "submit",
-                                        className: "hm-act-submit",
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "hm-act-contact",
                                         children: [
-                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-                                                xmlns: "http://www.w3.org/2000/svg",
-                                                width: "18",
-                                                height: "18",
-                                                viewBox: "0 0 24 24",
-                                                fill: "none",
-                                                stroke: "currentColor",
-                                                strokeWidth: "2",
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round",
-                                                "aria-hidden": "true",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                                        cx: "11",
-                                                        cy: "11",
-                                                        r: "8"
-                                                    }),
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                        d: "m21 21-4.3-4.3"
-                                                    })
-                                                ]
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                className: "hm-act-hotline",
+                                                href: "tel:0241021991",
+                                                children: "02-41021991"
                                             }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                children: "Search"
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                className: "hm-act-email",
+                                                href: "mailto:info@missolution.com.bd",
+                                                children: "info@missolution.com.bd"
                                             })
                                         ]
                                     })
                                 ]
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                        className: "hm-act-panel hm-act-panel-talk",
-                        "aria-label": "Contact",
-                        children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                className: "hm-eyebrow hm-eyebrow-on-dark",
-                                children: "Talk to us"
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                className: "hm-act-panel-title",
-                                children: "Need a scoped quote?"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                className: "hm-act-panel-sub",
-                                children: "Enterprise supply, install, and support — same team on the line."
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                className: "hm-act-hotline",
-                                href: "tel:0241021991",
-                                children: "02-41021991"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                className: "hm-act-email",
-                                href: "mailto:info@missolution.com.bd",
-                                children: "info@missolution.com.bd"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                                href: "/request-custom-quote",
-                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                    className: "hm-act-quote",
-                                    children: "Request a quote"
-                                })
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                className: "hm-act-form-wrap",
+                                children: [
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+                                        action: "/search",
+                                        method: "GET",
+                                        className: "hm-act-form",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
+                                                htmlFor: "hm-catalog-search",
+                                                className: "hm-sr-only",
+                                                children: "Search catalog"
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                                id: "hm-catalog-search",
+                                                type: "text",
+                                                name: "q",
+                                                required: true,
+                                                minLength: 2,
+                                                placeholder: "SKU, model, or product name…",
+                                                className: "hm-act-input"
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                                type: "submit",
+                                                className: "hm-act-submit",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                        children: "Search catalog"
+                                                    }),
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                        xmlns: "http://www.w3.org/2000/svg",
+                                                        width: "16",
+                                                        height: "16",
+                                                        viewBox: "0 0 24 24",
+                                                        fill: "none",
+                                                        stroke: "currentColor",
+                                                        strokeWidth: "2",
+                                                        strokeLinecap: "round",
+                                                        strokeLinejoin: "round",
+                                                        "aria-hidden": "true",
+                                                        children: [
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "M5 12h14"
+                                                            }),
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                                d: "m12 5 7 7-7 7"
+                                                            })
+                                                        ]
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                        href: "/request-custom-quote",
+                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                            className: "hm-act-quote",
+                                            children: [
+                                                "Request a quote",
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                    xmlns: "http://www.w3.org/2000/svg",
+                                                    width: "16",
+                                                    height: "16",
+                                                    viewBox: "0 0 24 24",
+                                                    fill: "none",
+                                                    stroke: "currentColor",
+                                                    strokeWidth: "2",
+                                                    strokeLinecap: "round",
+                                                    strokeLinejoin: "round",
+                                                    "aria-hidden": "true",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                            d: "M5 12h14"
+                                                        }),
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                            d: "m12 5 7 7-7 7"
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        })
+                                    })
+                                ]
                             })
                         ]
                     })
@@ -1663,6 +1686,7 @@ const ProofStrip = ()=>{
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9754);
 /* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4439);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5984);
 /* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8411);
 
 
@@ -1671,28 +1695,74 @@ const ProofStrip = ()=>{
 const QUOTES = [
     {
         text: "MIS Solution has been a dependable technology partner for our institutional procurement and support needs — responsive, transparent, and precise.",
-        name: "Pro-Vice Chancellor",
-        role: "University of Dhaka"
+        name: "Professor Sayema Haque Bidisha",
+        role: "Pro-Vice Chancellor (Administration)",
+        org: "University of Dhaka",
+        image: "/testimonials/sayema-haque-bidisha.jpg"
     },
     {
         text: "From hardware supply to ongoing support, MIS delivers with the discipline an investment firm expects — clear timelines and accountable service.",
         name: "Mohammad Emran Hasan",
-        role: "Managing Director & CEO, Investit Asset Management Limited"
+        role: "Managing Director & CEO",
+        org: "Investit Asset Management Limited",
+        image: "/testimonials/emran-hasan.webp"
     }, 
 ];
+const pad = (n)=>String(n).padStart(2, "0");
+const Avatar = ({ quote  })=>{
+    const { 0: broken , 1: setBroken  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    const initials = quote.name.split(/\s+/).filter(Boolean).slice(0, 2).map((w)=>w[0]).join("").toUpperCase();
+    if (!quote.image || broken) {
+        return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+            className: "hm-ed-avatar-fallback",
+            "aria-hidden": "true",
+            children: initials || /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                viewBox: "0 0 24 24",
+                width: "22",
+                height: "22",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: "1.5",
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                        cx: "12",
+                        cy: "8",
+                        r: "3.5"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                        d: "M5 19.5c1.6-3.2 4.2-4.8 7-4.8s5.4 1.6 7 4.8"
+                    })
+                ]
+            })
+        });
+    }
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+        src: quote.image,
+        alt: "",
+        className: "hm-ed-avatar-img",
+        onError: ()=>setBroken(true)
+    });
+};
 const Quotes = ()=>{
     const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_3__/* .useReducedMotion */ .J)();
     const { 0: index , 1: setIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+    const total = QUOTES.length;
+    const quote = QUOTES[index];
+    const go = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((next)=>{
+        setIndex((next % total + total) % total);
+    }, [
+        total
+    ]);
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
-        if (reduce || QUOTES.length <= 1) return undefined;
-        const timer = setInterval(()=>{
-            setIndex((prev)=>(prev + 1) % QUOTES.length);
-        }, 6000);
+        if (reduce || total <= 1) return undefined;
+        const timer = setInterval(()=>go(index + 1), 7000);
         return ()=>clearInterval(timer);
     }, [
-        reduce
+        reduce,
+        total,
+        index,
+        go
     ]);
-    const quote = QUOTES[index];
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
         className: "hm-quotes",
         "aria-labelledby": "hm-quotes-title",
@@ -1703,56 +1773,172 @@ const Quotes = ()=>{
             viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .homeViewport */ .lX,
             variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .fadeUp */ .pB,
             children: [
-                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                    className: "hm-section-head hm-section-head-left",
-                    children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                            className: "hm-eyebrow",
-                            children: "Client voice"
-                        }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                            id: "hm-quotes-title",
-                            className: "hm-section-title",
-                            children: "What partners say"
-                        })
-                    ]
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                    id: "hm-quotes-title",
+                    className: "hm-sr-only",
+                    children: "What partners say"
                 }),
-                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("figure", {
-                    className: "hm-quote",
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                    className: "hm-ed",
                     children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("blockquote", {
-                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                children: [
-                                    "“",
-                                    quote.text,
-                                    "”"
-                                ]
-                            }, index)
-                        }),
-                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("figcaption", {
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "hm-ed-row",
                             children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
-                                    children: quote.name
-                                }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                    children: quote.role
+                                    className: "hm-ed-index",
+                                    "aria-hidden": "true",
+                                    children: pad(index + 1)
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "hm-ed-body",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .AnimatePresence */ .M, {
+                                            mode: "wait",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_4__/* .motion.blockquote */ .E.blockquote, {
+                                                className: "hm-ed-quote",
+                                                initial: reduce ? false : {
+                                                    opacity: 0,
+                                                    x: 16
+                                                },
+                                                animate: {
+                                                    opacity: 1,
+                                                    x: 0
+                                                },
+                                                exit: reduce ? undefined : {
+                                                    opacity: 0,
+                                                    x: -12
+                                                },
+                                                transition: {
+                                                    duration: 0.35,
+                                                    ease: [
+                                                        0.22,
+                                                        1,
+                                                        0.36,
+                                                        1
+                                                    ]
+                                                },
+                                                children: quote.text
+                                            }, index)
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "hm-ed-person",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                    className: "hm-ed-avatar",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Avatar, {
+                                                        quote: quote
+                                                    }, quote.name)
+                                                }),
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                    className: "hm-ed-meta",
+                                                    children: [
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                            className: "hm-ed-name",
+                                                            children: quote.name
+                                                        }),
+                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                                                            className: "hm-ed-role",
+                                                            children: [
+                                                                quote.role,
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                    className: "hm-ed-sep",
+                                                                    "aria-hidden": "true",
+                                                                    children: "/"
+                                                                }),
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                    className: "hm-ed-org",
+                                                                    children: quote.org
+                                                                })
+                                                            ]
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: "hm-ed-controls",
+                            children: [
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "hm-ed-nav-left",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "hm-ed-lines",
+                                            role: "tablist",
+                                            "aria-label": "Testimonials",
+                                            children: QUOTES.map((q, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                    type: "button",
+                                                    role: "tab",
+                                                    "aria-selected": i === index,
+                                                    className: `hm-ed-line${i === index ? " is-active" : ""}`,
+                                                    onClick: ()=>setIndex(i),
+                                                    "aria-label": `${q.name}`,
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {})
+                                                }, q.name))
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                            className: "hm-ed-counter",
+                                            children: [
+                                                pad(index + 1),
+                                                " / ",
+                                                pad(total)
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "hm-ed-chevrons",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                            type: "button",
+                                            className: "hm-ed-chev",
+                                            onClick: ()=>go(index - 1),
+                                            "aria-label": "Previous testimonial",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                xmlns: "http://www.w3.org/2000/svg",
+                                                width: "20",
+                                                height: "20",
+                                                viewBox: "0 0 24 24",
+                                                fill: "none",
+                                                stroke: "currentColor",
+                                                strokeWidth: "2",
+                                                strokeLinecap: "round",
+                                                strokeLinejoin: "round",
+                                                "aria-hidden": "true",
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                    d: "m15 18-6-6 6-6"
+                                                })
+                                            })
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                            type: "button",
+                                            className: "hm-ed-chev",
+                                            onClick: ()=>go(index + 1),
+                                            "aria-label": "Next testimonial",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                                xmlns: "http://www.w3.org/2000/svg",
+                                                width: "20",
+                                                height: "20",
+                                                viewBox: "0 0 24 24",
+                                                fill: "none",
+                                                stroke: "currentColor",
+                                                strokeWidth: "2",
+                                                strokeLinecap: "round",
+                                                strokeLinejoin: "round",
+                                                "aria-hidden": "true",
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                    d: "m9 18 6-6-6-6"
+                                                })
+                                            })
+                                        })
+                                    ]
                                 })
                             ]
                         })
                     ]
-                }),
-                QUOTES.length > 1 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                    className: "hm-quote-dots",
-                    role: "tablist",
-                    "aria-label": "Testimonials",
-                    children: QUOTES.map((q, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                            type: "button",
-                            role: "tab",
-                            "aria-selected": i === index,
-                            className: `hm-quote-dot${i === index ? " is-active" : ""}`,
-                            onClick: ()=>setIndex(i),
-                            "aria-label": `${q.name}`
-                        }, q.name))
                 })
             ]
         })
