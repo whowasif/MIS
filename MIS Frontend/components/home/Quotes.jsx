@@ -5,10 +5,10 @@ import { fadeUp, homeViewport, reducedFade } from './homeMotion'
 const QUOTES = [
   {
     text: 'MIS Solution has been a dependable technology partner for our institutional procurement and support needs — responsive, transparent, and precise.',
-    name: 'Professor Sayema Haque Bidisha',
-    role: 'Pro-Vice Chancellor (Administration)',
+    name: 'Professor Abdus Salam',
+    role: 'Pro-Vice Chancellor (Academic)',
     org: 'University of Dhaka',
-    image: '/testimonials/sayema-haque-bidisha.jpg',
+    image: '/testimonials/abdus-salam.jpg',
   },
   {
     text: 'From hardware supply to ongoing support, MIS delivers with the discipline an investment firm expects — clear timelines and accountable service.',
