@@ -1,747 +1,28 @@
-"use strict";
 (() => {
 var exports = {};
 exports.id = 5405;
 exports.ids = [5405,7174];
 exports.modules = {
 
-/***/ 8966:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ 3490:
+/***/ ((module) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9816);
-/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-/*
- * CoreSolutions — modern "What We Offer" section over a dark textured
- * background image. Three division cards, monochrome (B&W) icons, and one
- * capability-per-row list with its own relevant icon. Scroll-reveal +
- * hover micro-interactions, pure CSS. Responsive; respects reduced-motion.
- */ // --- monochrome (currentColor) icons ---------------------------------------
-const Icon = {
-    browser: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.7",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "2.5",
-                    y: "4",
-                    width: "19",
-                    height: "15",
-                    rx: "2.5"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M2.5 8h19"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "5",
-                    cy: "6",
-                    r: ".6",
-                    fill: "currentColor"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "7",
-                    cy: "6",
-                    r: ".6",
-                    fill: "currentColor"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M8 12.5h8M8 15.5h5"
-                })
-            ]
-        }),
-    crown: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.7",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M4 19h16"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M5 19V9l3 2 4-5 4 5 3-2v10"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "12",
-                    cy: "4",
-                    r: "1.4"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "4.6",
-                    cy: "8.4",
-                    r: "1.1"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "19.4",
-                    cy: "8.4",
-                    r: "1.1"
-                })
-            ]
-        }),
-    wrench: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.7",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-.4-.4-2.1z"
-            })
-        }),
-    // digital chips
-    code: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M8 7l-5 5 5 5M16 7l5 5-5 5"
-            })
-        }),
-    cube: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M12 2.5 20 7v10l-8 4.5L4 17V7z"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M4 7l8 4.5L20 7M12 11.5V21"
-                })
-            ]
-        }),
-    mobile: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "7",
-                    y: "2.5",
-                    width: "10",
-                    height: "19",
-                    rx: "2.5"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M11 18.5h2"
-                })
-            ]
-        }),
-    ai: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "6",
-                    y: "7",
-                    width: "12",
-                    height: "11",
-                    rx: "2.5"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M12 7V4M9 2.5h6M9.5 12v0M14.5 12v0M2.5 11h1.5M20 11h1.5"
-                })
-            ]
-        }),
-    shield: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M12 2.5 20 6v6c0 5-3.4 8-8 9.5C7.4 20 4 17 4 12V6z"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "m9 12 2 2 4-4"
-                })
-            ]
-        }),
-    cart: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M3 4h2l2.2 11.2a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.2L21 7H6"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "9.5",
-                    cy: "20",
-                    r: "1.3"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "17.5",
-                    cy: "20",
-                    r: "1.3"
-                })
-            ]
-        }),
-    // corporate chips
-    monitor: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "3",
-                    y: "4",
-                    width: "18",
-                    height: "12",
-                    rx: "2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M8 20h8M12 16v4"
-                })
-            ]
-        }),
-    camera: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "2.5",
-                    y: "7",
-                    width: "19",
-                    height: "12",
-                    rx: "2.5"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "12",
-                    cy: "13",
-                    r: "3.2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M8 7l1.5-2.5h5L16 7"
-                })
-            ]
-        }),
-    printer: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M7 8V3h10v5"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "4",
-                    y: "8",
-                    width: "16",
-                    height: "8",
-                    rx: "2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "7",
-                    y: "14",
-                    width: "10",
-                    height: "6",
-                    rx: "1"
-                })
-            ]
-        }),
-    network: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "12",
-                    cy: "4.5",
-                    r: "2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "5",
-                    cy: "19.5",
-                    r: "2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "19",
-                    cy: "19.5",
-                    r: "2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M12 6.5v5M12 11.5 5.8 17.8M12 11.5l6.2 6.3"
-                })
-            ]
-        }),
-    server: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "3",
-                    y: "4",
-                    width: "18",
-                    height: "7",
-                    rx: "2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "3",
-                    y: "13",
-                    width: "18",
-                    height: "7",
-                    rx: "2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M7 7.5v0M7 16.5v0"
-                })
-            ]
-        }),
-    power: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M13 2 4 14h7l-1 8 9-12h-7z"
-            })
-        }),
-    // maintenance chips
-    doc: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M6 2.5h8l4 4V21a.5.5 0 0 1-.5.5H6A.5.5 0 0 1 5.5 21V3A.5.5 0 0 1 6 2.5z"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M14 2.5V7h4M8 12h8M8 16h5"
-                })
-            ]
-        }),
-    phone: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M6.5 3h3l1.5 5-2 1.5a12 12 0 0 0 5 5l1.5-2 5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3z"
-            })
-        }),
-    install: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M12 3v11M8 10l4 4 4-4"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M4 18h16v2.5H4z"
-                })
-            ]
-        }),
-    bug: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
-                    x: "8",
-                    y: "7",
-                    width: "8",
-                    height: "11",
-                    rx: "4"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M9 3l1.5 2.5M15 3l-1.5 2.5M8 10H4M20 10h-4M8 14H3.5M20.5 14H16M8.5 18l-2 2.5M15.5 18l2 2.5"
-                })
-            ]
-        }),
-    remote: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-            ...p,
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: "currentColor",
-            strokeWidth: "1.8",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                    cx: "12",
-                    cy: "12",
-                    r: "2"
-                }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M8 8a5.6 5.6 0 0 0 0 8M16 8a5.6 5.6 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"
-                })
-            ]
-        })
-};
-const DIVISIONS = [
-    {
-        key: "digital",
-        title: "Digital Services",
-        tagline: "Your complete digital presence",
-        href: "/digital-services",
-        HeadIcon: Icon.browser,
-        chips: [
-            {
-                label: "Web Development",
-                I: Icon.code
-            },
-            {
-                label: "Custom Software",
-                I: Icon.cube
-            },
-            {
-                label: "Mobile Apps",
-                I: Icon.mobile
-            },
-            {
-                label: "AI Solutions",
-                I: Icon.ai
-            },
-            {
-                label: "Cyber Security",
-                I: Icon.shield
-            },
-            {
-                label: "E-Commerce",
-                I: Icon.cart
-            }, 
-        ]
-    },
-    {
-        key: "corporate",
-        title: "Business & Corporate Solutions",
-        tagline: "Enterprise-grade B2B infrastructure",
-        href: "/enterprise-solutions",
-        HeadIcon: Icon.crown,
-        chips: [
-            {
-                label: "IT Equipments",
-                I: Icon.monitor
-            },
-            {
-                label: "Security System",
-                I: Icon.camera
-            },
-            {
-                label: "Office Equipments",
-                I: Icon.printer
-            },
-            {
-                label: "Networking",
-                I: Icon.network
-            },
-            {
-                label: "Server Setup",
-                I: Icon.server
-            },
-            {
-                label: "Power Solution",
-                I: Icon.power
-            }, 
-        ]
-    },
-    {
-        key: "maintenance",
-        title: "Maintenance & Support",
-        tagline: "Peak performance, always",
-        href: "/maintenance-support",
-        HeadIcon: Icon.wrench,
-        chips: [
-            {
-                label: "AMC Contracts",
-                I: Icon.doc
-            },
-            {
-                label: "On-call Repair",
-                I: Icon.phone
-            },
-            {
-                label: "Installation",
-                I: Icon.install
-            },
-            {
-                label: "Troubleshooting",
-                I: Icon.bug
-            },
-            {
-                label: "Remote Solution",
-                I: Icon.remote
-            }, 
-        ]
-    }, 
-];
-const CoreSolutions = ()=>{
-    const ref = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const { 0: on , 1: setOn  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        const el = ref.current;
-        if (!el) return;
-        const reduce =  false && 0;
-        if (reduce) {
-            setOn(true);
-            return;
-        }
-        const fallback = setTimeout(()=>setOn(true), 700);
-        const obs = new IntersectionObserver((entries)=>{
-            entries.forEach((e)=>{
-                if (e.isIntersecting) {
-                    setOn(true);
-                    clearTimeout(fallback);
-                    obs.disconnect();
-                }
-            });
-        }, {
-            threshold: 0.12
-        });
-        obs.observe(el);
-        return ()=>{
-            clearTimeout(fallback);
-            obs.disconnect();
-        };
-    }, []);
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        ref: ref,
-        className: "jsx-952ebfb5e8ceff61" + " " + `cs ${on ? "on" : ""}`,
-        children: [
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-952ebfb5e8ceff61" + " " + "cs-inner",
-                children: [
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
-                        className: "jsx-952ebfb5e8ceff61" + " " + "cs-head",
-                        children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                className: "jsx-952ebfb5e8ceff61" + " " + "cs-eyebrow",
-                                children: "What We Offer"
-                            }),
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
-                                className: "jsx-952ebfb5e8ceff61" + " " + "cs-title",
-                                children: [
-                                    "Core IT ",
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                        className: "jsx-952ebfb5e8ceff61",
-                                        children: "Solutions"
-                                    })
-                                ]
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                className: "jsx-952ebfb5e8ceff61" + " " + "cs-sub",
-                                children: "Three specialized divisions — each a full-spectrum capability center designed to scale with your enterprise."
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-952ebfb5e8ceff61" + " " + "cs-cards",
-                        children: DIVISIONS.map((d, i)=>{
-                            const HeadIcon = d.HeadIcon;
-                            return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                                style: {
-                                    "--i": i
-                                },
-                                className: "jsx-952ebfb5e8ceff61" + " " + "cs-card",
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                        "aria-hidden": "true",
-                                        className: "jsx-952ebfb5e8ceff61" + " " + "cs-card-bar"
-                                    }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-952ebfb5e8ceff61" + " " + "cs-card-top",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-952ebfb5e8ceff61" + " " + "cs-icon",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(HeadIcon, {
-                                                    width: "28",
-                                                    height: "28",
-                                                    "aria-hidden": "true",
-                                                    className: "jsx-952ebfb5e8ceff61"
-                                                })
-                                            }),
-                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-952ebfb5e8ceff61" + " " + "cs-card-heads",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                        className: "jsx-952ebfb5e8ceff61" + " " + "cs-card-title",
-                                                        children: d.title
-                                                    }),
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                        className: "jsx-952ebfb5e8ceff61" + " " + "cs-card-tag",
-                                                        children: d.tagline
-                                                    })
-                                                ]
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
-                                        className: "jsx-952ebfb5e8ceff61" + " " + "cs-chips",
-                                        children: d.chips.map((c, ci)=>{
-                                            const ChipIcon = c.I;
-                                            return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                                style: {
-                                                    "--ci": ci
-                                                },
-                                                className: "jsx-952ebfb5e8ceff61",
-                                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                    href: d.href,
-                                                    className: "jsx-952ebfb5e8ceff61" + " " + "cs-chip",
-                                                    children: [
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-952ebfb5e8ceff61" + " " + "cs-chip-ic",
-                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(ChipIcon, {
-                                                                width: "17",
-                                                                height: "17",
-                                                                "aria-hidden": "true",
-                                                                className: "jsx-952ebfb5e8ceff61"
-                                                            })
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-952ebfb5e8ceff61" + " " + "cs-chip-txt",
-                                                            children: c.label
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                            viewBox: "0 0 24 24",
-                                                            width: "15",
-                                                            height: "15",
-                                                            fill: "none",
-                                                            stroke: "currentColor",
-                                                            strokeWidth: "2.2",
-                                                            strokeLinecap: "round",
-                                                            strokeLinejoin: "round",
-                                                            "aria-hidden": "true",
-                                                            className: "jsx-952ebfb5e8ceff61" + " " + "cs-chip-arrow",
-                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                d: "M9 6l6 6-6 6",
-                                                                className: "jsx-952ebfb5e8ceff61"
-                                                            })
-                                                        })
-                                                    ]
-                                                })
-                                            }, c.label);
-                                        })
-                                    }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                        href: d.href,
-                                        className: "jsx-952ebfb5e8ceff61" + " " + "cs-card-link",
-                                        children: [
-                                            "Explore ",
-                                            d.title,
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                viewBox: "0 0 24 24",
-                                                width: "16",
-                                                height: "16",
-                                                fill: "none",
-                                                stroke: "currentColor",
-                                                strokeWidth: "2.2",
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round",
-                                                "aria-hidden": "true",
-                                                className: "jsx-952ebfb5e8ceff61",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                    d: "M5 12h14M13 6l6 6-6 6",
-                                                    className: "jsx-952ebfb5e8ceff61"
-                                                })
-                                            })
-                                        ]
-                                    })
-                                ]
-                            }, d.key);
-                        })
-                    })
-                ]
-            }),
-            react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "952ebfb5e8ceff61",
-                children: ".cs{position:relative;width:100%;overflow:hidden;padding:clamp(56px,7vw,96px)0;background-color:#f8f8f8;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 1024'%3E%3Cg stroke='%23f8f8f8' stroke-width='1.7' stroke-linejoin='round'%3E%3Cg fill='%23e4e4e4'%3E%3Cpolygon points='1073.5,260.0 1087.2,267.9 1087.2,283.7 1073.5,291.6 1059.8,283.7 1059.8,267.9'/%3E%3Cpolygon points='1059.8,283.7 1073.5,291.6 1073.5,307.5 1059.8,315.4 1046.1,307.5 1046.1,291.6'/%3E%3Cpolygon points='1087.2,283.7 1100.9,291.6 1100.9,307.5 1087.2,315.4 1073.5,307.5 1073.5,291.6'/%3E%3Cpolygon points='1073.5,307.5 1087.2,315.4 1087.2,331.2 1073.5,339.1 1059.8,331.2 1059.8,315.4'/%3E%3Cpolygon points='1100.9,307.5 1114.6,315.4 1114.6,331.2 1100.9,339.1 1087.2,331.2 1087.2,315.4'/%3E%3Cpolygon points='1005.0,331.2 1018.7,339.1 1018.7,354.9 1005.0,362.8 991.3,354.9 991.3,339.1'/%3E%3Cpolygon points='1032.4,331.2 1046.1,339.1 1046.1,354.9 1032.4,362.8 1018.7,354.9 1018.7,339.1'/%3E%3Cpolygon points='1059.8,331.2 1073.5,339.1 1073.5,354.9 1059.8,362.8 1046.1,354.9 1046.1,339.1'/%3E%3Cpolygon points='1087.2,331.2 1100.9,339.1 1100.9,354.9 1087.2,362.8 1073.5,354.9 1073.5,339.1'/%3E%3Cpolygon points='1018.7,354.9 1032.4,362.8 1032.4,378.6 1018.7,386.5 1005.0,378.6 1005.0,362.8'/%3E%3Cpolygon points='1046.1,354.9 1059.8,362.8 1059.8,378.6 1046.1,386.5 1032.4,378.6 1032.4,362.8'/%3E%3Cpolygon points='1073.5,354.9 1087.2,362.8 1087.2,378.6 1073.5,386.5 1059.8,378.6 1059.8,362.8'/%3E%3Cpolygon points='977.6,426.1 991.3,434.0 991.3,449.8 977.6,457.7 963.9,449.8 963.9,434.0'/%3E%3Cpolygon points='963.9,449.8 977.6,457.7 977.6,473.6 963.9,481.5 950.2,473.6 950.2,457.7'/%3E%3Cpolygon points='991.3,449.8 1005.0,457.7 1005.0,473.6 991.3,481.5 977.6,473.6 977.6,457.7'/%3E%3Cpolygon points='1210.5,449.8 1224.2,457.7 1224.2,473.6 1210.5,481.5 1196.8,473.6 1196.8,457.7'/%3E%3Cpolygon points='1237.9,449.8 1251.6,457.7 1251.6,473.6 1237.9,481.5 1224.2,473.6 1224.2,457.7'/%3E%3Cpolygon points='1265.3,449.8 1279.0,457.7 1279.0,473.6 1265.3,481.5 1251.6,473.6 1251.6,457.7'/%3E%3Cpolygon points='1224.2,473.6 1237.9,481.5 1237.9,497.3 1224.2,505.2 1210.5,497.3 1210.5,481.5'/%3E%3Cpolygon points='1251.6,473.6 1265.3,481.5 1265.3,497.3 1251.6,505.2 1237.9,497.3 1237.9,481.5'/%3E%3Cpolygon points='1210.5,497.3 1224.2,505.2 1224.2,521.0 1210.5,528.9 1196.8,521.0 1196.8,505.2'/%3E%3Cpolygon points='1237.9,497.3 1251.6,505.2 1251.6,521.0 1237.9,528.9 1224.2,521.0 1224.2,505.2'/%3E%3Cpolygon points='840.6,521.0 854.3,528.9 854.3,544.7 840.6,552.7 826.9,544.7 826.9,528.9'/%3E%3Cpolygon points='1032.4,521.0 1046.1,528.9 1046.1,544.7 1032.4,552.7 1018.7,544.7 1018.7,528.9'/%3E%3Cpolygon points='1059.8,521.0 1073.5,528.9 1073.5,544.7 1059.8,552.7 1046.1,544.7 1046.1,528.9'/%3E%3Cpolygon points='1196.8,521.0 1210.5,528.9 1210.5,544.7 1196.8,552.7 1183.1,544.7 1183.1,528.9'/%3E%3Cpolygon points='854.3,544.7 868.0,552.7 868.0,568.5 854.3,576.4 840.6,568.5 840.6,552.7'/%3E%3Cpolygon points='1046.1,544.7 1059.8,552.7 1059.8,568.5 1046.1,576.4 1032.4,568.5 1032.4,552.7'/%3E%3Cpolygon points='1059.8,568.5 1073.5,576.4 1073.5,592.2 1059.8,600.1 1046.1,592.2 1046.1,576.4'/%3E%3Cpolygon points='1196.8,615.9 1210.5,623.8 1210.5,639.7 1196.8,647.6 1183.1,639.7 1183.1,623.8'/%3E%3Cpolygon points='1073.5,639.7 1087.2,647.6 1087.2,663.4 1073.5,671.3 1059.8,663.4 1059.8,647.6'/%3E%3Cpolygon points='1100.9,639.7 1114.6,647.6 1114.6,663.4 1100.9,671.3 1087.2,663.4 1087.2,647.6'/%3E%3Cpolygon points='1183.1,639.7 1196.8,647.6 1196.8,663.4 1183.1,671.3 1169.4,663.4 1169.4,647.6'/%3E%3Cpolygon points='1210.5,639.7 1224.2,647.6 1224.2,663.4 1210.5,671.3 1196.8,663.4 1196.8,647.6'/%3E%3Cpolygon points='1087.2,663.4 1100.9,671.3 1100.9,687.1 1087.2,695.0 1073.5,687.1 1073.5,671.3'/%3E%3Cpolygon points='1169.4,663.4 1183.1,671.3 1183.1,687.1 1169.4,695.0 1155.7,687.1 1155.7,671.3'/%3E%3C/g%3E%3Cg fill='%23cccccc'%3E%3Cpolygon points='1032.4,378.6 1046.1,386.5 1046.1,402.4 1032.4,410.3 1018.7,402.4 1018.7,386.5'/%3E%3Cpolygon points='1059.8,378.6 1073.5,386.5 1073.5,402.4 1059.8,410.3 1046.1,402.4 1046.1,386.5'/%3E%3Cpolygon points='1087.2,378.6 1100.9,386.5 1100.9,402.4 1087.2,410.3 1073.5,402.4 1073.5,386.5'/%3E%3Cpolygon points='1114.6,378.6 1128.3,386.5 1128.3,402.4 1114.6,410.3 1100.9,402.4 1100.9,386.5'/%3E%3Cpolygon points='1046.1,402.4 1059.8,410.3 1059.8,426.1 1046.1,434.0 1032.4,426.1 1032.4,410.3'/%3E%3Cpolygon points='1073.5,402.4 1087.2,410.3 1087.2,426.1 1073.5,434.0 1059.8,426.1 1059.8,410.3'/%3E%3Cpolygon points='1100.9,402.4 1114.6,410.3 1114.6,426.1 1100.9,434.0 1087.2,426.1 1087.2,410.3'/%3E%3Cpolygon points='1128.3,402.4 1142.0,410.3 1142.0,426.1 1128.3,434.0 1114.6,426.1 1114.6,410.3'/%3E%3Cpolygon points='1032.4,426.1 1046.1,434.0 1046.1,449.8 1032.4,457.7 1018.7,449.8 1018.7,434.0'/%3E%3Cpolygon points='1059.8,426.1 1073.5,434.0 1073.5,449.8 1059.8,457.7 1046.1,449.8 1046.1,434.0'/%3E%3Cpolygon points='1087.2,426.1 1100.9,434.0 1100.9,449.8 1087.2,457.7 1073.5,449.8 1073.5,434.0'/%3E%3Cpolygon points='963.9,497.3 977.6,505.2 977.6,521.0 963.9,528.9 950.2,521.0 950.2,505.2'/%3E%3Cpolygon points='895.4,521.0 909.1,528.9 909.1,544.7 895.4,552.7 881.7,544.7 881.7,528.9'/%3E%3Cpolygon points='950.2,521.0 963.9,528.9 963.9,544.7 950.2,552.7 936.5,544.7 936.5,528.9'/%3E%3Cpolygon points='977.6,521.0 991.3,528.9 991.3,544.7 977.6,552.7 963.9,544.7 963.9,528.9'/%3E%3Cpolygon points='881.7,544.7 895.4,552.7 895.4,568.5 881.7,576.4 868.0,568.5 868.0,552.7'/%3E%3Cpolygon points='909.1,544.7 922.8,552.7 922.8,568.5 909.1,576.4 895.4,568.5 895.4,552.7'/%3E%3Cpolygon points='868.0,568.5 881.7,576.4 881.7,592.2 868.0,600.1 854.3,592.2 854.3,576.4'/%3E%3Cpolygon points='813.2,663.4 826.9,671.3 826.9,687.1 813.2,695.0 799.5,687.1 799.5,671.3'/%3E%3Cpolygon points='840.6,663.4 854.3,671.3 854.3,687.1 840.6,695.0 826.9,687.1 826.9,671.3'/%3E%3Cpolygon points='826.9,687.1 840.6,695.0 840.6,710.8 826.9,718.8 813.2,710.8 813.2,695.0'/%3E%3Cpolygon points='1183.1,687.1 1196.8,695.0 1196.8,710.8 1183.1,718.8 1169.4,710.8 1169.4,695.0'/%3E%3Cpolygon points='1169.4,710.8 1183.1,718.8 1183.1,734.6 1169.4,742.5 1155.7,734.6 1155.7,718.8'/%3E%3Cpolygon points='1196.8,710.8 1210.5,718.8 1210.5,734.6 1196.8,742.5 1183.1,734.6 1183.1,718.8'/%3E%3Cpolygon points='909.1,782.0 922.8,789.9 922.8,805.8 909.1,813.7 895.4,805.8 895.4,789.9'/%3E%3Cpolygon points='895.4,805.8 909.1,813.7 909.1,829.5 895.4,837.4 881.7,829.5 881.7,813.7'/%3E%3Cpolygon points='922.8,805.8 936.5,813.7 936.5,829.5 922.8,837.4 909.1,829.5 909.1,813.7'/%3E%3C/g%3E%3Cg fill='%23666666'%3E%3Cpolygon points='1018.7,449.8 1032.4,457.7 1032.4,473.6 1018.7,481.5 1005.0,473.6 1005.0,457.7'/%3E%3Cpolygon points='1046.1,449.8 1059.8,457.7 1059.8,473.6 1046.1,481.5 1032.4,473.6 1032.4,457.7'/%3E%3Cpolygon points='1073.5,449.8 1087.2,457.7 1087.2,473.6 1073.5,481.5 1059.8,473.6 1059.8,457.7'/%3E%3Cpolygon points='977.6,473.6 991.3,481.5 991.3,497.3 977.6,505.2 963.9,497.3 963.9,481.5'/%3E%3Cpolygon points='1005.0,473.6 1018.7,481.5 1018.7,497.3 1005.0,505.2 991.3,497.3 991.3,481.5'/%3E%3Cpolygon points='1032.4,473.6 1046.1,481.5 1046.1,497.3 1032.4,505.2 1018.7,497.3 1018.7,481.5'/%3E%3Cpolygon points='1059.8,473.6 1073.5,481.5 1073.5,497.3 1059.8,505.2 1046.1,497.3 1046.1,481.5'/%3E%3Cpolygon points='991.3,497.3 1005.0,505.2 1005.0,521.0 991.3,528.9 977.6,521.0 977.6,505.2'/%3E%3Cpolygon points='1018.7,497.3 1032.4,505.2 1032.4,521.0 1018.7,528.9 1005.0,521.0 1005.0,505.2'/%3E%3Cpolygon points='1046.1,497.3 1059.8,505.2 1059.8,521.0 1046.1,528.9 1032.4,521.0 1032.4,505.2'/%3E%3Cpolygon points='1005.0,521.0 1018.7,528.9 1018.7,544.7 1005.0,552.7 991.3,544.7 991.3,528.9'/%3E%3Cpolygon points='963.9,544.7 977.6,552.7 977.6,568.5 963.9,576.4 950.2,568.5 950.2,552.7'/%3E%3Cpolygon points='991.3,544.7 1005.0,552.7 1005.0,568.5 991.3,576.4 977.6,568.5 977.6,552.7'/%3E%3Cpolygon points='1018.7,544.7 1032.4,552.7 1032.4,568.5 1018.7,576.4 1005.0,568.5 1005.0,552.7'/%3E%3Cpolygon points='895.4,568.5 909.1,576.4 909.1,592.2 895.4,600.1 881.7,592.2 881.7,576.4'/%3E%3Cpolygon points='922.8,568.5 936.5,576.4 936.5,592.2 922.8,600.1 909.1,592.2 909.1,576.4'/%3E%3Cpolygon points='977.6,568.5 991.3,576.4 991.3,592.2 977.6,600.1 963.9,592.2 963.9,576.4'/%3E%3Cpolygon points='1005.0,568.5 1018.7,576.4 1018.7,592.2 1005.0,600.1 991.3,592.2 991.3,576.4'/%3E%3Cpolygon points='1032.4,568.5 1046.1,576.4 1046.1,592.2 1032.4,600.1 1018.7,592.2 1018.7,576.4'/%3E%3Cpolygon points='881.7,592.2 895.4,600.1 895.4,615.9 881.7,623.8 868.0,615.9 868.0,600.1'/%3E%3Cpolygon points='909.1,592.2 922.8,600.1 922.8,615.9 909.1,623.8 895.4,615.9 895.4,600.1'/%3E%3Cpolygon points='868.0,615.9 881.7,623.8 881.7,639.7 868.0,647.6 854.3,639.7 854.3,623.8'/%3E%3Cpolygon points='895.4,615.9 909.1,623.8 909.1,639.7 895.4,647.6 881.7,639.7 881.7,623.8'/%3E%3Cpolygon points='1005.0,615.9 1018.7,623.8 1018.7,639.7 1005.0,647.6 991.3,639.7 991.3,623.8'/%3E%3Cpolygon points='881.7,639.7 895.4,647.6 895.4,663.4 881.7,671.3 868.0,663.4 868.0,647.6'/%3E%3Cpolygon points='909.1,639.7 922.8,647.6 922.8,663.4 909.1,671.3 895.4,663.4 895.4,647.6'/%3E%3Cpolygon points='991.3,639.7 1005.0,647.6 1005.0,663.4 991.3,671.3 977.6,663.4 977.6,647.6'/%3E%3Cpolygon points='1018.7,639.7 1032.4,647.6 1032.4,663.4 1018.7,671.3 1005.0,663.4 1005.0,647.6'/%3E%3Cpolygon points='868.0,663.4 881.7,671.3 881.7,687.1 868.0,695.0 854.3,687.1 854.3,671.3'/%3E%3Cpolygon points='895.4,663.4 909.1,671.3 909.1,687.1 895.4,695.0 881.7,687.1 881.7,671.3'/%3E%3Cpolygon points='977.6,663.4 991.3,671.3 991.3,687.1 977.6,695.0 963.9,687.1 963.9,671.3'/%3E%3Cpolygon points='1059.8,663.4 1073.5,671.3 1073.5,687.1 1059.8,695.0 1046.1,687.1 1046.1,671.3'/%3E%3Cpolygon points='854.3,687.1 868.0,695.0 868.0,710.8 854.3,718.8 840.6,710.8 840.6,695.0'/%3E%3Cpolygon points='881.7,687.1 895.4,695.0 895.4,710.8 881.7,718.8 868.0,710.8 868.0,695.0'/%3E%3Cpolygon points='1046.1,687.1 1059.8,695.0 1059.8,710.8 1046.1,718.8 1032.4,710.8 1032.4,695.0'/%3E%3Cpolygon points='1073.5,687.1 1087.2,695.0 1087.2,710.8 1073.5,718.8 1059.8,710.8 1059.8,695.0'/%3E%3Cpolygon points='1100.9,687.1 1114.6,695.0 1114.6,710.8 1100.9,718.8 1087.2,710.8 1087.2,695.0'/%3E%3Cpolygon points='854.3,782.0 868.0,789.9 868.0,805.8 854.3,813.7 840.6,805.8 840.6,789.9'/%3E%3Cpolygon points='881.7,782.0 895.4,789.9 895.4,805.8 881.7,813.7 868.0,805.8 868.0,789.9'/%3E%3Cpolygon points='868.0,805.8 881.7,813.7 881.7,829.5 868.0,837.4 854.3,829.5 854.3,813.7'/%3E%3Cpolygon points='909.1,829.5 922.8,837.4 922.8,853.2 909.1,861.1 895.4,853.2 895.4,837.4'/%3E%3Cpolygon points='936.5,829.5 950.2,837.4 950.2,853.2 936.5,861.1 922.8,853.2 922.8,837.4'/%3E%3Cpolygon points='1155.7,829.5 1169.4,837.4 1169.4,853.2 1155.7,861.1 1142.0,853.2 1142.0,837.4'/%3E%3Cpolygon points='1142.0,853.2 1155.7,861.1 1155.7,876.9 1142.0,884.9 1128.3,876.9 1128.3,861.1'/%3E%3Cpolygon points='1169.4,853.2 1183.1,861.1 1183.1,876.9 1169.4,884.9 1155.7,876.9 1155.7,861.1'/%3E%3Cpolygon points='1196.8,853.2 1210.5,861.1 1210.5,876.9 1196.8,884.9 1183.1,876.9 1183.1,861.1'/%3E%3Cpolygon points='1087.2,900.7 1100.9,908.6 1100.9,924.4 1087.2,932.3 1073.5,924.4 1073.5,908.6'/%3E%3Cpolygon points='1114.6,900.7 1128.3,908.6 1128.3,924.4 1114.6,932.3 1100.9,924.4 1100.9,908.6'/%3E%3C/g%3E%3Cg fill='%232b2b2b'%3E%3Cpolygon points='1265.3,497.3 1279.0,505.2 1279.0,521.0 1265.3,528.9 1251.6,521.0 1251.6,505.2'/%3E%3Cpolygon points='1224.2,521.0 1237.9,528.9 1237.9,544.7 1224.2,552.7 1210.5,544.7 1210.5,528.9'/%3E%3Cpolygon points='1251.6,521.0 1265.3,528.9 1265.3,544.7 1251.6,552.7 1237.9,544.7 1237.9,528.9'/%3E%3Cpolygon points='1155.7,544.7 1169.4,552.7 1169.4,568.5 1155.7,576.4 1142.0,568.5 1142.0,552.7'/%3E%3Cpolygon points='1183.1,544.7 1196.8,552.7 1196.8,568.5 1183.1,576.4 1169.4,568.5 1169.4,552.7'/%3E%3Cpolygon points='1210.5,544.7 1224.2,552.7 1224.2,568.5 1210.5,576.4 1196.8,568.5 1196.8,552.7'/%3E%3Cpolygon points='1237.9,544.7 1251.6,552.7 1251.6,568.5 1237.9,576.4 1224.2,568.5 1224.2,552.7'/%3E%3Cpolygon points='1265.3,544.7 1279.0,552.7 1279.0,568.5 1265.3,576.4 1251.6,568.5 1251.6,552.7'/%3E%3Cpolygon points='1142.0,568.5 1155.7,576.4 1155.7,592.2 1142.0,600.1 1128.3,592.2 1128.3,576.4'/%3E%3Cpolygon points='1169.4,568.5 1183.1,576.4 1183.1,592.2 1169.4,600.1 1155.7,592.2 1155.7,576.4'/%3E%3Cpolygon points='1196.8,568.5 1210.5,576.4 1210.5,592.2 1196.8,600.1 1183.1,592.2 1183.1,576.4'/%3E%3Cpolygon points='1224.2,568.5 1237.9,576.4 1237.9,592.2 1224.2,600.1 1210.5,592.2 1210.5,576.4'/%3E%3Cpolygon points='1251.6,568.5 1265.3,576.4 1265.3,592.2 1251.6,600.1 1237.9,592.2 1237.9,576.4'/%3E%3Cpolygon points='991.3,592.2 1005.0,600.1 1005.0,615.9 991.3,623.8 977.6,615.9 977.6,600.1'/%3E%3Cpolygon points='1018.7,592.2 1032.4,600.1 1032.4,615.9 1018.7,623.8 1005.0,615.9 1005.0,600.1'/%3E%3Cpolygon points='1046.1,592.2 1059.8,600.1 1059.8,615.9 1046.1,623.8 1032.4,615.9 1032.4,600.1'/%3E%3Cpolygon points='1128.3,592.2 1142.0,600.1 1142.0,615.9 1128.3,623.8 1114.6,615.9 1114.6,600.1'/%3E%3Cpolygon points='1155.7,592.2 1169.4,600.1 1169.4,615.9 1155.7,623.8 1142.0,615.9 1142.0,600.1'/%3E%3Cpolygon points='1183.1,592.2 1196.8,600.1 1196.8,615.9 1183.1,623.8 1169.4,615.9 1169.4,600.1'/%3E%3Cpolygon points='1265.3,592.2 1279.0,600.1 1279.0,615.9 1265.3,623.8 1251.6,615.9 1251.6,600.1'/%3E%3Cpolygon points='922.8,615.9 936.5,623.8 936.5,639.7 922.8,647.6 909.1,639.7 909.1,623.8'/%3E%3Cpolygon points='950.2,615.9 963.9,623.8 963.9,639.7 950.2,647.6 936.5,639.7 936.5,623.8'/%3E%3Cpolygon points='977.6,615.9 991.3,623.8 991.3,639.7 977.6,647.6 963.9,639.7 963.9,623.8'/%3E%3Cpolygon points='1032.4,615.9 1046.1,623.8 1046.1,639.7 1032.4,647.6 1018.7,639.7 1018.7,623.8'/%3E%3Cpolygon points='1142.0,615.9 1155.7,623.8 1155.7,639.7 1142.0,647.6 1128.3,639.7 1128.3,623.8'/%3E%3Cpolygon points='1169.4,615.9 1183.1,623.8 1183.1,639.7 1169.4,647.6 1155.7,639.7 1155.7,623.8'/%3E%3Cpolygon points='1251.6,615.9 1265.3,623.8 1265.3,639.7 1251.6,647.6 1237.9,639.7 1237.9,623.8'/%3E%3Cpolygon points='936.5,639.7 950.2,647.6 950.2,663.4 936.5,671.3 922.8,663.4 922.8,647.6'/%3E%3Cpolygon points='963.9,639.7 977.6,647.6 977.6,663.4 963.9,671.3 950.2,663.4 950.2,647.6'/%3E%3Cpolygon points='1155.7,639.7 1169.4,647.6 1169.4,663.4 1155.7,671.3 1142.0,663.4 1142.0,647.6'/%3E%3Cpolygon points='1237.9,639.7 1251.6,647.6 1251.6,663.4 1237.9,671.3 1224.2,663.4 1224.2,647.6'/%3E%3Cpolygon points='922.8,663.4 936.5,671.3 936.5,687.1 922.8,695.0 909.1,687.1 909.1,671.3'/%3E%3Cpolygon points='950.2,663.4 963.9,671.3 963.9,687.1 950.2,695.0 936.5,687.1 936.5,671.3'/%3E%3Cpolygon points='1005.0,663.4 1018.7,671.3 1018.7,687.1 1005.0,695.0 991.3,687.1 991.3,671.3'/%3E%3Cpolygon points='1032.4,663.4 1046.1,671.3 1046.1,687.1 1032.4,695.0 1018.7,687.1 1018.7,671.3'/%3E%3Cpolygon points='1196.8,663.4 1210.5,671.3 1210.5,687.1 1196.8,695.0 1183.1,687.1 1183.1,671.3'/%3E%3Cpolygon points='1224.2,663.4 1237.9,671.3 1237.9,687.1 1224.2,695.0 1210.5,687.1 1210.5,671.3'/%3E%3Cpolygon points='1251.6,663.4 1265.3,671.3 1265.3,687.1 1251.6,695.0 1237.9,687.1 1237.9,671.3'/%3E%3Cpolygon points='909.1,687.1 922.8,695.0 922.8,710.8 909.1,718.8 895.4,710.8 895.4,695.0'/%3E%3Cpolygon points='936.5,687.1 950.2,695.0 950.2,710.8 936.5,718.8 922.8,710.8 922.8,695.0'/%3E%3Cpolygon points='963.9,687.1 977.6,695.0 977.6,710.8 963.9,718.8 950.2,710.8 950.2,695.0'/%3E%3Cpolygon points='991.3,687.1 1005.0,695.0 1005.0,710.8 991.3,718.8 977.6,710.8 977.6,695.0'/%3E%3Cpolygon points='1018.7,687.1 1032.4,695.0 1032.4,710.8 1018.7,718.8 1005.0,710.8 1005.0,695.0'/%3E%3Cpolygon points='1128.3,687.1 1142.0,695.0 1142.0,710.8 1128.3,718.8 1114.6,710.8 1114.6,695.0'/%3E%3Cpolygon points='1155.7,687.1 1169.4,695.0 1169.4,710.8 1155.7,718.8 1142.0,710.8 1142.0,695.0'/%3E%3Cpolygon points='1210.5,687.1 1224.2,695.0 1224.2,710.8 1210.5,718.8 1196.8,710.8 1196.8,695.0'/%3E%3Cpolygon points='1237.9,687.1 1251.6,695.0 1251.6,710.8 1237.9,718.8 1224.2,710.8 1224.2,695.0'/%3E%3Cpolygon points='1265.3,687.1 1279.0,695.0 1279.0,710.8 1265.3,718.8 1251.6,710.8 1251.6,695.0'/%3E%3Cpolygon points='840.6,710.8 854.3,718.8 854.3,734.6 840.6,742.5 826.9,734.6 826.9,718.8'/%3E%3Cpolygon points='868.0,710.8 881.7,718.8 881.7,734.6 868.0,742.5 854.3,734.6 854.3,718.8'/%3E%3Cpolygon points='895.4,710.8 909.1,718.8 909.1,734.6 895.4,742.5 881.7,734.6 881.7,718.8'/%3E%3Cpolygon points='922.8,710.8 936.5,718.8 936.5,734.6 922.8,742.5 909.1,734.6 909.1,718.8'/%3E%3Cpolygon points='950.2,710.8 963.9,718.8 963.9,734.6 950.2,742.5 936.5,734.6 936.5,718.8'/%3E%3Cpolygon points='977.6,710.8 991.3,718.8 991.3,734.6 977.6,742.5 963.9,734.6 963.9,718.8'/%3E%3Cpolygon points='1005.0,710.8 1018.7,718.8 1018.7,734.6 1005.0,742.5 991.3,734.6 991.3,718.8'/%3E%3Cpolygon points='1032.4,710.8 1046.1,718.8 1046.1,734.6 1032.4,742.5 1018.7,734.6 1018.7,718.8'/%3E%3Cpolygon points='1059.8,710.8 1073.5,718.8 1073.5,734.6 1059.8,742.5 1046.1,734.6 1046.1,718.8'/%3E%3Cpolygon points='1087.2,710.8 1100.9,718.8 1100.9,734.6 1087.2,742.5 1073.5,734.6 1073.5,718.8'/%3E%3Cpolygon points='1114.6,710.8 1128.3,718.8 1128.3,734.6 1114.6,742.5 1100.9,734.6 1100.9,718.8'/%3E%3Cpolygon points='1142.0,710.8 1155.7,718.8 1155.7,734.6 1142.0,742.5 1128.3,734.6 1128.3,718.8'/%3E%3Cpolygon points='1224.2,710.8 1237.9,718.8 1237.9,734.6 1224.2,742.5 1210.5,734.6 1210.5,718.8'/%3E%3Cpolygon points='1251.6,710.8 1265.3,718.8 1265.3,734.6 1251.6,742.5 1237.9,734.6 1237.9,718.8'/%3E%3Cpolygon points='854.3,734.6 868.0,742.5 868.0,758.3 854.3,766.2 840.6,758.3 840.6,742.5'/%3E%3Cpolygon points='881.7,734.6 895.4,742.5 895.4,758.3 881.7,766.2 868.0,758.3 868.0,742.5'/%3E%3Cpolygon points='909.1,734.6 922.8,742.5 922.8,758.3 909.1,766.2 895.4,758.3 895.4,742.5'/%3E%3Cpolygon points='936.5,734.6 950.2,742.5 950.2,758.3 936.5,766.2 922.8,758.3 922.8,742.5'/%3E%3Cpolygon points='963.9,734.6 977.6,742.5 977.6,758.3 963.9,766.2 950.2,758.3 950.2,742.5'/%3E%3Cpolygon points='991.3,734.6 1005.0,742.5 1005.0,758.3 991.3,766.2 977.6,758.3 977.6,742.5'/%3E%3Cpolygon points='1018.7,734.6 1032.4,742.5 1032.4,758.3 1018.7,766.2 1005.0,758.3 1005.0,742.5'/%3E%3Cpolygon points='1046.1,734.6 1059.8,742.5 1059.8,758.3 1046.1,766.2 1032.4,758.3 1032.4,742.5'/%3E%3Cpolygon points='1073.5,734.6 1087.2,742.5 1087.2,758.3 1073.5,766.2 1059.8,758.3 1059.8,742.5'/%3E%3Cpolygon points='1100.9,734.6 1114.6,742.5 1114.6,758.3 1100.9,766.2 1087.2,758.3 1087.2,742.5'/%3E%3Cpolygon points='1128.3,734.6 1142.0,742.5 1142.0,758.3 1128.3,766.2 1114.6,758.3 1114.6,742.5'/%3E%3Cpolygon points='1155.7,734.6 1169.4,742.5 1169.4,758.3 1155.7,766.2 1142.0,758.3 1142.0,742.5'/%3E%3Cpolygon points='1183.1,734.6 1196.8,742.5 1196.8,758.3 1183.1,766.2 1169.4,758.3 1169.4,742.5'/%3E%3Cpolygon points='1210.5,734.6 1224.2,742.5 1224.2,758.3 1210.5,766.2 1196.8,758.3 1196.8,742.5'/%3E%3Cpolygon points='1237.9,734.6 1251.6,742.5 1251.6,758.3 1237.9,766.2 1224.2,758.3 1224.2,742.5'/%3E%3Cpolygon points='1265.3,734.6 1279.0,742.5 1279.0,758.3 1265.3,766.2 1251.6,758.3 1251.6,742.5'/%3E%3Cpolygon points='840.6,758.3 854.3,766.2 854.3,782.0 840.6,789.9 826.9,782.0 826.9,766.2'/%3E%3Cpolygon points='895.4,758.3 909.1,766.2 909.1,782.0 895.4,789.9 881.7,782.0 881.7,766.2'/%3E%3Cpolygon points='922.8,758.3 936.5,766.2 936.5,782.0 922.8,789.9 909.1,782.0 909.1,766.2'/%3E%3Cpolygon points='950.2,758.3 963.9,766.2 963.9,782.0 950.2,789.9 936.5,782.0 936.5,766.2'/%3E%3Cpolygon points='977.6,758.3 991.3,766.2 991.3,782.0 977.6,789.9 963.9,782.0 963.9,766.2'/%3E%3Cpolygon points='1005.0,758.3 1018.7,766.2 1018.7,782.0 1005.0,789.9 991.3,782.0 991.3,766.2'/%3E%3Cpolygon points='1032.4,758.3 1046.1,766.2 1046.1,782.0 1032.4,789.9 1018.7,782.0 1018.7,766.2'/%3E%3Cpolygon points='1059.8,758.3 1073.5,766.2 1073.5,782.0 1059.8,789.9 1046.1,782.0 1046.1,766.2'/%3E%3Cpolygon points='1087.2,758.3 1100.9,766.2 1100.9,782.0 1087.2,789.9 1073.5,782.0 1073.5,766.2'/%3E%3Cpolygon points='1114.6,758.3 1128.3,766.2 1128.3,782.0 1114.6,789.9 1100.9,782.0 1100.9,766.2'/%3E%3Cpolygon points='1142.0,758.3 1155.7,766.2 1155.7,782.0 1142.0,789.9 1128.3,782.0 1128.3,766.2'/%3E%3Cpolygon points='1169.4,758.3 1183.1,766.2 1183.1,782.0 1169.4,789.9 1155.7,782.0 1155.7,766.2'/%3E%3Cpolygon points='1196.8,758.3 1210.5,766.2 1210.5,782.0 1196.8,789.9 1183.1,782.0 1183.1,766.2'/%3E%3Cpolygon points='1224.2,758.3 1237.9,766.2 1237.9,782.0 1224.2,789.9 1210.5,782.0 1210.5,766.2'/%3E%3Cpolygon points='1251.6,758.3 1265.3,766.2 1265.3,782.0 1251.6,789.9 1237.9,782.0 1237.9,766.2'/%3E%3Cpolygon points='936.5,782.0 950.2,789.9 950.2,805.8 936.5,813.7 922.8,805.8 922.8,789.9'/%3E%3Cpolygon points='963.9,782.0 977.6,789.9 977.6,805.8 963.9,813.7 950.2,805.8 950.2,789.9'/%3E%3Cpolygon points='991.3,782.0 1005.0,789.9 1005.0,805.8 991.3,813.7 977.6,805.8 977.6,789.9'/%3E%3Cpolygon points='1018.7,782.0 1032.4,789.9 1032.4,805.8 1018.7,813.7 1005.0,805.8 1005.0,789.9'/%3E%3Cpolygon points='1046.1,782.0 1059.8,789.9 1059.8,805.8 1046.1,813.7 1032.4,805.8 1032.4,789.9'/%3E%3Cpolygon points='1073.5,782.0 1087.2,789.9 1087.2,805.8 1073.5,813.7 1059.8,805.8 1059.8,789.9'/%3E%3Cpolygon points='1100.9,782.0 1114.6,789.9 1114.6,805.8 1100.9,813.7 1087.2,805.8 1087.2,789.9'/%3E%3Cpolygon points='1128.3,782.0 1142.0,789.9 1142.0,805.8 1128.3,813.7 1114.6,805.8 1114.6,789.9'/%3E%3Cpolygon points='1183.1,782.0 1196.8,789.9 1196.8,805.8 1183.1,813.7 1169.4,805.8 1169.4,789.9'/%3E%3Cpolygon points='1210.5,782.0 1224.2,789.9 1224.2,805.8 1210.5,813.7 1196.8,805.8 1196.8,789.9'/%3E%3Cpolygon points='1237.9,782.0 1251.6,789.9 1251.6,805.8 1237.9,813.7 1224.2,805.8 1224.2,789.9'/%3E%3Cpolygon points='1265.3,782.0 1279.0,789.9 1279.0,805.8 1265.3,813.7 1251.6,805.8 1251.6,789.9'/%3E%3Cpolygon points='950.2,805.8 963.9,813.7 963.9,829.5 950.2,837.4 936.5,829.5 936.5,813.7'/%3E%3Cpolygon points='977.6,805.8 991.3,813.7 991.3,829.5 977.6,837.4 963.9,829.5 963.9,813.7'/%3E%3Cpolygon points='1005.0,805.8 1018.7,813.7 1018.7,829.5 1005.0,837.4 991.3,829.5 991.3,813.7'/%3E%3Cpolygon points='1032.4,805.8 1046.1,813.7 1046.1,829.5 1032.4,837.4 1018.7,829.5 1018.7,813.7'/%3E%3Cpolygon points='1059.8,805.8 1073.5,813.7 1073.5,829.5 1059.8,837.4 1046.1,829.5 1046.1,813.7'/%3E%3Cpolygon points='1087.2,805.8 1100.9,813.7 1100.9,829.5 1087.2,837.4 1073.5,829.5 1073.5,813.7'/%3E%3Cpolygon points='1114.6,805.8 1128.3,813.7 1128.3,829.5 1114.6,837.4 1100.9,829.5 1100.9,813.7'/%3E%3Cpolygon points='1142.0,805.8 1155.7,813.7 1155.7,829.5 1142.0,837.4 1128.3,829.5 1128.3,813.7'/%3E%3Cpolygon points='1169.4,805.8 1183.1,813.7 1183.1,829.5 1169.4,837.4 1155.7,829.5 1155.7,813.7'/%3E%3Cpolygon points='1196.8,805.8 1210.5,813.7 1210.5,829.5 1196.8,837.4 1183.1,829.5 1183.1,813.7'/%3E%3Cpolygon points='1224.2,805.8 1237.9,813.7 1237.9,829.5 1224.2,837.4 1210.5,829.5 1210.5,813.7'/%3E%3Cpolygon points='1251.6,805.8 1265.3,813.7 1265.3,829.5 1251.6,837.4 1237.9,829.5 1237.9,813.7'/%3E%3Cpolygon points='881.7,829.5 895.4,837.4 895.4,853.2 881.7,861.1 868.0,853.2 868.0,837.4'/%3E%3Cpolygon points='963.9,829.5 977.6,837.4 977.6,853.2 963.9,861.1 950.2,853.2 950.2,837.4'/%3E%3Cpolygon points='991.3,829.5 1005.0,837.4 1005.0,853.2 991.3,861.1 977.6,853.2 977.6,837.4'/%3E%3Cpolygon points='1018.7,829.5 1032.4,837.4 1032.4,853.2 1018.7,861.1 1005.0,853.2 1005.0,837.4'/%3E%3Cpolygon points='1046.1,829.5 1059.8,837.4 1059.8,853.2 1046.1,861.1 1032.4,853.2 1032.4,837.4'/%3E%3Cpolygon points='1073.5,829.5 1087.2,837.4 1087.2,853.2 1073.5,861.1 1059.8,853.2 1059.8,837.4'/%3E%3Cpolygon points='1100.9,829.5 1114.6,837.4 1114.6,853.2 1100.9,861.1 1087.2,853.2 1087.2,837.4'/%3E%3Cpolygon points='1128.3,829.5 1142.0,837.4 1142.0,853.2 1128.3,861.1 1114.6,853.2 1114.6,837.4'/%3E%3Cpolygon points='1183.1,829.5 1196.8,837.4 1196.8,853.2 1183.1,861.1 1169.4,853.2 1169.4,837.4'/%3E%3Cpolygon points='1237.9,829.5 1251.6,837.4 1251.6,853.2 1237.9,861.1 1224.2,853.2 1224.2,837.4'/%3E%3Cpolygon points='1265.3,829.5 1279.0,837.4 1279.0,853.2 1265.3,861.1 1251.6,853.2 1251.6,837.4'/%3E%3Cpolygon points='950.2,853.2 963.9,861.1 963.9,876.9 950.2,884.9 936.5,876.9 936.5,861.1'/%3E%3Cpolygon points='977.6,853.2 991.3,861.1 991.3,876.9 977.6,884.9 963.9,876.9 963.9,861.1'/%3E%3Cpolygon points='1032.4,853.2 1046.1,861.1 1046.1,876.9 1032.4,884.9 1018.7,876.9 1018.7,861.1'/%3E%3Cpolygon points='1059.8,853.2 1073.5,861.1 1073.5,876.9 1059.8,884.9 1046.1,876.9 1046.1,861.1'/%3E%3Cpolygon points='1087.2,853.2 1100.9,861.1 1100.9,876.9 1087.2,884.9 1073.5,876.9 1073.5,861.1'/%3E%3Cpolygon points='1114.6,853.2 1128.3,861.1 1128.3,876.9 1114.6,884.9 1100.9,876.9 1100.9,861.1'/%3E%3Cpolygon points='1224.2,853.2 1237.9,861.1 1237.9,876.9 1224.2,884.9 1210.5,876.9 1210.5,861.1'/%3E%3Cpolygon points='1251.6,853.2 1265.3,861.1 1265.3,876.9 1251.6,884.9 1237.9,876.9 1237.9,861.1'/%3E%3Cpolygon points='1018.7,876.9 1032.4,884.9 1032.4,900.7 1018.7,908.6 1005.0,900.7 1005.0,884.9'/%3E%3Cpolygon points='1100.9,876.9 1114.6,884.9 1114.6,900.7 1100.9,908.6 1087.2,900.7 1087.2,884.9'/%3E%3Cpolygon points='1128.3,876.9 1142.0,884.9 1142.0,900.7 1128.3,908.6 1114.6,900.7 1114.6,884.9'/%3E%3Cpolygon points='1155.7,876.9 1169.4,884.9 1169.4,900.7 1155.7,908.6 1142.0,900.7 1142.0,884.9'/%3E%3Cpolygon points='1183.1,876.9 1196.8,884.9 1196.8,900.7 1183.1,908.6 1169.4,900.7 1169.4,884.9'/%3E%3Cpolygon points='1210.5,876.9 1224.2,884.9 1224.2,900.7 1210.5,908.6 1196.8,900.7 1196.8,884.9'/%3E%3Cpolygon points='1237.9,876.9 1251.6,884.9 1251.6,900.7 1237.9,908.6 1224.2,900.7 1224.2,884.9'/%3E%3Cpolygon points='895.4,900.7 909.1,908.6 909.1,924.4 895.4,932.3 881.7,924.4 881.7,908.6'/%3E%3Cpolygon points='922.8,900.7 936.5,908.6 936.5,924.4 922.8,932.3 909.1,924.4 909.1,908.6'/%3E%3Cpolygon points='950.2,900.7 963.9,908.6 963.9,924.4 950.2,932.3 936.5,924.4 936.5,908.6'/%3E%3Cpolygon points='1005.0,900.7 1018.7,908.6 1018.7,924.4 1005.0,932.3 991.3,924.4 991.3,908.6'/%3E%3Cpolygon points='1032.4,900.7 1046.1,908.6 1046.1,924.4 1032.4,932.3 1018.7,924.4 1018.7,908.6'/%3E%3Cpolygon points='1059.8,900.7 1073.5,908.6 1073.5,924.4 1059.8,932.3 1046.1,924.4 1046.1,908.6'/%3E%3Cpolygon points='1142.0,900.7 1155.7,908.6 1155.7,924.4 1142.0,932.3 1128.3,924.4 1128.3,908.6'/%3E%3Cpolygon points='1224.2,900.7 1237.9,908.6 1237.9,924.4 1224.2,932.3 1210.5,924.4 1210.5,908.6'/%3E%3Cpolygon points='1251.6,900.7 1265.3,908.6 1265.3,924.4 1251.6,932.3 1237.9,924.4 1237.9,908.6'/%3E%3Cpolygon points='936.5,924.4 950.2,932.3 950.2,948.1 936.5,956.0 922.8,948.1 922.8,932.3'/%3E%3Cpolygon points='963.9,924.4 977.6,932.3 977.6,948.1 963.9,956.0 950.2,948.1 950.2,932.3'/%3E%3Cpolygon points='991.3,924.4 1005.0,932.3 1005.0,948.1 991.3,956.0 977.6,948.1 977.6,932.3'/%3E%3Cpolygon points='1018.7,924.4 1032.4,932.3 1032.4,948.1 1018.7,956.0 1005.0,948.1 1005.0,932.3'/%3E%3Cpolygon points='1046.1,924.4 1059.8,932.3 1059.8,948.1 1046.1,956.0 1032.4,948.1 1032.4,932.3'/%3E%3Cpolygon points='1073.5,924.4 1087.2,932.3 1087.2,948.1 1073.5,956.0 1059.8,948.1 1059.8,932.3'/%3E%3Cpolygon points='1155.7,924.4 1169.4,932.3 1169.4,948.1 1155.7,956.0 1142.0,948.1 1142.0,932.3'/%3E%3Cpolygon points='1183.1,924.4 1196.8,932.3 1196.8,948.1 1183.1,956.0 1169.4,948.1 1169.4,932.3'/%3E%3Cpolygon points='1237.9,924.4 1251.6,932.3 1251.6,948.1 1237.9,956.0 1224.2,948.1 1224.2,932.3'/%3E%3Cpolygon points='1265.3,924.4 1279.0,932.3 1279.0,948.1 1265.3,956.0 1251.6,948.1 1251.6,932.3'/%3E%3Cpolygon points='922.8,948.1 936.5,956.0 936.5,971.9 922.8,979.8 909.1,971.9 909.1,956.0'/%3E%3Cpolygon points='1005.0,948.1 1018.7,956.0 1018.7,971.9 1005.0,979.8 991.3,971.9 991.3,956.0'/%3E%3Cpolygon points='1087.2,948.1 1100.9,956.0 1100.9,971.9 1087.2,979.8 1073.5,971.9 1073.5,956.0'/%3E%3Cpolygon points='1114.6,948.1 1128.3,956.0 1128.3,971.9 1114.6,979.8 1100.9,971.9 1100.9,956.0'/%3E%3Cpolygon points='1142.0,948.1 1155.7,956.0 1155.7,971.9 1142.0,979.8 1128.3,971.9 1128.3,956.0'/%3E%3Cpolygon points='1169.4,948.1 1183.1,956.0 1183.1,971.9 1169.4,979.8 1155.7,971.9 1155.7,956.0'/%3E%3Cpolygon points='1196.8,948.1 1210.5,956.0 1210.5,971.9 1196.8,979.8 1183.1,971.9 1183.1,956.0'/%3E%3Cpolygon points='991.3,971.9 1005.0,979.8 1005.0,995.6 991.3,1003.5 977.6,995.6 977.6,979.8'/%3E%3Cpolygon points='1018.7,971.9 1032.4,979.8 1032.4,995.6 1018.7,1003.5 1005.0,995.6 1005.0,979.8'/%3E%3Cpolygon points='1046.1,971.9 1059.8,979.8 1059.8,995.6 1046.1,1003.5 1032.4,995.6 1032.4,979.8'/%3E%3Cpolygon points='1073.5,971.9 1087.2,979.8 1087.2,995.6 1073.5,1003.5 1059.8,995.6 1059.8,979.8'/%3E%3Cpolygon points='1100.9,971.9 1114.6,979.8 1114.6,995.6 1100.9,1003.5 1087.2,995.6 1087.2,979.8'/%3E%3Cpolygon points='1128.3,971.9 1142.0,979.8 1142.0,995.6 1128.3,1003.5 1114.6,995.6 1114.6,979.8'/%3E%3Cpolygon points='1210.5,971.9 1224.2,979.8 1224.2,995.6 1210.5,1003.5 1196.8,995.6 1196.8,979.8'/%3E%3Cpolygon points='1237.9,971.9 1251.6,979.8 1251.6,995.6 1237.9,1003.5 1224.2,995.6 1224.2,979.8'/%3E%3Cpolygon points='1265.3,971.9 1279.0,979.8 1279.0,995.6 1265.3,1003.5 1251.6,995.6 1251.6,979.8'/%3E%3Cpolygon points='977.6,995.6 991.3,1003.5 991.3,1019.3 977.6,1027.2 963.9,1019.3 963.9,1003.5'/%3E%3Cpolygon points='1005.0,995.6 1018.7,1003.5 1018.7,1019.3 1005.0,1027.2 991.3,1019.3 991.3,1003.5'/%3E%3Cpolygon points='1032.4,995.6 1046.1,1003.5 1046.1,1019.3 1032.4,1027.2 1018.7,1019.3 1018.7,1003.5'/%3E%3Cpolygon points='1059.8,995.6 1073.5,1003.5 1073.5,1019.3 1059.8,1027.2 1046.1,1019.3 1046.1,1003.5'/%3E%3Cpolygon points='1142.0,995.6 1155.7,1003.5 1155.7,1019.3 1142.0,1027.2 1128.3,1019.3 1128.3,1003.5'/%3E%3Cpolygon points='1169.4,995.6 1183.1,1003.5 1183.1,1019.3 1169.4,1027.2 1155.7,1019.3 1155.7,1003.5'/%3E%3Cpolygon points='1224.2,995.6 1237.9,1003.5 1237.9,1019.3 1224.2,1027.2 1210.5,1019.3 1210.5,1003.5'/%3E%3Cpolygon points='1251.6,995.6 1265.3,1003.5 1265.3,1019.3 1251.6,1027.2 1237.9,1019.3 1237.9,1003.5'/%3E%3C/g%3E%3Cg fill='%23e7e7e7'%3E%3Cpolygon points='868.0,521.0 881.7,528.9 881.7,544.7 868.0,552.7 854.3,544.7 854.3,528.9'/%3E%3C/g%3E%3Cg fill='%232b2b2b'%3E%3Cpolygon points='1265.3,639.7 1279.0,647.6 1279.0,663.4 1265.3,671.3 1251.6,663.4 1251.6,647.6'/%3E%3Cpolygon points='868.0,758.3 881.7,766.2 881.7,782.0 868.0,789.9 854.3,782.0 854.3,766.2'/%3E%3Cpolygon points='1155.7,782.0 1169.4,789.9 1169.4,805.8 1155.7,813.7 1142.0,805.8 1142.0,789.9'/%3E%3Cpolygon points='1210.5,829.5 1224.2,837.4 1224.2,853.2 1210.5,861.1 1196.8,853.2 1196.8,837.4'/%3E%3Cpolygon points='1046.1,876.9 1059.8,884.9 1059.8,900.7 1046.1,908.6 1032.4,900.7 1032.4,884.9'/%3E%3Cpolygon points='1073.5,876.9 1087.2,884.9 1087.2,900.7 1073.5,908.6 1059.8,900.7 1059.8,884.9'/%3E%3Cpolygon points='1169.4,900.7 1183.1,908.6 1183.1,924.4 1169.4,932.3 1155.7,924.4 1155.7,908.6'/%3E%3Cpolygon points='1196.8,900.7 1210.5,908.6 1210.5,924.4 1196.8,932.3 1183.1,924.4 1183.1,908.6'/%3E%3Cpolygon points='909.1,924.4 922.8,932.3 922.8,948.1 909.1,956.0 895.4,948.1 895.4,932.3'/%3E%3Cpolygon points='1128.3,924.4 1142.0,932.3 1142.0,948.1 1128.3,956.0 1114.6,948.1 1114.6,932.3'/%3E%3Cpolygon points='1210.5,924.4 1224.2,932.3 1224.2,948.1 1210.5,956.0 1196.8,948.1 1196.8,932.3'/%3E%3Cpolygon points='1032.4,948.1 1046.1,956.0 1046.1,971.9 1032.4,979.8 1018.7,971.9 1018.7,956.0'/%3E%3Cpolygon points='1059.8,948.1 1073.5,956.0 1073.5,971.9 1059.8,979.8 1046.1,971.9 1046.1,956.0'/%3E%3Cpolygon points='1224.2,948.1 1237.9,956.0 1237.9,971.9 1224.2,979.8 1210.5,971.9 1210.5,956.0'/%3E%3Cpolygon points='1251.6,948.1 1265.3,956.0 1265.3,971.9 1251.6,979.8 1237.9,971.9 1237.9,956.0'/%3E%3Cpolygon points='1087.2,995.6 1100.9,1003.5 1100.9,1019.3 1087.2,1027.2 1073.5,1019.3 1073.5,1003.5'/%3E%3Cpolygon points='1114.6,995.6 1128.3,1003.5 1128.3,1019.3 1114.6,1027.2 1100.9,1019.3 1100.9,1003.5'/%3E%3Cpolygon points='1196.8,995.6 1210.5,1003.5 1210.5,1019.3 1196.8,1027.2 1183.1,1019.3 1183.1,1003.5'/%3E%3C/g%3E%3Cg fill='%23696969'%3E%3Cpolygon points='922.8,853.2 936.5,861.1 936.5,876.9 922.8,884.9 909.1,876.9 909.1,861.1'/%3E%3Cpolygon points='1100.9,924.4 1114.6,932.3 1114.6,948.1 1100.9,956.0 1087.2,948.1 1087.2,932.3'/%3E%3C/g%3E%3Cg fill='%232b2b2b'%3E%3Cpolygon points='1265.3,876.9 1279.0,884.9 1279.0,900.7 1265.3,908.6 1251.6,900.7 1251.6,884.9'/%3E%3Cpolygon points='1155.7,971.9 1169.4,979.8 1169.4,995.6 1155.7,1003.5 1142.0,995.6 1142.0,979.8'/%3E%3C/g%3E%3Cg fill='%232b2b2b'%3E%3Cpolygon points='1183.1,971.9 1196.8,979.8 1196.8,995.6 1183.1,1003.5 1169.4,995.6 1169.4,979.8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\");-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;background-position:center;background-repeat:no-repeat;color:#111318}.cs-inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}.cs-head{text-align:center;max-width:720px;margin:0 auto clamp(34px,4vw,54px)}.cs-eyebrow{display:inline-block;font-weight:800;font-size:12.5px;letter-spacing:3px;text-transform:uppercase;color:#7a5a00;background:rgba(247,229,0,.85);border:1px solid rgba(180,150,0,.6);padding:6px 14px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;margin-bottom:16px;-webkit-box-shadow:0 2px 10px rgba(0,0,0,.12);-moz-box-shadow:0 2px 10px rgba(0,0,0,.12);box-shadow:0 2px 10px rgba(0,0,0,.12);opacity:0;-webkit-transform:translateY(14px);-moz-transform:translateY(14px);-ms-transform:translateY(14px);-o-transform:translateY(14px);transform:translateY(14px)}.cs-title{margin:0;font-weight:900;line-height:1.05;letter-spacing:-.02em;font-size:clamp(30px,5vw,52px);color:#0e1116;text-shadow:0 1px 0 rgba(255,255,255,.6),0 2px 14px rgba(255,255,255,.5);opacity:0;-webkit-transform:translateY(16px);-moz-transform:translateY(16px);-ms-transform:translateY(16px);-o-transform:translateY(16px);transform:translateY(16px)}.cs-title span{background:-webkit-linear-gradient(350deg,#c98a00,#e0a900 55%,#c98a00);background:-moz-linear-gradient(350deg,#c98a00,#e0a900 55%,#c98a00);background:-o-linear-gradient(350deg,#c98a00,#e0a900 55%,#c98a00);background:linear-gradient(100deg,#c98a00,#e0a900 55%,#c98a00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}.cs-sub{margin:16px auto 0;max-width:560px;color:#2a2f38;font-weight:500;font-size:clamp(15px,1.4vw,17px);line-height:1.6;text-shadow:0 1px 6px rgba(255,255,255,.55);opacity:0;-webkit-transform:translateY(16px);-moz-transform:translateY(16px);-ms-transform:translateY(16px);-o-transform:translateY(16px);transform:translateY(16px)}.cs.on .cs-eyebrow{-webkit-animation:csUp.6s cubic-bezier(.22,1,.36,1)forwards;-moz-animation:csUp.6s cubic-bezier(.22,1,.36,1)forwards;-o-animation:csUp.6s cubic-bezier(.22,1,.36,1)forwards;animation:csUp.6s cubic-bezier(.22,1,.36,1)forwards}.cs.on .cs-title{-webkit-animation:csUp.7s cubic-bezier(.22,1,.36,1).08s forwards;-moz-animation:csUp.7s cubic-bezier(.22,1,.36,1).08s forwards;-o-animation:csUp.7s cubic-bezier(.22,1,.36,1).08s forwards;animation:csUp.7s cubic-bezier(.22,1,.36,1).08s forwards}.cs.on .cs-sub{-webkit-animation:csUp.7s cubic-bezier(.22,1,.36,1).16s forwards;-moz-animation:csUp.7s cubic-bezier(.22,1,.36,1).16s forwards;-o-animation:csUp.7s cubic-bezier(.22,1,.36,1).16s forwards;animation:csUp.7s cubic-bezier(.22,1,.36,1).16s forwards}@-webkit-keyframes csUp{to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@-moz-keyframes csUp{to{opacity:1;-moz-transform:translateY(0);transform:translateY(0)}}@-o-keyframes csUp{to{opacity:1;-o-transform:translateY(0);transform:translateY(0)}}@keyframes csUp{to{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}}.cs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,26px);-webkit-box-align:stretch;-webkit-align-items:stretch;-moz-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.cs-card{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;height:100%;background:-webkit-linear-gradient(top,rgba(255,255,255,.72),rgba(255,255,255,.6));background:-moz-linear-gradient(top,rgba(255,255,255,.72),rgba(255,255,255,.6));background:-o-linear-gradient(top,rgba(255,255,255,.72),rgba(255,255,255,.6));background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.6));-webkit-backdrop-filter:blur(10px)saturate(1.2);backdrop-filter:blur(10px)saturate(1.2);border:1px solid rgba(255,255,255,.85);-webkit-border-radius:22px;-moz-border-radius:22px;border-radius:22px;padding:26px 24px 22px;-webkit-box-shadow:0 18px 44px rgba(20,30,60,.18),inset 0 1px 0 rgba(255,255,255,.9);-moz-box-shadow:0 18px 44px rgba(20,30,60,.18),inset 0 1px 0 rgba(255,255,255,.9);box-shadow:0 18px 44px rgba(20,30,60,.18),inset 0 1px 0 rgba(255,255,255,.9);overflow:hidden;opacity:0;-webkit-transform:translateY(34px);-moz-transform:translateY(34px);-ms-transform:translateY(34px);-o-transform:translateY(34px);transform:translateY(34px);-webkit-transition:-webkit-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;-moz-transition:-moz-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;-o-transition:-o-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;transition:-webkit-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;transition:-moz-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;transition:-o-transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;transition:transform.35s cubic-bezier(.22,1,.36,1),box-shadow.35s ease,border-color.35s ease,background.35s ease;will-change:transform}.cs.on .cs-card{-webkit-animation:csCardIn.7s cubic-bezier(.22,1,.36,1)-webkit-calc(.22s + var(--i)*.13s)forwards;-moz-animation:csCardIn.7s cubic-bezier(.22,1,.36,1)-moz-calc(.22s + var(--i)*.13s)forwards;-o-animation:csCardIn.7s cubic-bezier(.22,1,.36,1)calc(.22s + var(--i)*.13s)forwards;animation:csCardIn.7s cubic-bezier(.22,1,.36,1)-webkit-calc(.22s + var(--i)*.13s)forwards;animation:csCardIn.7s cubic-bezier(.22,1,.36,1)-moz-calc(.22s + var(--i)*.13s)forwards;animation:csCardIn.7s cubic-bezier(.22,1,.36,1)calc(.22s + var(--i)*.13s)forwards}@-webkit-keyframes csCardIn{to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}@-moz-keyframes csCardIn{to{opacity:1;-moz-transform:translateY(0);transform:translateY(0)}}@-o-keyframes csCardIn{to{opacity:1;-o-transform:translateY(0);transform:translateY(0)}}@keyframes csCardIn{to{opacity:1;-webkit-transform:translateY(0);-moz-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}}.cs-card:hover{-webkit-transform:translateY(-8px);-moz-transform:translateY(-8px);-ms-transform:translateY(-8px);-o-transform:translateY(-8px);transform:translateY(-8px);background:-webkit-linear-gradient(top,rgba(255,255,255,.82),rgba(255,255,255,.72));background:-moz-linear-gradient(top,rgba(255,255,255,.82),rgba(255,255,255,.72));background:-o-linear-gradient(top,rgba(255,255,255,.82),rgba(255,255,255,.72));background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.72));-webkit-box-shadow:0 28px 60px rgba(20,30,60,.26);-moz-box-shadow:0 28px 60px rgba(20,30,60,.26);box-shadow:0 28px 60px rgba(20,30,60,.26);border-color:rgba(230,180,0,.8)}.cs-card-bar{position:absolute;left:0;top:22px;bottom:22px;width:5px;-webkit-border-radius:0 6px 6px 0;-moz-border-radius:0 6px 6px 0;border-radius:0 6px 6px 0;background:-webkit-linear-gradient(top,#f7e500,#f6b800);background:-moz-linear-gradient(top,#f7e500,#f6b800);background:-o-linear-gradient(top,#f7e500,#f6b800);background:linear-gradient(180deg,#f7e500,#f6b800);-webkit-transform:scaleY(0);-moz-transform:scaleY(0);-ms-transform:scaleY(0);-o-transform:scaleY(0);transform:scaleY(0);-webkit-transform-origin:top;-moz-transform-origin:top;-ms-transform-origin:top;-o-transform-origin:top;transform-origin:top;-webkit-transition:-webkit-transform.5s cubic-bezier(.22,1,.36,1);-moz-transition:-moz-transform.5s cubic-bezier(.22,1,.36,1);-o-transition:-o-transform.5s cubic-bezier(.22,1,.36,1);transition:-webkit-transform.5s cubic-bezier(.22,1,.36,1);transition:-moz-transform.5s cubic-bezier(.22,1,.36,1);transition:-o-transform.5s cubic-bezier(.22,1,.36,1);transition:transform.5s cubic-bezier(.22,1,.36,1)}.cs.on .cs-card .cs-card-bar{-webkit-transform:scaleY(1);-moz-transform:scaleY(1);-ms-transform:scaleY(1);-o-transform:scaleY(1);transform:scaleY(1);-webkit-transition-delay:-webkit-calc(.5s + var(--i)*.13s);-moz-transition-delay:-moz-calc(.5s + var(--i)*.13s);-o-transition-delay:calc(.5s + var(--i)*.13s);transition-delay:-webkit-calc(.5s + var(--i)*.13s);transition-delay:-moz-calc(.5s + var(--i)*.13s);transition-delay:calc(.5s + var(--i)*.13s)}.cs-card-top{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:14px;margin-bottom:18px}.cs-icon{-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;width:52px;height:52px;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;display:grid;place-items:center;color:#1a1d24;background:#111318;border:1px solid rgba(0,0,0,.1);-webkit-transition:-webkit-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;-moz-transition:-moz-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;-o-transition:-o-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;transition:-webkit-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;transition:-moz-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;transition:-o-transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease;transition:transform.4s cubic-bezier(.34,1.56,.64,1),color.3s ease,border-color.3s ease,background.3s ease}.cs-icon svg{color:#fff}.cs-card:hover .cs-icon{-webkit-transform:rotate(-6deg)scale(1.08);-moz-transform:rotate(-6deg)scale(1.08);-ms-transform:rotate(-6deg)scale(1.08);-o-transform:rotate(-6deg)scale(1.08);transform:rotate(-6deg)scale(1.08);background:#1a1d24}.cs-card-title{margin:0;font-size:clamp(16px,1.5vw,18px);font-weight:800;color:#14181f;line-height:1.2}.cs-card-tag{margin:4px 0 0;font-size:13px;color:#55606f;font-weight:500}.cs-chips{list-style:none;margin:0 0 4px;padding:0;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:9px;-webkit-align-content:flex-start;-ms-flex-line-pack:start;align-content:flex-start}.cs-chip{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:11px;width:100%;padding:11px 13px;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;text-decoration:none;font-size:14px;font-weight:600;color:#262b33;background:rgba(245,247,250,.8);border:1px solid rgba(0,0,0,.08);-webkit-transition:-webkit-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;-moz-transition:-moz-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;-o-transition:-o-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;transition:-webkit-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;transition:-moz-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;transition:-o-transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease;transition:transform.2s ease,background.2s ease,color.2s ease,border-color.2s ease,box-shadow.2s ease}.cs-chips li{opacity:0;-webkit-transform:translateX(-12px);-moz-transform:translateX(-12px);-ms-transform:translateX(-12px);-o-transform:translateX(-12px);transform:translateX(-12px)}.cs.on .cs-card .cs-chips li{-webkit-animation:csChipIn.45s cubic-bezier(.22,1,.36,1)-webkit-calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;-moz-animation:csChipIn.45s cubic-bezier(.22,1,.36,1)-moz-calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;-o-animation:csChipIn.45s cubic-bezier(.22,1,.36,1)calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;animation:csChipIn.45s cubic-bezier(.22,1,.36,1)-webkit-calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;animation:csChipIn.45s cubic-bezier(.22,1,.36,1)-moz-calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards;animation:csChipIn.45s cubic-bezier(.22,1,.36,1)calc(.6s + var(--i)*.13s + var(--ci)*.06s)forwards}@-webkit-keyframes csChipIn{to{opacity:1;-webkit-transform:translateX(0);transform:translateX(0)}}@-moz-keyframes csChipIn{to{opacity:1;-moz-transform:translateX(0);transform:translateX(0)}}@-o-keyframes csChipIn{to{opacity:1;-o-transform:translateX(0);transform:translateX(0)}}@keyframes csChipIn{to{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}}.cs-chip-ic{-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;width:30px;height:30px;-webkit-border-radius:9px;-moz-border-radius:9px;border-radius:9px;display:grid;place-items:center;color:#8a6a00;background:rgba(247,229,0,.35);border:1px solid rgba(200,160,0,.4);-webkit-transition:-webkit-transform.2s ease,background.2s ease,color.2s ease;-moz-transition:-moz-transform.2s ease,background.2s ease,color.2s ease;-o-transition:-o-transform.2s ease,background.2s ease,color.2s ease;transition:-webkit-transform.2s ease,background.2s ease,color.2s ease;transition:-moz-transform.2s ease,background.2s ease,color.2s ease;transition:-o-transform.2s ease,background.2s ease,color.2s ease;transition:transform.2s ease,background.2s ease,color.2s ease}.cs-chip-txt{-webkit-box-flex:1;-webkit-flex:1 1 auto;-moz-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}.cs-chip-arrow{-webkit-box-flex:0;-webkit-flex:0 0 auto;-moz-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;color:#9aa3b0;opacity:0;-webkit-transform:translateX(-4px);-moz-transform:translateX(-4px);-ms-transform:translateX(-4px);-o-transform:translateX(-4px);transform:translateX(-4px);-webkit-transition:opacity.2s ease,-webkit-transform.2s ease,color.2s ease;-moz-transition:opacity.2s ease,-moz-transform.2s ease,color.2s ease;-o-transition:opacity.2s ease,-o-transform.2s ease,color.2s ease;transition:opacity.2s ease,-webkit-transform.2s ease,color.2s ease;transition:opacity.2s ease,-moz-transform.2s ease,color.2s ease;transition:opacity.2s ease,-o-transform.2s ease,color.2s ease;transition:opacity.2s ease,transform.2s ease,color.2s ease}.cs-chip:hover{-webkit-transform:translateX(4px);-moz-transform:translateX(4px);-ms-transform:translateX(4px);-o-transform:translateX(4px);transform:translateX(4px);color:#0e1116;background:#fff8cc;border-color:rgba(230,180,0,.7);-webkit-box-shadow:0 8px 20px rgba(20,30,60,.14);-moz-box-shadow:0 8px 20px rgba(20,30,60,.14);box-shadow:0 8px 20px rgba(20,30,60,.14)}.cs-chip:hover .cs-chip-ic{-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1);background:rgba(247,229,0,.7);color:#5c4600}.cs-chip:hover .cs-chip-arrow{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0);color:#b8860b}.cs-card-link{margin-top:auto;padding-top:16px;border-top:1px solid rgba(0,0,0,.1);display:-webkit-inline-box;display:-webkit-inline-flex;display:-moz-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;gap:7px;font-size:14px;font-weight:800;text-decoration:none;color:#a67c00;-webkit-transition:gap.25s ease,color.25s ease;-moz-transition:gap.25s ease,color.25s ease;-o-transition:gap.25s ease,color.25s ease;transition:gap.25s ease,color.25s ease}.cs-card:hover .cs-card-link{color:#7a5a00}.cs-card-link svg{-webkit-transition:-webkit-transform.25s ease;-moz-transition:-moz-transform.25s ease;-o-transition:-o-transform.25s ease;transition:-webkit-transform.25s ease;transition:-moz-transform.25s ease;transition:-o-transform.25s ease;transition:transform.25s ease}.cs-card:hover .cs-card-link{gap:11px}.cs-card:hover .cs-card-link svg{-webkit-transform:translateX(3px);-moz-transform:translateX(3px);-ms-transform:translateX(3px);-o-transform:translateX(3px);transform:translateX(3px)}@media(max-width:980px){.cs-cards{grid-template-columns:1fr;max-width:560px;margin:0 auto;gap:20px}}@media(max-width:480px){.cs-chip{font-size:13.5px;padding:10px 12px}.cs-icon{width:48px;height:48px;-webkit-border-radius:13px;-moz-border-radius:13px;border-radius:13px}}@media(prefers-reduced-motion:reduce){.cs .cs-eyebrow,.cs .cs-title,.cs .cs-sub,.cs .cs-card,.cs .cs-chips li{opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important;transform:none!important;-webkit-animation:none!important;-moz-animation:none!important;-o-animation:none!important;animation:none!important}.cs .cs-card-bar{-webkit-transform:scaleY(1)!important;-moz-transform:scaleY(1)!important;-ms-transform:scaleY(1)!important;-o-transform:scaleY(1)!important;transform:scaleY(1)!important}}"
-            })
-        ]
-    });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoreSolutions);
-
+function webpackEmptyContext(req) {
+	var e = new Error("Cannot find module '" + req + "'");
+	e.code = 'MODULE_NOT_FOUND';
+	throw e;
+}
+webpackEmptyContext.keys = () => ([]);
+webpackEmptyContext.resolve = webpackEmptyContext;
+webpackEmptyContext.id = 3490;
+module.exports = webpackEmptyContext;
 
 /***/ }),
 
 /***/ 8632:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
@@ -1066,9 +347,1234 @@ const HeroWorldMap = ()=>{
 
 /***/ }),
 
+/***/ 1910:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8023);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8411);
+
+
+
+
+
+const Icon = {
+    browser: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.7",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("rect", {
+                    x: "2.5",
+                    y: "4",
+                    width: "19",
+                    height: "15",
+                    rx: "2.5"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M2.5 8h19"
+                })
+            ]
+        }),
+    crown: (p)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.7",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M4 19h16"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                    d: "M5 19V9l3 2 4-5 4 5 3-2v10"
+                })
+            ]
+        }),
+    wrench: (p)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+            ...p,
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "1.7",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                d: "M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-.4-.4-2.1z"
+            })
+        })
+};
+const PILLARS = [
+    {
+        key: "digital",
+        type: "digi_services",
+        index: "01",
+        title: "Digital Services",
+        tagline: "Web, software, apps, and security for teams that ship.",
+        href: "/digital-services",
+        Icon: Icon.browser,
+        fallback: [
+            "Web Development",
+            "Custom Software",
+            "Mobile Apps",
+            "AI Solutions",
+            "Cyber Security",
+            "E-Commerce"
+        ]
+    },
+    {
+        key: "corporate",
+        type: "bus_corp_sol",
+        index: "02",
+        title: "Business & Corporate",
+        tagline: "Hardware, networking, and site infrastructure at scale.",
+        href: "/enterprise-solutions",
+        Icon: Icon.crown,
+        fallback: [
+            "IT Equipment",
+            "Security Systems",
+            "Office Equipment",
+            "Networking",
+            "Server Setup",
+            "Power Solutions"
+        ]
+    },
+    {
+        key: "maintenance",
+        type: "service_maintenance",
+        index: "03",
+        title: "Maintenance & Support",
+        tagline: "Contracts, repair, install, and remote response.",
+        href: "/maintenance-support",
+        Icon: Icon.wrench,
+        fallback: [
+            "AMC Contracts",
+            "On-call Repair",
+            "Installation",
+            "Troubleshooting",
+            "Remote Support"
+        ]
+    }, 
+];
+const truncate = (text, max = 96)=>{
+    const value = String(text || "").trim();
+    if (value.length <= max) return value;
+    return `${value.slice(0, max - 1).trim()}…`;
+};
+const CapabilityMap = ({ featuredServices =[]  })=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_4__/* .useReducedMotion */ .J)();
+    const { 0: openKey , 1: setOpenKey  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(PILLARS[0].key);
+    const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .motionState */ .RK)(reduce);
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
+        className: "hm-caps",
+        id: "core-services",
+        "aria-labelledby": "hm-caps-title",
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+            className: "hm-caps-inner",
+            initial: "hidden",
+            whileInView: "show",
+            viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .homeViewport */ .lX,
+            variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .fadeUp */ .pB,
+            children: [
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
+                    className: "hm-section-head hm-section-head-left hm-caps-head",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            className: "hm-eyebrow",
+                            children: "What we offer"
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
+                            id: "hm-caps-title",
+                            className: "hm-section-title",
+                            children: [
+                                "Core IT ",
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    children: "Solutions"
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                            className: "hm-section-sub",
+                            children: "Three specialized divisions — pick a lane, then go deeper."
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+                    className: "hm-caps-grid",
+                    variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .staggerContainer */ .Jm,
+                    initial: "hidden",
+                    whileInView: "show",
+                    viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .homeViewport */ .lX,
+                    children: PILLARS.map((pillar)=>{
+                        const rows = featuredServices.filter((s)=>s.type === pillar.type);
+                        const isOpen = openKey === pillar.key;
+                        const HeadIcon = pillar.Icon;
+                        return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.article */ .E.article, {
+                            className: `hm-cap${isOpen ? " is-open" : ""}`,
+                            variants: item,
+                            children: [
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                    type: "button",
+                                    className: "hm-cap-toggle",
+                                    "aria-expanded": isOpen,
+                                    onClick: ()=>setOpenKey(pillar.key),
+                                    children: [
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                            className: "hm-cap-mark",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "hm-cap-index",
+                                                    children: pillar.index
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "hm-cap-icon",
+                                                    "aria-hidden": "true",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(HeadIcon, {
+                                                        width: "22",
+                                                        height: "22"
+                                                    })
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                            className: "hm-cap-head",
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                    children: pillar.title
+                                                }),
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                    children: pillar.tagline
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "hm-cap-chevron",
+                                            "aria-hidden": "true"
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "hm-cap-body",
+                                    children: [
+                                        rows.length > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
+                                            className: "hm-cap-list",
+                                            children: rows.map((service)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                                        href: `/services/${encodeURIComponent(service.slug)}?type=${service.type}`,
+                                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                                            children: [
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
+                                                                    children: service.name
+                                                                }),
+                                                                service.description ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                    children: truncate(service.description)
+                                                                }) : null
+                                                            ]
+                                                        })
+                                                    })
+                                                }, `${service.type}-${service.slug}`))
+                                        }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
+                                            className: "hm-cap-lines",
+                                            children: pillar.fallback.map((label)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                                        href: pillar.href,
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                            children: label
+                                                        })
+                                                    })
+                                                }, label))
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                            href: pillar.href,
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                                className: "hm-cap-explore",
+                                                children: "Explore division →"
+                                            })
+                                        })
+                                    ]
+                                })
+                            ]
+                        }, pillar.key);
+                    })
+                })
+            ]
+        })
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CapabilityMap);
+
+
+/***/ }),
+
+/***/ 5752:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8023);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8411);
+
+
+
+
+
+
+const formatPrice = (price)=>`৳${Number(price).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+const FeaturedCatalog = ({ products =[]  })=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
+    if (!products.length) return null;
+    const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .motionState */ .RK)(reduce);
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
+        className: "hm-catalog",
+        "aria-labelledby": "hm-catalog-title",
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+            className: "hm-catalog-inner",
+            initial: "hidden",
+            whileInView: "show",
+            viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
+            variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .fadeUp */ .pB,
+            children: [
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
+                    className: "hm-section-head hm-section-head-split",
+                    children: [
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    className: "hm-eyebrow",
+                                    children: "Catalog"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                    id: "hm-catalog-title",
+                                    className: "hm-section-title",
+                                    children: "Featured hardware"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                    className: "hm-section-sub",
+                                    children: "Top-listed essentials for office and enterprise builds."
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                            href: "/product-catalog",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                className: "hm-text-link",
+                                children: "View full catalog →"
+                            })
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                    className: "hm-catalog-grid",
+                    variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .staggerContainer */ .Jm,
+                    initial: "hidden",
+                    whileInView: "show",
+                    viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
+                    children: products.map((product, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                            className: "hm-product",
+                            variants: item,
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                href: `/products/${encodeURIComponent(product.slug || product.id)}`,
+                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "hm-product-media",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                                src: product.image,
+                                                alt: product.name,
+                                                loading: idx < 4 ? "eager" : "lazy",
+                                                decoding: "async"
+                                            })
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "hm-product-copy",
+                                            children: [
+                                                product.categoryName ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "hm-product-cat",
+                                                    children: product.categoryName
+                                                }) : null,
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                    children: product.name
+                                                }),
+                                                product.price > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "hm-product-price",
+                                                    children: formatPrice(product.price)
+                                                }) : null
+                                            ]
+                                        })
+                                    ]
+                                })
+                            })
+                        }, product.id))
+                })
+            ]
+        })
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FeaturedCatalog);
+
+
+/***/ }),
+
+/***/ 957:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8023);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8411);
+
+
+
+
+
+const FindAndAct = ()=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_4__/* .useReducedMotion */ .J)();
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
+        className: "hm-act",
+        "aria-labelledby": "hm-act-title",
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+            className: "hm-act-inner",
+            initial: "hidden",
+            whileInView: "show",
+            viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .homeViewport */ .lX,
+            variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .fadeUp */ .pB,
+            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "hm-act-panels",
+                children: [
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        className: "hm-act-panel hm-act-panel-search",
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                className: "hm-eyebrow hm-eyebrow-on-dark",
+                                children: "Catalog"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                id: "hm-act-title",
+                                className: "hm-act-panel-title",
+                                children: "Find hardware"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                className: "hm-act-panel-sub",
+                                children: "Search by SKU, model, or product name across the live catalog."
+                            }),
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+                                action: "/product-catalog",
+                                method: "GET",
+                                className: "hm-act-search",
+                                children: [
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
+                                        htmlFor: "hm-catalog-search",
+                                        className: "hm-sr-only",
+                                        children: "Search catalog"
+                                    }),
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                                        id: "hm-catalog-search",
+                                        type: "text",
+                                        name: "search",
+                                        required: true,
+                                        placeholder: "SKU, model, or product name…",
+                                        className: "hm-act-input"
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
+                                        type: "submit",
+                                        className: "hm-act-submit",
+                                        children: [
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+                                                xmlns: "http://www.w3.org/2000/svg",
+                                                width: "18",
+                                                height: "18",
+                                                viewBox: "0 0 24 24",
+                                                fill: "none",
+                                                stroke: "currentColor",
+                                                strokeWidth: "2",
+                                                strokeLinecap: "round",
+                                                strokeLinejoin: "round",
+                                                "aria-hidden": "true",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
+                                                        cx: "11",
+                                                        cy: "11",
+                                                        r: "8"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
+                                                        d: "m21 21-4.3-4.3"
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                children: "Search"
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                        ]
+                    }),
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        className: "hm-act-panel hm-act-panel-talk",
+                        "aria-label": "Contact",
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                className: "hm-eyebrow hm-eyebrow-on-dark",
+                                children: "Talk to us"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                className: "hm-act-panel-title",
+                                children: "Need a scoped quote?"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                className: "hm-act-panel-sub",
+                                children: "Enterprise supply, install, and support — same team on the line."
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                className: "hm-act-hotline",
+                                href: "tel:0241021991",
+                                children: "02-41021991"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                className: "hm-act-email",
+                                href: "mailto:info@missolution.com.bd",
+                                children: "info@missolution.com.bd"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                href: "/request-custom-quote",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                    className: "hm-act-quote",
+                                    children: "Request a quote"
+                                })
+                            })
+                        ]
+                    })
+                ]
+            })
+        })
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FindAndAct);
+
+
+/***/ }),
+
+/***/ 5311:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8023);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8411);
+
+
+
+
+
+
+const OfferBand = ({ advertisements =[]  })=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
+    const { 0: index , 1: setIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+    const { 0: paused , 1: setPaused  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    const { 0: progress , 1: setProgress  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+    const startRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(0);
+    const rafRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const total = advertisements.length;
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        if (total <= 1 || reduce || paused) {
+            setProgress(reduce || total <= 1 ? 1 : 0);
+            return undefined;
+        }
+        const duration = 5500;
+        startRef.current = performance.now();
+        const tick = (now)=>{
+            const elapsed = now - startRef.current;
+            const p = Math.min(elapsed / duration, 1);
+            setProgress(p);
+            if (p >= 1) {
+                setIndex((prev)=>(prev + 1) % total);
+                startRef.current = performance.now();
+                setProgress(0);
+            }
+            rafRef.current = requestAnimationFrame(tick);
+        };
+        rafRef.current = requestAnimationFrame(tick);
+        return ()=>{
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        };
+    }, [
+        total,
+        reduce,
+        paused,
+        index
+    ]);
+    if (!total) return null;
+    const primary = advertisements[index];
+    const secondary = advertisements.filter((_, i)=>i !== index).slice(0, 2);
+    const hrefFor = (ad)=>ad.product_slug ? `/products/${ad.product_slug}` : ad.link_url || "#";
+    const go = (dir)=>{
+        setIndex((prev)=>(prev + dir + total) % total);
+        setProgress(0);
+    };
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
+        className: "hm-offer",
+        "aria-label": "Current offers",
+        onMouseEnter: ()=>setPaused(true),
+        onMouseLeave: ()=>setPaused(false),
+        onFocusCapture: ()=>setPaused(true),
+        onBlurCapture: (e)=>{
+            if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false);
+        },
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+            className: "hm-offer-inner",
+            initial: "hidden",
+            whileInView: "show",
+            viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
+            variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .fadeUp */ .pB,
+            children: [
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                    className: `hm-offer-layout${secondary.length ? "" : " is-solo"}`,
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                            href: hrefFor(primary),
+                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                className: "hm-offer-primary",
+                                children: [
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "hm-offer-media",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                                src: primary.image_url,
+                                                kind: "detail",
+                                                priority: true,
+                                                alt: primary.title || "Offer",
+                                                loading: "eager",
+                                                decoding: "async"
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                className: "hm-offer-scrim",
+                                                "aria-hidden": "true"
+                                            })
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "hm-offer-copy",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                className: "hm-offer-kicker",
+                                                children: "Offer"
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                                className: "hm-offer-title",
+                                                children: primary.title
+                                            }),
+                                            primary.ad_details ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                className: "hm-offer-details",
+                                                children: primary.ad_details
+                                            }) : null,
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                className: "hm-offer-cta",
+                                                children: "Shop now"
+                                            })
+                                        ]
+                                    }),
+                                    total > 1 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                        className: "hm-offer-progress",
+                                        "aria-hidden": "true",
+                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            style: {
+                                                transform: `scaleX(${progress})`
+                                            }
+                                        })
+                                    })
+                                ]
+                            })
+                        }),
+                        secondary.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "hm-offer-side",
+                            children: secondary.map((ad)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                    href: hrefFor(ad),
+                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                        className: "hm-offer-side-item",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                className: "hm-offer-side-media",
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                                    src: ad.image_url,
+                                                    kind: "detail",
+                                                    alt: ad.title || "Offer",
+                                                    loading: "lazy",
+                                                    decoding: "async"
+                                                })
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                className: "hm-offer-side-copy",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                        children: ad.title
+                                                    }),
+                                                    ad.ad_details ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                        children: ad.ad_details
+                                                    }) : null
+                                                ]
+                                            })
+                                        ]
+                                    })
+                                }, ad.id))
+                        })
+                    ]
+                }),
+                total > 1 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                    className: "hm-offer-controls",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                            type: "button",
+                            className: "hm-offer-nav",
+                            onClick: ()=>go(-1),
+                            "aria-label": "Previous offer",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                width: "20",
+                                height: "20",
+                                viewBox: "0 0 24 24",
+                                fill: "none",
+                                stroke: "currentColor",
+                                strokeWidth: "2.2",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                "aria-hidden": "true",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
+                                    points: "15 18 9 12 15 6"
+                                })
+                            })
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                            className: "hm-offer-count",
+                            children: [
+                                index + 1,
+                                " / ",
+                                total
+                            ]
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                            type: "button",
+                            className: "hm-offer-nav",
+                            onClick: ()=>go(1),
+                            "aria-label": "Next offer",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
+                                width: "20",
+                                height: "20",
+                                viewBox: "0 0 24 24",
+                                fill: "none",
+                                stroke: "currentColor",
+                                strokeWidth: "2.2",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                "aria-hidden": "true",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
+                                    points: "9 18 15 12 9 6"
+                                })
+                            })
+                        })
+                    ]
+                })
+            ]
+        })
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OfferBand);
+
+
+/***/ }),
+
+/***/ 6089:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8023);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8411);
+
+
+
+
+
+
+const PATHS = [
+    {
+        index: "01",
+        title: "Shop Hardware",
+        line: "Laptops, desktops, networking, and office gear — ready to configure.",
+        href: "/categories",
+        image: "/core-it-black.jpg"
+    },
+    {
+        index: "02",
+        title: "Enterprise Services",
+        line: "Digital, corporate infrastructure, and maintenance under one roof.",
+        href: "/core-it-solutions",
+        image: "/digital services.webp"
+    },
+    {
+        index: "03",
+        title: "Solar",
+        line: "Commercial and residential solar design, supply, and install.",
+        href: "/solar",
+        image: "/solar-pro-field.jpg"
+    }, 
+];
+const PathChooser = ({ categories =[]  })=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
+    const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .motionState */ .RK)(reduce);
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+        className: "hm-paths",
+        "aria-label": "Choose your path",
+        children: [
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                className: "hm-paths-grid",
+                variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .staggerContainer */ .Jm,
+                initial: "hidden",
+                whileInView: "show",
+                viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
+                children: PATHS.map((path)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                        className: "hm-path",
+                        variants: item,
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                            href: path.href,
+                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                className: "hm-path-link",
+                                children: [
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "hm-path-media",
+                                        "aria-hidden": "true",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                                src: path.image,
+                                                alt: "",
+                                                loading: "lazy",
+                                                decoding: "async"
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                className: "hm-path-scrim"
+                                            })
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                        className: "hm-path-copy",
+                                        children: [
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                className: "hm-path-index",
+                                                children: path.index
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                                className: "hm-path-title",
+                                                children: path.title
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                className: "hm-path-line",
+                                                children: path.line
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                        })
+                    }, path.href))
+            }),
+            categories.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: "hm-cat-rail-wrap",
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: "hm-cat-rail",
+                    role: "list",
+                    "aria-label": "Product categories",
+                    children: categories.map((cat)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                            href: `/categories/${cat.slug}`,
+                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                className: "hm-cat-chip",
+                                role: "listitem",
+                                children: [
+                                    cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                        src: cat.icon_url,
+                                        alt: "",
+                                        loading: "lazy",
+                                        decoding: "async",
+                                        className: "hm-cat-icon"
+                                    }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                        className: "hm-cat-letter",
+                                        "aria-hidden": "true",
+                                        children: cat.name.charAt(0)
+                                    }),
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                        children: cat.name
+                                    })
+                                ]
+                            })
+                        }, cat.id))
+                })
+            })
+        ]
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PathChooser);
+
+
+/***/ }),
+
+/***/ 3814:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8023);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8411);
+
+
+
+
+const CountUp = ({ end , label , reduce  })=>{
+    const { 0: count , 1: setCount  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(reduce ? end : 0);
+    const { 0: done , 1: setDone  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(!!reduce);
+    const ref = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        if (reduce) {
+            setCount(end);
+            setDone(true);
+            return undefined;
+        }
+        const node = ref.current;
+        if (!node) return undefined;
+        const observer = new IntersectionObserver(([entry])=>{
+            if (!entry.isIntersecting || done) return;
+            setDone(true);
+            const duration = 1400;
+            const start = performance.now();
+            const tick = (now)=>{
+                const t = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - t, 3);
+                setCount(Math.round(eased * end));
+                if (t < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+        }, {
+            threshold: 0.35
+        });
+        observer.observe(node);
+        return ()=>observer.disconnect();
+    }, [
+        end,
+        reduce,
+        done
+    ]);
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "hm-proof-item",
+        ref: ref,
+        children: [
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "hm-proof-number",
+                children: [
+                    count.toLocaleString(),
+                    end > 0 ? "+" : ""
+                ]
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: "hm-proof-label",
+                children: label
+            })
+        ]
+    });
+};
+const ProofStrip = ({ proof ={}  })=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_3__/* .useReducedMotion */ .J)();
+    const { projectCount =0 , categoryCount =0 , serviceCount =0 , productCount =0 ,  } = proof;
+    const metrics = [
+        {
+            end: projectCount,
+            label: "Projects delivered"
+        },
+        {
+            end: categoryCount,
+            label: "Product categories"
+        },
+        {
+            end: serviceCount,
+            label: "Active service lines"
+        }, 
+    ];
+    if (productCount > 0) {
+        metrics.push({
+            end: productCount,
+            label: "Catalog products"
+        });
+    }
+    if (metrics.every((m)=>m.end === 0)) return null;
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
+        className: "hm-proof",
+        "aria-label": "Company metrics",
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_4__/* .motion.div */ .E.div, {
+            className: "hm-proof-inner",
+            initial: "hidden",
+            whileInView: "show",
+            viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .homeViewport */ .lX,
+            variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .fadeUp */ .pB,
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: `hm-proof-grid hm-proof-cols-${metrics.length}`,
+                children: metrics.map((m)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(CountUp, {
+                        end: m.end,
+                        label: m.label,
+                        reduce: !!reduce
+                    }, m.label))
+            })
+        })
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProofStrip);
+
+
+/***/ }),
+
+/***/ 3211:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8023);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(459);
+/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8411);
+
+
+
+
+
+
+const truncate = (text, max = 110)=>{
+    const value = String(text || "").trim();
+    if (!value) return "";
+    if (value.length <= max) return value;
+    return `${value.slice(0, max - 1).trim()}…`;
+};
+const WorkGallery = ({ projects =[]  })=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
+    if (!projects.length) return null;
+    const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .motionState */ .RK)(reduce);
+    const items = projects.slice(0, 7);
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
+        className: "hm-work",
+        "aria-labelledby": "hm-work-title",
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+            className: "hm-work-inner",
+            initial: "hidden",
+            whileInView: "show",
+            viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
+            variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .fadeUp */ .pB,
+            children: [
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
+                    className: "hm-section-head hm-section-head-left",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            className: "hm-eyebrow",
+                            children: "Proof of work"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                            id: "hm-work-title",
+                            className: "hm-section-title",
+                            children: "Client projects"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                            className: "hm-section-sub",
+                            children: "Selected deployments and integrations delivered for enterprises."
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                    className: "hm-work-grid",
+                    variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .staggerContainer */ .Jm,
+                    initial: "hidden",
+                    whileInView: "show",
+                    viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
+                    children: items.map((project, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                            className: `hm-work-card${idx === 0 ? " is-feature" : ""}`,
+                            variants: item,
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                href: `/projects/${encodeURIComponent(project.slug || project.id)}`,
+                                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: "hm-work-media",
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                                src: project.icon_url,
+                                                alt: project.name,
+                                                loading: "lazy",
+                                                decoding: "async"
+                                            })
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "hm-work-copy",
+                                            children: [
+                                                project.client_name ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "hm-work-client",
+                                                    children: project.client_name
+                                                }) : null,
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                    children: project.name
+                                                }),
+                                                project.description ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                                    children: truncate(project.description)
+                                                }) : null,
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                    className: "hm-work-link",
+                                                    children: "View story"
+                                                })
+                                            ]
+                                        })
+                                    ]
+                                })
+                            })
+                        }, project.id))
+                })
+            ]
+        })
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WorkGallery);
+
+
+/***/ }),
+
+/***/ 8411:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Jm": () => (/* binding */ staggerContainer),
+/* harmony export */   "RK": () => (/* binding */ motionState),
+/* harmony export */   "UP": () => (/* binding */ reducedFade),
+/* harmony export */   "lX": () => (/* binding */ homeViewport),
+/* harmony export */   "pB": () => (/* binding */ fadeUp)
+/* harmony export */ });
+const homeViewport = {
+    once: true,
+    amount: 0.2
+};
+const fadeUp = {
+    hidden: {
+        opacity: 0,
+        y: 18
+    },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.45,
+            ease: [
+                0.22,
+                1,
+                0.36,
+                1
+            ]
+        }
+    }
+};
+const staggerContainer = {
+    hidden: {},
+    show: {
+        transition: {
+            staggerChildren: 0.06,
+            delayChildren: 0.04
+        }
+    }
+};
+const reducedFade = {
+    hidden: {
+        opacity: 1,
+        y: 0
+    },
+    show: {
+        opacity: 1,
+        y: 0
+    }
+};
+const motionState = (reduce)=>reduce ? reducedFade : fadeUp;
+
+
+/***/ }),
+
 /***/ 3678:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -1083,19 +1589,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(968);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1664);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7027);
-/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(503);
-/* harmony import */ var next_intl__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_intl__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2097);
-/* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6151);
-/* harmony import */ var _components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8966);
-/* harmony import */ var _components_HeroWorldMap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(8632);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(459);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__]);
-([dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__, _components_footer__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _components_navigation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2097);
+/* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6151);
+/* harmony import */ var _components_HeroWorldMap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8632);
+/* harmony import */ var _components_home_PathChooser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6089);
+/* harmony import */ var _components_home_OfferBand__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(5311);
+/* harmony import */ var _components_home_CapabilityMap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1910);
+/* harmony import */ var _components_home_ProofStrip__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(3814);
+/* harmony import */ var _components_home_WorkGallery__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3211);
+/* harmony import */ var _components_home_FeaturedCatalog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(5752);
+/* harmony import */ var _components_home_FindAndAct__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(957);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_5__]);
+_components_footer__WEBPACK_IMPORTED_MODULE_5__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
 
 
@@ -1108,7 +1613,8 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([dang
 
 
 
-const fallbackProductImage = "https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500";
+
+
 const HERO_SUBTITLE = "Enterprise IT, hardware supply, and on-call support for teams that need technology that just works.";
 const HeroTypewriter = ({ text  })=>{
     const { 0: shown , 1: setShown  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
@@ -1324,217 +1830,29 @@ const HeroMotto = ()=>{
         ]
     });
 };
-const StatCounter = ({ end , suffix ="" , label , decimals =0  })=>{
-    const { 0: count , 1: setCount  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const { 0: hasAnimated , 1: setHasAnimated  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const ref = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        const observer = new IntersectionObserver(([entry])=>{
-            if (entry.isIntersecting && !hasAnimated) {
-                setHasAnimated(true);
-                const duration = 1800;
-                const startTime = performance.now();
-                const animate = (currentTime)=>{
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    setCount(eased * end);
-                    if (progress < 1) requestAnimationFrame(animate);
-                };
-                requestAnimationFrame(animate);
-            }
-        }, {
-            threshold: 0.3
-        });
-        if (ref.current) observer.observe(ref.current);
-        return ()=>observer.disconnect();
-    }, [
-        hasAnimated,
-        end
-    ]);
-    const displayValue = decimals > 0 ? count.toFixed(decimals) : Math.floor(count);
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "stat-card",
-        ref: ref,
-        children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "stat-number",
-                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                    children: [
-                        displayValue,
-                        suffix
-                    ]
-                })
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "stat-label",
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                    children: label
-                })
-            })
-        ]
-    });
-};
-// Turns a horizontally-scrollable rail into an auto-scrolling (right-to-left)
-// carousel that the user can grab with mouse or finger and drag both ways.
-// Content is expected to be duplicated (rendered twice) so the loop is seamless.
-const setupDraggableAutoScroll = (rail)=>{
-    if (!rail) return null;
-    let rafId = null;
-    let isDragging = false;
-    let hasMoved = false;
-    let startX = 0;
-    let startScrollLeft = 0;
-    let pos = 0 // float position we drive scrollLeft with
-    ;
-    const SPEED = 0.6 // px per frame (~36px/s)
-    ;
-    const half = ()=>rail.scrollWidth / 2;
-    const step = ()=>{
-        const h = half();
-        if (!isDragging && h > 0) {
-            pos += SPEED;
-            if (pos >= h) pos -= h // seamless loop back to first copy
-            ;
-            else if (pos < 0) pos += h;
-            rail.scrollLeft = pos // assign the accumulated float (rounded internally)
-            ;
-        }
-        rafId = requestAnimationFrame(step);
-    };
-    const onPointerDown = (e)=>{
-        if (e.pointerType === "mouse" && e.button !== 0) return;
-        isDragging = true;
-        hasMoved = false;
-        startX = e.clientX;
-        startScrollLeft = rail.scrollLeft;
-    };
-    const onPointerMove = (e)=>{
-        if (!isDragging) return;
-        const dx = e.clientX - startX;
-        if (Math.abs(dx) <= 12) return;
-        hasMoved = true;
-        try {
-            rail.setPointerCapture(e.pointerId);
-        } catch (_) {}
-        if (e.cancelable) e.preventDefault();
-        let next = startScrollLeft - dx;
-        const h = half();
-        if (h > 0) {
-            if (next >= h) next -= h;
-            else if (next < 0) next += h;
-        }
-        rail.scrollLeft = next;
-    };
-    const endDrag = (e)=>{
-        if (!isDragging) return;
-        isDragging = false;
-        try {
-            rail.releasePointerCapture(e.pointerId);
-        } catch (_) {}
-        pos = rail.scrollLeft // resume auto-scroll from where the user left off
-        ;
-    };
-    const onPointerUp = (e)=>{
-        endDrag(e);
-    };
-    const onClick = (e)=>{
-        // A short press is a normal link click. A drag must not open the page.
-        if (!hasMoved) return;
-        e.preventDefault();
-        e.stopPropagation();
-    };
-    // On desktop, mouse-dragging over an <img>/<a> starts the browser's native
-    // drag-and-drop, which steals the pointer and breaks our drag. Suppress it.
-    const onDragStart = (e)=>{
-        e.preventDefault();
-    };
-    rail.addEventListener("pointerdown", onPointerDown);
-    rail.addEventListener("pointermove", onPointerMove);
-    document.addEventListener("pointerup", onPointerUp);
-    document.addEventListener("pointercancel", endDrag);
-    rail.addEventListener("click", onClick, true);
-    rail.addEventListener("dragstart", onDragStart);
-    pos = rail.scrollLeft || 0;
-    rafId = requestAnimationFrame(step);
-    return ()=>{
-        if (rafId) cancelAnimationFrame(rafId);
-        rail.removeEventListener("pointerdown", onPointerDown);
-        rail.removeEventListener("pointermove", onPointerMove);
-        document.removeEventListener("pointerup", onPointerUp);
-        document.removeEventListener("pointercancel", endDrag);
-        rail.removeEventListener("click", onClick, true);
-        rail.removeEventListener("dragstart", onDragStart);
-    };
+const emptyProof = {
+    projectCount: 0,
+    categoryCount: 0,
+    serviceCount: 0,
+    productCount: 0
 };
 const Home = (props)=>{
-    const { featuredProducts =[] , advertisements =[] , homeCategories =[] , featuredServices =[] , clientProjects =[]  } = props;
-    const caseRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const productsRailRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const { 0: adIndex , 1: setAdIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        if (advertisements.length <= 1) return;
-        const timer = setInterval(()=>{
-            setAdIndex((prev)=>(prev + 1) % advertisements.length);
-        }, 5000);
-        return ()=>clearInterval(timer);
-    }, [
-        advertisements.length
-    ]);
-    // Auto-scroll (right-to-left) + drag/swipe control for all three card rails.
-    // Wait until the visible product photos have decoded so the row does not slide in blank.
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        let started = false;
-        const stops = [];
-        const start = ()=>{
-            if (started) return;
-            started = true;
-            stops.push(setupDraggableAutoScroll(productsRailRef.current));
-            stops.push(setupDraggableAutoScroll(caseRailRef.current));
-        };
-        const rail = productsRailRef.current;
-        const images = rail ? Array.from(rail.querySelectorAll("img")).filter((img)=>img.getAttribute("loading") !== "lazy") : [];
-        let pending = images.length;
-        const mark = ()=>{
-            pending -= 1;
-            if (pending <= 0) start();
-        };
-        images.forEach((img)=>{
-            if (img.complete && img.naturalWidth > 0) mark();
-            else {
-                img.addEventListener("load", mark, {
-                    once: true
-                });
-                img.addEventListener("error", mark, {
-                    once: true
-                });
-            }
-        });
-        const timer = setTimeout(start, 1500);
-        if (!images.length) start();
-        return ()=>{
-            clearTimeout(timer);
-            stops.forEach((fn)=>fn && fn());
-        };
-    }, [
-        featuredProducts.length,
-        clientProjects.length
-    ]);
+    const { featuredProducts =[] , advertisements =[] , homeCategories =[] , featuredServices =[] , clientProjects =[] , proof =emptyProof ,  } = props;
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "jsx-78fd8a5633951551" + " " + "home-container1",
+                className: "jsx-400a974db96a906a" + " " + "home-container1",
                 children: [
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
-                                className: "jsx-78fd8a5633951551",
+                                className: "jsx-400a974db96a906a",
                                 children: "MIS Solution - IT Products & Enterprise Services"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                                 property: "og:title",
                                 content: "MIS Solution - IT Products & Enterprise Services",
-                                className: "jsx-78fd8a5633951551"
+                                className: "jsx-400a974db96a906a"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                                 rel: "preload",
@@ -1542,23 +1860,23 @@ const Home = (props)=>{
                                 href: "/hero-skyline-1920.jpg",
                                 imageSrcSet: "/hero-skyline-1280.jpg 1280w, /hero-skyline-1920.jpg 1920w",
                                 imageSizes: "100vw",
-                                className: "jsx-78fd8a5633951551"
+                                className: "jsx-400a974db96a906a"
                             }),
                             featuredProducts.slice(0, 4).map((product)=>product.image ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                                     rel: "preload",
                                     as: "image",
                                     href: product.image,
-                                    className: "jsx-78fd8a5633951551"
+                                    className: "jsx-400a974db96a906a"
                                 }, product.id) : null)
                         ]
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {}),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_navigation__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {}),
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-78fd8a5633951551" + " " + "hero-section",
+                        className: "jsx-400a974db96a906a" + " " + "hero-section",
                         children: [
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                 "aria-hidden": "true",
-                                className: "jsx-78fd8a5633951551" + " " + "hero-media-container",
+                                className: "jsx-400a974db96a906a" + " " + "hero-media-container",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: "/hero-skyline-1920.jpg",
@@ -1567,21 +1885,21 @@ const Home = (props)=>{
                                         alt: "",
                                         decoding: "async",
                                         fetchPriority: "high",
-                                        className: "jsx-78fd8a5633951551" + " " + "hero-bg-image"
+                                        className: "jsx-400a974db96a906a" + " " + "hero-bg-image"
                                     }),
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-78fd8a5633951551" + " " + "home-hero-scrim"
+                                        className: "jsx-400a974db96a906a" + " " + "home-hero-scrim"
                                     })
                                 ]
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-78fd8a5633951551" + " " + "hero-content-wrapper",
+                                className: "jsx-400a974db96a906a" + " " + "hero-content-wrapper",
                                 children: [
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-78fd8a5633951551" + " " + "hero-copy",
+                                        className: "jsx-400a974db96a906a" + " " + "hero-copy",
                                         children: [
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "hero-text-block",
+                                                className: "jsx-400a974db96a906a" + " " + "hero-text-block",
                                                 children: [
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(HeroMotto, {}),
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(HeroTypewriter, {
@@ -1590,26 +1908,26 @@ const Home = (props)=>{
                                                 ]
                                             }),
                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "hero-cta-group",
+                                                className: "jsx-400a974db96a906a" + " " + "hero-cta-group",
                                                 children: [
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                                                         href: "/core-it-solutions",
-                                                        className: "jsx-78fd8a5633951551" + " " + "hero-feature-link",
+                                                        className: "jsx-400a974db96a906a" + " " + "hero-feature-link",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "hero-feature-index",
+                                                                className: "jsx-400a974db96a906a" + " " + "hero-feature-index",
                                                                 children: "01"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "hero-feature-label",
+                                                                className: "jsx-400a974db96a906a" + " " + "hero-feature-label",
                                                                 children: "Explore Services"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                 "aria-hidden": "true",
-                                                                className: "jsx-78fd8a5633951551" + " " + "hero-feature-arrow",
+                                                                className: "jsx-400a974db96a906a" + " " + "hero-feature-arrow",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                     viewBox: "0 0 24 24",
-                                                                    className: "jsx-78fd8a5633951551",
+                                                                    className: "jsx-400a974db96a906a",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                         d: "M5 12h12M13 6l6 6-6 6",
                                                                         fill: "none",
@@ -1617,7 +1935,7 @@ const Home = (props)=>{
                                                                         strokeWidth: "1.8",
                                                                         strokeLinecap: "round",
                                                                         strokeLinejoin: "round",
-                                                                        className: "jsx-78fd8a5633951551"
+                                                                        className: "jsx-400a974db96a906a"
                                                                     })
                                                                 })
                                                             })
@@ -1625,22 +1943,22 @@ const Home = (props)=>{
                                                     }),
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                                                         href: "/categories/desktop",
-                                                        className: "jsx-78fd8a5633951551" + " " + "hero-feature-link",
+                                                        className: "jsx-400a974db96a906a" + " " + "hero-feature-link",
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "hero-feature-index",
+                                                                className: "jsx-400a974db96a906a" + " " + "hero-feature-index",
                                                                 children: "02"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "hero-feature-label",
+                                                                className: "jsx-400a974db96a906a" + " " + "hero-feature-label",
                                                                 children: "Shop Hardware"
                                                             }),
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                 "aria-hidden": "true",
-                                                                className: "jsx-78fd8a5633951551" + " " + "hero-feature-arrow",
+                                                                className: "jsx-400a974db96a906a" + " " + "hero-feature-arrow",
                                                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                                     viewBox: "0 0 24 24",
-                                                                    className: "jsx-78fd8a5633951551",
+                                                                    className: "jsx-400a974db96a906a",
                                                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                         d: "M5 12h12M13 6l6 6-6 6",
                                                                         fill: "none",
@@ -1648,7 +1966,7 @@ const Home = (props)=>{
                                                                         strokeWidth: "1.8",
                                                                         strokeLinecap: "round",
                                                                         strokeLinejoin: "round",
-                                                                        className: "jsx-78fd8a5633951551"
+                                                                        className: "jsx-400a974db96a906a"
                                                                     })
                                                                 })
                                                             })
@@ -1658,818 +1976,41 @@ const Home = (props)=>{
                                             })
                                         ]
                                     }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_HeroWorldMap__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z, {})
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_HeroWorldMap__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {})
                                 ]
                             })
                         ]
                     }),
-                    homeCategories.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-78fd8a5633951551" + " " + "home-categories-section",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-78fd8a5633951551" + " " + "home-categories-grid",
-                            children: homeCategories.map((cat, index)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                    href: `/categories/${cat.slug}`,
-                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                        className: "jsx-78fd8a5633951551" + " " + "home-cat-item",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "home-cat-icon-wrap",
-                                                children: cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
-                                                    src: cat.icon_url,
-                                                    alt: cat.name,
-                                                    loading: "eager",
-                                                    decoding: "async"
-                                                }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-78fd8a5633951551" + " " + "home-cat-letter",
-                                                    children: cat.name.charAt(0)
-                                                })
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "jsx-78fd8a5633951551" + " " + "home-cat-name",
-                                                children: cat.name
-                                            })
-                                        ]
-                                    })
-                                }, cat.id))
-                        })
-                    }),
-                    advertisements.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        style: {
-                            padding: "0 0 32px"
-                        },
-                        className: "jsx-78fd8a5633951551",
-                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            style: {
-                                position: "relative",
-                                width: "100%",
-                                overflow: "hidden"
-                            },
-                            className: "jsx-78fd8a5633951551",
-                            children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    style: {
-                                        position: "relative",
-                                        height: "420px"
-                                    },
-                                    className: "jsx-78fd8a5633951551",
-                                    children: advertisements.map((ad, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                            href: ad.product_slug ? `/products/${ad.product_slug}` : ad.link_url || "#",
-                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                style: {
-                                                    position: "absolute",
-                                                    inset: 0,
-                                                    opacity: idx === adIndex ? 1 : 0,
-                                                    transition: "opacity 0.5s",
-                                                    zIndex: idx === adIndex ? 1 : 0,
-                                                    display: "block",
-                                                    textDecoration: "none"
-                                                },
-                                                className: "jsx-78fd8a5633951551",
-                                                children: [
-                                                    idx === adIndex || idx === (adIndex + 1) % advertisements.length ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
-                                                        src: ad.image_url,
-                                                        kind: "detail",
-                                                        priority: idx === adIndex,
-                                                        alt: ad.title,
-                                                        loading: idx === adIndex ? "eager" : "lazy",
-                                                        decoding: "async",
-                                                        style: {
-                                                            width: "100%",
-                                                            height: "100%",
-                                                            objectFit: "cover",
-                                                            display: "block"
-                                                        }
-                                                    }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        style: {
-                                                            width: "100%",
-                                                            height: "100%",
-                                                            background: "#0a101b"
-                                                        },
-                                                        className: "jsx-78fd8a5633951551"
-                                                    }),
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        style: {
-                                                            position: "absolute",
-                                                            inset: 0,
-                                                            background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)",
-                                                            zIndex: 1
-                                                        },
-                                                        className: "jsx-78fd8a5633951551"
-                                                    }),
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        style: {
-                                                            position: "absolute",
-                                                            bottom: "28px",
-                                                            left: "28px",
-                                                            right: "28px",
-                                                            zIndex: 2,
-                                                            textShadow: "0 2px 8px rgba(0,0,0,0.7)"
-                                                        },
-                                                        className: "jsx-78fd8a5633951551",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                style: {
-                                                                    background: "#f7e500",
-                                                                    color: "#0a101b",
-                                                                    padding: "4px 12px",
-                                                                    borderRadius: "999px",
-                                                                    fontSize: "12px",
-                                                                    fontWeight: 700,
-                                                                    display: "inline-block"
-                                                                },
-                                                                className: "jsx-78fd8a5633951551",
-                                                                children: "Special Offer"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                style: {
-                                                                    margin: "8px 0 4px",
-                                                                    fontSize: "22px",
-                                                                    fontWeight: 800,
-                                                                    color: "#ffffff",
-                                                                    lineHeight: 1.3,
-                                                                    display: "block"
-                                                                },
-                                                                className: "jsx-78fd8a5633951551",
-                                                                children: ad.title
-                                                            }),
-                                                            ad.ad_details && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                                style: {
-                                                                    margin: "4px 0 0",
-                                                                    fontSize: "14px",
-                                                                    color: "rgba(255,255,255,0.9)",
-                                                                    lineHeight: 1.4,
-                                                                    maxWidth: "500px"
-                                                                },
-                                                                className: "jsx-78fd8a5633951551",
-                                                                children: ad.ad_details
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                style: {
-                                                                    fontSize: "14px",
-                                                                    fontWeight: 700,
-                                                                    color: "#f7e500",
-                                                                    display: "inline-block",
-                                                                    marginTop: "6px"
-                                                                },
-                                                                className: "jsx-78fd8a5633951551",
-                                                                children: "Shop Now →"
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            })
-                                        }, ad.id))
-                                }),
-                                advertisements.length > 1 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                            style: {
-                                                position: "absolute",
-                                                top: "50%",
-                                                transform: "translateY(-50%)",
-                                                left: "12px",
-                                                zIndex: 5,
-                                                background: "rgba(255,255,255,0.9)",
-                                                border: "none",
-                                                borderRadius: "50%",
-                                                width: "36px",
-                                                height: "36px",
-                                                cursor: "pointer",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
-                                            },
-                                            onClick: ()=>setAdIndex((p)=>(p - 1 + advertisements.length) % advertisements.length),
-                                            "aria-label": "Previous",
-                                            className: "jsx-78fd8a5633951551",
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                width: "20",
-                                                height: "20",
-                                                viewBox: "0 0 24 24",
-                                                fill: "none",
-                                                stroke: "currentColor",
-                                                strokeWidth: "2.5",
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round",
-                                                className: "jsx-78fd8a5633951551",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
-                                                    points: "15 18 9 12 15 6",
-                                                    className: "jsx-78fd8a5633951551"
-                                                })
-                                            })
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                            style: {
-                                                position: "absolute",
-                                                top: "50%",
-                                                transform: "translateY(-50%)",
-                                                right: "12px",
-                                                zIndex: 5,
-                                                background: "rgba(255,255,255,0.9)",
-                                                border: "none",
-                                                borderRadius: "50%",
-                                                width: "36px",
-                                                height: "36px",
-                                                cursor: "pointer",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
-                                            },
-                                            onClick: ()=>setAdIndex((p)=>(p + 1) % advertisements.length),
-                                            "aria-label": "Next",
-                                            className: "jsx-78fd8a5633951551",
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                width: "20",
-                                                height: "20",
-                                                viewBox: "0 0 24 24",
-                                                fill: "none",
-                                                stroke: "currentColor",
-                                                strokeWidth: "2.5",
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round",
-                                                className: "jsx-78fd8a5633951551",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("polyline", {
-                                                    points: "9 18 15 12 9 6",
-                                                    className: "jsx-78fd8a5633951551"
-                                                })
-                                            })
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            style: {
-                                                position: "absolute",
-                                                bottom: "12px",
-                                                right: "16px",
-                                                zIndex: 5,
-                                                display: "flex",
-                                                gap: "6px"
-                                            },
-                                            className: "jsx-78fd8a5633951551",
-                                            children: advertisements.map((_, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                                    style: {
-                                                        width: idx === adIndex ? "20px" : "8px",
-                                                        height: "8px",
-                                                        borderRadius: "4px",
-                                                        border: "none",
-                                                        cursor: "pointer",
-                                                        background: idx === adIndex ? "#ffffff" : "rgba(255,255,255,0.5)",
-                                                        transition: "all 0.3s"
-                                                    },
-                                                    onClick: ()=>setAdIndex(idx),
-                                                    "aria-label": `Slide ${idx + 1}`,
-                                                    className: "jsx-78fd8a5633951551"
-                                                }, idx))
-                                        })
-                                    ]
-                                })
-                            ]
-                        })
-                    }),
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-78fd8a5633951551" + " " + "products-carousel-section",
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                        className: "jsx-400a974db96a906a" + " " + "home-mid",
                         children: [
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-78fd8a5633951551" + " " + "products-header",
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                        className: "jsx-78fd8a5633951551" + " " + "section-title",
-                                        children: "Featured Hardware & Accessories"
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-78fd8a5633951551" + " " + "section-subtitle",
-                                        children: "Top-selling essentials for your office and enterprise needs."
-                                    })
-                                ]
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_PathChooser__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
+                                categories: homeCategories
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                ref: productsRailRef,
-                                className: "jsx-78fd8a5633951551" + " " + "products-rail-container",
-                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-78fd8a5633951551" + " " + "products-rail",
-                                    children: featuredProducts.length > 0 ? [
-                                        ...featuredProducts,
-                                        ...featuredProducts
-                                    ].map((product, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                            href: `/products/${encodeURIComponent(product.slug || product.id)}`,
-                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                style: {
-                                                    textDecoration: "none",
-                                                    color: "inherit"
-                                                },
-                                                className: "jsx-78fd8a5633951551" + " " + "product-card",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "product-image-box",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
-                                                            src: product.image || fallbackProductImage,
-                                                            priority: idx % featuredProducts.length === 0,
-                                                            alt: product.name,
-                                                            loading: String(product.image || "").includes(".card.webp") || idx % featuredProducts.length < 4 ? "eager" : "lazy",
-                                                            decoding: "async"
-                                                        })
-                                                    }),
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "product-info",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "product-category",
-                                                                children: product.categoryName
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "product-name",
-                                                                children: product.name
-                                                            }),
-                                                            product.price > 0 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "product-price-tag",
-                                                                children: [
-                                                                    "৳",
-                                                                    Number(product.price).toLocaleString(undefined, {
-                                                                        minimumFractionDigits: 2,
-                                                                        maximumFractionDigits: 2
-                                                                    })
-                                                                ]
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            })
-                                        }, `${product.id}-${idx}`)) : [
-                                        1,
-                                        2,
-                                        3,
-                                        4,
-                                        5,
-                                        6
-                                    ].map((i)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-78fd8a5633951551" + " " + "product-card",
-                                            children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                    className: "jsx-78fd8a5633951551" + " " + "product-image-box",
-                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                        src: "https://images.pexels.com/photos/17489151/pexels-photo-17489151.jpeg?auto=compress&cs=tinysrgb&w=1500",
-                                                        alt: "Product placeholder",
-                                                        className: "jsx-78fd8a5633951551"
-                                                    })
-                                                }),
-                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "jsx-78fd8a5633951551" + " " + "product-info",
-                                                    children: [
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-78fd8a5633951551" + " " + "product-category",
-                                                            children: "Hardware"
-                                                        }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h3", {
-                                                            className: "jsx-78fd8a5633951551" + " " + "product-name",
-                                                            children: [
-                                                                "Featured Product ",
-                                                                i
-                                                            ]
-                                                        })
-                                                    ]
-                                                })
-                                            ]
-                                        }, i))
-                                })
-                            })
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_OfferBand__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
+                                advertisements: advertisements
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_CapabilityMap__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {
+                                featuredServices: featuredServices
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_ProofStrip__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z, {
+                                proof: proof
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_WorkGallery__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z, {
+                                projects: clientProjects
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_FeaturedCatalog__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z, {
+                                products: featuredProducts
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_FindAndAct__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z, {})
                         ]
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        id: "core-services",
-                        className: "jsx-78fd8a5633951551" + " " + "core-solutions-section",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_CoreSolutionsTree__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {})
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-78fd8a5633951551" + " " + "stats-section",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-78fd8a5633951551" + " " + "stats-container",
-                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-78fd8a5633951551" + " " + "stats-grid",
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(StatCounter, {
-                                        end: 100,
-                                        suffix: "+",
-                                        label: "Projects Completed"
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(StatCounter, {
-                                        end: 100,
-                                        suffix: "+",
-                                        label: "Enterprise Clients"
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(StatCounter, {
-                                        end: 99.9,
-                                        suffix: "%",
-                                        label: "Support SLA",
-                                        decimals: 1
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(StatCounter, {
-                                        end: 100,
-                                        suffix: "%",
-                                        label: "Warranty Coverage"
-                                    })
-                                ]
-                            })
-                        })
-                    }),
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
-                        className: "jsx-78fd8a5633951551" + " " + "case-studies-section",
-                        children: [
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-78fd8a5633951551" + " " + "case-header",
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                        className: "jsx-78fd8a5633951551" + " " + "section-title",
-                                        children: "Client Projects & Case Studies"
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-78fd8a5633951551" + " " + "section-subtitle",
-                                        children: "See how we empower businesses through innovative technology."
-                                    })
-                                ]
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                ref: caseRailRef,
-                                "aria-label": "Client projects and case studies",
-                                className: "jsx-78fd8a5633951551" + " " + "case-rail-container",
-                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "jsx-78fd8a5633951551" + " " + "case-rail",
-                                    children: clientProjects.length > 0 ? [
-                                        ...clientProjects,
-                                        ...clientProjects
-                                    ].map((project, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                            href: `/projects/${encodeURIComponent(project.slug || project.id)}`,
-                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                                style: {
-                                                    textDecoration: "none",
-                                                    color: "inherit"
-                                                },
-                                                className: "jsx-78fd8a5633951551" + " " + "case-card",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "case-image",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_11__.DisplayImage, {
-                                                            src: project.icon_url || fallbackProductImage,
-                                                            alt: project.name,
-                                                            loading: "lazy",
-                                                            decoding: "async"
-                                                        })
-                                                    }),
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "case-content",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "case-title",
-                                                                children: project.name
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "btn-link",
-                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-78fd8a5633951551",
-                                                                    children: "View Full Story"
-                                                                })
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            })
-                                        }, `${project.id}-${idx}`)) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                                        children: [
-                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "case-card",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "case-image",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                            src: "https://images.pexels.com/photos/1181335/pexels-photo-1181335.jpeg?auto=compress&cs=tinysrgb&w=1500",
-                                                            alt: "Data Center",
-                                                            className: "jsx-78fd8a5633951551"
-                                                        })
-                                                    }),
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "case-content",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "case-title",
-                                                                children: "Global Finance Data Center"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "btn-link",
-                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-78fd8a5633951551",
-                                                                    children: "View Full Story"
-                                                                })
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            }),
-                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "case-card",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "case-image",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                            src: "https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&cs=tinysrgb&w=1500",
-                                                            alt: "Security",
-                                                            className: "jsx-78fd8a5633951551"
-                                                        })
-                                                    }),
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "case-content",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "case-title",
-                                                                children: "City Mall Security Overhaul"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "btn-link",
-                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-78fd8a5633951551",
-                                                                    children: "View Full Story"
-                                                                })
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            }),
-                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "case-card",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "case-image",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                            src: "https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1500",
-                                                            alt: "Digital",
-                                                            className: "jsx-78fd8a5633951551"
-                                                        })
-                                                    }),
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "case-content",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "case-title",
-                                                                children: "EduTech Digital Platform"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "btn-link",
-                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                    className: "jsx-78fd8a5633951551",
-                                                                    children: "View Full Story"
-                                                                })
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            })
-                                        ]
-                                    })
-                                })
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-78fd8a5633951551" + " " + "testimonials-section",
-                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: "jsx-78fd8a5633951551" + " " + "testimonials-container",
-                            children: [
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    id: "testimonialCarousel",
-                                    className: "jsx-78fd8a5633951551" + " " + "testimonials-carousel",
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "jsx-78fd8a5633951551" + " " + "testimonial-item active",
-                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "testimonial-content",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "testimonial-quote",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-78fd8a5633951551",
-                                                            children: '"MIS Solution transformed our corporate IT infrastructure. Their support team is incredibly responsive."'
-                                                        })
-                                                    }),
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "testimonial-author",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "author-name",
-                                                                children: "Sarah Jenkins"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "author-role",
-                                                                children: "IT Director, Nexus Corp"
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            })
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "jsx-78fd8a5633951551" + " " + "testimonial-item",
-                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "testimonial-content",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "testimonial-quote",
-                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-78fd8a5633951551",
-                                                            children: '"The hardware quality and warranty transparency at MIS Solution are unmatched."'
-                                                        })
-                                                    }),
-                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "testimonial-author",
-                                                        children: [
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "author-name",
-                                                                children: "David Chen"
-                                                            }),
-                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                className: "jsx-78fd8a5633951551" + " " + "author-role",
-                                                                children: "Founder, TechSprint Solutions"
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            })
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "jsx-78fd8a5633951551" + " " + "carousel-controls",
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                            "aria-label": "Slide 1",
-                                            className: "jsx-78fd8a5633951551" + " " + "carousel-dot active"
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                            "aria-label": "Slide 2",
-                                            className: "jsx-78fd8a5633951551" + " " + "carousel-dot"
-                                        })
-                                    ]
-                                })
-                            ]
-                        })
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-78fd8a5633951551" + " " + "search-section",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-78fd8a5633951551" + " " + "search-container",
-                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-78fd8a5633951551" + " " + "search-card",
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                        className: "jsx-78fd8a5633951551" + " " + "section-title",
-                                        children: "Find What You Need"
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                        className: "jsx-78fd8a5633951551" + " " + "section-content",
-                                        children: "Instantly search our extensive catalog of hardware, software, and services."
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("form", {
-                                        action: "/product-catalog",
-                                        method: "GET",
-                                        className: "jsx-78fd8a5633951551" + " " + "catalog-search-form",
-                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "jsx-78fd8a5633951551" + " " + "catalog-search-wrapper",
-                                            children: [
-                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
-                                                    type: "text",
-                                                    placeholder: "Enter SKU, Model, or Product Name...",
-                                                    required: true,
-                                                    name: "search",
-                                                    className: "jsx-78fd8a5633951551" + " " + "catalog-input"
-                                                }),
-                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
-                                                    type: "submit",
-                                                    className: "jsx-78fd8a5633951551" + " " + "btn btn-primary",
-                                                    children: [
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-                                                            xmlns: "http://www.w3.org/2000/svg",
-                                                            width: "20",
-                                                            height: "20",
-                                                            viewBox: "0 0 24 24",
-                                                            fill: "none",
-                                                            stroke: "currentColor",
-                                                            strokeWidth: "2",
-                                                            strokeLinecap: "round",
-                                                            strokeLinejoin: "round",
-                                                            className: "jsx-78fd8a5633951551",
-                                                            children: [
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("circle", {
-                                                                    cx: "11",
-                                                                    cy: "11",
-                                                                    r: "8",
-                                                                    className: "jsx-78fd8a5633951551"
-                                                                }),
-                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                                    d: "m21 21-4.3-4.3",
-                                                                    className: "jsx-78fd8a5633951551"
-                                                                })
-                                                            ]
-                                                        }),
-                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                            className: "jsx-78fd8a5633951551",
-                                                            children: "Search"
-                                                        })
-                                                    ]
-                                                })
-                                            ]
-                                        })
-                                    })
-                                ]
-                            })
-                        })
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
-                        className: "jsx-78fd8a5633951551" + " " + "cta-banner-section",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-78fd8a5633951551" + " " + "cta-wrapper",
-                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                className: "jsx-78fd8a5633951551" + " " + "cta-alert-box",
-                                children: [
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "jsx-78fd8a5633951551" + " " + "cta-content",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "cta-icon",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-                                                    xmlns: "http://www.w3.org/2000/svg",
-                                                    width: "24",
-                                                    height: "24",
-                                                    viewBox: "0 0 24 24",
-                                                    fill: "none",
-                                                    stroke: "currentColor",
-                                                    strokeWidth: "2",
-                                                    strokeLinecap: "round",
-                                                    strokeLinejoin: "round",
-                                                    className: "jsx-78fd8a5633951551",
-                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                                                        d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z",
-                                                        className: "jsx-78fd8a5633951551"
-                                                    })
-                                                })
-                                            }),
-                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "cta-text",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "cta-title",
-                                                        children: "Need Immediate Assistance?"
-                                                    }),
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "cta-hotline",
-                                                        children: "24/7 Hotline: 02-41021991"
-                                                    }),
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                        className: "jsx-78fd8a5633951551" + " " + "cta-hotline",
-                                                        children: "info@missolution.com.bd"
-                                                    })
-                                                ]
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "jsx-78fd8a5633951551" + " " + "cta-buttons",
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                            href: "/request-custom-quote",
-                                            className: "jsx-78fd8a5633951551",
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "jsx-78fd8a5633951551" + " " + "btn-on-secondary btn btn-lg",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                    className: "jsx-78fd8a5633951551",
-                                                    children: "Request a Quote"
-                                                })
-                                            })
-                                        })
-                                    })
-                                ]
-                            })
-                        })
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-78fd8a5633951551" + " " + "home-container2",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-78fd8a5633951551" + " " + "home-container3",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                                html: `<style>@keyframes fadeIn {from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);}}</style>`
-                            })
-                        })
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: "jsx-78fd8a5633951551" + " " + "home-container4",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "jsx-78fd8a5633951551" + " " + "home-container5",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(dangerous_html_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                                html: `<script defer data-name="mis-solution-logic">(function(){ const testimonials = document.querySelectorAll(".testimonial-item"); const dots = document.querySelectorAll(".carousel-dot"); let currentTestimonial = 0; function showTestimonial(index) { testimonials.forEach((item, i) => { item.classList.toggle("active", i === index) }); dots.forEach((dot, i) => { dot.classList.toggle("active", i === index) }); currentTestimonial = index; } dots.forEach((dot, index) => { dot.addEventListener("click", () => { showTestimonial(index) }) }); setInterval(() => { let next = (currentTestimonial + 1) % testimonials.length; showTestimonial(next) }, 5000) })()</script>`
-                            })
-                        })
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {})
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {})
                 ]
             }),
             react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                id: "78fd8a5633951551",
-                children: ".home-container1.jsx-78fd8a5633951551{width:100%;min-height:100vh}.home-container2.jsx-78fd8a5633951551{display:none}.home-container3.jsx-78fd8a5633951551{display:contents}.home-container4.jsx-78fd8a5633951551{display:none}.home-container5.jsx-78fd8a5633951551{display:contents}"
+                id: "400a974db96a906a",
+                children: ".home-container1.jsx-400a974db96a906a{width:100%;min-height:100vh}"
             })
         ]
     });
@@ -2479,14 +2020,20 @@ async function loadPublicProps() {
         const { listFeaturedProducts  } = await __webpack_require__.e(/* import() */ 5021).then(__webpack_require__.bind(__webpack_require__, 5021));
         const { getDbPool  } = await __webpack_require__.e(/* import() */ 2984).then(__webpack_require__.bind(__webpack_require__, 2984));
         const db = getDbPool();
-        const [featuredProducts, [ads], [cats], [featDigi], [featBiz], [featMaint], [clientProjectRows]] = await Promise.all([
+        const [featuredProducts, [ads], [cats], [featDigi], [featBiz], [featMaint], [clientProjectRows], [[{ projectCount  }]], [[{ categoryCount  }]], [[{ digiCount  }]], [[{ bizCount  }]], [[{ maintCount  }]], [[{ productCount  }]], ] = await Promise.all([
             listFeaturedProducts(10),
             db.query(`SELECT a.id, a.title, a.ad_details, a.image_url, a.link_url, a.product_id, p.slug AS product_slug FROM advertisements a LEFT JOIN products p ON p.id = a.product_id WHERE a.is_active = 1 ORDER BY a.display_order ASC, a.created_at DESC LIMIT 10`),
             db.query(`SELECT id, name, slug, icon_url FROM categories WHERE parent_id IS NULL AND deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC LIMIT 15`),
             db.query(`SELECT name, slug, description, icon_url, 'digi_services' as type FROM digi_services WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`),
             db.query(`SELECT name, slug, description, icon_url, 'bus_corp_sol' as type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`),
             db.query(`SELECT name, slug, description, icon_url, 'service_maintenance' as type FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`),
-            db.query(`SELECT id, name, slug, description, icon_url, client_name FROM client_projects WHERE deleted_at IS NULL AND status = 'active' ORDER BY is_featured DESC, display_order ASC, created_at DESC LIMIT 10`), 
+            db.query(`SELECT id, name, slug, description, icon_url, client_name FROM client_projects WHERE deleted_at IS NULL AND status = 'active' ORDER BY is_featured DESC, display_order ASC, created_at DESC LIMIT 10`),
+            db.query(`SELECT COUNT(*) AS projectCount FROM client_projects WHERE deleted_at IS NULL AND status = 'active'`),
+            db.query(`SELECT COUNT(*) AS categoryCount FROM categories WHERE parent_id IS NULL AND deleted_at IS NULL AND status = 'active'`),
+            db.query(`SELECT COUNT(*) AS digiCount FROM digi_services WHERE deleted_at IS NULL AND status = 'active'`),
+            db.query(`SELECT COUNT(*) AS bizCount FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active'`),
+            db.query(`SELECT COUNT(*) AS maintCount FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active'`),
+            db.query(`SELECT COUNT(*) AS productCount FROM products WHERE deleted_at IS NULL AND is_active = 1`), 
         ]);
         const featuredServices = [
             ...featDigi,
@@ -2496,6 +2043,7 @@ async function loadPublicProps() {
         const { resolveDisplayUrl  } = await __webpack_require__.e(/* import() */ 3268).then(__webpack_require__.t.bind(__webpack_require__, 3268, 23));
         const withCard = (url)=>resolveDisplayUrl(url, "card");
         const withDetail = (url)=>resolveDisplayUrl(url, "detail");
+        const toNum = (value)=>Number(value) || 0;
         return {
             props: {
                 featuredProducts: featuredProducts.map((product)=>({
@@ -2518,6 +2066,12 @@ async function loadPublicProps() {
                         ...project,
                         icon_url: withCard(project.icon_url)
                     })),
+                proof: {
+                    projectCount: toNum(projectCount),
+                    categoryCount: toNum(categoryCount),
+                    serviceCount: toNum(digiCount) + toNum(bizCount) + toNum(maintCount),
+                    productCount: toNum(productCount)
+                },
                 messages: (await __webpack_require__.e(/* import() */ 9748).then(__webpack_require__.t.bind(__webpack_require__, 3567, 19))).default
             }
         };
@@ -2534,6 +2088,7 @@ const getServerSideProps = async ({ res  })=>{
                 homeCategories: [],
                 featuredServices: [],
                 clientProjects: [],
+                proof: emptyProof,
                 messages: (await __webpack_require__.e(/* import() */ 9748).then(__webpack_require__.t.bind(__webpack_require__, 3567, 19))).default
             }
         }));
@@ -2548,6 +2103,7 @@ __webpack_async_result__();
 /***/ 2418:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("mysql2/promise");
 
 /***/ }),
@@ -2555,6 +2111,7 @@ module.exports = require("mysql2/promise");
 /***/ 1649:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next-auth/react");
 
 /***/ }),
@@ -2562,6 +2119,7 @@ module.exports = require("next-auth/react");
 /***/ 503:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next-intl");
 
 /***/ }),
@@ -2569,6 +2127,7 @@ module.exports = require("next-intl");
 /***/ 3280:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/app-router-context.js");
 
 /***/ }),
@@ -2576,6 +2135,7 @@ module.exports = require("next/dist/shared/lib/app-router-context.js");
 /***/ 2796:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/head-manager-context.js");
 
 /***/ }),
@@ -2583,6 +2143,7 @@ module.exports = require("next/dist/shared/lib/head-manager-context.js");
 /***/ 3539:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/i18n/detect-domain-locale.js");
 
 /***/ }),
@@ -2590,6 +2151,7 @@ module.exports = require("next/dist/shared/lib/i18n/detect-domain-locale.js");
 /***/ 4014:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/i18n/normalize-locale-path.js");
 
 /***/ }),
@@ -2597,6 +2159,7 @@ module.exports = require("next/dist/shared/lib/i18n/normalize-locale-path.js");
 /***/ 8524:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/is-plain-object.js");
 
 /***/ }),
@@ -2604,6 +2167,7 @@ module.exports = require("next/dist/shared/lib/is-plain-object.js");
 /***/ 8020:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/mitt.js");
 
 /***/ }),
@@ -2611,6 +2175,7 @@ module.exports = require("next/dist/shared/lib/mitt.js");
 /***/ 4406:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/page-path/denormalize-page-path.js");
 
 /***/ }),
@@ -2618,6 +2183,7 @@ module.exports = require("next/dist/shared/lib/page-path/denormalize-page-path.j
 /***/ 4964:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router-context.js");
 
 /***/ }),
@@ -2625,6 +2191,7 @@ module.exports = require("next/dist/shared/lib/router-context.js");
 /***/ 3431:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/add-locale.js");
 
 /***/ }),
@@ -2632,6 +2199,7 @@ module.exports = require("next/dist/shared/lib/router/utils/add-locale.js");
 /***/ 1751:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js");
 
 /***/ }),
@@ -2639,6 +2207,7 @@ module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js")
 /***/ 6220:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/compare-states.js");
 
 /***/ }),
@@ -2646,6 +2215,7 @@ module.exports = require("next/dist/shared/lib/router/utils/compare-states.js");
 /***/ 299:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/format-next-pathname-info.js");
 
 /***/ }),
@@ -2653,6 +2223,7 @@ module.exports = require("next/dist/shared/lib/router/utils/format-next-pathname
 /***/ 3938:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/format-url.js");
 
 /***/ }),
@@ -2660,6 +2231,7 @@ module.exports = require("next/dist/shared/lib/router/utils/format-url.js");
 /***/ 9565:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/get-asset-path-from-route.js");
 
 /***/ }),
@@ -2667,6 +2239,7 @@ module.exports = require("next/dist/shared/lib/router/utils/get-asset-path-from-
 /***/ 5789:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/get-next-pathname-info.js");
 
 /***/ }),
@@ -2674,6 +2247,7 @@ module.exports = require("next/dist/shared/lib/router/utils/get-next-pathname-in
 /***/ 1897:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/is-bot.js");
 
 /***/ }),
@@ -2681,6 +2255,7 @@ module.exports = require("next/dist/shared/lib/router/utils/is-bot.js");
 /***/ 1428:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/is-dynamic.js");
 
 /***/ }),
@@ -2688,6 +2263,7 @@ module.exports = require("next/dist/shared/lib/router/utils/is-dynamic.js");
 /***/ 8854:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
 
 /***/ }),
@@ -2695,6 +2271,7 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
 /***/ 1292:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/parse-relative-url.js");
 
 /***/ }),
@@ -2702,6 +2279,7 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-relative-url.j
 /***/ 4567:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/path-has-prefix.js");
 
 /***/ }),
@@ -2709,6 +2287,7 @@ module.exports = require("next/dist/shared/lib/router/utils/path-has-prefix.js")
 /***/ 979:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/querystring.js");
 
 /***/ }),
@@ -2716,6 +2295,7 @@ module.exports = require("next/dist/shared/lib/router/utils/querystring.js");
 /***/ 3297:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slash.js");
 
 /***/ }),
@@ -2723,6 +2303,7 @@ module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slas
 /***/ 6052:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/resolve-rewrites.js");
 
 /***/ }),
@@ -2730,6 +2311,7 @@ module.exports = require("next/dist/shared/lib/router/utils/resolve-rewrites.js"
 /***/ 4226:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/route-matcher.js");
 
 /***/ }),
@@ -2737,6 +2319,7 @@ module.exports = require("next/dist/shared/lib/router/utils/route-matcher.js");
 /***/ 5052:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/router/utils/route-regex.js");
 
 /***/ }),
@@ -2744,6 +2327,7 @@ module.exports = require("next/dist/shared/lib/router/utils/route-regex.js");
 /***/ 9232:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/dist/shared/lib/utils.js");
 
 /***/ }),
@@ -2751,6 +2335,7 @@ module.exports = require("next/dist/shared/lib/utils.js");
 /***/ 968:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/head");
 
 /***/ }),
@@ -2758,6 +2343,7 @@ module.exports = require("next/head");
 /***/ 1853:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("next/router");
 
 /***/ }),
@@ -2765,6 +2351,7 @@ module.exports = require("next/router");
 /***/ 6689:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("react");
 
 /***/ }),
@@ -2772,6 +2359,7 @@ module.exports = require("react");
 /***/ 997:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("react/jsx-runtime");
 
 /***/ }),
@@ -2779,6 +2367,7 @@ module.exports = require("react/jsx-runtime");
 /***/ 9816:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("styled-jsx/style");
 
 /***/ }),
@@ -2786,6 +2375,7 @@ module.exports = require("styled-jsx/style");
 /***/ 7027:
 /***/ ((module) => {
 
+"use strict";
 module.exports = import("dangerous-html/react");;
 
 /***/ }),
@@ -2793,6 +2383,7 @@ module.exports = import("dangerous-html/react");;
 /***/ 7147:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("fs");
 
 /***/ }),
@@ -2800,6 +2391,7 @@ module.exports = require("fs");
 /***/ 1017:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("path");
 
 /***/ })
@@ -2811,7 +2403,7 @@ module.exports = require("path");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,1664,2403,6274,2097,6151], () => (__webpack_exec__(3678)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,1664,5816,6274,2097,6151], () => (__webpack_exec__(3678)));
 module.exports = __webpack_exports__;
 
 })();

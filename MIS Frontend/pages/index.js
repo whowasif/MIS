@@ -1,17 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
-
-import Script from 'dangerous-html/react'
-import { useTranslations } from 'next-intl'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
-import CoreSolutionsSignposts from '../components/CoreSolutionsTree'
 import HeroWorldMap from '../components/HeroWorldMap'
-import { DisplayImage } from '../lib/display-image'
-
-const fallbackProductImage = 'https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=1500'
+import PathChooser from '../components/home/PathChooser'
+import OfferBand from '../components/home/OfferBand'
+import CapabilityMap from '../components/home/CapabilityMap'
+import ProofStrip from '../components/home/ProofStrip'
+import WorkGallery from '../components/home/WorkGallery'
+import FeaturedCatalog from '../components/home/FeaturedCatalog'
+import FindAndAct from '../components/home/FindAndAct'
 
 const HERO_SUBTITLE = 'Enterprise IT, hardware supply, and on-call support for teams that need technology that just works.'
 
@@ -149,178 +148,22 @@ const HeroMotto = () => {
   )
 }
 
-const StatCounter = ({ end, suffix = '', label, decimals = 0 }) => {
-  const [count, setCount] = useState(0)
-  const [hasAnimated, setHasAnimated] = useState(false)
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true)
-          const duration = 1800
-          const startTime = performance.now()
-          const animate = (currentTime) => {
-            const elapsed = currentTime - startTime
-            const progress = Math.min(elapsed / duration, 1)
-            const eased = 1 - Math.pow(1 - progress, 3)
-            setCount(eased * end)
-            if (progress < 1) requestAnimationFrame(animate)
-          }
-          requestAnimationFrame(animate)
-        }
-      },
-      { threshold: 0.3 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [hasAnimated, end])
-
-  const displayValue = decimals > 0 ? count.toFixed(decimals) : Math.floor(count)
-
-  return (
-    <div className="stat-card" ref={ref}>
-      <div className="stat-number"><span>{displayValue}{suffix}</span></div>
-      <div className="stat-label"><span>{label}</span></div>
-    </div>
-  )
-}
-
-// Turns a horizontally-scrollable rail into an auto-scrolling (right-to-left)
-// carousel that the user can grab with mouse or finger and drag both ways.
-// Content is expected to be duplicated (rendered twice) so the loop is seamless.
-const setupDraggableAutoScroll = (rail) => {
-  if (!rail) return null
-
-  let rafId = null
-  let isDragging = false
-  let hasMoved = false
-  let startX = 0
-  let startScrollLeft = 0
-  let pos = 0            // float position we drive scrollLeft with
-  const SPEED = 0.6      // px per frame (~36px/s)
-
-  const half = () => rail.scrollWidth / 2
-
-  const step = () => {
-    const h = half()
-    if (!isDragging && h > 0) {
-      pos += SPEED
-      if (pos >= h) pos -= h          // seamless loop back to first copy
-      else if (pos < 0) pos += h
-      rail.scrollLeft = pos           // assign the accumulated float (rounded internally)
-    }
-    rafId = requestAnimationFrame(step)
-  }
-
-  const onPointerDown = (e) => {
-    if (e.pointerType === 'mouse' && e.button !== 0) return
-    isDragging = true
-    hasMoved = false
-    startX = e.clientX
-    startScrollLeft = rail.scrollLeft
-  }
-  const onPointerMove = (e) => {
-    if (!isDragging) return
-    const dx = e.clientX - startX
-    if (Math.abs(dx) <= 12) return
-    hasMoved = true
-    try { rail.setPointerCapture(e.pointerId) } catch (_) {}
-    if (e.cancelable) e.preventDefault()
-    let next = startScrollLeft - dx
-    const h = half()
-    if (h > 0) {
-      if (next >= h) next -= h
-      else if (next < 0) next += h
-    }
-    rail.scrollLeft = next
-  }
-  const endDrag = (e) => {
-    if (!isDragging) return
-    isDragging = false
-    try { rail.releasePointerCapture(e.pointerId) } catch (_) {}
-    pos = rail.scrollLeft            // resume auto-scroll from where the user left off
-  }
-  const onPointerUp = (e) => {
-    endDrag(e)
-  }
-  const onClick = (e) => {
-    // A short press is a normal link click. A drag must not open the page.
-    if (!hasMoved) return
-    e.preventDefault()
-    e.stopPropagation()
-  }
-  // On desktop, mouse-dragging over an <img>/<a> starts the browser's native
-  // drag-and-drop, which steals the pointer and breaks our drag. Suppress it.
-  const onDragStart = (e) => { e.preventDefault() }
-
-  rail.addEventListener('pointerdown', onPointerDown)
-  rail.addEventListener('pointermove', onPointerMove)
-  document.addEventListener('pointerup', onPointerUp)
-  document.addEventListener('pointercancel', endDrag)
-  rail.addEventListener('click', onClick, true)
-  rail.addEventListener('dragstart', onDragStart)
-  pos = rail.scrollLeft || 0
-  rafId = requestAnimationFrame(step)
-
-  return () => {
-    if (rafId) cancelAnimationFrame(rafId)
-    rail.removeEventListener('pointerdown', onPointerDown)
-    rail.removeEventListener('pointermove', onPointerMove)
-    document.removeEventListener('pointerup', onPointerUp)
-    document.removeEventListener('pointercancel', endDrag)
-    rail.removeEventListener('click', onClick, true)
-    rail.removeEventListener('dragstart', onDragStart)
-  }
+const emptyProof = {
+  projectCount: 0,
+  categoryCount: 0,
+  serviceCount: 0,
+  productCount: 0,
 }
 
 const Home = (props) => {
-  const { featuredProducts = [], advertisements = [], homeCategories = [], featuredServices = [], clientProjects = [] } = props
-  const caseRailRef = useRef(null)
-  const productsRailRef = useRef(null)
-  const [adIndex, setAdIndex] = useState(0)
-
-  useEffect(() => {
-    if (advertisements.length <= 1) return
-    const timer = setInterval(() => { setAdIndex((prev) => (prev + 1) % advertisements.length) }, 5000)
-    return () => clearInterval(timer)
-  }, [advertisements.length])
-
-  // Auto-scroll (right-to-left) + drag/swipe control for all three card rails.
-  // Wait until the visible product photos have decoded so the row does not slide in blank.
-  useEffect(() => {
-    let started = false
-    const stops = []
-    const start = () => {
-      if (started) return
-      started = true
-      stops.push(setupDraggableAutoScroll(productsRailRef.current))
-      stops.push(setupDraggableAutoScroll(caseRailRef.current))
-    }
-    const rail = productsRailRef.current
-    const images = rail
-      ? Array.from(rail.querySelectorAll('img')).filter((img) => img.getAttribute('loading') !== 'lazy')
-      : []
-    let pending = images.length
-    const mark = () => {
-      pending -= 1
-      if (pending <= 0) start()
-    }
-    images.forEach((img) => {
-      if (img.complete && img.naturalWidth > 0) mark()
-      else {
-        img.addEventListener('load', mark, { once: true })
-        img.addEventListener('error', mark, { once: true })
-      }
-    })
-    const timer = setTimeout(start, 1500)
-    if (!images.length) start()
-    return () => {
-      clearTimeout(timer)
-      stops.forEach((fn) => fn && fn())
-    }
-  }, [featuredProducts.length, clientProjects.length])
+  const {
+    featuredProducts = [],
+    advertisements = [],
+    homeCategories = [],
+    featuredServices = [],
+    clientProjects = [],
+    proof = emptyProof,
+  } = props
 
   return (
     <>
@@ -380,201 +223,20 @@ const Home = (props) => {
           </div>
         </section>
 
-        {homeCategories.length > 0 && (
-          <section className="home-categories-section">
-            <div className="home-categories-grid">
-              {homeCategories.map((cat, index) => (
-                <Link key={cat.id} href={`/categories/${cat.slug}`}>
-                  <a className="home-cat-item">
-                    <div className="home-cat-icon-wrap">
-                      {cat.icon_url ? (
-                        <DisplayImage src={cat.icon_url} alt={cat.name} loading="eager" decoding="async" />
-                      ) : <span className="home-cat-letter">{cat.name.charAt(0)}</span>}
-                    </div>
-                    <span className="home-cat-name">{cat.name}</span>
-                  </a>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+        <div className="home-mid">
+          <PathChooser categories={homeCategories} />
+          <OfferBand advertisements={advertisements} />
+          <CapabilityMap featuredServices={featuredServices} />
+          <ProofStrip proof={proof} />
+          <WorkGallery projects={clientProjects} />
+          <FeaturedCatalog products={featuredProducts} />
+          <FindAndAct />
+        </div>
 
-        {advertisements.length > 0 && (
-          <section style={{ padding: '0 0 32px' }}>
-            <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
-              <div style={{ position: 'relative', height: '420px' }}>
-                {advertisements.map((ad, idx) => (
-                  <Link key={ad.id} href={ad.product_slug ? `/products/${ad.product_slug}` : (ad.link_url || '#')}>
-                    <a style={{ position: 'absolute', inset: 0, opacity: idx === adIndex ? 1 : 0, transition: 'opacity 0.5s', zIndex: idx === adIndex ? 1 : 0, display: 'block', textDecoration: 'none' }}>
-                      {idx === adIndex || idx === (adIndex + 1) % advertisements.length ? (
-                        <DisplayImage
-                          src={ad.image_url}
-                          kind="detail"
-                          priority={idx === adIndex}
-                          alt={ad.title}
-                          loading={idx === adIndex ? 'eager' : 'lazy'}
-                          decoding="async"
-                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                        />
-                      ) : (
-                        <div style={{ width: '100%', height: '100%', background: '#0a101b' }} />
-                      )}
-                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 75%)', zIndex: 1 }} />
-                      <div style={{ position: 'absolute', bottom: '28px', left: '28px', right: '28px', zIndex: 2, textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>
-                        <span style={{ background: '#f7e500', color: '#0a101b', padding: '4px 12px', borderRadius: '999px', fontSize: '12px', fontWeight: 700, display: 'inline-block' }}>Special Offer</span>
-                        <div style={{ margin: '8px 0 4px', fontSize: '22px', fontWeight: 800, color: '#ffffff', lineHeight: 1.3, display: 'block' }}>{ad.title}</div>
-                        {ad.ad_details && <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.4, maxWidth: '500px' }}>{ad.ad_details}</p>}
-                        <span style={{ fontSize: '14px', fontWeight: 700, color: '#f7e500', display: 'inline-block', marginTop: '6px' }}>Shop Now →</span>
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-              {advertisements.length > 1 && (
-                <>
-                  <button style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: '12px', zIndex: 5, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }} onClick={() => setAdIndex((p) => (p - 1 + advertisements.length) % advertisements.length)} aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-                  <button style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: '12px', zIndex: 5, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }} onClick={() => setAdIndex((p) => (p + 1) % advertisements.length)} aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-                  <div style={{ position: 'absolute', bottom: '12px', right: '16px', zIndex: 5, display: 'flex', gap: '6px' }}>{advertisements.map((_, idx) => (<button key={idx} style={{ width: idx === adIndex ? '20px' : '8px', height: '8px', borderRadius: '4px', border: 'none', cursor: 'pointer', background: idx === adIndex ? '#ffffff' : 'rgba(255,255,255,0.5)', transition: 'all 0.3s' }} onClick={() => setAdIndex(idx)} aria-label={`Slide ${idx + 1}`} />))}</div>
-                </>
-              )}
-            </div>
-          </section>
-        )}
-
-        <section className="products-carousel-section">
-          <div className="products-header">
-            <h2 className="section-title">Featured Hardware &amp; Accessories</h2>
-            <p className="section-subtitle">Top-selling essentials for your office and enterprise needs.</p>
-          </div>
-          <div className="products-rail-container" ref={productsRailRef}>
-            <div className="products-rail">
-              {featuredProducts.length > 0 ? (
-                [...featuredProducts, ...featuredProducts].map((product, idx) => (
-                  <Link key={`${product.id}-${idx}`} href={`/products/${encodeURIComponent(product.slug || product.id)}`}>
-                    <a className="product-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <div className="product-image-box">
-                        <DisplayImage
-                          src={product.image || fallbackProductImage}
-                          priority={idx % featuredProducts.length === 0}
-                          alt={product.name}
-                          loading={String(product.image || '').includes('.card.webp') || idx % featuredProducts.length < 4 ? 'eager' : 'lazy'}
-                          decoding="async"
-                        />
-                      </div>
-                      <div className="product-info">
-                        <span className="product-category">{product.categoryName}</span>
-                        <h3 className="product-name">{product.name}</h3>
-                        {product.price > 0 && <span className="product-price-tag">৳{Number(product.price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>}
-                      </div>
-                    </a>
-                  </Link>
-                ))
-              ) : (
-                [1,2,3,4,5,6].map((i) => (
-                  <div key={i} className="product-card">
-                    <div className="product-image-box"><img src="https://images.pexels.com/photos/17489151/pexels-photo-17489151.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Product placeholder" /></div>
-                    <div className="product-info"><span className="product-category">Hardware</span><h3 className="product-name">Featured Product {i}</h3></div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className="core-solutions-section" id="core-services">
-          <CoreSolutionsSignposts />
-        </section>
-
-        <section className="stats-section">
-          <div className="stats-container">
-            <div className="stats-grid">
-              <StatCounter end={100} suffix="+" label="Projects Completed" />
-              <StatCounter end={100} suffix="+" label="Enterprise Clients" />
-              <StatCounter end={99.9} suffix="%" label="Support SLA" decimals={1} />
-              <StatCounter end={100} suffix="%" label="Warranty Coverage" />
-            </div>
-          </div>
-        </section>
-
-        <section className="case-studies-section">
-          <div className="case-header">
-            <h2 className="section-title">Client Projects & Case Studies</h2>
-            <p className="section-subtitle">See how we empower businesses through innovative technology.</p>
-          </div>
-          <div className="case-rail-container" ref={caseRailRef} aria-label="Client projects and case studies">
-            <div className="case-rail">
-              {clientProjects.length > 0 ? (
-                [...clientProjects, ...clientProjects].map((project, idx) => (
-                  <Link key={`${project.id}-${idx}`} href={`/projects/${encodeURIComponent(project.slug || project.id)}`}>
-                    <a className="case-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <div className="case-image">
-                        <DisplayImage src={project.icon_url || fallbackProductImage} alt={project.name} loading="lazy" decoding="async" />
-                      </div>
-                      <div className="case-content">
-                        <h3 className="case-title">{project.name}</h3>
-                        <div className="btn-link"><span>View Full Story</span></div>
-                      </div>
-                    </a>
-                  </Link>
-                ))
-              ) : (
-                <>
-                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/1181335/pexels-photo-1181335.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Data Center" /></div><div className="case-content"><h3 className="case-title">Global Finance Data Center</h3><div className="btn-link"><span>View Full Story</span></div></div></div>
-                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Security" /></div><div className="case-content"><h3 className="case-title">City Mall Security Overhaul</h3><div className="btn-link"><span>View Full Story</span></div></div></div>
-                  <div className="case-card"><div className="case-image"><img src="https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1500" alt="Digital" /></div><div className="case-content"><h3 className="case-title">EduTech Digital Platform</h3><div className="btn-link"><span>View Full Story</span></div></div></div>
-                </>
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className="testimonials-section">
-          <div className="testimonials-container">
-            <div id="testimonialCarousel" className="testimonials-carousel">
-              <div className="testimonial-item active"><div className="testimonial-content"><div className="testimonial-quote"><span>&quot;MIS Solution transformed our corporate IT infrastructure. Their support team is incredibly responsive.&quot;</span></div><div className="testimonial-author"><span className="author-name">Sarah Jenkins</span><span className="author-role">IT Director, Nexus Corp</span></div></div></div>
-              <div className="testimonial-item"><div className="testimonial-content"><div className="testimonial-quote"><span>&quot;The hardware quality and warranty transparency at MIS Solution are unmatched.&quot;</span></div><div className="testimonial-author"><span className="author-name">David Chen</span><span className="author-role">Founder, TechSprint Solutions</span></div></div></div>
-            </div>
-            <div className="carousel-controls"><button aria-label="Slide 1" className="carousel-dot active"></button><button aria-label="Slide 2" className="carousel-dot"></button></div>
-          </div>
-        </section>
-
-        <section className="search-section">
-          <div className="search-container">
-            <div className="search-card">
-              <h2 className="section-title">Find What You Need</h2>
-              <p className="section-content">Instantly search our extensive catalog of hardware, software, and services.</p>
-              <form action="/product-catalog" method="GET" className="catalog-search-form">
-                <div className="catalog-search-wrapper">
-                  <input type="text" placeholder="Enter SKU, Model, or Product Name..." required name="search" className="catalog-input" />
-                  <button type="submit" className="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span>Search</span></button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        <section className="cta-banner-section">
-          <div className="cta-wrapper">
-            <div className="cta-alert-box">
-              <div className="cta-content">
-                <div className="cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
-                <div className="cta-text"><span className="cta-title">Need Immediate Assistance?</span><span className="cta-hotline">24/7 Hotline: 02-41021991</span><span className="cta-hotline">info@missolution.com.bd</span></div>
-              </div>
-              <div className="cta-buttons"><a href="/request-custom-quote"><div className="btn-on-secondary btn btn-lg"><span>Request a Quote</span></div></a></div>
-            </div>
-          </div>
-        </section>
-
-        <div className="home-container2"><div className="home-container3"><Script html={`<style>@keyframes fadeIn {from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);}}</style>`}></Script></div></div>
-        <div className="home-container4"><div className="home-container5"><Script html={`<script defer data-name="mis-solution-logic">(function(){ const testimonials = document.querySelectorAll(".testimonial-item"); const dots = document.querySelectorAll(".carousel-dot"); let currentTestimonial = 0; function showTestimonial(index) { testimonials.forEach((item, i) => { item.classList.toggle("active", i === index) }); dots.forEach((dot, i) => { dot.classList.toggle("active", i === index) }); currentTestimonial = index; } dots.forEach((dot, index) => { dot.addEventListener("click", () => { showTestimonial(index) }) }); setInterval(() => { let next = (currentTestimonial + 1) % testimonials.length; showTestimonial(next) }, 5000) })()</script>`}></Script></div></div>
         <Footer />
       </div>
       <style jsx>{`
         .home-container1 { width: 100%; min-height: 100vh; }
-        .home-container2 { display: none; }
-        .home-container3 { display: contents; }
-        .home-container4 { display: none; }
-        .home-container5 { display: contents; }
       `}</style>
     </>
   )
@@ -586,7 +248,21 @@ async function loadPublicProps() {
     const { getDbPool } = await import('../lib/server/db')
     const db = getDbPool()
 
-    const [featuredProducts, [ads], [cats], [featDigi], [featBiz], [featMaint], [clientProjectRows]] = await Promise.all([
+    const [
+      featuredProducts,
+      [ads],
+      [cats],
+      [featDigi],
+      [featBiz],
+      [featMaint],
+      [clientProjectRows],
+      [[{ projectCount }]],
+      [[{ categoryCount }]],
+      [[{ digiCount }]],
+      [[{ bizCount }]],
+      [[{ maintCount }]],
+      [[{ productCount }]],
+    ] = await Promise.all([
       listFeaturedProducts(10),
       db.query(`SELECT a.id, a.title, a.ad_details, a.image_url, a.link_url, a.product_id, p.slug AS product_slug FROM advertisements a LEFT JOIN products p ON p.id = a.product_id WHERE a.is_active = 1 ORDER BY a.display_order ASC, a.created_at DESC LIMIT 10`),
       db.query(`SELECT id, name, slug, icon_url FROM categories WHERE parent_id IS NULL AND deleted_at IS NULL AND status = 'active' ORDER BY display_order ASC LIMIT 15`),
@@ -594,11 +270,20 @@ async function loadPublicProps() {
       db.query(`SELECT name, slug, description, icon_url, 'bus_corp_sol' as type FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`),
       db.query(`SELECT name, slug, description, icon_url, 'service_maintenance' as type FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active' AND is_featured = 1 ORDER BY display_order ASC LIMIT 4`),
       db.query(`SELECT id, name, slug, description, icon_url, client_name FROM client_projects WHERE deleted_at IS NULL AND status = 'active' ORDER BY is_featured DESC, display_order ASC, created_at DESC LIMIT 10`),
+      db.query(`SELECT COUNT(*) AS projectCount FROM client_projects WHERE deleted_at IS NULL AND status = 'active'`),
+      db.query(`SELECT COUNT(*) AS categoryCount FROM categories WHERE parent_id IS NULL AND deleted_at IS NULL AND status = 'active'`),
+      db.query(`SELECT COUNT(*) AS digiCount FROM digi_services WHERE deleted_at IS NULL AND status = 'active'`),
+      db.query(`SELECT COUNT(*) AS bizCount FROM bus_corp_sol WHERE deleted_at IS NULL AND status = 'active'`),
+      db.query(`SELECT COUNT(*) AS maintCount FROM service_maintenance WHERE deleted_at IS NULL AND status = 'active'`),
+      db.query(`SELECT COUNT(*) AS productCount FROM products WHERE deleted_at IS NULL AND is_active = 1`),
     ])
+
     const featuredServices = [...featDigi, ...featBiz, ...featMaint]
     const { resolveDisplayUrl } = await import('../lib/server/display-url')
     const withCard = (url) => resolveDisplayUrl(url, 'card')
     const withDetail = (url) => resolveDisplayUrl(url, 'detail')
+
+    const toNum = (value) => Number(value) || 0
 
     return {
       props: {
@@ -607,6 +292,12 @@ async function loadPublicProps() {
         homeCategories: JSON.parse(JSON.stringify(cats)).map((cat) => ({ ...cat, icon_url: withCard(cat.icon_url) })),
         featuredServices: JSON.parse(JSON.stringify(featuredServices)).map((service) => ({ ...service, icon_url: withCard(service.icon_url) })),
         clientProjects: JSON.parse(JSON.stringify(clientProjectRows)).map((project) => ({ ...project, icon_url: withCard(project.icon_url) })),
+        proof: {
+          projectCount: toNum(projectCount),
+          categoryCount: toNum(categoryCount),
+          serviceCount: toNum(digiCount) + toNum(bizCount) + toNum(maintCount),
+          productCount: toNum(productCount),
+        },
         messages: (await import('../locales/en.json')).default,
       },
     }
@@ -624,6 +315,7 @@ export const getServerSideProps = async ({ res }) => {
       homeCategories: [],
       featuredServices: [],
       clientProjects: [],
+      proof: emptyProof,
       messages: (await import('../locales/en.json')).default,
     },
   }))
