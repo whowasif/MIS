@@ -97,10 +97,10 @@ const SearchPage = ({ query , products =[] , services =[]  })=>{
                                     children: "No products or services found matching your search."
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                    href: "/product-catalog",
+                                    href: "/categories",
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                         className: "jsx-b3259cedcb35c9db" + " " + "browse-link",
-                                        children: "Browse All Products"
+                                        children: "Browse categories"
                                     })
                                 })
                             ]

@@ -43,9 +43,8 @@ const OfferBand = ({ advertisements = [] }) => {
 
   if (!total) return null
 
-  const primary = advertisements[index]
-  const secondary = advertisements.filter((_, i) => i !== index).slice(0, 2)
-  const hrefFor = (ad) => (ad.product_slug ? `/products/${ad.product_slug}` : (ad.link_url || '#'))
+  const offer = advertisements[index]
+  const href = offer.product_slug ? `/products/${offer.product_slug}` : (offer.link_url || '#')
 
   const go = (dir) => {
     setIndex((prev) => (prev + dir + total) % total)
@@ -64,75 +63,51 @@ const OfferBand = ({ advertisements = [] }) => {
       }}
     >
       <motion.div
-        className="hm-offer-inner"
+        className="hm-offer-stage"
         initial="hidden"
         whileInView="show"
         viewport={homeViewport}
         variants={reduce ? reducedFade : fadeUp}
       >
-        <div className={`hm-offer-layout${secondary.length ? '' : ' is-solo'}`}>
-          <Link href={hrefFor(primary)}>
-            <a className="hm-offer-primary">
-              <div className="hm-offer-media">
-                <DisplayImage
-                  src={primary.image_url}
-                  kind="detail"
-                  priority
-                  alt={primary.title || 'Offer'}
-                  loading="eager"
-                  decoding="async"
-                />
-                <span className="hm-offer-scrim" aria-hidden="true" />
-              </div>
-              <div className="hm-offer-copy">
-                <span className="hm-offer-kicker">Offer</span>
-                <h2 className="hm-offer-title">{primary.title}</h2>
-                {primary.ad_details ? <p className="hm-offer-details">{primary.ad_details}</p> : null}
-                <span className="hm-offer-cta">Shop now</span>
-              </div>
-              {total > 1 && (
-                <div className="hm-offer-progress" aria-hidden="true">
-                  <span style={{ transform: `scaleX(${progress})` }} />
-                </div>
-              )}
-            </a>
-          </Link>
-
-          {secondary.length > 0 && (
-            <div className="hm-offer-side">
-              {secondary.map((ad) => (
-                <Link key={ad.id} href={hrefFor(ad)}>
-                  <a className="hm-offer-side-item">
-                    <div className="hm-offer-side-media">
-                      <DisplayImage
-                        src={ad.image_url}
-                        kind="detail"
-                        alt={ad.title || 'Offer'}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <div className="hm-offer-side-copy">
-                      <h3>{ad.title}</h3>
-                      {ad.ad_details ? <p>{ad.ad_details}</p> : null}
-                    </div>
-                  </a>
-                </Link>
-              ))}
+        <Link href={href}>
+          <a className="hm-offer-primary">
+            <div className="hm-offer-media">
+              <DisplayImage
+                src={offer.image_url}
+                kind="detail"
+                priority
+                alt={offer.title || 'Offer'}
+                loading="eager"
+                decoding="async"
+              />
+              <span className="hm-offer-scrim" aria-hidden="true" />
             </div>
-          )}
-        </div>
+            <div className="hm-offer-copy">
+              <span className="hm-offer-kicker">Offer</span>
+              <h2 className="hm-offer-title">{offer.title}</h2>
+              {offer.ad_details ? <p className="hm-offer-details">{offer.ad_details}</p> : null}
+              <span className="hm-offer-cta">Shop now</span>
+            </div>
+          </a>
+        </Link>
 
         {total > 1 && (
-          <div className="hm-offer-controls">
-            <button type="button" className="hm-offer-nav" onClick={() => go(-1)} aria-label="Previous offer">
+          <>
+            <div className="hm-offer-progress" aria-hidden="true">
+              <span style={{ transform: `scaleX(${progress})` }} />
+            </div>
+            <div className="hm-offer-frame-meta">
+              <span className="hm-offer-count">
+                {String(index + 1).padStart(2, '0')} — {String(total).padStart(2, '0')}
+              </span>
+            </div>
+            <button type="button" className="hm-offer-nav hm-offer-nav-prev" onClick={() => go(-1)} aria-label="Previous offer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
             </button>
-            <span className="hm-offer-count">{index + 1} / {total}</span>
-            <button type="button" className="hm-offer-nav" onClick={() => go(1)} aria-label="Next offer">
+            <button type="button" className="hm-offer-nav hm-offer-nav-next" onClick={() => go(1)} aria-label="Next offer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
             </button>
-          </div>
+          </>
         )}
       </motion.div>
     </section>

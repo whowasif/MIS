@@ -247,7 +247,7 @@ const ProductDetailPage = ({ product , categorySpecs =[]  })=>{
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                 className: "jsx-b1e2dd9c116dea22" + " " + "product-detail-topline",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                    href: "/product-catalog",
+                                    href: "/categories",
                                     className: "jsx-b1e2dd9c116dea22" + " " + "catalog-back-link",
                                     children: "← Back to Catalog"
                                 })

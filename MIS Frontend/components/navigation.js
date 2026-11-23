@@ -468,7 +468,7 @@ const Navigation = () => {
       </header>
 
       {/* Category Navigation Bar - only on product/category pages */}
-      {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products') || router.pathname === '/product-catalog') && (
+      {categories.length > 0 && (router.pathname.startsWith('/categories') || router.pathname.startsWith('/products')) && (
         <nav className="cat-nav-bar" aria-label="Product categories">
           <div className="cat-nav-inner">
             {categories.filter((c) => !c.parent_id).map((cat) => {

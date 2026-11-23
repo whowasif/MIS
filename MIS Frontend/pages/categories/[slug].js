@@ -357,7 +357,7 @@ const CategoryPage = ({ category, subcategories, products, specs, filterOptions 
       <>
         <Navigation />
         <main style={{ minHeight: '60vh', display: 'grid', placeItems: 'center' }}>
-          <div style={{ textAlign: 'center' }}><h1>Category Not Found</h1><Link href="/product-catalog"><a>Browse All Products</a></Link></div>
+          <div style={{ textAlign: 'center' }}><h1>Category Not Found</h1><Link href="/categories"><a>Browse categories</a></Link></div>
         </main>
         <Footer />
       </>

@@ -20,13 +20,14 @@ const FindAndAct = () => {
             <span className="hm-eyebrow hm-eyebrow-on-dark">Catalog</span>
             <h2 id="hm-act-title" className="hm-act-panel-title">Find hardware</h2>
             <p className="hm-act-panel-sub">Search by SKU, model, or product name across the live catalog.</p>
-            <form action="/product-catalog" method="GET" className="hm-act-search">
+            <form action="/search" method="GET" className="hm-act-search">
               <label htmlFor="hm-catalog-search" className="hm-sr-only">Search catalog</label>
               <input
                 id="hm-catalog-search"
                 type="text"
-                name="search"
+                name="q"
                 required
+                minLength={2}
                 placeholder="SKU, model, or product name…"
                 className="hm-act-input"
               />

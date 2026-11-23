@@ -197,7 +197,7 @@ const ProductDetailPage = ({ product, categorySpecs = [] }) => {
 
         <section className="product-detail-shell">
           <div className="product-detail-topline">
-            <a className="catalog-back-link" href="/product-catalog">
+            <a className="catalog-back-link" href="/categories">
               ← Back to Catalog
             </a>
           </div>

@@ -8,9 +8,10 @@ module.exports = withTM({
   async redirects() {
     return [
       {
+        // Legacy TeleportHQ catalog — permanently retired. Use /categories.
         source: '/product-catalog',
-        destination: '/categories/desktop',
-        permanent: false,
+        destination: '/categories',
+        permanent: true,
       },
     ]
   },

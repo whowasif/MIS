@@ -454,9 +454,9 @@ const CategoryPage = ({ category , subcategories , products , specs , filterOpti
                                 children: "Category Not Found"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_4___default()), {
-                                href: "/product-catalog",
+                                href: "/categories",
                                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                    children: "Browse All Products"
+                                    children: "Browse categories"
                                 })
                             })
                         ]

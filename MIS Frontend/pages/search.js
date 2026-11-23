@@ -28,7 +28,7 @@ const SearchPage = ({ query, products = [], services = [] }) => {
           {totalResults === 0 && query && (
             <div className="empty-state">
               <p>No products or services found matching your search.</p>
-              <Link href="/product-catalog"><a className="browse-link">Browse All Products</a></Link>
+              <Link href="/categories"><a className="browse-link">Browse categories</a></Link>
             </div>
           )}
 

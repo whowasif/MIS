@@ -654,6 +654,9 @@ const FeaturedCatalog = ({ products =[]  })=>{
     const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
     if (!products.length) return null;
     const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .motionState */ .RK)(reduce);
+    const list = products.slice(0, 5);
+    const hero = list[0];
+    const rest = list.slice(1);
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
         className: "hm-catalog",
         "aria-labelledby": "hm-catalog-title",
@@ -671,70 +674,111 @@ const FeaturedCatalog = ({ products =[]  })=>{
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                     className: "hm-eyebrow",
-                                    children: "Catalog"
+                                    children: "Hardware"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
                                     id: "hm-catalog-title",
                                     className: "hm-section-title",
-                                    children: "Featured hardware"
+                                    children: "Featured kit"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                     className: "hm-section-sub",
-                                    children: "Top-listed essentials for office and enterprise builds."
+                                    children: "Enterprise hardware we’re actively supplying."
                                 })
                             ]
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                            href: "/product-catalog",
+                            href: "/categories",
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                                 className: "hm-text-link",
-                                children: "View full catalog →"
+                                children: "Browse categories →"
                             })
                         })
                     ]
                 }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                    className: "hm-catalog-grid",
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                    className: "hm-kit",
                     variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .staggerContainer */ .Jm,
                     initial: "hidden",
                     whileInView: "show",
                     viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
-                    children: products.map((product, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                            className: "hm-product",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                            className: "hm-kit-hero",
                             variants: item,
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                                href: `/products/${encodeURIComponent(product.slug || product.id)}`,
+                                href: `/products/${encodeURIComponent(hero.slug || hero.id)}`,
                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
                                     children: [
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "hm-product-media",
+                                            className: "hm-kit-plate",
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
-                                                src: product.image,
-                                                alt: product.name,
-                                                loading: idx < 4 ? "eager" : "lazy",
+                                                src: hero.image,
+                                                alt: hero.name,
+                                                loading: "eager",
                                                 decoding: "async"
                                             })
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "hm-product-copy",
+                                            className: "hm-kit-copy",
                                             children: [
-                                                product.categoryName ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                hero.categoryName ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                     className: "hm-product-cat",
-                                                    children: product.categoryName
+                                                    children: hero.categoryName
                                                 }) : null,
                                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                    children: product.name
+                                                    children: hero.name
                                                 }),
-                                                product.price > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                hero.price > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                     className: "hm-product-price",
-                                                    children: formatPrice(product.price)
+                                                    children: formatPrice(hero.price)
                                                 }) : null
                                             ]
                                         })
                                     ]
                                 })
                             })
-                        }, product.id))
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "hm-kit-rail",
+                            children: rest.map((product)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
+                                    className: "hm-kit-item",
+                                    variants: item,
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                        href: `/products/${encodeURIComponent(product.slug || product.id)}`,
+                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                                            children: [
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                                    className: "hm-kit-plate",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                                        src: product.image,
+                                                        alt: product.name,
+                                                        loading: "lazy",
+                                                        decoding: "async"
+                                                    })
+                                                }),
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                                    className: "hm-kit-copy",
+                                                    children: [
+                                                        product.categoryName ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "hm-product-cat",
+                                                            children: product.categoryName
+                                                        }) : null,
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                                                            children: product.name
+                                                        }),
+                                                        product.price > 0 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                            className: "hm-product-price",
+                                                            children: formatPrice(product.price)
+                                                        }) : null
+                                                    ]
+                                                })
+                                            ]
+                                        })
+                                    })
+                                }, product.id))
+                        })
+                    ]
                 })
             ]
         })
@@ -797,7 +841,7 @@ const FindAndAct = ()=>{
                                 children: "Search by SKU, model, or product name across the live catalog."
                             }),
                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
-                                action: "/product-catalog",
+                                action: "/search",
                                 method: "GET",
                                 className: "hm-act-search",
                                 children: [
@@ -809,8 +853,9 @@ const FindAndAct = ()=>{
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                         id: "hm-catalog-search",
                                         type: "text",
-                                        name: "search",
+                                        name: "q",
                                         required: true,
+                                        minLength: 2,
                                         placeholder: "SKU, model, or product name…",
                                         className: "hm-act-input"
                                     }),
@@ -955,9 +1000,8 @@ const OfferBand = ({ advertisements =[]  })=>{
         index
     ]);
     if (!total) return null;
-    const primary = advertisements[index];
-    const secondary = advertisements.filter((_, i)=>i !== index).slice(0, 2);
-    const hrefFor = (ad)=>ad.product_slug ? `/products/${ad.product_slug}` : ad.link_url || "#";
+    const offer = advertisements[index];
+    const href = offer.product_slug ? `/products/${offer.product_slug}` : offer.link_url || "#";
     const go = (dir)=>{
         setIndex((prev)=>(prev + dir + total) % total);
         setProgress(0);
@@ -972,110 +1016,83 @@ const OfferBand = ({ advertisements =[]  })=>{
             if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false);
         },
         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-            className: "hm-offer-inner",
+            className: "hm-offer-stage",
             initial: "hidden",
             whileInView: "show",
             viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
             variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .fadeUp */ .pB,
             children: [
-                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                    className: `hm-offer-layout${secondary.length ? "" : " is-solo"}`,
-                    children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                            href: hrefFor(primary),
-                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                className: "hm-offer-primary",
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                    href: href,
+                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                        className: "hm-offer-primary",
+                        children: [
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                className: "hm-offer-media",
                                 children: [
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "hm-offer-media",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
-                                                src: primary.image_url,
-                                                kind: "detail",
-                                                priority: true,
-                                                alt: primary.title || "Offer",
-                                                loading: "eager",
-                                                decoding: "async"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "hm-offer-scrim",
-                                                "aria-hidden": "true"
-                                            })
-                                        ]
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
+                                        src: offer.image_url,
+                                        kind: "detail",
+                                        priority: true,
+                                        alt: offer.title || "Offer",
+                                        loading: "eager",
+                                        decoding: "async"
                                     }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "hm-offer-copy",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "hm-offer-kicker",
-                                                children: "Offer"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                className: "hm-offer-title",
-                                                children: primary.title
-                                            }),
-                                            primary.ad_details ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "hm-offer-details",
-                                                children: primary.ad_details
-                                            }) : null,
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "hm-offer-cta",
-                                                children: "Shop now"
-                                            })
-                                        ]
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                        className: "hm-offer-scrim",
+                                        "aria-hidden": "true"
+                                    })
+                                ]
+                            }),
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                className: "hm-offer-copy",
+                                children: [
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                        className: "hm-offer-kicker",
+                                        children: "Offer"
                                     }),
-                                    total > 1 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                        className: "hm-offer-progress",
-                                        "aria-hidden": "true",
-                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                            style: {
-                                                transform: `scaleX(${progress})`
-                                            }
-                                        })
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                        className: "hm-offer-title",
+                                        children: offer.title
+                                    }),
+                                    offer.ad_details ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                        className: "hm-offer-details",
+                                        children: offer.ad_details
+                                    }) : null,
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                        className: "hm-offer-cta",
+                                        children: "Shop now"
                                     })
                                 ]
                             })
-                        }),
-                        secondary.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: "hm-offer-side",
-                            children: secondary.map((ad)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                                    href: hrefFor(ad),
-                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                        className: "hm-offer-side-item",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                                className: "hm-offer-side-media",
-                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
-                                                    src: ad.image_url,
-                                                    kind: "detail",
-                                                    alt: ad.title || "Offer",
-                                                    loading: "lazy",
-                                                    decoding: "async"
-                                                })
-                                            }),
-                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: "hm-offer-side-copy",
-                                                children: [
-                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
-                                                        children: ad.title
-                                                    }),
-                                                    ad.ad_details ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                        children: ad.ad_details
-                                                    }) : null
-                                                ]
-                                            })
-                                        ]
-                                    })
-                                }, ad.id))
-                        })
-                    ]
+                        ]
+                    })
                 }),
-                total > 1 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                    className: "hm-offer-controls",
+                total > 1 && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                     children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "hm-offer-progress",
+                            "aria-hidden": "true",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                style: {
+                                    transform: `scaleX(${progress})`
+                                }
+                            })
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: "hm-offer-frame-meta",
+                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+                                className: "hm-offer-count",
+                                children: [
+                                    String(index + 1).padStart(2, "0"),
+                                    " — ",
+                                    String(total).padStart(2, "0")
+                                ]
+                            })
+                        }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                             type: "button",
-                            className: "hm-offer-nav",
+                            className: "hm-offer-nav hm-offer-nav-prev",
                             onClick: ()=>go(-1),
                             "aria-label": "Previous offer",
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
@@ -1093,17 +1110,9 @@ const OfferBand = ({ advertisements =[]  })=>{
                                 })
                             })
                         }),
-                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
-                            className: "hm-offer-count",
-                            children: [
-                                index + 1,
-                                " / ",
-                                total
-                            ]
-                        }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                             type: "button",
-                            className: "hm-offer-nav",
+                            className: "hm-offer-nav hm-offer-nav-next",
                             onClick: ()=>go(1),
                             "aria-label": "Next offer",
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
@@ -1145,12 +1154,9 @@ const OfferBand = ({ advertisements =[]  })=>{
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9754);
-/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8023);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(459);
-/* harmony import */ var _lib_display_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8411);
-
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8023);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8411);
 
 
 
@@ -1179,96 +1185,63 @@ const PATHS = [
         image: "/solar-pro-field.jpg"
     }, 
 ];
-const PathChooser = ({ categories =[]  })=>{
-    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
-    const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .motionState */ .RK)(reduce);
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+const PathChooser = ()=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_4__/* .useReducedMotion */ .J)();
+    const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .motionState */ .RK)(reduce);
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
         className: "hm-paths",
         "aria-label": "Choose your path",
-        children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                className: "hm-paths-grid",
-                variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .staggerContainer */ .Jm,
-                initial: "hidden",
-                whileInView: "show",
-                viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
-                children: PATHS.map((path)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                        className: "hm-path",
-                        variants: item,
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                            href: path.href,
-                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                className: "hm-path-link",
-                                children: [
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "hm-path-media",
-                                        "aria-hidden": "true",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                src: path.image,
-                                                alt: "",
-                                                loading: "lazy",
-                                                decoding: "async"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "hm-path-scrim"
-                                            })
-                                        ]
-                                    }),
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                        className: "hm-path-copy",
-                                        children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                className: "hm-path-index",
-                                                children: path.index
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                                                className: "hm-path-title",
-                                                children: path.title
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                                                className: "hm-path-line",
-                                                children: path.line
-                                            })
-                                        ]
-                                    })
-                                ]
-                            })
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+            className: "hm-paths-grid",
+            variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .staggerContainer */ .Jm,
+            initial: "hidden",
+            whileInView: "show",
+            viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_3__/* .homeViewport */ .lX,
+            children: PATHS.map((path)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_5__/* .motion.div */ .E.div, {
+                    className: "hm-path",
+                    variants: item,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                        href: path.href,
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
+                            className: "hm-path-link",
+                            children: [
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "hm-path-media",
+                                    "aria-hidden": "true",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                            src: path.image,
+                                            alt: "",
+                                            loading: "lazy",
+                                            decoding: "async"
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "hm-path-scrim"
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "hm-path-copy",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                            className: "hm-path-index",
+                                            children: path.index
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                                            className: "hm-path-title",
+                                            children: path.title
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                                            className: "hm-path-line",
+                                            children: path.line
+                                        })
+                                    ]
+                                })
+                            ]
                         })
-                    }, path.href))
-            }),
-            categories.length > 0 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "hm-cat-rail-wrap",
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                    className: "hm-cat-rail",
-                    role: "list",
-                    "aria-label": "Product categories",
-                    children: categories.map((cat)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                            href: `/categories/${cat.slug}`,
-                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
-                                className: "hm-cat-chip",
-                                role: "listitem",
-                                children: [
-                                    cat.icon_url ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_lib_display_image__WEBPACK_IMPORTED_MODULE_3__.DisplayImage, {
-                                        src: cat.icon_url,
-                                        alt: "",
-                                        loading: "lazy",
-                                        decoding: "async",
-                                        className: "hm-cat-icon"
-                                    }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                        className: "hm-cat-letter",
-                                        "aria-hidden": "true",
-                                        children: cat.name.charAt(0)
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                        children: cat.name
-                                    })
-                                ]
-                            })
-                        }, cat.id))
-                })
-            })
-        ]
+                    })
+                }, path.href))
+        })
     });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PathChooser);
@@ -1395,6 +1368,119 @@ const ProofStrip = ({ proof ={}  })=>{
 
 /***/ }),
 
+/***/ 9948:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9754);
+/* harmony import */ var motion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8023);
+/* harmony import */ var _homeMotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8411);
+
+
+
+
+const QUOTES = [
+    {
+        text: "MIS Solution has been a dependable technology partner for our institutional procurement and support needs — responsive, transparent, and precise.",
+        name: "Pro-Vice Chancellor",
+        role: "University of Dhaka"
+    },
+    {
+        text: "From hardware supply to ongoing support, MIS delivers with the discipline an investment firm expects — clear timelines and accountable service.",
+        name: "Mohammad Emran Hasan",
+        role: "Managing Director & CEO, Investit Asset Management Limited"
+    }, 
+];
+const Quotes = ()=>{
+    const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_3__/* .useReducedMotion */ .J)();
+    const { 0: index , 1: setIndex  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        if (reduce || QUOTES.length <= 1) return undefined;
+        const timer = setInterval(()=>{
+            setIndex((prev)=>(prev + 1) % QUOTES.length);
+        }, 6000);
+        return ()=>clearInterval(timer);
+    }, [
+        reduce
+    ]);
+    const quote = QUOTES[index];
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
+        className: "hm-quotes",
+        "aria-labelledby": "hm-quotes-title",
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(motion_react__WEBPACK_IMPORTED_MODULE_4__/* .motion.div */ .E.div, {
+            className: "hm-quotes-inner",
+            initial: "hidden",
+            whileInView: "show",
+            viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .homeViewport */ .lX,
+            variants: reduce ? _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .reducedFade */ .UP : _homeMotion__WEBPACK_IMPORTED_MODULE_2__/* .fadeUp */ .pB,
+            children: [
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
+                    className: "hm-section-head hm-section-head-left",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            className: "hm-eyebrow",
+                            children: "Client voice"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                            id: "hm-quotes-title",
+                            className: "hm-section-title",
+                            children: "What partners say"
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("figure", {
+                    className: "hm-quote",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("blockquote", {
+                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                                children: [
+                                    "“",
+                                    quote.text,
+                                    "”"
+                                ]
+                            }, index)
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("figcaption", {
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("strong", {
+                                    children: quote.name
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                    children: quote.role
+                                })
+                            ]
+                        })
+                    ]
+                }),
+                QUOTES.length > 1 && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: "hm-quote-dots",
+                    role: "tablist",
+                    "aria-label": "Testimonials",
+                    children: QUOTES.map((q, i)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                            type: "button",
+                            role: "tab",
+                            "aria-selected": i === index,
+                            className: `hm-quote-dot${i === index ? " is-active" : ""}`,
+                            onClick: ()=>setIndex(i),
+                            "aria-label": `${q.name}`
+                        }, q.name))
+                })
+            ]
+        })
+    });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Quotes);
+
+
+/***/ }),
+
 /***/ 3211:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1425,11 +1511,19 @@ const truncate = (text, max = 110)=>{
     if (value.length <= max) return value;
     return `${value.slice(0, max - 1).trim()}…`;
 };
+const layoutClass = (count)=>{
+    if (count <= 1) return "hm-work-grid is-1";
+    if (count === 2) return "hm-work-grid is-2";
+    if (count === 3) return "hm-work-grid is-3";
+    if (count === 4) return "hm-work-grid is-4";
+    return "hm-work-grid is-6";
+};
 const WorkGallery = ({ projects =[]  })=>{
     const reduce = (0,motion_react__WEBPACK_IMPORTED_MODULE_5__/* .useReducedMotion */ .J)();
     if (!projects.length) return null;
     const item = (0,_homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .motionState */ .RK)(reduce);
-    const items = projects.slice(0, 7);
+    const items = projects.slice(0, 6);
+    const useFeature = items.length === 3;
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
         className: "hm-work",
         "aria-labelledby": "hm-work-title",
@@ -1459,13 +1553,13 @@ const WorkGallery = ({ projects =[]  })=>{
                     ]
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                    className: "hm-work-grid",
+                    className: layoutClass(items.length),
                     variants: reduce ? undefined : _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .staggerContainer */ .Jm,
                     initial: "hidden",
                     whileInView: "show",
                     viewport: _homeMotion__WEBPACK_IMPORTED_MODULE_4__/* .homeViewport */ .lX,
                     children: items.map((project, idx)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(motion_react__WEBPACK_IMPORTED_MODULE_6__/* .motion.div */ .E.div, {
-                            className: `hm-work-card${idx === 0 ? " is-feature" : ""}`,
+                            className: `hm-work-card${useFeature && idx === 0 ? " is-feature" : ""}`,
                             variants: item,
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
                                 href: `/projects/${encodeURIComponent(project.slug || project.id)}`,
@@ -1598,9 +1692,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_home_ProofStrip__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(3814);
 /* harmony import */ var _components_home_WorkGallery__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3211);
 /* harmony import */ var _components_home_FeaturedCatalog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(5752);
-/* harmony import */ var _components_home_FindAndAct__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(957);
+/* harmony import */ var _components_home_Quotes__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(9948);
+/* harmony import */ var _components_home_FindAndAct__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(957);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_footer__WEBPACK_IMPORTED_MODULE_5__]);
 _components_footer__WEBPACK_IMPORTED_MODULE_5__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -1984,9 +2080,7 @@ const Home = (props)=>{
                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                         className: "jsx-400a974db96a906a" + " " + "home-mid",
                         children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_PathChooser__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
-                                categories: homeCategories
-                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_PathChooser__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {}),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_OfferBand__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
                                 advertisements: advertisements
                             }),
@@ -1999,10 +2093,11 @@ const Home = (props)=>{
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_WorkGallery__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z, {
                                 projects: clientProjects
                             }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_Quotes__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z, {}),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_FeaturedCatalog__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z, {
                                 products: featuredProducts
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_FindAndAct__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z, {})
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_home_FindAndAct__WEBPACK_IMPORTED_MODULE_14__/* ["default"] */ .Z, {})
                         ]
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {})

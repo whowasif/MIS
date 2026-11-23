@@ -11,12 +11,21 @@ const truncate = (text, max = 110) => {
   return `${value.slice(0, max - 1).trim()}…`
 }
 
+const layoutClass = (count) => {
+  if (count <= 1) return 'hm-work-grid is-1'
+  if (count === 2) return 'hm-work-grid is-2'
+  if (count === 3) return 'hm-work-grid is-3'
+  if (count === 4) return 'hm-work-grid is-4'
+  return 'hm-work-grid is-6'
+}
+
 const WorkGallery = ({ projects = [] }) => {
   const reduce = useReducedMotion()
   if (!projects.length) return null
 
   const item = motionState(reduce)
-  const items = projects.slice(0, 7)
+  const items = projects.slice(0, 6)
+  const useFeature = items.length === 3
 
   return (
     <section className="hm-work" aria-labelledby="hm-work-title">
@@ -34,7 +43,7 @@ const WorkGallery = ({ projects = [] }) => {
         </header>
 
         <motion.div
-          className="hm-work-grid"
+          className={layoutClass(items.length)}
           variants={reduce ? undefined : staggerContainer}
           initial="hidden"
           whileInView="show"
@@ -43,7 +52,7 @@ const WorkGallery = ({ projects = [] }) => {
           {items.map((project, idx) => (
             <motion.div
               key={project.id}
-              className={`hm-work-card${idx === 0 ? ' is-feature' : ''}`}
+              className={`hm-work-card${useFeature && idx === 0 ? ' is-feature' : ''}`}
               variants={item}
             >
               <Link href={`/projects/${encodeURIComponent(project.slug || project.id)}`}>

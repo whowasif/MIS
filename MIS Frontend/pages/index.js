@@ -10,6 +10,7 @@ import CapabilityMap from '../components/home/CapabilityMap'
 import ProofStrip from '../components/home/ProofStrip'
 import WorkGallery from '../components/home/WorkGallery'
 import FeaturedCatalog from '../components/home/FeaturedCatalog'
+import Quotes from '../components/home/Quotes'
 import FindAndAct from '../components/home/FindAndAct'
 
 const HERO_SUBTITLE = 'Enterprise IT, hardware supply, and on-call support for teams that need technology that just works.'
@@ -224,11 +225,12 @@ const Home = (props) => {
         </section>
 
         <div className="home-mid">
-          <PathChooser categories={homeCategories} />
+          <PathChooser />
           <OfferBand advertisements={advertisements} />
           <CapabilityMap featuredServices={featuredServices} />
           <ProofStrip proof={proof} />
           <WorkGallery projects={clientProjects} />
+          <Quotes />
           <FeaturedCatalog products={featuredProducts} />
           <FindAndAct />
         </div>

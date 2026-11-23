@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
-import { DisplayImage } from '../../lib/display-image'
 import { homeViewport, motionState, staggerContainer } from './homeMotion'
 
 const PATHS = [
@@ -28,7 +27,7 @@ const PATHS = [
   },
 ]
 
-const PathChooser = ({ categories = [] }) => {
+const PathChooser = () => {
   const reduce = useReducedMotion()
   const item = motionState(reduce)
 
@@ -59,25 +58,6 @@ const PathChooser = ({ categories = [] }) => {
           </motion.div>
         ))}
       </motion.div>
-
-      {categories.length > 0 && (
-        <div className="hm-cat-rail-wrap">
-          <div className="hm-cat-rail" role="list" aria-label="Product categories">
-            {categories.map((cat) => (
-              <Link key={cat.id} href={`/categories/${cat.slug}`}>
-                <a className="hm-cat-chip" role="listitem">
-                  {cat.icon_url ? (
-                    <DisplayImage src={cat.icon_url} alt="" loading="lazy" decoding="async" className="hm-cat-icon" />
-                  ) : (
-                    <span className="hm-cat-letter" aria-hidden="true">{cat.name.charAt(0)}</span>
-                  )}
-                  <span>{cat.name}</span>
-                </a>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </section>
   )
 }

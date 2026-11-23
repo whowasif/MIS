@@ -654,7 +654,7 @@ const Navigation = ()=>{
                     })
                 ]
             }),
-            categories.length > 0 && (router.pathname.startsWith("/categories") || router.pathname.startsWith("/products") || router.pathname === "/product-catalog") && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("nav", {
+            categories.length > 0 && (router.pathname.startsWith("/categories") || router.pathname.startsWith("/products")) && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("nav", {
                 "aria-label": "Product categories",
                 className: "jsx-8706b9d34c76d279" + " " + "cat-nav-bar",
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
