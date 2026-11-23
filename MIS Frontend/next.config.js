@@ -1,4 +1,12 @@
-const withTM = require('next-transpile-modules')(['motion', 'framer-motion'])
+// next-transpile-modules is needed at build time for motion.
+// On cPanel/Passenger the package may be missing from the venv — fall back
+// so production can still boot (the compiled .next already includes motion).
+let withTM = (config) => config
+try {
+  withTM = require('next-transpile-modules')(['motion', 'framer-motion'])
+} catch (err) {
+  if (err && err.code !== 'MODULE_NOT_FOUND') throw err
+}
 
 module.exports = withTM({
   i18n: {
