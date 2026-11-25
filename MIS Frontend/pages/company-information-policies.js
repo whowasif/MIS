@@ -87,7 +87,7 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
               <section className="ceo-section">
                 <div className="ceo-strip">
                   <div className="ceo-avatar-ring">
-                    <img src="/ceo-profile.jpeg?v=20261125" alt="Mohammad Ibrahim Sikder" />
+                    <img src="/ceo-profile.jpeg?v=20261125b" alt="Mohammad Ibrahim Sikder" />
                   </div>
                   <div className="ceo-speech-wrap">
                     <p className="ceo-speech"><span className="ceo-mark">&ldquo;</span>At MIS Solution, we believe technology should simplify, not complicate. Our commitment is to stand beside every client as a long-term partner — understanding their unique challenges and delivering services that are not just functional, but transformational. Whether it&apos;s building a company&apos;s digital presence from scratch, deploying enterprise-grade infrastructure, or ensuring systems run flawlessly year-round through our maintenance contracts — we approach every engagement with the same dedication. We don&apos;t just deliver solutions; we build lasting relationships, empower businesses to scale, and drive meaningful progress through innovation, expertise, and integrity.&rdquo;</p>
@@ -190,8 +190,8 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         .panel-card { border: 1px solid #d9d9d9; border-top: 4px solid var(--color-primary); border-radius: 12px; padding: 1.2rem; background: #ffffff; }
         .ceo-section { margin: 3rem 0; }
         .ceo-strip { background: #f0f4f8; border-radius: 24px; padding: 48px 40px 40px; text-align: center; border: 1px solid #e2e8f0; }
-        .ceo-avatar-ring { width: 160px; height: 160px; border-radius: 50%; padding: 4px; background: #f7e500; margin: 0 auto 28px; }
-        .ceo-avatar-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center 20%; display: block; border: 3px solid #f0f4f8; }
+        .ceo-avatar-ring { width: 180px; height: 180px; border-radius: 50%; padding: 4px; background: #f7e500; margin: 0 auto 28px; overflow: hidden; }
+        .ceo-avatar-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center center; display: block; border: 3px solid #f0f4f8; }
         .ceo-speech-wrap { max-width: 680px; margin: 0 auto; }
         .ceo-speech { margin: 0; font-size: 15px; font-style: italic; color: #374151; line-height: 1.9; text-align: left; }
         .ceo-mark { font-size: 52px; font-weight: 900; color: #f7e500; font-family: Georgia, serif; line-height: 0.5; vertical-align: -0.15em; margin-right: 4px; font-style: normal; }
@@ -227,7 +227,7 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
         .policy-card ul, .policy-card ol { margin: 0; padding-left: 1.1rem; color: #444444; line-height: 1.7; display: grid; gap: 0.5rem; }
         .policy-note { margin-top: 1.6rem; border-top: 2px solid #1f2329; padding-top: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
         @media (max-width: 991px) { .mission-grid, .policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media (max-width: 767px) { .shell { padding-top: 2.4rem; padding-bottom: 2.4rem; } .mission-grid, .policy-grid { grid-template-columns: 1fr; } .policy-note { flex-direction: column; align-items: flex-start; } .project-card-alt { grid-template-columns: 3fr 2fr; height: auto; min-height: 180px; } .project-card-alt.img-first { direction: rtl; } .project-card-alt.img-first > * { direction: ltr; } .pca-img { height: 100%; min-height: 180px; } .pca-text { padding: 14px; } .pca-text h3 { font-size: 14px; } .pca-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; } .ceo-strip { padding: 36px 20px 32px; } .ceo-avatar-ring { width: 140px; height: 140px; } .ceo-mark { font-size: 40px; } }
+        @media (max-width: 767px) { .shell { padding-top: 2.4rem; padding-bottom: 2.4rem; } .mission-grid, .policy-grid { grid-template-columns: 1fr; } .policy-note { flex-direction: column; align-items: flex-start; } .project-card-alt { grid-template-columns: 3fr 2fr; height: auto; min-height: 180px; } .project-card-alt.img-first { direction: rtl; } .project-card-alt.img-first > * { direction: ltr; } .pca-img { height: 100%; min-height: 180px; } .pca-text { padding: 14px; } .pca-text h3 { font-size: 14px; } .pca-text p { font-size: 12px; -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; } .ceo-strip { padding: 36px 20px 32px; } .ceo-avatar-ring { width: 156px; height: 156px; } .ceo-mark { font-size: 40px; } }
       `}</style>
     </>
   )
