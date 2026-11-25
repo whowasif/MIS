@@ -87,7 +87,7 @@ const CompanyInformationPolicies = ({ clientProjects = [] }) => {
               <section className="ceo-section">
                 <div className="ceo-strip">
                   <div className="ceo-avatar-ring">
-                    <img src="/ceo-profile.jpeg" alt="Mohammad Ibrahim Sikder" />
+                    <img src="/ceo-profile.jpeg?v=20261125" alt="Mohammad Ibrahim Sikder" />
                   </div>
                   <div className="ceo-speech-wrap">
                     <p className="ceo-speech"><span className="ceo-mark">&ldquo;</span>At MIS Solution, we believe technology should simplify, not complicate. Our commitment is to stand beside every client as a long-term partner — understanding their unique challenges and delivering services that are not just functional, but transformational. Whether it&apos;s building a company&apos;s digital presence from scratch, deploying enterprise-grade infrastructure, or ensuring systems run flawlessly year-round through our maintenance contracts — we approach every engagement with the same dedication. We don&apos;t just deliver solutions; we build lasting relationships, empower businesses to scale, and drive meaningful progress through innovation, expertise, and integrity.&rdquo;</p>

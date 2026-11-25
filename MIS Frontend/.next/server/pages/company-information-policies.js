@@ -422,7 +422,7 @@ const CompanyInformationPolicies = ({ clientProjects =[]  })=>{
                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "jsx-697a26afd4c46145" + " " + "ceo-avatar-ring",
                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                                            src: "/ceo-profile.jpeg",
+                                                            src: "/ceo-profile.jpeg?v=20261125",
                                                             alt: "Mohammad Ibrahim Sikder",
                                                             className: "jsx-697a26afd4c46145"
                                                         })
